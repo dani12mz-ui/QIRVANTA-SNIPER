@@ -100,6 +100,11 @@ bool showEarlyPressure = input.bool(true, "Показвай ранно приб�
 float pressureNearATR = input.float(0.30, "Близост до структурата за предупреждение / ATR", minval=0.10, maxval=1.0, step=0.05, group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
 int structureContextCooldown = input.int(5, "Мин. свещи между ранни предупреждения", minval=2, maxval=25, group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
 float maxOpenDeviationATR = input.float(0.20, "Макс. отклонение при следващо отваряне / ATR", minval=0.05, maxval=0.8, step=0.05, group="04 / РИСК И ЦЕЛИ", tooltip="Виртуалният вход се отменя, ако следващото отваряне е прекалено далеч от цената на сигнала.")
+bool enableObserverAlerts = input.bool(true, "Включи уведомленията (само след създаден TradingView Alert)", group="07 / ПРЕДУПРЕЖДЕНИЯ", tooltip="Само наблюдение. Никога не изпраща брокерски поръчки и не мести реалния стоп.")
+bool alertWatch = input.bool(true, "Предупреждавай при подготвящ се модел (НЕ Е ВХОД)", group="07 / ПРЕДУПРЕЖДЕНИЯ")
+bool alertConfirmedPlan = input.bool(true, "Потвърден план с вход / SL / TP1–TP3", group="07 / ПРЕДУПРЕЖДЕНИЯ")
+bool alertPaperManagement = input.bool(true, "Симулирани TP / SL / Profit Lock и отмяна на план", group="07 / ПРЕДУПРЕЖДЕНИЯ")
+bool alertRiskEvents = input.bool(true, "Отменени и изтекли възможности (NO CHASE)", group="07 / ПРЕДУПРЕЖДЕНИЯ")
 
 int tfSeconds = timeframe.in_seconds(timeframe.period)
 bool scalp = tradingMode == "СКАЛПИНГ" or (tradingMode == "АВТОМАТИЧЕН" and tfSeconds <= 900)
@@ -781,10 +786,23 @@ if barstate.isconfirmed
         queuedFamily := plannedFamily
         queuedChecks := plannedChecks
         eventMessage += " | QIRVANTA: ПОТВЪРДЕН СИГНАЛ " + (newBuy ? "КУПИ" : "ПРОДАЙ") + " | " + syminfo.ticker + " / " + timeframe.period + " | ОРИЕНТИР " + str.tostring(plannedRef, format.mintick) + " | ВХОД ПРИ СЛЕДВ. ОТВАРЯНЕ (НЕПОТВ.) | SL " + str.tostring(plannedStop, format.mintick) + " | TP1 " + str.tostring(plannedTP1, format.mintick) + " | TP2 " + str.tostring(plannedTP2, format.mintick) + " | TP3 " + str.tostring(plannedTP3, format.mintick) + " | МОДЕЛ " + plannedFamily + " | УСЛОВИЯ " + str.tostring(plannedChecks) + "/6 (НЕ Е ВЕРОЯТНОСТ) | " + str.format_time(time, "yyyy-MM-dd HH:mm", "Europe/Sofia")
-    if setupInvalidated
-        eventMessage += " | КОНФИГУРАЦИЯТА Е ИЗТЕКЛА/ОТМЕНЕНА"
-    if str.length(eventMessage) > 0
-        alert(eventMessage, alert.freq_once_per_bar_close)
+    // Advisory-only notification channel. Never assumes that the user opened a broker position.
+    // Only ONE consolidated alert() call per closed bar; WATCH and PLAN have distinct wording.
+    string observerMessage = ""
+    if enableObserverAlerts
+        if alertConfirmedPlan and (newBuy or newSell)
+            observerMessage := "QIRVANTA | ПОТВЪРДЕН ПЛАН, НЕ ПОРЪЧКА | " + syminfo.ticker + " / " + timeframe.period + " | " + (newBuy ? "КУПИ" : "ПРОДАЙ") + " | ОРИЕНТИР " + str.tostring(plannedRef, format.mintick) + " | ПРЕДЛОЖЕН SL " + str.tostring(plannedStop, format.mintick) + " | TP1 " + str.tostring(plannedTP1, format.mintick) + " | TP2 " + str.tostring(plannedTP2, format.mintick) + " | TP3 " + str.tostring(plannedTP3, format.mintick) + " | МОДЕЛ " + plannedFamily + " | ПРЕЦЕНИ САМ, ВХОДЪТ НЕ Е ИЗПЪЛНЕН."
+        if alertWatch and not newBuy and not newSell
+            string watchNotice = reversalWatchBuy ? "НАБЛЮДАВАЙ ОТСКОК ОТ ДЪНО" : reversalWatchSell ? "НАБЛЮДАВАЙ ОБРЪЩАНЕ ОТ ВРЪХ" : shiftMarkBuy ? "MSS/BOS НАГОРЕ, ЧАКА ПОТВЪРЖДЕНИЕ" : shiftMarkSell ? "MSS/BOS НАДОЛУ, ЧАКА ПОТВЪРЖДЕНИЕ" : earlyBreakBull ? "ПРИБЛИЖАВА СТРУКТУРЕН ПРОБИВ НАГОРЕ" : earlyBreakBear ? "ПРИБЛИЖАВА СТРУКТУРЕН ПРОБИВ НАДОЛУ" : ""
+            if str.length(watchNotice) > 0
+                observerMessage += (str.length(observerMessage) > 0 ? " | " : "") + "QIRVANTA | СЛЕДИ: " + watchNotice + " | " + syminfo.ticker + " / " + timeframe.period + " | ЦЕНА " + str.tostring(close, format.mintick) + " | НЕ Е ВХОД."
+        if alertRiskEvents and (eventLateBuy or eventLateSell or setupInvalidated or eventSkip)
+            observerMessage += (str.length(observerMessage) > 0 ? " | " : "") + "QIRVANTA | ВНИМАНИЕ: " + (eventSkip ? "ПЛАНЪТ Е ОТМЕНЕН ЗАРАДИ ОТВАРЯНЕТО" : eventLateBuy or eventLateSell ? "КЪСНО Е ЗА ВХОД / НЕ ПРЕСЛЕДВАЙ ЦЕНАТА" : "КОНФИГУРАЦИЯТА Е НЕВАЛИДНА") + " | НЯМА НОВ ВХОД."
+        if alertPaperManagement and (eventTP1 or eventTP2 or eventTP3 or eventStop or eventLock or eventTime)
+            string simulatedEvent = eventStop ? "ДОСТИГНАТ СИМУЛИРАН SL" : eventTP3 ? "ДОСТИГНАТ СИМУЛИРАН TP3" : eventTP2 ? "ДОСТИГНАТ СИМУЛИРАН TP2" : eventTP1 ? "ДОСТИГНАТ СИМУЛИРАН TP1" : eventLock ? "ВИРТУАЛЕН ПРОФИТ ЛОК" : "СИМУЛИРАН ИЗХОД ПО ВРЕМЕ"
+            observerMessage += (str.length(observerMessage) > 0 ? " | " : "") + "QIRVANTA | " + simulatedEvent + " | " + syminfo.ticker + " / " + timeframe.period + " | САМО СИМУЛАЦИЯ. АКО ИМАШ РЕАЛНА ПОЗИЦИЯ, ПРОВЕРИ Я В MT5 И РЕШИ САМ."
+        if str.length(observerMessage) > 0
+            alert(observerMessage, alert.freq_once_per_bar_close)
 
 // Final risk-shield state for display must include PAPER results CLOSED on THIS candle.
 // The decision core still uses its pre-bar guard; it cannot open a new trade on the same exit bar.
@@ -882,7 +900,7 @@ if barstate.islast
         lblTP3 := label.new(bar_index + 2, tpLine3, "TP3 " + str.tostring(tpLine3, format.mintick), color=green, textcolor=color.black, style=label.style_label_left, size=size.small)
 
 // Compact dashboard. Map and confirmed marks provide the primary visual information.
-var table dashboard = table.new(position.top_right, 2, 10, bgcolor=dark, frame_color=color.rgb(61, 77, 104), frame_width=1)
+var table dashboard = table.new(position.top_right, 2, 11, bgcolor=dark, frame_color=color.rgb(61, 77, 104), frame_width=1)
 if barstate.islast and displayDashboard
     bool hasLongSetup = phaseLong != 0
     bool hasShortSetup = phaseShort != 0
@@ -907,7 +925,7 @@ if barstate.islast and displayDashboard
     table.cell(dashboard, 1, 3, activePlan ? "СИМУЛ. / СЛЕДВ. ОТВАРЯНЕ" : pending, text_color=gold)
     table.cell(dashboard, 0, 4, "ЗАЩО ЧАКА", bgcolor=panel, text_color=grey)
     string displayBlocker = hasBothSetups ? (noPreferredDirection ? "ДВА СЦЕНАРИЯ / ЧАКАЙ" : bullHTF ? "ДВА СЦЕНАРИЯ / HTF: КУПИ" : "ДВА СЦЕНАРИЯ / HTF: ПРОДАЙ") : blockedReason
-    table.cell(dashboard, 1, 4, activePlan ? "САМО СИМУЛАЦИЯ" : displayBlocker, bgcolor=panel, text_color=gold)
+    table.cell(dashboard, 1, 4, activePlan ? "ПЛАН / САМО СИМУЛАЦИЯ" : displayBlocker, bgcolor=panel, text_color=gold)
     table.cell(dashboard, 0, 5, "ОРИЕНТИР / SL", text_color=grey)
     table.cell(dashboard, 1, 5, priceText + " / " + stopText, text_color=color.white)
     table.cell(dashboard, 0, 6, "TP1 / TP2 / TP3", bgcolor=panel, text_color=grey)
@@ -923,6 +941,8 @@ if barstate.islast and displayDashboard
     string localState = timeframe.period + " " + localBias + " / " + htf + " " + htfBias + (localAgainstHTF ? " | РАЗМИНАВАНЕ" : "")
     table.cell(dashboard, 0, 9, "ЛОКАЛЕН / HTF", text_color=grey)
     table.cell(dashboard, 1, 9, localState, text_color=localAgainstHTF ? gold : color.white)
+    table.cell(dashboard, 0, 10, "РЕАЛНА ПОЗИЦИЯ", bgcolor=panel, text_color=grey)
+    table.cell(dashboard, 1, 10, "НЕ СЕ СЛЕДИ В MT5", bgcolor=panel, text_color=gold)
 
 // TradingView must create alerts manually. One dynamic message per bar.
 alertcondition(newBuy, title="QIRVANTA: СИГНАЛ КУПИ", message="Потвърден сигнал за ПОКУПКА на {{ticker}} {{interval}}. За динамични цени използвай „Всички извиквания на alert()“.")
