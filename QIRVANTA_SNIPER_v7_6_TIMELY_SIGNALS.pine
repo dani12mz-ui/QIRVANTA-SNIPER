@@ -78,6 +78,7 @@ int scalpMaxHold = input.int(48, "Макс. задържане при скалп
 int swingMaxHold = input.int(60, "Макс. задържане при суинг (свещи)", minval=5, maxval=300, group="04 / РИСК И ЦЕЛИ")
 string density = input.string("СТАНДАРТЕН", "Подробност на графиката", options=["ИЗЧИСТЕН", "СТАНДАРТЕН", "ПОДРОБЕН"], group="05 / ИЗГЛЕД")
 bool displayDashboard = input.bool(true, "Показвай таблото с решения", group="05 / ИЗГЛЕД")
+int dashboardTextPt = input.int(14, "Размер на буквите в таблото (pt)", minval=10, maxval=18, group="05 / ИЗГЛЕД", tooltip="14 = стандартно; 16 = по-големи букви. При тесен екран може да разшири таблицата.")
 bool displayLevels = input.bool(true, "Показвай вход, SL и цели", group="05 / ИЗГЛЕД")
 bool displayEMAs = input.bool(true, "EMA 21 + EMA 55", group="05 / ИЗГЛЕД")
 bool displayAsia = input.bool(false, "Азиатски максимум/минимум (завършени)", group="05 / ИЗГЛЕД")
@@ -95,6 +96,8 @@ bool showSignalDetails = input.bool(false, "Подробни надписи пр
 bool showImpulseContext = input.bool(true, "Показвай силни движения без вход", group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА", tooltip="Показва силен локален импулс, включително срещу по-високия тренд. Това НЕ Е сигнал за покупка или продажба.")
 float minContextBodyATR = input.float(0.85, "Мин. тяло за силно движение / ATR", minval=0.4, maxval=2.5, step=0.05, group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
 int contextCooldown = input.int(8, "Мин. свещи между обозначенията", minval=2, maxval=40, group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
+int visualContextBars = input.int(100, "Последни свещи с аналитични маркери", minval=25, maxval=500, group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА", tooltip="Само визуален филтър за BOS/MSS/CHoCH/СПАД/РЪСТ/СЛЕДИ. НЕ променя входовете, предупрежденията или симулацията.")
+int visualWatchLimit = input.int(5, "Макс. запазени надписи СЛЕДИ ОТСКОК", minval=1, maxval=10, group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
 bool showStructureEvents = input.bool(true, "Показвай BOS / MSS / CHoCH (само анализ)", group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА", tooltip="BOS = продължение след структурен пробив; MSS = промяна след взета ликвидност; CHoCH = възможна промяна на локалния тренд. Нито едно не е автоматичен вход.")
 bool showEarlyPressure = input.bool(true, "Показвай ранно приближаване към пробив", group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
 float pressureNearATR = input.float(0.30, "Близост до структурата за предупреждение / ATR", minval=0.10, maxval=1.0, step=0.05, group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
@@ -826,6 +829,23 @@ float tpLine1 = simSide != 0 ? simTP1 : queuedTP1
 float tpLine2 = simSide != 0 ? simTP2 : queuedTP2
 float tpLine3 = simSide != 0 ? simTP3 : queuedTP3
 
+// Visual-only hierarchy: keep confirmed entries prominent and suppress overlapping context labels.
+// Limit recent market-structure annotations without changing their detection, signals, or alerts.
+bool visuallyRecent = bar_index >= last_bar_index - visualContextBars
+bool majorConfirmed = newBuy or newSell
+bool majorWatch = showReversalWatch and (reversalWatchBuy or reversalWatchSell)
+bool majorChoch = showStructureEvents and (contextChochBull or contextChochBear)
+bool majorMss = showStructureEvents and (shiftMarkBuy or shiftMarkSell)
+bool majorBos = showStructureEvents and (bosUp or bosDown)
+bool suppressMinorContext = majorConfirmed or majorWatch or majorChoch or majorMss or majorBos
+bool visualStructure = showStructureEvents and visuallyRecent and not clean and not majorConfirmed and not majorWatch
+// Rejected-entry labels are kept at a conservative frequency; logic and alert notifications remain unchanged.
+var int lastCancelVisualBar = na
+bool visualCancel = false
+if barstate.isconfirmed and (eventLateBuy or eventLateSell) and not majorConfirmed and (na(lastCancelVisualBar) or bar_index - lastCancelVisualBar > 7)
+    visualCancel := true
+    lastCancelVisualBar := bar_index
+
 plot(displayEMAs ? emaFast : na, "EMA 21", color=blue, linewidth=2)
 plot(displayEMAs ? emaSlow : na, "EMA 55", color=gold, linewidth=2)
 plot(displayPivots and detailed ? lastPivotHigh : na, "Потвърден структурен връх", color=color.new(red, 65), style=plot.style_stepline)
@@ -857,28 +877,28 @@ plotshape(detailed and sweepMarkBuy, title="Взета ликвидност по
 plotshape(detailed and sweepMarkSell, title="Взета ликвидност над връх", style=shape.circle, location=location.abovebar, color=gold, text="ЛИКВ.", size=size.small)
 // Distinguish a sweep-led MSS from a trend-continuation BOS. Both are detected at candle close.
 // Structure labels use distinct criteria and are never retroactively placed on pivot bars.
-plotshape(showStructureEvents and not clean and shiftMarkBuy and sweepFamilyLong, title="MSS нагоре след взета ликвидност", style=shape.square, location=location.belowbar, color=color.new(green, 15), text="MSS\nНАБЛ.", textcolor=color.white, size=size.small)
-plotshape(showStructureEvents and not clean and shiftMarkSell and sweepFamilyShort, title="MSS надолу след взета ликвидност", style=shape.square, location=location.abovebar, color=color.new(red, 15), text="MSS\nНАБЛ.", textcolor=color.white, size=size.small)
-plotshape(showStructureEvents and not clean and shiftMarkBuy and not sweepFamilyLong and not contextChochBull, title="BOS нагоре (продължение)", style=shape.square, location=location.belowbar, color=color.new(green, 28), text="BOS", textcolor=color.white, size=size.small)
-plotshape(showStructureEvents and not clean and shiftMarkSell and not sweepFamilyShort and not contextChochBear, title="BOS надолу (продължение)", style=shape.square, location=location.abovebar, color=color.new(red, 28), text="BOS", textcolor=color.white, size=size.small)
-plotshape(showStructureEvents and not clean and bosUp and not shiftMarkBuy and not contextChochBull, title="BOS нагоре, само анализ", style=shape.square, location=location.belowbar, color=color.new(green, 55), text="BOS", textcolor=color.white, size=size.small)
-plotshape(showStructureEvents and not clean and bosDown and not shiftMarkSell and not contextChochBear, title="BOS надолу, само анализ", style=shape.square, location=location.abovebar, color=color.new(red, 55), text="BOS", textcolor=color.white, size=size.small)
-plotshape(showStructureEvents and not clean and contextChochBull and not (shiftMarkBuy and sweepFamilyLong), title="Възможен CHoCH нагоре (само анализ)", style=shape.labelup, location=location.belowbar, color=color.new(blue, 25), text="CHoCH\nНЕ Е ВХОД", textcolor=color.white, size=size.small)
-plotshape(showStructureEvents and not clean and contextChochBear and not (shiftMarkSell and sweepFamilyShort), title="Възможен CHoCH надолу (само анализ)", style=shape.labeldown, location=location.abovebar, color=color.new(gold, 25), text="CHoCH\nНЕ Е ВХОД", textcolor=color.black, size=size.small)
-plotshape(eventStop, title="Симулиран стоп", style=shape.xcross, location=location.abovebar, color=red, text="СИМ. SL", size=size.tiny)
-plotshape(eventTP3, title="СИМУЛ.: ДОСТИГНАТ TP3", style=shape.diamond, location=location.abovebar, color=green, text="СИМУЛ.: ДОСТИГНАТ TP3", size=size.tiny)
+plotshape(visualStructure and not majorChoch and shiftMarkBuy and sweepFamilyLong, title="MSS нагоре след взета ликвидност", style=shape.square, location=location.belowbar, color=color.new(green, 15), text="MSS\nНАБЛ.", textcolor=color.white, size=size.small)
+plotshape(visualStructure and not majorChoch and shiftMarkSell and sweepFamilyShort, title="MSS надолу след взета ликвидност", style=shape.square, location=location.abovebar, color=color.new(red, 15), text="MSS\nНАБЛ.", textcolor=color.white, size=size.small)
+plotshape(visualStructure and not majorChoch and shiftMarkBuy and not sweepFamilyLong and not contextChochBull, title="BOS нагоре (продължение)", style=shape.square, location=location.belowbar, color=color.new(green, 28), text="BOS", textcolor=color.white, size=size.small)
+plotshape(visualStructure and not majorChoch and shiftMarkSell and not sweepFamilyShort and not contextChochBear, title="BOS надолу (продължение)", style=shape.square, location=location.abovebar, color=color.new(red, 28), text="BOS", textcolor=color.white, size=size.small)
+plotshape(visualStructure and not majorChoch and not majorMss and bosUp and not shiftMarkBuy and not contextChochBull, title="BOS нагоре, само анализ", style=shape.square, location=location.belowbar, color=color.new(green, 55), text="BOS", textcolor=color.white, size=size.small)
+plotshape(visualStructure and not majorChoch and not majorMss and bosDown and not shiftMarkSell and not contextChochBear, title="BOS надолу, само анализ", style=shape.square, location=location.abovebar, color=color.new(red, 55), text="BOS", textcolor=color.white, size=size.small)
+plotshape(visualStructure and contextChochBull and not (shiftMarkBuy and sweepFamilyLong), title="Възможен CHoCH нагоре (само анализ)", style=shape.labelup, location=location.belowbar, color=color.new(blue, 25), text="CHoCH\nНЕ Е ВХОД", textcolor=color.white, size=size.small)
+plotshape(visualStructure and contextChochBear and not (shiftMarkSell and sweepFamilyShort), title="Възможен CHoCH надолу (само анализ)", style=shape.labeldown, location=location.abovebar, color=color.new(gold, 25), text="CHoCH\nНЕ Е ВХОД", textcolor=color.black, size=size.small)
+plotshape(detailed and eventStop, title="Симулиран стоп", style=shape.xcross, location=location.abovebar, color=red, text="СИМ. SL", size=size.tiny)
+plotshape(detailed and eventTP3, title="СИМУЛ.: ДОСТИГНАТ TP3", style=shape.diamond, location=location.abovebar, color=green, text="СИМ. TP3", size=size.tiny)
 
 // Human-readable momentum context and expired entries; these are never confirmed BUY/SELL trades.
 // Not all moves will become confirmed entries: validation still requires structure, retest, HTF and no-chase filters.
 // Clearly separate local momentum and HTF agreement. Do NOT create synthetic BUY/SELL trades.
-plotshape(contextBullMark and bullHTF and not newBuy and not contextChochBull, title="Възходящ импулс с тренда (не е вход)", style=shape.labelup, location=location.belowbar, color=color.new(green, 40), text="РЪСТ\nНЕ Е ВХОД", textcolor=color.white, size=size.normal)
-plotshape(contextBullMark and not bullHTF and not newBuy and not contextChochBull, title="Възходящ импулс срещу тренда (не е вход)", style=shape.labelup, location=location.belowbar, color=color.new(gold, 28), text="РЪСТ\nСРЕЩУ ТРЕНДА", textcolor=color.black, size=size.normal)
-plotshape(contextBearMark and bearHTF and not newSell and not contextChochBear, title="Низходящ импулс с тренда (не е вход)", style=shape.labeldown, location=location.abovebar, color=color.new(red, 35), text="СПАД\nНЕ Е ВХОД", textcolor=color.white, size=size.normal)
-plotshape(contextBearMark and not bearHTF and not newSell and not contextChochBear, title="Низходящ импулс срещу тренда (не е вход)", style=shape.labeldown, location=location.abovebar, color=color.new(gold, 28), text="СПАД\nСРЕЩУ ТРЕНДА", textcolor=color.black, size=size.normal)
-plotshape(showEarlyPressure and not clean and earlyBreakBull and not contextBullMark and not newBuy, title="Ранен натиск към пробив нагоре, само наблюдение", style=shape.labelup, location=location.belowbar, color=color.new(blue, 52), text="СЛЕДИ\nНАГОРЕ", textcolor=color.white, size=size.small)
-plotshape(showEarlyPressure and not clean and earlyBreakBear and not contextBearMark and not newSell, title="Ранен натиск към пробив надолу, само наблюдение", style=shape.labeldown, location=location.abovebar, color=color.new(blue, 52), text="СЛЕДИ\nНАДОЛУ", textcolor=color.white, size=size.small)
-plotshape(eventLateBuy, title="Изтекла възможност за покупка (без преследване)", style=shape.labelup, location=location.belowbar, color=color.new(gold, 20), text="КЪСНО КУПИ\nОТМЕНЕНО", textcolor=color.black, size=size.small)
-plotshape(eventLateSell, title="Изтекла възможност за продажба (без преследване)", style=shape.labeldown, location=location.abovebar, color=color.new(gold, 20), text="КЪСНО ПРОДАЙ\nОТМЕНЕНО", textcolor=color.black, size=size.small)
+plotshape(visuallyRecent and not suppressMinorContext and contextBullMark and bullHTF and not newBuy and not contextChochBull, title="Възходящ импулс с тренда (не е вход)", style=shape.labelup, location=location.belowbar, color=color.new(green, 40), text="РЪСТ\nНЕ Е ВХОД", textcolor=color.white, size=size.normal)
+plotshape(visuallyRecent and not suppressMinorContext and contextBullMark and not bullHTF and not newBuy and not contextChochBull, title="Възходящ импулс срещу тренда (не е вход)", style=shape.labelup, location=location.belowbar, color=color.new(gold, 28), text="РЪСТ\nСРЕЩУ ТРЕНДА", textcolor=color.black, size=size.normal)
+plotshape(visuallyRecent and not suppressMinorContext and contextBearMark and bearHTF and not newSell and not contextChochBear, title="Низходящ импулс с тренда (не е вход)", style=shape.labeldown, location=location.abovebar, color=color.new(red, 35), text="СПАД\nНЕ Е ВХОД", textcolor=color.white, size=size.normal)
+plotshape(visuallyRecent and not suppressMinorContext and contextBearMark and not bearHTF and not newSell and not contextChochBear, title="Низходящ импулс срещу тренда (не е вход)", style=shape.labeldown, location=location.abovebar, color=color.new(gold, 28), text="СПАД\nСРЕЩУ ТРЕНДА", textcolor=color.black, size=size.normal)
+plotshape(showEarlyPressure and not clean and visuallyRecent and not suppressMinorContext and earlyBreakBull and not contextBullMark and not newBuy, title="Ранен натиск към пробив нагоре, само наблюдение", style=shape.labelup, location=location.belowbar, color=color.new(blue, 52), text="СЛЕДИ\nНАГОРЕ", textcolor=color.white, size=size.small)
+plotshape(showEarlyPressure and not clean and visuallyRecent and not suppressMinorContext and earlyBreakBear and not contextBearMark and not newSell, title="Ранен натиск към пробив надолу, само наблюдение", style=shape.labeldown, location=location.abovebar, color=color.new(blue, 52), text="СЛЕДИ\nНАДОЛУ", textcolor=color.white, size=size.small)
+plotshape(visualCancel and visuallyRecent and eventLateBuy, title="Изтекла възможност за покупка (без преследване)", style=shape.labelup, location=location.belowbar, color=color.new(gold, 20), text="КЪСНО КУПИ\nОТМЕНЕНО", textcolor=color.black, size=size.small)
+plotshape(visualCancel and visuallyRecent and eventLateSell, title="Изтекла възможност за продажба (без преследване)", style=shape.labeldown, location=location.abovebar, color=color.new(gold, 20), text="КЪСНО ПРОДАЙ\nОТМЕНЕНО", textcolor=color.black, size=size.small)
 
 // Labels always anchored near the CURRENT bar: no historical-offset drawing bug.
 var label lblEntry = na
@@ -900,7 +920,7 @@ if barstate.islast
         lblTP3 := label.new(bar_index + 2, tpLine3, "TP3 " + str.tostring(tpLine3, format.mintick), color=green, textcolor=color.black, style=label.style_label_left, size=size.small)
 
 // Compact dashboard. Map and confirmed marks provide the primary visual information.
-var table dashboard = table.new(position.top_right, 2, 11, bgcolor=dark, frame_color=color.rgb(61, 77, 104), frame_width=1)
+var table dashboard = table.new(position.top_right, 2, 12, bgcolor=dark, frame_color=color.rgb(61, 77, 104), frame_width=1)
 if barstate.islast and displayDashboard
     bool hasLongSetup = phaseLong != 0
     bool hasShortSetup = phaseShort != 0
@@ -915,34 +935,42 @@ if barstate.islast and displayDashboard
     string stopText = activePlan ? str.tostring(activeStopLine, format.mintick) : "—"
     string priceText = activePlan ? str.tostring(refLine, format.mintick) : "—"
     string targetsText = activePlan ? str.tostring(tpLine1, format.mintick) + " / " + str.tostring(tpLine2, format.mintick) + " / " + str.tostring(tpLine3, format.mintick) : "—"
-    table.cell(dashboard, 0, 0, "◆ QIRVANTA СНАЙПЪР", bgcolor=panel, text_color=color.white)
-    table.cell(dashboard, 1, 0, "v7.6 / " + style, bgcolor=panel, text_color=green)
-    table.cell(dashboard, 0, 1, "РЕШЕНИЕ", text_color=grey)
-    table.cell(dashboard, 1, 1, status, text_color=activePlan ? (simSide == 1 or queuedSide == 1 ? green : red) : gold)
-    table.cell(dashboard, 0, 2, "ТРЕНД / РЕЖИМ", bgcolor=panel, text_color=grey)
-    table.cell(dashboard, 1, 2, htf + " / " + regime, bgcolor=panel, text_color=color.white)
-    table.cell(dashboard, 0, 3, "ЕТАП", text_color=grey)
-    table.cell(dashboard, 1, 3, activePlan ? "СИМУЛ. / СЛЕДВ. ОТВАРЯНЕ" : pending, text_color=gold)
-    table.cell(dashboard, 0, 4, "ЗАЩО ЧАКА", bgcolor=panel, text_color=grey)
+    table.cell(dashboard, 0, 0, "◆ QIRVANTA СНАЙПЪР", bgcolor=panel, text_color=color.white, text_size=dashboardTextPt)
+    table.cell(dashboard, 1, 0, "v7.6 / " + style, bgcolor=panel, text_color=green, text_size=dashboardTextPt)
+    table.cell(dashboard, 0, 1, "РЕШЕНИЕ", text_color=grey, text_size=dashboardTextPt)
+    table.cell(dashboard, 1, 1, status, text_color=activePlan ? (simSide == 1 or queuedSide == 1 ? green : red) : gold, text_size=dashboardTextPt)
+    table.cell(dashboard, 0, 2, "ТРЕНД / РЕЖИМ", bgcolor=panel, text_color=grey, text_size=dashboardTextPt)
+    table.cell(dashboard, 1, 2, htf + " / " + regime, bgcolor=panel, text_color=color.white, text_size=dashboardTextPt)
+    table.cell(dashboard, 0, 3, "ЕТАП", text_color=grey, text_size=dashboardTextPt)
+    table.cell(dashboard, 1, 3, simSide != 0 ? "ВИРТУАЛНА ПОЗИЦИЯ" : queuedSide != 0 ? "ЧАКА ОТВАРЯНЕ" : pending, text_color=gold, text_size=dashboardTextPt)
+    table.cell(dashboard, 0, 4, "ЗАЩО ЧАКА", bgcolor=panel, text_color=grey, text_size=dashboardTextPt)
     string displayBlocker = hasBothSetups ? (noPreferredDirection ? "ДВА СЦЕНАРИЯ / ЧАКАЙ" : bullHTF ? "ДВА СЦЕНАРИЯ / HTF: КУПИ" : "ДВА СЦЕНАРИЯ / HTF: ПРОДАЙ") : blockedReason
-    table.cell(dashboard, 1, 4, activePlan ? "ПЛАН / САМО СИМУЛАЦИЯ" : displayBlocker, bgcolor=panel, text_color=gold)
-    table.cell(dashboard, 0, 5, "ОРИЕНТИР / SL", text_color=grey)
-    table.cell(dashboard, 1, 5, priceText + " / " + stopText, text_color=color.white)
-    table.cell(dashboard, 0, 6, "TP1 / TP2 / TP3", bgcolor=panel, text_color=grey)
-    table.cell(dashboard, 1, 6, targetsText, bgcolor=panel, text_color=blue)
-    table.cell(dashboard, 0, 7, "СИМУЛАЦИЯ / R", text_color=grey)
-    table.cell(dashboard, 1, 7, str.tostring(tradesSeen) + " / " + str.tostring(totalNetR, "#.##") + "R (ОЦЕНКА)", text_color=color.white)
-    table.cell(dashboard, 0, 8, "ЗАЩИТИ", bgcolor=panel, text_color=grey)
-    table.cell(dashboard, 1, 8, paperRiskDisplay ? "САМО АНАЛИЗ И СИМУЛАЦИЯ" : "СИМУЛАЦИЯТА Е СПРЯНА", bgcolor=panel, text_color=paperRiskDisplay ? green : red)
+    table.cell(dashboard, 1, 4, activePlan ? "ПЛАН / САМО СИМУЛАЦИЯ" : displayBlocker, bgcolor=panel, text_color=gold, text_size=dashboardTextPt)
+    table.cell(dashboard, 0, 5, "ОРИЕНТИР / SL", text_color=grey, text_size=dashboardTextPt)
+    table.cell(dashboard, 1, 5, priceText + " / " + stopText, text_color=color.white, text_size=dashboardTextPt)
+    table.cell(dashboard, 0, 6, "TP1 / TP2 / TP3", bgcolor=panel, text_color=grey, text_size=dashboardTextPt)
+    table.cell(dashboard, 1, 6, targetsText, bgcolor=panel, text_color=blue, text_size=dashboardTextPt)
+    table.cell(dashboard, 0, 7, "СИМУЛАЦИЯ / R", text_color=grey, text_size=dashboardTextPt)
+    table.cell(dashboard, 1, 7, str.tostring(tradesSeen) + " / " + str.tostring(totalNetR, "#.##") + "R (ОЦЕНКА)", text_color=tradesSeen >= 20 and totalNetR < 0 ? red : color.white, tooltip="Виртуална OHLC симулация. НЕ представлява истински брокерски изпълнения или проверен backtest.", text_size=dashboardTextPt)
+    table.cell(dashboard, 0, 8, "ЗАЩИТИ", bgcolor=panel, text_color=grey, text_size=dashboardTextPt)
+    bool poorPaperEvidence = tradesSeen >= 20 and totalNetR < 0
+    string paperStatus = not paperRiskDisplay ? "ПАУЗА ПО ЛИМИТ" : poorPaperEvidence ? "ОТРИЦАТЕЛНА PAPER ИЗВАДКА" : "НЕДОКАЗАНА ДОХОДНОСТ"
+    table.cell(dashboard, 1, 8, paperStatus, bgcolor=panel, text_color=not paperRiskDisplay or poorPaperEvidence ? red : gold, tooltip="Защитите ограничават виртуалните планове. Положителна реална доходност НЕ е доказана.", text_size=dashboardTextPt)
     // The LOCAL market direction is independent of the confirmed higher-timeframe trading filter.
     string localBias = emaFast > emaSlow and close > emaFast ? "НАГОРЕ" : emaFast < emaSlow and close < emaFast ? "НАДОЛУ" : "СМЕСЕНО"
     string htfBias = bullHTF ? "НАГОРЕ" : bearHTF ? "НАДОЛУ" : "НЕУТРАЛНО"
     bool localAgainstHTF = (localBias == "НАГОРЕ" and not bullHTF) or (localBias == "НАДОЛУ" and not bearHTF)
     string localState = timeframe.period + " " + localBias + " / " + htf + " " + htfBias + (localAgainstHTF ? " | РАЗМИНАВАНЕ" : "")
-    table.cell(dashboard, 0, 9, "ЛОКАЛЕН / HTF", text_color=grey)
-    table.cell(dashboard, 1, 9, localState, text_color=localAgainstHTF ? gold : color.white)
-    table.cell(dashboard, 0, 10, "РЕАЛНА ПОЗИЦИЯ", bgcolor=panel, text_color=grey)
-    table.cell(dashboard, 1, 10, "НЕ СЕ СЛЕДИ В MT5", bgcolor=panel, text_color=gold)
+    table.cell(dashboard, 0, 9, "ЛОКАЛЕН / HTF", text_color=grey, text_size=dashboardTextPt)
+    table.cell(dashboard, 1, 9, localState, text_color=localAgainstHTF ? gold : color.white, text_size=dashboardTextPt)
+    table.cell(dashboard, 0, 10, "РЕАЛНА ПОЗИЦИЯ", bgcolor=panel, text_color=grey, text_size=dashboardTextPt)
+    table.cell(dashboard, 1, 10, "НЕ СЕ СЛЕДИ В MT5", bgcolor=panel, text_color=gold, text_size=dashboardTextPt)
+    string activeFamily = simSide != 0 ? simFamily : queuedSide != 0 ? queuedFamily : ""
+    bool planContraHTF = str.contains(activeFamily, "СРЕЩУ")
+    string conciseFamily = str.contains(activeFamily, "ОБРЪЩАНЕ") ? "РАННО ОБРЪЩАНЕ" : str.contains(activeFamily, "БЪРЗ") ? "БЪРЗ ПРОБИВ" : str.contains(activeFamily, "BOS") ? "ПРОДЪЛЖЕНИЕ BOS" : "СНАЙПЪР РЕТЕСТ"
+    string familyInfo = hasPlan ? conciseFamily + (planContraHTF ? " / СРЕЩУ HTF" : " / ПРОБЕН ПЛАН") : "НЯМА ТЕКУЩ ПЛАН"
+    table.cell(dashboard, 0, 11, "ТИП / РИСК", text_color=grey, text_size=dashboardTextPt)
+    table.cell(dashboard, 1, 11, familyInfo, text_color=planContraHTF ? red : hasPlan ? gold : grey, tooltip="Класификация на симулирания план. Срещу HTF = повишен контратрендов риск. Няма автоматично изпълнение.", text_size=dashboardTextPt)
 
 // TradingView must create alerts manually. One dynamic message per bar.
 alertcondition(newBuy, title="QIRVANTA: СИГНАЛ КУПИ", message="Потвърден сигнал за ПОКУПКА на {{ticker}} {{interval}}. За динамични цени използвай „Всички извиквания на alert()“.")
@@ -978,13 +1006,16 @@ var line[] oldTp2 = array.new_line()
 var line[] oldTp3 = array.new_line()
 var label[] oldSignalTags = array.new_label()
 var label[] reversalWatchTags = array.new_label()
-if barstate.isconfirmed and showReversalWatch and (reversalWatchBuy or reversalWatchSell)
+if barstate.isconfirmed and showReversalWatch and visuallyRecent and (reversalWatchBuy or reversalWatchSell) and not majorConfirmed
     bool watchLong = reversalWatchBuy
     label watchTag = label.new(bar_index, watchLong ? low - atr * 0.08 : high + atr * 0.08, watchLong ? "СЛЕДИ ОТСКОК\nЧАКА ПОТВЪРЖДЕНИЕ\nНЕ Е ВХОД" : "СЛЕДИ ОБРЪЩАНЕ НАДОЛУ\nЧАКА ПОТВЪРЖДЕНИЕ", style=watchLong ? label.style_label_up : label.style_label_down, color=color.new(watchLong ? blue : gold, 22), textcolor=watchLong ? color.white : color.black, size=size.small)
     array.push(reversalWatchTags, watchTag)
-    if array.size(reversalWatchTags) > 14
+    if array.size(reversalWatchTags) > visualWatchLimit
         label.delete(array.shift(reversalWatchTags))
 
+// On a confirmed reversal remove the last tentative WATCH label, keeping the actual signal readable.
+if barstate.isconfirmed and (newReversalBuy or newReversalSell) and array.size(reversalWatchTags) > 0
+    label.delete(array.pop(reversalWatchTags))
 if barstate.isconfirmed and (newBuy or newSell) and showSignalDetails and detailed
     color sideColor = newBuy ? green : red
     string signalMessage = (newBuy ? "КУПИ" : "ПРОДАЙ") + " ПОТВЪРДЕН СИГНАЛ\nОРИЕНТИР " + str.tostring(plannedRef, format.mintick) + "\nSL " + str.tostring(plannedStop, format.mintick) + "\nTP1 " + str.tostring(plannedTP1, format.mintick) + " | TP3 " + str.tostring(plannedTP3, format.mintick) + "\nСИМУЛ. СЛЕДВ. ОТВАРЯНЕ / НЕ Е РЕАЛНО"
