@@ -9,6 +9,13 @@ var int queuedSide = 0
 var int simSide = 0
 int maxPaperLosingStreak = input.int(3, "Макс. поредни симул. загуби за ден", minval=1, maxval=20, group="00 / ЗАЩИТИ ПРИ СИМУЛАЦИЯ")
 float maxPaperDailyLossR = input.float(3.0, "Дневен лимит на симул. загуба (R)", minval=0.5, maxval=50, step=0.5, group="00 / ЗАЩИТИ ПРИ СИМУЛАЦИЯ")
+// The evidence shield changes advisory status only. It does NOT change raw simulated trades or reset losses.
+bool enableEvidenceShield = input.bool(true, "Пауза при отрицателна PAPER статистика", group="00 / ЗАЩИТИ ПРИ СИМУЛАЦИЯ", tooltip="При загуба след достатъчен брой приключили виртуални сделки потвърдените сигнали стават САМО ЗА ИЗСЛЕДВАНЕ. PAPER симулацията продължава и не скрива загубите.")
+int globalMinClosed = input.int(30, "Обща защита: мин. затворени PAPER сделки", minval=15, maxval=200, group="00 / ЗАЩИТИ ПРИ СИМУЛАЦИЯ")
+float globalStopNetR = input.float(-5.0, "Обща защита: лимит общо нетно R", minval=-50.0, maxval=-1.0, step=0.5, group="00 / ЗАЩИТИ ПРИ СИМУЛАЦИЯ")
+int modelMinClosed = input.int(20, "По модел: мин. затворени сделки", minval=10, maxval=100, group="00 / ЗАЩИТИ ПРИ СИМУЛАЦИЯ")
+float modelStopAvgR = input.float(-0.15, "По модел: праг отрицателно средно R", minval=-1.0, maxval=-0.05, step=0.05, group="00 / ЗАЩИТИ ПРИ СИМУЛАЦИЯ")
+bool observeCountertrendOnly = input.bool(true, "Контратренд сигналите само за наблюдение", group="00 / ЗАЩИТИ ПРИ СИМУЛАЦИЯ", tooltip="Не дава одобрен сигнал срещу HTF; само информация за преценка. Не изпълнява никакви поръчки.")
 var float totalNetR = 0.0
 var float dayStartNetR = 0.0
 var int paperLossStreak = 0
@@ -740,6 +747,8 @@ var int timeSeen = 0
 var string lastExit = "НЯМА"
 var string simFamily = "НЯМА"
 var int simChecks = 0
+var bool queuedResearchOnly = false
+var bool simResearchOnly = false
 // Results of CLOSED virtual trades only. Each trade is counted in exactly one model.
 var int reportRetestN = 0
 var int reportRetestPositive = 0
@@ -760,6 +769,10 @@ bool eventLock = false
 bool eventSkip = false
 bool paperEntered = false
 bool paperClosed = false
+bool approvedBuy = false
+bool approvedSell = false
+bool researchOnlyCandidate = false
+string researchBlockReason = ""
 string eventMessage = ""
 
 if barstate.isconfirmed
@@ -777,6 +790,7 @@ if barstate.isconfirmed
             eventMessage := "СИМУЛ.: ОТМЕНЕН ВХОД ЗАРАДИ ГАП | " + syminfo.ticker
         else
             simSide := queuedSide
+            simResearchOnly := queuedResearchOnly
             enteredBar := bar_index
             simEntry := open
             simInitialSL := queuedStop
@@ -796,6 +810,7 @@ if barstate.isconfirmed
             tradesSeen += 1
             paperEntered := true
         queuedSide := 0
+        queuedResearchOnly := false
 
     if simSide != 0 and bar_index >= enteredBar
         // SL lock is effective only on a candle AFTER TP1 was observed.
@@ -877,6 +892,22 @@ if barstate.isconfirmed
                 paperLossStreak += 1
 
     if newBuy or newSell
+        // Only already-CLOSED virtual trades count. No hindsight or rewrite of paper P&L.
+        int sampleClosed = reportRetestN + reportFastN + reportReversalN
+        float netClosed = reportRetestR + reportFastR + reportReversalR
+        bool isReversalFamily = str.contains(plannedFamily, "ПРОБНО")
+        bool isFastFamily = not isReversalFamily and str.contains(plannedFamily, "БЪРЗ")
+        int nFamily = isReversalFamily ? reportReversalN : isFastFamily ? reportFastN : reportRetestN
+        float rFamily = isReversalFamily ? reportReversalR : isFastFamily ? reportFastR : reportRetestR
+        float avgFamily = nFamily > 0 ? rFamily / nFamily : na
+        bool globalLoss = enableEvidenceShield and sampleClosed >= globalMinClosed and netClosed <= globalStopNetR
+        bool familyLoss = enableEvidenceShield and nFamily >= modelMinClosed and avgFamily <= modelStopAvgR
+        bool higherRisk = observeCountertrendOnly and str.contains(plannedFamily, "СРЕЩУ")
+        researchOnlyCandidate := globalLoss or familyLoss or higherRisk
+        researchBlockReason := globalLoss ? "ОБЩА ОТРИЦАТЕЛНА PAPER СТАТИСТИКА" : familyLoss ? "ОТРИЦАТЕЛНА PAPER СТАТИСТИКА НА МОДЕЛА" : higherRisk ? "ПО-РИСКОВ КОНТРАТРЕНД" : ""
+        approvedBuy := newBuy and not researchOnlyCandidate
+        approvedSell := newSell and not researchOnlyCandidate
+        queuedResearchOnly := researchOnlyCandidate
         queuedSide := newBuy ? 1 : -1
         queuedAt := bar_index
         queuedRef := plannedRef
@@ -891,8 +922,10 @@ if barstate.isconfirmed
     // Only ONE consolidated alert() call per closed bar; WATCH and PLAN have distinct wording.
     string observerMessage = ""
     if enableObserverAlerts
-        if alertConfirmedPlan and (newBuy or newSell)
+        if alertConfirmedPlan and (approvedBuy or approvedSell)
             observerMessage := "QIRVANTA | ПОТВЪРДЕН ПЛАН, НЕ ПОРЪЧКА | " + syminfo.ticker + " / " + timeframe.period + " | " + (newBuy ? "КУПИ" : "ПРОДАЙ") + " | ОРИЕНТИР " + str.tostring(plannedRef, format.mintick) + " | ПРЕДЛОЖЕН SL " + str.tostring(plannedStop, format.mintick) + " | TP1 " + str.tostring(plannedTP1, format.mintick) + " | TP2 " + str.tostring(plannedTP2, format.mintick) + " | TP3 " + str.tostring(plannedTP3, format.mintick) + " | МОДЕЛ " + plannedFamily + " | ПРЕЦЕНИ САМ, ВХОДЪТ НЕ Е ИЗПЪЛНЕН."
+        if alertConfirmedPlan and researchOnlyCandidate
+            observerMessage += (str.length(observerMessage) > 0 ? " | " : "") + "QIRVANTA | МОДЕЛЪТ Е САМО ЗА ИЗСЛЕДВАНЕ | " + syminfo.ticker + " / " + timeframe.period + " | " + (newBuy ? "BUY" : "SELL") + " | " + researchBlockReason + " | НЕ Е ОДОБРЕН ВХОД."
         if alertWatch and not newBuy and not newSell
             string watchNotice = reversalWatchBuy ? "НАБЛЮДАВАЙ ОТСКОК ОТ ДЪНО" : reversalWatchSell ? "НАБЛЮДАВАЙ ОБРЪЩАНЕ ОТ ВРЪХ" : shiftMarkBuy ? "MSS/BOS НАГОРЕ, ЧАКА ПОТВЪРЖДЕНИЕ" : shiftMarkSell ? "MSS/BOS НАДОЛУ, ЧАКА ПОТВЪРЖДЕНИЕ" : earlyBreakBull ? "ПРИБЛИЖАВА СТРУКТУРЕН ПРОБИВ НАГОРЕ" : earlyBreakBear ? "ПРИБЛИЖАВА СТРУКТУРЕН ПРОБИВ НАДОЛУ" : ""
             if str.length(watchNotice) > 0
@@ -964,12 +997,12 @@ plot(displayLevels and hasPlan ? tpLine2 : na, "TP2", color=color.rgb(156, 164, 
 p3 = plot(displayLevels and hasPlan ? tpLine3 : na, "TP3", color=green, linewidth=2, style=plot.style_linebr)
 fill(p0, p1, color=color.new(red, 93), title="Планиран риск (симулация)")
 fill(p0, p3, color=color.new(green, 95), title="Потенциална печалба (симулация)")
-plotshape(newBuy and not newFastBuy and not newReversalBuy, title="Снайпър BUY след ретест", style=shape.labelup, location=location.belowbar, color=green, text="КУПИ\nРЕТЕСТ", textcolor=color.black, size=size.large)
-plotshape(newSell and not newFastSell and not newReversalSell, title="Снайпър SELL след ретест", style=shape.labeldown, location=location.abovebar, color=red, text="ПРОДАЙ\nРЕТЕСТ", textcolor=color.white, size=size.large)
-plotshape(newFastBuy, title="Бърз структурен BUY (изследователски)", style=shape.labelup, location=location.belowbar, color=color.new(green, 0), text="КУПИ\nБЪРЗ ПРОБИВ", textcolor=color.black, size=size.large)
-plotshape(newFastSell, title="Бърз структурен SELL (изследователски)", style=shape.labeldown, location=location.abovebar, color=color.new(red, 0), text="ПРОДАЙ\nБЪРЗ ПРОБИВ", textcolor=color.white, size=size.large)
-plotshape(newReversalBuy, title="ПРОБНО потвърдено ранно BUY обръщане", style=shape.labelup, location=location.belowbar, color=color.new(green, 5), text="КУПИ\nОБРЪЩАНЕ\nПРОБНО", textcolor=color.black, size=size.large)
-plotshape(newReversalSell, title="ПРОБНО потвърдено ранно SELL обръщане", style=shape.labeldown, location=location.abovebar, color=color.new(red, 5), text="ПРОДАЙ\nОБРЪЩАНЕ\nПРОБНО", textcolor=color.white, size=size.large)
+plotshape(approvedBuy and not newFastBuy and not newReversalBuy, title="Снайпър BUY след ретест", style=shape.labelup, location=location.belowbar, color=green, text="КУПИ\nРЕТЕСТ", textcolor=color.black, size=size.large)
+plotshape(approvedSell and not newFastSell and not newReversalSell, title="Снайпър SELL след ретест", style=shape.labeldown, location=location.abovebar, color=red, text="ПРОДАЙ\nРЕТЕСТ", textcolor=color.white, size=size.large)
+plotshape(newFastBuy and approvedBuy, title="Бърз структурен BUY (изследователски)", style=shape.labelup, location=location.belowbar, color=color.new(green, 0), text="КУПИ\nБЪРЗ ПРОБИВ", textcolor=color.black, size=size.large)
+plotshape(newFastSell and approvedSell, title="Бърз структурен SELL (изследователски)", style=shape.labeldown, location=location.abovebar, color=color.new(red, 0), text="ПРОДАЙ\nБЪРЗ ПРОБИВ", textcolor=color.white, size=size.large)
+plotshape(newReversalBuy and approvedBuy, title="ПРОБНО потвърдено ранно BUY обръщане", style=shape.labelup, location=location.belowbar, color=color.new(green, 5), text="КУПИ\nОБРЪЩАНЕ\nПРОБНО", textcolor=color.black, size=size.large)
+plotshape(newReversalSell and approvedSell, title="ПРОБНО потвърдено ранно SELL обръщане", style=shape.labeldown, location=location.abovebar, color=color.new(red, 5), text="ПРОДАЙ\nОБРЪЩАНЕ\nПРОБНО", textcolor=color.white, size=size.large)
 plotshape(detailed and equalHighs and not equalHighs[1], title="Потвърдени равни върхове", style=shape.triangledown, location=location.abovebar, color=gold, size=size.tiny, text="EQH")
 plotshape(detailed and equalLows and not equalLows[1], title="Потвърдени равни дъна", style=shape.triangleup, location=location.belowbar, color=blue, size=size.tiny, text="EQL")
 plotshape(detailed and sweepMarkBuy, title="Взета ликвидност под дъно", style=shape.circle, location=location.belowbar, color=blue, text="ЛИКВ.", size=size.small)
@@ -1019,7 +1052,7 @@ if barstate.islast
         lblTP3 := label.new(bar_index + 2, tpLine3, "TP3 " + str.tostring(tpLine3, format.mintick), color=green, textcolor=color.black, style=label.style_label_left, size=size.small)
 
 // Compact dashboard. Map and confirmed marks provide the primary visual information.
-var table dashboard = table.new(position.top_right, 2, 13, bgcolor=dark, frame_color=color.rgb(61, 77, 104), frame_width=1)
+var table dashboard = table.new(position.top_right, 2, 14, bgcolor=dark, frame_color=color.rgb(61, 77, 104), frame_width=1)
 if barstate.islast and displayDashboard
     bool hasLongSetup = phaseLong != 0
     bool hasShortSetup = phaseShort != 0
@@ -1032,7 +1065,7 @@ if barstate.islast and displayDashboard
     // An unconfirmed opposite candle may change but never overrides the last confirmed diagnosis.
     if not hasBothSetups and selectedLong and confirmedBearPressure
         pending := "BUY ОТСЛАБВА / МЕЧИ НАТИСК"
-    string status = simSide == 1 ? "СИМУЛ. ПОКУПКА" : simSide == -1 ? "СИМУЛ. ПРОДАЖБА" : queuedSide != 0 ? "СИГНАЛ / СЛЕДВ. ОТВАРЯНЕ" : eventLateBuy or eventLateSell ? "КЪСНО / БЕЗ ВХОД" : (confirmedBearPressure and simSide == 0 and queuedSide == 0) ? "НАТИСК НАДОЛУ / НЕ Е SELL" : noPreferredDirection ? "КОНФЛИКТ / БЕЗ ВХОД" : counterSelected ? "ЧАКА / СРЕЩУ ТРЕНДА" : pending == "НЯМА КОНФИГУРАЦИЯ" ? "ЧАКА / БЕЗ СДЕЛКА" : "НАБЛЮДЕНИЕ / " + pending
+    string status = simSide != 0 and simResearchOnly ? "PAPER / НЕОДОБРЕН МОДЕЛ" : simSide == 1 ? "СИМУЛ. ПОКУПКА" : simSide == -1 ? "СИМУЛ. ПРОДАЖБА" : queuedSide != 0 and queuedResearchOnly ? "ПЛАН САМО ЗА НАБЛЮДЕНИЕ" : queuedSide != 0 ? "СИГНАЛ / СЛЕДВ. ОТВАРЯНЕ" : eventLateBuy or eventLateSell ? "КЪСНО / БЕЗ ВХОД" : (confirmedBearPressure and simSide == 0 and queuedSide == 0) ? "НАТИСК НАДОЛУ / НЕ Е SELL" : noPreferredDirection ? "КОНФЛИКТ / БЕЗ ВХОД" : counterSelected ? "ЧАКА / СРЕЩУ ТРЕНДА" : pending == "НЯМА КОНФИГУРАЦИЯ" ? "ЧАКА / БЕЗ СДЕЛКА" : "НАБЛЮДЕНИЕ / " + pending
     bool activePlan = simSide != 0 or queuedSide != 0
     string stopText = activePlan ? str.tostring(activeStopLine, format.mintick) : "—"
     string priceText = activePlan ? str.tostring(refLine, format.mintick) : "—"
@@ -1047,7 +1080,7 @@ if barstate.islast and displayDashboard
     table.cell(dashboard, 1, 3, simSide != 0 ? "ВИРТУАЛНА ПОЗИЦИЯ" : queuedSide != 0 ? "ЧАКА ОТВАРЯНЕ" : pending, text_color=gold, text_size=dashboardTextPt)
     table.cell(dashboard, 0, 4, "ЗАЩО ЧАКА", bgcolor=panel, text_color=grey, text_size=dashboardTextPt)
     string displayBlocker = hasBothSetups ? (noPreferredDirection ? "ДВА СЦЕНАРИЯ / ЧАКАЙ" : bullHTF ? "ДВА СЦЕНАРИЯ / HTF: КУПИ" : "ДВА СЦЕНАРИЯ / HTF: ПРОДАЙ") : confirmedBearPressure ? lastSellDiagnosis : blockedReason
-    table.cell(dashboard, 1, 4, activePlan ? "ПЛАН / САМО СИМУЛАЦИЯ" : displayBlocker, bgcolor=panel, text_color=gold, text_size=dashboardTextPt)
+    table.cell(dashboard, 1, 4, activePlan ? ((simSide != 0 and simResearchOnly) or (queuedSide != 0 and queuedResearchOnly) ? "НЕОДОБРЕН МОДЕЛ / PAPER" : "ПЛАН / САМО СИМУЛАЦИЯ") : displayBlocker, bgcolor=panel, text_color=gold, text_size=dashboardTextPt)
     table.cell(dashboard, 0, 5, "ОРИЕНТИР / SL", text_color=grey, text_size=dashboardTextPt)
     table.cell(dashboard, 1, 5, priceText + " / " + stopText, text_color=color.white, text_size=dashboardTextPt)
     table.cell(dashboard, 0, 6, "TP1 / TP2 / TP3", bgcolor=panel, text_color=grey, text_size=dashboardTextPt)
@@ -1077,10 +1110,16 @@ if barstate.islast and displayDashboard
     string closedPressure = confirmedBearPressure ? "НАТИСК НАДОЛУ" : confirmedBullPressure ? "НАТИСК НАГОРЕ" : "БЕЗ ЯСЕН ИМПУЛС"
     table.cell(dashboard, 0, 12, "ПОСЛ. ЗАТВОРЕНА", bgcolor=panel, text_color=grey, text_size=dashboardTextPt)
     table.cell(dashboard, 1, 12, closedTime + " | " + closedPressure, bgcolor=panel, text_color=confirmedBearPressure ? red : confirmedBullPressure ? green : gold, tooltip="Часът е на ПОСЛЕДНАТА завършена свещ в българско време. Текущата незатворена свещ НЕ е потвърден сигнал.", text_size=dashboardTextPt)
+    int nClosed = reportRetestN + reportFastN + reportReversalN
+    float rClosed = reportRetestR + reportFastR + reportReversalR
+    bool globalPoor = enableEvidenceShield and nClosed >= globalMinClosed and rClosed <= globalStopNetR
+    string shieldStatus = globalPoor ? "СПРЕНИ ОДОБРЕНИЯ / МИНУС R" : enableEvidenceShield ? "АКТИВНА: ПО МОДЕЛ" : "ИЗКЛЮЧЕНА"
+    table.cell(dashboard, 0, 13, "СТАТ. ЗАЩИТА", bgcolor=panel, text_color=grey, text_size=dashboardTextPt)
+    table.cell(dashboard, 1, 13, shieldStatus, bgcolor=panel, text_color=globalPoor ? red : gold, tooltip="Защитата се основава само на приключили виртуални сделки. Не променя PAPER резултатите и не доказва бъдеща доходност.", text_size=dashboardTextPt)
 
 // TradingView must create alerts manually. One dynamic message per bar.
-alertcondition(newBuy, title="QIRVANTA: СИГНАЛ КУПИ", message="Потвърден сигнал за ПОКУПКА на {{ticker}} {{interval}}. За динамични цени използвай „Всички извиквания на alert()“.")
-alertcondition(newSell, title="QIRVANTA: СИГНАЛ ПРОДАЙ", message="Потвърден сигнал за ПРОДАЖБА на {{ticker}} {{interval}}. За динамични цени използвай „Всички извиквания на alert()“.")
+alertcondition(approvedBuy, title="QIRVANTA: СИГНАЛ КУПИ", message="Потвърден сигнал за ПОКУПКА на {{ticker}} {{interval}}. За динамични цени използвай „Всички извиквания на alert()“.")
+alertcondition(approvedSell, title="QIRVANTA: СИГНАЛ ПРОДАЙ", message="Потвърден сигнал за ПРОДАЖБА на {{ticker}} {{interval}}. За динамични цени използвай „Всички извиквания на alert()“.")
 alertcondition(eventTP1, title="QIRVANTA: СИМУЛ. TP1", message="Виртуална позиция достигна TP1 на {{ticker}}.")
 alertcondition(eventTP2, title="QIRVANTA: СИМУЛ. TP2", message="Виртуална позиция достигна TP2 на {{ticker}}.")
 alertcondition(eventTP3, title="QIRVANTA: СИМУЛ. TP3", message="Виртуална позиция достигна TP3 на {{ticker}}.")
@@ -1112,6 +1151,12 @@ var line[] oldTp2 = array.new_line()
 var line[] oldTp3 = array.new_line()
 var label[] oldSignalTags = array.new_label()
 var label[] reversalWatchTags = array.new_label()
+var label[] researchCandidateTags = array.new_label()
+if barstate.isconfirmed and researchOnlyCandidate
+    label blockTag = label.new(bar_index, newBuy ? low - atr * 0.12 : high + atr * 0.12, (newBuy ? "BUY" : "SELL") + " / САМО ИЗСЛЕДВАНЕ\nНЕ Е ОДОБРЕН ПЛАН\n" + researchBlockReason, style=newBuy ? label.style_label_up : label.style_label_down, color=color.new(gold, 13), textcolor=color.black, size=size.small)
+    array.push(researchCandidateTags, blockTag)
+    if array.size(researchCandidateTags) > 7
+        label.delete(array.shift(researchCandidateTags))
 var label lastBullWatchTag = na
 var label lastBearWatchTag = na
 if barstate.isconfirmed and showReversalWatch and visuallyRecent and (reversalWatchBuy or reversalWatchSell) and not majorConfirmed
@@ -1132,7 +1177,7 @@ if barstate.isconfirmed and newReversalBuy and not na(lastBullWatchTag)
 if barstate.isconfirmed and newReversalSell and not na(lastBearWatchTag)
     label.delete(lastBearWatchTag)
     lastBearWatchTag := na
-if barstate.isconfirmed and (newBuy or newSell) and showSignalDetails and detailed
+if barstate.isconfirmed and (approvedBuy or approvedSell) and showSignalDetails and detailed
     color sideColor = newBuy ? green : red
     string signalMessage = (newBuy ? "КУПИ" : "ПРОДАЙ") + " ПОТВЪРДЕН СИГНАЛ\nОРИЕНТИР " + str.tostring(plannedRef, format.mintick) + "\nSL " + str.tostring(plannedStop, format.mintick) + "\nTP1 " + str.tostring(plannedTP1, format.mintick) + " | TP3 " + str.tostring(plannedTP3, format.mintick) + "\nСИМУЛ. СЛЕДВ. ОТВАРЯНЕ / НЕ Е РЕАЛНО"
     label tag = label.new(bar_index, newBuy ? low - atr * 0.1 : high + atr * 0.1, signalMessage, style=newBuy ? label.style_label_up : label.style_label_down, color=sideColor, textcolor=color.black, size=size.small)
