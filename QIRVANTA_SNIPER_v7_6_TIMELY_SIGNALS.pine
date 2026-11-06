@@ -1,5 +1,5 @@
 //@version=6
-indicator("QIRVANTA Sniper v7.6 | Timely Signals", shorttitle="QIRVANTA V7.6", overlay=true, max_labels_count=180, max_lines_count=120, max_boxes_count=50)
+indicator("QIRVANTA SNIPER v7.6 | Български", shorttitle="QIRVANTA v7.6 БГ", overlay=true, max_labels_count=180, max_lines_count=120, max_boxes_count=50)
 // Pine v6; deterministic rules; NOT an AI model, and NOT broker execution.
 // STABLE: chart analysis is separate from confirmed trading decisions.
 // BOS / MSS / CHoCH and LTF pressure are CONTEXT, never automatic entries.
@@ -7,8 +7,8 @@ indicator("QIRVANTA Sniper v7.6 | Timely Signals", shorttitle="QIRVANTA V7.6", o
 max_bars_back(time, 500)
 var int queuedSide = 0
 var int simSide = 0
-int maxPaperLosingStreak = input.int(3, "Max PAPER losing setups per day", minval=1, maxval=20, group="00 / PAPER CONTROL")
-float maxPaperDailyLossR = input.float(3.0, "Daily PAPER R loss cap", minval=0.5, maxval=50, step=0.5, group="00 / PAPER CONTROL")
+int maxPaperLosingStreak = input.int(3, "Макс. поредни симул. загуби за ден", minval=1, maxval=20, group="00 / ЗАЩИТИ ПРИ СИМУЛАЦИЯ")
+float maxPaperDailyLossR = input.float(3.0, "Дневен лимит на симул. загуба (R)", minval=0.5, maxval=50, step=0.5, group="00 / ЗАЩИТИ ПРИ СИМУЛАЦИЯ")
 var float totalNetR = 0.0
 var float dayStartNetR = 0.0
 var int paperLossStreak = 0
@@ -20,95 +20,95 @@ bool orderFree = queuedSide == 0 and simSide == 0 and paperRiskPass
 
 // ==== QIRVANTA RULE-BASED DECISION CORE (TradingView INDICATOR; no currently verified matching v7.5 strategy) ====
 // Rule-based SMC heuristics. No predictive AI, no future-bar data.
-string tradingMode = input.string("AUTO", "Trading mode", options=["AUTO", "SCALP", "SWING"], group="01 / ENGINE")
-string engineMode = input.string("HYBRID", "Setups", options=["HYBRID", "SWEEP ONLY", "CONTINUATION ONLY"], group="01 / ENGINE")
-string selectivity = input.string("SNIPER", "Signal selectivity", options=["BALANCED", "SNIPER", "ELITE"], group="01 / ENGINE")
-bool automaticHTF = input.bool(true, "Automatic confirmed HTF", group="01 / ENGINE")
-string customHTF = input.timeframe("60", "Manual higher timeframe", group="01 / ENGINE")
-int liquidityBars = input.int(14, "Sweep lookback", minval=5, maxval=80, group="02 / STRUCTURE")
-int structureBars = input.int(6, "MSS structure lookback", minval=3, maxval=25, group="02 / STRUCTURE")
-int maxSetupAge = input.int(18, "Setup expiry (bars)", minval=4, maxval=80, group="02 / STRUCTURE")
-int maxBarsAfterMSS = input.int(5, "Max bars after MSS/BOS to enter", minval=1, maxval=25, group="02 / STRUCTURE", tooltip="A retest must be confirmed shortly after the structure break. Otherwise the setup expires.")
-float maxRetestCloseATR = input.float(0.55, "Max entry close beyond retest level / ATR", minval=0.1, maxval=2.0, step=0.05, group="02 / STRUCTURE", tooltip="Blocks BUY/SELL when the signal candle has already moved too far from the planned retest level.")
-int pivotLeft = input.int(3, "Confirmed pivot left", minval=2, maxval=10, group="02 / STRUCTURE")
-int pivotRight = input.int(3, "Confirmed pivot right", minval=2, maxval=10, group="02 / STRUCTURE")
-float minDisplaceATR = input.float(0.30, "Displacement body / ATR", minval=0.1, maxval=2, step=0.05, group="02 / STRUCTURE")
-float nearRetestATR = input.float(0.30, "Retest distance / ATR", minval=0.05, maxval=2, step=0.05, group="02 / STRUCTURE")
-float pierceRetestATR = input.float(0.30, "Max penetration / ATR", minval=0.05, maxval=1.5, step=0.05, group="02 / STRUCTURE")
-float eqToleranceATR = input.float(0.12, "Equal highs/lows tolerance / ATR", minval=0.02, maxval=0.5, step=0.02, group="02 / STRUCTURE")
-int pdWindow = input.int(80, "Premium / discount lookback", minval=20, maxval=250, group="02 / STRUCTURE")
-bool requireFVG = input.bool(false, "Require FVG at structure break", group="03 / OPTIONAL FILTERS")
-bool requirePD = input.bool(false, "Require premium / discount", group="03 / OPTIONAL FILTERS")
-bool requireRoom = input.bool(false, "Require structural target room", group="03 / OPTIONAL FILTERS")
-float minimumRoomR = input.float(1.0, "Min room to opposing level (R)", minval=0.3, maxval=5, step=0.1, group="03 / OPTIONAL FILTERS")
-float fvgSizeATR = input.float(0.04, "Min 3-candle FVG / ATR", minval=0, maxval=0.5, step=0.01, group="03 / OPTIONAL FILTERS")
-int minADX = input.int(17, "Minimum ADX", minval=5, maxval=45, group="03 / OPTIONAL FILTERS")
-float minATRratio = input.float(0.55, "Min ATR / ATR mean", minval=0.2, maxval=2, step=0.05, group="03 / OPTIONAL FILTERS")
-float maxATRratio = input.float(2.8, "Max ATR / ATR mean", minval=1, maxval=6, step=0.1, group="03 / OPTIONAL FILTERS")
-float maxEntryBarATR = input.float(2.6, "Max entry bar / ATR", minval=0.7, maxval=8, step=0.1, group="03 / OPTIONAL FILTERS")
-float maxExtensionATR = input.float(2.0, "Max EMA21 extension / ATR", minval=0.5, maxval=6, step=0.1, group="03 / OPTIONAL FILTERS")
-bool filterSession = input.bool(false, "Filter SCALP trading session", group="03 / OPTIONAL FILTERS")
-string scalpSession = input.session("1000-2000", "Session (Europe/Sofia)", group="03 / OPTIONAL FILTERS")
-bool manualNewsPause = input.bool(false, "MANUAL pause: high-impact news", group="03 / OPTIONAL FILTERS")
-float spreadAssumption = input.float(0.35, "Estimated round-trip spread (PRICE units)", minval=0, step=0.05, group="04 / RISK")
-int slipTicks = input.int(2, "Estimated slippage ticks / side", minval=0, maxval=100, group="04 / RISK")
-float feePrice = input.float(0.0, "Est. commissions / unit round-trip (price)", minval=0, step=0.05, group="04 / RISK")
-float minStopATR = input.float(0.8, "Minimum stop / ATR", minval=0.2, maxval=5, step=0.05, group="04 / RISK")
-float maxStopATR = input.float(3.5, "Maximum stop / ATR", minval=0.8, maxval=8, step=0.1, group="04 / RISK")
-float slBufferATR = input.float(0.12, "Structural stop buffer / ATR", minval=0.0, maxval=0.5, step=0.02, group="04 / RISK")
-float maxCostRisk = input.float(0.18, "Max cost / initial risk", minval=0.01, maxval=0.7, step=0.01, group="04 / RISK")
-float target1R = input.float(1.0, "TP1 (R)", minval=0.4, maxval=4, step=0.1, group="04 / RISK")
-float target2R = input.float(2.0, "TP2 (R)", minval=0.5, maxval=7, step=0.1, group="04 / RISK")
-float target3R = input.float(3.0, "TP3 (R)", minval=1.0, maxval=10, step=0.1, group="04 / RISK")
-float profitLockR = input.float(0.05, "Lock after TP1 (+R)", minval=0, maxval=0.5, step=0.05, group="04 / RISK")
-int minCooldown = input.int(8, "Cooldown after setup (bars)", minval=0, maxval=100, group="04 / RISK")
-int scalpMaxHold = input.int(48, "Max SCALP holding bars", minval=5, maxval=300, group="04 / RISK")
-int swingMaxHold = input.int(60, "Max SWING holding bars", minval=5, maxval=300, group="04 / RISK")
-string density = input.string("STANDARD", "Chart density", options=["CLEAN", "STANDARD", "ANALYST"], group="05 / DISPLAY")
-bool displayDashboard = input.bool(true, "Show decision dashboard", group="05 / DISPLAY")
-bool displayLevels = input.bool(true, "Show entry / SL / targets", group="05 / DISPLAY")
-bool displayEMAs = input.bool(true, "EMA 21 + EMA 55", group="05 / DISPLAY")
-bool displayAsia = input.bool(false, "Asian High / Low (completed)", group="05 / DISPLAY")
-bool displayPD = input.bool(false, "Premium / discount equilibrium", group="05 / DISPLAY")
-bool displayPivots = input.bool(false, "Confirmed pivot liquidity levels", group="05 / DISPLAY")
-bool displayPDH = input.bool(false, "Previous day H / L", group="05 / DISPLAY")
-bool showMarketMap = input.bool(true, "Show live liquidity and WATCH zones", group="06 / CHART VISUALS")
-bool showFvgMap = input.bool(true, "Show recent unfilled FVG", group="06 / CHART VISUALS")
-bool showPastTrades = input.bool(false, "Show historical PAPER risk boxes (OFF = clean scale)", group="06 / CHART VISUALS")
-bool showFullArchive = input.bool(false, "Show separate historical table", group="06 / CHART VISUALS")
-int keepTrades = input.int(4, "Historic PAPER trades on chart", minval=1, maxval=8, group="06 / CHART VISUALS")
-int projection = input.int(10, "Extend watch zones right (bars)", minval=4, maxval=28, group="06 / CHART VISUALS")
-float mapDistanceATR = input.float(3.5, "Max drawn level distance from price (ATR)", minval=1.0, maxval=10.0, step=0.5, group="06 / CHART VISUALS")
-bool showSignalDetails = input.bool(false, "Long entry labels at signals (ANALYST)", group="06 / CHART VISUALS")
-bool showImpulseContext = input.bool(true, "Show strong momentum WITHOUT trade signals", group="06 / CHART VISUALS")
-float minContextBodyATR = input.float(0.85, "Context impulse min body / ATR", minval=0.4, maxval=2.5, step=0.05, group="06 / CHART VISUALS")
-int contextCooldown = input.int(8, "Minimum bars between context labels", minval=2, maxval=40, group="06 / CHART VISUALS")
-bool showStructureEvents = input.bool(true, "Show confirmed BOS / MSS / CHoCH (analysis only)", group="06 / CHART VISUALS")
-bool showEarlyPressure = input.bool(true, "Show early structural pressure (WATCH only)", group="06 / CHART VISUALS")
-float pressureNearATR = input.float(0.30, "Early WATCH distance from structure / ATR", minval=0.10, maxval=1.0, step=0.05, group="06 / CHART VISUALS")
-int structureContextCooldown = input.int(5, "Minimum bars between early WATCH labels", minval=2, maxval=25, group="06 / CHART VISUALS")
-float maxOpenDeviationATR = input.float(0.20, "Max next-open deviation from signal / ATR", minval=0.05, maxval=0.8, step=0.05, group="04 / RISK", tooltip="PAPER order is cancelled when the next open is too far from the confirmed reference price.")
+string tradingMode = input.string("АВТОМАТИЧЕН", "Режим на търговия", options=["АВТОМАТИЧЕН", "СКАЛПИНГ", "СУИНГ"], group="01 / ТЪРГОВСКА ЛОГИКА")
+string engineMode = input.string("КОМБИНИРАН", "Видове конфигурации", options=["КОМБИНИРАН", "САМО ЛИКВИДНОСТ", "САМО ПРОДЪЛЖЕНИЕ"], group="01 / ТЪРГОВСКА ЛОГИКА")
+string selectivity = input.string("СНАЙПЪР", "Строгост на сигналите", options=["БАЛАНСИРАН", "СНАЙПЪР", "МНОГО СТРОГ"], group="01 / ТЪРГОВСКА ЛОГИКА")
+bool automaticHTF = input.bool(true, "Автоматична по-висока рамка", group="01 / ТЪРГОВСКА ЛОГИКА")
+string customHTF = input.timeframe("60", "Ръчна по-висока рамка", group="01 / ТЪРГОВСКА ЛОГИКА")
+int liquidityBars = input.int(14, "Период за ликвидност (свещи)", minval=5, maxval=80, group="02 / ПАЗАРНА СТРУКТУРА")
+int structureBars = input.int(6, "Период за структура MSS (свещи)", minval=3, maxval=25, group="02 / ПАЗАРНА СТРУКТУРА")
+int maxSetupAge = input.int(18, "Валидност на конфигурацията (свещи)", minval=4, maxval=80, group="02 / ПАЗАРНА СТРУКТУРА")
+int maxBarsAfterMSS = input.int(5, "Макс. свещи след MSS/BOS за вход", minval=1, maxval=25, group="02 / ПАЗАРНА СТРУКТУРА", tooltip="Ретестът трябва да се потвърди скоро след структурния пробив. Иначе възможността изтича.")
+float maxRetestCloseATR = input.float(0.55, "Макс. отдалечаване от ретеста / ATR", minval=0.1, maxval=2.0, step=0.05, group="02 / ПАЗАРНА СТРУКТУРА", tooltip="Не допуска сигнал за покупка/продажба, ако цената вече е избягала от нивото за ретест.")
+int pivotLeft = input.int(3, "Свещи вляво за потвърден връх/дъно", minval=2, maxval=10, group="02 / ПАЗАРНА СТРУКТУРА")
+int pivotRight = input.int(3, "Свещи вдясно за потвърден връх/дъно", minval=2, maxval=10, group="02 / ПАЗАРНА СТРУКТУРА")
+float minDisplaceATR = input.float(0.30, "Мин. импулсно тяло / ATR", minval=0.1, maxval=2, step=0.05, group="02 / ПАЗАРНА СТРУКТУРА")
+float nearRetestATR = input.float(0.30, "Близост до ретеста / ATR", minval=0.05, maxval=2, step=0.05, group="02 / ПАЗАРНА СТРУКТУРА")
+float pierceRetestATR = input.float(0.30, "Макс. проникване в зоната / ATR", minval=0.05, maxval=1.5, step=0.05, group="02 / ПАЗАРНА СТРУКТУРА")
+float eqToleranceATR = input.float(0.12, "Допуск за равни върхове/дъна / ATR", minval=0.02, maxval=0.5, step=0.02, group="02 / ПАЗАРНА СТРУКТУРА")
+int pdWindow = input.int(80, "Период за скъпа/евтина зона", minval=20, maxval=250, group="02 / ПАЗАРНА СТРУКТУРА")
+bool requireFVG = input.bool(false, "Изисквай FVG при структурния пробив", group="03 / ДОПЪЛНИТЕЛНИ ФИЛТРИ")
+bool requirePD = input.bool(false, "Изисквай скъпа/евтина зона", group="03 / ДОПЪЛНИТЕЛНИ ФИЛТРИ")
+bool requireRoom = input.bool(false, "Изисквай свободен път до целта", group="03 / ДОПЪЛНИТЕЛНИ ФИЛТРИ")
+float minimumRoomR = input.float(1.0, "Мин. свободно място до преграда (R)", minval=0.3, maxval=5, step=0.1, group="03 / ДОПЪЛНИТЕЛНИ ФИЛТРИ")
+float fvgSizeATR = input.float(0.04, "Мин. FVG от 3 свещи / ATR", minval=0, maxval=0.5, step=0.01, group="03 / ДОПЪЛНИТЕЛНИ ФИЛТРИ")
+int minADX = input.int(17, "Минимален ADX", minval=5, maxval=45, group="03 / ДОПЪЛНИТЕЛНИ ФИЛТРИ")
+float minATRratio = input.float(0.55, "Минимално ATR / средно ATR", minval=0.2, maxval=2, step=0.05, group="03 / ДОПЪЛНИТЕЛНИ ФИЛТРИ")
+float maxATRratio = input.float(2.8, "Максимално ATR / средно ATR", minval=1, maxval=6, step=0.1, group="03 / ДОПЪЛНИТЕЛНИ ФИЛТРИ")
+float maxEntryBarATR = input.float(2.6, "Макс. размер на входната свещ / ATR", minval=0.7, maxval=8, step=0.1, group="03 / ДОПЪЛНИТЕЛНИ ФИЛТРИ")
+float maxExtensionATR = input.float(2.0, "Макс. отдалечаване от EMA21 / ATR", minval=0.5, maxval=6, step=0.1, group="03 / ДОПЪЛНИТЕЛНИ ФИЛТРИ")
+bool filterSession = input.bool(false, "Филтър по часове за скалпинг", group="03 / ДОПЪЛНИТЕЛНИ ФИЛТРИ")
+string scalpSession = input.session("1000-2000", "Сесия (българско време)", group="03 / ДОПЪЛНИТЕЛНИ ФИЛТРИ")
+bool manualNewsPause = input.bool(false, "РЪЧНА пауза при важни новини", group="03 / ДОПЪЛНИТЕЛНИ ФИЛТРИ")
+float spreadAssumption = input.float(0.35, "Оценка за спред в двете посоки (цена)", minval=0, step=0.05, group="04 / РИСК И ЦЕЛИ")
+int slipTicks = input.int(2, "Оценка за приплъзване (тикове/посока)", minval=0, maxval=100, group="04 / РИСК И ЦЕЛИ")
+float feePrice = input.float(0.0, "Комисиона в двете посоки (ценови единици)", minval=0, step=0.05, group="04 / РИСК И ЦЕЛИ")
+float minStopATR = input.float(0.8, "Минимален стоп / ATR", minval=0.2, maxval=5, step=0.05, group="04 / РИСК И ЦЕЛИ")
+float maxStopATR = input.float(3.5, "Максимален стоп / ATR", minval=0.8, maxval=8, step=0.1, group="04 / РИСК И ЦЕЛИ")
+float slBufferATR = input.float(0.12, "Буфер на структурния стоп / ATR", minval=0.0, maxval=0.5, step=0.02, group="04 / РИСК И ЦЕЛИ")
+float maxCostRisk = input.float(0.18, "Макс. разходи спрямо риска", minval=0.01, maxval=0.7, step=0.01, group="04 / РИСК И ЦЕЛИ")
+float target1R = input.float(1.0, "Цел 1 (TP1, R)", minval=0.4, maxval=4, step=0.1, group="04 / РИСК И ЦЕЛИ")
+float target2R = input.float(2.0, "Цел 2 (TP2, R)", minval=0.5, maxval=7, step=0.1, group="04 / РИСК И ЦЕЛИ")
+float target3R = input.float(3.0, "Цел 3 (TP3, R)", minval=1.0, maxval=10, step=0.1, group="04 / РИСК И ЦЕЛИ")
+float profitLockR = input.float(0.05, "Заключи печалба след TP1 (+R)", minval=0, maxval=0.5, step=0.05, group="04 / РИСК И ЦЕЛИ")
+int minCooldown = input.int(8, "Пауза между входовете (свещи)", minval=0, maxval=100, group="04 / РИСК И ЦЕЛИ")
+int scalpMaxHold = input.int(48, "Макс. задържане при скалпинг (свещи)", minval=5, maxval=300, group="04 / РИСК И ЦЕЛИ")
+int swingMaxHold = input.int(60, "Макс. задържане при суинг (свещи)", minval=5, maxval=300, group="04 / РИСК И ЦЕЛИ")
+string density = input.string("СТАНДАРТЕН", "Подробност на графиката", options=["ИЗЧИСТЕН", "СТАНДАРТЕН", "ПОДРОБЕН"], group="05 / ИЗГЛЕД")
+bool displayDashboard = input.bool(true, "Показвай таблото с решения", group="05 / ИЗГЛЕД")
+bool displayLevels = input.bool(true, "Показвай вход, SL и цели", group="05 / ИЗГЛЕД")
+bool displayEMAs = input.bool(true, "EMA 21 + EMA 55", group="05 / ИЗГЛЕД")
+bool displayAsia = input.bool(false, "Азиатски максимум/минимум (завършени)", group="05 / ИЗГЛЕД")
+bool displayPD = input.bool(false, "Среда на скъпа/евтина зона", group="05 / ИЗГЛЕД")
+bool displayPivots = input.bool(false, "Потвърдени структурни върхове/дъна", group="05 / ИЗГЛЕД")
+bool displayPDH = input.bool(false, "Връх и дъно от предишния ден", group="05 / ИЗГЛЕД")
+bool showMarketMap = input.bool(true, "Показвай ликвидност и зони за наблюдение", group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
+bool showFvgMap = input.bool(true, "Показвай последните незапълнени FVG", group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
+bool showPastTrades = input.bool(false, "Исторически симул. зони (изкл. за чиста скала)", group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
+bool showFullArchive = input.bool(false, "Показвай таблица с история", group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
+int keepTrades = input.int(4, "Брой исторически симул. сделки", minval=1, maxval=8, group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
+int projection = input.int(10, "Удължаване на зоните надясно (свещи)", minval=4, maxval=28, group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
+float mapDistanceATR = input.float(3.5, "Макс. разстояние на нивата от цената / ATR", minval=1.0, maxval=10.0, step=0.5, group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
+bool showSignalDetails = input.bool(false, "Подробни надписи при сигнали (подробен изглед)", group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
+bool showImpulseContext = input.bool(true, "Показвай силни движения без вход", group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
+float minContextBodyATR = input.float(0.85, "Мин. тяло за силно движение / ATR", minval=0.4, maxval=2.5, step=0.05, group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
+int contextCooldown = input.int(8, "Мин. свещи между обозначенията", minval=2, maxval=40, group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
+bool showStructureEvents = input.bool(true, "Показвай BOS / MSS / CHoCH (само анализ)", group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
+bool showEarlyPressure = input.bool(true, "Показвай ранно приближаване към пробив", group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
+float pressureNearATR = input.float(0.30, "Близост до структурата за предупреждение / ATR", minval=0.10, maxval=1.0, step=0.05, group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
+int structureContextCooldown = input.int(5, "Мин. свещи между ранни предупреждения", minval=2, maxval=25, group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
+float maxOpenDeviationATR = input.float(0.20, "Макс. отклонение при следващо отваряне / ATR", minval=0.05, maxval=0.8, step=0.05, group="04 / РИСК И ЦЕЛИ", tooltip="Виртуалният вход се отменя, ако следващото отваряне е прекалено далеч от цената на сигнала.")
 
 int tfSeconds = timeframe.in_seconds(timeframe.period)
-bool scalp = tradingMode == "SCALP" or (tradingMode == "AUTO" and tfSeconds <= 900)
-string style = scalp ? "SCALP" : "SWING"
+bool scalp = tradingMode == "СКАЛПИНГ" or (tradingMode == "АВТОМАТИЧЕН" and tfSeconds <= 900)
+string style = scalp ? "СКАЛПИНГ" : "СУИНГ"
 string autoHTF = tfSeconds <= 300 ? "60" : tfSeconds <= 900 ? "240" : tfSeconds <= 14400 ? "D" : tfSeconds <= 86400 ? "W" : tfSeconds <= 604800 ? "M" : "3M"
 string htf = automaticHTF ? autoHTF : customHTF
 int maxHoldBars = scalp ? scalpMaxHold : swingMaxHold
-int minExtra = selectivity == "BALANCED" ? 1 : selectivity == "SNIPER" ? 2 : 4
+int minExtra = selectivity == "БАЛАНСИРАН" ? 1 : selectivity == "СНАЙПЪР" ? 2 : 4
 float roundTripPriceCost = spreadAssumption + 2.0 * slipTicks * syminfo.mintick + feePrice
 
 if barstate.isfirst
     if timeframe.in_seconds(htf) <= tfSeconds
-        runtime.error("QIRVANTA: HTF must be strictly higher. Enable AUTO HTF.")
+        runtime.error("QIRVANTA: По-високата времева рамка трябва да е над текущата. Избери автоматичен режим.")
     if not (target1R < target2R and target2R < target3R)
-        runtime.error("QIRVANTA: Set TP1 < TP2 < TP3")
+        runtime.error("QIRVANTA: Подреди целите така: TP1 под TP2 под TP3 по разстояние от входа.")
     if maxStopATR <= minStopATR
-        runtime.error("QIRVANTA: Max stop ATR must exceed min stop ATR")
+        runtime.error("QIRVANTA: Максималният стоп / ATR трябва да е над минималния.")
     if maxATRratio <= minATRratio
-        runtime.error("QIRVANTA: Max ATR ratio must exceed min ATR ratio")
+        runtime.error("QIRVANTA: Максималното ATR съотношение трябва да надвишава минималното.")
     if nearRetestATR < pierceRetestATR * 0.25
-        runtime.error("QIRVANTA: Retest distance is inconsistent with penetration")
+        runtime.error("QIRVANTA: Настройките за близост и проникване при ретест са несъвместими.")
 
 // The [1] HTF offset + lookahead_on returns the last COMPLETED HTF candle.
 [htfClose, htfEMA50, htfEMA200, htfEMA50prev] = request.security(syminfo.tickerid, htf, [close[1], ta.ema(close, 50)[1], ta.ema(close, 200)[1], ta.ema(close, 50)[3]], lookahead=barmerge.lookahead_on)
@@ -177,7 +177,7 @@ bool higherHigh = not na(prevPivotHigh) and lastPivotHigh > prevPivotHigh
 bool higherLow = not na(prevPivotLow) and lastPivotLow > prevPivotLow
 bool lowerHigh = not na(prevPivotHigh) and lastPivotHigh < prevPivotHigh
 bool lowerLow = not na(prevPivotLow) and lastPivotLow < prevPivotLow
-string pivotStructure = higherHigh and higherLow ? "HH / HL" : lowerHigh and lowerLow ? "LH / LL" : "MIXED / UNCONFIRMED"
+string pivotStructure = higherHigh and higherLow ? "По-високи върхове/дъна" : lowerHigh and lowerLow ? "По-ниски върхове/дъна" : "Смесена/непотвърдена структура"
 
 // Completed Asian session levels, not the developing high/low.
 bool asiaActive = timeframe.isintraday and not na(time(timeframe.period, "0200-1000", "Europe/Sofia"))
@@ -246,7 +246,7 @@ if not na(priorDayLow) and priorDayLow < close
 if not na(lastAsianL) and lastAsianL < close
     shortObstacle := na(shortObstacle) ? lastAsianL : math.max(shortObstacle, lastAsianL)
 
-string regime = validATR and atr > atrMean * 1.9 ? "EXPANSION" : validATR and atr < atrMean * 0.7 ? "COMPRESSION" : adx < minADX ? "RANGE / LOW ADX" : bullHTF ? "BULL TREND" : bearHTF ? "BEAR TREND" : "NEUTRAL"
+string regime = validATR and atr > atrMean * 1.9 ? "СИЛНА ВОЛАТИЛНОСТ" : validATR and atr < atrMean * 0.7 ? "СВИТА ВОЛАТИЛНОСТ" : adx < minADX ? "ДИАПАЗОН / СЛАБ ТРЕНД" : bullHTF ? "ВЪЗХОДЯЩ ТРЕНД" : bearHTF ? "НИЗХОДЯЩ ТРЕНД" : "НЕУТРАЛНО"
 
 // Setup phases: 0 IDLE, 1 SWEEP → MSS, 2 STRUCTURE CONFIRMED → RETEST.
 // Sweep and structure shifts are never retroactively projected onto earlier bars.
@@ -267,7 +267,7 @@ var bool gapShort = false
 var int lastEntryBar = na
 var int rejectedSetups = 0
 var int expiredSetups = 0
-var string blockedReason = "AWAIT SETUP"
+var string blockedReason = "ЧАКА КОНФИГУРАЦИЯ"
 
 bool newBuy = false
 bool newSell = false
@@ -300,10 +300,10 @@ float plannedTP1 = na
 float plannedTP2 = na
 float plannedTP3 = na
 int plannedChecks = 0
-string plannedFamily = "NONE"
+string plannedFamily = "НЯМА"
 
 if barstate.isconfirmed
-    blockedReason := "AWAIT CONFIRMED SETUP"
+    blockedReason := "ЧАКА ПОТВЪРЖДЕНИЕ"
     // INDEPENDENT local momentum: do not require HTF alignment to SHOW a move.
     // HTF agreement remains mandatory for actionable BUY/SELL in the existing entry engine.
     // Analysis markers are emitted ONLY on this candle close and never backdated.
@@ -347,13 +347,13 @@ if barstate.isconfirmed
         eventLateBuy := true
         setupInvalidated := true
         expiredSetups += 1
-        blockedReason := "EXPIRED LONG / NO CHASE"
+        blockedReason := "ПОКУПКА: ИЗПУСНАТ МОМЕНТ"
     if phaseShort == 2 and not na(mssShortAt) and bar_index - mssShortAt > maxBarsAfterMSS
         phaseShort := 0
         eventLateSell := true
         setupInvalidated := true
         expiredSetups += 1
-        blockedReason := "EXPIRED SHORT / NO CHASE"
+        blockedReason := "ПРОДАЖБА: ИЗПУСНАТ МОМЕНТ"
 
     // Advance only already-existing setups; no sweep/MSS/retest on one bar.
     if phaseLong == 1 and bar_index > bornLong and close > levelLong and displacementUp
@@ -391,27 +391,27 @@ if barstate.isconfirmed
     bool sellOK = timelyShort and riskShortOK and baseFilters and cooldownOK and bearHTF and bearLocal and bearMomentum and (not requireFVG or gapShort) and (not requirePD or inPremium) and (not requireRoom or roomShort) and checksShort >= minExtra
 
     if not warmup
-        blockedReason := "WARMUP / HTF DATA"
+        blockedReason := "НЕДОСТАТЪЧНИ ДАННИ"
     else if manualNewsPause
-        blockedReason := "MANUAL NEWS PAUSE"
+        blockedReason := "РЪЧНА ПАУЗА ЗА НОВИНИ"
     else if not sessionPass
-        blockedReason := "SESSION BLOCK"
+        blockedReason := "ИЗВЪН СЕСИЯТА"
     else if not validATR
-        blockedReason := "ATR REGIME"
+        blockedReason := "НЕПОДХОДЯЩА ВОЛАТИЛНОСТ"
     else if not validTrend
-        blockedReason := "LOW ADX"
+        blockedReason := "СЛАБ ТРЕНД / ADX"
     else if not acceptableBar
-        blockedReason := "SPIKE / WIDE BAR"
+        blockedReason := "ПРЕКАЛЕНО ГОЛЯМА СВЕЩ"
     else if not notExtended
-        blockedReason := "OVEREXTENDED"
+        blockedReason := "ЦЕНАТА Е ПРЕКАЛЕНО ДАЛЕЧ"
     else if not bullHTF and not bearHTF
-        blockedReason := "HTF NEUTRAL"
+        blockedReason := "НЕУТРАЛНА ПО-ВИСОКА РАМКА"
     else if not cooldownOK
-        blockedReason := "COOLDOWN"
+        blockedReason := "ПАУЗА МЕЖДУ СИГНАЛИ"
     else if longNoChase or shortNoChase
-        blockedReason := "PRICE MOVED - NO CHASE"
+        blockedReason := "ЦЕНАТА Е ИЗБЯГАЛА: БЕЗ ВХОД"
     else if retestLong or retestShort
-        blockedReason := "RETEST FILTER / COST / ROOM"
+        blockedReason := "РЕТЕСТ / РАЗХОДИ / МАЛКО МЯСТО"
 
     bool bothDirections = buyOK and sellOK
     if (buyOK or sellOK) and not bothDirections and orderFree
@@ -425,14 +425,14 @@ if barstate.isconfirmed
         plannedTP2 := math.round_to_mintick(plannedRef + d * plannedRisk * target2R)
         plannedTP3 := math.round_to_mintick(plannedRef + d * plannedRisk * target3R)
         plannedChecks := newBuy ? checksLong : checksShort
-        plannedFamily := newBuy ? (sweepFamilyLong ? "SWEEP REVERSAL" : "BOS CONTINUATION") : (sweepFamilyShort ? "SWEEP REVERSAL" : "BOS CONTINUATION")
+        plannedFamily := newBuy ? (sweepFamilyLong ? "ОБРЪЩАНЕ СЛЕД ЛИКВИДНОСТ" : "ПРОДЪЛЖЕНИЕ С BOS") : (sweepFamilyShort ? "ОБРЪЩАНЕ СЛЕД ЛИКВИДНОСТ" : "ПРОДЪЛЖЕНИЕ С BOS")
         lastEntryBar := bar_index
         phaseLong := 0
         phaseShort := 0
-        blockedReason := "CONFIRMED ENTRY"
+        blockedReason := "ПОТВЪРДЕН СИГНАЛ, НЕ ИЗПЪЛНЕН ВХОД"
     else
         if buyOK or sellOK
-            blockedReason := bothDirections ? "CONFLICTING SETUPS" : "TRADE CAP / RISK GUARD"
+            blockedReason := bothDirections ? "ПРОТИВОРЕЧИВИ КОНФИГУРАЦИИ" : "ЛИМИТ НА СДЕЛКИ / РИСК"
         if retestLong
             phaseLong := 0
             rejectedSetups += 1
@@ -447,7 +447,7 @@ if barstate.isconfirmed
     // Fresh setups only on the bar close, after processing existing ones.
     if orderFree and not newBuy and not newSell
         if phaseLong == 0 and not retestLong
-            if sweepDown and engineMode != "CONTINUATION ONLY"
+            if sweepDown and engineMode != "САМО ПРОДЪЛЖЕНИЕ"
                 phaseLong := 1
                 bornLong := bar_index
                 anchorLong := low
@@ -455,7 +455,7 @@ if barstate.isconfirmed
                 sweepFamilyLong := true
                 gapLong := false
                 sweepMarkBuy := true
-            else if bosUp and bullHTF and engineMode != "SWEEP ONLY"
+            else if bosUp and bullHTF and engineMode != "САМО ЛИКВИДНОСТ"
                 phaseLong := 2
                 bornLong := bar_index
                 mssLongAt := bar_index
@@ -465,7 +465,7 @@ if barstate.isconfirmed
                 gapLong := bullFvgNow
                 shiftMarkBuy := true
         if phaseShort == 0 and not retestShort
-            if sweepUp and engineMode != "CONTINUATION ONLY"
+            if sweepUp and engineMode != "САМО ПРОДЪЛЖЕНИЕ"
                 phaseShort := 1
                 bornShort := bar_index
                 anchorShort := high
@@ -473,7 +473,7 @@ if barstate.isconfirmed
                 sweepFamilyShort := true
                 gapShort := false
                 sweepMarkSell := true
-            else if bosDown and bearHTF and engineMode != "SWEEP ONLY"
+            else if bosDown and bearHTF and engineMode != "САМО ЛИКВИДНОСТ"
                 phaseShort := 2
                 bornShort := bar_index
                 mssShortAt := bar_index
@@ -482,15 +482,15 @@ if barstate.isconfirmed
                 sweepFamilyShort := false
                 gapShort := bearFvgNow
                 shiftMarkSell := true
-    if not newBuy and not newSell and blockedReason == "AWAIT CONFIRMED SETUP"
+    if not newBuy and not newSell and blockedReason == "ЧАКА ПОТВЪРЖДЕНИЕ"
         if phaseLong == 1
-            blockedReason := not bullHTF ? "BUY AGAINST HTF / AWAIT MSS" : "SWEEP: AWAIT BULL MSS"
+            blockedReason := not bullHTF ? "ПОКУПКА СРЕЩУ ТРЕНДА / ЧАКА MSS" : "ВЗЕТА ЛИКВИДНОСТ / ЧАКА MSS НАГОРЕ"
         else if phaseLong == 2
-            blockedReason := not bullHTF ? "BUY AGAINST HTF / NO ENTRY" : "AWAIT BULL RETEST"
+            blockedReason := not bullHTF ? "ПОКУПКА СРЕЩУ ТРЕНДА / БЕЗ ВХОД" : "ЧАКА РЕТЕСТ ЗА ПОКУПКА"
         else if phaseShort == 1
-            blockedReason := not bearHTF ? "SELL AGAINST HTF / AWAIT MSS" : "SWEEP: AWAIT BEAR MSS"
+            blockedReason := not bearHTF ? "ПРОДАЖБА СРЕЩУ ТРЕНДА / ЧАКА MSS" : "ВЗЕТА ЛИКВИДНОСТ / ЧАКА MSS НАДОЛУ"
         else if phaseShort == 2
-            blockedReason := not bearHTF ? "SELL AGAINST HTF / NO ENTRY" : "AWAIT BEAR RETEST"
+            blockedReason := not bearHTF ? "ПРОДАЖБА СРЕЩУ ТРЕНДА / БЕЗ ВХОД" : "ЧАКА РЕТЕСТ ЗА ПРОДАЖБА"
 // ==== END RULE-BASED DECISION CORE ====
 
 // ==== PAPER SIMULATION (not real execution or a broker fill) ====
@@ -502,7 +502,7 @@ var float queuedStop = na
 var float queuedTP1 = na
 var float queuedTP2 = na
 var float queuedTP3 = na
-var string queuedFamily = "NONE"
+var string queuedFamily = "НЯМА"
 var int queuedChecks = 0
 var int enteredBar = na
 var float simEntry = na
@@ -524,8 +524,8 @@ var int gapSkipped = 0
 var int stopSeen = 0
 var int tp3Seen = 0
 var int timeSeen = 0
-var string lastExit = "NONE"
-var string simFamily = "NONE"
+var string lastExit = "НЯМА"
+var string simFamily = "НЯМА"
 var int simChecks = 0
 
 bool eventTP1 = false
@@ -550,8 +550,8 @@ if barstate.isconfirmed
         if badGap
             eventSkip := true
             gapSkipped += 1
-            lastExit := "OPEN GAP - PAPER CANCELLED"
-            eventMessage := "PAPER GAP INVALIDATION | " + syminfo.ticker
+            lastExit := "СИМУЛ.: ОТМЕНЕН ВХОД ПРИ ГАП"
+            eventMessage := "СИМУЛ.: ОТМЕНЕН ВХОД ЗАРАДИ ГАП | " + syminfo.ticker
         else
             simSide := queuedSide
             enteredBar := bar_index
@@ -582,7 +582,7 @@ if barstate.isconfirmed
             simSL := simSide == 1 ? math.max(simSL, improved) : math.min(simSL, improved)
             if simSL != previousSL
                 eventLock := true
-                eventMessage := "PROFIT LOCK | " + syminfo.ticker + " | MANAGED SL " + str.tostring(simSL, format.mintick)
+                eventMessage := "ЗАКЛЮЧВАНЕ НА ПЕЧАЛБА | " + syminfo.ticker + " | ПРЕМЕСТЕН SL " + str.tostring(simSL, format.mintick)
             simTP1Bar := na
         bool stopTouched = simSide == 1 ? low <= simSL : high >= simSL
         bool tp1Touched = simSide == 1 ? high >= simTP1 : low <= simTP1
@@ -595,8 +595,8 @@ if barstate.isconfirmed
             simRealized += partCount / 3.0 * ((stopFill - simEntry) * simSide / simRisk - unitCostR)
             eventStop := true
             stopSeen += 1
-            lastExit := "PAPER STOP (CONSERVATIVE)"
-            eventMessage += " | STOP " + str.tostring(stopFill, format.mintick)
+            lastExit := "СИМУЛ.: СТОП (КОНСЕРВАТИВНО)"
+            eventMessage += " | СТОП " + str.tostring(stopFill, format.mintick)
             simSide := 0
         else
             if tp1Touched and not simTook1
@@ -614,7 +614,7 @@ if barstate.isconfirmed
                 simRealized += ((simTP3 - simEntry) * simSide / simRisk - unitCostR) / 3.0
                 eventTP3 := true
                 tp3Seen += 1
-                lastExit := "PAPER TP3"
+                lastExit := "СИМУЛ.: ДОСТИГНАТ TP3"
                 eventMessage += " | TP3 " + str.tostring(simTP3, format.mintick)
                 simSide := 0
             else if bar_index - enteredBar >= maxHoldBars
@@ -622,8 +622,8 @@ if barstate.isconfirmed
                 simRealized += remaining / 3.0 * ((close - simEntry) * simSide / simRisk - unitCostR)
                 eventTime := true
                 timeSeen += 1
-                lastExit := "PAPER TIME EXIT"
-                eventMessage += " | TIME " + str.tostring(close, format.mintick)
+                lastExit := "СИМУЛ.: ЗАТВОРЕНА ПО ВРЕМЕ"
+                eventMessage += " | ВРЕМЕ " + str.tostring(close, format.mintick)
                 simSide := 0
         if simSide == 0
             paperClosed := true
@@ -646,9 +646,9 @@ if barstate.isconfirmed
         queuedTP3 := plannedTP3
         queuedFamily := plannedFamily
         queuedChecks := plannedChecks
-        eventMessage += " | QIRVANTA V7.6 CONFIRMED " + (newBuy ? "BUY" : "SELL") + " | " + syminfo.ticker + " / " + timeframe.period + " | SIGNAL REF " + str.tostring(plannedRef, format.mintick) + " | ENTRY NEXT OPEN (UNVERIFIED) | SL " + str.tostring(plannedStop, format.mintick) + " | TP1 " + str.tostring(plannedTP1, format.mintick) + " | TP2 " + str.tostring(plannedTP2, format.mintick) + " | TP3 " + str.tostring(plannedTP3, format.mintick) + " | FAMILY " + plannedFamily + " | CHECKS " + str.tostring(plannedChecks) + "/6 (NOT PROBABILITY) | " + str.format_time(time, "yyyy-MM-dd HH:mm", "Europe/Sofia")
+        eventMessage += " | QIRVANTA: ПОТВЪРДЕН СИГНАЛ " + (newBuy ? "КУПИ" : "ПРОДАЙ") + " | " + syminfo.ticker + " / " + timeframe.period + " | ОРИЕНТИР " + str.tostring(plannedRef, format.mintick) + " | ВХОД ПРИ СЛЕДВ. ОТВАРЯНЕ (НЕПОТВ.) | SL " + str.tostring(plannedStop, format.mintick) + " | TP1 " + str.tostring(plannedTP1, format.mintick) + " | TP2 " + str.tostring(plannedTP2, format.mintick) + " | TP3 " + str.tostring(plannedTP3, format.mintick) + " | МОДЕЛ " + plannedFamily + " | УСЛОВИЯ " + str.tostring(plannedChecks) + "/6 (НЕ Е ВЕРОЯТНОСТ) | " + str.format_time(time, "yyyy-MM-dd HH:mm", "Europe/Sofia")
     if setupInvalidated
-        eventMessage += " | SETUP EXPIRED OR INVALIDATED"
+        eventMessage += " | КОНФИГУРАЦИЯТА Е ИЗТЕКЛА/ОТМЕНЕНА"
     if str.length(eventMessage) > 0
         alert(eventMessage, alert.freq_once_per_bar_close)
 
@@ -664,8 +664,8 @@ color gold = color.rgb(255, 187, 79)
 color dark = color.rgb(11, 19, 34)
 color panel = color.rgb(22, 36, 56)
 color grey = color.rgb(175, 190, 212)
-bool detailed = density == "ANALYST"
-bool clean = density == "CLEAN"
+bool detailed = density == "ПОДРОБЕН"
+bool clean = density == "ИЗЧИСТЕН"
 bool hasPlan = simSide != 0 or queuedSide != 0
 float refLine = simSide != 0 ? simEntry : queuedRef
 float stopLine = simSide != 0 ? simInitialSL : queuedStop
@@ -676,53 +676,53 @@ float tpLine3 = simSide != 0 ? simTP3 : queuedTP3
 
 plot(displayEMAs ? emaFast : na, "EMA 21", color=blue, linewidth=2)
 plot(displayEMAs ? emaSlow : na, "EMA 55", color=gold, linewidth=2)
-plot(displayPivots and detailed ? lastPivotHigh : na, "Confirmed pivot high", color=color.new(red, 65), style=plot.style_stepline)
-plot(displayPivots and detailed ? lastPivotLow : na, "Confirmed pivot low", color=color.new(green, 65), style=plot.style_stepline)
-plot(displayPDH and detailed ? priorDayHigh : na, "Prev day high", color=color.new(gold, 40), style=plot.style_stepline)
-plot(displayPDH and detailed ? priorDayLow : na, "Prev day low", color=color.new(gold, 40), style=plot.style_stepline)
-plot(displayAsia and timeframe.isintraday ? lastAsianH : na, "Completed Asia H", color=color.new(gold, 40), style=plot.style_stepline)
-plot(displayAsia and timeframe.isintraday ? lastAsianL : na, "Completed Asia L", color=color.new(blue, 40), style=plot.style_stepline)
-plot(displayPD ? pdMid : na, "Premium Discount midpoint", color=color.new(gold, 50), style=plot.style_stepline)
-plot(not clean and simSide == 0 and phaseLong == 2 ? levelLong : na, "WATCH BUY RETEST (not entry)", color=color.new(green, 65), style=plot.style_linebr)
-plot(not clean and simSide == 0 and phaseShort == 2 ? levelShort : na, "WATCH SELL RETEST (not entry)", color=color.new(red, 65), style=plot.style_linebr)
-p0 = plot(displayLevels and hasPlan ? refLine : na, "SIGNAL REF / PAPER ENTRY", color=color.white, linewidth=2, style=plot.style_linebr)
-p1 = plot(displayLevels and hasPlan ? stopLine : na, "INITIAL SL", color=color.new(red, 30), linewidth=2, style=plot.style_linebr)
-plot(displayLevels and simSide != 0 and activeStopLine != stopLine ? activeStopLine : na, "MANAGED SL", color=gold, linewidth=2, style=plot.style_linebr)
+plot(displayPivots and detailed ? lastPivotHigh : na, "Потвърден структурен връх", color=color.new(red, 65), style=plot.style_stepline)
+plot(displayPivots and detailed ? lastPivotLow : na, "Потвърдено структурно дъно", color=color.new(green, 65), style=plot.style_stepline)
+plot(displayPDH and detailed ? priorDayHigh : na, "Връх от предишния ден", color=color.new(gold, 40), style=plot.style_stepline)
+plot(displayPDH and detailed ? priorDayLow : na, "Дъно от предишния ден", color=color.new(gold, 40), style=plot.style_stepline)
+plot(displayAsia and timeframe.isintraday ? lastAsianH : na, "Завършен азиатски максимум", color=color.new(gold, 40), style=plot.style_stepline)
+plot(displayAsia and timeframe.isintraday ? lastAsianL : na, "Завършен азиатски минимум", color=color.new(blue, 40), style=plot.style_stepline)
+plot(displayPD ? pdMid : na, "Среда на скъпа/евтина зона", color=color.new(gold, 50), style=plot.style_stepline)
+plot(not clean and simSide == 0 and phaseLong == 2 ? levelLong : na, "НАБЛЮДЕНИЕ КУПИ: РЕТЕСТ (не е вход)", color=color.new(green, 65), style=plot.style_linebr)
+plot(not clean and simSide == 0 and phaseShort == 2 ? levelShort : na, "НАБЛЮДЕНИЕ ПРОДАЙ: РЕТЕСТ (не е вход)", color=color.new(red, 65), style=plot.style_linebr)
+p0 = plot(displayLevels and hasPlan ? refLine : na, "ОРИЕНТИР / СИМУЛ. ВХОД", color=color.white, linewidth=2, style=plot.style_linebr)
+p1 = plot(displayLevels and hasPlan ? stopLine : na, "ПЪРВОНАЧАЛЕН SL", color=color.new(red, 30), linewidth=2, style=plot.style_linebr)
+plot(displayLevels and simSide != 0 and activeStopLine != stopLine ? activeStopLine : na, "ПРЕМЕСТЕН SL", color=gold, linewidth=2, style=plot.style_linebr)
 plot(displayLevels and hasPlan ? tpLine1 : na, "TP1", color=blue, linewidth=2, style=plot.style_linebr)
 plot(displayLevels and hasPlan ? tpLine2 : na, "TP2", color=color.rgb(156, 164, 255), linewidth=2, style=plot.style_linebr)
 p3 = plot(displayLevels and hasPlan ? tpLine3 : na, "TP3", color=green, linewidth=2, style=plot.style_linebr)
-fill(p0, p1, color=color.new(red, 93), title="Planned risk (paper)")
-fill(p0, p3, color=color.new(green, 95), title="Planned reward (paper)")
-plotshape(newBuy, title="CLOSE-CONFIRMED BUY SIGNAL", style=shape.labelup, location=location.belowbar, color=green, text="BUY\nCONFIRMED", textcolor=color.black, size=size.large)
-plotshape(newSell, title="CLOSE-CONFIRMED SELL SIGNAL", style=shape.labeldown, location=location.abovebar, color=red, text="SELL\nCONFIRMED", textcolor=color.white, size=size.large)
-plotshape(detailed and equalHighs and not equalHighs[1], title="Confirmed equal highs", style=shape.triangledown, location=location.abovebar, color=gold, size=size.tiny, text="EQH")
-plotshape(detailed and equalLows and not equalLows[1], title="Confirmed equal lows", style=shape.triangleup, location=location.belowbar, color=blue, size=size.tiny, text="EQL")
-plotshape(detailed and sweepMarkBuy, title="Sweep low", style=shape.circle, location=location.belowbar, color=blue, text="SWEEP", size=size.small)
-plotshape(detailed and sweepMarkSell, title="Sweep high", style=shape.circle, location=location.abovebar, color=gold, text="SWEEP", size=size.small)
+fill(p0, p1, color=color.new(red, 93), title="Планиран риск (симулация)")
+fill(p0, p3, color=color.new(green, 95), title="Потенциална печалба (симулация)")
+plotshape(newBuy, title="Потвърден сигнал за покупка при затваряне", style=shape.labelup, location=location.belowbar, color=green, text="КУПИ\nСИГНАЛ", textcolor=color.black, size=size.large)
+plotshape(newSell, title="Потвърден сигнал за продажба при затваряне", style=shape.labeldown, location=location.abovebar, color=red, text="ПРОДАЙ\nСИГНАЛ", textcolor=color.white, size=size.large)
+plotshape(detailed and equalHighs and not equalHighs[1], title="Потвърдени равни върхове", style=shape.triangledown, location=location.abovebar, color=gold, size=size.tiny, text="EQH")
+plotshape(detailed and equalLows and not equalLows[1], title="Потвърдени равни дъна", style=shape.triangleup, location=location.belowbar, color=blue, size=size.tiny, text="EQL")
+plotshape(detailed and sweepMarkBuy, title="Взета ликвидност под дъно", style=shape.circle, location=location.belowbar, color=blue, text="ЛИКВ.", size=size.small)
+plotshape(detailed and sweepMarkSell, title="Взета ликвидност над връх", style=shape.circle, location=location.abovebar, color=gold, text="ЛИКВ.", size=size.small)
 // Distinguish a sweep-led MSS from a trend-continuation BOS. Both are detected at candle close.
 // Structure labels use distinct criteria and are never retroactively placed on pivot bars.
-plotshape(showStructureEvents and not clean and shiftMarkBuy and sweepFamilyLong, title="MSS UP after liquidity sweep", style=shape.square, location=location.belowbar, color=color.new(green, 15), text="MSS\nWATCH", textcolor=color.white, size=size.small)
-plotshape(showStructureEvents and not clean and shiftMarkSell and sweepFamilyShort, title="MSS DOWN after liquidity sweep", style=shape.square, location=location.abovebar, color=color.new(red, 15), text="MSS\nWATCH", textcolor=color.white, size=size.small)
-plotshape(showStructureEvents and not clean and shiftMarkBuy and not sweepFamilyLong and not contextChochBull, title="BOS UP continuation", style=shape.square, location=location.belowbar, color=color.new(green, 28), text="BOS", textcolor=color.white, size=size.small)
-plotshape(showStructureEvents and not clean and shiftMarkSell and not sweepFamilyShort and not contextChochBear, title="BOS DOWN continuation", style=shape.square, location=location.abovebar, color=color.new(red, 28), text="BOS", textcolor=color.white, size=size.small)
-plotshape(showStructureEvents and not clean and bosUp and not shiftMarkBuy and not contextChochBull, title="Bullish BOS context only", style=shape.square, location=location.belowbar, color=color.new(green, 55), text="BOS", textcolor=color.white, size=size.small)
-plotshape(showStructureEvents and not clean and bosDown and not shiftMarkSell and not contextChochBear, title="Bearish BOS context only", style=shape.square, location=location.abovebar, color=color.new(red, 55), text="BOS", textcolor=color.white, size=size.small)
-plotshape(showStructureEvents and not clean and contextChochBull and not (shiftMarkBuy and sweepFamilyLong), title="Bullish CHoCH contextual reversal", style=shape.labelup, location=location.belowbar, color=color.new(blue, 25), text="CHoCH\nNOT ENTRY", textcolor=color.white, size=size.small)
-plotshape(showStructureEvents and not clean and contextChochBear and not (shiftMarkSell and sweepFamilyShort), title="Bearish CHoCH contextual reversal", style=shape.labeldown, location=location.abovebar, color=color.new(gold, 25), text="CHoCH\nNOT ENTRY", textcolor=color.black, size=size.small)
-plotshape(eventStop, title="PAPER STOP", style=shape.xcross, location=location.abovebar, color=red, text="PAPER SL", size=size.tiny)
-plotshape(eventTP3, title="PAPER TP3", style=shape.diamond, location=location.abovebar, color=green, text="PAPER TP3", size=size.tiny)
+plotshape(showStructureEvents and not clean and shiftMarkBuy and sweepFamilyLong, title="MSS нагоре след взета ликвидност", style=shape.square, location=location.belowbar, color=color.new(green, 15), text="MSS\nНАБЛ.", textcolor=color.white, size=size.small)
+plotshape(showStructureEvents and not clean and shiftMarkSell and sweepFamilyShort, title="MSS надолу след взета ликвидност", style=shape.square, location=location.abovebar, color=color.new(red, 15), text="MSS\nНАБЛ.", textcolor=color.white, size=size.small)
+plotshape(showStructureEvents and not clean and shiftMarkBuy and not sweepFamilyLong and not contextChochBull, title="BOS нагоре (продължение)", style=shape.square, location=location.belowbar, color=color.new(green, 28), text="BOS", textcolor=color.white, size=size.small)
+plotshape(showStructureEvents and not clean and shiftMarkSell and not sweepFamilyShort and not contextChochBear, title="BOS надолу (продължение)", style=shape.square, location=location.abovebar, color=color.new(red, 28), text="BOS", textcolor=color.white, size=size.small)
+plotshape(showStructureEvents and not clean and bosUp and not shiftMarkBuy and not contextChochBull, title="BOS нагоре, само анализ", style=shape.square, location=location.belowbar, color=color.new(green, 55), text="BOS", textcolor=color.white, size=size.small)
+plotshape(showStructureEvents and not clean and bosDown and not shiftMarkSell and not contextChochBear, title="BOS надолу, само анализ", style=shape.square, location=location.abovebar, color=color.new(red, 55), text="BOS", textcolor=color.white, size=size.small)
+plotshape(showStructureEvents and not clean and contextChochBull and not (shiftMarkBuy and sweepFamilyLong), title="Възможен CHoCH нагоре (само анализ)", style=shape.labelup, location=location.belowbar, color=color.new(blue, 25), text="CHoCH\nНЕ Е ВХОД", textcolor=color.white, size=size.small)
+plotshape(showStructureEvents and not clean and contextChochBear and not (shiftMarkSell and sweepFamilyShort), title="Възможен CHoCH надолу (само анализ)", style=shape.labeldown, location=location.abovebar, color=color.new(gold, 25), text="CHoCH\nНЕ Е ВХОД", textcolor=color.black, size=size.small)
+plotshape(eventStop, title="Симулиран стоп", style=shape.xcross, location=location.abovebar, color=red, text="СИМ. SL", size=size.tiny)
+plotshape(eventTP3, title="СИМУЛ.: ДОСТИГНАТ TP3", style=shape.diamond, location=location.abovebar, color=green, text="СИМУЛ.: ДОСТИГНАТ TP3", size=size.tiny)
 
 // Human-readable momentum context and expired entries; these are never confirmed BUY/SELL trades.
 // Not all moves will become confirmed entries: validation still requires structure, retest, HTF and no-chase filters.
 // Clearly separate local momentum and HTF agreement. Do NOT create synthetic BUY/SELL trades.
-plotshape(contextBullMark and bullHTF and not newBuy and not contextChochBull, title="BULL IMPULSE aligned HTF (NOT ENTRY)", style=shape.labelup, location=location.belowbar, color=color.new(green, 40), text="BULL MOVE\nNO ENTRY", textcolor=color.white, size=size.normal)
-plotshape(contextBullMark and not bullHTF and not newBuy and not contextChochBull, title="BULL IMPULSE against HTF (NOT ENTRY)", style=shape.labelup, location=location.belowbar, color=color.new(gold, 28), text="BULL MOVE\nHTF CONFLICT", textcolor=color.black, size=size.normal)
-plotshape(contextBearMark and bearHTF and not newSell and not contextChochBear, title="BEAR IMPULSE aligned HTF (NOT ENTRY)", style=shape.labeldown, location=location.abovebar, color=color.new(red, 35), text="BEAR MOVE\nNO ENTRY", textcolor=color.white, size=size.normal)
-plotshape(contextBearMark and not bearHTF and not newSell and not contextChochBear, title="BEAR IMPULSE against HTF (NOT ENTRY)", style=shape.labeldown, location=location.abovebar, color=color.new(gold, 28), text="BEAR MOVE\nHTF CONFLICT", textcolor=color.black, size=size.normal)
-plotshape(showEarlyPressure and not clean and earlyBreakBull and not contextBullMark and not newBuy, title="Pre-break bullish pressure WATCH ONLY", style=shape.labelup, location=location.belowbar, color=color.new(blue, 52), text="WATCH\nUP BREAK", textcolor=color.white, size=size.small)
-plotshape(showEarlyPressure and not clean and earlyBreakBear and not contextBearMark and not newSell, title="Pre-break bearish pressure WATCH ONLY", style=shape.labeldown, location=location.abovebar, color=color.new(blue, 52), text="WATCH\nDOWN BREAK", textcolor=color.white, size=size.small)
-plotshape(eventLateBuy, title="BUY setup expired (NO CHASE)", style=shape.labelup, location=location.belowbar, color=color.new(gold, 20), text="LATE BUY\nCANCELLED", textcolor=color.black, size=size.small)
-plotshape(eventLateSell, title="SELL setup expired (NO CHASE)", style=shape.labeldown, location=location.abovebar, color=color.new(gold, 20), text="LATE SELL\nCANCELLED", textcolor=color.black, size=size.small)
+plotshape(contextBullMark and bullHTF and not newBuy and not contextChochBull, title="Възходящ импулс с тренда (не е вход)", style=shape.labelup, location=location.belowbar, color=color.new(green, 40), text="РЪСТ\nНЕ Е ВХОД", textcolor=color.white, size=size.normal)
+plotshape(contextBullMark and not bullHTF and not newBuy and not contextChochBull, title="Възходящ импулс срещу тренда (не е вход)", style=shape.labelup, location=location.belowbar, color=color.new(gold, 28), text="РЪСТ\nСРЕЩУ ТРЕНДА", textcolor=color.black, size=size.normal)
+plotshape(contextBearMark and bearHTF and not newSell and not contextChochBear, title="Низходящ импулс с тренда (не е вход)", style=shape.labeldown, location=location.abovebar, color=color.new(red, 35), text="СПАД\nНЕ Е ВХОД", textcolor=color.white, size=size.normal)
+plotshape(contextBearMark and not bearHTF and not newSell and not contextChochBear, title="Низходящ импулс срещу тренда (не е вход)", style=shape.labeldown, location=location.abovebar, color=color.new(gold, 28), text="СПАД\nСРЕЩУ ТРЕНДА", textcolor=color.black, size=size.normal)
+plotshape(showEarlyPressure and not clean and earlyBreakBull and not contextBullMark and not newBuy, title="Ранен натиск към пробив нагоре, само наблюдение", style=shape.labelup, location=location.belowbar, color=color.new(blue, 52), text="СЛЕДИ\nНАГОРЕ", textcolor=color.white, size=size.small)
+plotshape(showEarlyPressure and not clean and earlyBreakBear and not contextBearMark and not newSell, title="Ранен натиск към пробив надолу, само наблюдение", style=shape.labeldown, location=location.abovebar, color=color.new(blue, 52), text="СЛЕДИ\nНАДОЛУ", textcolor=color.white, size=size.small)
+plotshape(eventLateBuy, title="Изтекла възможност за покупка (без преследване)", style=shape.labelup, location=location.belowbar, color=color.new(gold, 20), text="КЪСНО КУПИ\nОТМЕНЕНО", textcolor=color.black, size=size.small)
+plotshape(eventLateSell, title="Изтекла възможност за продажба (без преследване)", style=shape.labeldown, location=location.abovebar, color=color.new(gold, 20), text="КЪСНО ПРОДАЙ\nОТМЕНЕНО", textcolor=color.black, size=size.small)
 
 // Labels always anchored near the CURRENT bar: no historical-offset drawing bug.
 var label lblEntry = na
@@ -737,7 +737,7 @@ if barstate.islast
     label.delete(lblTP2)
     label.delete(lblTP3)
     if displayLevels and hasPlan
-        lblEntry := label.new(bar_index + 2, refLine, (simSide != 0 ? "PAPER FILL " : "SIGNAL REF ") + str.tostring(refLine, format.mintick), color=color.white, textcolor=color.black, style=label.style_label_left, size=size.small)
+        lblEntry := label.new(bar_index + 2, refLine, (simSide != 0 ? "СИМУЛ. ВХОД " : "ОРИЕНТИР ") + str.tostring(refLine, format.mintick), color=color.white, textcolor=color.black, style=label.style_label_left, size=size.small)
         lblSL := label.new(bar_index + 2, activeStopLine, "SL " + str.tostring(activeStopLine, format.mintick), color=red, textcolor=color.white, style=label.style_label_left, size=size.small)
         lblTP1 := label.new(bar_index + 2, tpLine1, "TP1 " + str.tostring(tpLine1, format.mintick), color=blue, textcolor=color.black, style=label.style_label_left, size=size.small)
         lblTP2 := label.new(bar_index + 2, tpLine2, "TP2 " + str.tostring(tpLine2, format.mintick), color=color.rgb(156, 164, 255), textcolor=color.black, style=label.style_label_left, size=size.small)
@@ -748,52 +748,52 @@ var table dashboard = table.new(position.top_right, 2, 10, bgcolor=dark, frame_c
 if barstate.islast and displayDashboard
     bool counterLong = phaseLong != 0 and not bullHTF
     bool counterShort = phaseShort != 0 and not bearHTF
-    string pending = phaseLong == 2 ? "BUY / RETEST" : phaseShort == 2 ? "SELL / RETEST" : phaseLong == 1 ? "BUY / WAIT MSS" : phaseShort == 1 ? "SELL / WAIT MSS" : "NO SETUP"
-    string status = simSide == 1 ? "PAPER LONG" : simSide == -1 ? "PAPER SHORT" : queuedSide != 0 ? "CONFIRMED / NEXT OPEN" : eventLateBuy or eventLateSell ? "LATE - NO CHASE" : counterLong or counterShort ? "WAIT / AGAINST HTF" : pending == "NO SETUP" ? "WAIT / NO TRADE" : "WATCH / " + pending
+    string pending = phaseLong == 2 ? "КУПИ / РЕТЕСТ" : phaseShort == 2 ? "ПРОДАЙ / РЕТЕСТ" : phaseLong == 1 ? "КУПИ / ЧАКА MSS" : phaseShort == 1 ? "ПРОДАЙ / ЧАКА MSS" : "НЯМА КОНФИГУРАЦИЯ"
+    string status = simSide == 1 ? "СИМУЛ. ПОКУПКА" : simSide == -1 ? "СИМУЛ. ПРОДАЖБА" : queuedSide != 0 ? "СИГНАЛ / СЛЕДВ. ОТВАРЯНЕ" : eventLateBuy or eventLateSell ? "КЪСНО / БЕЗ ВХОД" : counterLong or counterShort ? "ЧАКА / СРЕЩУ ТРЕНДА" : pending == "НЯМА КОНФИГУРАЦИЯ" ? "ЧАКА / БЕЗ СДЕЛКА" : "НАБЛЮДЕНИЕ / " + pending
     bool activePlan = simSide != 0 or queuedSide != 0
     string stopText = activePlan ? str.tostring(activeStopLine, format.mintick) : "—"
     string priceText = activePlan ? str.tostring(refLine, format.mintick) : "—"
     string targetsText = activePlan ? str.tostring(tpLine1, format.mintick) + " / " + str.tostring(tpLine2, format.mintick) + " / " + str.tostring(tpLine3, format.mintick) : "—"
-    table.cell(dashboard, 0, 0, "◆ QIRVANTA SNIPER", bgcolor=panel, text_color=color.white)
+    table.cell(dashboard, 0, 0, "◆ QIRVANTA СНАЙПЪР", bgcolor=panel, text_color=color.white)
     table.cell(dashboard, 1, 0, "v7.6 / " + style, bgcolor=panel, text_color=green)
-    table.cell(dashboard, 0, 1, "DECISION", text_color=grey)
+    table.cell(dashboard, 0, 1, "РЕШЕНИЕ", text_color=grey)
     table.cell(dashboard, 1, 1, status, text_color=activePlan ? (simSide == 1 or queuedSide == 1 ? green : red) : gold)
-    table.cell(dashboard, 0, 2, "HTF / REGIME", bgcolor=panel, text_color=grey)
+    table.cell(dashboard, 0, 2, "ГОРНА РАМКА / РЕЖИМ", bgcolor=panel, text_color=grey)
     table.cell(dashboard, 1, 2, htf + " / " + regime, bgcolor=panel, text_color=color.white)
-    table.cell(dashboard, 0, 3, "SETUP STEP", text_color=grey)
-    table.cell(dashboard, 1, 3, activePlan ? "PAPER / NEXT OPEN" : pending, text_color=gold)
-    table.cell(dashboard, 0, 4, "BLOCKER", bgcolor=panel, text_color=grey)
-    table.cell(dashboard, 1, 4, activePlan ? "PAPER ONLY / NOT LIVE" : blockedReason, bgcolor=panel, text_color=gold)
-    table.cell(dashboard, 0, 5, "REFERENCE / SL", text_color=grey)
+    table.cell(dashboard, 0, 3, "ЕТАП НА МОДЕЛА", text_color=grey)
+    table.cell(dashboard, 1, 3, activePlan ? "СИМУЛ. / СЛЕДВ. ОТВАРЯНЕ" : pending, text_color=gold)
+    table.cell(dashboard, 0, 4, "ПРИЧИНА ЗА ИЗЧАКВАНЕ", bgcolor=panel, text_color=grey)
+    table.cell(dashboard, 1, 4, activePlan ? "САМО СИМУЛАЦИЯ / НЕ Е РЕАЛНО" : blockedReason, bgcolor=panel, text_color=gold)
+    table.cell(dashboard, 0, 5, "ОРИЕНТИР / SL", text_color=grey)
     table.cell(dashboard, 1, 5, priceText + " / " + stopText, text_color=color.white)
     table.cell(dashboard, 0, 6, "TP1 / TP2 / TP3", bgcolor=panel, text_color=grey)
     table.cell(dashboard, 1, 6, targetsText, bgcolor=panel, text_color=blue)
-    table.cell(dashboard, 0, 7, "PAPER TRADES / R", text_color=grey)
-    table.cell(dashboard, 1, 7, str.tostring(tradesSeen) + " / " + str.tostring(totalNetR, "#.##") + "R (est.)", text_color=color.white)
-    table.cell(dashboard, 0, 8, "RISK SHIELD", bgcolor=panel, text_color=grey)
-    table.cell(dashboard, 1, 8, paperRiskDisplay ? "RESEARCH / PAPER ONLY" : "PAUSED / PAPER", bgcolor=panel, text_color=paperRiskDisplay ? green : red)
+    table.cell(dashboard, 0, 7, "СИМУЛ. СДЕЛКИ / R", text_color=grey)
+    table.cell(dashboard, 1, 7, str.tostring(tradesSeen) + " / " + str.tostring(totalNetR, "#.##") + "R (ОЦЕНКА)", text_color=color.white)
+    table.cell(dashboard, 0, 8, "ЗАЩИТА НА РИСКА", bgcolor=panel, text_color=grey)
+    table.cell(dashboard, 1, 8, paperRiskDisplay ? "САМО АНАЛИЗ И СИМУЛАЦИЯ" : "СИМУЛАЦИЯТА Е СПРЯНА", bgcolor=panel, text_color=paperRiskDisplay ? green : red)
     // The LOCAL market direction is independent of the confirmed higher-timeframe trading filter.
-    string localBias = emaFast > emaSlow and close > emaFast ? "BULL" : emaFast < emaSlow and close < emaFast ? "BEAR" : "MIXED"
-    string htfBias = bullHTF ? "BULL" : bearHTF ? "BEAR" : "NEUTRAL"
-    bool localAgainstHTF = (localBias == "BULL" and not bullHTF) or (localBias == "BEAR" and not bearHTF)
-    string localState = timeframe.period + " " + localBias + " / " + htf + " " + htfBias + (localAgainstHTF ? " | CONFLICT" : "")
-    table.cell(dashboard, 0, 9, "LOCAL / HTF", text_color=grey)
+    string localBias = emaFast > emaSlow and close > emaFast ? "НАГОРЕ" : emaFast < emaSlow and close < emaFast ? "НАДОЛУ" : "СМЕСЕНО"
+    string htfBias = bullHTF ? "НАГОРЕ" : bearHTF ? "НАДОЛУ" : "НЕУТРАЛНО"
+    bool localAgainstHTF = (localBias == "НАГОРЕ" and not bullHTF) or (localBias == "НАДОЛУ" and not bearHTF)
+    string localState = timeframe.period + " " + localBias + " / " + htf + " " + htfBias + (localAgainstHTF ? " | ПРОТИВОРЕЧИЕ" : "")
+    table.cell(dashboard, 0, 9, "ТЕКУЩА / ГОРНА РАМКА", text_color=grey)
     table.cell(dashboard, 1, 9, localState, text_color=localAgainstHTF ? gold : color.white)
 
 // TradingView must create alerts manually. One dynamic message per bar.
-alertcondition(newBuy, title="QIRVANTA V7 BUY", message="Confirmed BUY on {{ticker}} {{interval}}. Use Any alert() function call for price levels.")
-alertcondition(newSell, title="QIRVANTA V7 SELL", message="Confirmed SELL on {{ticker}} {{interval}}. Use Any alert() function call for price levels.")
-alertcondition(eventTP1, title="QIRVANTA V7 PAPER TP1", message="Paper TP1 on {{ticker}}")
-alertcondition(eventTP2, title="QIRVANTA V7 PAPER TP2", message="Paper TP2 on {{ticker}}")
-alertcondition(eventTP3, title="QIRVANTA V7 PAPER TP3", message="Paper TP3 on {{ticker}}")
-alertcondition(eventStop, title="QIRVANTA V7 PAPER STOP", message="Paper stop on {{ticker}}")
-alertcondition(eventLock, title="QIRVANTA V7 PAPER PROFIT LOCK", message="Paper lock on {{ticker}}")
-alertcondition(setupInvalidated, title="QIRVANTA V7 SETUP INVALIDATED", message="Invalidated setup on {{ticker}}")
-alertcondition(contextBearMark, title="QIRVANTA EARLY BEARISH CONTEXT", message="Bearish momentum confirmed on {{ticker}} {{interval}}. CONTEXT ONLY, NOT SELL ENTRY.")
-alertcondition(contextBullMark, title="QIRVANTA EARLY BULLISH CONTEXT", message="Bullish momentum confirmed on {{ticker}} {{interval}}. CONTEXT ONLY, NOT BUY ENTRY.")
-alertcondition(eventLateBuy or eventLateSell, title="QIRVANTA NO CHASE CANCELLATION", message="Late/extended setup cancelled on {{ticker}} {{interval}}. NO ENTRY.")
-alertcondition(contextChochBull or contextChochBear, title="QIRVANTA CHoCH CONTEXT", message="CHoCH structure change on {{ticker}} {{interval}}. CONTEXT ONLY, NOT A CONFIRMED TRADE.")
-alertcondition(earlyBreakBull or earlyBreakBear, title="QIRVANTA EARLY WATCH STRUCTURE", message="Early pressure approaching a structural level on {{ticker}} {{interval}}. WATCH ONLY, NOT A TRADE.")
+alertcondition(newBuy, title="QIRVANTA: СИГНАЛ КУПИ", message="Потвърден сигнал за ПОКУПКА на {{ticker}} {{interval}}. За динамични цени използвай „Всички извиквания на alert()“.")
+alertcondition(newSell, title="QIRVANTA: СИГНАЛ ПРОДАЙ", message="Потвърден сигнал за ПРОДАЖБА на {{ticker}} {{interval}}. За динамични цени използвай „Всички извиквания на alert()“.")
+alertcondition(eventTP1, title="QIRVANTA: СИМУЛ. TP1", message="Виртуална позиция достигна TP1 на {{ticker}}.")
+alertcondition(eventTP2, title="QIRVANTA: СИМУЛ. TP2", message="Виртуална позиция достигна TP2 на {{ticker}}.")
+alertcondition(eventTP3, title="QIRVANTA: СИМУЛ. TP3", message="Виртуална позиция достигна TP3 на {{ticker}}.")
+alertcondition(eventStop, title="QIRVANTA: СИМУЛ. СТОП", message="Виртуалната позиция достигна SL на {{ticker}}.")
+alertcondition(eventLock, title="QIRVANTA: ПРЕМЕСТЕН СИМУЛ. SL", message="Виртуалният SL е преместен след достигане на TP1 на {{ticker}}.")
+alertcondition(setupInvalidated, title="QIRVANTA: НЕВАЛИДНА КОНФИГУРАЦИЯ", message="Конфигурацията на {{ticker}} е изтекла или е станала невалидна.")
+alertcondition(contextBearMark, title="QIRVANTA: РАНЕН НИЗХОДЯЩ КОНТЕКСТ", message="Низходящ импулс на {{ticker}} {{interval}}. Само анализ, НЕ е вход за продажба.")
+alertcondition(contextBullMark, title="QIRVANTA: РАНЕН ВЪЗХОДЯЩ КОНТЕКСТ", message="Възходящ импулс на {{ticker}} {{interval}}. Само анализ, НЕ е вход за покупка.")
+alertcondition(eventLateBuy or eventLateSell, title="QIRVANTA: КЪСЕН ВХОД ОТМЕНЕН", message="Изпусната или прекалено удължена възможност на {{ticker}} {{interval}}. НЯМА ВХОД.")
+alertcondition(contextChochBull or contextChochBear, title="QIRVANTA: ВЪЗМОЖЕН CHoCH", message="Възможна промяна на локалната структура (CHoCH) на {{ticker}} {{interval}}. Само анализ, НЕ е сделка.")
+alertcondition(earlyBreakBull or earlyBreakBear, title="QIRVANTA: РАННО НАБЛЮДЕНИЕ", message="Цената приближава структурно ниво на {{ticker}} {{interval}}. Само наблюдение, НЕ е вход.")
 
 
 // ==== QIRVANTA v7.6 PRICE-CHART MAP & HISTORICAL PAPER TRADE ZONES ====
@@ -816,7 +816,7 @@ var label[] oldSignalTags = array.new_label()
 
 if barstate.isconfirmed and (newBuy or newSell) and showSignalDetails and detailed
     color sideColor = newBuy ? green : red
-    string signalMessage = (newBuy ? "BUY" : "SELL") + " CONFIRMED\nREF " + str.tostring(plannedRef, format.mintick) + "\nSL " + str.tostring(plannedStop, format.mintick) + "\nTP1 " + str.tostring(plannedTP1, format.mintick) + " | TP3 " + str.tostring(plannedTP3, format.mintick) + "\nPAPER NEXT OPEN / NOT LIVE"
+    string signalMessage = (newBuy ? "КУПИ" : "ПРОДАЙ") + " ПОТВЪРДЕН СИГНАЛ\nОРИЕНТИР " + str.tostring(plannedRef, format.mintick) + "\nSL " + str.tostring(plannedStop, format.mintick) + "\nTP1 " + str.tostring(plannedTP1, format.mintick) + " | TP3 " + str.tostring(plannedTP3, format.mintick) + "\nСИМУЛ. СЛЕДВ. ОТВАРЯНЕ / НЕ Е РЕАЛНО"
     label tag = label.new(bar_index, newBuy ? low - atr * 0.1 : high + atr * 0.1, signalMessage, style=newBuy ? label.style_label_up : label.style_label_down, color=sideColor, textcolor=color.black, size=size.small)
     array.push(oldSignalTags, tag)
     if array.size(oldSignalTags) > keepTrades
@@ -882,10 +882,10 @@ if barstate.islast
         float mapATR = na(atr) ? 0.0 : atr
         if not na(lastPivotHigh) and math.abs(lastPivotHigh - close) < mapATR * mapDistanceATR
             highGuide := line.new(bar_index, lastPivotHigh, bar_index+projection, lastPivotHigh, color=color.new(red, 36), style=line.style_dashed)
-            highLabel := label.new(bar_index+projection, lastPivotHigh, "SWING HIGH " + str.tostring(lastPivotHigh, format.mintick), style=label.style_label_left, color=color.new(red, 65), textcolor=color.white, size=size.tiny)
+            highLabel := label.new(bar_index+projection, lastPivotHigh, "СТРУКТ. ВРЪХ " + str.tostring(lastPivotHigh, format.mintick), style=label.style_label_left, color=color.new(red, 65), textcolor=color.white, size=size.tiny)
         if not na(lastPivotLow) and math.abs(lastPivotLow - close) < mapATR * mapDistanceATR
             lowGuide := line.new(bar_index, lastPivotLow, bar_index+projection, lastPivotLow, color=color.new(green, 36), style=line.style_dashed)
-            lowLabel := label.new(bar_index+projection, lastPivotLow, "SWING LOW " + str.tostring(lastPivotLow, format.mintick), style=label.style_label_left, color=color.new(green, 65), textcolor=color.white, size=size.tiny)
+            lowLabel := label.new(bar_index+projection, lastPivotLow, "СТРУКТ. ДЪНО " + str.tostring(lastPivotLow, format.mintick), style=label.style_label_left, color=color.new(green, 65), textcolor=color.white, size=size.tiny)
         bool longWatch = phaseLong != 0 and not na(levelLong)
         bool shortWatch = phaseShort != 0 and not na(levelShort)
         if longWatch or shortWatch
@@ -897,27 +897,27 @@ if barstate.islast
             bool nearPrice = mapATR > 0 and math.abs(focus - close) < mapATR * mapDistanceATR
             if counterHTF
                 // No attractive entry zone while higher timeframe contradicts the setup.
-                watchLabel := label.new(bar_index+projection, close, "COUNTER-TREND / NO ENTRY\n" + (focusedLong ? "BUY" : "SELL") + " NOT HTF ALIGNED", style=label.style_label_left, color=color.new(gold, 18), textcolor=color.black, size=size.tiny)
+                watchLabel := label.new(bar_index+projection, close, "СРЕЩУ ТРЕНДА / БЕЗ ВХОД\n" + (focusedLong ? "КУПИ" : "ПРОДАЙ") + " НЯМА СЪВПАДЕНИЕ С ГОРНИЯ ТРЕНД", style=label.style_label_left, color=color.new(gold, 18), textcolor=color.black, size=size.tiny)
             else if focusStage == 1
                 // Before MSS, there is no valid retest zone: draw ONLY the structure trigger.
                 if nearPrice
                     mssTriggerLine := line.new(bar_index, focus, bar_index+projection, focus, color=color.new(focusColor, 35), style=line.style_dashed, width=2)
-                    watchLabel := label.new(bar_index+projection, focus, (focusedLong ? "BUY" : "SELL") + " MSS TRIGGER\nWAIT FOR CONFIRMED BREAK", style=label.style_label_left, color=color.new(focusColor, 20), textcolor=color.black, size=size.tiny)
+                    watchLabel := label.new(bar_index+projection, focus, (focusedLong ? "КУПИ" : "ПРОДАЙ") + " MSS НИВО\nЧАКА ПРОБИВ СЪС ЗАТВАРЯНЕ", style=label.style_label_left, color=color.new(focusColor, 20), textcolor=color.black, size=size.tiny)
             else if focusStage == 2 and nearPrice
                 float zoneTop = focusedLong ? focus + mapATR * nearRetestATR : focus + mapATR * pierceRetestATR
                 float zoneBottom = focusedLong ? focus - mapATR * pierceRetestATR : focus - mapATR * nearRetestATR
                 watchZone := box.new(left=bar_index, top=zoneTop, right=bar_index+projection, bottom=zoneBottom, border_color=color.new(focusColor, 56), bgcolor=color.new(focusColor, 91))
-                watchLabel := label.new(bar_index+projection, focus, (focusedLong ? "WATCH BUY" : "WATCH SELL") + "\nRETEST + CANDLE CLOSE\nNOT CONFIRMED", style=label.style_label_left, color=color.new(focusColor, 18), textcolor=color.black, size=size.tiny)
+                watchLabel := label.new(bar_index+projection, focus, (focusedLong ? "НАБЛЮДАВАЙ ПОКУПКА" : "НАБЛЮДАВАЙ ПРОДАЖБА") + "\nРЕТЕСТ + ЗАТВАРЯНЕ НА СВЕЩ\nНЕПОТВЪРДЕНО", style=label.style_label_left, color=color.new(focusColor, 18), textcolor=color.black, size=size.tiny)
         if showFvgMap and not na(bullGapAt) and not na(bullGapTop) and bullGapTop > bullGapBottom and mapATR > 0 and math.abs(close - bullGapTop) < mapATR * mapDistanceATR
-            bullFvgZone := box.new(left=bar_index, top=bullGapTop, right=bar_index+projection, bottom=bullGapBottom, border_color=color.new(blue, 80), bgcolor=color.new(blue, 94), text="BULL FVG", text_color=color.new(blue, 15), text_size=size.tiny)
+            bullFvgZone := box.new(left=bar_index, top=bullGapTop, right=bar_index+projection, bottom=bullGapBottom, border_color=color.new(blue, 80), bgcolor=color.new(blue, 94), text="ВЪЗХОДЯЩ FVG", text_color=color.new(blue, 15), text_size=size.tiny)
         if showFvgMap and not na(bearGapAt) and not na(bearGapBottom) and bearGapTop > bearGapBottom and mapATR > 0 and math.abs(close - bearGapBottom) < mapATR * mapDistanceATR
-            bearFvgZone := box.new(left=bar_index, top=bearGapTop, right=bar_index+projection, bottom=bearGapBottom, border_color=color.new(gold, 80), bgcolor=color.new(gold, 94), text="BEAR FVG", text_color=color.new(gold, 15), text_size=size.tiny)
+            bearFvgZone := box.new(left=bar_index, top=bearGapTop, right=bar_index+projection, bottom=bearGapBottom, border_color=color.new(gold, 80), bgcolor=color.new(gold, 94), text="НИЗХОДЯЩ FVG", text_color=color.new(gold, 15), text_size=size.tiny)
 
 // Clear event labels reveal where the historical virtual TP/SL actually occurred.
-plotshape(detailed and eventTP1, title="PAPER TP1 HIT", style=shape.circle, location=location.abovebar, color=blue, text="TP1", size=size.tiny)
-plotshape(detailed and eventTP2, title="PAPER TP2 HIT", style=shape.circle, location=location.abovebar, color=color.rgb(156, 164, 255), text="TP2", size=size.tiny)
-plotshape(detailed and eventTime, title="PAPER TIME EXIT", style=shape.circle, location=location.abovebar, color=gold, text="TIME", size=size.tiny)
-plotshape(detailed and eventSkip, title="PAPER OPEN GAP CANCEL", style=shape.xcross, location=location.abovebar, color=gold, text="GAP", size=size.tiny)
+plotshape(detailed and eventTP1, title="Симулирано достигане на TP1", style=shape.circle, location=location.abovebar, color=blue, text="TP1", size=size.tiny)
+plotshape(detailed and eventTP2, title="Симулирано достигане на TP2", style=shape.circle, location=location.abovebar, color=color.rgb(156, 164, 255), text="TP2", size=size.tiny)
+plotshape(detailed and eventTime, title="СИМУЛ.: ЗАТВОРЕНА ПО ВРЕМЕ", style=shape.circle, location=location.abovebar, color=gold, text="ВРЕМЕ", size=size.tiny)
+plotshape(detailed and eventSkip, title="Симулиран вход, отменен при ценови гап", style=shape.xcross, location=location.abovebar, color=gold, text="ГАП", size=size.tiny)
 
 // ==== LAST CONFIRMED SIGNAL ARCHIVE (NOT A CURRENT ENTRY) ====
 // queuedRef/queuedStop/queuedTP* retain the last CONFIRMED signal plan.
@@ -925,22 +925,22 @@ plotshape(detailed and eventSkip, title="PAPER OPEN GAP CANCEL", style=shape.xcr
 var table archivePanel = table.new(position.bottom_right, 2, 9, bgcolor=color.rgb(11, 19, 34), frame_color=color.rgb(61, 77, 104), frame_width=1)
 if barstate.islast and showFullArchive
     bool archivedAvailable = not na(queuedRef)
-    string archivedSide = archivedAvailable ? (queuedTP1 > queuedRef ? "BUY (HISTORY)" : "SELL (HISTORY)") : "NO CONFIRMED SIGNAL"
-    table.cell(archivePanel, 0, 0, "LAST CONFIRMED PLAN", bgcolor=color.rgb(22, 36, 56), text_color=color.white)
-    table.cell(archivePanel, 1, 0, "ARCHIVE / NOT LIVE", bgcolor=color.rgb(22, 36, 56), text_color=color.rgb(255, 187, 79))
-    table.cell(archivePanel, 0, 1, "LAST SIGNAL", text_color=color.rgb(175, 190, 212))
+    string archivedSide = archivedAvailable ? (queuedTP1 > queuedRef ? "ПОКУПКА (ИСТОРИЯ)" : "ПРОДАЖБА (ИСТОРИЯ)") : "НЯМА ПОТВЪРДЕН СИГНАЛ"
+    table.cell(archivePanel, 0, 0, "ПОСЛЕДЕН ПОТВЪРДЕН ПЛАН", bgcolor=color.rgb(22, 36, 56), text_color=color.white)
+    table.cell(archivePanel, 1, 0, "АРХИВ / НЕ Е ТЕКУЩ ВХОД", bgcolor=color.rgb(22, 36, 56), text_color=color.rgb(255, 187, 79))
+    table.cell(archivePanel, 0, 1, "ПОСЛЕДЕН СИГНАЛ", text_color=color.rgb(175, 190, 212))
     table.cell(archivePanel, 1, 1, archivedSide, text_color=archivedAvailable ? (queuedTP1 > queuedRef ? color.rgb(13, 220, 167) : color.rgb(253, 79, 115)) : color.rgb(175, 190, 212))
-    table.cell(archivePanel, 0, 2, "REFERENCE CLOSE", text_color=color.rgb(175, 190, 212))
+    table.cell(archivePanel, 0, 2, "ОРИЕНТИРОВАЧНА ЦЕНА", text_color=color.rgb(175, 190, 212))
     table.cell(archivePanel, 1, 2, archivedAvailable ? str.tostring(queuedRef, format.mintick) : "—", text_color=color.white)
-    table.cell(archivePanel, 0, 3, "PLANNED SL", text_color=color.rgb(175, 190, 212))
+    table.cell(archivePanel, 0, 3, "ПЛАНИРАН SL", text_color=color.rgb(175, 190, 212))
     table.cell(archivePanel, 1, 3, archivedAvailable ? str.tostring(queuedStop, format.mintick) : "—", text_color=color.rgb(253, 79, 115))
-    table.cell(archivePanel, 0, 4, "PLANNED TP1", text_color=color.rgb(175, 190, 212))
+    table.cell(archivePanel, 0, 4, "ПЛАНИРАН TP1", text_color=color.rgb(175, 190, 212))
     table.cell(archivePanel, 1, 4, archivedAvailable ? str.tostring(queuedTP1, format.mintick) : "—", text_color=color.rgb(76, 178, 255))
-    table.cell(archivePanel, 0, 5, "PLANNED TP2", text_color=color.rgb(175, 190, 212))
+    table.cell(archivePanel, 0, 5, "ПЛАНИРАН TP2", text_color=color.rgb(175, 190, 212))
     table.cell(archivePanel, 1, 5, archivedAvailable ? str.tostring(queuedTP2, format.mintick) : "—", text_color=color.rgb(156, 164, 255))
-    table.cell(archivePanel, 0, 6, "PLANNED TP3", text_color=color.rgb(175, 190, 212))
+    table.cell(archivePanel, 0, 6, "ПЛАНИРАН TP3", text_color=color.rgb(175, 190, 212))
     table.cell(archivePanel, 1, 6, archivedAvailable ? str.tostring(queuedTP3, format.mintick) : "—", text_color=color.rgb(13, 220, 167))
-    table.cell(archivePanel, 0, 7, "LAST CLOSED PAPER R", text_color=color.rgb(175, 190, 212))
-    table.cell(archivePanel, 1, 7, na(lastNetR) ? "—" : str.tostring(lastNetR, "#.##") + " R (EST.)", text_color=na(lastNetR) ? color.gray : (lastNetR >= 0 ? color.rgb(13, 220, 167) : color.rgb(253, 79, 115)))
-    table.cell(archivePanel, 0, 8, "LAST PAPER EXIT", text_color=color.rgb(175, 190, 212))
+    table.cell(archivePanel, 0, 7, "РЕЗУЛТАТ НА ПОСЛЕДНА СИМУЛ. СДЕЛКА", text_color=color.rgb(175, 190, 212))
+    table.cell(archivePanel, 1, 7, na(lastNetR) ? "—" : str.tostring(lastNetR, "#.##") + " R (ОЦЕНКА)", text_color=na(lastNetR) ? color.gray : (lastNetR >= 0 ? color.rgb(13, 220, 167) : color.rgb(253, 79, 115)))
+    table.cell(archivePanel, 0, 8, "ПОСЛЕДЕН СИМУЛ. ИЗХОД", text_color=color.rgb(175, 190, 212))
     table.cell(archivePanel, 1, 8, lastExit, text_color=color.rgb(255, 187, 79))
