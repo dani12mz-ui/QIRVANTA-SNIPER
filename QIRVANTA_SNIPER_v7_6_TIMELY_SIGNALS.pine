@@ -80,10 +80,10 @@ int keepTrades = input.int(4, "Брой исторически симул. сд�
 int projection = input.int(10, "Удължаване на зоните надясно (свещи)", minval=4, maxval=28, group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
 float mapDistanceATR = input.float(3.5, "Макс. разстояние на нивата от цената / ATR", minval=1.0, maxval=10.0, step=0.5, group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
 bool showSignalDetails = input.bool(false, "Подробни надписи при сигнали (подробен изглед)", group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
-bool showImpulseContext = input.bool(true, "Показвай силни движения без вход", group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
+bool showImpulseContext = input.bool(true, "Показвай силни движения без вход", group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА", tooltip="Показва силен локален импулс, включително срещу по-високия тренд. Това НЕ Е сигнал за покупка или продажба.")
 float minContextBodyATR = input.float(0.85, "Мин. тяло за силно движение / ATR", minval=0.4, maxval=2.5, step=0.05, group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
 int contextCooldown = input.int(8, "Мин. свещи между обозначенията", minval=2, maxval=40, group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
-bool showStructureEvents = input.bool(true, "Показвай BOS / MSS / CHoCH (само анализ)", group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
+bool showStructureEvents = input.bool(true, "Показвай BOS / MSS / CHoCH (само анализ)", group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА", tooltip="BOS = продължение след структурен пробив; MSS = промяна след взета ликвидност; CHoCH = възможна промяна на локалния тренд. Нито едно не е автоматичен вход.")
 bool showEarlyPressure = input.bool(true, "Показвай ранно приближаване към пробив", group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
 float pressureNearATR = input.float(0.30, "Близост до структурата за предупреждение / ATR", minval=0.10, maxval=1.0, step=0.05, group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
 int structureContextCooldown = input.int(5, "Мин. свещи между ранни предупреждения", minval=2, maxval=25, group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
@@ -683,8 +683,8 @@ plot(displayPDH and detailed ? priorDayLow : na, "Дъно от предишни
 plot(displayAsia and timeframe.isintraday ? lastAsianH : na, "Завършен азиатски максимум", color=color.new(gold, 40), style=plot.style_stepline)
 plot(displayAsia and timeframe.isintraday ? lastAsianL : na, "Завършен азиатски минимум", color=color.new(blue, 40), style=plot.style_stepline)
 plot(displayPD ? pdMid : na, "Среда на скъпа/евтина зона", color=color.new(gold, 50), style=plot.style_stepline)
-plot(not clean and simSide == 0 and phaseLong == 2 ? levelLong : na, "НАБЛЮДЕНИЕ КУПИ: РЕТЕСТ (не е вход)", color=color.new(green, 65), style=plot.style_linebr)
-plot(not clean and simSide == 0 and phaseShort == 2 ? levelShort : na, "НАБЛЮДЕНИЕ ПРОДАЙ: РЕТЕСТ (не е вход)", color=color.new(red, 65), style=plot.style_linebr)
+plot(not clean and not hasPlan and phaseLong == 2 ? levelLong : na, "НАБЛЮДЕНИЕ КУПИ: РЕТЕСТ (не е вход)", color=color.new(green, 65), style=plot.style_linebr)
+plot(not clean and not hasPlan and phaseShort == 2 ? levelShort : na, "НАБЛЮДЕНИЕ ПРОДАЙ: РЕТЕСТ (не е вход)", color=color.new(red, 65), style=plot.style_linebr)
 p0 = plot(displayLevels and hasPlan ? refLine : na, "ОРИЕНТИР / СИМУЛ. ВХОД", color=color.white, linewidth=2, style=plot.style_linebr)
 p1 = plot(displayLevels and hasPlan ? stopLine : na, "ПЪРВОНАЧАЛЕН SL", color=color.new(red, 30), linewidth=2, style=plot.style_linebr)
 plot(displayLevels and simSide != 0 and activeStopLine != stopLine ? activeStopLine : na, "ПРЕМЕСТЕН SL", color=gold, linewidth=2, style=plot.style_linebr)
@@ -746,10 +746,15 @@ if barstate.islast
 // Compact dashboard. Map and confirmed marks provide the primary visual information.
 var table dashboard = table.new(position.top_right, 2, 10, bgcolor=dark, frame_color=color.rgb(61, 77, 104), frame_width=1)
 if barstate.islast and displayDashboard
-    bool counterLong = phaseLong != 0 and not bullHTF
-    bool counterShort = phaseShort != 0 and not bearHTF
-    string pending = phaseLong == 2 ? "КУПИ / РЕТЕСТ" : phaseShort == 2 ? "ПРОДАЙ / РЕТЕСТ" : phaseLong == 1 ? "КУПИ / ЧАКА MSS" : phaseShort == 1 ? "ПРОДАЙ / ЧАКА MSS" : "НЯМА КОНФИГУРАЦИЯ"
-    string status = simSide == 1 ? "СИМУЛ. ПОКУПКА" : simSide == -1 ? "СИМУЛ. ПРОДАЖБА" : queuedSide != 0 ? "СИГНАЛ / СЛЕДВ. ОТВАРЯНЕ" : eventLateBuy or eventLateSell ? "КЪСНО / БЕЗ ВХОД" : counterLong or counterShort ? "ЧАКА / СРЕЩУ ТРЕНДА" : pending == "НЯМА КОНФИГУРАЦИЯ" ? "ЧАКА / БЕЗ СДЕЛКА" : "НАБЛЮДЕНИЕ / " + pending
+    bool hasLongSetup = phaseLong != 0
+    bool hasShortSetup = phaseShort != 0
+    bool hasBothSetups = hasLongSetup and hasShortSetup
+    bool selectedLong = hasLongSetup and (not hasShortSetup or bullHTF)
+    bool selectedShort = hasShortSetup and (not hasLongSetup or bearHTF)
+    bool noPreferredDirection = hasBothSetups and not bullHTF and not bearHTF
+    bool counterSelected = (selectedLong and not bullHTF) or (selectedShort and not bearHTF)
+    string pending = noPreferredDirection ? "ДВА СЦЕНАРИЯ" : selectedLong ? (phaseLong == 2 ? "КУПИ / РЕТЕСТ" : "КУПИ / ЧАКА MSS") : selectedShort ? (phaseShort == 2 ? "ПРОДАЙ / РЕТЕСТ" : "ПРОДАЙ / ЧАКА MSS") : "НЯМА КОНФИГУРАЦИЯ"
+    string status = simSide == 1 ? "СИМУЛ. ПОКУПКА" : simSide == -1 ? "СИМУЛ. ПРОДАЖБА" : queuedSide != 0 ? "СИГНАЛ / СЛЕДВ. ОТВАРЯНЕ" : eventLateBuy or eventLateSell ? "КЪСНО / БЕЗ ВХОД" : noPreferredDirection ? "КОНФЛИКТ / БЕЗ ВХОД" : counterSelected ? "ЧАКА / СРЕЩУ ТРЕНДА" : pending == "НЯМА КОНФИГУРАЦИЯ" ? "ЧАКА / БЕЗ СДЕЛКА" : "НАБЛЮДЕНИЕ / " + pending
     bool activePlan = simSide != 0 or queuedSide != 0
     string stopText = activePlan ? str.tostring(activeStopLine, format.mintick) : "—"
     string priceText = activePlan ? str.tostring(refLine, format.mintick) : "—"
@@ -758,26 +763,27 @@ if barstate.islast and displayDashboard
     table.cell(dashboard, 1, 0, "v7.6 / " + style, bgcolor=panel, text_color=green)
     table.cell(dashboard, 0, 1, "РЕШЕНИЕ", text_color=grey)
     table.cell(dashboard, 1, 1, status, text_color=activePlan ? (simSide == 1 or queuedSide == 1 ? green : red) : gold)
-    table.cell(dashboard, 0, 2, "ГОРНА РАМКА / РЕЖИМ", bgcolor=panel, text_color=grey)
+    table.cell(dashboard, 0, 2, "ТРЕНД / РЕЖИМ", bgcolor=panel, text_color=grey)
     table.cell(dashboard, 1, 2, htf + " / " + regime, bgcolor=panel, text_color=color.white)
-    table.cell(dashboard, 0, 3, "ЕТАП НА МОДЕЛА", text_color=grey)
+    table.cell(dashboard, 0, 3, "ЕТАП", text_color=grey)
     table.cell(dashboard, 1, 3, activePlan ? "СИМУЛ. / СЛЕДВ. ОТВАРЯНЕ" : pending, text_color=gold)
-    table.cell(dashboard, 0, 4, "ПРИЧИНА ЗА ИЗЧАКВАНЕ", bgcolor=panel, text_color=grey)
-    table.cell(dashboard, 1, 4, activePlan ? "САМО СИМУЛАЦИЯ / НЕ Е РЕАЛНО" : blockedReason, bgcolor=panel, text_color=gold)
+    table.cell(dashboard, 0, 4, "ЗАЩО ЧАКА", bgcolor=panel, text_color=grey)
+    string displayBlocker = hasBothSetups ? (noPreferredDirection ? "ДВА СЦЕНАРИЯ / ЧАКАЙ" : bullHTF ? "ДВА СЦЕНАРИЯ / HTF: КУПИ" : "ДВА СЦЕНАРИЯ / HTF: ПРОДАЙ") : blockedReason
+    table.cell(dashboard, 1, 4, activePlan ? "САМО СИМУЛАЦИЯ" : displayBlocker, bgcolor=panel, text_color=gold)
     table.cell(dashboard, 0, 5, "ОРИЕНТИР / SL", text_color=grey)
     table.cell(dashboard, 1, 5, priceText + " / " + stopText, text_color=color.white)
     table.cell(dashboard, 0, 6, "TP1 / TP2 / TP3", bgcolor=panel, text_color=grey)
     table.cell(dashboard, 1, 6, targetsText, bgcolor=panel, text_color=blue)
-    table.cell(dashboard, 0, 7, "СИМУЛ. СДЕЛКИ / R", text_color=grey)
+    table.cell(dashboard, 0, 7, "СИМУЛАЦИЯ / R", text_color=grey)
     table.cell(dashboard, 1, 7, str.tostring(tradesSeen) + " / " + str.tostring(totalNetR, "#.##") + "R (ОЦЕНКА)", text_color=color.white)
-    table.cell(dashboard, 0, 8, "ЗАЩИТА НА РИСКА", bgcolor=panel, text_color=grey)
+    table.cell(dashboard, 0, 8, "ЗАЩИТИ", bgcolor=panel, text_color=grey)
     table.cell(dashboard, 1, 8, paperRiskDisplay ? "САМО АНАЛИЗ И СИМУЛАЦИЯ" : "СИМУЛАЦИЯТА Е СПРЯНА", bgcolor=panel, text_color=paperRiskDisplay ? green : red)
     // The LOCAL market direction is independent of the confirmed higher-timeframe trading filter.
     string localBias = emaFast > emaSlow and close > emaFast ? "НАГОРЕ" : emaFast < emaSlow and close < emaFast ? "НАДОЛУ" : "СМЕСЕНО"
     string htfBias = bullHTF ? "НАГОРЕ" : bearHTF ? "НАДОЛУ" : "НЕУТРАЛНО"
     bool localAgainstHTF = (localBias == "НАГОРЕ" and not bullHTF) or (localBias == "НАДОЛУ" and not bearHTF)
-    string localState = timeframe.period + " " + localBias + " / " + htf + " " + htfBias + (localAgainstHTF ? " | ПРОТИВОРЕЧИЕ" : "")
-    table.cell(dashboard, 0, 9, "ТЕКУЩА / ГОРНА РАМКА", text_color=grey)
+    string localState = timeframe.period + " " + localBias + " / " + htf + " " + htfBias + (localAgainstHTF ? " | РАЗМИНАВАНЕ" : "")
+    table.cell(dashboard, 0, 9, "ЛОКАЛЕН / HTF", text_color=grey)
     table.cell(dashboard, 1, 9, localState, text_color=localAgainstHTF ? gold : color.white)
 
 // TradingView must create alerts manually. One dynamic message per bar.
@@ -886,10 +892,16 @@ if barstate.islast
         if not na(lastPivotLow) and math.abs(lastPivotLow - close) < mapATR * mapDistanceATR
             lowGuide := line.new(bar_index, lastPivotLow, bar_index+projection, lastPivotLow, color=color.new(green, 36), style=line.style_dashed)
             lowLabel := label.new(bar_index+projection, lastPivotLow, "СТРУКТ. ДЪНО " + str.tostring(lastPivotLow, format.mintick), style=label.style_label_left, color=color.new(green, 65), textcolor=color.white, size=size.tiny)
-        bool longWatch = phaseLong != 0 and not na(levelLong)
-        bool shortWatch = phaseShort != 0 and not na(levelShort)
-        if longWatch or shortWatch
-            bool focusedLong = longWatch and (not shortWatch or phaseLong >= phaseShort)
+        bool longWatch = not hasPlan and phaseLong != 0 and not na(levelLong)
+        bool shortWatch = not hasPlan and phaseShort != 0 and not na(levelShort)
+        bool bothWatch = longWatch and shortWatch
+        bool ambiguousWatch = bothWatch and not bullHTF and not bearHTF
+        if ambiguousWatch
+            // No preferred entry zone if both directions are plausible and HTF is neutral.
+            watchLabel := label.new(bar_index+projection, close, "ДВА СЦЕНАРИЯ\nБЕЗ ВХОД", style=label.style_label_left, color=color.new(gold, 30), textcolor=color.black, size=size.small)
+        else if longWatch or shortWatch
+            // Prefer a setup aligned with the completed higher-timeframe trend.
+            bool focusedLong = longWatch and (not shortWatch or bullHTF)
             int focusStage = focusedLong ? phaseLong : phaseShort
             bool counterHTF = focusedLong ? not bullHTF : not bearHTF
             float focus = focusedLong ? levelLong : levelShort
@@ -897,7 +909,7 @@ if barstate.islast
             bool nearPrice = mapATR > 0 and math.abs(focus - close) < mapATR * mapDistanceATR
             if counterHTF
                 // No attractive entry zone while higher timeframe contradicts the setup.
-                watchLabel := label.new(bar_index+projection, close, "СРЕЩУ ТРЕНДА / БЕЗ ВХОД\n" + (focusedLong ? "КУПИ" : "ПРОДАЙ") + " НЯМА СЪВПАДЕНИЕ С ГОРНИЯ ТРЕНД", style=label.style_label_left, color=color.new(gold, 18), textcolor=color.black, size=size.tiny)
+                watchLabel := label.new(bar_index+projection, close, (focusedLong ? "КУПИ" : "ПРОДАЙ") + " СРЕЩУ HTF\nБЕЗ ВХОД", style=label.style_label_left, color=color.new(gold, 18), textcolor=color.black, size=size.small)
             else if focusStage == 1
                 // Before MSS, there is no valid retest zone: draw ONLY the structure trigger.
                 if nearPrice
@@ -907,7 +919,7 @@ if barstate.islast
                 float zoneTop = focusedLong ? focus + mapATR * nearRetestATR : focus + mapATR * pierceRetestATR
                 float zoneBottom = focusedLong ? focus - mapATR * pierceRetestATR : focus - mapATR * nearRetestATR
                 watchZone := box.new(left=bar_index, top=zoneTop, right=bar_index+projection, bottom=zoneBottom, border_color=color.new(focusColor, 56), bgcolor=color.new(focusColor, 91))
-                watchLabel := label.new(bar_index+projection, focus, (focusedLong ? "НАБЛЮДАВАЙ ПОКУПКА" : "НАБЛЮДАВАЙ ПРОДАЖБА") + "\nРЕТЕСТ + ЗАТВАРЯНЕ НА СВЕЩ\nНЕПОТВЪРДЕНО", style=label.style_label_left, color=color.new(focusColor, 18), textcolor=color.black, size=size.tiny)
+                watchLabel := label.new(bar_index+projection, focus, (focusedLong ? "СЛЕДИ КУПИ" : "СЛЕДИ ПРОДАЙ") + "\nРЕТЕСТ + ЗАТВАРЯНЕ\nНЕ Е ВХОД", style=label.style_label_left, color=color.new(focusColor, 18), textcolor=color.black, size=size.small)
         if showFvgMap and not na(bullGapAt) and not na(bullGapTop) and bullGapTop > bullGapBottom and mapATR > 0 and math.abs(close - bullGapTop) < mapATR * mapDistanceATR
             bullFvgZone := box.new(left=bar_index, top=bullGapTop, right=bar_index+projection, bottom=bullGapBottom, border_color=color.new(blue, 80), bgcolor=color.new(blue, 94), text="ВЪЗХОДЯЩ FVG", text_color=color.new(blue, 15), text_size=size.tiny)
         if showFvgMap and not na(bearGapAt) and not na(bearGapBottom) and bearGapTop > bearGapBottom and mapATR > 0 and math.abs(close - bearGapBottom) < mapATR * mapDistanceATR
