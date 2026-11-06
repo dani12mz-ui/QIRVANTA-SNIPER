@@ -24,11 +24,17 @@ string tradingMode = input.string("АВТОМАТИЧЕН", "Режим на т�
 string engineMode = input.string("КОМБИНИРАН", "Видове конфигурации", options=["КОМБИНИРАН", "САМО ЛИКВИДНОСТ", "САМО ПРОДЪЛЖЕНИЕ"], group="01 / ТЪРГОВСКА ЛОГИКА")
 string selectivity = input.string("СНАЙПЪР", "Строгост на сигналите", options=["БАЛАНСИРАН", "СНАЙПЪР", "МНОГО СТРОГ"], group="01 / ТЪРГОВСКА ЛОГИКА")
 bool automaticHTF = input.bool(true, "Автоматична по-висока рамка", group="01 / ТЪРГОВСКА ЛОГИКА")
+bool useFastBreakout = input.bool(true, "Ранен сигнал при структурен пробив (само изследване)", group="01 / ТЪРГОВСКА ЛОГИКА", tooltip="Отделен ранeн сигнал без ретест, само след затворена пробивна свещ. Може да даде повече фалшиви сигнали. Няма автоматични поръчки.")
+bool allowFastCountertrend = input.bool(true, "Бърз контратренд сигнал (ПОВИШЕН РИСК / PAPER)", group="01 / ТЪРГОВСКА ЛОГИКА", tooltip="При много силно локално потвърждение допуска ранно наблюдение/сигнал срещу HTF. Това е непроверена изследователска логика и не означава сигурна печалба.")
 string customHTF = input.timeframe("60", "Ръчна по-висока рамка", group="01 / ТЪРГОВСКА ЛОГИКА")
 int liquidityBars = input.int(14, "Период за ликвидност (свещи)", minval=5, maxval=80, group="02 / ПАЗАРНА СТРУКТУРА")
 int structureBars = input.int(6, "Период за структура MSS (свещи)", minval=3, maxval=25, group="02 / ПАЗАРНА СТРУКТУРА")
 int maxSetupAge = input.int(18, "Валидност на конфигурацията (свещи)", minval=4, maxval=80, group="02 / ПАЗАРНА СТРУКТУРА")
 int maxBarsAfterMSS = input.int(5, "Макс. свещи след MSS/BOS за вход", minval=1, maxval=25, group="02 / ПАЗАРНА СТРУКТУРА", tooltip="Ретестът трябва да се потвърди скоро след структурния пробив. Иначе възможността изтича.")
+int fastBreakLookback = input.int(4, "Ранен пробив: локални свещи", minval=3, maxval=9, group="02 / ПАЗАРНА СТРУКТУРА")
+float fastMinBodyATR = input.float(0.50, "Ранен пробив: минимум тяло / ATR", minval=0.30, maxval=1.5, step=0.05, group="02 / ПАЗАРНА СТРУКТУРА")
+float fastMaxBodyATR = input.float(1.65, "Ранен пробив: максимум тяло / ATR", minval=0.9, maxval=3.0, step=0.05, group="02 / ПАЗАРНА СТРУКТУРА")
+float fastMaxBreakDistanceATR = input.float(0.70, "Макс. закъснение след пробива / ATR", minval=0.15, maxval=1.4, step=0.05, group="02 / ПАЗАРНА СТРУКТУРА")
 float maxRetestCloseATR = input.float(0.55, "Макс. отдалечаване от ретеста / ATR", minval=0.1, maxval=2.0, step=0.05, group="02 / ПАЗАРНА СТРУКТУРА", tooltip="Не допуска сигнал за покупка/продажба, ако цената вече е избягала от нивото за ретест.")
 int pivotLeft = input.int(3, "Свещи вляво за потвърден връх/дъно", minval=2, maxval=10, group="02 / ПАЗАРНА СТРУКТУРА")
 int pivotRight = input.int(3, "Свещи вдясно за потвърден връх/дъно", minval=2, maxval=10, group="02 / ПАЗАРНА СТРУКТУРА")
@@ -158,6 +164,11 @@ bool sweepDown = not na(sweepLow) and low < sweepLow and close > sweepLow and (m
 bool sweepUp = not na(sweepHigh) and high > sweepHigh and close < sweepHigh and (high - math.max(open, close)) / barRange >= 0.23
 bool bosUp = not na(sweepHigh) and close > sweepHigh and close[1] <= sweepHigh and displacementUp
 bool bosDown = not na(sweepLow) and close < sweepLow and close[1] >= sweepLow and displacementDn
+// Short local break trigger: confirmed PREVIOUS highs/lows, no pivot hindsight.
+float fastBreakHigh = ta.highest(high, fastBreakLookback)[1]
+float fastBreakLow = ta.lowest(low, fastBreakLookback)[1]
+float fastStopHigh = ta.highest(high, 3)[1]
+float fastStopLow = ta.lowest(low, 3)[1]
 float pivotHigh = ta.pivothigh(high, pivotLeft, pivotRight)
 float pivotLow = ta.pivotlow(low, pivotLeft, pivotRight)
 var float lastPivotHigh = na
@@ -271,6 +282,9 @@ var string blockedReason = "ЧАКА КОНФИГУРАЦИЯ"
 
 bool newBuy = false
 bool newSell = false
+bool newFastBuy = false
+bool newFastSell = false
+bool fastAgainstHTF = false
 bool sweepMarkBuy = false
 bool sweepMarkSell = false
 bool shiftMarkBuy = false
@@ -390,6 +404,34 @@ if barstate.isconfirmed
     bool buyOK = timelyLong and riskLongOK and baseFilters and cooldownOK and bullHTF and bullLocal and bullMomentum and (not requireFVG or gapLong) and (not requirePD or inDiscount) and (not requireRoom or roomLong) and checksLong >= minExtra
     bool sellOK = timelyShort and riskShortOK and baseFilters and cooldownOK and bearHTF and bearLocal and bearMomentum and (not requireFVG or gapShort) and (not requirePD or inPremium) and (not requireRoom or roomShort) and checksShort >= minExtra
 
+    // SECOND, INDEPENDENT ENTRY FAMILY: EARLY CONFIRMED MICRO-BOS.
+    // Unlike the existing sniper, this family does NOT wait for a retest.
+    // It remains experimental. A signal is possible only on the breakout bar CLOSE;
+    // the modelled fill must still pass the next-bar open/gap/risk validation.
+    // Never call a large completed drop a safe short entry after the fact.
+    bool fastBodyOK = atr > 0 and body >= atr * fastMinBodyATR and body <= atr * fastMaxBodyATR
+    bool fastBullBreak = useFastBreakout and not na(fastBreakHigh) and close > fastBreakHigh and close[1] <= fastBreakHigh and bullishBar and fastBodyOK and close - fastBreakHigh <= atr * fastMaxBreakDistanceATR
+    bool fastBearBreak = useFastBreakout and not na(fastBreakLow) and close < fastBreakLow and close[1] >= fastBreakLow and bearishBar and fastBodyOK and fastBreakLow - close <= atr * fastMaxBreakDistanceATR
+    bool fastLocalBuy = close > emaFast and emaFast > emaFast[1] and bullMomentum and rsi >= 53 and math.abs(close - emaFast) <= atr * 1.35
+    bool fastLocalSell = close < emaFast and emaFast < emaFast[1] and bearMomentum and rsi <= 47 and math.abs(close - emaFast) <= atr * 1.35
+    // Counter-HTF breakouts must have additional strength, NOT just a red/green candle.
+    bool fastBullContraOK = allowFastCountertrend and close > emaSlow and rsi >= 56 and adx >= minADX + 5 and body >= atr * 0.80
+    bool fastBearContraOK = allowFastCountertrend and close < emaSlow and rsi <= 44 and adx >= minADX + 5 and body >= atr * 0.80
+    bool fastBuyBiasOK = bullHTF or fastBullContraOK
+    bool fastSellBiasOK = bearHTF or fastBearContraOK
+    float fastLongSL = math.round_to_mintick(math.min(fastStopLow - slBufferATR * atr, close - minStopATR * atr))
+    float fastShortSL = math.round_to_mintick(math.max(fastStopHigh + slBufferATR * atr, close + minStopATR * atr))
+    float fastLongRisk = close - fastLongSL
+    float fastShortRisk = fastShortSL - close
+    bool fastBuyRiskOK = fastLongRisk > syminfo.mintick and fastLongRisk <= math.min(maxStopATR, 2.4) * atr and roundTripPriceCost / fastLongRisk <= maxCostRisk
+    bool fastSellRiskOK = fastShortRisk > syminfo.mintick and fastShortRisk <= math.min(maxStopATR, 2.4) * atr and roundTripPriceCost / fastShortRisk <= maxCostRisk
+    // Uses the current closed candle's range and previously known HTF; never a future bar.
+    bool fastMarketOK = baseFilters and cooldownOK and atr > 0 and barRange <= atr * 1.85
+    bool fastBuyOK = fastMarketOK and fastBullBreak and fastLocalBuy and fastBuyBiasOK and fastBuyRiskOK and (not requirePD or inDiscount) and (not requireRoom or (not na(longObstacle) and longObstacle - close >= fastLongRisk * minimumRoomR))
+    bool fastSellOK = fastMarketOK and fastBearBreak and fastLocalSell and fastSellBiasOK and fastSellRiskOK and (not requirePD or inPremium) and (not requireRoom or (not na(shortObstacle) and close - shortObstacle >= fastShortRisk * minimumRoomR))
+    int fastChecksBuy = (bullHTF ? 1 : 0) + (adx >= minADX + 5 ? 1 : 0) + (rsi >= 56 ? 1 : 0) + (close > emaSlow ? 1 : 0) + (inSession ? 1 : 0) + (not na(longObstacle) and longObstacle - close >= fastLongRisk ? 1 : 0)
+    int fastChecksSell = (bearHTF ? 1 : 0) + (adx >= minADX + 5 ? 1 : 0) + (rsi <= 44 ? 1 : 0) + (close < emaSlow ? 1 : 0) + (inSession ? 1 : 0) + (not na(shortObstacle) and close - shortObstacle >= fastShortRisk ? 1 : 0)
+
     if not warmup
         blockedReason := "НЕДОСТАТЪЧНИ ДАННИ"
     else if manualNewsPause
@@ -413,25 +455,31 @@ if barstate.isconfirmed
     else if retestLong or retestShort
         blockedReason := "РЕТЕСТ / РАЗХОДИ / МАЛКО МЯСТО"
 
-    bool bothDirections = buyOK and sellOK
-    if (buyOK or sellOK) and not bothDirections and orderFree
-        newBuy := buyOK
-        newSell := sellOK
+    bool totalBuyOK = buyOK or fastBuyOK
+    bool totalSellOK = sellOK or fastSellOK
+    bool bothDirections = totalBuyOK and totalSellOK
+    if (totalBuyOK or totalSellOK) and not bothDirections and orderFree
+        // RETEST SNIPER takes precedence when both families agree on direction.
+        newBuy := totalBuyOK
+        newSell := totalSellOK
+        newFastBuy := newBuy and not buyOK and fastBuyOK
+        newFastSell := newSell and not sellOK and fastSellOK
+        fastAgainstHTF := (newFastBuy and not bullHTF) or (newFastSell and not bearHTF)
         int d = newBuy ? 1 : -1
         plannedRef := math.round_to_mintick(close)
-        plannedStop := newBuy ? longStop : shortStop
+        plannedStop := newBuy ? (newFastBuy ? fastLongSL : longStop) : (newFastSell ? fastShortSL : shortStop)
         plannedRisk := math.abs(plannedRef - plannedStop)
         plannedTP1 := math.round_to_mintick(plannedRef + d * plannedRisk * target1R)
         plannedTP2 := math.round_to_mintick(plannedRef + d * plannedRisk * target2R)
         plannedTP3 := math.round_to_mintick(plannedRef + d * plannedRisk * target3R)
-        plannedChecks := newBuy ? checksLong : checksShort
-        plannedFamily := newBuy ? (sweepFamilyLong ? "ОБРЪЩАНЕ СЛЕД ЛИКВИДНОСТ" : "ПРОДЪЛЖЕНИЕ С BOS") : (sweepFamilyShort ? "ОБРЪЩАНЕ СЛЕД ЛИКВИДНОСТ" : "ПРОДЪЛЖЕНИЕ С BOS")
+        plannedChecks := newFastBuy ? fastChecksBuy : newFastSell ? fastChecksSell : newBuy ? checksLong : checksShort
+        plannedFamily := newFastBuy or newFastSell ? (fastAgainstHTF ? "БЪРЗ ПРОБИВ СРЕЩУ HTF / ВИСОК РИСК" : "БЪРЗ СТРУКТУРЕН ПРОБИВ") : newBuy ? (sweepFamilyLong ? "ОБРЪЩАНЕ СЛЕД ЛИКВИДНОСТ" : "ПРОДЪЛЖЕНИЕ С BOS") : (sweepFamilyShort ? "ОБРЪЩАНЕ СЛЕД ЛИКВИДНОСТ" : "ПРОДЪЛЖЕНИЕ С BOS")
         lastEntryBar := bar_index
         phaseLong := 0
         phaseShort := 0
-        blockedReason := "ПОТВЪРДЕН СИГНАЛ, НЕ ИЗПЪЛНЕН ВХОД"
+        blockedReason := newFastBuy or newFastSell ? (fastAgainstHTF ? "ПОТВЪРДЕН БЪРЗ СИГНАЛ / СРЕЩУ HTF / PAPER" : "ПОТВЪРДЕН БЪРЗ ПРОБИВ / PAPER") : "ПОТВЪРДЕН СИГНАЛ, НЕ ИЗПЪЛНЕН ВХОД"
     else
-        if buyOK or sellOK
+        if totalBuyOK or totalSellOK
             blockedReason := bothDirections ? "ПРОТИВОРЕЧИВИ КОНФИГУРАЦИИ" : "ЛИМИТ НА СДЕЛКИ / РИСК"
         if retestLong
             phaseLong := 0
@@ -693,8 +741,10 @@ plot(displayLevels and hasPlan ? tpLine2 : na, "TP2", color=color.rgb(156, 164, 
 p3 = plot(displayLevels and hasPlan ? tpLine3 : na, "TP3", color=green, linewidth=2, style=plot.style_linebr)
 fill(p0, p1, color=color.new(red, 93), title="Планиран риск (симулация)")
 fill(p0, p3, color=color.new(green, 95), title="Потенциална печалба (симулация)")
-plotshape(newBuy, title="Потвърден сигнал за покупка при затваряне", style=shape.labelup, location=location.belowbar, color=green, text="КУПИ\nСИГНАЛ", textcolor=color.black, size=size.large)
-plotshape(newSell, title="Потвърден сигнал за продажба при затваряне", style=shape.labeldown, location=location.abovebar, color=red, text="ПРОДАЙ\nСИГНАЛ", textcolor=color.white, size=size.large)
+plotshape(newBuy and not newFastBuy, title="Снайпър BUY след ретест", style=shape.labelup, location=location.belowbar, color=green, text="КУПИ\nРЕТЕСТ", textcolor=color.black, size=size.large)
+plotshape(newSell and not newFastSell, title="Снайпър SELL след ретест", style=shape.labeldown, location=location.abovebar, color=red, text="ПРОДАЙ\nРЕТЕСТ", textcolor=color.white, size=size.large)
+plotshape(newFastBuy, title="Бърз структурен BUY (изследователски)", style=shape.labelup, location=location.belowbar, color=color.new(green, 0), text="КУПИ\nБЪРЗ ПРОБИВ", textcolor=color.black, size=size.large)
+plotshape(newFastSell, title="Бърз структурен SELL (изследователски)", style=shape.labeldown, location=location.abovebar, color=color.new(red, 0), text="ПРОДАЙ\nБЪРЗ ПРОБИВ", textcolor=color.white, size=size.large)
 plotshape(detailed and equalHighs and not equalHighs[1], title="Потвърдени равни върхове", style=shape.triangledown, location=location.abovebar, color=gold, size=size.tiny, text="EQH")
 plotshape(detailed and equalLows and not equalLows[1], title="Потвърдени равни дъна", style=shape.triangleup, location=location.belowbar, color=blue, size=size.tiny, text="EQL")
 plotshape(detailed and sweepMarkBuy, title="Взета ликвидност под дъно", style=shape.circle, location=location.belowbar, color=blue, text="ЛИКВ.", size=size.small)
