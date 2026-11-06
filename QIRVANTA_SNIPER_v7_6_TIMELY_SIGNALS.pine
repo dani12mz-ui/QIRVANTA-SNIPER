@@ -89,6 +89,7 @@ bool showMarketMap = input.bool(true, "Показвай ликвидност и 
 bool showFvgMap = input.bool(true, "Показвай последните незапълнени FVG", group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
 bool showPastTrades = input.bool(false, "Исторически симул. зони (изкл. за чиста скала)", group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
 bool showFullArchive = input.bool(false, "Показвай таблица с история", group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
+bool showModelStatistics = input.bool(false, "Покажи PAPER резултатите по вид сигнал", group="05 / ИЗГЛЕД", tooltip="Отделя резултатите на ретест, бърз пробив и ранно обръщане. Само виртуални резултати, не доказана доходност. По подразбиране е изключено, за да не претрупва графиката.")
 int keepTrades = input.int(4, "Брой исторически симул. сделки", minval=1, maxval=8, group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
 int projection = input.int(10, "Удължаване на зоните надясно (свещи)", minval=4, maxval=28, group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
 float mapDistanceATR = input.float(3.5, "Макс. разстояние на нивата от цената / ATR", minval=1.0, maxval=10.0, step=0.5, group="06 / ОЗНАЧЕНИЯ НА ГРАФИКАТА")
@@ -739,6 +740,16 @@ var int timeSeen = 0
 var string lastExit = "НЯМА"
 var string simFamily = "НЯМА"
 var int simChecks = 0
+// Results of CLOSED virtual trades only. Each trade is counted in exactly one model.
+var int reportRetestN = 0
+var int reportRetestPositive = 0
+var float reportRetestR = 0.0
+var int reportFastN = 0
+var int reportFastPositive = 0
+var float reportFastR = 0.0
+var int reportReversalN = 0
+var int reportReversalPositive = 0
+var float reportReversalR = 0.0
 
 bool eventTP1 = false
 bool eventTP2 = false
@@ -841,6 +852,23 @@ if barstate.isconfirmed
             paperClosed := true
             totalNetR += simRealized
             lastNetR := simRealized
+            // Count only finalized virtual trades; the original results remain unchanged.
+            // "ОБРЪЩАНЕ СЛЕД ЛИКВИДНОСТ" without "ПРОБНО" belongs to the RETEST model.
+            if str.contains(simFamily, "ПРОБНО")
+                reportReversalN += 1
+                reportReversalR += simRealized
+                if simRealized > 0
+                    reportReversalPositive += 1
+            else if str.contains(simFamily, "БЪРЗ")
+                reportFastN += 1
+                reportFastR += simRealized
+                if simRealized > 0
+                    reportFastPositive += 1
+            else
+                reportRetestN += 1
+                reportRetestR += simRealized
+                if simRealized > 0
+                    reportRetestPositive += 1
             if simRealized > 0
                 winsSeen += 1
                 paperLossStreak := 0
@@ -936,8 +964,8 @@ plot(displayLevels and hasPlan ? tpLine2 : na, "TP2", color=color.rgb(156, 164, 
 p3 = plot(displayLevels and hasPlan ? tpLine3 : na, "TP3", color=green, linewidth=2, style=plot.style_linebr)
 fill(p0, p1, color=color.new(red, 93), title="Планиран риск (симулация)")
 fill(p0, p3, color=color.new(green, 95), title="Потенциална печалба (симулация)")
-plotshape(newBuy and not newFastBuy, title="Снайпър BUY след ретест", style=shape.labelup, location=location.belowbar, color=green, text="КУПИ\nРЕТЕСТ", textcolor=color.black, size=size.large)
-plotshape(newSell and not newFastSell, title="Снайпър SELL след ретест", style=shape.labeldown, location=location.abovebar, color=red, text="ПРОДАЙ\nРЕТЕСТ", textcolor=color.white, size=size.large)
+plotshape(newBuy and not newFastBuy and not newReversalBuy, title="Снайпър BUY след ретест", style=shape.labelup, location=location.belowbar, color=green, text="КУПИ\nРЕТЕСТ", textcolor=color.black, size=size.large)
+plotshape(newSell and not newFastSell and not newReversalSell, title="Снайпър SELL след ретест", style=shape.labeldown, location=location.abovebar, color=red, text="ПРОДАЙ\nРЕТЕСТ", textcolor=color.white, size=size.large)
 plotshape(newFastBuy, title="Бърз структурен BUY (изследователски)", style=shape.labelup, location=location.belowbar, color=color.new(green, 0), text="КУПИ\nБЪРЗ ПРОБИВ", textcolor=color.black, size=size.large)
 plotshape(newFastSell, title="Бърз структурен SELL (изследователски)", style=shape.labeldown, location=location.abovebar, color=color.new(red, 0), text="ПРОДАЙ\nБЪРЗ ПРОБИВ", textcolor=color.white, size=size.large)
 plotshape(newReversalBuy, title="ПРОБНО потвърдено ранно BUY обръщане", style=shape.labelup, location=location.belowbar, color=color.new(green, 5), text="КУПИ\nОБРЪЩАНЕ\nПРОБНО", textcolor=color.black, size=size.large)
@@ -1041,7 +1069,7 @@ if barstate.islast and displayDashboard
     table.cell(dashboard, 1, 10, "НЕ СЕ СЛЕДИ В MT5", bgcolor=panel, text_color=gold, text_size=dashboardTextPt)
     string activeFamily = simSide != 0 ? simFamily : queuedSide != 0 ? queuedFamily : ""
     bool planContraHTF = str.contains(activeFamily, "СРЕЩУ")
-    string conciseFamily = str.contains(activeFamily, "ОБРЪЩАНЕ") ? "РАННО ОБРЪЩАНЕ" : str.contains(activeFamily, "БЪРЗ") ? "БЪРЗ ПРОБИВ" : str.contains(activeFamily, "BOS") ? "ПРОДЪЛЖЕНИЕ BOS" : "СНАЙПЪР РЕТЕСТ"
+    string conciseFamily = str.contains(activeFamily, "ПРОБНО") ? "РАННО ОБРЪЩАНЕ" : str.contains(activeFamily, "БЪРЗ") ? "БЪРЗ ПРОБИВ" : str.contains(activeFamily, "BOS") ? "ПРОДЪЛЖЕНИЕ BOS" : str.contains(activeFamily, "ОБРЪЩАНЕ") ? "ЛИКВИДНОСТ + РЕТЕСТ" : "СНАЙПЪР РЕТЕСТ"
     string familyInfo = hasPlan ? conciseFamily + (planContraHTF ? " / СРЕЩУ HTF" : " / ПРОБЕН ПЛАН") : "НЯМА ТЕКУЩ ПЛАН"
     table.cell(dashboard, 0, 11, "ТИП / РИСК", text_color=grey, text_size=dashboardTextPt)
     table.cell(dashboard, 1, 11, familyInfo, text_color=planContraHTF ? red : hasPlan ? gold : grey, tooltip="Класификация на симулирания план. Срещу HTF = повишен контратрендов риск. Няма автоматично изпълнение.", text_size=dashboardTextPt)
@@ -1084,16 +1112,26 @@ var line[] oldTp2 = array.new_line()
 var line[] oldTp3 = array.new_line()
 var label[] oldSignalTags = array.new_label()
 var label[] reversalWatchTags = array.new_label()
+var label lastBullWatchTag = na
+var label lastBearWatchTag = na
 if barstate.isconfirmed and showReversalWatch and visuallyRecent and (reversalWatchBuy or reversalWatchSell) and not majorConfirmed
     bool watchLong = reversalWatchBuy
     label watchTag = label.new(bar_index, watchLong ? low - atr * 0.08 : high + atr * 0.08, watchLong ? "СЛЕДИ ОТСКОК\nЧАКА ПОТВЪРЖДЕНИЕ\nНЕ Е ВХОД" : "СЛЕДИ ОБРЪЩАНЕ НАДОЛУ\nЧАКА ПОТВЪРЖДЕНИЕ", style=watchLong ? label.style_label_up : label.style_label_down, color=color.new(watchLong ? blue : gold, 22), textcolor=watchLong ? color.white : color.black, size=size.small)
+    if watchLong
+        lastBullWatchTag := watchTag
+    else
+        lastBearWatchTag := watchTag
     array.push(reversalWatchTags, watchTag)
     if array.size(reversalWatchTags) > visualWatchLimit
         label.delete(array.shift(reversalWatchTags))
 
-// On a confirmed reversal remove the last tentative WATCH label, keeping the actual signal readable.
-if barstate.isconfirmed and (newReversalBuy or newReversalSell) and array.size(reversalWatchTags) > 0
-    label.delete(array.pop(reversalWatchTags))
+// Remove only the WATCH of the direction confirmed, never the opposite-side candidate.
+if barstate.isconfirmed and newReversalBuy and not na(lastBullWatchTag)
+    label.delete(lastBullWatchTag)
+    lastBullWatchTag := na
+if barstate.isconfirmed and newReversalSell and not na(lastBearWatchTag)
+    label.delete(lastBearWatchTag)
+    lastBearWatchTag := na
 if barstate.isconfirmed and (newBuy or newSell) and showSignalDetails and detailed
     color sideColor = newBuy ? green : red
     string signalMessage = (newBuy ? "КУПИ" : "ПРОДАЙ") + " ПОТВЪРДЕН СИГНАЛ\nОРИЕНТИР " + str.tostring(plannedRef, format.mintick) + "\nSL " + str.tostring(plannedStop, format.mintick) + "\nTP1 " + str.tostring(plannedTP1, format.mintick) + " | TP3 " + str.tostring(plannedTP3, format.mintick) + "\nСИМУЛ. СЛЕДВ. ОТВАРЯНЕ / НЕ Е РЕАЛНО"
@@ -1213,6 +1251,30 @@ plotshape(detailed and eventTP1, title="Симулирано достигане 
 plotshape(detailed and eventTP2, title="Симулирано достигане на TP2", style=shape.circle, location=location.abovebar, color=color.rgb(156, 164, 255), text="TP2", size=size.tiny)
 plotshape(detailed and eventTime, title="СИМУЛ.: ЗАТВОРЕНА ПО ВРЕМЕ", style=shape.circle, location=location.abovebar, color=gold, text="ВРЕМЕ", size=size.tiny)
 plotshape(detailed and eventSkip, title="Симулиран вход, отменен при ценови гап", style=shape.xcross, location=location.abovebar, color=gold, text="ГАП", size=size.tiny)
+
+// ===== OPTIONAL MODEL-BY-MODEL PAPER DIAGNOSTICS (NOT BACKTEST) =====
+var table modelReport = table.new(position.bottom_left, 4, 5, bgcolor=color.rgb(11, 19, 34), frame_color=color.rgb(61, 77, 104), frame_width=1)
+if barstate.islast and showModelStatistics
+    table.cell(modelReport, 0, 0, "PAPER МОДЕЛ", bgcolor=panel, text_color=color.white, text_size=size.small)
+    table.cell(modelReport, 1, 0, "ЗАТВ.", bgcolor=panel, text_color=color.white, text_size=size.small)
+    table.cell(modelReport, 2, 0, "ПОЗИТ.", bgcolor=panel, text_color=color.white, text_size=size.small)
+    table.cell(modelReport, 3, 0, "НЕТНО R", bgcolor=panel, text_color=color.white, text_size=size.small)
+    table.cell(modelReport, 0, 1, "РЕТЕСТ", text_color=color.white, text_size=size.small)
+    table.cell(modelReport, 1, 1, str.tostring(reportRetestN), text_color=color.white, text_size=size.small)
+    table.cell(modelReport, 2, 1, str.tostring(reportRetestPositive), text_color=color.white, text_size=size.small)
+    table.cell(modelReport, 3, 1, str.tostring(reportRetestR, "#.##"), text_color=reportRetestR < 0 ? red : grey, text_size=size.small)
+    table.cell(modelReport, 0, 2, "БЪРЗ ПРОБИВ", text_color=color.white, text_size=size.small)
+    table.cell(modelReport, 1, 2, str.tostring(reportFastN), text_color=color.white, text_size=size.small)
+    table.cell(modelReport, 2, 2, str.tostring(reportFastPositive), text_color=color.white, text_size=size.small)
+    table.cell(modelReport, 3, 2, str.tostring(reportFastR, "#.##"), text_color=reportFastR < 0 ? red : grey, text_size=size.small)
+    table.cell(modelReport, 0, 3, "РАННО ОБРЪЩАНЕ", text_color=color.white, text_size=size.small)
+    table.cell(modelReport, 1, 3, str.tostring(reportReversalN), text_color=color.white, text_size=size.small)
+    table.cell(modelReport, 2, 3, str.tostring(reportReversalPositive), text_color=color.white, text_size=size.small)
+    table.cell(modelReport, 3, 3, str.tostring(reportReversalR, "#.##"), text_color=reportReversalR < 0 ? red : grey, text_size=size.small)
+    table.cell(modelReport, 0, 4, "САМО СИМУЛАЦИЯ", bgcolor=panel, text_color=gold, text_size=size.tiny)
+    table.cell(modelReport, 1, 4, "НЕ Е", bgcolor=panel, text_color=gold, text_size=size.tiny)
+    table.cell(modelReport, 2, 4, "РЕАЛЕН", bgcolor=panel, text_color=gold, text_size=size.tiny)
+    table.cell(modelReport, 3, 4, "BACKTEST", bgcolor=panel, text_color=gold, text_size=size.tiny)
 
 // ==== LAST CONFIRMED SIGNAL ARCHIVE (NOT A CURRENT ENTRY) ====
 // queuedRef/queuedStop/queuedTP* retain the last CONFIRMED signal plan.
