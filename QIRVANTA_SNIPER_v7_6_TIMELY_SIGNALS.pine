@@ -594,7 +594,7 @@ if barstate.isconfirmed
 
     // Fresh setups only on the bar close, after processing existing ones.
     if orderFree and not newBuy and not newSell
-        if phaseLong == 0 and not retestLong
+        if phaseLong == 0 and not retestLong and not structureDownNow
             if sweepDown and engineMode != "САМО ПРОДЪЛЖЕНИЕ"
                 phaseLong := 1
                 bornLong := bar_index
@@ -612,7 +612,7 @@ if barstate.isconfirmed
                 sweepFamilyLong := false
                 gapLong := bullFvgNow
                 shiftMarkBuy := true
-        if phaseShort == 0 and not retestShort
+        if phaseShort == 0 and not retestShort and not structureUpNow
             if sweepUp and engineMode != "САМО ПРОДЪЛЖЕНИЕ"
                 phaseShort := 1
                 bornShort := bar_index
@@ -642,12 +642,12 @@ if barstate.isconfirmed
     bool prepBull = useEarlyReversal and timeframe.isintraday and tfSeconds <= 1800 and recentSelloff and bullishReject and (emaFast < emaSlow or close < emaFast) and rsi <= 54 and validATR and not manualNewsPause
     bool prepBear = useEarlyReversal and timeframe.isintraday and tfSeconds <= 1800 and recentRally and bearishReject and (emaFast > emaSlow or close > emaFast) and rsi >= 46 and validATR and not manualNewsPause
     if orderFree and not newBuy and not newSell
-        if prepBull
+        if prepBull and not structureDownNow
             revBullAt := bar_index
             revBullLow := low
             revBullHigh := high
             reversalWatchBuy := true
-        if prepBear
+        if prepBear and not structureUpNow
             revBearAt := bar_index
             revBearHigh := high
             revBearLow := low
