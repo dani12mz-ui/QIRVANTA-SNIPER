@@ -1,6 +1,8 @@
 //@version=6
 indicator("QIRVANTA Sniper v7.6 | Timely Signals", shorttitle="QIRVANTA V7.6", overlay=true, max_labels_count=180, max_lines_count=120, max_boxes_count=50)
 // Pine v6; deterministic rules; NOT an AI model, and NOT broker execution.
+// STABLE: chart analysis is separate from confirmed trading decisions.
+// BOS / MSS / CHoCH and LTF pressure are CONTEXT, never automatic entries.
 // No old bar x-coordinates. HTF requests use only prior completed HTF candle.
 max_bars_back(time, 500)
 var int queuedSide = 0
@@ -81,6 +83,10 @@ bool showSignalDetails = input.bool(false, "Long entry labels at signals (ANALYS
 bool showImpulseContext = input.bool(true, "Show strong momentum WITHOUT trade signals", group="06 / CHART VISUALS")
 float minContextBodyATR = input.float(0.85, "Context impulse min body / ATR", minval=0.4, maxval=2.5, step=0.05, group="06 / CHART VISUALS")
 int contextCooldown = input.int(8, "Minimum bars between context labels", minval=2, maxval=40, group="06 / CHART VISUALS")
+bool showStructureEvents = input.bool(true, "Show confirmed BOS / MSS / CHoCH (analysis only)", group="06 / CHART VISUALS")
+bool showEarlyPressure = input.bool(true, "Show early structural pressure (WATCH only)", group="06 / CHART VISUALS")
+float pressureNearATR = input.float(0.30, "Early WATCH distance from structure / ATR", minval=0.10, maxval=1.0, step=0.05, group="06 / CHART VISUALS")
+int structureContextCooldown = input.int(5, "Minimum bars between early WATCH labels", minval=2, maxval=25, group="06 / CHART VISUALS")
 float maxOpenDeviationATR = input.float(0.20, "Max next-open deviation from signal / ATR", minval=0.05, maxval=0.8, step=0.05, group="04 / RISK", tooltip="PAPER order is cancelled when the next open is too far from the confirmed reference price.")
 
 int tfSeconds = timeframe.in_seconds(timeframe.period)
@@ -274,10 +280,19 @@ bool eventLateBuy = false
 bool eventLateSell = false
 bool contextBullMark = false
 bool contextBearMark = false
+bool contextChochBull = false
+bool contextChochBear = false
+bool earlyBreakBull = false
+bool earlyBreakBear = false
 var int lastBullContext = na
 var int lastBearContext = na
+var int lastBullPressureBar = na
+var int lastBearPressureBar = na
 float nearBullBreak = ta.highest(high, 3)[1]
 float nearBearBreak = ta.lowest(low, 3)[1]
+// Using the PREVIOUS CLOSED candle avoids classifying a reversal from the same candle's new EMA.
+bool previousLocalBull = not na(emaFast[1]) and not na(emaSlow[1]) and emaFast[1] > emaSlow[1] and close[1] > emaFast[1]
+bool previousLocalBear = not na(emaFast[1]) and not na(emaSlow[1]) and emaFast[1] < emaSlow[1] and close[1] < emaFast[1]
 float plannedRef = na
 float plannedStop = na
 float plannedRisk = na
@@ -289,16 +304,34 @@ string plannedFamily = "NONE"
 
 if barstate.isconfirmed
     blockedReason := "AWAIT CONFIRMED SETUP"
-    // Real, confirmed momentum is shown as CONTEXT, never as an executable signal.
-    // No labels are placed on earlier candles: visual marks appear on the closing candle.
-    bool bullImpulse = showImpulseContext and bullHTF and bullishBar and body >= atr * minContextBodyATR and not na(nearBullBreak) and close > nearBullBreak
-    bool bearImpulse = showImpulseContext and bearHTF and bearishBar and body >= atr * minContextBodyATR and not na(nearBearBreak) and close < nearBearBreak
+    // INDEPENDENT local momentum: do not require HTF alignment to SHOW a move.
+    // HTF agreement remains mandatory for actionable BUY/SELL in the existing entry engine.
+    // Analysis markers are emitted ONLY on this candle close and never backdated.
+    bool bullImpulse = showImpulseContext and bullishBar and atr > 0 and body >= atr * minContextBodyATR and not na(nearBullBreak) and close > nearBullBreak
+    bool bearImpulse = showImpulseContext and bearishBar and atr > 0 and body >= atr * minContextBodyATR and not na(nearBearBreak) and close < nearBearBreak
     if bullImpulse and (na(lastBullContext) or bar_index - lastBullContext > contextCooldown)
         contextBullMark := true
         lastBullContext := bar_index
     if bearImpulse and (na(lastBearContext) or bar_index - lastBearContext > contextCooldown)
         contextBearMark := true
         lastBearContext := bar_index
+
+    // CHoCH (context heuristic): a displacement close beyond previous local structure,
+    // preceded by an OPPOSITE local EMA regime on the preceding completed candle.
+    // CHoCH is NOT evidence of institutional orders and is never a trade trigger by itself.
+    contextChochBull := showStructureEvents and not na(longStruct) and close > longStruct and close[1] <= longStruct and displacementUp and previousLocalBear
+    contextChochBear := showStructureEvents and not na(shortStruct) and close < shortStruct and close[1] >= shortStruct and displacementDn and previousLocalBull
+
+    // Early WATCH is a confirmed candle approaching a known structure boundary,
+    // BEFORE a breakout. It is NOT a prediction of breakout or an order instruction.
+    bool approachingBull = showEarlyPressure and atr > 0 and not na(longStruct) and close < longStruct and close >= longStruct - atr * pressureNearATR and bullishBar and body >= atr * 0.18 and close > close[1] and not bullImpulse
+    bool approachingBear = showEarlyPressure and atr > 0 and not na(shortStruct) and close > shortStruct and close <= shortStruct + atr * pressureNearATR and bearishBar and body >= atr * 0.18 and close < close[1] and not bearImpulse
+    if approachingBull and not contextChochBull and (na(lastBullPressureBar) or bar_index - lastBullPressureBar > structureContextCooldown)
+        earlyBreakBull := true
+        lastBullPressureBar := bar_index
+    if approachingBear and not contextChochBear and (na(lastBearPressureBar) or bar_index - lastBearPressureBar > structureContextCooldown)
+        earlyBreakBear := true
+        lastBearPressureBar := bar_index
     if phaseLong != 0 and (bar_index - bornLong > maxSetupAge or close < anchorLong - slBufferATR * atr)
         phaseLong := 0
         setupInvalidated := true
@@ -667,16 +700,27 @@ plotshape(detailed and equalLows and not equalLows[1], title="Confirmed equal lo
 plotshape(detailed and sweepMarkBuy, title="Sweep low", style=shape.circle, location=location.belowbar, color=blue, text="SWEEP", size=size.small)
 plotshape(detailed and sweepMarkSell, title="Sweep high", style=shape.circle, location=location.abovebar, color=gold, text="SWEEP", size=size.small)
 // Distinguish a sweep-led MSS from a trend-continuation BOS. Both are detected at candle close.
-plotshape(not clean and shiftMarkBuy and sweepFamilyLong, title="Bullish MSS after sweep", style=shape.square, location=location.belowbar, color=green, text="MSS", size=size.tiny)
-plotshape(not clean and shiftMarkSell and sweepFamilyShort, title="Bearish MSS after sweep", style=shape.square, location=location.abovebar, color=red, text="MSS", size=size.tiny)
-plotshape(not clean and shiftMarkBuy and not sweepFamilyLong, title="Bullish continuation BOS", style=shape.square, location=location.belowbar, color=green, text="BOS", size=size.tiny)
-plotshape(not clean and shiftMarkSell and not sweepFamilyShort, title="Bearish continuation BOS", style=shape.square, location=location.abovebar, color=red, text="BOS", size=size.tiny)
+// Structure labels use distinct criteria and are never retroactively placed on pivot bars.
+plotshape(showStructureEvents and not clean and shiftMarkBuy and sweepFamilyLong, title="MSS UP after liquidity sweep", style=shape.square, location=location.belowbar, color=color.new(green, 15), text="MSS\nWATCH", textcolor=color.white, size=size.small)
+plotshape(showStructureEvents and not clean and shiftMarkSell and sweepFamilyShort, title="MSS DOWN after liquidity sweep", style=shape.square, location=location.abovebar, color=color.new(red, 15), text="MSS\nWATCH", textcolor=color.white, size=size.small)
+plotshape(showStructureEvents and not clean and shiftMarkBuy and not sweepFamilyLong and not contextChochBull, title="BOS UP continuation", style=shape.square, location=location.belowbar, color=color.new(green, 28), text="BOS", textcolor=color.white, size=size.small)
+plotshape(showStructureEvents and not clean and shiftMarkSell and not sweepFamilyShort and not contextChochBear, title="BOS DOWN continuation", style=shape.square, location=location.abovebar, color=color.new(red, 28), text="BOS", textcolor=color.white, size=size.small)
+plotshape(showStructureEvents and not clean and bosUp and not shiftMarkBuy and not contextChochBull, title="Bullish BOS context only", style=shape.square, location=location.belowbar, color=color.new(green, 55), text="BOS", textcolor=color.white, size=size.small)
+plotshape(showStructureEvents and not clean and bosDown and not shiftMarkSell and not contextChochBear, title="Bearish BOS context only", style=shape.square, location=location.abovebar, color=color.new(red, 55), text="BOS", textcolor=color.white, size=size.small)
+plotshape(showStructureEvents and not clean and contextChochBull and not (shiftMarkBuy and sweepFamilyLong), title="Bullish CHoCH contextual reversal", style=shape.labelup, location=location.belowbar, color=color.new(blue, 25), text="CHoCH\nNOT ENTRY", textcolor=color.white, size=size.small)
+plotshape(showStructureEvents and not clean and contextChochBear and not (shiftMarkSell and sweepFamilyShort), title="Bearish CHoCH contextual reversal", style=shape.labeldown, location=location.abovebar, color=color.new(gold, 25), text="CHoCH\nNOT ENTRY", textcolor=color.black, size=size.small)
 plotshape(eventStop, title="PAPER STOP", style=shape.xcross, location=location.abovebar, color=red, text="PAPER SL", size=size.tiny)
 plotshape(eventTP3, title="PAPER TP3", style=shape.diamond, location=location.abovebar, color=green, text="PAPER TP3", size=size.tiny)
 
 // Human-readable momentum context and expired entries; these are never confirmed BUY/SELL trades.
-plotshape(contextBullMark and not newBuy, title="BULL MOMENTUM (NOT ENTRY)", style=shape.labelup, location=location.belowbar, color=color.new(green, 45), text="BULL MOVE\nNO ENTRY", textcolor=color.white, size=size.normal)
-plotshape(contextBearMark and not newSell, title="BEAR MOMENTUM (NOT ENTRY)", style=shape.labeldown, location=location.abovebar, color=color.new(red, 40), text="BEAR MOVE\nNO ENTRY", textcolor=color.white, size=size.normal)
+// Not all moves will become confirmed entries: validation still requires structure, retest, HTF and no-chase filters.
+// Clearly separate local momentum and HTF agreement. Do NOT create synthetic BUY/SELL trades.
+plotshape(contextBullMark and bullHTF and not newBuy and not contextChochBull, title="BULL IMPULSE aligned HTF (NOT ENTRY)", style=shape.labelup, location=location.belowbar, color=color.new(green, 40), text="BULL MOVE\nNO ENTRY", textcolor=color.white, size=size.normal)
+plotshape(contextBullMark and not bullHTF and not newBuy and not contextChochBull, title="BULL IMPULSE against HTF (NOT ENTRY)", style=shape.labelup, location=location.belowbar, color=color.new(gold, 28), text="BULL MOVE\nHTF CONFLICT", textcolor=color.black, size=size.normal)
+plotshape(contextBearMark and bearHTF and not newSell and not contextChochBear, title="BEAR IMPULSE aligned HTF (NOT ENTRY)", style=shape.labeldown, location=location.abovebar, color=color.new(red, 35), text="BEAR MOVE\nNO ENTRY", textcolor=color.white, size=size.normal)
+plotshape(contextBearMark and not bearHTF and not newSell and not contextChochBear, title="BEAR IMPULSE against HTF (NOT ENTRY)", style=shape.labeldown, location=location.abovebar, color=color.new(gold, 28), text="BEAR MOVE\nHTF CONFLICT", textcolor=color.black, size=size.normal)
+plotshape(showEarlyPressure and not clean and earlyBreakBull and not contextBullMark and not newBuy, title="Pre-break bullish pressure WATCH ONLY", style=shape.labelup, location=location.belowbar, color=color.new(blue, 52), text="WATCH\nUP BREAK", textcolor=color.white, size=size.small)
+plotshape(showEarlyPressure and not clean and earlyBreakBear and not contextBearMark and not newSell, title="Pre-break bearish pressure WATCH ONLY", style=shape.labeldown, location=location.abovebar, color=color.new(blue, 52), text="WATCH\nDOWN BREAK", textcolor=color.white, size=size.small)
 plotshape(eventLateBuy, title="BUY setup expired (NO CHASE)", style=shape.labelup, location=location.belowbar, color=color.new(gold, 20), text="LATE BUY\nCANCELLED", textcolor=color.black, size=size.small)
 plotshape(eventLateSell, title="SELL setup expired (NO CHASE)", style=shape.labeldown, location=location.abovebar, color=color.new(gold, 20), text="LATE SELL\nCANCELLED", textcolor=color.black, size=size.small)
 
@@ -700,7 +744,7 @@ if barstate.islast
         lblTP3 := label.new(bar_index + 2, tpLine3, "TP3 " + str.tostring(tpLine3, format.mintick), color=green, textcolor=color.black, style=label.style_label_left, size=size.small)
 
 // Compact dashboard. Map and confirmed marks provide the primary visual information.
-var table dashboard = table.new(position.top_right, 2, 9, bgcolor=dark, frame_color=color.rgb(61, 77, 104), frame_width=1)
+var table dashboard = table.new(position.top_right, 2, 10, bgcolor=dark, frame_color=color.rgb(61, 77, 104), frame_width=1)
 if barstate.islast and displayDashboard
     bool counterLong = phaseLong != 0 and not bullHTF
     bool counterShort = phaseShort != 0 and not bearHTF
@@ -728,6 +772,13 @@ if barstate.islast and displayDashboard
     table.cell(dashboard, 1, 7, str.tostring(tradesSeen) + " / " + str.tostring(totalNetR, "#.##") + "R (est.)", text_color=color.white)
     table.cell(dashboard, 0, 8, "RISK SHIELD", bgcolor=panel, text_color=grey)
     table.cell(dashboard, 1, 8, paperRiskDisplay ? "RESEARCH / PAPER ONLY" : "PAUSED / PAPER", bgcolor=panel, text_color=paperRiskDisplay ? green : red)
+    // The LOCAL market direction is independent of the confirmed higher-timeframe trading filter.
+    string localBias = emaFast > emaSlow and close > emaFast ? "BULL" : emaFast < emaSlow and close < emaFast ? "BEAR" : "MIXED"
+    string htfBias = bullHTF ? "BULL" : bearHTF ? "BEAR" : "NEUTRAL"
+    bool localAgainstHTF = (localBias == "BULL" and not bullHTF) or (localBias == "BEAR" and not bearHTF)
+    string localState = timeframe.period + " " + localBias + " / " + htf + " " + htfBias + (localAgainstHTF ? " | CONFLICT" : "")
+    table.cell(dashboard, 0, 9, "LOCAL / HTF", text_color=grey)
+    table.cell(dashboard, 1, 9, localState, text_color=localAgainstHTF ? gold : color.white)
 
 // TradingView must create alerts manually. One dynamic message per bar.
 alertcondition(newBuy, title="QIRVANTA V7 BUY", message="Confirmed BUY on {{ticker}} {{interval}}. Use Any alert() function call for price levels.")
@@ -741,6 +792,8 @@ alertcondition(setupInvalidated, title="QIRVANTA V7 SETUP INVALIDATED", message=
 alertcondition(contextBearMark, title="QIRVANTA EARLY BEARISH CONTEXT", message="Bearish momentum confirmed on {{ticker}} {{interval}}. CONTEXT ONLY, NOT SELL ENTRY.")
 alertcondition(contextBullMark, title="QIRVANTA EARLY BULLISH CONTEXT", message="Bullish momentum confirmed on {{ticker}} {{interval}}. CONTEXT ONLY, NOT BUY ENTRY.")
 alertcondition(eventLateBuy or eventLateSell, title="QIRVANTA NO CHASE CANCELLATION", message="Late/extended setup cancelled on {{ticker}} {{interval}}. NO ENTRY.")
+alertcondition(contextChochBull or contextChochBear, title="QIRVANTA CHoCH CONTEXT", message="CHoCH structure change on {{ticker}} {{interval}}. CONTEXT ONLY, NOT A CONFIRMED TRADE.")
+alertcondition(earlyBreakBull or earlyBreakBear, title="QIRVANTA EARLY WATCH STRUCTURE", message="Early pressure approaching a structural level on {{ticker}} {{interval}}. WATCH ONLY, NOT A TRADE.")
 
 
 // ==== QIRVANTA v7.6 PRICE-CHART MAP & HISTORICAL PAPER TRADE ZONES ====
