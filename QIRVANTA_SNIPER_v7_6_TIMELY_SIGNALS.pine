@@ -1,0 +1,893 @@
+//@version=6
+indicator("QIRVANTA Sniper v7.6 | Timely Signals", shorttitle="QIRVANTA V7.6", overlay=true, max_labels_count=180, max_lines_count=120, max_boxes_count=50)
+// Pine v6; deterministic rules; NOT an AI model, and NOT broker execution.
+// No old bar x-coordinates. HTF requests use only prior completed HTF candle.
+max_bars_back(time, 500)
+var int queuedSide = 0
+var int simSide = 0
+int maxPaperLosingStreak = input.int(3, "Max PAPER losing setups per day", minval=1, maxval=20, group="00 / PAPER CONTROL")
+float maxPaperDailyLossR = input.float(3.0, "Daily PAPER R loss cap", minval=0.5, maxval=50, step=0.5, group="00 / PAPER CONTROL")
+var float totalNetR = 0.0
+var float dayStartNetR = 0.0
+var int paperLossStreak = 0
+if timeframe.change("D")
+    dayStartNetR := totalNetR
+    paperLossStreak := 0
+bool paperRiskPass = paperLossStreak < maxPaperLosingStreak and totalNetR > dayStartNetR - maxPaperDailyLossR
+bool orderFree = queuedSide == 0 and simSide == 0 and paperRiskPass
+
+// ==== QIRVANTA RULE-BASED DECISION CORE (TradingView INDICATOR; no currently verified matching v7.5 strategy) ====
+// Rule-based SMC heuristics. No predictive AI, no future-bar data.
+string tradingMode = input.string("AUTO", "Trading mode", options=["AUTO", "SCALP", "SWING"], group="01 / ENGINE")
+string engineMode = input.string("HYBRID", "Setups", options=["HYBRID", "SWEEP ONLY", "CONTINUATION ONLY"], group="01 / ENGINE")
+string selectivity = input.string("SNIPER", "Signal selectivity", options=["BALANCED", "SNIPER", "ELITE"], group="01 / ENGINE")
+bool automaticHTF = input.bool(true, "Automatic confirmed HTF", group="01 / ENGINE")
+string customHTF = input.timeframe("60", "Manual higher timeframe", group="01 / ENGINE")
+int liquidityBars = input.int(14, "Sweep lookback", minval=5, maxval=80, group="02 / STRUCTURE")
+int structureBars = input.int(6, "MSS structure lookback", minval=3, maxval=25, group="02 / STRUCTURE")
+int maxSetupAge = input.int(18, "Setup expiry (bars)", minval=4, maxval=80, group="02 / STRUCTURE")
+int maxBarsAfterMSS = input.int(5, "Max bars after MSS/BOS to enter", minval=1, maxval=25, group="02 / STRUCTURE", tooltip="A retest must be confirmed shortly after the structure break. Otherwise the setup expires.")
+float maxRetestCloseATR = input.float(0.55, "Max entry close beyond retest level / ATR", minval=0.1, maxval=2.0, step=0.05, group="02 / STRUCTURE", tooltip="Blocks BUY/SELL when the signal candle has already moved too far from the planned retest level.")
+int pivotLeft = input.int(3, "Confirmed pivot left", minval=2, maxval=10, group="02 / STRUCTURE")
+int pivotRight = input.int(3, "Confirmed pivot right", minval=2, maxval=10, group="02 / STRUCTURE")
+float minDisplaceATR = input.float(0.30, "Displacement body / ATR", minval=0.1, maxval=2, step=0.05, group="02 / STRUCTURE")
+float nearRetestATR = input.float(0.30, "Retest distance / ATR", minval=0.05, maxval=2, step=0.05, group="02 / STRUCTURE")
+float pierceRetestATR = input.float(0.30, "Max penetration / ATR", minval=0.05, maxval=1.5, step=0.05, group="02 / STRUCTURE")
+float eqToleranceATR = input.float(0.12, "Equal highs/lows tolerance / ATR", minval=0.02, maxval=0.5, step=0.02, group="02 / STRUCTURE")
+int pdWindow = input.int(80, "Premium / discount lookback", minval=20, maxval=250, group="02 / STRUCTURE")
+bool requireFVG = input.bool(false, "Require FVG at structure break", group="03 / OPTIONAL FILTERS")
+bool requirePD = input.bool(false, "Require premium / discount", group="03 / OPTIONAL FILTERS")
+bool requireRoom = input.bool(false, "Require structural target room", group="03 / OPTIONAL FILTERS")
+float minimumRoomR = input.float(1.0, "Min room to opposing level (R)", minval=0.3, maxval=5, step=0.1, group="03 / OPTIONAL FILTERS")
+float fvgSizeATR = input.float(0.04, "Min 3-candle FVG / ATR", minval=0, maxval=0.5, step=0.01, group="03 / OPTIONAL FILTERS")
+int minADX = input.int(17, "Minimum ADX", minval=5, maxval=45, group="03 / OPTIONAL FILTERS")
+float minATRratio = input.float(0.55, "Min ATR / ATR mean", minval=0.2, maxval=2, step=0.05, group="03 / OPTIONAL FILTERS")
+float maxATRratio = input.float(2.8, "Max ATR / ATR mean", minval=1, maxval=6, step=0.1, group="03 / OPTIONAL FILTERS")
+float maxEntryBarATR = input.float(2.6, "Max entry bar / ATR", minval=0.7, maxval=8, step=0.1, group="03 / OPTIONAL FILTERS")
+float maxExtensionATR = input.float(2.0, "Max EMA21 extension / ATR", minval=0.5, maxval=6, step=0.1, group="03 / OPTIONAL FILTERS")
+bool filterSession = input.bool(false, "Filter SCALP trading session", group="03 / OPTIONAL FILTERS")
+string scalpSession = input.session("1000-2000", "Session (Europe/Sofia)", group="03 / OPTIONAL FILTERS")
+bool manualNewsPause = input.bool(false, "MANUAL pause: high-impact news", group="03 / OPTIONAL FILTERS")
+float spreadAssumption = input.float(0.35, "Estimated round-trip spread (PRICE units)", minval=0, step=0.05, group="04 / RISK")
+int slipTicks = input.int(2, "Estimated slippage ticks / side", minval=0, maxval=100, group="04 / RISK")
+float feePrice = input.float(0.0, "Est. commissions / unit round-trip (price)", minval=0, step=0.05, group="04 / RISK")
+float minStopATR = input.float(0.8, "Minimum stop / ATR", minval=0.2, maxval=5, step=0.05, group="04 / RISK")
+float maxStopATR = input.float(3.5, "Maximum stop / ATR", minval=0.8, maxval=8, step=0.1, group="04 / RISK")
+float slBufferATR = input.float(0.12, "Structural stop buffer / ATR", minval=0.0, maxval=0.5, step=0.02, group="04 / RISK")
+float maxCostRisk = input.float(0.18, "Max cost / initial risk", minval=0.01, maxval=0.7, step=0.01, group="04 / RISK")
+float target1R = input.float(1.0, "TP1 (R)", minval=0.4, maxval=4, step=0.1, group="04 / RISK")
+float target2R = input.float(2.0, "TP2 (R)", minval=0.5, maxval=7, step=0.1, group="04 / RISK")
+float target3R = input.float(3.0, "TP3 (R)", minval=1.0, maxval=10, step=0.1, group="04 / RISK")
+float profitLockR = input.float(0.05, "Lock after TP1 (+R)", minval=0, maxval=0.5, step=0.05, group="04 / RISK")
+int minCooldown = input.int(8, "Cooldown after setup (bars)", minval=0, maxval=100, group="04 / RISK")
+int scalpMaxHold = input.int(48, "Max SCALP holding bars", minval=5, maxval=300, group="04 / RISK")
+int swingMaxHold = input.int(60, "Max SWING holding bars", minval=5, maxval=300, group="04 / RISK")
+string density = input.string("STANDARD", "Chart density", options=["CLEAN", "STANDARD", "ANALYST"], group="05 / DISPLAY")
+bool displayDashboard = input.bool(true, "Show decision dashboard", group="05 / DISPLAY")
+bool displayLevels = input.bool(true, "Show entry / SL / targets", group="05 / DISPLAY")
+bool displayEMAs = input.bool(true, "EMA 21 + EMA 55", group="05 / DISPLAY")
+bool displayAsia = input.bool(false, "Asian High / Low (completed)", group="05 / DISPLAY")
+bool displayPD = input.bool(false, "Premium / discount equilibrium", group="05 / DISPLAY")
+bool displayPivots = input.bool(false, "Confirmed pivot liquidity levels", group="05 / DISPLAY")
+bool displayPDH = input.bool(false, "Previous day H / L", group="05 / DISPLAY")
+bool showMarketMap = input.bool(true, "Show live liquidity and WATCH zones", group="06 / CHART VISUALS")
+bool showFvgMap = input.bool(true, "Show recent unfilled FVG", group="06 / CHART VISUALS")
+bool showPastTrades = input.bool(false, "Show historical PAPER risk boxes (OFF = clean scale)", group="06 / CHART VISUALS")
+bool showFullArchive = input.bool(false, "Show separate historical table", group="06 / CHART VISUALS")
+int keepTrades = input.int(4, "Historic PAPER trades on chart", minval=1, maxval=8, group="06 / CHART VISUALS")
+int projection = input.int(10, "Extend watch zones right (bars)", minval=4, maxval=28, group="06 / CHART VISUALS")
+float mapDistanceATR = input.float(3.5, "Max drawn level distance from price (ATR)", minval=1.0, maxval=10.0, step=0.5, group="06 / CHART VISUALS")
+bool showSignalDetails = input.bool(false, "Long entry labels at signals (ANALYST)", group="06 / CHART VISUALS")
+bool showImpulseContext = input.bool(true, "Show strong momentum WITHOUT trade signals", group="06 / CHART VISUALS")
+float minContextBodyATR = input.float(0.85, "Context impulse min body / ATR", minval=0.4, maxval=2.5, step=0.05, group="06 / CHART VISUALS")
+int contextCooldown = input.int(8, "Minimum bars between context labels", minval=2, maxval=40, group="06 / CHART VISUALS")
+float maxOpenDeviationATR = input.float(0.20, "Max next-open deviation from signal / ATR", minval=0.05, maxval=0.8, step=0.05, group="04 / RISK", tooltip="PAPER order is cancelled when the next open is too far from the confirmed reference price.")
+
+int tfSeconds = timeframe.in_seconds(timeframe.period)
+bool scalp = tradingMode == "SCALP" or (tradingMode == "AUTO" and tfSeconds <= 900)
+string style = scalp ? "SCALP" : "SWING"
+string autoHTF = tfSeconds <= 300 ? "60" : tfSeconds <= 900 ? "240" : tfSeconds <= 14400 ? "D" : tfSeconds <= 86400 ? "W" : tfSeconds <= 604800 ? "M" : "3M"
+string htf = automaticHTF ? autoHTF : customHTF
+int maxHoldBars = scalp ? scalpMaxHold : swingMaxHold
+int minExtra = selectivity == "BALANCED" ? 1 : selectivity == "SNIPER" ? 2 : 4
+float roundTripPriceCost = spreadAssumption + 2.0 * slipTicks * syminfo.mintick + feePrice
+
+if barstate.isfirst
+    if timeframe.in_seconds(htf) <= tfSeconds
+        runtime.error("QIRVANTA: HTF must be strictly higher. Enable AUTO HTF.")
+    if not (target1R < target2R and target2R < target3R)
+        runtime.error("QIRVANTA: Set TP1 < TP2 < TP3")
+    if maxStopATR <= minStopATR
+        runtime.error("QIRVANTA: Max stop ATR must exceed min stop ATR")
+    if maxATRratio <= minATRratio
+        runtime.error("QIRVANTA: Max ATR ratio must exceed min ATR ratio")
+    if nearRetestATR < pierceRetestATR * 0.25
+        runtime.error("QIRVANTA: Retest distance is inconsistent with penetration")
+
+// The [1] HTF offset + lookahead_on returns the last COMPLETED HTF candle.
+[htfClose, htfEMA50, htfEMA200, htfEMA50prev] = request.security(syminfo.tickerid, htf, [close[1], ta.ema(close, 50)[1], ta.ema(close, 200)[1], ta.ema(close, 50)[3]], lookahead=barmerge.lookahead_on)
+[priorDayHigh, priorDayLow] = request.security(syminfo.tickerid, "D", [high[1], low[1]], lookahead=barmerge.lookahead_on)
+bool readyHTF = not na(htfClose) and not na(htfEMA50) and not na(htfEMA50prev)
+bool bullHTF = readyHTF and htfClose > htfEMA50 and htfEMA50 > htfEMA50prev
+bool bearHTF = readyHTF and htfClose < htfEMA50 and htfEMA50 < htfEMA50prev
+bool strongBullHTF = bullHTF and not na(htfEMA200) and htfClose > htfEMA200
+bool strongBearHTF = bearHTF and not na(htfEMA200) and htfClose < htfEMA200
+float emaFast = ta.ema(close, 21)
+float emaSlow = ta.ema(close, 55)
+float atr = ta.atr(14)
+float atrMean = ta.sma(atr, 40)
+float rsi = ta.rsi(close, 14)
+[diPlus, diMinus, adx] = ta.dmi(14, 14)
+float body = math.abs(close - open)
+float barRange = math.max(high - low, syminfo.mintick)
+bool bullishBar = close > open and (close - low) / barRange >= 0.65
+bool bearishBar = close < open and (high - close) / barRange >= 0.65
+bool displacementUp = bullishBar and body >= atr * minDisplaceATR
+bool displacementDn = bearishBar and body >= atr * minDisplaceATR
+bool bullLocal = close > emaFast and emaFast > emaSlow and emaFast >= emaFast[2]
+bool bearLocal = close < emaFast and emaFast < emaSlow and emaFast <= emaFast[2]
+bool bullMomentum = rsi > 50 and diPlus > diMinus
+bool bearMomentum = rsi < 50 and diMinus > diPlus
+bool validATR = not na(atrMean) and atr > 0 and atr >= atrMean * minATRratio and atr <= atrMean * maxATRratio
+bool validTrend = not na(adx) and adx >= minADX
+bool acceptableBar = atr > 0 and barRange <= atr * maxEntryBarATR
+bool notExtended = atr > 0 and math.abs(close - emaFast) <= atr * maxExtensionATR
+bool inSession = not na(time(timeframe.period, scalpSession, "Europe/Sofia"))
+bool sessionPass = not filterSession or not scalp or inSession
+bool warmup = bar_index > 250 and readyHTF and validATR
+float sweepHigh = ta.highest(high, liquidityBars)[1]
+float sweepLow = ta.lowest(low, liquidityBars)[1]
+float shortStruct = ta.lowest(low, structureBars)[1]
+float longStruct = ta.highest(high, structureBars)[1]
+float localSwingLow = ta.lowest(low, structureBars)
+float localSwingHigh = ta.highest(high, structureBars)
+float pdHi = ta.highest(high, pdWindow)[1]
+float pdLo = ta.lowest(low, pdWindow)[1]
+float pdMid = (pdHi + pdLo) / 2.0
+bool inDiscount = not na(pdMid) and close <= pdMid
+bool inPremium = not na(pdMid) and close >= pdMid
+bool bullFvgNow = not na(high[2]) and low > high[2] and low - high[2] >= fvgSizeATR * atr
+bool bearFvgNow = not na(low[2]) and high < low[2] and low[2] - high >= fvgSizeATR * atr
+bool sweepDown = not na(sweepLow) and low < sweepLow and close > sweepLow and (math.min(open, close) - low) / barRange >= 0.23
+bool sweepUp = not na(sweepHigh) and high > sweepHigh and close < sweepHigh and (high - math.max(open, close)) / barRange >= 0.23
+bool bosUp = not na(sweepHigh) and close > sweepHigh and close[1] <= sweepHigh and displacementUp
+bool bosDown = not na(sweepLow) and close < sweepLow and close[1] >= sweepLow and displacementDn
+float pivotHigh = ta.pivothigh(high, pivotLeft, pivotRight)
+float pivotLow = ta.pivotlow(low, pivotLeft, pivotRight)
+var float lastPivotHigh = na
+var float prevPivotHigh = na
+var float lastPivotLow = na
+var float prevPivotLow = na
+// A developing pivot on an open realtime bar may disappear. Commit pivots on candle close only.
+if barstate.isconfirmed and not na(pivotHigh)
+    prevPivotHigh := lastPivotHigh
+    lastPivotHigh := pivotHigh
+if barstate.isconfirmed and not na(pivotLow)
+    prevPivotLow := lastPivotLow
+    lastPivotLow := pivotLow
+bool equalHighs = barstate.isconfirmed and not na(prevPivotHigh) and not na(lastPivotHigh) and math.abs(lastPivotHigh - prevPivotHigh) <= atr * eqToleranceATR
+bool equalLows = barstate.isconfirmed and not na(prevPivotLow) and not na(lastPivotLow) and math.abs(lastPivotLow - prevPivotLow) <= atr * eqToleranceATR
+bool higherHigh = not na(prevPivotHigh) and lastPivotHigh > prevPivotHigh
+bool higherLow = not na(prevPivotLow) and lastPivotLow > prevPivotLow
+bool lowerHigh = not na(prevPivotHigh) and lastPivotHigh < prevPivotHigh
+bool lowerLow = not na(prevPivotLow) and lastPivotLow < prevPivotLow
+string pivotStructure = higherHigh and higherLow ? "HH / HL" : lowerHigh and lowerLow ? "LH / LL" : "MIXED / UNCONFIRMED"
+
+// Completed Asian session levels, not the developing high/low.
+bool asiaActive = timeframe.isintraday and not na(time(timeframe.period, "0200-1000", "Europe/Sofia"))
+var float asianH = na
+var float asianL = na
+var float lastAsianH = na
+var float lastAsianL = na
+// Freeze the session bounds using closed candles; release levels at the session's first closed non-Asia bar.
+if barstate.isconfirmed
+    if asiaActive
+        if not asiaActive[1] or na(asianH)
+            asianH := high
+            asianL := low
+        else
+            asianH := math.max(asianH, high)
+            asianL := math.min(asianL, low)
+    else if asiaActive[1]
+        lastAsianH := asianH
+        lastAsianL := asianL
+
+// Remember only confirmed, not-fully-mitigated FVGs. A FVG is NOT verified institutional flow.
+var float bullGapTop = na
+var float bullGapBottom = na
+var int bullGapAt = na
+var float bearGapTop = na
+var float bearGapBottom = na
+var int bearGapAt = na
+if barstate.isconfirmed
+    if bullFvgNow
+        bullGapTop := low
+        bullGapBottom := high[2]
+        bullGapAt := bar_index
+    else if not na(bullGapAt)
+        if bar_index - bullGapAt > 75 or low <= bullGapBottom
+            bullGapAt := na
+            bullGapTop := na
+            bullGapBottom := na
+        else if low < bullGapTop
+            // Track partial mitigation. Do not continue displaying a filled segment.
+            bullGapTop := low
+    if bearFvgNow
+        bearGapTop := low[2]
+        bearGapBottom := high
+        bearGapAt := bar_index
+    else if not na(bearGapAt)
+        if bar_index - bearGapAt > 75 or high >= bearGapTop
+            bearGapAt := na
+            bearGapTop := na
+            bearGapBottom := na
+        else if high > bearGapBottom
+            bearGapBottom := high
+
+// Closest available *confirmed* opposing liquidity reference, never future pivots.
+float longObstacle = na
+float shortObstacle = na
+if not na(lastPivotHigh) and lastPivotHigh > close
+    longObstacle := lastPivotHigh
+if not na(priorDayHigh) and priorDayHigh > close
+    longObstacle := na(longObstacle) ? priorDayHigh : math.min(longObstacle, priorDayHigh)
+if not na(lastAsianH) and lastAsianH > close
+    longObstacle := na(longObstacle) ? lastAsianH : math.min(longObstacle, lastAsianH)
+if not na(lastPivotLow) and lastPivotLow < close
+    shortObstacle := lastPivotLow
+if not na(priorDayLow) and priorDayLow < close
+    shortObstacle := na(shortObstacle) ? priorDayLow : math.max(shortObstacle, priorDayLow)
+if not na(lastAsianL) and lastAsianL < close
+    shortObstacle := na(shortObstacle) ? lastAsianL : math.max(shortObstacle, lastAsianL)
+
+string regime = validATR and atr > atrMean * 1.9 ? "EXPANSION" : validATR and atr < atrMean * 0.7 ? "COMPRESSION" : adx < minADX ? "RANGE / LOW ADX" : bullHTF ? "BULL TREND" : bearHTF ? "BEAR TREND" : "NEUTRAL"
+
+// Setup phases: 0 IDLE, 1 SWEEP → MSS, 2 STRUCTURE CONFIRMED → RETEST.
+// Sweep and structure shifts are never retroactively projected onto earlier bars.
+var int phaseLong = 0
+var int phaseShort = 0
+var int bornLong = na
+var int bornShort = na
+var int mssLongAt = na
+var int mssShortAt = na
+var float levelLong = na
+var float levelShort = na
+var float anchorLong = na
+var float anchorShort = na
+var bool sweepFamilyLong = false
+var bool sweepFamilyShort = false
+var bool gapLong = false
+var bool gapShort = false
+var int lastEntryBar = na
+var int rejectedSetups = 0
+var int expiredSetups = 0
+var string blockedReason = "AWAIT SETUP"
+
+bool newBuy = false
+bool newSell = false
+bool sweepMarkBuy = false
+bool sweepMarkSell = false
+bool shiftMarkBuy = false
+bool shiftMarkSell = false
+bool setupInvalidated = false
+bool eventLateBuy = false
+bool eventLateSell = false
+bool contextBullMark = false
+bool contextBearMark = false
+var int lastBullContext = na
+var int lastBearContext = na
+float nearBullBreak = ta.highest(high, 3)[1]
+float nearBearBreak = ta.lowest(low, 3)[1]
+float plannedRef = na
+float plannedStop = na
+float plannedRisk = na
+float plannedTP1 = na
+float plannedTP2 = na
+float plannedTP3 = na
+int plannedChecks = 0
+string plannedFamily = "NONE"
+
+if barstate.isconfirmed
+    blockedReason := "AWAIT CONFIRMED SETUP"
+    // Real, confirmed momentum is shown as CONTEXT, never as an executable signal.
+    // No labels are placed on earlier candles: visual marks appear on the closing candle.
+    bool bullImpulse = showImpulseContext and bullHTF and bullishBar and body >= atr * minContextBodyATR and not na(nearBullBreak) and close > nearBullBreak
+    bool bearImpulse = showImpulseContext and bearHTF and bearishBar and body >= atr * minContextBodyATR and not na(nearBearBreak) and close < nearBearBreak
+    if bullImpulse and (na(lastBullContext) or bar_index - lastBullContext > contextCooldown)
+        contextBullMark := true
+        lastBullContext := bar_index
+    if bearImpulse and (na(lastBearContext) or bar_index - lastBearContext > contextCooldown)
+        contextBearMark := true
+        lastBearContext := bar_index
+    if phaseLong != 0 and (bar_index - bornLong > maxSetupAge or close < anchorLong - slBufferATR * atr)
+        phaseLong := 0
+        setupInvalidated := true
+        expiredSetups += 1
+    if phaseShort != 0 and (bar_index - bornShort > maxSetupAge or close > anchorShort + slBufferATR * atr)
+        phaseShort := 0
+        setupInvalidated := true
+        expiredSetups += 1
+
+    // A confirmed structure break cannot remain tradeable indefinitely.
+    if phaseLong == 2 and not na(mssLongAt) and bar_index - mssLongAt > maxBarsAfterMSS
+        phaseLong := 0
+        eventLateBuy := true
+        setupInvalidated := true
+        expiredSetups += 1
+        blockedReason := "EXPIRED LONG / NO CHASE"
+    if phaseShort == 2 and not na(mssShortAt) and bar_index - mssShortAt > maxBarsAfterMSS
+        phaseShort := 0
+        eventLateSell := true
+        setupInvalidated := true
+        expiredSetups += 1
+        blockedReason := "EXPIRED SHORT / NO CHASE"
+
+    // Advance only already-existing setups; no sweep/MSS/retest on one bar.
+    if phaseLong == 1 and bar_index > bornLong and close > levelLong and displacementUp
+        phaseLong := 2
+        mssLongAt := bar_index
+        gapLong := bullFvgNow
+        shiftMarkBuy := true
+    if phaseShort == 1 and bar_index > bornShort and close < levelShort and displacementDn
+        phaseShort := 2
+        mssShortAt := bar_index
+        gapShort := bearFvgNow
+        shiftMarkSell := true
+
+    bool retestLong = phaseLong == 2 and bar_index > mssLongAt and low <= levelLong + atr * nearRetestATR and low >= levelLong - atr * pierceRetestATR and close > levelLong and bullishBar and body >= atr * 0.1
+    bool retestShort = phaseShort == 2 and bar_index > mssShortAt and high >= levelShort - atr * nearRetestATR and high <= levelShort + atr * pierceRetestATR and close < levelShort and bearishBar and body >= atr * 0.1
+    // The retest may be technically valid yet TOO LATE to enter. This must not be a confirmed signal.
+    bool longNoChase = retestLong and close - levelLong > atr * maxRetestCloseATR
+    bool shortNoChase = retestShort and levelShort - close > atr * maxRetestCloseATR
+    bool timelyLong = retestLong and not longNoChase and bar_index - mssLongAt <= maxBarsAfterMSS
+    bool timelyShort = retestShort and not shortNoChase and bar_index - mssShortAt <= maxBarsAfterMSS
+    float longStop = math.round_to_mintick(math.min(anchorLong - slBufferATR * atr, close - minStopATR * atr))
+    float shortStop = math.round_to_mintick(math.max(anchorShort + slBufferATR * atr, close + minStopATR * atr))
+    float riskLong = close - longStop
+    float riskShort = shortStop - close
+    bool riskLongOK = validATR and riskLong >= syminfo.mintick and riskLong <= atr * maxStopATR and roundTripPriceCost / riskLong <= maxCostRisk
+    bool riskShortOK = validATR and riskShort >= syminfo.mintick and riskShort <= atr * maxStopATR and roundTripPriceCost / riskShort <= maxCostRisk
+    bool roomLong = not na(longObstacle) and longObstacle - close >= riskLong * minimumRoomR
+    bool roomShort = not na(shortObstacle) and close - shortObstacle >= riskShort * minimumRoomR
+    // Optional independent context checks, not predicted odds.
+    int checksLong = (strongBullHTF ? 1 : 0) + (adx > minADX + 6 ? 1 : 0) + (gapLong ? 1 : 0) + (inDiscount ? 1 : 0) + (inSession ? 1 : 0) + (roomLong ? 1 : 0)
+    int checksShort = (strongBearHTF ? 1 : 0) + (adx > minADX + 6 ? 1 : 0) + (gapShort ? 1 : 0) + (inPremium ? 1 : 0) + (inSession ? 1 : 0) + (roomShort ? 1 : 0)
+    bool baseFilters = warmup and validTrend and acceptableBar and notExtended and sessionPass and not manualNewsPause
+    bool cooldownOK = na(lastEntryBar) or bar_index - lastEntryBar > minCooldown
+    bool buyOK = timelyLong and riskLongOK and baseFilters and cooldownOK and bullHTF and bullLocal and bullMomentum and (not requireFVG or gapLong) and (not requirePD or inDiscount) and (not requireRoom or roomLong) and checksLong >= minExtra
+    bool sellOK = timelyShort and riskShortOK and baseFilters and cooldownOK and bearHTF and bearLocal and bearMomentum and (not requireFVG or gapShort) and (not requirePD or inPremium) and (not requireRoom or roomShort) and checksShort >= minExtra
+
+    if not warmup
+        blockedReason := "WARMUP / HTF DATA"
+    else if manualNewsPause
+        blockedReason := "MANUAL NEWS PAUSE"
+    else if not sessionPass
+        blockedReason := "SESSION BLOCK"
+    else if not validATR
+        blockedReason := "ATR REGIME"
+    else if not validTrend
+        blockedReason := "LOW ADX"
+    else if not acceptableBar
+        blockedReason := "SPIKE / WIDE BAR"
+    else if not notExtended
+        blockedReason := "OVEREXTENDED"
+    else if not bullHTF and not bearHTF
+        blockedReason := "HTF NEUTRAL"
+    else if not cooldownOK
+        blockedReason := "COOLDOWN"
+    else if longNoChase or shortNoChase
+        blockedReason := "PRICE MOVED - NO CHASE"
+    else if retestLong or retestShort
+        blockedReason := "RETEST FILTER / COST / ROOM"
+
+    bool bothDirections = buyOK and sellOK
+    if (buyOK or sellOK) and not bothDirections and orderFree
+        newBuy := buyOK
+        newSell := sellOK
+        int d = newBuy ? 1 : -1
+        plannedRef := math.round_to_mintick(close)
+        plannedStop := newBuy ? longStop : shortStop
+        plannedRisk := math.abs(plannedRef - plannedStop)
+        plannedTP1 := math.round_to_mintick(plannedRef + d * plannedRisk * target1R)
+        plannedTP2 := math.round_to_mintick(plannedRef + d * plannedRisk * target2R)
+        plannedTP3 := math.round_to_mintick(plannedRef + d * plannedRisk * target3R)
+        plannedChecks := newBuy ? checksLong : checksShort
+        plannedFamily := newBuy ? (sweepFamilyLong ? "SWEEP REVERSAL" : "BOS CONTINUATION") : (sweepFamilyShort ? "SWEEP REVERSAL" : "BOS CONTINUATION")
+        lastEntryBar := bar_index
+        phaseLong := 0
+        phaseShort := 0
+        blockedReason := "CONFIRMED ENTRY"
+    else
+        if buyOK or sellOK
+            blockedReason := bothDirections ? "CONFLICTING SETUPS" : "TRADE CAP / RISK GUARD"
+        if retestLong
+            phaseLong := 0
+            rejectedSetups += 1
+            if longNoChase
+                eventLateBuy := true
+        if retestShort
+            phaseShort := 0
+            rejectedSetups += 1
+            if shortNoChase
+                eventLateSell := true
+
+    // Fresh setups only on the bar close, after processing existing ones.
+    if orderFree and not newBuy and not newSell
+        if phaseLong == 0 and not retestLong
+            if sweepDown and engineMode != "CONTINUATION ONLY"
+                phaseLong := 1
+                bornLong := bar_index
+                anchorLong := low
+                levelLong := longStruct
+                sweepFamilyLong := true
+                gapLong := false
+                sweepMarkBuy := true
+            else if bosUp and bullHTF and engineMode != "SWEEP ONLY"
+                phaseLong := 2
+                bornLong := bar_index
+                mssLongAt := bar_index
+                anchorLong := localSwingLow
+                levelLong := sweepHigh
+                sweepFamilyLong := false
+                gapLong := bullFvgNow
+                shiftMarkBuy := true
+        if phaseShort == 0 and not retestShort
+            if sweepUp and engineMode != "CONTINUATION ONLY"
+                phaseShort := 1
+                bornShort := bar_index
+                anchorShort := high
+                levelShort := shortStruct
+                sweepFamilyShort := true
+                gapShort := false
+                sweepMarkSell := true
+            else if bosDown and bearHTF and engineMode != "SWEEP ONLY"
+                phaseShort := 2
+                bornShort := bar_index
+                mssShortAt := bar_index
+                anchorShort := localSwingHigh
+                levelShort := sweepLow
+                sweepFamilyShort := false
+                gapShort := bearFvgNow
+                shiftMarkSell := true
+    if not newBuy and not newSell and blockedReason == "AWAIT CONFIRMED SETUP"
+        if phaseLong == 1
+            blockedReason := not bullHTF ? "BUY AGAINST HTF / AWAIT MSS" : "SWEEP: AWAIT BULL MSS"
+        else if phaseLong == 2
+            blockedReason := not bullHTF ? "BUY AGAINST HTF / NO ENTRY" : "AWAIT BULL RETEST"
+        else if phaseShort == 1
+            blockedReason := not bearHTF ? "SELL AGAINST HTF / AWAIT MSS" : "SWEEP: AWAIT BEAR MSS"
+        else if phaseShort == 2
+            blockedReason := not bearHTF ? "SELL AGAINST HTF / NO ENTRY" : "AWAIT BEAR RETEST"
+// ==== END RULE-BASED DECISION CORE ====
+
+// ==== PAPER SIMULATION (not real execution or a broker fill) ====
+// Decisions are on closed bars; reference signal occurs at close, next open is the assumed entry.
+// OHLC paths are unknown. If SL and TP occur in one candle, SL wins on ALL remaining portions.
+var int queuedAt = na
+var float queuedRef = na
+var float queuedStop = na
+var float queuedTP1 = na
+var float queuedTP2 = na
+var float queuedTP3 = na
+var string queuedFamily = "NONE"
+var int queuedChecks = 0
+var int enteredBar = na
+var float simEntry = na
+var float simInitialSL = na
+var float simSL = na
+var float simRisk = na
+var float simTP1 = na
+var float simTP2 = na
+var float simTP3 = na
+var int simTP1Bar = na
+var bool simTook1 = false
+var bool simTook2 = false
+var float simRealized = 0.0
+var float lastNetR = na
+var int tradesSeen = 0
+var int winsSeen = 0
+var int lossesSeen = 0
+var int gapSkipped = 0
+var int stopSeen = 0
+var int tp3Seen = 0
+var int timeSeen = 0
+var string lastExit = "NONE"
+var string simFamily = "NONE"
+var int simChecks = 0
+
+bool eventTP1 = false
+bool eventTP2 = false
+bool eventTP3 = false
+bool eventStop = false
+bool eventTime = false
+bool eventLock = false
+bool eventSkip = false
+bool paperEntered = false
+bool paperClosed = false
+string eventMessage = ""
+
+if barstate.isconfirmed
+    if queuedSide != 0 and bar_index > queuedAt and simSide == 0
+        // A price gap beyond SL/TP1 makes the close-based plan invalid.
+        float openRisk = math.abs(open - queuedStop)
+        float priorAtr = math.max(nz(atr[1], syminfo.mintick), syminfo.mintick)
+        bool invalidOpen = queuedSide == 1 ? (open <= queuedStop or open >= queuedTP1) : (open >= queuedStop or open <= queuedTP1)
+        // Next-open fill validation uses only previous-bar ATR, not the current completed candle.
+        bool badGap = invalidOpen or math.abs(open - queuedRef) > maxOpenDeviationATR * priorAtr or openRisk < minStopATR * priorAtr or openRisk > maxStopATR * priorAtr or roundTripPriceCost / math.max(openRisk, syminfo.mintick) > maxCostRisk
+        if badGap
+            eventSkip := true
+            gapSkipped += 1
+            lastExit := "OPEN GAP - PAPER CANCELLED"
+            eventMessage := "PAPER GAP INVALIDATION | " + syminfo.ticker
+        else
+            simSide := queuedSide
+            enteredBar := bar_index
+            simEntry := open
+            simInitialSL := queuedStop
+            simSL := queuedStop
+            simRisk := math.abs(open - queuedStop)
+            // Signal-close TP levels were only indicative. PAPER targets are re-priced at the NEXT OPEN
+            // so their R multiples match the actual simulated entry and actual initial stop distance.
+            simTP1 := math.round_to_mintick(simEntry + simSide * simRisk * target1R)
+            simTP2 := math.round_to_mintick(simEntry + simSide * simRisk * target2R)
+            simTP3 := math.round_to_mintick(simEntry + simSide * simRisk * target3R)
+            simTP1Bar := na
+            simTook1 := false
+            simTook2 := false
+            simRealized := 0.0
+            simFamily := queuedFamily
+            simChecks := queuedChecks
+            tradesSeen += 1
+            paperEntered := true
+        queuedSide := 0
+
+    if simSide != 0 and bar_index >= enteredBar
+        // SL lock is effective only on a candle AFTER TP1 was observed.
+        if simTook1 and not na(simTP1Bar) and bar_index > simTP1Bar
+            float improved = math.round_to_mintick(simEntry + simSide * simRisk * profitLockR)
+            float previousSL = simSL
+            simSL := simSide == 1 ? math.max(simSL, improved) : math.min(simSL, improved)
+            if simSL != previousSL
+                eventLock := true
+                eventMessage := "PROFIT LOCK | " + syminfo.ticker + " | MANAGED SL " + str.tostring(simSL, format.mintick)
+            simTP1Bar := na
+        bool stopTouched = simSide == 1 ? low <= simSL : high >= simSL
+        bool tp1Touched = simSide == 1 ? high >= simTP1 : low <= simTP1
+        bool tp2Touched = simSide == 1 ? high >= simTP2 : low <= simTP2
+        bool tp3Touched = simSide == 1 ? high >= simTP3 : low <= simTP3
+        float unitCostR = simRisk > 0 ? roundTripPriceCost / simRisk : 0.0
+        if stopTouched
+            float stopFill = simSide == 1 ? math.min(open, simSL) : math.max(open, simSL)
+            float partCount = 3.0 - (simTook1 ? 1.0 : 0.0) - (simTook2 ? 1.0 : 0.0)
+            simRealized += partCount / 3.0 * ((stopFill - simEntry) * simSide / simRisk - unitCostR)
+            eventStop := true
+            stopSeen += 1
+            lastExit := "PAPER STOP (CONSERVATIVE)"
+            eventMessage += " | STOP " + str.tostring(stopFill, format.mintick)
+            simSide := 0
+        else
+            if tp1Touched and not simTook1
+                simRealized += ((simTP1 - simEntry) * simSide / simRisk - unitCostR) / 3.0
+                simTook1 := true
+                simTP1Bar := bar_index
+                eventTP1 := true
+                eventMessage += " | TP1 " + str.tostring(simTP1, format.mintick)
+            if tp2Touched and not simTook2
+                simRealized += ((simTP2 - simEntry) * simSide / simRisk - unitCostR) / 3.0
+                simTook2 := true
+                eventTP2 := true
+                eventMessage += " | TP2 " + str.tostring(simTP2, format.mintick)
+            if tp3Touched
+                simRealized += ((simTP3 - simEntry) * simSide / simRisk - unitCostR) / 3.0
+                eventTP3 := true
+                tp3Seen += 1
+                lastExit := "PAPER TP3"
+                eventMessage += " | TP3 " + str.tostring(simTP3, format.mintick)
+                simSide := 0
+            else if bar_index - enteredBar >= maxHoldBars
+                float remaining = 3.0 - (simTook1 ? 1.0 : 0.0) - (simTook2 ? 1.0 : 0.0)
+                simRealized += remaining / 3.0 * ((close - simEntry) * simSide / simRisk - unitCostR)
+                eventTime := true
+                timeSeen += 1
+                lastExit := "PAPER TIME EXIT"
+                eventMessage += " | TIME " + str.tostring(close, format.mintick)
+                simSide := 0
+        if simSide == 0
+            paperClosed := true
+            totalNetR += simRealized
+            lastNetR := simRealized
+            if simRealized > 0
+                winsSeen += 1
+                paperLossStreak := 0
+            else
+                lossesSeen += 1
+                paperLossStreak += 1
+
+    if newBuy or newSell
+        queuedSide := newBuy ? 1 : -1
+        queuedAt := bar_index
+        queuedRef := plannedRef
+        queuedStop := plannedStop
+        queuedTP1 := plannedTP1
+        queuedTP2 := plannedTP2
+        queuedTP3 := plannedTP3
+        queuedFamily := plannedFamily
+        queuedChecks := plannedChecks
+        eventMessage += " | QIRVANTA V7.6 CONFIRMED " + (newBuy ? "BUY" : "SELL") + " | " + syminfo.ticker + " / " + timeframe.period + " | SIGNAL REF " + str.tostring(plannedRef, format.mintick) + " | ENTRY NEXT OPEN (UNVERIFIED) | SL " + str.tostring(plannedStop, format.mintick) + " | TP1 " + str.tostring(plannedTP1, format.mintick) + " | TP2 " + str.tostring(plannedTP2, format.mintick) + " | TP3 " + str.tostring(plannedTP3, format.mintick) + " | FAMILY " + plannedFamily + " | CHECKS " + str.tostring(plannedChecks) + "/6 (NOT PROBABILITY) | " + str.format_time(time, "yyyy-MM-dd HH:mm", "Europe/Sofia")
+    if setupInvalidated
+        eventMessage += " | SETUP EXPIRED OR INVALIDATED"
+    if str.length(eventMessage) > 0
+        alert(eventMessage, alert.freq_once_per_bar_close)
+
+// Final risk-shield state for display must include PAPER results CLOSED on THIS candle.
+// The decision core still uses its pre-bar guard; it cannot open a new trade on the same exit bar.
+bool paperRiskDisplay = paperLossStreak < maxPaperLosingStreak and totalNetR > dayStartNetR - maxPaperDailyLossR
+
+// ==== VISUAL TERMINAL ====
+color green = color.rgb(13, 220, 167)
+color red = color.rgb(253, 79, 115)
+color blue = color.rgb(76, 178, 255)
+color gold = color.rgb(255, 187, 79)
+color dark = color.rgb(11, 19, 34)
+color panel = color.rgb(22, 36, 56)
+color grey = color.rgb(175, 190, 212)
+bool detailed = density == "ANALYST"
+bool clean = density == "CLEAN"
+bool hasPlan = simSide != 0 or queuedSide != 0
+float refLine = simSide != 0 ? simEntry : queuedRef
+float stopLine = simSide != 0 ? simInitialSL : queuedStop
+float activeStopLine = simSide != 0 ? simSL : queuedStop
+float tpLine1 = simSide != 0 ? simTP1 : queuedTP1
+float tpLine2 = simSide != 0 ? simTP2 : queuedTP2
+float tpLine3 = simSide != 0 ? simTP3 : queuedTP3
+
+plot(displayEMAs ? emaFast : na, "EMA 21", color=blue, linewidth=2)
+plot(displayEMAs ? emaSlow : na, "EMA 55", color=gold, linewidth=2)
+plot(displayPivots and detailed ? lastPivotHigh : na, "Confirmed pivot high", color=color.new(red, 65), style=plot.style_stepline)
+plot(displayPivots and detailed ? lastPivotLow : na, "Confirmed pivot low", color=color.new(green, 65), style=plot.style_stepline)
+plot(displayPDH and detailed ? priorDayHigh : na, "Prev day high", color=color.new(gold, 40), style=plot.style_stepline)
+plot(displayPDH and detailed ? priorDayLow : na, "Prev day low", color=color.new(gold, 40), style=plot.style_stepline)
+plot(displayAsia and timeframe.isintraday ? lastAsianH : na, "Completed Asia H", color=color.new(gold, 40), style=plot.style_stepline)
+plot(displayAsia and timeframe.isintraday ? lastAsianL : na, "Completed Asia L", color=color.new(blue, 40), style=plot.style_stepline)
+plot(displayPD ? pdMid : na, "Premium Discount midpoint", color=color.new(gold, 50), style=plot.style_stepline)
+plot(not clean and simSide == 0 and phaseLong == 2 ? levelLong : na, "WATCH BUY RETEST (not entry)", color=color.new(green, 65), style=plot.style_linebr)
+plot(not clean and simSide == 0 and phaseShort == 2 ? levelShort : na, "WATCH SELL RETEST (not entry)", color=color.new(red, 65), style=plot.style_linebr)
+p0 = plot(displayLevels and hasPlan ? refLine : na, "SIGNAL REF / PAPER ENTRY", color=color.white, linewidth=2, style=plot.style_linebr)
+p1 = plot(displayLevels and hasPlan ? stopLine : na, "INITIAL SL", color=color.new(red, 30), linewidth=2, style=plot.style_linebr)
+plot(displayLevels and simSide != 0 and activeStopLine != stopLine ? activeStopLine : na, "MANAGED SL", color=gold, linewidth=2, style=plot.style_linebr)
+plot(displayLevels and hasPlan ? tpLine1 : na, "TP1", color=blue, linewidth=2, style=plot.style_linebr)
+plot(displayLevels and hasPlan ? tpLine2 : na, "TP2", color=color.rgb(156, 164, 255), linewidth=2, style=plot.style_linebr)
+p3 = plot(displayLevels and hasPlan ? tpLine3 : na, "TP3", color=green, linewidth=2, style=plot.style_linebr)
+fill(p0, p1, color=color.new(red, 93), title="Planned risk (paper)")
+fill(p0, p3, color=color.new(green, 95), title="Planned reward (paper)")
+plotshape(newBuy, title="CLOSE-CONFIRMED BUY SIGNAL", style=shape.labelup, location=location.belowbar, color=green, text="BUY\nCONFIRMED", textcolor=color.black, size=size.large)
+plotshape(newSell, title="CLOSE-CONFIRMED SELL SIGNAL", style=shape.labeldown, location=location.abovebar, color=red, text="SELL\nCONFIRMED", textcolor=color.white, size=size.large)
+plotshape(detailed and equalHighs and not equalHighs[1], title="Confirmed equal highs", style=shape.triangledown, location=location.abovebar, color=gold, size=size.tiny, text="EQH")
+plotshape(detailed and equalLows and not equalLows[1], title="Confirmed equal lows", style=shape.triangleup, location=location.belowbar, color=blue, size=size.tiny, text="EQL")
+plotshape(detailed and sweepMarkBuy, title="Sweep low", style=shape.circle, location=location.belowbar, color=blue, text="SWEEP", size=size.small)
+plotshape(detailed and sweepMarkSell, title="Sweep high", style=shape.circle, location=location.abovebar, color=gold, text="SWEEP", size=size.small)
+// Distinguish a sweep-led MSS from a trend-continuation BOS. Both are detected at candle close.
+plotshape(not clean and shiftMarkBuy and sweepFamilyLong, title="Bullish MSS after sweep", style=shape.square, location=location.belowbar, color=green, text="MSS", size=size.tiny)
+plotshape(not clean and shiftMarkSell and sweepFamilyShort, title="Bearish MSS after sweep", style=shape.square, location=location.abovebar, color=red, text="MSS", size=size.tiny)
+plotshape(not clean and shiftMarkBuy and not sweepFamilyLong, title="Bullish continuation BOS", style=shape.square, location=location.belowbar, color=green, text="BOS", size=size.tiny)
+plotshape(not clean and shiftMarkSell and not sweepFamilyShort, title="Bearish continuation BOS", style=shape.square, location=location.abovebar, color=red, text="BOS", size=size.tiny)
+plotshape(eventStop, title="PAPER STOP", style=shape.xcross, location=location.abovebar, color=red, text="PAPER SL", size=size.tiny)
+plotshape(eventTP3, title="PAPER TP3", style=shape.diamond, location=location.abovebar, color=green, text="PAPER TP3", size=size.tiny)
+
+// Human-readable momentum context and expired entries; these are never confirmed BUY/SELL trades.
+plotshape(contextBullMark and not newBuy, title="BULL MOMENTUM (NOT ENTRY)", style=shape.labelup, location=location.belowbar, color=color.new(green, 45), text="BULL MOVE\nNO ENTRY", textcolor=color.white, size=size.normal)
+plotshape(contextBearMark and not newSell, title="BEAR MOMENTUM (NOT ENTRY)", style=shape.labeldown, location=location.abovebar, color=color.new(red, 40), text="BEAR MOVE\nNO ENTRY", textcolor=color.white, size=size.normal)
+plotshape(eventLateBuy, title="BUY setup expired (NO CHASE)", style=shape.labelup, location=location.belowbar, color=color.new(gold, 20), text="LATE BUY\nCANCELLED", textcolor=color.black, size=size.small)
+plotshape(eventLateSell, title="SELL setup expired (NO CHASE)", style=shape.labeldown, location=location.abovebar, color=color.new(gold, 20), text="LATE SELL\nCANCELLED", textcolor=color.black, size=size.small)
+
+// Labels always anchored near the CURRENT bar: no historical-offset drawing bug.
+var label lblEntry = na
+var label lblSL = na
+var label lblTP1 = na
+var label lblTP2 = na
+var label lblTP3 = na
+if barstate.islast
+    label.delete(lblEntry)
+    label.delete(lblSL)
+    label.delete(lblTP1)
+    label.delete(lblTP2)
+    label.delete(lblTP3)
+    if displayLevels and hasPlan
+        lblEntry := label.new(bar_index + 2, refLine, (simSide != 0 ? "PAPER FILL " : "SIGNAL REF ") + str.tostring(refLine, format.mintick), color=color.white, textcolor=color.black, style=label.style_label_left, size=size.small)
+        lblSL := label.new(bar_index + 2, activeStopLine, "SL " + str.tostring(activeStopLine, format.mintick), color=red, textcolor=color.white, style=label.style_label_left, size=size.small)
+        lblTP1 := label.new(bar_index + 2, tpLine1, "TP1 " + str.tostring(tpLine1, format.mintick), color=blue, textcolor=color.black, style=label.style_label_left, size=size.small)
+        lblTP2 := label.new(bar_index + 2, tpLine2, "TP2 " + str.tostring(tpLine2, format.mintick), color=color.rgb(156, 164, 255), textcolor=color.black, style=label.style_label_left, size=size.small)
+        lblTP3 := label.new(bar_index + 2, tpLine3, "TP3 " + str.tostring(tpLine3, format.mintick), color=green, textcolor=color.black, style=label.style_label_left, size=size.small)
+
+// Compact dashboard. Map and confirmed marks provide the primary visual information.
+var table dashboard = table.new(position.top_right, 2, 9, bgcolor=dark, frame_color=color.rgb(61, 77, 104), frame_width=1)
+if barstate.islast and displayDashboard
+    bool counterLong = phaseLong != 0 and not bullHTF
+    bool counterShort = phaseShort != 0 and not bearHTF
+    string pending = phaseLong == 2 ? "BUY / RETEST" : phaseShort == 2 ? "SELL / RETEST" : phaseLong == 1 ? "BUY / WAIT MSS" : phaseShort == 1 ? "SELL / WAIT MSS" : "NO SETUP"
+    string status = simSide == 1 ? "PAPER LONG" : simSide == -1 ? "PAPER SHORT" : queuedSide != 0 ? "CONFIRMED / NEXT OPEN" : eventLateBuy or eventLateSell ? "LATE - NO CHASE" : counterLong or counterShort ? "WAIT / AGAINST HTF" : pending == "NO SETUP" ? "WAIT / NO TRADE" : "WATCH / " + pending
+    bool activePlan = simSide != 0 or queuedSide != 0
+    string stopText = activePlan ? str.tostring(activeStopLine, format.mintick) : "—"
+    string priceText = activePlan ? str.tostring(refLine, format.mintick) : "—"
+    string targetsText = activePlan ? str.tostring(tpLine1, format.mintick) + " / " + str.tostring(tpLine2, format.mintick) + " / " + str.tostring(tpLine3, format.mintick) : "—"
+    table.cell(dashboard, 0, 0, "◆ QIRVANTA SNIPER", bgcolor=panel, text_color=color.white)
+    table.cell(dashboard, 1, 0, "v7.6 / " + style, bgcolor=panel, text_color=green)
+    table.cell(dashboard, 0, 1, "DECISION", text_color=grey)
+    table.cell(dashboard, 1, 1, status, text_color=activePlan ? (simSide == 1 or queuedSide == 1 ? green : red) : gold)
+    table.cell(dashboard, 0, 2, "HTF / REGIME", bgcolor=panel, text_color=grey)
+    table.cell(dashboard, 1, 2, htf + " / " + regime, bgcolor=panel, text_color=color.white)
+    table.cell(dashboard, 0, 3, "SETUP STEP", text_color=grey)
+    table.cell(dashboard, 1, 3, activePlan ? "PAPER / NEXT OPEN" : pending, text_color=gold)
+    table.cell(dashboard, 0, 4, "BLOCKER", bgcolor=panel, text_color=grey)
+    table.cell(dashboard, 1, 4, activePlan ? "PAPER ONLY / NOT LIVE" : blockedReason, bgcolor=panel, text_color=gold)
+    table.cell(dashboard, 0, 5, "REFERENCE / SL", text_color=grey)
+    table.cell(dashboard, 1, 5, priceText + " / " + stopText, text_color=color.white)
+    table.cell(dashboard, 0, 6, "TP1 / TP2 / TP3", bgcolor=panel, text_color=grey)
+    table.cell(dashboard, 1, 6, targetsText, bgcolor=panel, text_color=blue)
+    table.cell(dashboard, 0, 7, "PAPER TRADES / R", text_color=grey)
+    table.cell(dashboard, 1, 7, str.tostring(tradesSeen) + " / " + str.tostring(totalNetR, "#.##") + "R (est.)", text_color=color.white)
+    table.cell(dashboard, 0, 8, "RISK SHIELD", bgcolor=panel, text_color=grey)
+    table.cell(dashboard, 1, 8, paperRiskDisplay ? "RESEARCH / PAPER ONLY" : "PAUSED / PAPER", bgcolor=panel, text_color=paperRiskDisplay ? green : red)
+
+// TradingView must create alerts manually. One dynamic message per bar.
+alertcondition(newBuy, title="QIRVANTA V7 BUY", message="Confirmed BUY on {{ticker}} {{interval}}. Use Any alert() function call for price levels.")
+alertcondition(newSell, title="QIRVANTA V7 SELL", message="Confirmed SELL on {{ticker}} {{interval}}. Use Any alert() function call for price levels.")
+alertcondition(eventTP1, title="QIRVANTA V7 PAPER TP1", message="Paper TP1 on {{ticker}}")
+alertcondition(eventTP2, title="QIRVANTA V7 PAPER TP2", message="Paper TP2 on {{ticker}}")
+alertcondition(eventTP3, title="QIRVANTA V7 PAPER TP3", message="Paper TP3 on {{ticker}}")
+alertcondition(eventStop, title="QIRVANTA V7 PAPER STOP", message="Paper stop on {{ticker}}")
+alertcondition(eventLock, title="QIRVANTA V7 PAPER PROFIT LOCK", message="Paper lock on {{ticker}}")
+alertcondition(setupInvalidated, title="QIRVANTA V7 SETUP INVALIDATED", message="Invalidated setup on {{ticker}}")
+alertcondition(contextBearMark, title="QIRVANTA EARLY BEARISH CONTEXT", message="Bearish momentum confirmed on {{ticker}} {{interval}}. CONTEXT ONLY, NOT SELL ENTRY.")
+alertcondition(contextBullMark, title="QIRVANTA EARLY BULLISH CONTEXT", message="Bullish momentum confirmed on {{ticker}} {{interval}}. CONTEXT ONLY, NOT BUY ENTRY.")
+alertcondition(eventLateBuy or eventLateSell, title="QIRVANTA NO CHASE CANCELLATION", message="Late/extended setup cancelled on {{ticker}} {{interval}}. NO ENTRY.")
+
+
+// ==== QIRVANTA v7.6 PRICE-CHART MAP & HISTORICAL PAPER TRADE ZONES ====
+// Never retroactively project a signal. Draw each trade only when next-open PAPER fill is known.
+var box activeRiskZone = na
+var box activeProfitZone = na
+var line activeEntryMark = na
+var line activeStopMark = na
+var line activeTp1Mark = na
+var line activeTp2Mark = na
+var line activeTp3Mark = na
+var box[] oldRiskZones = array.new_box()
+var box[] oldProfitZones = array.new_box()
+var line[] oldEntries = array.new_line()
+var line[] oldStops = array.new_line()
+var line[] oldTp1 = array.new_line()
+var line[] oldTp2 = array.new_line()
+var line[] oldTp3 = array.new_line()
+var label[] oldSignalTags = array.new_label()
+
+if barstate.isconfirmed and (newBuy or newSell) and showSignalDetails and detailed
+    color sideColor = newBuy ? green : red
+    string signalMessage = (newBuy ? "BUY" : "SELL") + " CONFIRMED\nREF " + str.tostring(plannedRef, format.mintick) + "\nSL " + str.tostring(plannedStop, format.mintick) + "\nTP1 " + str.tostring(plannedTP1, format.mintick) + " | TP3 " + str.tostring(plannedTP3, format.mintick) + "\nPAPER NEXT OPEN / NOT LIVE"
+    label tag = label.new(bar_index, newBuy ? low - atr * 0.1 : high + atr * 0.1, signalMessage, style=newBuy ? label.style_label_up : label.style_label_down, color=sideColor, textcolor=color.black, size=size.small)
+    array.push(oldSignalTags, tag)
+    if array.size(oldSignalTags) > keepTrades
+        label.delete(array.shift(oldSignalTags))
+
+if barstate.isconfirmed and paperEntered and showPastTrades
+    activeRiskZone := box.new(left=bar_index, top=math.max(simEntry, simInitialSL), right=bar_index+1, bottom=math.min(simEntry, simInitialSL), border_color=color.new(red, 60), bgcolor=color.new(red, 87))
+    activeProfitZone := box.new(left=bar_index, top=math.max(simEntry, simTP3), right=bar_index+1, bottom=math.min(simEntry, simTP3), border_color=color.new(green, 75), bgcolor=color.new(green, 91))
+    activeEntryMark := line.new(bar_index, simEntry, bar_index+1, simEntry, color=color.white, width=2)
+    activeStopMark := line.new(bar_index, simInitialSL, bar_index+1, simInitialSL, color=red, width=2)
+    activeTp1Mark := line.new(bar_index, simTP1, bar_index+1, simTP1, color=blue, style=line.style_dashed)
+    activeTp2Mark := line.new(bar_index, simTP2, bar_index+1, simTP2, color=color.rgb(156, 164, 255), style=line.style_dashed)
+    activeTp3Mark := line.new(bar_index, simTP3, bar_index+1, simTP3, color=green, width=2)
+    array.push(oldRiskZones, activeRiskZone)
+    array.push(oldProfitZones, activeProfitZone)
+    array.push(oldEntries, activeEntryMark)
+    array.push(oldStops, activeStopMark)
+    array.push(oldTp1, activeTp1Mark)
+    array.push(oldTp2, activeTp2Mark)
+    array.push(oldTp3, activeTp3Mark)
+    if array.size(oldRiskZones) > keepTrades
+        box.delete(array.shift(oldRiskZones))
+        box.delete(array.shift(oldProfitZones))
+        line.delete(array.shift(oldEntries))
+        line.delete(array.shift(oldStops))
+        line.delete(array.shift(oldTp1))
+        line.delete(array.shift(oldTp2))
+        line.delete(array.shift(oldTp3))
+
+if barstate.isconfirmed and showPastTrades and not na(activeRiskZone) and (simSide != 0 or paperClosed)
+    int rightEdge = bar_index + 1
+    box.set_right(activeRiskZone, rightEdge)
+    box.set_right(activeProfitZone, rightEdge)
+    line.set_x2(activeEntryMark, rightEdge)
+    line.set_x2(activeStopMark, rightEdge)
+    line.set_x2(activeTp1Mark, rightEdge)
+    line.set_x2(activeTp2Mark, rightEdge)
+    line.set_x2(activeTp3Mark, rightEdge)
+
+// Latest confirmed liquidity and pending retest on every visible chart.
+var line highGuide = na
+var line lowGuide = na
+var label highLabel = na
+var label lowLabel = na
+var box watchZone = na
+var label watchLabel = na
+var box bullFvgZone = na
+var box bearFvgZone = na
+var label noSetupLabel = na
+var line mssTriggerLine = na
+if barstate.islast
+    line.delete(highGuide)
+    line.delete(lowGuide)
+    label.delete(highLabel)
+    label.delete(lowLabel)
+    box.delete(watchZone)
+    label.delete(watchLabel)
+    box.delete(bullFvgZone)
+    box.delete(bearFvgZone)
+    label.delete(noSetupLabel)
+    line.delete(mssTriggerLine)
+    if showMarketMap
+        float mapATR = na(atr) ? 0.0 : atr
+        if not na(lastPivotHigh) and math.abs(lastPivotHigh - close) < mapATR * mapDistanceATR
+            highGuide := line.new(bar_index, lastPivotHigh, bar_index+projection, lastPivotHigh, color=color.new(red, 36), style=line.style_dashed)
+            highLabel := label.new(bar_index+projection, lastPivotHigh, "SWING HIGH " + str.tostring(lastPivotHigh, format.mintick), style=label.style_label_left, color=color.new(red, 65), textcolor=color.white, size=size.tiny)
+        if not na(lastPivotLow) and math.abs(lastPivotLow - close) < mapATR * mapDistanceATR
+            lowGuide := line.new(bar_index, lastPivotLow, bar_index+projection, lastPivotLow, color=color.new(green, 36), style=line.style_dashed)
+            lowLabel := label.new(bar_index+projection, lastPivotLow, "SWING LOW " + str.tostring(lastPivotLow, format.mintick), style=label.style_label_left, color=color.new(green, 65), textcolor=color.white, size=size.tiny)
+        bool longWatch = phaseLong != 0 and not na(levelLong)
+        bool shortWatch = phaseShort != 0 and not na(levelShort)
+        if longWatch or shortWatch
+            bool focusedLong = longWatch and (not shortWatch or phaseLong >= phaseShort)
+            int focusStage = focusedLong ? phaseLong : phaseShort
+            bool counterHTF = focusedLong ? not bullHTF : not bearHTF
+            float focus = focusedLong ? levelLong : levelShort
+            color focusColor = focusedLong ? green : red
+            bool nearPrice = mapATR > 0 and math.abs(focus - close) < mapATR * mapDistanceATR
+            if counterHTF
+                // No attractive entry zone while higher timeframe contradicts the setup.
+                watchLabel := label.new(bar_index+projection, close, "COUNTER-TREND / NO ENTRY\n" + (focusedLong ? "BUY" : "SELL") + " NOT HTF ALIGNED", style=label.style_label_left, color=color.new(gold, 18), textcolor=color.black, size=size.tiny)
+            else if focusStage == 1
+                // Before MSS, there is no valid retest zone: draw ONLY the structure trigger.
+                if nearPrice
+                    mssTriggerLine := line.new(bar_index, focus, bar_index+projection, focus, color=color.new(focusColor, 35), style=line.style_dashed, width=2)
+                    watchLabel := label.new(bar_index+projection, focus, (focusedLong ? "BUY" : "SELL") + " MSS TRIGGER\nWAIT FOR CONFIRMED BREAK", style=label.style_label_left, color=color.new(focusColor, 20), textcolor=color.black, size=size.tiny)
+            else if focusStage == 2 and nearPrice
+                float zoneTop = focusedLong ? focus + mapATR * nearRetestATR : focus + mapATR * pierceRetestATR
+                float zoneBottom = focusedLong ? focus - mapATR * pierceRetestATR : focus - mapATR * nearRetestATR
+                watchZone := box.new(left=bar_index, top=zoneTop, right=bar_index+projection, bottom=zoneBottom, border_color=color.new(focusColor, 56), bgcolor=color.new(focusColor, 91))
+                watchLabel := label.new(bar_index+projection, focus, (focusedLong ? "WATCH BUY" : "WATCH SELL") + "\nRETEST + CANDLE CLOSE\nNOT CONFIRMED", style=label.style_label_left, color=color.new(focusColor, 18), textcolor=color.black, size=size.tiny)
+        if showFvgMap and not na(bullGapAt) and not na(bullGapTop) and bullGapTop > bullGapBottom and mapATR > 0 and math.abs(close - bullGapTop) < mapATR * mapDistanceATR
+            bullFvgZone := box.new(left=bar_index, top=bullGapTop, right=bar_index+projection, bottom=bullGapBottom, border_color=color.new(blue, 80), bgcolor=color.new(blue, 94), text="BULL FVG", text_color=color.new(blue, 15), text_size=size.tiny)
+        if showFvgMap and not na(bearGapAt) and not na(bearGapBottom) and bearGapTop > bearGapBottom and mapATR > 0 and math.abs(close - bearGapBottom) < mapATR * mapDistanceATR
+            bearFvgZone := box.new(left=bar_index, top=bearGapTop, right=bar_index+projection, bottom=bearGapBottom, border_color=color.new(gold, 80), bgcolor=color.new(gold, 94), text="BEAR FVG", text_color=color.new(gold, 15), text_size=size.tiny)
+
+// Clear event labels reveal where the historical virtual TP/SL actually occurred.
+plotshape(detailed and eventTP1, title="PAPER TP1 HIT", style=shape.circle, location=location.abovebar, color=blue, text="TP1", size=size.tiny)
+plotshape(detailed and eventTP2, title="PAPER TP2 HIT", style=shape.circle, location=location.abovebar, color=color.rgb(156, 164, 255), text="TP2", size=size.tiny)
+plotshape(detailed and eventTime, title="PAPER TIME EXIT", style=shape.circle, location=location.abovebar, color=gold, text="TIME", size=size.tiny)
+plotshape(detailed and eventSkip, title="PAPER OPEN GAP CANCEL", style=shape.xcross, location=location.abovebar, color=gold, text="GAP", size=size.tiny)
+
+// ==== LAST CONFIRMED SIGNAL ARCHIVE (NOT A CURRENT ENTRY) ====
+// queuedRef/queuedStop/queuedTP* retain the last CONFIRMED signal plan.
+// lastNetR/lastExit refer to the last CLOSED simulated trade; they may be older.
+var table archivePanel = table.new(position.bottom_right, 2, 9, bgcolor=color.rgb(11, 19, 34), frame_color=color.rgb(61, 77, 104), frame_width=1)
+if barstate.islast and showFullArchive
+    bool archivedAvailable = not na(queuedRef)
+    string archivedSide = archivedAvailable ? (queuedTP1 > queuedRef ? "BUY (HISTORY)" : "SELL (HISTORY)") : "NO CONFIRMED SIGNAL"
+    table.cell(archivePanel, 0, 0, "LAST CONFIRMED PLAN", bgcolor=color.rgb(22, 36, 56), text_color=color.white)
+    table.cell(archivePanel, 1, 0, "ARCHIVE / NOT LIVE", bgcolor=color.rgb(22, 36, 56), text_color=color.rgb(255, 187, 79))
+    table.cell(archivePanel, 0, 1, "LAST SIGNAL", text_color=color.rgb(175, 190, 212))
+    table.cell(archivePanel, 1, 1, archivedSide, text_color=archivedAvailable ? (queuedTP1 > queuedRef ? color.rgb(13, 220, 167) : color.rgb(253, 79, 115)) : color.rgb(175, 190, 212))
+    table.cell(archivePanel, 0, 2, "REFERENCE CLOSE", text_color=color.rgb(175, 190, 212))
+    table.cell(archivePanel, 1, 2, archivedAvailable ? str.tostring(queuedRef, format.mintick) : "—", text_color=color.white)
+    table.cell(archivePanel, 0, 3, "PLANNED SL", text_color=color.rgb(175, 190, 212))
+    table.cell(archivePanel, 1, 3, archivedAvailable ? str.tostring(queuedStop, format.mintick) : "—", text_color=color.rgb(253, 79, 115))
+    table.cell(archivePanel, 0, 4, "PLANNED TP1", text_color=color.rgb(175, 190, 212))
+    table.cell(archivePanel, 1, 4, archivedAvailable ? str.tostring(queuedTP1, format.mintick) : "—", text_color=color.rgb(76, 178, 255))
+    table.cell(archivePanel, 0, 5, "PLANNED TP2", text_color=color.rgb(175, 190, 212))
+    table.cell(archivePanel, 1, 5, archivedAvailable ? str.tostring(queuedTP2, format.mintick) : "—", text_color=color.rgb(156, 164, 255))
+    table.cell(archivePanel, 0, 6, "PLANNED TP3", text_color=color.rgb(175, 190, 212))
+    table.cell(archivePanel, 1, 6, archivedAvailable ? str.tostring(queuedTP3, format.mintick) : "—", text_color=color.rgb(13, 220, 167))
+    table.cell(archivePanel, 0, 7, "LAST CLOSED PAPER R", text_color=color.rgb(175, 190, 212))
+    table.cell(archivePanel, 1, 7, na(lastNetR) ? "—" : str.tostring(lastNetR, "#.##") + " R (EST.)", text_color=na(lastNetR) ? color.gray : (lastNetR >= 0 ? color.rgb(13, 220, 167) : color.rgb(253, 79, 115)))
+    table.cell(archivePanel, 0, 8, "LAST PAPER EXIT", text_color=color.rgb(175, 190, 212))
+    table.cell(archivePanel, 1, 8, lastExit, text_color=color.rgb(255, 187, 79))
