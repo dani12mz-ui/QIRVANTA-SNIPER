@@ -1,0 +1,58 @@
+{
+  "tested_project_sha256": "89939a99327428305d3dfd98e316a0fad7177a4a2eb04b3255c5a32239c3fa17",
+  "code_commit_local": "217451ea9fd3d20dcc1507e3f65bc9d583ead8ff",
+  "upstream_baseline_commit": "0ad5fe2061af1911c5fb4720c6426787109e28e2",
+  "generated_utc": "2026-11-08T07:13:08.018270+00:00",
+  "CODE_TESTS": {
+    "status": "PASS",
+    "scope": "PYTHON_REFERENCE_AND_STATIC_PINE_SOURCE_NOT_PINE_RUNTIME",
+    "tests": 122,
+    "failures": 0,
+    "errors": 0,
+    "evidence": [
+      "reports/tests.json",
+      "reports/unit_tests.log"
+    ],
+    "targeted_mutations_detected": true
+  },
+  "PINE_COMPILE": {
+    "status": "BLOCKED",
+    "detail": "PINE_COMPILE_UNVERIFIED",
+    "reason": "No authorized accessible Pine compiler was used; local lexical tests do not compile Pine"
+  },
+  "PINE_RUNTIME": {
+    "status": "BLOCKED",
+    "reason": "No execution in TradingView on M5/M15/M30/H1/H4"
+  },
+  "EXECUTION_PARITY": {
+    "status": "BLOCKED",
+    "reason": "No actual Pine/native journal for runtime comparison; fixed common source identity is not execution equality",
+    "canonical_core_sha256": "7449d40715814132390c3d9c0e63bd9ce9e1fa1e6ed1b26da221107efe727a25"
+  },
+  "OUT_OF_SAMPLE": {
+    "status": "BLOCKED",
+    "detail": "PERFORMANCE_UNVERIFIED_MISSING_DATA",
+    "reason": "No real OHLC/tick data or complete Pine export; zero optimization trials"
+  },
+  "FORWARD_TEST": {
+    "status": "NOT_RUN",
+    "reason": "No live forward observation"
+  },
+  "MOBILE_UI": {
+    "status": "BLOCKED",
+    "reason": "TradingView app not rendered; HTML is only a prototype",
+    "html_mock_subcheck": "PASS",
+    "html_cases": 9,
+    "evidence": "reports/mobile_mock.json"
+  },
+  "GITHUB": {
+    "modified": false,
+    "published": false
+  },
+  "BROKER": {
+    "connected": false,
+    "orders_submitted": false
+  },
+  "production_ready": false,
+  "profitability_demonstrated": false
+}

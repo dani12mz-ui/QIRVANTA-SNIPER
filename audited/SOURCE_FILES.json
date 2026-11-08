@@ -1,0 +1,21 @@
+{
+  "source_archive": "QIRVANTA_PRO_AUDITED.zip",
+  "publication_scope": "TWO_UNMODIFIED_STANDALONE_PINE_FILES_AND_ARCHIVED_ACCEPTANCE",
+  "canonical_core_sha256": "7449d40715814132390c3d9c0e63bd9ce9e1fa1e6ed1b26da221107efe727a25",
+  "files": {
+    "QIRVANTA_SNIPER_PRO.pine": {
+      "bytes": 78494,
+      "git_blob_sha1": "8564f9ed97136c76b3453a382cb3db342a3a3a33",
+      "sha256": "8ffbb5097fc7160182b4c73b30645d89af0ef10534160ecc44ce64e480980220"
+    },
+    "QIRVANTA_SNIPER_VALIDATION.pine": {
+      "bytes": 90919,
+      "git_blob_sha1": "a711ad8219e8d83dfc04205db4b96751b8bf522a",
+      "sha256": "a2f7da8ff0363683eb93f44596f24b5d227993b4340c12add57792aa5a6cbcc4"
+    }
+  },
+  "matches_provided_zip": true,
+  "new_pine_compilation_performed": false,
+  "new_market_backtest_performed": false,
+  "main_modified_by_this_publication": false
+}
