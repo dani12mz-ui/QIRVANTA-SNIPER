@@ -1,21 +1,36 @@
 {
-  "source_archive": "QIRVANTA_PRO_AUDITED.zip",
-  "publication_scope": "TWO_UNMODIFIED_STANDALONE_PINE_FILES_AND_ARCHIVED_ACCEPTANCE",
-  "canonical_core_sha256": "7449d40715814132390c3d9c0e63bd9ce9e1fa1e6ed1b26da221107efe727a25",
+  "delivery": "QIRVANTA_PRO_CURRENT",
+  "source_archive": "QIRVANTA_PRO_CURRENT.zip",
+  "source_archive_sha256": "ead3ee6cee64758e5d7dc91bed966189de752faf01f166a832c8ab9c241d2911",
+  "publication_scope": "standalone Pine outputs and documentation, not the entire source archive",
+  "branch": "qirvanta-refactored-delivery",
+  "main_modified": false,
   "files": {
     "QIRVANTA_SNIPER_PRO.pine": {
-      "bytes": 78494,
-      "git_blob_sha1": "8564f9ed97136c76b3453a382cb3db342a3a3a33",
-      "sha256": "8ffbb5097fc7160182b4c73b30645d89af0ef10534160ecc44ce64e480980220"
+      "bytes": 91655,
+      "lines": 1234,
+      "git_blob_sha1": "4512180a8f313146267370a3fcc4ab403868eae2",
+      "sha256": "ee0a692777d439e9957957f6abb241420a0478578e10c7b906ab1d1a651ed30a"
     },
     "QIRVANTA_SNIPER_VALIDATION.pine": {
-      "bytes": 90919,
-      "git_blob_sha1": "a711ad8219e8d83dfc04205db4b96751b8bf522a",
-      "sha256": "a2f7da8ff0363683eb93f44596f24b5d227993b4340c12add57792aa5a6cbcc4"
+      "bytes": 104146,
+      "lines": 1400,
+      "git_blob_sha1": "feb48ef52d5640c49718cb8f614c3d1dae9ae9f8",
+      "sha256": "5cd7a04a6d97dfc1c37024f0d004874553c163a3b17b9984c03336f3aa9004a3"
+    },
+    "README_BG.md": {
+      "bytes": 9968,
+      "git_blob_sha1": "c033a23d7e4bff13d1181393b6e96de3bdfd67e6",
+      "sha256": "01b73331261e5a2d7c18817f1ca56eb91315bb45e8c203093fb79aa4b9d46864"
+    },
+    "reports/ACCEPTANCE.json": {
+      "bytes": 1930,
+      "git_blob_sha1": "45eaa20bcd2bd4397fc024009d5f7eef1a4414d8",
+      "sha256": "b06a770209416b1b0ba83fd2ace54004b2f97e991b615751962b44ffa0096da1"
     }
   },
-  "matches_provided_zip": true,
-  "new_pine_compilation_performed": false,
-  "new_market_backtest_performed": false,
-  "main_modified_by_this_publication": false
+  "compile": "UNVERIFIED",
+  "profitability": "NOT_DEMONSTRATED",
+  "code_modified_during_publication": false,
+  "tests_rerun_during_publication": false
 }

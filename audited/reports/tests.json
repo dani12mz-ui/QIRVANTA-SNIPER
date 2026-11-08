@@ -1,0 +1,20 @@
+{
+  "scope": "PYTHON_REFERENCE_AND_STATIC_PINE_SOURCE_NOT_PINE_RUNTIME",
+  "tests_run": 151,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "successful": true,
+  "source_unchanged_during_tests": true,
+  "project_sha256": "c06f35b99f8042cf333258bc416df03aa4f75a71e0fbae283edde8cb52a0d9ac",
+  "project_sha256_before": "c06f35b99f8042cf333258bc416df03aa4f75a71e0fbae283edde8cb52a0d9ac",
+  "git_head_before_test": null,
+  "python": "3.13.5",
+  "command": "python tools/run_tests.py",
+  "finished_utc": "2026-11-08T18:37:08.774695+00:00",
+  "exit_code": 0,
+  "duration_seconds": 1.537,
+  "pine_compile": "UNVERIFIED",
+  "execution_runtime_parity": "UNVERIFIED",
+  "market_profitability": "UNVERIFIED_MISSING_DATA"
+}
