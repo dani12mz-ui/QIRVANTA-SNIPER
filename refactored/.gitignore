@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+data/ohlc.csv
+data/pine_events.jsonl
+data/manifest.json
+reports/real_run/

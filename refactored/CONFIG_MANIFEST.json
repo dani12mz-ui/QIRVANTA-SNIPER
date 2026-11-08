@@ -1,0 +1,76 @@
+{
+  "source": "src/inputs.pineinc is canonical; regenerate both scripts with tools/build.py",
+  "baseline_commit": "7fe6534f72fa23da18aa9282ee8f5ac11dcc9df6",
+  "baseline_git_blob": "46263e3c4740e4fc57553b785ccc76b89df32865",
+  "core_sha256": "118d431271946bfb66e199ad9f795b0fe588a40817a5a11ec7fb69975c162b3d",
+  "symbol_provider": "NOT_BOUND: intended user context OANDA:XAUUSD; not equivalent to PU Prime XAUUSD.s",
+  "supported_timeframes_seconds": [
+    300,
+    900,
+    1800,
+    3600,
+    14400
+  ],
+  "ohlc": "standard only",
+  "risk_timezone": "Europe/Sofia, day keyed to BAR OPEN",
+  "markets_tested": [],
+  "optimization_trials": 0,
+  "actual_market_data_bundled": false,
+  "native_properties_defaults": {
+    "capital": 100000,
+    "currency": "USD",
+    "total_units": 3,
+    "commission_cash_per_contract_per_side": 0.175,
+    "slippage_ticks": 2,
+    "margin_percent": 100,
+    "process_orders_on_close": false,
+    "calc_on_order_fills": false,
+    "bar_magnifier_requested": true
+  },
+  "paper_cost_defaults": {
+    "spread_price_roundtrip": 0.35,
+    "slip_ticks_per_side": 2,
+    "commission_price_roundtrip": 0,
+    "funding_price_per_day": 0
+  },
+  "unknown_validation": {
+    "CODE_TESTS": {
+      "status": "PASS_LOCAL_REFERENCE_AND_STATIC_ONLY",
+      "tests": 85,
+      "errors": 0,
+      "failures": 0
+    },
+    "PINE_COMPILE": {
+      "status": "PINE_COMPILE_UNVERIFIED",
+      "reason": "No accessible authorized Pine compiler was available/used"
+    },
+    "EXECUTION_PARITY": {
+      "status": "UNVERIFIED_RUNTIME_WITH_KNOWN_FILL_DIFFERENCES",
+      "shared_source_core_sha256": "118d431271946bfb66e199ad9f795b0fe588a40817a5a11ec7fb69975c162b3d"
+    },
+    "OUT_OF_SAMPLE": {
+      "status": "PERFORMANCE_UNVERIFIED_MISSING_DATA"
+    },
+    "FORWARD_TEST": {
+      "status": "NOT_RUN"
+    },
+    "MOBILE_UI": {
+      "status": "HTML_MOCK_CHECKED_TRADINGVIEW_UNVERIFIED",
+      "viewports": [
+        "390x844",
+        "430x932",
+        "1440x900"
+      ]
+    },
+    "GITHUB": {
+      "modified": false,
+      "published": false
+    },
+    "BROKER": {
+      "connected": false,
+      "orders_submitted": false
+    },
+    "production_ready": false,
+    "profitability_demonstrated": false
+  }
+}

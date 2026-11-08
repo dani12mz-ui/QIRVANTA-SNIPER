@@ -1,0 +1,2 @@
+# Optional HTML mock rendering only; NOT needed for Pine/build/core tests.
+playwright>=1.40

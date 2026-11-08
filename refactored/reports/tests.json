@@ -1,0 +1,12 @@
+{
+  "scope": "PYTHON_REFERENCE_AND_STATIC_PINE_SOURCE_NOT_PINE_RUNTIME",
+  "tests_run": 85,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "successful": true,
+  "duration_seconds": 0.702,
+  "pine_compile": "UNVERIFIED",
+  "execution_runtime_parity": "UNVERIFIED",
+  "market_profitability": "UNVERIFIED_MISSING_DATA"
+}

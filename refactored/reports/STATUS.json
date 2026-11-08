@@ -1,0 +1,40 @@
+{
+  "CODE_TESTS": {
+    "status": "PASS_LOCAL_REFERENCE_AND_STATIC_ONLY",
+    "tests": 85,
+    "errors": 0,
+    "failures": 0
+  },
+  "PINE_COMPILE": {
+    "status": "PINE_COMPILE_UNVERIFIED",
+    "reason": "No accessible authorized Pine compiler was available/used"
+  },
+  "EXECUTION_PARITY": {
+    "status": "UNVERIFIED_RUNTIME_WITH_KNOWN_FILL_DIFFERENCES",
+    "shared_source_core_sha256": "118d431271946bfb66e199ad9f795b0fe588a40817a5a11ec7fb69975c162b3d"
+  },
+  "OUT_OF_SAMPLE": {
+    "status": "PERFORMANCE_UNVERIFIED_MISSING_DATA"
+  },
+  "FORWARD_TEST": {
+    "status": "NOT_RUN"
+  },
+  "MOBILE_UI": {
+    "status": "HTML_MOCK_CHECKED_TRADINGVIEW_UNVERIFIED",
+    "viewports": [
+      "390x844",
+      "430x932",
+      "1440x900"
+    ]
+  },
+  "GITHUB": {
+    "modified": false,
+    "published": false
+  },
+  "BROKER": {
+    "connected": false,
+    "orders_submitted": false
+  },
+  "production_ready": false,
+  "profitability_demonstrated": false
+}

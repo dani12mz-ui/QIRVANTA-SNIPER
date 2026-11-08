@@ -1,0 +1,9 @@
+{
+  "source_commit": "7fe6534f72fa23da18aa9282ee8f5ac11dcc9df6",
+  "source_git_blob": "46263e3c4740e4fc57553b785ccc76b89df32865",
+  "source_sha256": "b7b808f9b5e3f89cbad41fcb9bb2eeab6856308359f2211dc4e373e4a7dc6839",
+  "source_bytes": 119438,
+  "source_lines": 1348,
+  "provenance": "Exact UTF-8 text from supplied source; verified against specified Git blob. Mounted source recovery was needed; byte-identical pinned Git baseline recovered.",
+  "git_remote_modified": false
+}
