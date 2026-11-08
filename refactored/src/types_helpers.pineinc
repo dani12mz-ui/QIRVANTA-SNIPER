@@ -1,0 +1,234 @@
+// Stateful setup objects are isolated by family and direction.
+type Setup
+    int phase = 0
+    int bornBar = na
+    int bornTime = na
+    int mssBar = na
+    float anchor = na
+    float trigger = na
+    float rejectionHigh = na
+    float rejectionLow = na
+    bool swept = false
+    bool fvg = false
+    string id = ""
+
+type Plan
+    string id = ""
+    string setupId = ""
+    int family = 0
+    int side = 0
+    int signalBar = na
+    int createdTime = na
+    int signalTime = na
+    float reference = na
+    float initialStop = na
+    float tp1 = na
+    float tp2 = na
+    float tp3 = na
+    float risk = na
+    float atrValue = na
+    float costPrice = na
+    float maxRiskATR = na
+    float obstacle = na
+    float requiredRoom = 0.0
+    bool countertrend = false
+    string evidence = "НЕВАЛИДИРАН"
+    bool filterEligible = false
+
+type Event
+    string id = ""
+    string kind = ""
+    string book = "CORE"
+    string planId = ""
+    int family = 0
+    int side = 0
+    int effectiveTime = na
+    int knownTime = na
+    float price = na
+    float quantityFraction = na
+    float grossR = na
+    float costR = na
+    float netR = na
+    string reason = ""
+    string evidence = "НЕВАЛИДИРАН"
+    float reference = na
+    float stop = na
+    float tp1 = na
+    float tp2 = na
+    float tp3 = na
+    int createdTime = na
+    float atrValue = na
+    float costPrice = na
+    float maxRiskATR = na
+    float obstacle = na
+    float requiredRoom = 0.0
+    bool countertrend = false
+    bool filterEligible = false
+
+type Ledger
+    int entered = 0
+    int closed = 0
+    int positive = 0
+    int negative = 0
+    int zero = 0
+    int cancelled = 0
+    int capacitySkipped = 0
+    int ambiguousBars = 0
+    float gross = 0.0
+    float costs = 0.0
+    float net = 0.0
+    float gains = 0.0
+    float losses = 0.0
+    float peak = 0.0
+    float drawdown = 0.0
+    float holdBars = 0.0
+
+type Paper
+    int phase = 0
+    Plan p = na
+    float entry = na
+    float risk = na
+    float stop = na
+    float remaining = 1.0
+    bool hit1 = false
+    bool hit2 = false
+    bool hit3 = false
+    int fillBar = na
+    int fillTime = na
+    int lockBar = na
+    bool exitNextOpen = false
+    float gross = 0.0
+    float costs = 0.0
+    float lastExecutionPrice = na
+    int lastExecutionTime = na
+    string lastClosedId = ""
+    string lastClosedReason = ""
+    float lastClosedNet = na
+    string lastCancelledId = ""
+    string lastCancelledReason = ""
+    int dayKey = na
+    float dayNet = 0.0
+    int dayStreak = 0
+
+type EvidenceGate
+    bool paused = false
+    int pausedAtCount = 0
+
+f_side(int d) => d == 1 ? "КУПИ" : d == -1 ? "ПРОДАЙ" : "—"
+f_model(int m) => m == 1 ? "Ретест" : m == 2 ? "Пробив" : m == 3 ? "Обръщане" : "Общо"
+f_enabled(int m) => runModel == "Всички" or (m == 1 and runModel == "Ретест") or (m == 2 and runModel == "Бърз пробив") or (m == 3 and runModel == "Ранно обръщане")
+f_price(float v) => na(v) ? "—" : str.tostring(v, format.mintick)
+f_num(float v) => na(v) ? "null" : str.tostring(v, "#.########")
+f_int(int v) => na(v) ? "null" : str.tostring(v)
+f_short(string v, int n) => str.length(v) > n ? str.substring(v, 0, n - 1) + "…" : v
+f_escape(string v) => str.replace_all(str.replace_all(str.replace_all(v, "\\", "\\\\"), '"', '\\"'), "\n", "\\n")
+f_q(string v) => '"' + f_escape(v) + '"'
+f_id(int m, int d, int born) => syminfo.tickerid + "|" + timeframe.period + "|" + str.tostring(m) + "|" + str.tostring(d) + "|" + str.tostring(born)
+f_day(int t) => year(t, riskTimezone) * 10000 + month(t, riskTimezone) * 100 + dayofmonth(t, riskTimezone)
+f_stopRound(float x, int d) => d == 1 ? math.floor(x / syminfo.mintick + 1e-8) * syminfo.mintick : math.ceil(x / syminfo.mintick - 1e-8) * syminfo.mintick
+f_targetRound(float x, int d) => d == 1 ? math.ceil(x / syminfo.mintick - 1e-8) * syminfo.mintick : math.floor(x / syminfo.mintick + 1e-8) * syminfo.mintick
+f_nearest(float a, float b, float c, int d, float fromPrice) =>
+    float result = na
+    for x in array.from(a, b, c)
+        if not na(x) and (x - fromPrice) * d > 0
+            if na(result) or (x - fromPrice) * d < (result - fromPrice) * d
+                result := x
+    result
+f_reason(array<bool> tests, array<string> names) =>
+    string result = ""
+    for i = 0 to array.size(tests) - 1
+        if not array.get(tests, i)
+            result += (str.length(result) > 0 ? " / " : "") + array.get(names, i)
+    result == "" ? "УСЛОВИЯТА СА ИЗПЪЛНЕНИ" : result
+f_emit(array<Event> out, string kind, string book, string pid, int m, int d, int effective, float px, string reason) =>
+    Event e = Event.new()
+    e.id := pid + "|" + book + "|" + kind + "|" + str.tostring(time_close)
+    e.kind := kind
+    e.book := book
+    e.planId := pid
+    e.family := m
+    e.side := d
+    e.effectiveTime := effective
+    e.knownTime := time_close
+    e.price := px
+    e.reason := reason
+    // Each event is deduplicated by immutable identity within this evaluation.
+    bool seen = false
+    Event result = e
+    if array.size(out) > 0
+        for old in out
+            if old.id == e.id
+                seen := true
+                result := old
+    if not seen
+        array.push(out, e)
+    result
+f_planEvent(array<Event> out, Plan p, string kind, string book, int effective, float px, string reason) =>
+    Event e = f_emit(out, kind, book, p.id, p.family, p.side, effective, px, reason)
+    e.evidence := p.evidence
+    e.reference := p.reference
+    e.stop := p.initialStop
+    e.tp1 := p.tp1
+    e.tp2 := p.tp2
+    e.tp3 := p.tp3
+    e.createdTime := p.createdTime
+    e.atrValue := p.atrValue
+    e.costPrice := p.costPrice
+    e.maxRiskATR := p.maxRiskATR
+    e.obstacle := p.obstacle
+    e.requiredRoom := p.requiredRoom
+    e.countertrend := p.countertrend
+    e.filterEligible := p.filterEligible
+    e
+f_json(Event e) =>
+    "{\"schema\":\"qirvanta.event.v1\",\"event_id\":" + f_q(e.id) + ",\"event\":" + f_q(e.kind) + ",\"book\":" + f_q(e.book) + ",\"plan_id\":" + f_q(e.planId) + ",\"symbol\":" + f_q(syminfo.tickerid) + ",\"timeframe\":" + f_q(timeframe.period) + ",\"family\":" + str.tostring(e.family) + ",\"side\":" + str.tostring(e.side) + ",\"bar_open_time\":" + str.tostring(time) + ",\"bar_close_time\":" + f_int(time_close) + ",\"effective_time\":" + f_int(e.effectiveTime) + ",\"known_time\":" + f_int(e.knownTime) + ",\"price\":" + f_num(e.price) + ",\"quantity_fraction\":" + f_num(e.quantityFraction) + ",\"gross_r\":" + f_num(e.grossR) + ",\"cost_r\":" + f_num(e.costR) + ",\"net_r\":" + f_num(e.netR) + ",\"reference\":" + f_num(e.reference) + ",\"initial_sl\":" + f_num(e.stop) + ",\"tp1\":" + f_num(e.tp1) + ",\"tp2\":" + f_num(e.tp2) + ",\"tp3\":" + f_num(e.tp3) + ",\"evidence\":" + f_q(e.evidence) + ",\"reason\":" + f_q(e.reason) + ",\"created_time\":" + f_int(e.createdTime) + ",\"atr_at_signal\":" + f_num(e.atrValue) + ",\"roundtrip_cost_price\":" + f_num(e.costPrice) + ",\"max_risk_atr\":" + f_num(e.maxRiskATR) + ",\"obstacle\":" + f_num(e.obstacle) + ",\"required_room_r\":" + f_num(e.requiredRoom) + ",\"countertrend\":" + (e.countertrend ? "true" : "false") + ",\"filter_eligible\":" + (e.filterEligible ? "true" : "false") + ",\"advisory_only\":true}"
+f_makePlan(int family, int d, float sl, int born, float maxRisk, float obstacle, float room) =>
+    Plan p = Plan.new()
+    p.setupId := f_id(family, d, born)
+    p.id := p.setupId + "|" + str.tostring(time_close)
+    p.family := family
+    p.side := d
+    p.signalBar := bar_index
+    p.createdTime := born
+    p.signalTime := time_close
+    p.reference := math.round_to_mintick(close)
+    p.initialStop := sl
+    p.risk := (p.reference - sl) * d
+    p.tp1 := f_targetRound(p.reference + d * p.risk * target1R, d)
+    p.tp2 := f_targetRound(p.reference + d * p.risk * target2R, d)
+    p.tp3 := f_targetRound(p.reference + d * p.risk * target3R, d)
+    p.atrValue := atr
+    p.costPrice := roundTripPriceCost
+    p.maxRiskATR := maxRisk
+    p.obstacle := obstacle
+    p.requiredRoom := room
+    p.countertrend := d == 1 ? not bullHTF : not bearHTF
+    p
+f_validPlan(Plan p) =>
+    not na(p.risk) and p.risk >= syminfo.mintick and p.risk + syminfo.mintick * 1e-6 >= minStopATR * p.atrValue and p.risk <= p.maxRiskATR * p.atrValue and p.costPrice / p.risk <= maxCostRisk and (p.tp1 - p.reference) * p.side > 0 and (p.tp2 - p.tp1) * p.side > 0 and (p.tp3 - p.tp2) * p.side > 0
+f_clear(Setup s) =>
+    s.phase := 0
+    s.bornBar := na
+    s.bornTime := na
+    s.mssBar := na
+    s.anchor := na
+    s.trigger := na
+    s.rejectionHigh := na
+    s.rejectionLow := na
+    s.fvg := false
+    s.swept := false
+    s.id := ""
+    s
+f_start(Setup s, int family, int d, int phase, float anchor, float trigger, bool swept, bool gap) =>
+    s.phase := phase
+    s.bornBar := bar_index
+    s.bornTime := time_close
+    s.mssBar := phase == 2 ? bar_index : na
+    s.anchor := anchor
+    s.trigger := trigger
+    s.swept := swept
+    s.fvg := gap
+    s.rejectionHigh := high
+    s.rejectionLow := low
+    s.id := f_id(family, d, time_close)
+    s

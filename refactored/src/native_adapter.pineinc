@@ -1,0 +1,132 @@
+// NATIVE BROKER-EMULATOR ADAPTER. Research only; order-fill alerts disabled.
+// Fixed signal-close SL/TP brackets exist at order submission, before the next-open fill.
+// Native market orders cannot be retrospectively rejected at their already-executed open.
+string nativePortfolio = input.string("RAW", "Native портфейл", options=["RAW", "ФИЛТРИРАН"], group="09 / NATIVE TEST")
+float nativeUnitQty = input.float(1.0, "Native единици във всяка 1/3 част (НЕ MT5 лотове)", minval=0.001, group="09 / NATIVE TEST")
+bool flattenInvalidNativeFill = input.bool(true, "Невалиден native гап: изход на следващо отваряне", group="09 / NATIVE TEST", tooltip="Това НЕ отменя минало изпълнение. Разликата спрямо PAPER gap rejection остава в отчета.")
+if barstate.isfirst and (na(syminfo.pointvalue) or syminfo.pointvalue <= 0)
+    runtime.error("Няма валидна стойност на pointvalue за native R отчет.")
+var Plan nativePlan = na
+var int nativeSubmitBar = na
+var int nativeFillBar = na
+var int nativeSeenClosed = 0
+var int nativeClosedCampaigns = 0
+var bool nativeEntryObserved = false
+var bool nativeLeg1Closed = false
+var bool nativeLeg2Closed = false
+var bool nativeLeg3Closed = false
+var bool nativeTimeOrder = false
+var float nativeEntry = na
+var float nativeRisk = na
+var float nativeStop = na
+var float nativeGross = 0.0
+var float nativeCosts = 0.0
+var float nativeTotalR = 0.0
+if processBar
+    bool nativeClosedThisBar = false
+    // Observe a surviving entry. All observations occur at the current close.
+    if not na(nativePlan) and not nativeEntryObserved and strategy.position_size != 0
+        nativeEntryObserved := true
+        nativeEntry := strategy.position_avg_price
+        nativeRisk := math.max(syminfo.mintick, math.abs(nativeEntry - nativePlan.initialStop))
+        nativeFillBar := strategy.opentrades.entry_bar_index(0)
+        Event entryEvent = f_planEvent(events, nativePlan, "NATIVE_ENTRY", "NATIVE", strategy.opentrades.entry_time(0), nativeEntry, "Native market fill; няма pre-open rejection")
+        entryEvent.quantityFraction := 1.0
+        bool nativeGapInvalid = f_openRejection(nativePlan, nativeEntry, strategy.opentrades.entry_time(0)) != ""
+        if nativeGapInvalid
+            f_planEvent(events, nativePlan, "NATIVE_DIVERGENCE", "NATIVE", time_close, nativeEntry, "Native е изпълнил гап, който PAPER може да отхвърли")
+            if flattenInvalidNativeFill
+                strategy.close(nativePlan.id, comment="INVALID_OPEN", disable_alert=true)
+                nativeTimeOrder := true
+    if strategy.closedtrades > nativeSeenClosed
+        for j = nativeSeenClosed to strategy.closedtrades - 1
+            if not na(nativePlan) and strategy.closedtrades.entry_id(j) == nativePlan.id
+                float fillEntry = strategy.closedtrades.entry_price(j)
+                if not nativeEntryObserved
+                    // Entire campaign may have entered and exited inside one historical candle.
+                    nativeEntryObserved := true
+                    nativeEntry := fillEntry
+                    nativeRisk := math.max(syminfo.mintick, math.abs(fillEntry - nativePlan.initialStop))
+                    nativeFillBar := strategy.closedtrades.entry_bar_index(j)
+                    Event entryEvent = f_planEvent(events, nativePlan, "NATIVE_ENTRY", "NATIVE", strategy.closedtrades.entry_time(j), fillEntry, "Native entry и exit в една свещ")
+                    entryEvent.quantityFraction := 1.0
+                    bool badFullBarFill = f_openRejection(nativePlan, fillEntry, strategy.closedtrades.entry_time(j)) != ""
+                    if badFullBarFill
+                        f_planEvent(events, nativePlan, "NATIVE_DIVERGENCE", "NATIVE", time_close, fillEntry, "Гап отклонение; native сделката вече е приключила")
+                float part = math.abs(strategy.closedtrades.size(j)) / (3.0 * nativeUnitQty)
+                float px = strategy.closedtrades.exit_price(j)
+                float gross = part * (px - fillEntry) * nativePlan.side / nativeRisk
+                float fees = strategy.closedtrades.commission(j) / (nativeRisk * 3.0 * nativeUnitQty * syminfo.pointvalue)
+                nativeGross += gross
+                nativeCosts += fees
+                string exitId = strategy.closedtrades.exit_id(j)
+                string note = strategy.closedtrades.exit_comment(j)
+                if exitId == nativePlan.id + "|T1"
+                    nativeLeg1Closed := true
+                    if note == "TP1"
+                        float lock = f_stopRound(nativeEntry + nativePlan.side * nativeRisk * profitLockR, nativePlan.side)
+                        nativeStop := nativePlan.side == 1 ? math.max(nativeStop, lock) : math.min(nativeStop, lock)
+                if exitId == nativePlan.id + "|T2"
+                    nativeLeg2Closed := true
+                if exitId == nativePlan.id + "|T3"
+                    nativeLeg3Closed := true
+                Event exitEvent = f_planEvent(events, nativePlan, "NATIVE_EXIT_" + str.tostring(j), "NATIVE", strategy.closedtrades.exit_time(j), px, na(note) ? "Изход на emulator" : note)
+                exitEvent.quantityFraction := part
+                exitEvent.grossR := gross
+                exitEvent.costR := fees
+                exitEvent.netR := gross - fees
+        nativeSeenClosed := strategy.closedtrades
+    if not na(nativePlan) and nativeEntryObserved and strategy.position_size == 0 and bar_index > nativeSubmitBar
+        Event closedEvent = f_planEvent(events, nativePlan, "NATIVE_CLOSED", "NATIVE", time_close, close, "Net R включва native commission и fill slippage; не PAPER funding")
+        closedEvent.grossR := nativeGross
+        closedEvent.costR := nativeCosts
+        closedEvent.netR := nativeGross - nativeCosts
+        nativeTotalR += nativeGross - nativeCosts
+        nativeClosedCampaigns += 1
+        nativeClosedThisBar := true
+        nativePlan := na
+    if not na(nativePlan) and not nativeEntryObserved and bar_index > nativeSubmitBar
+        // At the following close a submitted market order should have filled or been rejected.
+        strategy.cancel(nativePlan.id)
+        strategy.cancel(nativePlan.id + "|T1")
+        strategy.cancel(nativePlan.id + "|T2")
+        strategy.cancel(nativePlan.id + "|T3")
+        f_planEvent(events, nativePlan, "NATIVE_NOT_FILLED", "NATIVE", time_close, close, "Неизпълнена native поръчка: провери капитал/маржин/количество")
+        nativePlan := na
+    if not na(nativePlan) and strategy.position_size != 0
+        if not nativeLeg1Closed
+            strategy.exit(nativePlan.id + "|T1", from_entry=nativePlan.id, qty=nativeUnitQty, stop=nativeStop, limit=nativePlan.tp1, oca_name=nativePlan.id + "|BRACKET_1", comment_profit="TP1", comment_loss="SL", disable_alert=true)
+        if not nativeLeg2Closed
+            strategy.exit(nativePlan.id + "|T2", from_entry=nativePlan.id, qty=nativeUnitQty, stop=nativeStop, limit=nativePlan.tp2, oca_name=nativePlan.id + "|BRACKET_2", comment_profit="TP2", comment_loss="SL", disable_alert=true)
+        if not nativeLeg3Closed
+            strategy.exit(nativePlan.id + "|T3", from_entry=nativePlan.id, qty=nativeUnitQty, stop=nativeStop, limit=nativePlan.tp3, oca_name=nativePlan.id + "|BRACKET_3", comment_profit="TP3", comment_loss="SL", disable_alert=true)
+        if not nativeTimeOrder and not na(nativeFillBar) and bar_index - nativeFillBar >= maxHoldBars
+            strategy.close(nativePlan.id, comment="TIME_NEXT_OPEN", disable_alert=true)
+            nativeTimeOrder := true
+    Plan selectedNative = f_pick(candidates, 0, nativePortfolio == "ФИЛТРИРАН")
+    if not na(selectedNative) and na(nativePlan) and strategy.position_size == 0
+        nativePlan := selectedNative.copy()
+        nativeSubmitBar := bar_index
+        nativeFillBar := na
+        nativeEntryObserved := false
+        nativeLeg1Closed := false
+        nativeLeg2Closed := false
+        nativeLeg3Closed := false
+        nativeTimeOrder := false
+        nativeEntry := na
+        nativeRisk := na
+        nativeStop := nativePlan.initialStop
+        nativeGross := 0.0
+        nativeCosts := 0.0
+        strategy.entry(nativePlan.id, nativePlan.side == 1 ? strategy.long : strategy.short, qty=3.0 * nativeUnitQty, comment=f_model(nativePlan.family), disable_alert=true)
+        strategy.exit(nativePlan.id + "|T1", from_entry=nativePlan.id, qty=nativeUnitQty, stop=nativeStop, limit=nativePlan.tp1, oca_name=nativePlan.id + "|BRACKET_1", comment_profit="TP1", comment_loss="SL", disable_alert=true)
+        strategy.exit(nativePlan.id + "|T2", from_entry=nativePlan.id, qty=nativeUnitQty, stop=nativeStop, limit=nativePlan.tp2, oca_name=nativePlan.id + "|BRACKET_2", comment_profit="TP2", comment_loss="SL", disable_alert=true)
+        strategy.exit(nativePlan.id + "|T3", from_entry=nativePlan.id, qty=nativeUnitQty, stop=nativeStop, limit=nativePlan.tp3, oca_name=nativePlan.id + "|BRACKET_3", comment_profit="TP3", comment_loss="SL", disable_alert=true)
+        f_planEvent(events, nativePlan, "NATIVE_SUBMITTED", "NATIVE", time_close, nativePlan.reference, "Само Strategy Tester; поръчките НЕ се изпращат в MT5")
+Plan shownPlan = nativePlan
+bool shownActive = not na(nativePlan)
+float shownEntry = shownActive ? (nativeEntryObserved ? nativeEntry : nativePlan.reference) : na
+float shownStop = shownActive ? nativeStop : na
+string shownStage = shownActive ? (nativeEntryObserved ? "NATIVE ВИРТУАЛНА" : "NATIVE ЧАКА OPEN") : "БЕЗ NATIVE ПОЗИЦИЯ"
+string displayExecution = "NATIVE / " + nativePortfolio
+string lastResultInfo = "Native кампании: " + str.tostring(nativeClosedCampaigns) + " | " + str.tostring(nativeTotalR, "#.###") + "R | Properties разходи"

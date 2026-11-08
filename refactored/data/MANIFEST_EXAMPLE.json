@@ -1,0 +1,33 @@
+{
+  "dataset_kind": "real",
+  "symbol": "OANDA:XAUUSD",
+  "provider": "OANDA export from TradingView; replace with actual verified origin",
+  "timeframe_seconds": 900,
+  "pine_core_sha256": "COPY EXACT CORE HASH FROM reports/build.json",
+  "pine_inputs": {},
+  "coverage_complete": false,
+  "notes": "Template only. No real market data is bundled. Fill inputs and verify complete log coverage before use.",
+  "config": {
+    "tick": 0.001,
+    "min_stop_atr": 0.8,
+    "max_open_deviation_atr": 0.2,
+    "max_cost_risk": 0.18,
+    "gap_filter": true,
+    "profit_lock_r": 0.05,
+    "max_hold_bars": 48,
+    "timezone": "Europe/Sofia",
+    "funding_long": 0.0,
+    "funding_short": 0.0,
+    "manual_news_pause": false,
+    "news_windows": [],
+    "shield_enabled": true,
+    "global_min_closed": 30,
+    "global_stop_net_r": -5.0,
+    "model_min_closed": 20,
+    "model_stop_average_r": -0.15,
+    "recovery_trades": 5,
+    "countertrend_observe_only": true,
+    "daily_loss_r": 3.0,
+    "daily_losing_streak": 3
+  }
+}

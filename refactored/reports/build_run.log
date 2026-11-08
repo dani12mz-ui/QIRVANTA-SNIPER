@@ -1,0 +1,10 @@
+{
+  "QIRVANTA_SNIPER_PRO.pine": {
+    "lines": 1083,
+    "sha256": "395e47c9141b6f1c54ecbac1510361c51fd59c26352e24da8b5959640e1e242e"
+  },
+  "QIRVANTA_SNIPER_VALIDATION.pine": {
+    "lines": 1202,
+    "sha256": "33ff25d14eaad58c8a0f9c556b8111066f535fe9fede2ed38accdd930410309c"
+  }
+}

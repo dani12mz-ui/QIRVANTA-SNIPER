@@ -1,0 +1,151 @@
+// The [1] HTF offset + lookahead_on returns the last COMPLETED HTF candle.
+[htfClose, htfEMA50, htfEMA200, htfEMA50prev] = request.security(syminfo.tickerid, htf, [close[1], ta.ema(close, 50)[1], ta.ema(close, 200)[1], ta.ema(close, 50)[3]], lookahead=barmerge.lookahead_on)
+[priorDayHigh, priorDayLow] = request.security(syminfo.tickerid, "D", [high[1], low[1]], lookahead=barmerge.lookahead_on)
+bool readyHTF = not na(htfClose) and not na(htfEMA50) and not na(htfEMA50prev)
+bool bullHTF = readyHTF and htfClose > htfEMA50 and htfEMA50 > htfEMA50prev
+bool bearHTF = readyHTF and htfClose < htfEMA50 and htfEMA50 < htfEMA50prev
+bool strongBullHTF = bullHTF and not na(htfEMA200) and htfClose > htfEMA200
+bool strongBearHTF = bearHTF and not na(htfEMA200) and htfClose < htfEMA200
+float emaFast = ta.ema(close, 21)
+float emaSlow = ta.ema(close, 55)
+float atr = ta.atr(14)
+float atrMean = ta.sma(atr, 40)
+float rsi = ta.rsi(close, 14)
+[diPlus, diMinus, adx] = ta.dmi(14, 14)
+float body = math.abs(close - open)
+float barRange = math.max(high - low, syminfo.mintick)
+bool bullishBar = close > open and (close - low) / barRange >= 0.65
+bool bearishBar = close < open and (high - close) / barRange >= 0.65
+bool displacementUp = bullishBar and body >= atr * minDisplaceATR
+bool displacementDn = bearishBar and body >= atr * minDisplaceATR
+bool bullLocal = close > emaFast and emaFast > emaSlow and emaFast >= emaFast[2]
+bool bearLocal = close < emaFast and emaFast < emaSlow and emaFast <= emaFast[2]
+bool bullMomentum = rsi > 50 and diPlus > diMinus
+bool bearMomentum = rsi < 50 and diMinus > diPlus
+bool validATR = not na(atrMean) and atr > 0 and atr >= atrMean * minATRratio and atr <= atrMean * maxATRratio
+bool validTrend = not na(adx) and adx >= minADX
+bool acceptableBar = atr > 0 and barRange <= atr * maxEntryBarATR
+bool notExtended = atr > 0 and math.abs(close - emaFast) <= atr * maxExtensionATR
+bool inSession = not na(time(timeframe.period, scalpSession, riskTimezone))
+bool sessionPass = not filterSession or (sessionScope == "Само скалпинг" and not scalp) or inSession
+bool warmup = bar_index > 250 and readyHTF and not na(atrMean) and not na(rsi) and not na(adx)
+float sweepHigh = ta.highest(high, liquidityBars)[1]
+float sweepLow = ta.lowest(low, liquidityBars)[1]
+float shortStruct = ta.lowest(low, structureBars)[1]
+float longStruct = ta.highest(high, structureBars)[1]
+float localSwingLow = ta.lowest(low, structureBars)
+float localSwingHigh = ta.highest(high, structureBars)
+float pdHi = ta.highest(high, pdWindow)[1]
+float pdLo = ta.lowest(low, pdWindow)[1]
+float pdMid = (pdHi + pdLo) / 2.0
+bool inDiscount = not na(pdMid) and close <= pdMid
+bool inPremium = not na(pdMid) and close >= pdMid
+bool bullFvgNow = not na(high[2]) and low > high[2] and low - high[2] >= fvgSizeATR * atr
+bool bearFvgNow = not na(low[2]) and high < low[2] and low[2] - high >= fvgSizeATR * atr
+bool sweepDown = not na(sweepLow) and low < sweepLow and close > sweepLow and (math.min(open, close) - low) / barRange >= 0.23
+bool sweepUp = not na(sweepHigh) and high > sweepHigh and close < sweepHigh and (high - math.max(open, close)) / barRange >= 0.23
+bool bosUp = not na(sweepHigh) and close > sweepHigh and close[1] <= sweepHigh and displacementUp
+bool bosDown = not na(sweepLow) and close < sweepLow and close[1] >= sweepLow and displacementDn
+// Short local break trigger: confirmed PREVIOUS highs/lows, no pivot hindsight.
+float fastBreakHigh = ta.highest(high, fastBreakLookback)[1]
+float fastBreakLow = ta.lowest(low, fastBreakLookback)[1]
+float fastStopHigh = ta.highest(high, 3)[1]
+float fastStopLow = ta.lowest(low, 3)[1]
+float priorReversalLow = ta.lowest(low, reversalLiquidityBars)[1]
+float priorReversalHigh = ta.highest(high, reversalLiquidityBars)[1]
+float priorRecoveryHigh = ta.highest(high, 12)[1]
+float priorRecoveryLow = ta.lowest(low, 12)[1]
+float pivotHigh = ta.pivothigh(high, pivotLeft, pivotRight)
+float pivotLow = ta.pivotlow(low, pivotLeft, pivotRight)
+var float lastPivotHigh = na
+var float prevPivotHigh = na
+var float lastPivotLow = na
+var float prevPivotLow = na
+// A developing pivot on an open realtime bar may disappear. Commit pivots on candle close only.
+if barstate.isconfirmed and not na(pivotHigh)
+    prevPivotHigh := lastPivotHigh
+    lastPivotHigh := pivotHigh
+if barstate.isconfirmed and not na(pivotLow)
+    prevPivotLow := lastPivotLow
+    lastPivotLow := pivotLow
+bool equalHighs = barstate.isconfirmed and not na(prevPivotHigh) and not na(lastPivotHigh) and math.abs(lastPivotHigh - prevPivotHigh) <= atr * eqToleranceATR
+bool equalLows = barstate.isconfirmed and not na(prevPivotLow) and not na(lastPivotLow) and math.abs(lastPivotLow - prevPivotLow) <= atr * eqToleranceATR
+bool higherHigh = not na(prevPivotHigh) and lastPivotHigh > prevPivotHigh
+bool higherLow = not na(prevPivotLow) and lastPivotLow > prevPivotLow
+bool lowerHigh = not na(prevPivotHigh) and lastPivotHigh < prevPivotHigh
+bool lowerLow = not na(prevPivotLow) and lastPivotLow < prevPivotLow
+string pivotStructure = higherHigh and higherLow ? "По-високи върхове/дъна" : lowerHigh and lowerLow ? "По-ниски върхове/дъна" : "Смесена/непотвърдена структура"
+
+// Completed Asian session levels, not the developing high/low.
+bool asiaActive = timeframe.isintraday and not na(time(timeframe.period, "0200-1000", riskTimezone))
+var float asianH = na
+var float asianL = na
+var float lastAsianH = na
+var float lastAsianL = na
+// Freeze the session bounds using closed candles; release levels at the session's first closed non-Asia bar.
+if barstate.isconfirmed
+    if asiaActive
+        if not asiaActive[1] or na(asianH)
+            asianH := high
+            asianL := low
+        else
+            asianH := math.max(asianH, high)
+            asianL := math.min(asianL, low)
+    else if asiaActive[1]
+        lastAsianH := asianH
+        lastAsianL := asianL
+
+// Remember only confirmed, not-fully-mitigated FVGs. A FVG is NOT verified institutional flow.
+var float bullGapTop = na
+var float bullGapBottom = na
+var int bullGapAt = na
+var float bearGapTop = na
+var float bearGapBottom = na
+var int bearGapAt = na
+if barstate.isconfirmed
+    if bullFvgNow
+        bullGapTop := low
+        bullGapBottom := high[2]
+        bullGapAt := bar_index
+    else if not na(bullGapAt)
+        if bar_index - bullGapAt > 75 or low <= bullGapBottom
+            bullGapAt := na
+            bullGapTop := na
+            bullGapBottom := na
+        else if low < bullGapTop
+            // Track partial mitigation. Do not continue displaying a filled segment.
+            bullGapTop := low
+    if bearFvgNow
+        bearGapTop := low[2]
+        bearGapBottom := high
+        bearGapAt := bar_index
+    else if not na(bearGapAt)
+        if bar_index - bearGapAt > 75 or high >= bearGapTop
+            bearGapAt := na
+            bearGapTop := na
+            bearGapBottom := na
+        else if high > bearGapBottom
+            bearGapBottom := high
+
+// Closest available *confirmed* opposing liquidity reference, never future pivots.
+float longObstacle = na
+float shortObstacle = na
+if not na(lastPivotHigh) and lastPivotHigh > close
+    longObstacle := lastPivotHigh
+if not na(priorDayHigh) and priorDayHigh > close
+    longObstacle := na(longObstacle) ? priorDayHigh : math.min(longObstacle, priorDayHigh)
+if not na(lastAsianH) and lastAsianH > close
+    longObstacle := na(longObstacle) ? lastAsianH : math.min(longObstacle, lastAsianH)
+if not na(lastPivotLow) and lastPivotLow < close
+    shortObstacle := lastPivotLow
+if not na(priorDayLow) and priorDayLow < close
+    shortObstacle := na(shortObstacle) ? priorDayLow : math.max(shortObstacle, priorDayLow)
+if not na(lastAsianL) and lastAsianL < close
+    shortObstacle := na(shortObstacle) ? lastAsianL : math.max(shortObstacle, lastAsianL)
+
+string regime = validATR and atr > atrMean * 1.9 ? "СИЛНА ВОЛАТИЛНОСТ" : validATR and atr < atrMean * 0.7 ? "СВИТА ВОЛАТИЛНОСТ" : adx < minADX ? "ДИАПАЗОН / СЛАБ ТРЕНД" : bullHTF ? "ВЪЗХОДЯЩ ТРЕНД" : bearHTF ? "НИЗХОДЯЩ ТРЕНД" : "НЕУТРАЛНО"
+
+
+// Display and analysis refer to closed candles only. No unconfirmed marker is emitted.
+bool structureDownNow = barstate.isconfirmed and not na(shortStruct) and close < shortStruct and close[1] >= shortStruct and displacementDn
+bool structureUpNow = barstate.isconfirmed and not na(longStruct) and close > longStruct and close[1] <= longStruct and displacementUp
