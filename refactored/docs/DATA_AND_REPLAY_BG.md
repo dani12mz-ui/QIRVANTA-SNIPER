@@ -16,7 +16,7 @@
 
 Включи `JSONL събития в Pine Logs` и използвай пълните записи. Платформата ограничава историята на логовете; непълно копие не е пълен trade log. Валидаторът приема и начална текстова част пред първия JSON знак на лог реда. Отхвърля дублиран event_id.
 
-CONFIRMED / CORE съдържа: `plan_id`, `family`1/2/3, `side`±1, `symbol`, `timeframe`, `known_time`, `effective_time`, `reference`, `initial_sl`, `tp1/2/3`, `atr_at_signal`, `roundtrip_cost_price`, `max_risk_atr`, `obstacle`, `required_room_r`, `countertrend`. Техническият кандидат трябва да е известен точно на затварянето на съответния OHLC бар. Не може да се премести към по-ранен връх.
+CONFIRMED / CORE съдържа: `schema`, `core_sha256`, `plan_id`, `family`1/2/3, `side`±1, `symbol`, `timeframe`, `known_time`, `effective_time`, `reference`, `initial_sl`, `tp1/2/3`, `atr_at_signal`, `roundtrip_cost_price`, `max_risk_atr`, `obstacle`, `required_room_r`, `countertrend`, `local_aligned`, `efficiency_ratio`, `filter_eligible`. Техническият кандидат трябва да е известен точно на затварянето на съответния OHLC бар. Не може да се премести към по-ранен връх.
 
 Останалите Events разграничават WATCH, CONFIRMED, REJECTED, CANCELLED, EXPIRED, QUEUED, CAPACITY, SIM_ENTRY, SIM_TP1/2/3, SIM_SL, SIM_TIME, STOP_UPDATE, AMBIGUOUS, CLOSED, EVIDENCE и native събитията. При intrabar touch `effective_time` е null, известното време остава close. JSON имената на полетата са технически; потребителските причини са на български.
 
@@ -33,7 +33,7 @@ python tools/validate.py --bars data/ohlc.csv --events data/pine_events.jsonl --
 python tools/compare_events.py data/indicator_events.jsonl data/strategy_events.jsonl --out reports/candidate_parity.json
 ```
 
-Сравнителят проверява stable plan ids, family, direction, времена и всички нива. Празни два файла НЕ са успешна parity проверка. Различните execution Events не се прикриват чрез съвпадащ краен сбор R.
+Сравнителят проверява stable plan ids, family, direction, времена, нива, feed/timeframe, разходи и frozen context fields. Core hashes се записват отделно, за да може да се сравнят различни версии. Празни два файла НЕ са успешна parity проверка. За сравнение baseline/fixed използвай `tools/compare_runs.py` с един общ `--bars` CSV и два отделни manifests/event logs; пълната команда е в README. Различни настройки/разходи/източници се отказват, предходен непразен output не се презаписва. Различните execution Events не се прикриват чрез съвпадащ краен сбор R.
 
 Хронологични раздели (избери границите **преди** настройване):
 ```bash

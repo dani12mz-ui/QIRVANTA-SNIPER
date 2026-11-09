@@ -32,6 +32,8 @@ type Plan
     float obstacle = na
     float requiredRoom = 0.0
     bool countertrend = false
+    bool localAligned = false
+    float efficiencyValue = na
     string evidence = "НЕВАЛИДИРАН"
     bool filterEligible = false
 
@@ -49,6 +51,8 @@ type Event
     float grossR = na
     float costR = na
     float netR = na
+    float cashPnl = na
+    string riskBasis = "ACTUAL_INITIAL_DISTANCE"
     string reason = ""
     string evidence = "НЕВАЛИДИРАН"
     float reference = na
@@ -63,6 +67,8 @@ type Event
     float obstacle = na
     float requiredRoom = 0.0
     bool countertrend = false
+    bool localAligned = false
+    float efficiencyValue = na
     bool filterEligible = false
 
 type Ledger
@@ -178,10 +184,12 @@ f_planEvent(array<Event> out, Plan p, string kind, string book, int effective, f
     e.obstacle := p.obstacle
     e.requiredRoom := p.requiredRoom
     e.countertrend := p.countertrend
+    e.localAligned := p.localAligned
+    e.efficiencyValue := p.efficiencyValue
     e.filterEligible := p.filterEligible
     e
 f_json(Event e) =>
-    "{\"schema\":\"qirvanta.event.v1\",\"event_id\":" + f_q(e.id) + ",\"event\":" + f_q(e.kind) + ",\"book\":" + f_q(e.book) + ",\"plan_id\":" + f_q(e.planId) + ",\"symbol\":" + f_q(syminfo.tickerid) + ",\"timeframe\":" + f_q(timeframe.period) + ",\"family\":" + str.tostring(e.family) + ",\"side\":" + str.tostring(e.side) + ",\"bar_open_time\":" + str.tostring(time) + ",\"bar_close_time\":" + f_int(time_close) + ",\"effective_time\":" + f_int(e.effectiveTime) + ",\"known_time\":" + f_int(e.knownTime) + ",\"price\":" + f_num(e.price) + ",\"quantity_fraction\":" + f_num(e.quantityFraction) + ",\"gross_r\":" + f_num(e.grossR) + ",\"cost_r\":" + f_num(e.costR) + ",\"net_r\":" + f_num(e.netR) + ",\"reference\":" + f_num(e.reference) + ",\"initial_sl\":" + f_num(e.stop) + ",\"tp1\":" + f_num(e.tp1) + ",\"tp2\":" + f_num(e.tp2) + ",\"tp3\":" + f_num(e.tp3) + ",\"evidence\":" + f_q(e.evidence) + ",\"reason\":" + f_q(e.reason) + ",\"created_time\":" + f_int(e.createdTime) + ",\"atr_at_signal\":" + f_num(e.atrValue) + ",\"roundtrip_cost_price\":" + f_num(e.costPrice) + ",\"max_risk_atr\":" + f_num(e.maxRiskATR) + ",\"obstacle\":" + f_num(e.obstacle) + ",\"required_room_r\":" + f_num(e.requiredRoom) + ",\"countertrend\":" + (e.countertrend ? "true" : "false") + ",\"filter_eligible\":" + (e.filterEligible ? "true" : "false") + ",\"advisory_only\":true}"
+    "{\"schema\":\"qirvanta.event.v1\",\"core_sha256\":" + f_q(CORE_SHA256) + ",\"event_id\":" + f_q(e.id) + ",\"event\":" + f_q(e.kind) + ",\"book\":" + f_q(e.book) + ",\"plan_id\":" + f_q(e.planId) + ",\"symbol\":" + f_q(syminfo.tickerid) + ",\"timeframe\":" + f_q(timeframe.period) + ",\"family\":" + str.tostring(e.family) + ",\"side\":" + str.tostring(e.side) + ",\"bar_open_time\":" + str.tostring(time) + ",\"bar_close_time\":" + f_int(time_close) + ",\"effective_time\":" + f_int(e.effectiveTime) + ",\"known_time\":" + f_int(e.knownTime) + ",\"price\":" + f_num(e.price) + ",\"quantity_fraction\":" + f_num(e.quantityFraction) + ",\"gross_r\":" + f_num(e.grossR) + ",\"cost_r\":" + f_num(e.costR) + ",\"net_r\":" + f_num(e.netR) + ",\"cash_pnl\":" + f_num(e.cashPnl) + ",\"risk_basis\":" + f_q(e.riskBasis) + ",\"reference\":" + f_num(e.reference) + ",\"initial_sl\":" + f_num(e.stop) + ",\"tp1\":" + f_num(e.tp1) + ",\"tp2\":" + f_num(e.tp2) + ",\"tp3\":" + f_num(e.tp3) + ",\"evidence\":" + f_q(e.evidence) + ",\"reason\":" + f_q(e.reason) + ",\"created_time\":" + f_int(e.createdTime) + ",\"atr_at_signal\":" + f_num(e.atrValue) + ",\"roundtrip_cost_price\":" + f_num(e.costPrice) + ",\"max_risk_atr\":" + f_num(e.maxRiskATR) + ",\"obstacle\":" + f_num(e.obstacle) + ",\"required_room_r\":" + f_num(e.requiredRoom) + ",\"countertrend\":" + (e.countertrend ? "true" : "false") + ",\"local_aligned\":" + (e.localAligned ? "true" : "false") + ",\"efficiency_ratio\":" + f_num(e.efficiencyValue) + ",\"filter_eligible\":" + (e.filterEligible ? "true" : "false") + ",\"advisory_only\":true}"
 f_makePlan(int family, int d, float sl, int born, float maxRisk, float obstacle, float room) =>
     Plan p = Plan.new()
     p.setupId := f_id(family, d, born)
@@ -203,9 +211,16 @@ f_makePlan(int family, int d, float sl, int born, float maxRisk, float obstacle,
     p.obstacle := obstacle
     p.requiredRoom := room
     p.countertrend := d == 1 ? not bullHTF : not bearHTF
+    p.localAligned := d == 1 ? bullLocal : bearLocal
+    p.efficiencyValue := efficiency
     p
+f_targetRoom(Plan p, float entry, float risk) =>
+    // Respect the actual rounded/frozen TP1, not merely its pre-rounding R distance.
+    p.requiredRoom <= 0 or (not na(p.obstacle) and (p.obstacle - entry) * p.side + syminfo.mintick * 1e-6 >= math.max(risk * p.requiredRoom, (p.tp1 - entry) * p.side))
+f_policyReason(Plan p) =>
+    contextPolicy == "БАЗОВ" ? "" : p.countertrend ? "HTF не съвпада" : not p.localAligned ? "Локалният тренд не съвпада" : na(p.efficiencyValue) ? "Няма данни за насоченост" : p.efficiencyValue < minEfficiency ? "Ниска насоченост" : ""
 f_validPlan(Plan p) =>
-    not na(p.risk) and p.risk >= syminfo.mintick and p.risk + syminfo.mintick * 1e-6 >= minStopATR * p.atrValue and p.risk <= p.maxRiskATR * p.atrValue and p.costPrice / p.risk <= maxCostRisk and (p.tp1 - p.reference) * p.side > 0 and (p.tp2 - p.tp1) * p.side > 0 and (p.tp3 - p.tp2) * p.side > 0
+    f_targetRoom(p, p.reference, p.risk) and not na(p.risk) and p.risk >= syminfo.mintick and p.risk + syminfo.mintick * 1e-6 >= minStopATR * p.atrValue and p.risk <= p.maxRiskATR * p.atrValue and p.costPrice / p.risk <= maxCostRisk and (p.tp1 - p.reference) * p.side > 0 and (p.tp2 - p.tp1) * p.side > 0 and (p.tp3 - p.tp2) * p.side > 0
 f_clear(Setup s) =>
     s.phase := 0
     s.bornBar := na
@@ -232,3 +247,4 @@ f_start(Setup s, int family, int d, int phase, float anchor, float trigger, bool
     s.rejectionLow := low
     s.id := f_id(family, d, time_close)
     s
+

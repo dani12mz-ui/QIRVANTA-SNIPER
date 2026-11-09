@@ -1,0 +1,341 @@
+{
+  "attempt_date_local": "2026-11-08",
+  "timezone": "Europe/Sofia",
+  "baseline_commit": "103bc30788b18234f5938ed0f5346e142097a6fe",
+  "browser": "Codex in-app browser",
+  "authenticated_session_observed": true,
+  "symbol": "OANDA:XAUUSD",
+  "timeframe": "60",
+  "chart_type": "Candles",
+  "historical_attempts": [
+    {
+      "attempt_date_local": "2026-11-08",
+      "timezone": "Europe/Sofia",
+      "baseline_commit": "103bc30788b18234f5938ed0f5346e142097a6fe",
+      "browser": "Codex in-app browser",
+      "symbol": "OANDA:XAUUSD",
+      "timeframe": "15",
+      "chart_type": "Candles",
+      "file": "baseline/audited/QIRVANTA_SNIPER_VALIDATION.pine",
+      "action": "Paste complete baseline source; Add to chart",
+      "observed_result": "Log in modal: Google / Email / Sign up",
+      "compiler_output_received": false,
+      "baseline_compile": "BLOCKED_LOGIN",
+      "final_pro_compile": "NOT_RUN_LOGIN_REQUIRED",
+      "final_validation_compile": "NOT_RUN_LOGIN_REQUIRED",
+      "runtime_timeframes_tested": [],
+      "earlier_native_browser_attempt": "Computer Use app approval timed out",
+      "user_error_text": "User does not remember the initial error",
+      "bar_magnifier_cause": "NOT_ESTABLISHED"
+    }
+  ],
+  "root_cause": {
+    "status": "REPRODUCED_RUNTIME_COMPATIBILITY_FAILURE",
+    "baseline_source_sha256_lf": "5cd7a04a6d97dfc1c37024f0d004874553c163a3b17b9984c03336f3aa9004a3",
+    "identity_evidence": "Complete Pine Editor code copied and compared after LF normalization; exact audited baseline match",
+    "initial_setting": "High detalization (~24 ticks/bar), use_bar_magnifier=true",
+    "runtime_error": "Upgrade to the Premium plan to access higher bar detalization with more ticks used in calculations.",
+    "intervention": "Switch only Bar detalization to Default (4 ticks/bar) in Strategy Report UI",
+    "result": "Same baseline code ran on H1 and produced native Strategy Report; runtime error disappeared",
+    "code_fix": "src/native_header.pineinc: use_bar_magnifier=false",
+    "signal_filters_changed": false,
+    "fill_assumptions_changed": true,
+    "sources": [
+      "https://www.tradingview.com/pine-script-docs/language/declaration-statements/#use_bar_magnifier",
+      "https://www.tradingview.com/pine-script-docs/release-notes/",
+      "https://www.tradingview.com/support/solutions/43000786180-detalization-and-execution/"
+    ],
+    "runtime_error_evidence": "reports/tradingview_evidence/tradingview_runtime_error.png"
+  },
+  "baseline_runtime": {
+    "status": "PASS_OBSERVED_H1_DEFAULT_DETAIL_ONLY",
+    "period_ui": "2026-01-02 to 2026-11-06",
+    "timeframe": "60",
+    "observed_native_summary": {
+      "total_trades": 110,
+      "positive": 51,
+      "negative": 59,
+      "pnl_usd": 667.34,
+      "profit_factor": 1.248,
+      "max_drawdown_usd": 649.13,
+      "breakevens": 0
+    },
+    "evidence_scope": "Visible Strategy Report summary, not exported OHLC or complete native trade journal",
+    "out_of_sample": false,
+    "profitability_improvement_demonstrated": false,
+    "evidence": "reports/tradingview_evidence/tradingview_baseline_standard.png"
+  },
+  "final_pro_compile": "PASS_WITH_WARNINGS",
+  "final_validation_compile": "PASS_OBSERVED_COMPILED_AND_ADDED",
+  "final_pro_runtime": "PASS_RUNTIME_SMOKE_M5_M15_M30_H1_H4",
+  "final_validation_runtime": "PASS_RUNTIME_SMOKE_M5_M15_M30_H1_H4",
+  "runtime_timeframes_tested": [
+    "5",
+    "15",
+    "30",
+    "60",
+    "240"
+  ],
+  "final_files": {
+    "PRO": {
+      "local_source_sha256": "0d8823a74d57f98dbe27575f2fc0e0abe4ae8db710ec81419265c31390232043",
+      "compile_success_log_times_local": [
+        "23:14:29",
+        "23:16:55"
+      ],
+      "saved_name": "QIRVANTA_SNIPER_PRO",
+      "saved_version": 2,
+      "saved_privately": true,
+      "warnings": [
+        {
+          "code": "CW10003",
+          "line": 744,
+          "column": 35,
+          "function": "f_fast"
+        },
+        {
+          "code": "CW10003",
+          "line": 745,
+          "column": 35,
+          "function": "f_reversal"
+        }
+      ],
+      "warning_review": "Reviewed conditional function calls; referenced histories are global, no reproduced behavioral defect. This does not prove historical/realtime execution parity.",
+      "runtime_status": "PASS_RUNTIME_SMOKE_M5_M15_M30_H1_H4"
+    },
+    "VALIDATION": {
+      "local_source_sha256": "44a579eee6e1542fdb7f30b9dceb9ec78aac9f3c6d9bc0346a52fa4d9bf529b2",
+      "compile_success_log_times_local": [
+        "23:12:36"
+      ],
+      "observed_compile_result": "Compiled; Add to chart completed",
+      "saved_as_separate_personal_script": false,
+      "runtime_status": "PASS_RUNTIME_SMOKE_M5_M15_M30_H1_H4"
+    }
+  },
+  "profile_storage": {
+    "observed_plan": "Basic",
+    "observed_saved_script_limit": 1,
+    "new_script_save_refused": true,
+    "user_choice": "Replace existing personal script with PRO",
+    "pro_saved_privately_as": "QIRVANTA_SNIPER_PRO",
+    "pro_saved_version": 2,
+    "validation_delivery": "VALIDATION persists as a hidden chart instance after layout reload; separate Pine file is delivered, not saved as a second personal script",
+    "plan_purchased": false,
+    "restriction_bypassed": false,
+    "observed_chart_indicator_limit": 2,
+    "old_chart_instances_removed_to_respect_limit": true,
+    "layout_saved_and_reloaded": true,
+    "reload_observation": "M15 layout retained final PRO visible and final QIRV TEST hidden",
+    "validation_access": "Use the eye/Show control next to QIRV TEST to display validation and its Strategy Report"
+  },
+  "bar_magnifier_cause": "ESTABLISHED_FOR_OBSERVED_RUNTIME_FAILURE",
+  "compiler_output_received": true,
+  "limitations": [
+    "Runtime PASS means loaded-history smoke only; loaded-bar counts not recorded",
+    "No full native/PAPER or baseline/fixed trade-by-trade reconciliation",
+    "No replay/extended-history causality or realtime rollback verification",
+    "No OOS or forward result; no performance improvement claim",
+    "No broker integration",
+    "No real alert-delivery verification; actual mobile viewports show table/header overlap"
+  ],
+  "tested_code_commit": "51e0aa20a5604b9d79e7214f6e2aca59ac01048a",
+  "tested_source_sha256": "c7946faaa06cfc85ae1a757a5a9804fdffeb6552be9112dec20a9dc5ae674cb3",
+  "final_runtime_observations": [
+    {
+      "timeframe_label": "M5",
+      "timeframe": "5",
+      "status": "PASS_RUNTIME_SMOKE",
+      "pro_present": true,
+      "validation_present": true,
+      "runtime_error_observed": false,
+      "period_ui": {
+        "from": "2026-10-12",
+        "to": "2026-11-06"
+      },
+      "loaded_bars": "NOT_RECORDED",
+      "native_summary": {
+        "total_trades": 134,
+        "positive": 66,
+        "negative": 68,
+        "breakevens": 0,
+        "pnl_usd": 50.44,
+        "profit_factor": 1.1,
+        "max_drawdown_usd": 217.51
+      },
+      "evidence": "reports/tradingview_evidence/tradingview_fixed_m5.txt",
+      "evidence_sha256": "ff657a3d1690caa3bca5560381ca16f7fdaaf4dcbf8680ac4254a483f214e74b"
+    },
+    {
+      "timeframe_label": "M15",
+      "timeframe": "15",
+      "status": "PASS_RUNTIME_SMOKE",
+      "pro_present": true,
+      "validation_present": true,
+      "runtime_error_observed": false,
+      "period_ui": {
+        "from": "2026-08-03",
+        "to": "2026-11-06"
+      },
+      "loaded_bars": "NOT_RECORDED",
+      "native_summary": {
+        "total_trades": 212,
+        "positive": 90,
+        "negative": 122,
+        "breakevens": 0,
+        "pnl_usd": -144.49,
+        "profit_factor": 0.905,
+        "max_drawdown_usd": 842.26
+      },
+      "evidence": "reports/tradingview_evidence/tradingview_fixed_m15.txt",
+      "evidence_sha256": "c085e0abe81046bfa25867c102948e05ef459326897d03f824349153e12def48"
+    },
+    {
+      "timeframe_label": "M30",
+      "timeframe": "30",
+      "status": "PASS_RUNTIME_SMOKE",
+      "pro_present": true,
+      "validation_present": true,
+      "runtime_error_observed": false,
+      "period_ui": {
+        "from": "2026-01-02",
+        "to": "2026-11-06"
+      },
+      "loaded_bars": "NOT_RECORDED",
+      "native_summary": {
+        "total_trades": 283,
+        "positive": 123,
+        "negative": 160,
+        "breakevens": 0,
+        "pnl_usd": -376.56,
+        "profit_factor": 0.904,
+        "max_drawdown_usd": 1595.16
+      },
+      "evidence": "reports/tradingview_evidence/tradingview_fixed_m30.txt",
+      "evidence_sha256": "71648d7d4d38b08ccf284748bf985a41e210783e97ea2a9dfb922aa0fe64dfaf"
+    },
+    {
+      "timeframe_label": "H1",
+      "timeframe": "60",
+      "status": "PASS_RUNTIME_SMOKE",
+      "pro_present": true,
+      "validation_present": true,
+      "runtime_error_observed": false,
+      "period_ui": {
+        "from": "2026-01-02",
+        "to": "2026-11-06"
+      },
+      "loaded_bars": "NOT_RECORDED",
+      "native_summary": {
+        "total_trades": 110,
+        "positive": 51,
+        "negative": 59,
+        "breakevens": 0,
+        "pnl_usd": 667.34,
+        "profit_factor": 1.248,
+        "max_drawdown_usd": 649.13
+      },
+      "evidence": "reports/tradingview_evidence/tradingview_fixed_h1.txt",
+      "evidence_sha256": "65420911ffb445d9f0fb26ea7eb0372a5a4e0a32de39a27390214dcc2323f6c1"
+    },
+    {
+      "timeframe_label": "H4",
+      "timeframe": "240",
+      "status": "PASS_RUNTIME_SMOKE",
+      "pro_present": true,
+      "validation_present": true,
+      "runtime_error_observed": false,
+      "period_ui": {
+        "from": "2023-01-03",
+        "to": "2026-11-06"
+      },
+      "loaded_bars": "NOT_RECORDED",
+      "native_summary": {
+        "total_trades": 123,
+        "positive": 74,
+        "negative": 49,
+        "breakevens": 0,
+        "pnl_usd": 2284.47,
+        "profit_factor": 2.055,
+        "max_drawdown_usd": 892.79
+      },
+      "evidence": "reports/tradingview_evidence/tradingview_fixed_h4.txt",
+      "evidence_sha256": "0d108a69a982864a3b09c1f8c3fac5b0a88f499c79bbb450e27e1ea6a4aae4fe"
+    }
+  ],
+  "runtime_scope": "Both final files visible and calculating on OANDA:XAUUSD standard Candles; no runtime error observed. Historical loaded-chart smoke checks, not replay, full causality, realtime rollback, forward or alert delivery tests.",
+  "cross_timeframe_comparison": "NOT_PERFORMED: available date ranges differ; observed losses at M15 and M30 retained",
+  "static_build_banner": "PINE_COMPILE_UNVERIFIED is a generic generated build-time comment. This dated live evidence records the subsequent actual compile/runtime results for the exact hashes; Pine bytes were not changed just to update that banner.",
+  "observed_properties": {
+    "commission_cash_per_contract_per_side": 0.175,
+    "slippage_ticks": 2,
+    "default_order_size": 3,
+    "order_size_unit": "Quantity",
+    "initial_capital": 100000,
+    "account_currency": "USD",
+    "pyramiding": 0,
+    "bar_detalization": "Default (4 ticks per bar)",
+    "script_execution": "On bar close",
+    "order_execution_delay": "One tick",
+    "long_leverage": "1x",
+    "short_leverage": "1x",
+    "limit_order_execution": "Requested price",
+    "evidence": "reports/tradingview_evidence/tradingview_properties.txt",
+    "evidence_sha256": "e65f7e114ad0c467a993a16d0a9b9bc3fc8b3c5107325a44c3cfe8d051288f48",
+    "inputs_manually_modified": false
+  },
+  "baseline_fixed_comparison": {
+    "status": "MATCH_VISIBLE_NATIVE_AGGREGATES_H1_ONLY",
+    "symbol": "OANDA:XAUUSD",
+    "timeframe": "60",
+    "chart_type": "Candles",
+    "period_ui": {
+      "from": "2026-01-02",
+      "to": "2026-11-06"
+    },
+    "baseline_detalization": "Default selected in UI",
+    "fixed_detalization": "Default selected automatically by header",
+    "native_cost_headers_unchanged": true,
+    "inputs_manually_modified": false,
+    "matching_native_summary": {
+      "total_trades": 110,
+      "positive": 51,
+      "negative": 59,
+      "pnl_usd": 667.34,
+      "profit_factor": 1.248,
+      "max_drawdown_usd": 649.13,
+      "breakevens": 0
+    },
+    "full_exported_ohlc_and_trade_parity_proven": false,
+    "out_of_sample": false,
+    "profitability_improvement_demonstrated": false,
+    "evidence": [
+      "reports/tradingview_evidence/tradingview_baseline_standard.png",
+      "reports/tradingview_evidence/tradingview_fixed_standard.png",
+      "reports/tradingview_evidence/tradingview_fixed_h1.txt"
+    ]
+  },
+  "mobile_ui": {
+    "status": "PARTIAL_FAIL_LAYOUT",
+    "observations": [
+      {
+        "viewport_width": 390,
+        "viewport_height": 844,
+        "status": "FAIL_LAYOUT_HEADER_OVERLAP",
+        "observed_issue": "Top-right table overlaps chart header at narrow viewport",
+        "evidence": "reports/tradingview_evidence/tradingview_mobile_390.png",
+        "evidence_sha256": "cc2d886a0e5720a648fca2cc1f0a83140eef1e54c152d9c89ce5c70d51f183ce"
+      },
+      {
+        "viewport_width": 430,
+        "viewport_height": 932,
+        "status": "FAIL_LAYOUT_HEADER_OVERLAP",
+        "observed_issue": "Top-right table overlaps chart header at narrow viewport",
+        "evidence": "reports/tradingview_evidence/tradingview_mobile_430.png",
+        "evidence_sha256": "5b512642936c1709c0ff1dbb1b69133b033eb5d4c000c925b54c380e3c9365c5"
+      }
+    ],
+    "possible_workaround": "Move the table to bottom-right through display input; not independently verified in these captures",
+    "code_changed_for_mobile": false
+  }
+}

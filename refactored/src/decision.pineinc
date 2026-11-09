@@ -6,10 +6,24 @@ var array<string> buyReasons = array.new<string>(3, "Няма завършена
 var array<string> sellReasons = array.new<string>(3, "Няма завършена свещ")
 var array<Plan> candidates = array.new<Plan>()
 var array<Event> events = array.new<Event>()
+var array<int> triggerAttempts = array.new<int>(6, 0)
+var array<int> confirmedCounts = array.new<int>(6, 0)
+var array<int> refusedCounts = array.new<int>(6, 0)
+var array<string> lastRefusals = array.new<string>(6, "Няма проверен trigger")
+f_recordDecision(int family, int d, bool accepted, string why) =>
+    int idx = (family - 1) * 2 + (d == 1 ? 0 : 1)
+    array.set(triggerAttempts, idx, array.get(triggerAttempts, idx) + 1)
+    if accepted
+        array.set(confirmedCounts, idx, array.get(confirmedCounts, idx) + 1)
+    else
+        array.set(refusedCounts, idx, array.get(refusedCounts, idx) + 1)
+        array.set(lastRefusals, idx, why)
+    accepted
 var int lastAnalysisClose = na
 var int localPressure = 0
 var int closedHtfBias = 0
 var string lastContext = "НЕДОСТАТЪЧНИ ДАННИ"
+var float closedEfficiency = na
 if barstate.isfirst
     for n = 0 to 1
         array.push(retestStates, Setup.new())
@@ -19,12 +33,13 @@ f_cooldown(int m, array<int> lastBars) =>
     int last = array.get(lastBars, m - 1)
     na(last) or bar_index - last > minCooldown
 f_capture(Plan p, array<Plan> out, array<int> lastBars, array<Event> ev) =>
-    if f_validPlan(p)
+    bool accepted = f_validPlan(p)
+    if accepted
         array.push(out, p)
         array.set(lastBars, p.family - 1, bar_index)
     else
-        f_planEvent(ev, p, "REJECTED", "CORE", time_close, close, "Закръгляне/риск/цели")
-    p
+        f_planEvent(ev, p, "REJECTED", "CORE", time_close, close, "Закръгляне/SL/TP1 преграда")
+    accepted
 
 f_retest(Setup s, int d, array<Plan> out, array<int> lastBars, array<Event> ev) =>
     bool enabled = f_enabled(1)
@@ -67,8 +82,12 @@ f_retest(Setup s, int d, array<Plan> out, array<int> lastBars, array<Event> ev) 
         consumed := true
         if why == "УСЛОВИЯТА СА ИЗПЪЛНЕНИ"
             Plan p = f_makePlan(1, d, sl, s.bornTime, maxStopATR, obstacle, requireRoom ? math.max(minimumRoomR, target1R) : 0.0)
-            f_capture(p, out, lastBars, ev)
+            bool accepted = f_capture(p, out, lastBars, ev)
+            if not accepted
+                why := "Закръгляне/SL/TP1 преграда"
+            f_recordDecision(1, d, accepted, why)
         else
+            f_recordDecision(1, d, false, why)
             f_emit(ev, "REJECTED", "CORE", s.id, 1, d, time_close, close, why)
         f_clear(s)
     // Never rebuild the scenario on its invalidation/consumption bar.
@@ -107,8 +126,12 @@ f_fast(int d, array<Plan> out, array<int> lastBars, array<Event> ev) =>
     if enabled and crossed and candle
         if why == "УСЛОВИЯТА СА ИЗПЪЛНЕНИ"
             Plan p = f_makePlan(2, d, sl, time_close, cap, obstacle, requireRoom ? math.max(minimumRoomR, target1R) : 0.0)
-            f_capture(p, out, lastBars, ev)
+            bool accepted = f_capture(p, out, lastBars, ev)
+            if not accepted
+                why := "Закръгляне/SL/TP1 преграда"
+            f_recordDecision(2, d, accepted, why)
         else
+            f_recordDecision(2, d, false, why)
             f_emit(ev, "REJECTED", "CORE", f_id(2, d, time_close), 2, d, time_close, close, why)
     why
 
@@ -146,13 +169,19 @@ f_reversal(Setup s, int d, array<Plan> out, array<int> lastBars, array<Event> ev
     if enabled and crossed and candle
         if why == "УСЛОВИЯТА СА ИЗПЪЛНЕНИ"
             Plan p = f_makePlan(3, d, sl, s.bornTime, cap, obstacle, minimumRoom)
-            f_capture(p, out, lastBars, ev)
+            bool accepted = f_capture(p, out, lastBars, ev)
+            if not accepted
+                why := "Закръгляне/SL/TP1 преграда"
+            f_recordDecision(3, d, accepted, why)
             consumed := true
             f_clear(s)
-        else if not timely
+        else
+            // A failed FILTER check is now visible; it does not cancel a still-timely setup.
+            f_recordDecision(3, d, false, why)
             f_emit(ev, "REJECTED", "CORE", s.id, 3, d, time_close, close, why)
-            consumed := true
-            f_clear(s)
+            if not timely
+                consumed := true
+                f_clear(s)
     // An existing candidate is never silently overwritten by a different rejection.
     if enabled and warmup and datePass and not newsPaused and s.phase == 0 and not consumed and not invalidated and not opposite
         float wick = d == 1 ? math.min(open, close) - low : high - math.max(open, close)
@@ -174,8 +203,10 @@ if processBar
         array.set(diagnostics, 1, f_fast(d, candidates, lastModelSignal, events))
         array.set(diagnostics, 2, f_reversal(array.get(reversalStates, directionIndex), d, candidates, lastModelSignal, events))
     lastAnalysisClose := time_close
+    closedEfficiency := efficiency
     bool bearPressure = atr > 0 and close < emaFast and (bearishBar or close < close[1]) and (emaFast < emaFast[1] or rsi < 50)
     bool bullPressure = atr > 0 and close > emaFast and (bullishBar or close > close[1]) and (emaFast > emaFast[1] or rsi > 50)
     localPressure := bullPressure ? 1 : bearPressure ? -1 : 0
     closedHtfBias := bullHTF ? 1 : bearHTF ? -1 : 0
     lastContext := localPressure == 1 ? "НАТИСК НАГОРЕ" : localPressure == -1 ? "НАТИСК НАДОЛУ" : "СМЕСЕН КОНТЕКСТ"
+

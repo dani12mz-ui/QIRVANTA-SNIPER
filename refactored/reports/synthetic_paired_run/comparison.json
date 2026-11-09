@@ -1,0 +1,460 @@
+{
+  "status": "SYNTHETIC_FUNCTIONAL_ONLY",
+  "scope": "PAIRED_EXPORTED_CANDIDATES_SAME_PYTHON_EXECUTION_REFERENCE",
+  "signal_generation": "EXPORTED_PINE_INPUT_NOT_REGENERATED_IN_PYTHON",
+  "pine_runtime_parity": "NOT_VERIFIED",
+  "out_of_sample": "NOT_ESTABLISHED",
+  "profitability_improvement_claimed": false,
+  "inputs": {
+    "bars": {
+      "path": "C:\\Users\\azubu\\Documents\\Codex\\2026-11-08\\qirvanta-sniper-qirvanta-refactored-delivery-pro\\work\\QIRVANTA-SNIPER\\refactored\\tests\\fixtures\\synthetic_ohlc.csv",
+      "sha256": "4f44aae6f1ecac9358e04a988b35820602d9429743019e1212a2a39d4f113c97"
+    },
+    "baseline_events": {
+      "path": "C:\\Users\\azubu\\Documents\\Codex\\2026-11-08\\qirvanta-sniper-qirvanta-refactored-delivery-pro\\work\\QIRVANTA-SNIPER\\refactored\\tests\\fixtures\\synthetic_events.jsonl",
+      "sha256": "0518a917fba478af7ac7cca624e1db7e41aa54bb8bd372fc2062cd86a5b90f7f"
+    },
+    "fixed_events": {
+      "path": "C:\\Users\\azubu\\Documents\\Codex\\2026-11-08\\qirvanta-sniper-qirvanta-refactored-delivery-pro\\work\\QIRVANTA-SNIPER\\refactored\\tests\\fixtures\\synthetic_events.jsonl",
+      "sha256": "0518a917fba478af7ac7cca624e1db7e41aa54bb8bd372fc2062cd86a5b90f7f"
+    },
+    "baseline_manifest": {
+      "path": "C:\\Users\\azubu\\Documents\\Codex\\2026-11-08\\qirvanta-sniper-qirvanta-refactored-delivery-pro\\work\\QIRVANTA-SNIPER\\refactored\\tests\\fixtures\\synthetic_manifest.json",
+      "sha256": "a91e00ed0006ba17ba1371d031b3f990e4749f7cefab6c3594e371109273dc78"
+    },
+    "fixed_manifest": {
+      "path": "C:\\Users\\azubu\\Documents\\Codex\\2026-11-08\\qirvanta-sniper-qirvanta-refactored-delivery-pro\\work\\QIRVANTA-SNIPER\\refactored\\tests\\fixtures\\synthetic_manifest.json",
+      "sha256": "a91e00ed0006ba17ba1371d031b3f990e4749f7cefab6c3594e371109273dc78"
+    }
+  },
+  "equal_manifest_fields": [
+    "dataset_kind",
+    "provider",
+    "symbol",
+    "timeframe_seconds",
+    "config",
+    "pine_inputs"
+  ],
+  "baseline_core_sha256": "SYNTHETIC_NO_PINE_EXECUTION",
+  "fixed_core_sha256": "SYNTHETIC_NO_PINE_EXECUTION",
+  "cost_checks": {
+    "baseline_observed_roundtrip_cost_price": [
+      0.3
+    ],
+    "fixed_observed_roundtrip_cost_price": [
+      0.3
+    ],
+    "zero_candidate_note": "An empty candidate cohort has no observed plan cost; manifest settings are still required to match."
+  },
+  "candidate_counts": {
+    "baseline": 1,
+    "fixed": 1
+  },
+  "candidate_comparison": "candidate_comparison.json",
+  "run_metrics": {
+    "baseline": "baseline/metrics.json",
+    "fixed": "fixed/metrics.json"
+  },
+  "books": {
+    "M1": {
+      "baseline": {
+        "closed": 1,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "gross_r": 2.0000000000000004,
+        "cost_r": 0.03,
+        "net_r": 1.9700000000000004,
+        "mean_net_r": 1.9700000000000004,
+        "profit_factor": null,
+        "closed_equity_max_drawdown_r": 0,
+        "mean_holding_bars": 1
+      },
+      "fixed": {
+        "closed": 1,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "gross_r": 2.0000000000000004,
+        "cost_r": 0.03,
+        "net_r": 1.9700000000000004,
+        "mean_net_r": 1.9700000000000004,
+        "profit_factor": null,
+        "closed_equity_max_drawdown_r": 0,
+        "mean_holding_bars": 1
+      },
+      "delta_fixed_minus_baseline": {
+        "closed": 0,
+        "positive": 0,
+        "negative": 0,
+        "zero": 0,
+        "gross_r": 0.0,
+        "cost_r": 0.0,
+        "net_r": 0.0,
+        "mean_net_r": 0.0,
+        "profit_factor": null,
+        "closed_equity_max_drawdown_r": 0,
+        "mean_holding_bars": 0
+      },
+      "baseline_open_phase": 0,
+      "fixed_open_phase": 0,
+      "baseline_ledger": {
+        "entered": 1,
+        "closed": 1,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "cancelled": 0,
+        "capacity_skipped": 0,
+        "ambiguous": 0,
+        "gross": 2.0000000000000004,
+        "costs": 0.03,
+        "net": 1.9700000000000004,
+        "gains": 1.9700000000000004,
+        "losses": 0,
+        "peak": 1.9700000000000004,
+        "drawdown": 0,
+        "hold_bars": 1
+      },
+      "fixed_ledger": {
+        "entered": 1,
+        "closed": 1,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "cancelled": 0,
+        "capacity_skipped": 0,
+        "ambiguous": 0,
+        "gross": 2.0000000000000004,
+        "costs": 0.03,
+        "net": 1.9700000000000004,
+        "gains": 1.9700000000000004,
+        "losses": 0,
+        "peak": 1.9700000000000004,
+        "drawdown": 0,
+        "hold_bars": 1
+      }
+    },
+    "M2": {
+      "baseline": {
+        "closed": 0,
+        "positive": 0,
+        "negative": 0,
+        "zero": 0,
+        "gross_r": 0,
+        "cost_r": 0,
+        "net_r": 0,
+        "mean_net_r": null,
+        "profit_factor": null,
+        "closed_equity_max_drawdown_r": 0,
+        "mean_holding_bars": null
+      },
+      "fixed": {
+        "closed": 0,
+        "positive": 0,
+        "negative": 0,
+        "zero": 0,
+        "gross_r": 0,
+        "cost_r": 0,
+        "net_r": 0,
+        "mean_net_r": null,
+        "profit_factor": null,
+        "closed_equity_max_drawdown_r": 0,
+        "mean_holding_bars": null
+      },
+      "delta_fixed_minus_baseline": {
+        "closed": 0,
+        "positive": 0,
+        "negative": 0,
+        "zero": 0,
+        "gross_r": 0,
+        "cost_r": 0,
+        "net_r": 0,
+        "mean_net_r": null,
+        "profit_factor": null,
+        "closed_equity_max_drawdown_r": 0,
+        "mean_holding_bars": null
+      },
+      "baseline_open_phase": 0,
+      "fixed_open_phase": 0,
+      "baseline_ledger": {
+        "entered": 0,
+        "closed": 0,
+        "positive": 0,
+        "negative": 0,
+        "zero": 0,
+        "cancelled": 0,
+        "capacity_skipped": 0,
+        "ambiguous": 0,
+        "gross": 0,
+        "costs": 0,
+        "net": 0,
+        "gains": 0,
+        "losses": 0,
+        "peak": 0,
+        "drawdown": 0,
+        "hold_bars": 0
+      },
+      "fixed_ledger": {
+        "entered": 0,
+        "closed": 0,
+        "positive": 0,
+        "negative": 0,
+        "zero": 0,
+        "cancelled": 0,
+        "capacity_skipped": 0,
+        "ambiguous": 0,
+        "gross": 0,
+        "costs": 0,
+        "net": 0,
+        "gains": 0,
+        "losses": 0,
+        "peak": 0,
+        "drawdown": 0,
+        "hold_bars": 0
+      }
+    },
+    "M3": {
+      "baseline": {
+        "closed": 0,
+        "positive": 0,
+        "negative": 0,
+        "zero": 0,
+        "gross_r": 0,
+        "cost_r": 0,
+        "net_r": 0,
+        "mean_net_r": null,
+        "profit_factor": null,
+        "closed_equity_max_drawdown_r": 0,
+        "mean_holding_bars": null
+      },
+      "fixed": {
+        "closed": 0,
+        "positive": 0,
+        "negative": 0,
+        "zero": 0,
+        "gross_r": 0,
+        "cost_r": 0,
+        "net_r": 0,
+        "mean_net_r": null,
+        "profit_factor": null,
+        "closed_equity_max_drawdown_r": 0,
+        "mean_holding_bars": null
+      },
+      "delta_fixed_minus_baseline": {
+        "closed": 0,
+        "positive": 0,
+        "negative": 0,
+        "zero": 0,
+        "gross_r": 0,
+        "cost_r": 0,
+        "net_r": 0,
+        "mean_net_r": null,
+        "profit_factor": null,
+        "closed_equity_max_drawdown_r": 0,
+        "mean_holding_bars": null
+      },
+      "baseline_open_phase": 0,
+      "fixed_open_phase": 0,
+      "baseline_ledger": {
+        "entered": 0,
+        "closed": 0,
+        "positive": 0,
+        "negative": 0,
+        "zero": 0,
+        "cancelled": 0,
+        "capacity_skipped": 0,
+        "ambiguous": 0,
+        "gross": 0,
+        "costs": 0,
+        "net": 0,
+        "gains": 0,
+        "losses": 0,
+        "peak": 0,
+        "drawdown": 0,
+        "hold_bars": 0
+      },
+      "fixed_ledger": {
+        "entered": 0,
+        "closed": 0,
+        "positive": 0,
+        "negative": 0,
+        "zero": 0,
+        "cancelled": 0,
+        "capacity_skipped": 0,
+        "ambiguous": 0,
+        "gross": 0,
+        "costs": 0,
+        "net": 0,
+        "gains": 0,
+        "losses": 0,
+        "peak": 0,
+        "drawdown": 0,
+        "hold_bars": 0
+      }
+    },
+    "RAW": {
+      "baseline": {
+        "closed": 1,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "gross_r": 2.0000000000000004,
+        "cost_r": 0.03,
+        "net_r": 1.9700000000000004,
+        "mean_net_r": 1.9700000000000004,
+        "profit_factor": null,
+        "closed_equity_max_drawdown_r": 0,
+        "mean_holding_bars": 1
+      },
+      "fixed": {
+        "closed": 1,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "gross_r": 2.0000000000000004,
+        "cost_r": 0.03,
+        "net_r": 1.9700000000000004,
+        "mean_net_r": 1.9700000000000004,
+        "profit_factor": null,
+        "closed_equity_max_drawdown_r": 0,
+        "mean_holding_bars": 1
+      },
+      "delta_fixed_minus_baseline": {
+        "closed": 0,
+        "positive": 0,
+        "negative": 0,
+        "zero": 0,
+        "gross_r": 0.0,
+        "cost_r": 0.0,
+        "net_r": 0.0,
+        "mean_net_r": 0.0,
+        "profit_factor": null,
+        "closed_equity_max_drawdown_r": 0,
+        "mean_holding_bars": 0
+      },
+      "baseline_open_phase": 0,
+      "fixed_open_phase": 0,
+      "baseline_ledger": {
+        "entered": 1,
+        "closed": 1,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "cancelled": 0,
+        "capacity_skipped": 0,
+        "ambiguous": 0,
+        "gross": 2.0000000000000004,
+        "costs": 0.03,
+        "net": 1.9700000000000004,
+        "gains": 1.9700000000000004,
+        "losses": 0,
+        "peak": 1.9700000000000004,
+        "drawdown": 0,
+        "hold_bars": 1
+      },
+      "fixed_ledger": {
+        "entered": 1,
+        "closed": 1,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "cancelled": 0,
+        "capacity_skipped": 0,
+        "ambiguous": 0,
+        "gross": 2.0000000000000004,
+        "costs": 0.03,
+        "net": 1.9700000000000004,
+        "gains": 1.9700000000000004,
+        "losses": 0,
+        "peak": 1.9700000000000004,
+        "drawdown": 0,
+        "hold_bars": 1
+      }
+    },
+    "FILTERED": {
+      "baseline": {
+        "closed": 1,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "gross_r": 2.0000000000000004,
+        "cost_r": 0.03,
+        "net_r": 1.9700000000000004,
+        "mean_net_r": 1.9700000000000004,
+        "profit_factor": null,
+        "closed_equity_max_drawdown_r": 0,
+        "mean_holding_bars": 1
+      },
+      "fixed": {
+        "closed": 1,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "gross_r": 2.0000000000000004,
+        "cost_r": 0.03,
+        "net_r": 1.9700000000000004,
+        "mean_net_r": 1.9700000000000004,
+        "profit_factor": null,
+        "closed_equity_max_drawdown_r": 0,
+        "mean_holding_bars": 1
+      },
+      "delta_fixed_minus_baseline": {
+        "closed": 0,
+        "positive": 0,
+        "negative": 0,
+        "zero": 0,
+        "gross_r": 0.0,
+        "cost_r": 0.0,
+        "net_r": 0.0,
+        "mean_net_r": 0.0,
+        "profit_factor": null,
+        "closed_equity_max_drawdown_r": 0,
+        "mean_holding_bars": 0
+      },
+      "baseline_open_phase": 0,
+      "fixed_open_phase": 0,
+      "baseline_ledger": {
+        "entered": 1,
+        "closed": 1,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "cancelled": 0,
+        "capacity_skipped": 0,
+        "ambiguous": 0,
+        "gross": 2.0000000000000004,
+        "costs": 0.03,
+        "net": 1.9700000000000004,
+        "gains": 1.9700000000000004,
+        "losses": 0,
+        "peak": 1.9700000000000004,
+        "drawdown": 0,
+        "hold_bars": 1
+      },
+      "fixed_ledger": {
+        "entered": 1,
+        "closed": 1,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "cancelled": 0,
+        "capacity_skipped": 0,
+        "ambiguous": 0,
+        "gross": 2.0000000000000004,
+        "costs": 0.03,
+        "net": 1.9700000000000004,
+        "gains": 1.9700000000000004,
+        "losses": 0,
+        "peak": 1.9700000000000004,
+        "drawdown": 0,
+        "hold_bars": 1
+      }
+    }
+  },
+  "limitations": [
+    "Both runs share the same provided OHLC file and current Python execution reference.",
+    "A fixed data file does not independently prove the provenance or completeness of either Pine export.",
+    "Metrics are descriptive; synthetic cases are not market evidence and real cases do not constitute untouched OOS or forward testing."
+  ]
+}

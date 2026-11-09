@@ -61,9 +61,26 @@ f_openRejection(Plan p, float fill, int fillTime) =>
     bool wrongSide = risk < syminfo.mintick or (p.tp1 - fill) * p.side <= 0
     bool farOpen = math.abs(fill - p.reference) > p.atrValue * maxOpenDeviationATR
     bool riskOpen = risk >= minStopATR * p.atrValue and risk <= p.maxRiskATR * p.atrValue and risk > 0 and p.costPrice / risk <= maxCostRisk
-    bool roomOpen = p.requiredRoom <= 0 or (not na(p.obstacle) and (p.obstacle - fill) * p.side >= risk * p.requiredRoom)
+    bool roomOpen = f_targetRoom(p, fill, risk)
     bool newsAtOpen = manualNewsPause or (useNewsWindow and fillTime >= newsAt - newsBefore * 60000 and fillTime <= newsAt + newsAfter * 60000)
     wrongSide ? "Отваряне извън SL/TP1" : newsAtOpen ? "Новинарска пауза при отваряне" : paperGapFilter and farOpen ? "Гап/отстояние" : paperGapFilter and not riskOpen ? "Риск/разходи при отваряне" : paperGapFilter and not roomOpen ? "Недостатъчно място при отваряне" : ""
+f_takeTargets(Paper s, Ledger a, string book, array<Event> ev, bool atOpen) =>
+    bool closed = false
+    int effective = atOpen ? time : na
+    float favorable = atOpen ? open : s.p.side == 1 ? high : low
+    if (favorable - s.p.tp1) * s.p.side >= 0 and not s.hit1
+        f_realize(s, 1.0 / 3.0, s.p.tp1, "SIM_TP1", book, effective, ev)
+        s.hit1 := true
+        s.lockBar := bar_index + 1
+    if (favorable - s.p.tp2) * s.p.side >= 0 and not s.hit2
+        f_realize(s, 1.0 / 3.0, s.p.tp2, "SIM_TP2", book, effective, ev)
+        s.hit2 := true
+    if (favorable - s.p.tp3) * s.p.side >= 0 and not s.hit3
+        f_realize(s, s.remaining, s.p.tp3, "SIM_TP3", book, effective, ev)
+        s.hit3 := true
+        f_finish(s, a, book, "TP3", ev)
+        closed := true
+    closed
 f_step(Paper s, Ledger a, string book, array<Event> ev) =>
     int today = f_day(time)
     if na(s.dayKey) or s.dayKey != today
@@ -113,36 +130,32 @@ f_step(Paper s, Ledger a, string book, array<Event> ev) =>
             f_realize(s, s.remaining, open, gapStop ? "SIM_SL" : "SIM_TIME", book, time, ev)
             f_finish(s, a, book, gapStop ? "STOP_GAP" : "TIME_NEXT_OPEN", ev)
             closedNow := true
+        else if (open - s.stop) * s.p.side <= 0
+            // A gap through SL is a known open event, not an ambiguous intrabar path.
+            f_realize(s, s.remaining, open, "SIM_SL", book, time, ev)
+            f_finish(s, a, book, "STOP_GAP", ev)
+            closedNow := true
         else
-            bool stopTouched = s.p.side == 1 ? low <= s.stop : high >= s.stop
-            bool tp1Touched = s.p.side == 1 ? high >= s.p.tp1 : low <= s.p.tp1
-            bool tp2Touched = s.p.side == 1 ? high >= s.p.tp2 : low <= s.p.tp2
-            bool tp3Touched = s.p.side == 1 ? high >= s.p.tp3 : low <= s.p.tp3
-            bool targetRemainingTouched = (tp1Touched and not s.hit1) or (tp2Touched and not s.hit2) or (tp3Touched and not s.hit3)
-            if stopTouched
-                if targetRemainingTouched
-                    a.ambiguousBars += 1
-                    f_planEvent(ev, s.p, "AMBIGUOUS", book, na, s.stop, "SL и TP в една свещ: избран SL-first")
-                float fill = s.p.side == 1 ? math.min(open, s.stop) : math.max(open, s.stop)
-                f_realize(s, s.remaining, fill, "SIM_SL", book, (open - s.stop) * s.p.side <= 0 ? time : na, ev)
-                f_finish(s, a, book, "STOP_FIRST", ev)
-                closedNow := true
-            else
-                if tp1Touched and not s.hit1
-                    f_realize(s, 1.0 / 3.0, s.p.tp1, "SIM_TP1", book, na, ev)
-                    s.hit1 := true
-                    s.lockBar := bar_index + 1
-                if tp2Touched and not s.hit2
-                    f_realize(s, 1.0 / 3.0, s.p.tp2, "SIM_TP2", book, na, ev)
-                    s.hit2 := true
-                if tp3Touched and not s.hit3
-                    f_realize(s, s.remaining, s.p.tp3, "SIM_TP3", book, na, ev)
-                    s.hit3 := true
-                    f_finish(s, a, book, "TP3", ev)
+            // Already-marketable targets at open must execute before any later reversal.
+            // Price improvement is deliberately not assumed: use each frozen target price.
+            closedNow := f_takeTargets(s, a, book, ev, true)
+            if s.phase == 2
+                bool stopTouched = s.p.side == 1 ? low <= s.stop : high >= s.stop
+                bool tp1Touched = (s.p.side == 1 ? high >= s.p.tp1 : low <= s.p.tp1) and not s.hit1
+                bool tp2Touched = (s.p.side == 1 ? high >= s.p.tp2 : low <= s.p.tp2) and not s.hit2
+                bool tp3Touched = (s.p.side == 1 ? high >= s.p.tp3 : low <= s.p.tp3) and not s.hit3
+                if stopTouched
+                    if tp1Touched or tp2Touched or tp3Touched
+                        a.ambiguousBars += 1
+                        f_planEvent(ev, s.p, "AMBIGUOUS", book, na, s.stop, "Неизвестен ред след open: SL-first за остатъка")
+                    f_realize(s, s.remaining, s.stop, "SIM_SL", book, na, ev)
+                    f_finish(s, a, book, "STOP_FIRST", ev)
                     closedNow := true
-                else if bar_index - s.fillBar >= maxHoldBars
-                    s.exitNextOpen := true
-                    f_planEvent(ev, s.p, "TIME_PENDING", book, time_close, close, "Планиран виртуален изход на следващо отваряне")
+                else
+                    closedNow := f_takeTargets(s, a, book, ev, false)
+                    if s.phase == 2 and bar_index - s.fillBar >= maxHoldBars
+                        s.exitNextOpen := true
+                        f_planEvent(ev, s.p, "TIME_PENDING", book, time_close, close, "Планиран виртуален изход на следващо отваряне")
     closedNow
 f_queue(Paper s, Ledger a, Plan p, string book, array<Event> ev) =>
     bool accepted = s.phase == 0
@@ -214,8 +227,9 @@ if processBar
             Ledger familyL = array.get(ledgers, p.family - 1)
             bool shieldPaused = enableEvidenceShield and (globalG.paused or familyG.paused)
             bool contraPause = observeCountertrendOnly and p.countertrend
-            p.filterEligible := not shieldPaused and not contraPause and dailyPass
-            p.evidence := shieldPaused ? "ПАУЗА: ИЗВАДКА" : contraPause ? "ИЗСЛЕДВАНЕ: КОНТРАТРЕНД" : not dailyPass ? "ПАУЗА: ДНЕВЕН ЛИМИТ" : familyL.closed < modelMinClosed ? "НЕВАЛИДИРАН: МАЛКА ИЗВАДКА" : "НЕВАЛИДИРАН: НЯМА OOS"
+            string policyReason = f_policyReason(p)
+            p.filterEligible := not shieldPaused and not contraPause and dailyPass and policyReason == ""
+            p.evidence := policyReason != "" ? "ПРОБНА ПОЛИТИКА: " + policyReason : shieldPaused ? "ПАУЗА: ИЗВАДКА" : contraPause ? "ИЗСЛЕДВАНЕ: КОНТРАТРЕНД" : not dailyPass ? "ПАУЗА: ДНЕВЕН ЛИМИТ" : familyL.closed < modelMinClosed ? "НЕВАЛИДИРАН: МАЛКА ИЗВАДКА" : "НЕВАЛИДИРАН: НЯМА OOS"
             lastEvidence := p.evidence
             f_planEvent(events, p, "CONFIRMED", "CORE", time_close, p.reference, "Техническите правила са изпълнени; НЕ е препоръка за поръчка")
     for m = 1 to 3

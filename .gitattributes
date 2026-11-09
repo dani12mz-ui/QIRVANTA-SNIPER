@@ -1,0 +1,9 @@
+*.pine text eol=lf
+*.pineinc text eol=lf
+*.py text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.zip binary
+refactored/baseline/** -text
+# Blank separators at component ends are part of the byte-identical assembly.
+*.pineinc whitespace=-blank-at-eof

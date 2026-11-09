@@ -1,0 +1,22 @@
+{
+  "scope": "PYTHON_REFERENCE_AND_STATIC_PINE_SOURCE_NOT_PINE_RUNTIME",
+  "tests_run": 127,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "successful": true,
+  "duration_seconds": 0.598,
+  "pine_compile": "UNVERIFIED",
+  "execution_runtime_parity": "UNVERIFIED",
+  "market_profitability": "UNVERIFIED_MISSING_DATA",
+  "tested_code_commit": "ffd7b481b2896a6a2f6a9d9db744a2fa4fe3a744",
+  "tested_source_sha256": "a9db3149aca4db122267da7642825958281e188bbb602b0f5c6f1d1c9df615d6",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "command": [
+    "C:\\Users\\azubu\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "tools/run_tests.py"
+  ],
+  "exit_code": 0
+}
+

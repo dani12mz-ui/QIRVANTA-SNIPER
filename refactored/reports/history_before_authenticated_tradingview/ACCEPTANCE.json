@@ -1,0 +1,68 @@
+{
+  "baseline_commit": "103bc30788b18234f5938ed0f5346e142097a6fe",
+  "tested_code_commit": "ffd7b481b2896a6a2f6a9d9db744a2fa4fe3a744",
+  "tested_source_sha256": "a9db3149aca4db122267da7642825958281e188bbb602b0f5c6f1d1c9df615d6",
+  "branch": "fix/audited-validation-integrity",
+  "CODE_TESTS": {
+    "status": "PASS",
+    "reason": "127 Python behavioral/artifact/static tests, zero failures/errors; NOT Pine runtime",
+    "evidence": [
+      "reports/tests.json",
+      "reports/unit_tests.log",
+      "reports/commands.json"
+    ],
+    "code_commit": "ffd7b481b2896a6a2f6a9d9db744a2fa4fe3a744"
+  },
+  "PINE_COMPILE": {
+    "status": "BLOCKED",
+    "reason": "PINE_COMPILE_UNVERIFIED: baseline Add to chart required TradingView Log in; no compiler response; neither final file compiled",
+    "evidence": [
+      "reports/tradingview_attempt.json"
+    ],
+    "code_commit": "ffd7b481b2896a6a2f6a9d9db744a2fa4fe3a744"
+  },
+  "PINE_RUNTIME": {
+    "status": "BLOCKED",
+    "reason": "No final PRO/VALIDATION execution at M5/M15/M30/H1/H4; login required",
+    "evidence": [
+      "reports/tradingview_attempt.json"
+    ],
+    "code_commit": "ffd7b481b2896a6a2f6a9d9db744a2fa4fe3a744"
+  },
+  "EXECUTION_PARITY": {
+    "status": "NOT_RUN",
+    "reason": "No exported Pine/native runtime journals; unchanged source core and Python fixtures are not parity proof",
+    "evidence": [
+      "reports/synthetic_tooling_comparison.json"
+    ],
+    "code_commit": "ffd7b481b2896a6a2f6a9d9db744a2fa4fe3a744"
+  },
+  "OUT_OF_SAMPLE": {
+    "status": "BLOCKED",
+    "reason": "PERFORMANCE_UNVERIFIED_MISSING_DATA: no real OHLC and complete baseline/fixed Pine exports",
+    "evidence": [],
+    "code_commit": "ffd7b481b2896a6a2f6a9d9db744a2fa4fe3a744"
+  },
+  "FORWARD_TEST": {
+    "status": "NOT_RUN",
+    "reason": "No forward observation period",
+    "evidence": [],
+    "code_commit": "ffd7b481b2896a6a2f6a9d9db744a2fa4fe3a744"
+  },
+  "MOBILE_UI": {
+    "status": "NOT_RUN",
+    "reason": "No actual TradingView 390x844/430x932 render; previous HTML prototype is historical",
+    "evidence": [],
+    "code_commit": "ffd7b481b2896a6a2f6a9d9db744a2fa4fe3a744"
+  },
+  "priority_1_root_cause": "UNRESOLVED_NOT_REPRODUCED",
+  "bar_magnifier_cause": "NOT_ESTABLISHED_UNCHANGED",
+  "pine_signal_core_changed": false,
+  "canonical_core_sha256": "c189ef479ccc106178a8a3b146da0dcd7d2fac852ddbeb8eebb298f385748dcc",
+  "profitability_demonstrated": false,
+  "production_ready": false,
+  "github_pushed": false,
+  "main_modified": false,
+  "broker_connected": false,
+  "orders_submitted": false
+}

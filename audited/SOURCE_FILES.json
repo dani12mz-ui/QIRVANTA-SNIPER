@@ -1,36 +1,25 @@
 {
-  "delivery": "QIRVANTA_PRO_CURRENT",
-  "source_archive": "QIRVANTA_PRO_CURRENT.zip",
-  "source_archive_sha256": "ead3ee6cee64758e5d7dc91bed966189de752faf01f166a832c8ab9c241d2911",
-  "publication_scope": "standalone Pine outputs and documentation, not the entire source archive",
-  "branch": "qirvanta-refactored-delivery",
-  "main_modified": false,
+  "delivery": "QIRVANTA_AUDITED_REPAIR",
+  "baseline_commit": "103bc30788b18234f5938ed0f5346e142097a6fe",
+  "tested_code_commit": "51e0aa20a5604b9d79e7214f6e2aca59ac01048a",
+  "tested_source_sha256": "c7946faaa06cfc85ae1a757a5a9804fdffeb6552be9112dec20a9dc5ae674cb3",
+  "source": "../refactored/src",
+  "source_recovery": "../refactored/reports/source_recovery.json",
   "files": {
     "QIRVANTA_SNIPER_PRO.pine": {
-      "bytes": 91655,
-      "lines": 1234,
-      "git_blob_sha1": "4512180a8f313146267370a3fcc4ab403868eae2",
-      "sha256": "ee0a692777d439e9957957f6abb241420a0478578e10c7b906ab1d1a651ed30a"
+      "lines": 1236,
+      "sha256": "0d8823a74d57f98dbe27575f2fc0e0abe4ae8db710ec81419265c31390232043"
     },
     "QIRVANTA_SNIPER_VALIDATION.pine": {
-      "bytes": 104146,
-      "lines": 1400,
-      "git_blob_sha1": "feb48ef52d5640c49718cb8f614c3d1dae9ae9f8",
-      "sha256": "5cd7a04a6d97dfc1c37024f0d004874553c163a3b17b9984c03336f3aa9004a3"
-    },
-    "README_BG.md": {
-      "bytes": 9968,
-      "git_blob_sha1": "c033a23d7e4bff13d1181393b6e96de3bdfd67e6",
-      "sha256": "01b73331261e5a2d7c18817f1ca56eb91315bb45e8c203093fb79aa4b9d46864"
-    },
-    "reports/ACCEPTANCE.json": {
-      "bytes": 1930,
-      "git_blob_sha1": "45eaa20bcd2bd4397fc024009d5f7eef1a4414d8",
-      "sha256": "b06a770209416b1b0ba83fd2ace54004b2f97e991b615751962b44ffa0096da1"
+      "lines": 1402,
+      "sha256": "44a579eee6e1542fdb7f30b9dceb9ec78aac9f3c6d9bc0346a52fa4d9bf529b2"
     }
   },
-  "compile": "UNVERIFIED",
+  "canonical_core_sha256": "c189ef479ccc106178a8a3b146da0dcd7d2fac852ddbeb8eebb298f385748dcc",
+  "compile": "PASS_WITH_REVIEWED_WARNINGS",
+  "runtime": "PASS_SMOKE_M5_M15_M30_H1_H4",
+  "live_evidence": "../refactored/reports/tradingview_attempt.json",
   "profitability": "NOT_DEMONSTRATED",
-  "code_modified_during_publication": false,
-  "tests_rerun_during_publication": false
+  "publication_status": "PENDING_GITHUB_PUBLICATION",
+  "github_pushed": false
 }

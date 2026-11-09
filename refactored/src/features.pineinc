@@ -11,6 +11,9 @@ float emaSlow = ta.ema(close, 55)
 float atr = ta.atr(14)
 float atrMean = ta.sma(atr, 40)
 float rsi = ta.rsi(close, 14)
+// Causal efficiency ratio: all inputs belong to this bar or preceding bars.
+float traveled = math.sum(math.abs(ta.change(close)), efficiencyLength)
+float efficiency = not na(traveled) and not na(close[efficiencyLength]) ? (traveled > 0 ? math.min(1.0, math.abs(close - close[efficiencyLength]) / traveled) : 0.0) : na
 [diPlus, diMinus, adx] = ta.dmi(14, 14)
 float body = math.abs(close - open)
 float barRange = math.max(high - low, syminfo.mintick)
@@ -149,3 +152,4 @@ string regime = validATR and atr > atrMean * 1.9 ? "СИЛНА ВОЛАТИЛН�
 // Display and analysis refer to closed candles only. No unconfirmed marker is emitted.
 bool structureDownNow = barstate.isconfirmed and not na(shortStruct) and close < shortStruct and close[1] >= shortStruct and displacementDn
 bool structureUpNow = barstate.isconfirmed and not na(longStruct) and close > longStruct and close[1] <= longStruct and displacementUp
+

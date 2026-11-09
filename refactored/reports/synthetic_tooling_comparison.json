@@ -1,0 +1,86 @@
+{
+  "status": "SYNTHETIC_FUNCTIONAL_ONLY",
+  "baseline_commit": "103bc30788b18234f5938ed0f5346e142097a6fe",
+  "baseline_python_sha256": "86b3972a6467df77facf1db11fe1211989d4da622e6627b896e98f63c720b2bb",
+  "scope": "STALE_PYTHON_TOOLING_VS_AUDITED_SEMANTICS_NOT_PINE_OR_MARKET_PERFORMANCE",
+  "rows": [
+    {
+      "case": "open_targets_then_sl",
+      "side": 1,
+      "ohlc": [
+        125,
+        132,
+        89,
+        100
+      ],
+      "roundtrip_cost_price": 0.3,
+      "old_python_net_r": -1.03,
+      "audited_semantics_python_net_r": 0.6366666666666665
+    },
+    {
+      "case": "unknown_path_stop_first",
+      "side": 1,
+      "ohlc": [
+        100,
+        135,
+        89,
+        130
+      ],
+      "roundtrip_cost_price": 0.3,
+      "old_python_net_r": -1.03,
+      "audited_semantics_python_net_r": -1.03
+    },
+    {
+      "case": "three_targets_no_stop",
+      "side": 1,
+      "ohlc": [
+        100,
+        135,
+        95,
+        130
+      ],
+      "roundtrip_cost_price": 0.3,
+      "old_python_net_r": 1.9700000000000004,
+      "audited_semantics_python_net_r": 1.9700000000000004
+    },
+    {
+      "case": "open_targets_then_sl",
+      "side": -1,
+      "ohlc": [
+        75,
+        111,
+        68,
+        100
+      ],
+      "roundtrip_cost_price": 0.3,
+      "old_python_net_r": -1.03,
+      "audited_semantics_python_net_r": 0.6366666666666665
+    },
+    {
+      "case": "unknown_path_stop_first",
+      "side": -1,
+      "ohlc": [
+        100,
+        111,
+        65,
+        70
+      ],
+      "roundtrip_cost_price": 0.3,
+      "old_python_net_r": -1.03,
+      "audited_semantics_python_net_r": -1.03
+    },
+    {
+      "case": "three_targets_no_stop",
+      "side": -1,
+      "ohlc": [
+        100,
+        105,
+        65,
+        70
+      ],
+      "roundtrip_cost_price": 0.3,
+      "old_python_net_r": 1.9700000000000004,
+      "audited_semantics_python_net_r": 1.9700000000000004
+    }
+  ]
+}

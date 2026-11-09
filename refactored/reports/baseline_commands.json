@@ -1,0 +1,38 @@
+{
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "commands": [
+    {
+      "command": [
+        "C:\\Users\\azubu\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "cwd": "isolated baseline_run/refactored",
+      "exit_code": 1,
+      "log": "baseline_tests_0.log"
+    },
+    {
+      "command": [
+        "C:\\Users\\azubu\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "cwd": "isolated baseline_run/refactored",
+      "exit_code": 1,
+      "log": "baseline_tests_1.log"
+    }
+  ],
+  "scope": "old refactored tests; not validation of audited Pine"
+}

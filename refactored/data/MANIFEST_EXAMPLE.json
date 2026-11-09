@@ -4,7 +4,11 @@
   "provider": "OANDA export from TradingView; replace with actual verified origin",
   "timeframe_seconds": 900,
   "pine_core_sha256": "COPY EXACT CORE HASH FROM reports/build.json",
-  "pine_inputs": {},
+  "pine_inputs": {
+    "contextPolicy": "БАЗОВ",
+    "minEfficiency": 0.25,
+    "REPLACE_WITH_ALL_ACTUAL_PINE_INPUTS": true
+  },
   "coverage_complete": false,
   "notes": "Template only. No real market data is bundled. Fill inputs and verify complete log coverage before use.",
   "config": {
@@ -28,6 +32,8 @@
     "recovery_trades": 5,
     "countertrend_observe_only": true,
     "daily_loss_r": 3.0,
-    "daily_losing_streak": 3
+    "daily_losing_streak": 3,
+    "context_policy": "БАЗОВ",
+    "min_efficiency": 0.25
   }
 }

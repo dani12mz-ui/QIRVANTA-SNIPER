@@ -51,9 +51,43 @@ def plans_by_bar(events,bars):
         pid=e['plan_id']
         if pid in seen:raise ValueError('Repeated confirmed plan id')
         seen.add(pid)
-        p=Plan(id=pid,family=int(e['family']),side=int(e['side']),signal_bar=index[t],signal_time=t,reference=float(e['reference']),stop=float(e['initial_sl']),targets=tuple(float(e[f'tp{i}']) for i in (1,2,3)),atr=float(e['atr_at_signal']),cost_price=float(e['roundtrip_cost_price']),max_risk_atr=float(e['max_risk_atr']),obstacle=e.get('obstacle'),required_room=float(e.get('required_room_r',0)),countertrend=bool(e.get('countertrend',False)))
+        p=Plan(id=pid,family=int(e['family']),side=int(e['side']),signal_bar=index[t],signal_time=t,reference=float(e['reference']),stop=float(e['initial_sl']),targets=tuple(float(e[f'tp{i}']) for i in (1,2,3)),atr=float(e['atr_at_signal']),cost_price=float(e['roundtrip_cost_price']),max_risk_atr=float(e['max_risk_atr']),obstacle=e.get('obstacle'),required_room=float(e.get('required_room_r',0)),countertrend=e.get('countertrend',False),local_aligned=e.get('local_aligned',False),efficiency_ratio=e.get('efficiency_ratio'))
         result.setdefault(index[t],[]).append(p)
     return result
+
+def validate_provenance(events,manifest,bars,config):
+    """Check internal event/manifest consistency, not truth of the supplied provenance.
+
+    Synthetic fixtures may omit code hashes because no Pine execution occurred.
+    """
+    seconds=int(manifest['timeframe_seconds'])
+    if seconds not in (300,900,1800,3600,14400):
+        raise ValueError('Unsupported manifest timeframe')
+    if any(b.time_close-b.time!=seconds*1000 for b in bars):
+        raise ValueError('Bar duration does not match manifest timeframe')
+    real=manifest['dataset_kind']=='real'
+    if real and not events:raise ValueError('Real replay needs an actual exported event log')
+    digest=manifest['pine_core_sha256']
+    for e in events:
+        if e.get('symbol')!=manifest['symbol']:
+            raise ValueError('Mixed symbol/provider events')
+        if str(e.get('timeframe'))!=str(seconds//60):
+            raise ValueError('Event timeframe does not match manifest')
+        if (real or 'core_sha256' in e) and e.get('core_sha256')!=digest:
+            raise ValueError('Event core_sha256 does not match manifest')
+        if real and e.get('schema')!='qirvanta.event.v1':
+            raise ValueError('Unsupported or missing event schema')
+        if real and e.get('event')=='CONFIRMED' and e.get('book')=='CORE':
+            if 'local_aligned' not in e or 'efficiency_ratio' not in e:
+                raise ValueError('Missing frozen candidate context')
+    inputs=manifest['pine_inputs']
+    if 'contextPolicy' in inputs and inputs['contextPolicy']!=config.context_policy:
+        raise ValueError('Pine context policy differs from replay configuration')
+    if 'minEfficiency' in inputs and inputs['minEfficiency']!=config.min_efficiency:
+        raise ValueError('Pine efficiency threshold differs from replay configuration')
+    if real and not all(k in inputs for k in ('contextPolicy','minEfficiency')):
+        raise ValueError('Real replay requires explicit Pine contextPolicy and minEfficiency')
+
 
 def metrics(trades):
     rr=[t['net_r'] for t in trades];gross=sum(t['gross_r'] for t in trades);cost=sum(t['cost_r'] for t in trades)
@@ -88,9 +122,9 @@ def main(argv=None):
     missing=[name for name in ('bars','events','manifest') if getattr(args,name) is None or not getattr(args,name).is_file()]
     if missing:
         result={'status':'PERFORMANCE_UNVERIFIED_MISSING_DATA','missing':missing,'message':'No invented returns. Supply OHLC, complete exported Pine events, and provenance manifest.'}
-        (args.out/'status.json').write_text(json.dumps(result,indent=2));print(json.dumps(result));return 2
+        (args.out/'status.json').write_text(json.dumps(result,indent=2),encoding='utf-8');print(json.dumps(result));return 2
     try:
-        manifest=json.loads(args.manifest.read_text());required=('dataset_kind','symbol','provider','timeframe_seconds','pine_core_sha256','pine_inputs','coverage_complete','config')
+        manifest=json.loads(args.manifest.read_text(encoding='utf-8-sig'));required=('dataset_kind','symbol','provider','timeframe_seconds','pine_core_sha256','pine_inputs','coverage_complete','config')
         if any(k not in manifest for k in required):raise ValueError('Incomplete manifest; see data/MANIFEST_EXAMPLE.json')
         if manifest['dataset_kind'] not in ('real','synthetic'):raise ValueError('dataset_kind must be real or synthetic')
         if manifest['coverage_complete'] is not True:raise ValueError('Incomplete Pine log coverage: comparison is invalid, export complete coverage first')
@@ -101,10 +135,7 @@ def main(argv=None):
             if not manifest['pine_inputs']:
                 raise ValueError('Real dataset requires the complete Pine input configuration')
         c=Config(**manifest['config']);bars=load_bars(args.bars);events=load_events(args.events)
-        seconds=int(manifest['timeframe_seconds'])
-        if any(b.time_close-b.time!=seconds*1000 for b in bars):raise ValueError('Bar duration does not match manifest timeframe')
-        core_confirmations=[e for e in events if e.get('event')=='CONFIRMED' and e.get('book')=='CORE']
-        if any(e.get('symbol')!=manifest['symbol'] for e in core_confirmations):raise ValueError('Mixed symbol/provider events')
+        validate_provenance(events,manifest,bars,c)
         plans=plans_by_bar(events,bars);engine=evaluate(bars,plans,c)
         results={};trades=[];all_events=[]
         for name,book in engine.books.items():
@@ -138,15 +169,15 @@ def main(argv=None):
                 stress[str(mult)]={'status':'CANDIDATE_RISK_LIMIT_EXCEEDED','detail':str(err),'method':'Higher costs invalidate a supplied plan; rerun Pine with matching costs for new candidate discovery.'}
         status='SYNTHETIC_FUNCTIONAL_ONLY' if manifest['dataset_kind']=='synthetic' else 'CONDITIONAL_EXECUTION_REPLAY_NOT_PINE_PARITY'
         report={'status':status,'manifest':manifest,'inputs_sha256':{str(p.name):hashlib.sha256(p.read_bytes()).hexdigest() for p in (args.bars,args.events,args.manifest)},'books':results,'chronological_segments':segments,'cost_stress':stress,'candidate_count':sum(map(len,plans.values())),'pine_compilation':'NOT_CHECKED','signal_generation':'EXPORTED_PINE_INPUT_NOT_REGENERATED_IN_PYTHON'}
-        (args.out/'metrics.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
-        with (args.out/'trades.jsonl').open('w') as f:
+        (args.out/'metrics.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
+        with (args.out/'trades.jsonl').open('w',encoding='utf-8') as f:
             for t in trades:f.write(json.dumps(t,ensure_ascii=False)+'\n')
         fields=['plan_id','book','family','side','signal_time','modeled_fill_time','modeled_fill_price','initial_sl','exit_known_time','exit_effective_time','exit_price','exit_reason','initial_risk_price','gross_r','cost_r','net_r','hold_bars','evidence']
         with (args.out/'trades.csv').open('w',newline='',encoding='utf-8') as f:
             w=csv.DictWriter(f,fieldnames=fields,extrasaction='ignore');w.writeheader();w.writerows(trades)
-        with (args.out/'events.jsonl').open('w') as f:
+        with (args.out/'events.jsonl').open('w',encoding='utf-8') as f:
             for e in all_events:f.write(json.dumps(e,ensure_ascii=False)+'\n')
         print(json.dumps({'status':status,'candidates':report['candidate_count'],'report':str(args.out/'metrics.json')}));return 0
     except (ValueError,KeyError,TypeError,OSError) as err:
-        (args.out/'status.json').write_text(json.dumps({'status':'INVALID_INPUT','error':str(err)},ensure_ascii=False,indent=2));print(str(err),file=sys.stderr);return 2
+        (args.out/'status.json').write_text(json.dumps({'status':'INVALID_INPUT','error':str(err)},ensure_ascii=False,indent=2),encoding='utf-8');print(str(err),file=sys.stderr);return 2
 if __name__=='__main__':raise SystemExit(main())

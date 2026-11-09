@@ -1,0 +1,4 @@
+{"status": "SYNTHETIC_FUNCTIONAL_ONLY", "candidates": 1, "report": "reports\\synthetic_paired_run\\baseline\\metrics.json"}
+{"status": "SYNTHETIC_FUNCTIONAL_ONLY", "candidates": 1, "report": "reports\\synthetic_paired_run\\fixed\\metrics.json"}
+{"status": "SYNTHETIC_FUNCTIONAL_ONLY", "report": "reports\\synthetic_paired_run\\comparison.json"}
+

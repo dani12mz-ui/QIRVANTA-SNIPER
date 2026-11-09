@@ -43,7 +43,11 @@ class Plan:
     countertrend: bool = False
     eligible: bool = False
     evidence: str = 'UNVALIDATED'
+    local_aligned: bool = False
+    efficiency_ratio: Optional[float] = None
     def __post_init__(self):
+        if not isinstance(self.targets, tuple) or len(self.targets) != 3:
+            raise ValueError('Plan requires exactly three immutable targets')
         values = (self.reference,self.stop,*self.targets,self.atr,self.cost_price,self.max_risk_atr)
         if not self.id or self.family not in (1,2,3) or self.side not in (-1,1) or not all(isfinite(x) for x in values):
             raise ValueError('Invalid plan')
@@ -52,8 +56,12 @@ class Plan:
         prices = (self.stop,self.reference,*self.targets)
         if any((b-a)*self.side <= 0 for a,b in zip(prices,prices[1:])):
             raise ValueError('SL/reference/targets must be strictly ordered')
-        if self.required_room < 0 or (self.obstacle is not None and not isfinite(self.obstacle)):
+        if not isfinite(self.required_room) or self.required_room < 0 or (self.obstacle is not None and not isfinite(self.obstacle)):
             raise ValueError('Invalid obstacle')
+        if self.efficiency_ratio is not None and (not isfinite(self.efficiency_ratio) or not 0 <= self.efficiency_ratio <= 1):
+            raise ValueError('Invalid efficiency ratio')
+        if not isinstance(self.countertrend, bool) or not isinstance(self.local_aligned, bool):
+            raise ValueError('Invalid context flags')
 
 @dataclass(frozen=True)
 class Config:
@@ -78,6 +86,8 @@ class Config:
     countertrend_observe_only: bool = True
     daily_loss_r: float = 3.0
     daily_losing_streak: int = 3
+    context_policy: str = 'БАЗОВ'
+    min_efficiency: float = .25
     def __post_init__(self):
         ZoneInfo(self.timezone)
         positive = (self.tick,self.min_stop_atr,self.max_open_deviation_atr,self.max_cost_risk,self.daily_loss_r)
@@ -89,6 +99,8 @@ class Config:
             raise ValueError('Shield thresholds must be negative')
         if any(b<a for a,b in self.news_windows):
             raise ValueError('Invalid news window')
+        if self.context_policy not in ('БАЗОВ', 'СЪГЛАСУВАН ТРЕНД — ПРОБЕН') or not isfinite(self.min_efficiency) or not 0 <= self.min_efficiency <= 1:
+            raise ValueError('Invalid context policy')
 
 def day_key(ms: int, tz: str) -> str:
     return datetime.fromtimestamp(ms/1000,timezone.utc).astimezone(ZoneInfo(tz)).date().isoformat()
@@ -104,9 +116,24 @@ def nearest_obstacle(values: Iterable[Optional[float]], side: int, price: float)
     legal=[v for v in values if v is not None and isfinite(v) and (v-price)*side>0]
     return min(legal,key=lambda v:(v-price)*side) if legal else None
 
+def target_room(p: Plan, entry: float, risk: float, tick: float) -> bool:
+    """Room includes the actual rounded/frozen TP1, matching audited Pine."""
+    return p.required_room <= 0 or (p.obstacle is not None and
+        (p.obstacle-entry)*p.side + tick*1e-6 >= max(risk*p.required_room, (p.targets[0]-entry)*p.side))
+
+
+def policy_reason(p: Plan, c: Config) -> str:
+    if c.context_policy == 'БАЗОВ': return ''
+    if p.countertrend: return 'HTF_MISMATCH'
+    if not p.local_aligned: return 'LOCAL_MISMATCH'
+    if p.efficiency_ratio is None: return 'MISSING_EFFICIENCY'
+    if p.efficiency_ratio < c.min_efficiency: return 'LOW_EFFICIENCY'
+    return ''
+
+
 def valid_plan(p: Plan, c: Config) -> bool:
     risk=(p.reference-p.stop)*p.side
-    return risk>=c.tick and risk+c.tick*1e-6>=c.min_stop_atr*p.atr and risk<=p.max_risk_atr*p.atr and p.cost_price/risk<=c.max_cost_risk
+    return target_room(p,p.reference,risk,c.tick) and risk>=c.tick and risk+c.tick*1e-6>=c.min_stop_atr*p.atr and risk<=p.max_risk_atr*p.atr and p.cost_price/risk<=c.max_cost_risk
 
 @dataclass
 class Ledger:
@@ -212,6 +239,18 @@ class Paper:
         self.trades.append(trade);self.last_closed=trade
         self.emit(bar,'CLOSED',trade['exit_price'],trade['exit_effective_time'],gross_r=self.gross,cost_r=self.costs,net_r=net,reason=reason)
         self.phase=0;self.exit_next_open=False;self.lock_bar=None
+    def take_targets(self,b:Bar,at_open:bool=False)->bool:
+        assert self.plan is not None
+        p=self.plan
+        favorable=b.open if at_open else b.high if p.side==1 else b.low
+        effective=b.time if at_open else None
+        for i,target in enumerate(p.targets):
+            if (favorable-target)*p.side>=0 and not self.hits[i]:
+                self.realize(b,self.remaining if i==2 else 1/3,target,f'SIM_TP{i+1}',effective)
+                self.hits[i]=True
+                if i==0:self.lock_bar=b.index+1
+                if i==2:self.finish(b,'TP3');return True
+        return False
     def step(self,b:Bar):
         today=day_key(b.time,self.config.timezone)
         if self.day!=today:self.day=today;self.day_net=0;self.day_streak=0
@@ -222,7 +261,7 @@ class Paper:
             wrong=r<c.tick or (p.targets[0]-b.open)*p.side<=0
             far=abs(b.open-p.reference)>p.atr*c.max_open_deviation_atr
             risk_ok=r>=c.min_stop_atr*p.atr and r<=p.max_risk_atr*p.atr and r>0 and p.cost_price/r<=c.max_cost_risk
-            room=p.required_room<=0 or p.obstacle is not None and (p.obstacle-b.open)*p.side>=r*p.required_room
+            room=target_room(p,b.open,r,c.tick)
             news=c.manual_news_pause or any(a<=b.time<=z for a,z in c.news_windows)
             if wrong or news or c.gap_filter and (far or not risk_ok or not room):
                 why='WRONG_SIDE' if wrong else 'NEWS' if news else 'GAP' if far else 'RISK_COST' if not risk_ok else 'ROOM'
@@ -241,20 +280,18 @@ class Paper:
             gap=(b.open-self.stop)*p.side<=0
             self.realize(b,self.remaining,b.open,'SIM_SL' if gap else 'SIM_TIME',b.time)
             self.finish(b,'STOP_GAP' if gap else 'TIME_NEXT_OPEN');return
+        if (b.open-self.stop)*p.side<=0:
+            self.realize(b,self.remaining,b.open,'SIM_SL',b.time)
+            self.finish(b,'STOP_GAP');return
+        # Known open executions precede an unknown later OHLC path. No price improvement.
+        if self.take_targets(b,at_open=True):return
         stop_touched=b.low<=self.stop if p.side==1 else b.high>=self.stop
         touched=[b.high>=t if p.side==1 else b.low<=t for t in p.targets]
         if stop_touched:
             if any(t and not h for t,h in zip(touched,self.hits)):
                 self.ledger.ambiguous+=1;self.emit(b,'AMBIGUOUS',self.stop)
-            price=min(b.open,self.stop) if p.side==1 else max(b.open,self.stop)
-            effective=b.time if (b.open-self.stop)*p.side<=0 else None
-            self.realize(b,self.remaining,price,'SIM_SL',effective);self.finish(b,'STOP_FIRST');return
-        for i,touch in enumerate(touched):
-            if touch and not self.hits[i]:
-                self.realize(b,self.remaining if i==2 else 1/3,p.targets[i],f'SIM_TP{i+1}')
-                self.hits[i]=True
-                if i==0:self.lock_bar=b.index+1
-                if i==2:self.finish(b,'TP3');return
+            self.realize(b,self.remaining,self.stop,'SIM_SL');self.finish(b,'STOP_FIRST');return
+        if self.take_targets(b):return
         if b.index-self.fill_bar>=c.max_hold_bars:
             self.exit_next_open=True;self.emit(b,'TIME_PENDING',b.close,b.time_close)
 
@@ -281,8 +318,9 @@ class Engine:
             if not valid_plan(p,self.c):raise ValueError('Invalid candidate risk/targets')
             paused=self.c.shield_enabled and (self.gates['RAW'].paused or self.gates[f'M{p.family}'].paused)
             contra=self.c.countertrend_observe_only and p.countertrend
-            status='PAUSED_EVIDENCE' if paused else 'RESEARCH_COUNTERTREND' if contra else 'PAUSED_DAILY' if not daily else 'UNVALIDATED_SMALL_SAMPLE' if self.books[f'M{p.family}'].ledger.closed<self.c.model_min_closed else 'UNVALIDATED_NO_OOS'
-            out.append(replace(p,eligible=not paused and not contra and daily,evidence=status))
+            policy=policy_reason(p,self.c)
+            status='EXPERIMENTAL_POLICY: '+policy if policy else 'PAUSED_EVIDENCE' if paused else 'RESEARCH_COUNTERTREND' if contra else 'PAUSED_DAILY' if not daily else 'UNVALIDATED_SMALL_SAMPLE' if self.books[f'M{p.family}'].ledger.closed<self.c.model_min_closed else 'UNVALIDATED_NO_OOS'
+            out.append(replace(p,eligible=not paused and not contra and daily and not policy,evidence=status))
         for i in range(1,4):
             chosen=pick(out,i)
             if chosen:self.books[f'M{i}'].queue(chosen,b)
@@ -314,6 +352,6 @@ class SetupLifecycle:
 def allowed_event(kind:str,book:str,master:bool=True,watch:bool=True,plan:bool=True,risk:bool=True,paper:bool=True,selected:str='RAW')->bool:
     if not master:return False
     paper_book=book=='NATIVE' or book==selected or selected=='BOTH' and book in ('RAW','FILTERED')
-    risk_kinds={'CANCELLED','EXPIRED','REJECTED','EVIDENCE','CONFLICT','AMBIGUOUS','NATIVE_DIVERGENCE','NATIVE_NOT_FILLED'}
-    native_execution=kind in {'NATIVE_SUBMITTED','NATIVE_ENTRY','NATIVE_CLOSED'} or kind.startswith('NATIVE_EXIT_')
+    risk_kinds={'CANCELLED','EXPIRED','REJECTED','EVIDENCE','CONFLICT','AMBIGUOUS','NATIVE_DIVERGENCE','NATIVE_NOT_FILLED','NATIVE_LEDGER_INCOMPLETE'}
+    native_execution=kind in {'NATIVE_SUBMITTED','NATIVE_ENTRY','NATIVE_CLOSED','NATIVE_STOP_SCHEDULED'} or kind.startswith('NATIVE_EXIT_')
     return (book=='CORE' and kind=='WATCH' and watch or book=='CORE' and kind=='CONFIRMED' and plan or (book=='CORE' or paper_book) and kind in risk_kinds and risk or paper_book and (kind.startswith('SIM_') or native_execution or kind in {'STOP_UPDATE','TIME_PENDING','CLOSED'}) and paper)

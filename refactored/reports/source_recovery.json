@@ -1,0 +1,14 @@
+{
+  "core_sha256": "c189ef479ccc106178a8a3b146da0dcd7d2fac852ddbeb8eebb298f385748dcc",
+  "before_any_pine_fix": true,
+  "files": {
+    "QIRVANTA_SNIPER_PRO.pine": {
+      "normalized_exact": true,
+      "sha256_lf": "ee0a692777d439e9957957f6abb241420a0478578e10c7b906ab1d1a651ed30a"
+    },
+    "QIRVANTA_SNIPER_VALIDATION.pine": {
+      "normalized_exact": true,
+      "sha256_lf": "5cd7a04a6d97dfc1c37024f0d004874553c163a3b17b9984c03336f3aa9004a3"
+    }
+  }
+}

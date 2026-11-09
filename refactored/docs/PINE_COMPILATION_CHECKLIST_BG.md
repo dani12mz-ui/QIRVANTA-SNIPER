@@ -1,12 +1,12 @@
-# Pine Editor — оставаща реална проверка
+# TradingView протокол и наблюдаван baseline
 
-Не е изпълнена в тази среда. Няма измислен CLI компилатор или непотвърден PASS.
+Първият Add to chart опит изискваше вход. След вход baseline VALIDATION на OANDA:XAUUSD H1 отказа High detalization заради Premium изискване и заработи при Default. След това са наблюдавани compile success за окончателния VALIDATION (23:12:36) и PRO (23:14:29/23:16:55); PRO е записан лично като версия 2. Двата окончателни файла са изпълнени на M5/M15/M30/H1/H4 без наблюдаван runtime отказ (исторически smoke check). Окончателният VALIDATION автоматично избира Default и показва същите native агрегати като baseline при Default за видимия период 02.01–06.11.2026; това не е пълна журнална parity или OOS проверка. PRO CW10003 warnings при `f_fast` 744:35 и `f_reversal` 745:35 са описани и разгледани във VALIDATION_BG. Действителните mobile viewport-и 390×844/430×932 показват table/header overlap (`PARTIAL_FAIL_LAYOUT`), без mobile PASS. Layout Save/reload запазва PRO видим и VALIDATION скрит на M15. Това не удостоверява останалите replay, rollback и alerts проверки по-долу; текущите статути се определят от `../reports/ACCEPTANCE.json`. Пълните наблюдения, разходи, SHA и предупреждения са в `../reports/tradingview_attempt.json`; те отразяват реалната компилация след статичния `PINE_COMPILE_UNVERIFIED` build banner.
 
-1. Копирай целия PRO файл в нов Pine Editor tab. Save/Add to chart. Запиши timestamp, build SHA256, compiler errors/warnings и screenshot. Не смесвай остатъци от стария код.
-2. Повтори за VALIDATION в отделен tab. Провери, че интерфейсът показва Strategy Tester и simulated trades, а не само indicator table.
-3. Проверявай типовете на UDT/array references, object field updates, `input.time`, integer font size и native order args по текущата официална v6 документация. Статичните тестове не проверяват qualifiers.
-4. Запази всички runtime warnings на M5/M15/M30/H1/H4 и при недостатъчна история. Провери warmup и графики със стандартни свещи.
-5. Реален resource count и performance: дълга история, default18labels и max60labels; 5 текущи линии/labels; не допускай historical buffer errors. Ниският static plot call count не е компилаторен сертификат.
-6. При Bar Replay сравни CONFIRMED ids/времена преди/след reload. Старите технически модели не трябва да се връщат към по-ранен pivot.
-7. На realtime незавършена свещ окончателни alerts/labels не трябва да се появяват. EMA линиите могат да се променят като текущ анализ.
-8. Само след успешна реална компилация промени PINE_COMPILE статуса, като запазиш доказателствата. Не маркирай OOS/forward като PASS заради компилацията.
+1. В разрешена сесия компилирай двата окончателни файла поотделно. Запази точните compiler errors/warnings, output SHA256, символ/feed, дата и настройки.
+2. Стандартни свещи OANDA:XAUUSD, M5/M15/M30/H1/H4; по-висок HTF; еднакви данни/период/разходи. Properties: every tick/order fills/history bar tick/close fills OFF. Default detalization (`use_bar_magnifier=false`) и за baseline, и за fixed при сравнение; High изисква Premium/Ultimate и променя fill модела.
+3. Проверка на runtime и native currency/pointvalue диагностиките. Не премахвай guards за валидност на R, за да скриеш грешка.
+4. Replay срещу добавяне на бъдещи барове; сравни минали потвърдени event ids/нива. Проверка на rollback, MT5 не е свързан.
+5. Реални desktop/390×844/430×932 изгледи. Пет основни реда, всички планови цени, неутрален WATCH, текущ/начален SL, R проекции. До120 signal+20 context+6 fixed labels =146 при budget160; подробните signal labels са изключени по подразбиране. Не приемай това изчисление за runtime тест.
+6. Реални alert toggles и JSON категории; пълни native/PAPER журнали, частични изпълнения, гапове, stop lock и costs. Запази и загубите/неизмеримите R кампании.
+
+Официален справочник: https://www.tradingview.com/pine-script-docs/ . Няма използван Pine CLI компилатор.

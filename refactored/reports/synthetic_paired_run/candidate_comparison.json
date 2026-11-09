@@ -1,0 +1,12 @@
+{
+  "a_count": 1,
+  "b_count": 1,
+  "a_core_sha256": [],
+  "b_core_sha256": [],
+  "only_a": [],
+  "only_b": [],
+  "changed": [],
+  "empty_comparison": false,
+  "scope": "EXPORTED_CANDIDATE_ATTRIBUTES_NOT_EXECUTION_PARITY",
+  "match": true
+}

@@ -1,3 +1,72 @@
+test_actual_rounded_target_room_both_sides (test_audited_simulation.AuditedExecutionTests.test_actual_rounded_target_room_both_sides) ... ok
+test_frozen_baseline_comparison_detects_old_failure (test_audited_simulation.AuditedExecutionTests.test_frozen_baseline_comparison_detects_old_failure) ... ok
+test_frozen_room_rechecked_at_open (test_audited_simulation.AuditedExecutionTests.test_frozen_room_rechecked_at_open) ... ok
+test_gap_stop_has_known_open_and_correct_reason (test_audited_simulation.AuditedExecutionTests.test_gap_stop_has_known_open_and_correct_reason) ... ok
+test_invalid_context_values_rejected (test_audited_simulation.AuditedExecutionTests.test_invalid_context_values_rejected) ... ok
+test_marketable_open_targets_precede_later_stop_both_sides (test_audited_simulation.AuditedExecutionTests.test_marketable_open_targets_precede_later_stop_both_sides) ... ok
+test_mutation_removing_room_guard_is_detectable (test_audited_simulation.AuditedExecutionTests.test_mutation_removing_room_guard_is_detectable) ... ok
+test_native_alert_categories_and_master (test_audited_simulation.AuditedExecutionTests.test_native_alert_categories_and_master) ... ok
+test_open_targets_financing_uses_open_not_close (test_audited_simulation.AuditedExecutionTests.test_open_targets_financing_uses_open_not_close) ... ok
+test_open_tp1_keeps_original_stop_for_rest_of_bar (test_audited_simulation.AuditedExecutionTests.test_open_tp1_keeps_original_stop_for_rest_of_bar) ... ok
+test_open_tp3_closes_before_later_stop (test_audited_simulation.AuditedExecutionTests.test_open_tp3_closes_before_later_stop) ... ok
+test_plan_context_is_frozen (test_audited_simulation.AuditedExecutionTests.test_plan_context_is_frozen) ... ok
+test_plan_targets_are_three_immutable_prices (test_audited_simulation.AuditedExecutionTests.test_plan_targets_are_three_immutable_prices) ... ok
+test_policy_all_gates_and_boundary (test_audited_simulation.AuditedExecutionTests.test_policy_all_gates_and_boundary) ... ok
+test_policy_preserves_raw_and_model_loss (test_audited_simulation.AuditedExecutionTests.test_policy_preserves_raw_and_model_loss) ... ok
+test_target_room_not_silently_enabled (test_audited_simulation.AuditedExecutionTests.test_target_room_not_silently_enabled) ... ok
+test_unknown_path_still_stop_first (test_audited_simulation.AuditedExecutionTests.test_unknown_path_still_stop_first) ... ok
+test_comparison_detects_feed_cost_and_context_changes (test_audited_simulation.ProvenanceTests.test_comparison_detects_feed_cost_and_context_changes) ... ok
+test_context_survives_export_mapping (test_audited_simulation.ProvenanceTests.test_context_survives_export_mapping) ... ok
+test_different_code_hashes_reported_separately (test_audited_simulation.ProvenanceTests.test_different_code_hashes_reported_separately) ... ok
+test_fixture_provenance_valid (test_audited_simulation.ProvenanceTests.test_fixture_provenance_valid) ... ok
+test_policy_config_mismatch_rejected (test_audited_simulation.ProvenanceTests.test_policy_config_mismatch_rejected) ... ok
+test_real_log_requires_matching_hash_and_context (test_audited_simulation.ProvenanceTests.test_real_log_requires_matching_hash_and_context) ... ok
+test_utf8_report_and_synthetic_status (test_audited_simulation.ProvenanceTests.test_utf8_report_and_synthetic_status) ... {"status": "SYNTHETIC_FUNCTIONAL_ONLY", "candidates": 1, "report": "C:\\Users\\azubu\\AppData\\Local\\Packages\\sandbox.{be78ab59-b3ef-4b07-b033-b949310674a0}\\AC\\Temp\\tmpxglhhb91\\out\\metrics.json"}
+ok
+test_wrong_symbol_timeframe_and_present_hash_rejected (test_audited_simulation.ProvenanceTests.test_wrong_symbol_timeframe_and_present_hash_rejected) ... ok
+test_changed_candidate_prices_are_reported_not_hidden (test_compare_runs.PairedReplayTests.test_changed_candidate_prices_are_reported_not_hidden) ... {"status": "SYNTHETIC_FUNCTIONAL_ONLY", "candidates": 1, "report": "C:\\Users\\azubu\\AppData\\Local\\Packages\\sandbox.{be78ab59-b3ef-4b07-b033-b949310674a0}\\AC\\Temp\\tmpf7f3ar2y\\out\\baseline\\metrics.json"}
+{"status": "SYNTHETIC_FUNCTIONAL_ONLY", "candidates": 1, "report": "C:\\Users\\azubu\\AppData\\Local\\Packages\\sandbox.{be78ab59-b3ef-4b07-b033-b949310674a0}\\AC\\Temp\\tmpf7f3ar2y\\out\\fixed\\metrics.json"}
+{"status": "SYNTHETIC_FUNCTIONAL_ONLY", "report": "C:\\Users\\azubu\\AppData\\Local\\Packages\\sandbox.{be78ab59-b3ef-4b07-b033-b949310674a0}\\AC\\Temp\\tmpf7f3ar2y\\out\\comparison.json"}
+ok
+test_different_core_hashes_allowed_and_retained (test_compare_runs.PairedReplayTests.test_different_core_hashes_allowed_and_retained) ... {"status": "SYNTHETIC_FUNCTIONAL_ONLY", "candidates": 1, "report": "C:\\Users\\azubu\\AppData\\Local\\Packages\\sandbox.{be78ab59-b3ef-4b07-b033-b949310674a0}\\AC\\Temp\\tmpmp15epiu\\out\\baseline\\metrics.json"}
+{"status": "SYNTHETIC_FUNCTIONAL_ONLY", "candidates": 1, "report": "C:\\Users\\azubu\\AppData\\Local\\Packages\\sandbox.{be78ab59-b3ef-4b07-b033-b949310674a0}\\AC\\Temp\\tmpmp15epiu\\out\\fixed\\metrics.json"}
+{"status": "SYNTHETIC_FUNCTIONAL_ONLY", "report": "C:\\Users\\azubu\\AppData\\Local\\Packages\\sandbox.{be78ab59-b3ef-4b07-b033-b949310674a0}\\AC\\Temp\\tmpmp15epiu\\out\\comparison.json"}
+ok
+test_different_exported_cost_rejected_before_runs (test_compare_runs.PairedReplayTests.test_different_exported_cost_rejected_before_runs) ... Paired logs must use identical exported round-trip price costs
+ok
+test_different_manifest_feed_and_data_configuration_rejected_before_runs (test_compare_runs.PairedReplayTests.test_different_manifest_feed_and_data_configuration_rejected_before_runs) ... Paired manifests must have identical provider
+Paired manifests must have identical symbol
+Paired manifests must have identical timeframe_seconds
+Paired manifests must have identical dataset_kind
+Paired manifests must have identical config
+Paired manifests must have identical config
+Paired manifests must have identical pine_inputs
+ok
+test_full_validator_rejects_event_hash_mismatch (test_compare_runs.PairedReplayTests.test_full_validator_rejects_event_hash_mismatch) ... {"status": "SYNTHETIC_FUNCTIONAL_ONLY", "candidates": 1, "report": "C:\\Users\\azubu\\AppData\\Local\\Packages\\sandbox.{be78ab59-b3ef-4b07-b033-b949310674a0}\\AC\\Temp\\tmp0d2bb0nl\\out\\baseline\\metrics.json"}
+Event core_sha256 does not match manifest
+fixed validation failed; see fixed/status.json
+ok
+test_full_validator_rejects_event_timeframe_mismatch (test_compare_runs.PairedReplayTests.test_full_validator_rejects_event_timeframe_mismatch) ... {"status": "SYNTHETIC_FUNCTIONAL_ONLY", "candidates": 1, "report": "C:\\Users\\azubu\\AppData\\Local\\Packages\\sandbox.{be78ab59-b3ef-4b07-b033-b949310674a0}\\AC\\Temp\\tmp72nhyymi\\out\\baseline\\metrics.json"}
+Event timeframe does not match manifest
+fixed validation failed; see fixed/status.json
+ok
+test_previous_evidence_not_overwritten (test_compare_runs.PairedReplayTests.test_previous_evidence_not_overwritten) ... Use a new or empty output directory; previous evidence is preserved.
+ok
+test_same_shared_ohlc_file_must_match_declared_duration (test_compare_runs.PairedReplayTests.test_same_shared_ohlc_file_must_match_declared_duration) ... Bar duration does not match manifest timeframe
+baseline validation failed; see baseline/status.json
+ok
+test_same_synthetic_inputs_complete_pair_and_preserve_outputs (test_compare_runs.PairedReplayTests.test_same_synthetic_inputs_complete_pair_and_preserve_outputs) ... {"status": "SYNTHETIC_FUNCTIONAL_ONLY", "candidates": 1, "report": "C:\\Users\\azubu\\AppData\\Local\\Packages\\sandbox.{be78ab59-b3ef-4b07-b033-b949310674a0}\\AC\\Temp\\tmpk0l5hk69\\out\\baseline\\metrics.json"}
+{"status": "SYNTHETIC_FUNCTIONAL_ONLY", "candidates": 1, "report": "C:\\Users\\azubu\\AppData\\Local\\Packages\\sandbox.{be78ab59-b3ef-4b07-b033-b949310674a0}\\AC\\Temp\\tmpk0l5hk69\\out\\fixed\\metrics.json"}
+{"status": "SYNTHETIC_FUNCTIONAL_ONLY", "report": "C:\\Users\\azubu\\AppData\\Local\\Packages\\sandbox.{be78ab59-b3ef-4b07-b033-b949310674a0}\\AC\\Temp\\tmpk0l5hk69\\out\\comparison.json"}
+ok
+test_candidate_and_execution_core_identical_to_latest_baseline (test_delivery_integrity.DeliveryIntegrity.test_candidate_and_execution_core_identical_to_latest_baseline) ... ok
+test_check_detects_crlf_without_repairing_or_overwriting (test_delivery_integrity.DeliveryIntegrity.test_check_detects_crlf_without_repairing_or_overwriting) ... ok
+test_initial_audited_bytes_preserved (test_delivery_integrity.DeliveryIntegrity.test_initial_audited_bytes_preserved) ... ok
+test_mobile_prices_and_target_classification_static (test_delivery_integrity.DeliveryIntegrity.test_mobile_prices_and_target_classification_static) ... ok
+test_native_standard_detail_compatible_default_only (test_delivery_integrity.DeliveryIntegrity.test_native_standard_detail_compatible_default_only) ... ok
+test_source_recovery_evidence_matches_baseline (test_delivery_integrity.DeliveryIntegrity.test_source_recovery_evidence_matches_baseline) ... ok
+test_ui_is_outside_canonical_candidate_core (test_delivery_integrity.DeliveryIntegrity.test_ui_is_outside_canonical_candidate_core) ... ok
+test_unconfirmed_display_uses_neutral_direction_static (test_delivery_integrity.DeliveryIntegrity.test_unconfirmed_display_uses_neutral_direction_static) ... ok
 test_adverse_gap_exit_uses_open (test_reference.ReferenceTests.test_adverse_gap_exit_uses_open) ... ok
 test_alert_categories_no_native_risk_bypass (test_reference.ReferenceTests.test_alert_categories_no_native_risk_bypass) ... ok
 test_alert_master_all_routes_off (test_reference.ReferenceTests.test_alert_master_all_routes_off) ... ok
@@ -52,11 +121,11 @@ test_zero_result_not_loss (test_reference.ReferenceTests.test_zero_result_not_lo
 test_all_custom_function_calls_defined (test_source_and_tools.SourceTests.test_all_custom_function_calls_defined) ... ok
 test_all_native_order_alerts_disabled (test_source_and_tools.SourceTests.test_all_native_order_alerts_disabled) ... ok
 test_balanced_punctuation_lexical_not_compiler (test_source_and_tools.SourceTests.test_balanced_punctuation_lexical_not_compiler) ... ok
-test_baseline_exact_git_blob (test_source_and_tools.SourceTests.test_baseline_exact_git_blob) ... ok
 test_confirmed_state_processing_only_close (test_source_and_tools.SourceTests.test_confirmed_state_processing_only_close) ... ok
 test_context_rendering_not_discovery (test_source_and_tools.SourceTests.test_context_rendering_not_discovery) ... ok
 test_fast_fvg_respects_input (test_source_and_tools.SourceTests.test_fast_fvg_respects_input) ... ok
-test_generation_reproducible (test_source_and_tools.SourceTests.test_generation_reproducible) ... ok
+test_generation_reproducible_without_writing (test_source_and_tools.SourceTests.test_generation_reproducible_without_writing) ... ok
+test_historical_baseline_canonical_git_blob (test_source_and_tools.SourceTests.test_historical_baseline_canonical_git_blob) ... ok
 test_htf_completed_requests (test_source_and_tools.SourceTests.test_htf_completed_requests) ... ok
 test_input_error_standard_charts_timeframe (test_source_and_tools.SourceTests.test_input_error_standard_charts_timeframe) ... ok
 test_last_closed_symmetric_diagnostics (test_source_and_tools.SourceTests.test_last_closed_symmetric_diagnostics) ... ok
@@ -78,7 +147,7 @@ test_duplicate_event_detection (test_source_and_tools.ValidatorTests.test_duplic
 test_empty_parity_is_not_pass (test_source_and_tools.ValidatorTests.test_empty_parity_is_not_pass) ... ok
 test_event_comparison_changed_level (test_source_and_tools.ValidatorTests.test_event_comparison_changed_level) ... ok
 test_fixture_plan_mapping (test_source_and_tools.ValidatorTests.test_fixture_plan_mapping) ... ok
-test_fixture_workflow_outputs_explicit_synthetic (test_source_and_tools.ValidatorTests.test_fixture_workflow_outputs_explicit_synthetic) ... {"status": "SYNTHETIC_FUNCTIONAL_ONLY", "candidates": 1, "report": "/tmp/tmpvn52sutc/metrics.json"}
+test_fixture_workflow_outputs_explicit_synthetic (test_source_and_tools.ValidatorTests.test_fixture_workflow_outputs_explicit_synthetic) ... {"status": "SYNTHETIC_FUNCTIONAL_ONLY", "candidates": 1, "report": "C:\\Users\\azubu\\AppData\\Local\\Packages\\sandbox.{be78ab59-b3ef-4b07-b033-b949310674a0}\\AC\\Temp\\tmpi5d43eib\\metrics.json"}
 ok
 test_invalid_ohlc_rejected (test_source_and_tools.ValidatorTests.test_invalid_ohlc_rejected) ... ok
 test_metrics_and_dd (test_source_and_tools.ValidatorTests.test_metrics_and_dd) ... ok
@@ -87,6 +156,6 @@ ok
 test_no_losses_pf_explicit (test_source_and_tools.ValidatorTests.test_no_losses_pf_explicit) ... ok
 
 ----------------------------------------------------------------------
-Ran 85 tests in 0.702s
+Ran 127 tests in 0.543s
 
 OK

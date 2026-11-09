@@ -3,7 +3,7 @@
 ## Три отделни момента
 
 1. WATCH: затворена свещ създава кандидат. Няма позиция.
-2. CONFIRMED: по-късна затворена свещ изпълнява условията. Reference close, абсолютен SL и TP1/2/3 се замразяват с plan id. Няма твърдение за реален вход.
+2. CONFIRMED: отделна по-късна затворена свещ изпълнява условията при ретест/обръщане; бързият пробив може да се потвърди директно без предходен WATCH. Reference close, абсолютен SL и TP1/2/3 се замразяват с plan id. Няма твърдение за реален вход.
 3. SIM_ENTRY / NATIVE_ENTRY: виртуално изпълнение от съответния модел. Реалната PU Prime MT5 цена не е известна.
 
 При PAPER симулацията next-open се обработва при close на същия бар: `effective_time=open`, `known_time=close`. Това е хронологичен модел с отложено съобщаване, **не интрабар наблюдател**. За SL/TP touch между high/low няма точен timestamp; `effective_time=null`. Събитията съобщават кога информацията е станала известна.
@@ -14,7 +14,7 @@
 
 Абсолютните цели НЕ се преизчисляват от различния open. R се определя като `side * (fill_entry - initial_SL)` за първоначалната позиция. Всички частични резултати са претеглени спрямо целия първоначален риск.
 
-SL-first: ако на една OHLC свещ има и SL, и поне една оставаща цел, всички оставащи части излизат по SL. Събитието е маркирано AMBIGUOUS; това е консервативно допускане, не знание за действителния път на цената. Предишни вече реализирани части не се отменят. При неблагоприятен gap през stop изходът е по open. При gap над цел лимитният изход е консервативно по фиксираната цел.
+Редът е: неблагоприятен open през SL → заявен timeout на open → цели, които вече са достижими на open → неизвестната intrabar последователност. Marketable целите на open се отчитат по фиксираната цел (консервативно), с effective_time=open. Само за останалото количество, ако intrabar има и SL, и цел, се прилага SL-first и AMBIGUOUS. Известните по-ранни open изпълнения не се заличават от по-късния SL; intrabar SL/TP touch няма измислен timestamp.
 
 TP1 затваря 1/3; TP2 още 1/3; TP3 точния остатък. Повторен touch не отчита повторна печалба. След TP1 новият стоп се изчислява от виртуалния entry и първоначалния risk; влиза в сила от следващата свещ. Никога не се разширява назад. `profitLockR` е брутен буфер, не гарантирана печалба.
 
@@ -26,9 +26,9 @@ PAPER разходът е `spread_price + 2*slippage_ticks*tick + commission_pri
 
 ## Native Strategy Tester
 
-Отделният файл действително декларира `strategy()`, подава market `strategy.entry` и три предварително поставени `strategy.exit` brackets с по една трета и отделно OCA име за всяка bracket двойка. Използва broker emulator на TradingView; `process_orders_on_close=false`, `calc_on_every_tick=false`, `calc_on_order_fills=false`, `use_bar_magnifier=true`.
+Отделният файл действително декларира `strategy()`, подава market `strategy.entry` и три предварително поставени `strategy.exit` brackets с по една трета и отделно OCA име за всяка bracket двойка. Използва broker emulator на TradingView; `process_orders_on_close=false`, `calc_on_every_tick=false`, `calc_on_order_fills=false`, `use_bar_magnifier=false`.
 
-Това НЕ означава, че Bar Magnifier е наличен за целия период/плана или че го тествахме. Списъкът с емулаторни изпълнения и Properties трябва да се запази при истинска проверка. Няма native forward test в този пакет.
+Началният header използваше `use_bar_magnifier=true`, което текущият UI нарича High detalization. В разрешената сесия този режим даде runtime отказ с изискване за Premium; същият baseline заработи на OANDA:XAUUSD H1 при Default. Текущият false default избира стандартния OHLC fill модел (4 ticks/bar). High използва повече intrabar детайли и не е съпоставим без изравняване на Properties. Списъкът с емулаторни изпълнения трябва да се запази при пълна проверка; наблюдаваният UI summary не е такъв журнал. Няма native forward test в този пакет. [Официална семантика](https://www.tradingview.com/pine-script-docs/language/declaration-statements/#use_bar_magnifier).
 
 **Неизбежни разлики спрямо custom PAPER:**
 
@@ -39,6 +39,7 @@ PAPER разходът е `spread_price + 2*slippage_ticks*tick + commission_pri
 - Default native commission е 0.175 cash/unit **на страна**, slippage2ticks, initial capital100000 USD, 3 native units общо. Това НЕ са 3 MT5 лота. Комисионата означава 0.35 cash/unit roundtrip, еквивалент на 0.35 price само при pointvalue1. Провери Properties и `syminfo.pointvalue`; не приемай автоматично съответствие с PU Prime.
 - Native `gross_r` тук използва реалните emulator entry/exit цени, които вече съдържат fill slippage; `cost_r` е native commission. PAPER `gross_r` е преди lump-sum cost, който включва и slippage. Не сравнявай gross колоните като идентични дефиниции.
 - Native кодът не начислява отделен финансиращ cashflow; няма твърдение за swap parity.
+- При нулев/отрицателен действителен начален риск native R остава неопределен; кампанията се брои отделно и cash резултатът остава в отчета. Липсващи/truncated части се маркират NATIVE_LEDGER_INCOMPLETE, не като валидна печалба.
 
 Общото ядро на двата скрипта е byte-identical и има fingerprint в `reports/build.json`. Това доказва организацията на източника, **не** runtime parity на Pine, еднакъв broker fill или печеливш OOS резултат.
 

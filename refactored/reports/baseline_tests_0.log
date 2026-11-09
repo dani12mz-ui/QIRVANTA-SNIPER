@@ -1,0 +1,86 @@
+{"status": "SYNTHETIC_FUNCTIONAL_ONLY", "candidates": 1, "report": "C:\\Users\\azubu\\AppData\\Local\\Packages\\sandbox.{2ff3a419-c673-4d51-a7a5-619d56d5d37f}\\AC\\Temp\\tmpjcaifjud\\metrics.json"}
+{"status": "PERFORMANCE_UNVERIFIED_MISSING_DATA", "missing": ["bars", "events", "manifest"], "message": "No invented returns. Supply OHLC, complete exported Pine events, and provenance manifest."}
+
+test_adverse_gap_exit_uses_open (test_reference.ReferenceTests.test_adverse_gap_exit_uses_open) ... ok
+test_alert_categories_no_native_risk_bypass (test_reference.ReferenceTests.test_alert_categories_no_native_risk_bypass) ... ok
+test_alert_master_all_routes_off (test_reference.ReferenceTests.test_alert_master_all_routes_off) ... ok
+test_all_three_targets_once_and_cost_once (test_reference.ReferenceTests.test_all_three_targets_once_and_cost_once) ... ok
+test_conflict_no_portfolio_but_model_candidates_survive (test_reference.ReferenceTests.test_conflict_no_portfolio_but_model_candidates_survive) ... ok
+test_countertrend_observation_keeps_raw (test_reference.ReferenceTests.test_countertrend_observation_keeps_raw) ... ok
+test_day_bucket_uses_bar_open (test_reference.ReferenceTests.test_day_bucket_uses_bar_open) ... ok
+test_day_reset_timezone_and_dst (test_reference.ReferenceTests.test_day_reset_timezone_and_dst) ... ok
+test_events_keep_all_tps (test_reference.ReferenceTests.test_events_keep_all_tps) ... ok
+test_filtered_limits_do_not_stop_model_discovery (test_reference.ReferenceTests.test_filtered_limits_do_not_stop_model_discovery) ... ok
+test_financing_weights_partial_duration (test_reference.ReferenceTests.test_financing_weights_partial_duration) ... ok
+test_future_bars_do_not_mutate_earlier_events (test_reference.ReferenceTests.test_future_bars_do_not_mutate_earlier_events) ... ok
+test_gap_at_tp1_never_entered (test_reference.ReferenceTests.test_gap_at_tp1_never_entered) ... ok
+test_gap_rejection_keeps_last_closed (test_reference.ReferenceTests.test_gap_rejection_keeps_last_closed) ... ok
+test_gap_through_initial_stop_never_entered (test_reference.ReferenceTests.test_gap_through_initial_stop_never_entered) ... ok
+test_gate_hysteresis_no_immediate_recovery (test_reference.ReferenceTests.test_gate_hysteresis_no_immediate_recovery) ... ok
+test_independent_books_not_blocked_by_raw_capacity (test_reference.ReferenceTests.test_independent_books_not_blocked_by_raw_capacity) ... ok
+test_invalid_na_zero_atr (test_reference.ReferenceTests.test_invalid_na_zero_atr) ... ok
+test_invalid_ordered_targets (test_reference.ReferenceTests.test_invalid_ordered_targets) ... ok
+test_lock_no_retroactive_same_candle_stop (test_reference.ReferenceTests.test_lock_no_retroactive_same_candle_stop) ... ok
+test_lock_only_next_bar (test_reference.ReferenceTests.test_lock_only_next_bar) ... ok
+test_long_short_mirror_full_campaign (test_reference.ReferenceTests.test_long_short_mirror_full_campaign) ... ok
+test_model_gate_and_positive_total (test_reference.ReferenceTests.test_model_gate_and_positive_total) ... ok
+test_model_selection_fixed_priority (test_reference.ReferenceTests.test_model_selection_fixed_priority) ... ok
+test_nearest_obstacle_not_first_ema (test_reference.ReferenceTests.test_nearest_obstacle_not_first_ema) ... ok
+test_news_at_known_open_blocks_pending (test_reference.ReferenceTests.test_news_at_known_open_blocks_pending) ... ok
+test_news_cannot_be_bypassed_by_gap_toggle (test_reference.ReferenceTests.test_news_cannot_be_bypassed_by_gap_toggle) ... ok
+test_next_open_effective_known_timestamps (test_reference.ReferenceTests.test_next_open_effective_known_timestamps) ... ok
+test_no_backdated_candidate (test_reference.ReferenceTests.test_no_backdated_candidate) ... ok
+test_nonfinite_config_rejected (test_reference.ReferenceTests.test_nonfinite_config_rejected) ... ok
+test_obstacle_room_rechecked_on_fill (test_reference.ReferenceTests.test_obstacle_room_rechecked_on_fill) ... ok
+test_open_plan_not_counted_as_closed (test_reference.ReferenceTests.test_open_plan_not_counted_as_closed) ... ok
+test_outward_tick_rounding (test_reference.ReferenceTests.test_outward_tick_rounding) ... ok
+test_overlap_input_rejected (test_reference.ReferenceTests.test_overlap_input_rejected) ... ok
+test_repeated_tp1_no_double_booking (test_reference.ReferenceTests.test_repeated_tp1_no_double_booking) ... ok
+test_replay_equals_incremental_same_inputs (test_reference.ReferenceTests.test_replay_equals_incremental_same_inputs) ... ok
+test_risk_cost_rejected_on_fill (test_reference.ReferenceTests.test_risk_cost_rejected_on_fill) ... ok
+test_shadow_keeps_learning_when_filter_paused (test_reference.ReferenceTests.test_shadow_keeps_learning_when_filter_paused) ... ok
+test_signal_never_fills_same_bar (test_reference.ReferenceTests.test_signal_never_fills_same_bar) ... ok
+test_small_sample_never_called_validated (test_reference.ReferenceTests.test_small_sample_never_called_validated) ... ok
+test_state_cancel_then_no_same_bar_recreate (test_reference.ReferenceTests.test_state_cancel_then_no_same_bar_recreate) ... ok
+test_state_ids_direction_and_model_isolated (test_reference.ReferenceTests.test_state_ids_direction_and_model_isolated) ... ok
+test_state_mss_retest_cannot_collapse_same_bar (test_reference.ReferenceTests.test_state_mss_retest_cannot_collapse_same_bar) ... ok
+test_stop_first_short_symmetric (test_reference.ReferenceTests.test_stop_first_short_symmetric) ... ok
+test_stop_first_when_same_candle_has_tp (test_reference.ReferenceTests.test_stop_first_when_same_candle_has_tp) ... ok
+test_target_gap_conservative_limit_price (test_reference.ReferenceTests.test_target_gap_conservative_limit_price) ... ok
+test_targets_frozen_after_nonzero_open_deviation (test_reference.ReferenceTests.test_targets_frozen_after_nonzero_open_deviation) ... ok
+test_timeout_gap_stop_priority (test_reference.ReferenceTests.test_timeout_gap_stop_priority) ... ok
+test_timeout_scheduled_then_next_open (test_reference.ReferenceTests.test_timeout_scheduled_then_next_open) ... ok
+test_valid_plan_strict_max_risk (test_reference.ReferenceTests.test_valid_plan_strict_max_risk) ... ok
+test_zero_result_not_loss (test_reference.ReferenceTests.test_zero_result_not_loss) ... ok
+setUpClass (test_source_and_tools.SourceTests) ... ERROR
+test_bootstrap_requires_sample (test_source_and_tools.ValidatorTests.test_bootstrap_requires_sample) ... ok
+test_candidate_outside_data_rejected (test_source_and_tools.ValidatorTests.test_candidate_outside_data_rejected) ... ok
+test_duplicate_event_detection (test_source_and_tools.ValidatorTests.test_duplicate_event_detection) ... ok
+test_empty_parity_is_not_pass (test_source_and_tools.ValidatorTests.test_empty_parity_is_not_pass) ... ok
+test_event_comparison_changed_level (test_source_and_tools.ValidatorTests.test_event_comparison_changed_level) ... ok
+test_fixture_plan_mapping (test_source_and_tools.ValidatorTests.test_fixture_plan_mapping) ... ok
+test_fixture_workflow_outputs_explicit_synthetic (test_source_and_tools.ValidatorTests.test_fixture_workflow_outputs_explicit_synthetic) ... ok
+test_invalid_ohlc_rejected (test_source_and_tools.ValidatorTests.test_invalid_ohlc_rejected) ... ok
+test_metrics_and_dd (test_source_and_tools.ValidatorTests.test_metrics_and_dd) ... ok
+test_missing_data_not_fabricated (test_source_and_tools.ValidatorTests.test_missing_data_not_fabricated) ... ok
+test_no_losses_pf_explicit (test_source_and_tools.ValidatorTests.test_no_losses_pf_explicit) ... ok
+
+======================================================================
+ERROR: setUpClass (test_source_and_tools.SourceTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\azubu\Documents\Codex\2026-11-08\qirvanta-sniper-qirvanta-refactored-delivery-pro\work\baseline_run\refactored\tests\test_source_and_tools.py", line 30, in setUpClass
+    cls.ind=(ROOT/'QIRVANTA_SNIPER_PRO.pine').read_text();cls.strategy=(ROOT/'QIRVANTA_SNIPER_VALIDATION.pine').read_text()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\azubu\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1028, in read_text
+    return f.read()
+           ^^^^^^^^
+  File "C:\Users\azubu\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\encodings\cp1251.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'charmap' codec can't decode byte 0x98 in position 726: character maps to <undefined>
+
+----------------------------------------------------------------------
+Ran 62 tests in 0.048s
+
+FAILED (errors=1)

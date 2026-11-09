@@ -2,13 +2,15 @@
   "canonical_core_sha256": "c189ef479ccc106178a8a3b146da0dcd7d2fac852ddbeb8eebb298f385748dcc",
   "outputs": {
     "QIRVANTA_SNIPER_PRO.pine": {
-      "lines": 1234,
-      "sha256": "ee0a692777d439e9957957f6abb241420a0478578e10c7b906ab1d1a651ed30a"
+      "lines": 1236,
+      "sha256": "0d8823a74d57f98dbe27575f2fc0e0abe4ae8db710ec81419265c31390232043"
     },
     "QIRVANTA_SNIPER_VALIDATION.pine": {
-      "lines": 1400,
-      "sha256": "5cd7a04a6d97dfc1c37024f0d004874553c163a3b17b9984c03336f3aa9004a3"
+      "lines": 1402,
+      "sha256": "44a579eee6e1542fdb7f30b9dceb9ec78aac9f3c6d9bc0346a52fa4d9bf529b2"
     }
   },
-  "pine_compile": "UNVERIFIED"
+  "pine_compile": "UNVERIFIED",
+  "source": "refactored/src recovered from audited at 103bc307; see baseline manifest",
+  "line_endings": "LF"
 }

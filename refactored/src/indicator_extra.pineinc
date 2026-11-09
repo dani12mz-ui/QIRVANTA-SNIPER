@@ -1,0 +1,4 @@
+
+alertcondition(alertBuyNow, "QIRVANTA: технически BUY", "Завършен BUY модел. Невалидиран; не е брокерска поръчка. За цени използвай alert().")
+alertcondition(alertSellNow, "QIRVANTA: технически SELL", "Завършен SELL модел. Невалидиран; не е брокерска поръчка. За цени използвай alert().")
+alertcondition(alertRiskNow, "QIRVANTA: риск/отмяна", "Промяна в сценарий/статистика. Само анализ; провери подробното известие.")

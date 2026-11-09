@@ -1,9 +1,11 @@
 {
-  "source": "src/inputs.pineinc is canonical; regenerate both scripts with tools/build.py",
-  "baseline_commit": "7fe6534f72fa23da18aa9282ee8f5ac11dcc9df6",
-  "baseline_git_blob": "46263e3c4740e4fc57553b785ccc76b89df32865",
-  "core_sha256": "118d431271946bfb66e199ad9f795b0fe588a40817a5a11ec7fb69975c162b3d",
-  "symbol_provider": "NOT_BOUND: intended user context OANDA:XAUUSD; not equivalent to PU Prime XAUUSD.s",
+  "baseline_commit": "103bc30788b18234f5938ed0f5346e142097a6fe",
+  "canonical_core_sha256": "c189ef479ccc106178a8a3b146da0dcd7d2fac852ddbeb8eebb298f385748dcc",
+  "source": "src recovered from audited; build both paths",
+  "signal_filters_changed": false,
+  "performance_demonstrated": false,
+  "actual_market_data_bundled": false,
+  "optimization_trials": 0,
   "supported_timeframes_seconds": [
     300,
     900,
@@ -11,66 +13,542 @@
     3600,
     14400
   ],
-  "ohlc": "standard only",
-  "risk_timezone": "Europe/Sofia, day keyed to BAR OPEN",
-  "markets_tested": [],
-  "optimization_trials": 0,
-  "actual_market_data_bundled": false,
-  "native_properties_defaults": {
-    "capital": 100000,
-    "currency": "USD",
-    "total_units": 3,
-    "commission_cash_per_contract_per_side": 0.175,
-    "slippage_ticks": 2,
-    "margin_percent": 100,
-    "process_orders_on_close": false,
-    "calc_on_order_fills": false,
-    "bar_magnifier_requested": true
-  },
-  "paper_cost_defaults": {
-    "spread_price_roundtrip": 0.35,
-    "slip_ticks_per_side": 2,
-    "commission_price_roundtrip": 0,
-    "funding_price_per_day": 0
-  },
-  "unknown_validation": {
-    "CODE_TESTS": {
-      "status": "PASS_LOCAL_REFERENCE_AND_STATIC_ONLY",
-      "tests": 85,
-      "errors": 0,
-      "failures": 0
+  "native_header": "strategy(\"QIRVANTA | Native validation\", shorttitle=\"QIRV TEST\", overlay=true, initial_capital=100000, currency=currency.USD, pyramiding=0, default_qty_type=strategy.fixed, default_qty_value=3, commission_type=strategy.commission.cash_per_contract, commission_value=0.175, slippage=2, calc_on_every_tick=false, calc_on_order_fills=false, process_orders_on_close=false, use_bar_magnifier=false, margin_long=100, margin_short=100, max_labels_count=160, max_lines_count=20, max_boxes_count=5, max_bars_back=1000)",
+  "inputs": [
+    {
+      "name": "runModel",
+      "type": "string",
+      "pine_declaration": "string runModel = input.string(\"Всички\", \"Модел за този тест\", options=[\"Всички\", \"Ретест\", \"Бърз пробив\", \"Ранно обръщане\"], group=\"01 / МОДЕЛИ\", tooltip=\"За независимо сравнение стартирай отделно всеки модел със същите данни и разходи. Общият портфейл има фиксиран приоритет: ретест, пробив, обръщане.\", display=display.none)"
     },
-    "PINE_COMPILE": {
-      "status": "PINE_COMPILE_UNVERIFIED",
-      "reason": "No accessible authorized Pine compiler was available/used"
+    {
+      "name": "tradingMode",
+      "type": "string",
+      "pine_declaration": "string tradingMode = input.string(\"АВТОМАТИЧЕН\", \"Хоризонт\", options=[\"АВТОМАТИЧЕН\", \"СКАЛПИНГ\", \"СУИНГ\"], group=\"01 / МОДЕЛИ\", display=display.none)"
     },
-    "EXECUTION_PARITY": {
-      "status": "UNVERIFIED_RUNTIME_WITH_KNOWN_FILL_DIFFERENCES",
-      "shared_source_core_sha256": "118d431271946bfb66e199ad9f795b0fe588a40817a5a11ec7fb69975c162b3d"
+    {
+      "name": "engineMode",
+      "type": "string",
+      "pine_declaration": "string engineMode = input.string(\"КОМБИНИРАН\", \"Подмодел само за РЕТЕСТ\", options=[\"КОМБИНИРАН\", \"САМО ЛИКВИДНОСТ\", \"САМО ПРОДЪЛЖЕНИЕ\"], group=\"01 / МОДЕЛИ\", display=display.none)"
     },
-    "OUT_OF_SAMPLE": {
-      "status": "PERFORMANCE_UNVERIFIED_MISSING_DATA"
+    {
+      "name": "selectivity",
+      "type": "string",
+      "pine_declaration": "string selectivity = input.string(\"СНАЙПЪР\", \"Съгласуваност само за РЕТЕСТ\", options=[\"БАЛАНСИРАН\", \"СНАЙПЪР\", \"МНОГО СТРОГ\"], group=\"01 / МОДЕЛИ\", tooltip=\"Брой допълнителни условия, НЕ вероятност за печалба.\", display=display.none)"
     },
-    "FORWARD_TEST": {
-      "status": "NOT_RUN"
+    {
+      "name": "useFastBreakout",
+      "type": "bool",
+      "pine_declaration": "bool useFastBreakout = input.bool(true, \"Бърз пробив — изследователски\", group=\"01 / МОДЕЛИ\", display=display.none)"
     },
-    "MOBILE_UI": {
-      "status": "HTML_MOCK_CHECKED_TRADINGVIEW_UNVERIFIED",
-      "viewports": [
-        "390x844",
-        "430x932",
-        "1440x900"
-      ]
+    {
+      "name": "allowFastCountertrend",
+      "type": "bool",
+      "pine_declaration": "bool allowFastCountertrend = input.bool(true, \"Пробив срещу HTF — изследователски\", group=\"01 / МОДЕЛИ\", display=display.none)"
     },
-    "GITHUB": {
-      "modified": false,
-      "published": false
+    {
+      "name": "useEarlyReversal",
+      "type": "bool",
+      "pine_declaration": "bool useEarlyReversal = input.bool(true, \"Ранно обръщане — само M5/M15/M30\", group=\"01 / МОДЕЛИ\", display=display.none)"
     },
-    "BROKER": {
-      "connected": false,
-      "orders_submitted": false
+    {
+      "name": "automaticHTF",
+      "type": "bool",
+      "pine_declaration": "bool automaticHTF = input.bool(true, \"Автоматична по-висока рамка\", group=\"01 / МОДЕЛИ\", display=display.none)"
     },
-    "production_ready": false,
-    "profitability_demonstrated": false
-  }
+    {
+      "name": "customHTF",
+      "type": "timeframe",
+      "pine_declaration": "string customHTF = input.timeframe(\"60\", \"Ръчна по-висока рамка\", group=\"01 / МОДЕЛИ\", display=display.none)"
+    },
+    {
+      "name": "liquidityBars",
+      "type": "int",
+      "pine_declaration": "int liquidityBars = input.int(14, \"Период за ликвидност\", minval=5, maxval=80, group=\"02 / СТРУКТУРА\", display=display.none)"
+    },
+    {
+      "name": "structureBars",
+      "type": "int",
+      "pine_declaration": "int structureBars = input.int(6, \"Период за структурен пробив\", minval=3, maxval=25, group=\"02 / СТРУКТУРА\", display=display.none)"
+    },
+    {
+      "name": "maxSetupAge",
+      "type": "int",
+      "pine_declaration": "int maxSetupAge = input.int(18, \"Срок на ретест модела (свещи)\", minval=4, maxval=80, group=\"02 / СТРУКТУРА\", display=display.none)"
+    },
+    {
+      "name": "maxBarsAfterMSS",
+      "type": "int",
+      "pine_declaration": "int maxBarsAfterMSS = input.int(5, \"Срок след MSS/BOS (свещи)\", minval=1, maxval=25, group=\"02 / СТРУКТУРА\", display=display.none)"
+    },
+    {
+      "name": "fastBreakLookback",
+      "type": "int",
+      "pine_declaration": "int fastBreakLookback = input.int(4, \"Бърз пробив: предходни свещи\", minval=3, maxval=9, group=\"02 / СТРУКТУРА\", display=display.none)"
+    },
+    {
+      "name": "fastMinBodyATR",
+      "type": "float",
+      "pine_declaration": "float fastMinBodyATR = input.float(0.50, \"Бърз пробив: мин. тяло / ATR\", minval=0.30, maxval=1.5, step=0.05, group=\"02 / СТРУКТУРА\", display=display.none)"
+    },
+    {
+      "name": "fastMaxBodyATR",
+      "type": "float",
+      "pine_declaration": "float fastMaxBodyATR = input.float(1.65, \"Бърз пробив: макс. тяло / ATR\", minval=0.9, maxval=3.0, step=0.05, group=\"02 / СТРУКТУРА\", display=display.none)"
+    },
+    {
+      "name": "fastMaxBreakDistanceATR",
+      "type": "float",
+      "pine_declaration": "float fastMaxBreakDistanceATR = input.float(0.70, \"Бърз пробив: макс. отстояние / ATR\", minval=0.15, maxval=1.4, step=0.05, group=\"02 / СТРУКТУРА\", display=display.none)"
+    },
+    {
+      "name": "reversalWaitBars",
+      "type": "int",
+      "pine_declaration": "int reversalWaitBars = input.int(3, \"Обръщане: срок (свещи)\", minval=1, maxval=5, group=\"02 / СТРУКТУРА\", display=display.none)"
+    },
+    {
+      "name": "reversalLiquidityBars",
+      "type": "int",
+      "pine_declaration": "int reversalLiquidityBars = input.int(8, \"Обръщане: предходни върхове/дъна\", minval=5, maxval=16, group=\"02 / СТРУКТУРА\", display=display.none)"
+    },
+    {
+      "name": "reversalMaxChaseATR",
+      "type": "float",
+      "pine_declaration": "float reversalMaxChaseATR = input.float(0.65, \"Обръщане: макс. отстояние / ATR\", minval=0.20, maxval=1.5, step=0.05, group=\"02 / СТРУКТУРА\", display=display.none)"
+    },
+    {
+      "name": "reversalMinRoomR",
+      "type": "float",
+      "pine_declaration": "float reversalMinRoomR = input.float(1.0, \"Обръщане: мин. място до преграда (R)\", minval=0.5, maxval=2.5, step=0.25, group=\"02 / СТРУКТУРА\", display=display.none)"
+    },
+    {
+      "name": "maxRetestCloseATR",
+      "type": "float",
+      "pine_declaration": "float maxRetestCloseATR = input.float(0.55, \"Ретест: макс. отстояние / ATR\", minval=0.1, maxval=2.0, step=0.05, group=\"02 / СТРУКТУРА\", display=display.none)"
+    },
+    {
+      "name": "pivotLeft",
+      "type": "int",
+      "pine_declaration": "int pivotLeft = input.int(3, \"Пивот: свещи вляво\", minval=2, maxval=10, group=\"02 / СТРУКТУРА\", display=display.none)"
+    },
+    {
+      "name": "pivotRight",
+      "type": "int",
+      "pine_declaration": "int pivotRight = input.int(3, \"Пивот: свещи за потвърждение вдясно\", minval=2, maxval=10, group=\"02 / СТРУКТУРА\", display=display.none)"
+    },
+    {
+      "name": "minDisplaceATR",
+      "type": "float",
+      "pine_declaration": "float minDisplaceATR = input.float(0.30, \"Структурен импулс: тяло / ATR\", minval=0.1, maxval=2, step=0.05, group=\"02 / СТРУКТУРА\", display=display.none)"
+    },
+    {
+      "name": "nearRetestATR",
+      "type": "float",
+      "pine_declaration": "float nearRetestATR = input.float(0.30, \"Близост за ретест / ATR\", minval=0.05, maxval=2, step=0.05, group=\"02 / СТРУКТУРА\", display=display.none)"
+    },
+    {
+      "name": "pierceRetestATR",
+      "type": "float",
+      "pine_declaration": "float pierceRetestATR = input.float(0.30, \"Проникване при ретест / ATR\", minval=0.05, maxval=1.5, step=0.05, group=\"02 / СТРУКТУРА\", display=display.none)"
+    },
+    {
+      "name": "eqToleranceATR",
+      "type": "float",
+      "pine_declaration": "float eqToleranceATR = input.float(0.12, \"Допуск за равни върхове/дъна / ATR\", minval=0.02, maxval=0.5, step=0.02, group=\"02 / СТРУКТУРА\", display=display.none)"
+    },
+    {
+      "name": "pdWindow",
+      "type": "int",
+      "pine_declaration": "int pdWindow = input.int(80, \"Скъпа/евтина зона: период\", minval=20, maxval=250, group=\"02 / СТРУКТУРА\", display=display.none)"
+    },
+    {
+      "name": "requireFVG",
+      "type": "bool",
+      "pine_declaration": "bool requireFVG = input.bool(false, \"Изисквай FVG във всеки модел\", group=\"03 / ФИЛТРИ\", tooltip=\"Ретест: FVG при структурното потвърждение. Други модели: FVG на сигналната свещ.\", display=display.none)"
+    },
+    {
+      "name": "requirePD",
+      "type": "bool",
+      "pine_declaration": "bool requirePD = input.bool(false, \"Изисквай скъпа/евтина зона\", group=\"03 / ФИЛТРИ\", display=display.none)"
+    },
+    {
+      "name": "requireRoom",
+      "type": "bool",
+      "pine_declaration": "bool requireRoom = input.bool(false, \"Изисквай структурно място до TP1\", group=\"03 / ФИЛТРИ\", tooltip=\"Обръщането винаги проверява и EMA прегради. Известна преграда преди TP1 може да блокира входа.\", display=display.none)"
+    },
+    {
+      "name": "minimumRoomR",
+      "type": "float",
+      "pine_declaration": "float minimumRoomR = input.float(1.0, \"Минимално място (R)\", minval=0.3, maxval=5, step=0.1, group=\"03 / ФИЛТРИ\", display=display.none)"
+    },
+    {
+      "name": "fvgSizeATR",
+      "type": "float",
+      "pine_declaration": "float fvgSizeATR = input.float(0.04, \"Мин. FVG / ATR\", minval=0, maxval=0.5, step=0.01, group=\"03 / ФИЛТРИ\", display=display.none)"
+    },
+    {
+      "name": "minADX",
+      "type": "int",
+      "pine_declaration": "int minADX = input.int(17, \"Мин. ADX за ретест и пробив\", minval=5, maxval=45, group=\"03 / ФИЛТРИ\", display=display.none)"
+    },
+    {
+      "name": "minATRratio",
+      "type": "float",
+      "pine_declaration": "float minATRratio = input.float(0.55, \"Мин. ATR / средно ATR\", minval=0.2, maxval=2, step=0.05, group=\"03 / ФИЛТРИ\", display=display.none)"
+    },
+    {
+      "name": "maxATRratio",
+      "type": "float",
+      "pine_declaration": "float maxATRratio = input.float(2.8, \"Макс. ATR / средно ATR\", minval=1, maxval=6, step=0.1, group=\"03 / ФИЛТРИ\", display=display.none)"
+    },
+    {
+      "name": "maxEntryBarATR",
+      "type": "float",
+      "pine_declaration": "float maxEntryBarATR = input.float(2.6, \"Макс. сигнална свещ / ATR\", minval=0.7, maxval=8, step=0.1, group=\"03 / ФИЛТРИ\", display=display.none)"
+    },
+    {
+      "name": "maxExtensionATR",
+      "type": "float",
+      "pine_declaration": "float maxExtensionATR = input.float(2.0, \"Макс. отстояние от EMA21 — ретест/пробив\", minval=0.5, maxval=6, step=0.1, group=\"03 / ФИЛТРИ\", display=display.none)"
+    },
+    {
+      "name": "filterSession",
+      "type": "bool",
+      "pine_declaration": "bool filterSession = input.bool(false, \"Филтър по сесия\", group=\"03 / ФИЛТРИ\", display=display.none)"
+    },
+    {
+      "name": "sessionScope",
+      "type": "string",
+      "pine_declaration": "string sessionScope = input.string(\"Само скалпинг\", \"Обхват на сесията\", options=[\"Само скалпинг\", \"Всички рамки\"], group=\"03 / ФИЛТРИ\", display=display.none)"
+    },
+    {
+      "name": "scalpSession",
+      "type": "session",
+      "pine_declaration": "string scalpSession = input.session(\"1000-2000\", \"Сесия\", group=\"03 / ФИЛТРИ\", display=display.none)"
+    },
+    {
+      "name": "riskTimezone",
+      "type": "string",
+      "pine_declaration": "string riskTimezone = input.string(\"Europe/Sofia\", \"Часова зона за сесия/дневен лимит\", group=\"03 / ФИЛТРИ\", tooltip=\"IANA зона. Денят се определя по времето на отваряне на свещта; DST се обработва от платформата.\", display=display.none)"
+    },
+    {
+      "name": "manualNewsPause",
+      "type": "bool",
+      "pine_declaration": "bool manualNewsPause = input.bool(false, \"Ръчна пауза за новини — НЯМА календар\", group=\"03 / ФИЛТРИ\", display=display.none)"
+    },
+    {
+      "name": "useNewsWindow",
+      "type": "bool",
+      "pine_declaration": "bool useNewsWindow = input.bool(false, \"Ръчно въведен новинарски прозорец\", group=\"03 / ФИЛТРИ\", display=display.none)"
+    },
+    {
+      "name": "newsAt",
+      "type": "time",
+      "pine_declaration": "int newsAt = input.time(timestamp(\"01 Jan 2020 00:00 +0000\"), \"Проверен час на събитието\", group=\"03 / ФИЛТРИ\", display=display.none)"
+    },
+    {
+      "name": "newsBefore",
+      "type": "int",
+      "pine_declaration": "int newsBefore = input.int(15, \"Пауза преди събитието (минути)\", minval=0, maxval=240, group=\"03 / ФИЛТРИ\", display=display.none)"
+    },
+    {
+      "name": "newsAfter",
+      "type": "int",
+      "pine_declaration": "int newsAfter = input.int(15, \"Пауза след събитието (минути)\", minval=0, maxval=240, group=\"03 / ФИЛТРИ\", display=display.none)"
+    },
+    {
+      "name": "spreadAssumption",
+      "type": "float",
+      "pine_declaration": "float spreadAssumption = input.float(0.35, \"PAPER: общ спред (ценови единици)\", minval=0, step=0.05, group=\"04 / РИСК\", tooltip=\"Допускане, НЕ получен спред от PU Prime. Не добавяй същия разход два пъти.\", display=display.none)"
+    },
+    {
+      "name": "slipTicks",
+      "type": "int",
+      "pine_declaration": "int slipTicks = input.int(2, \"PAPER: приплъзване за посока (тикове)\", minval=0, maxval=100, group=\"04 / РИСК\", display=display.none)"
+    },
+    {
+      "name": "feePrice",
+      "type": "float",
+      "pine_declaration": "float feePrice = input.float(0.0, \"PAPER: обща комисиона (цена)\", minval=0, step=0.05, group=\"04 / РИСК\", display=display.none)"
+    },
+    {
+      "name": "fundingLong",
+      "type": "float",
+      "pine_declaration": "float fundingLong = input.float(0.0, \"PAPER: финансиране BUY / ден (цена)\", minval=0, step=0.01, group=\"04 / РИСК\", display=display.none)"
+    },
+    {
+      "name": "fundingShort",
+      "type": "float",
+      "pine_declaration": "float fundingShort = input.float(0.0, \"PAPER: финансиране SELL / ден (цена)\", minval=0, step=0.01, group=\"04 / РИСК\", display=display.none)"
+    },
+    {
+      "name": "minStopATR",
+      "type": "float",
+      "pine_declaration": "float minStopATR = input.float(0.8, \"Минимален SL / ATR\", minval=0.2, maxval=5, step=0.05, group=\"04 / РИСК\", display=display.none)"
+    },
+    {
+      "name": "maxStopATR",
+      "type": "float",
+      "pine_declaration": "float maxStopATR = input.float(3.5, \"Максимален SL / ATR\", minval=0.8, maxval=8, step=0.1, group=\"04 / РИСК\", display=display.none)"
+    },
+    {
+      "name": "slBufferATR",
+      "type": "float",
+      "pine_declaration": "float slBufferATR = input.float(0.12, \"Структурен буфер SL / ATR\", minval=0.0, maxval=0.5, step=0.02, group=\"04 / РИСК\", display=display.none)"
+    },
+    {
+      "name": "maxCostRisk",
+      "type": "float",
+      "pine_declaration": "float maxCostRisk = input.float(0.18, \"Макс. очакван разход / риск\", minval=0.01, maxval=0.7, step=0.01, group=\"04 / РИСК\", display=display.none)"
+    },
+    {
+      "name": "target1R",
+      "type": "float",
+      "pine_declaration": "float target1R = input.float(1.0, \"TP1 — брутно R\", minval=0.4, maxval=4, step=0.1, group=\"04 / РИСК\", display=display.none)"
+    },
+    {
+      "name": "target2R",
+      "type": "float",
+      "pine_declaration": "float target2R = input.float(2.0, \"TP2 — брутно R\", minval=0.5, maxval=7, step=0.1, group=\"04 / РИСК\", display=display.none)"
+    },
+    {
+      "name": "target3R",
+      "type": "float",
+      "pine_declaration": "float target3R = input.float(3.0, \"TP3 — брутно R\", minval=1.0, maxval=10, step=0.1, group=\"04 / РИСК\", display=display.none)"
+    },
+    {
+      "name": "profitLockR",
+      "type": "float",
+      "pine_declaration": "float profitLockR = input.float(0.05, \"SL след TP1 — брутен буфер R\", minval=0, maxval=0.5, step=0.05, group=\"04 / РИСК\", tooltip=\"Прилага се от следващата свещ. НЕ гарантира нетна печалба след разходи и гап.\", display=display.none)"
+    },
+    {
+      "name": "minCooldown",
+      "type": "int",
+      "pine_declaration": "int minCooldown = input.int(8, \"Пауза след технически модел (свещи, по family)\", minval=0, maxval=100, group=\"04 / РИСК\", display=display.none)"
+    },
+    {
+      "name": "scalpMaxHold",
+      "type": "int",
+      "pine_declaration": "int scalpMaxHold = input.int(48, \"Макс. скалпинг задържане (свещи)\", minval=5, maxval=300, group=\"04 / РИСК\", display=display.none)"
+    },
+    {
+      "name": "swingMaxHold",
+      "type": "int",
+      "pine_declaration": "int swingMaxHold = input.int(60, \"Макс. суинг задържане (свещи)\", minval=5, maxval=300, group=\"04 / РИСК\", display=display.none)"
+    },
+    {
+      "name": "maxOpenDeviationATR",
+      "type": "float",
+      "pine_declaration": "float maxOpenDeviationATR = input.float(0.20, \"PAPER: макс. отклонение на next-open / ATR\", minval=0.05, maxval=0.8, step=0.05, group=\"04 / РИСК\", display=display.none)"
+    },
+    {
+      "name": "paperGapFilter",
+      "type": "bool",
+      "pine_declaration": "bool paperGapFilter = input.bool(true, \"PAPER: отменяй невалидното next-open\", group=\"04 / РИСК\", tooltip=\"Native market тестът не може да отмени вече изпълнено next-open нареждане. Разликата е описана във VALIDATION_BG.\", display=display.none)"
+    },
+    {
+      "name": "maxPaperLosingStreak",
+      "type": "int",
+      "pine_declaration": "int maxPaperLosingStreak = input.int(3, \"Филтриран PAPER: дневна поредица загуби\", minval=1, maxval=20, group=\"05 / СТАТИСТИКА\", display=display.none)"
+    },
+    {
+      "name": "maxPaperDailyLossR",
+      "type": "float",
+      "pine_declaration": "float maxPaperDailyLossR = input.float(3.0, \"Филтриран PAPER: дневен лимит R\", minval=0.5, maxval=50, step=0.5, group=\"05 / СТАТИСТИКА\", display=display.none)"
+    },
+    {
+      "name": "enableEvidenceShield",
+      "type": "bool",
+      "pine_declaration": "bool enableEvidenceShield = input.bool(true, \"Пауза на филтрирания портфейл по статистика\", group=\"05 / СТАТИСТИКА\", display=display.none)"
+    },
+    {
+      "name": "globalMinClosed",
+      "type": "int",
+      "pine_declaration": "int globalMinClosed = input.int(30, \"Обща защита: мин. затворени сделки\", minval=15, maxval=200, group=\"05 / СТАТИСТИКА\", display=display.none)"
+    },
+    {
+      "name": "globalStopNetR",
+      "type": "float",
+      "pine_declaration": "float globalStopNetR = input.float(-5.0, \"Обща защита: праг нетно R\", minval=-50, maxval=-1, step=0.5, group=\"05 / СТАТИСТИКА\", display=display.none)"
+    },
+    {
+      "name": "modelMinClosed",
+      "type": "int",
+      "pine_declaration": "int modelMinClosed = input.int(20, \"По модел: мин. затворени сделки\", minval=10, maxval=100, group=\"05 / СТАТИСТИКА\", display=display.none)"
+    },
+    {
+      "name": "modelStopAvgR",
+      "type": "float",
+      "pine_declaration": "float modelStopAvgR = input.float(-0.15, \"По модел: праг средно нетно R\", minval=-1, maxval=-0.05, step=0.05, group=\"05 / СТАТИСТИКА\", display=display.none)"
+    },
+    {
+      "name": "recoveryTrades",
+      "type": "int",
+      "pine_declaration": "int recoveryTrades = input.int(5, \"Възстановяване: допълнителни raw сделки\", minval=1, maxval=100, group=\"05 / СТАТИСТИКА\", display=display.none)"
+    },
+    {
+      "name": "observeCountertrendOnly",
+      "type": "bool",
+      "pine_declaration": "bool observeCountertrendOnly = input.bool(true, \"Контратренд: не включвай във филтриран портфейл\", group=\"05 / СТАТИСТИКА\", display=display.none)"
+    },
+    {
+      "name": "contextPolicy",
+      "type": "string",
+      "pine_declaration": "string contextPolicy = input.string(\"БАЗОВ\", \"Филтриран портфейл: политика\", options=[\"БАЗОВ\", \"СЪГЛАСУВАН ТРЕНД — ПРОБЕН\"], group=\"05 / СТАТИСТИКА\", tooltip=\"БАЗОВ пази предишните правила. Пробната политика иска еднакви локален/HTF тренд и минимална насоченост. Не е доказано по-печеливша; RAW и моделните книги НЕ се филтрират.\", display=display.none)"
+    },
+    {
+      "name": "efficiencyLength",
+      "type": "int",
+      "pine_declaration": "int efficiencyLength = input.int(20, \"Насоченост: период (свещи)\", minval=5, maxval=100, group=\"05 / СТАТИСТИКА\", display=display.none)"
+    },
+    {
+      "name": "minEfficiency",
+      "type": "float",
+      "pine_declaration": "float minEfficiency = input.float(0.25, \"Пробна политика: мин. насоченост\", minval=0.0, maxval=1.0, step=0.05, group=\"05 / СТАТИСТИКА\", tooltip=\"abs(нетно движение) / сумата на абсолютните промени. Това НЕ е вероятност за печалба.\", display=display.none)"
+    },
+    {
+      "name": "testStart",
+      "type": "time",
+      "pine_declaration": "int testStart = input.time(timestamp(\"01 Jan 2020 00:00 +0000\"), \"Начало на теста\", group=\"05 / СТАТИСТИКА\", display=display.none)"
+    },
+    {
+      "name": "testEnd",
+      "type": "time",
+      "pine_declaration": "int testEnd = input.time(timestamp(\"01 Jan 2035 00:00 +0000\"), \"Край на новите планове\", group=\"05 / СТАТИСТИКА\", display=display.none)"
+    },
+    {
+      "name": "uiMode",
+      "type": "string",
+      "pine_declaration": "string uiMode = input.string(\"МОБИЛЕН\", \"Изглед\", options=[\"МОБИЛЕН\", \"ПОДРОБЕН\", \"СТАТИСТИКА\", \"ДИАГНОСТИКА\"], group=\"06 / ИЗГЛЕД\", display=display.none)"
+    },
+    {
+      "name": "panelPosition",
+      "type": "string",
+      "pine_declaration": "string panelPosition = input.string(\"Горе вдясно\", \"Позиция на таблото\", options=[\"Горе вляво\", \"Долу вляво\", \"Горе вдясно\", \"Долу вдясно\"], group=\"06 / ИЗГЛЕД\", display=display.none)"
+    },
+    {
+      "name": "uiFontPt",
+      "type": "int",
+      "pine_declaration": "int uiFontPt = input.int(12, \"Букви в таблото (pt)\", minval=10, maxval=18, group=\"06 / ИЗГЛЕД\", display=display.none)"
+    },
+    {
+      "name": "showPanel",
+      "type": "bool",
+      "pine_declaration": "bool showPanel = input.bool(true, \"Показвай таблото\", group=\"06 / ИЗГЛЕД\", display=display.none)"
+    },
+    {
+      "name": "displayEMAs",
+      "type": "bool",
+      "pine_declaration": "bool displayEMAs = input.bool(true, \"EMA21 / EMA55\", group=\"06 / ИЗГЛЕД\", display=display.none)"
+    },
+    {
+      "name": "showLevels",
+      "type": "bool",
+      "pine_declaration": "bool showLevels = input.bool(true, \"Нива на текущия план\", group=\"06 / ИЗГЛЕД\", display=display.none)"
+    },
+    {
+      "name": "separateLevelLabels",
+      "type": "bool",
+      "pine_declaration": "bool separateLevelLabels = input.bool(true, \"Раздалечи близките ценови надписи\", group=\"06 / ИЗГЛЕД\", tooltip=\"Линията остава на истинската цена. При преместен надпис пунктиран водач сочи точната стойност.\", display=display.none)"
+    },
+    {
+      "name": "levelFont",
+      "type": "string",
+      "pine_declaration": "string levelFont = input.string(\"Среден\", \"Размер на ценовите надписи\", options=[\"Малък\", \"Среден\", \"Голям\"], group=\"06 / ИЗГЛЕД\", display=display.none)"
+    },
+    {
+      "name": "displayBook",
+      "type": "string",
+      "pine_declaration": "string displayBook = input.string(\"RAW\", \"План на графиката\", options=[\"RAW\", \"ФИЛТРИРАН\"], group=\"06 / ИЗГЛЕД\", tooltip=\"RAW включва и невалидирани/паузирани модели; не е реална MT5 позиция.\", display=display.none)"
+    },
+    {
+      "name": "keepLabels",
+      "type": "int",
+      "pine_declaration": "int keepLabels = input.int(6, \"Архив само за наблюдения/отмени\", minval=0, maxval=20, group=\"06 / ИЗГЛЕД\", display=display.none)"
+    },
+    {
+      "name": "keepSignalLabels",
+      "type": "int",
+      "pine_declaration": "int keepSignalLabels = input.int(40, \"Отделен архив на потвърдени модели\", minval=10, maxval=120, group=\"06 / ИЗГЛЕД\", display=display.none)"
+    },
+    {
+      "name": "showContextLabels",
+      "type": "bool",
+      "pine_declaration": "bool showContextLabels = input.bool(true, \"Показвай кратки наблюдения/отмени\", group=\"06 / ИЗГЛЕД\", display=display.none)"
+    },
+    {
+      "name": "contextLabelSpacing",
+      "type": "int",
+      "pine_declaration": "int contextLabelSpacing = input.int(3, \"Мин. свещи между контекстни надписи\", minval=1, maxval=20, group=\"06 / ИЗГЛЕД\", display=display.none)"
+    },
+    {
+      "name": "showSignalMarkers",
+      "type": "bool",
+      "pine_declaration": "bool showSignalMarkers = input.bool(true, \"Постоянни стрелки за технически сигнали\", group=\"06 / ИЗГЛЕД\", display=display.none)"
+    },
+    {
+      "name": "showSetupLevel",
+      "type": "bool",
+      "pine_declaration": "bool showSetupLevel = input.bool(true, \"Показвай нивото за чакащото потвърждение\", group=\"06 / ИЗГЛЕД\", display=display.none)"
+    },
+    {
+      "name": "levelOffset",
+      "type": "int",
+      "pine_declaration": "int levelOffset = input.int(3, \"Надписи надясно (свещи)\", minval=1, maxval=15, group=\"06 / ИЗГЛЕД\", display=display.none)"
+    },
+    {
+      "name": "alertsEnabled",
+      "type": "bool",
+      "pine_declaration": "bool alertsEnabled = input.bool(true, \"Общ ключ за всички известия\", group=\"07 / ИЗВЕСТИЯ\", display=display.none)"
+    },
+    {
+      "name": "alertWatch",
+      "type": "bool",
+      "pine_declaration": "bool alertWatch = input.bool(true, \"Наблюдение\", group=\"07 / ИЗВЕСТИЯ\", display=display.none)"
+    },
+    {
+      "name": "alertPlan",
+      "type": "bool",
+      "pine_declaration": "bool alertPlan = input.bool(true, \"Потвърден технически модел\", group=\"07 / ИЗВЕСТИЯ\", display=display.none)"
+    },
+    {
+      "name": "alertRisk",
+      "type": "bool",
+      "pine_declaration": "bool alertRisk = input.bool(true, \"Отмяна / изтичане / статистическо състояние\", group=\"07 / ИЗВЕСТИЯ\", display=display.none)"
+    },
+    {
+      "name": "alertPaper",
+      "type": "bool",
+      "pine_declaration": "bool alertPaper = input.bool(true, \"PAPER изпълнение / цели / стоп\", group=\"07 / ИЗВЕСТИЯ\", display=display.none)"
+    },
+    {
+      "name": "alertBook",
+      "type": "string",
+      "pine_declaration": "string alertBook = input.string(\"RAW\", \"PAPER известия за портфейл\", options=[\"RAW\", \"ФИЛТРИРАН\", \"И ДВАТА\"], group=\"07 / ИЗВЕСТИЯ\", display=display.none)"
+    },
+    {
+      "name": "exportEvents",
+      "type": "bool",
+      "pine_declaration": "bool exportEvents = input.bool(false, \"JSONL събития в Pine Logs\", group=\"08 / ВАЛИДИРАНЕ\", tooltip=\"Логовете са за експортиране/проверка. Не е webhook за брокер. Платформата ограничава историческите записи.\", display=display.none)"
+    },
+    {
+      "name": "nativePortfolio",
+      "type": "string",
+      "pine_declaration": "string nativePortfolio = input.string(\"RAW\", \"Native портфейл\", options=[\"RAW\", \"ФИЛТРИРАН\"], group=\"09 / NATIVE TEST\", display=display.none)"
+    },
+    {
+      "name": "nativeUnitQty",
+      "type": "float",
+      "pine_declaration": "float nativeUnitQty = input.float(1.0, \"Native единици във всяка 1/3 част (НЕ MT5 лотове)\", minval=0.001, group=\"09 / NATIVE TEST\", display=display.none)"
+    },
+    {
+      "name": "flattenInvalidNativeFill",
+      "type": "bool",
+      "pine_declaration": "bool flattenInvalidNativeFill = input.bool(true, \"Невалиден native гап: изход на следващо отваряне\", group=\"09 / NATIVE TEST\", tooltip=\"Това НЕ отменя минало изпълнение. Разликата спрямо PAPER gap rejection остава в отчета.\", display=display.none)"
+    },
+    {
+      "name": "showConfirmedLabels",
+      "type": "bool",
+      "pine_declaration": "bool showConfirmedLabels = input.bool(false, \"Подробни надписи на потвърдени модели\", group=\"06 / ИЗГЛЕД\", tooltip=\"Постоянните стрелки остават видими. Включи за модел и подробности върху историята.\", display=display.none)"
+    }
+  ]
 }

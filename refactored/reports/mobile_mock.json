@@ -1,60 +1,64 @@
 {
-  "status": "HTML_LAYOUT_CHECK_ONLY",
-  "tradingview_rendering": "UNVERIFIED",
-  "checks": [
-    {
-      "panel": {
-        "left": 10,
-        "right": 291.796875,
-        "top": 96,
-        "bottom": 276
+  "status": "ARCHIVED_PREVIOUS_DELIVERY_NOT_CURRENT_UI_EVIDENCE",
+  "current_tradingview_ui": "NOT_RUN",
+  "archived_report": {
+    "status": "HTML_LAYOUT_CHECK_ONLY",
+    "tradingview_rendering": "UNVERIFIED",
+    "checks": [
+      {
+        "panel": {
+          "left": 10,
+          "right": 291.796875,
+          "top": 96,
+          "bottom": 276
+        },
+        "viewport": {
+          "w": 390,
+          "h": 844
+        },
+        "rowCount": 5,
+        "documentOverflow": false,
+        "cellOverflow": false,
+        "size": "390x844",
+        "within_viewport": true,
+        "status": "HTML_MOCK_ONLY_NOT_PINE_RUNTIME"
       },
-      "viewport": {
-        "w": 390,
-        "h": 844
+      {
+        "panel": {
+          "left": 10,
+          "right": 291.796875,
+          "top": 96,
+          "bottom": 276
+        },
+        "viewport": {
+          "w": 430,
+          "h": 932
+        },
+        "rowCount": 5,
+        "documentOverflow": false,
+        "cellOverflow": false,
+        "size": "430x932",
+        "within_viewport": true,
+        "status": "HTML_MOCK_ONLY_NOT_PINE_RUNTIME"
       },
-      "rowCount": 5,
-      "documentOverflow": false,
-      "cellOverflow": false,
-      "size": "390x844",
-      "within_viewport": true,
-      "status": "HTML_MOCK_ONLY_NOT_PINE_RUNTIME"
-    },
-    {
-      "panel": {
-        "left": 10,
-        "right": 291.796875,
-        "top": 96,
-        "bottom": 276
-      },
-      "viewport": {
-        "w": 430,
-        "h": 932
-      },
-      "rowCount": 5,
-      "documentOverflow": false,
-      "cellOverflow": false,
-      "size": "430x932",
-      "within_viewport": true,
-      "status": "HTML_MOCK_ONLY_NOT_PINE_RUNTIME"
-    },
-    {
-      "panel": {
-        "left": 10,
-        "right": 291.796875,
-        "top": 96,
-        "bottom": 276
-      },
-      "viewport": {
-        "w": 1440,
-        "h": 900
-      },
-      "rowCount": 5,
-      "documentOverflow": false,
-      "cellOverflow": false,
-      "size": "1440x900",
-      "within_viewport": true,
-      "status": "HTML_MOCK_ONLY_NOT_PINE_RUNTIME"
-    }
-  ]
+      {
+        "panel": {
+          "left": 10,
+          "right": 291.796875,
+          "top": 96,
+          "bottom": 276
+        },
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        },
+        "rowCount": 5,
+        "documentOverflow": false,
+        "cellOverflow": false,
+        "size": "1440x900",
+        "within_viewport": true,
+        "status": "HTML_MOCK_ONLY_NOT_PINE_RUNTIME"
+      }
+    ]
+  }
 }

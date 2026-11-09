@@ -1,0 +1,2 @@
+{"status": "PERFORMANCE_UNVERIFIED_MISSING_DATA", "missing": ["bars", "events", "manifest"], "message": "No invented returns. Supply OHLC, complete exported Pine events, and provenance manifest."}
+

@@ -1,58 +1,117 @@
 {
-  "tested_project_sha256": "c06f35b99f8042cf333258bc416df03aa4f75a71e0fbae283edde8cb52a0d9ac",
-  "code_commit_local": null,
-  "upstream_baseline_commit": "65b404380bafc1f34734ff78a21942c01c59a89f",
-  "generated_utc": "2026-11-08T18:37:22.036080+00:00",
+  "baseline_commit": "103bc30788b18234f5938ed0f5346e142097a6fe",
+  "tested_code_commit": "51e0aa20a5604b9d79e7214f6e2aca59ac01048a",
+  "tested_source_sha256": "c7946faaa06cfc85ae1a757a5a9804fdffeb6552be9112dec20a9dc5ae674cb3",
+  "branch": "fix/audited-validation-integrity",
   "CODE_TESTS": {
     "status": "PASS",
-    "scope": "PYTHON_REFERENCE_AND_STATIC_PINE_SOURCE_NOT_PINE_RUNTIME",
-    "tests": 151,
-    "failures": 0,
-    "errors": 0,
+    "detail": "PYTHON_REFERENCE_ARTIFACT_AND_STATIC_CHECKS",
+    "reason": "127 tests; 0 failures/errors/skips. tests.json pine_compile=UNVERIFIED describes this local tool scope; subsequent live Pine evidence is below.",
     "evidence": [
       "reports/tests.json",
-      "reports/unit_tests.log"
+      "reports/unit_tests.log",
+      "reports/commands.json"
     ],
-    "targeted_mutations_detected": true
+    "code_commit": "51e0aa20a5604b9d79e7214f6e2aca59ac01048a"
   },
   "PINE_COMPILE": {
-    "status": "BLOCKED",
-    "detail": "PINE_COMPILE_UNVERIFIED",
-    "reason": "No authorized accessible Pine compiler was used; local lexical tests do not compile Pine"
+    "status": "PASS",
+    "detail": "PASS_WITH_REVIEWED_WARNINGS",
+    "reason": "Both exact final files compiled and were added in authenticated TradingView. PRO has two reviewed CW10003 warnings; no reproduced behavior defect, no historical/realtime parity guarantee.",
+    "evidence": [
+      "reports/tradingview_attempt.json"
+    ],
+    "code_commit": "51e0aa20a5604b9d79e7214f6e2aca59ac01048a"
   },
   "PINE_RUNTIME": {
-    "status": "BLOCKED",
-    "reason": "No execution in TradingView on M5/M15/M30/H1/H4"
+    "status": "PASS",
+    "detail": "PASS_RUNTIME_SMOKE_M5_M15_M30_H1_H4",
+    "reason": "Both final scripts loaded/calculated on OANDA:XAUUSD standard Candles at M5/M15/M30/H1/H4 without observed runtime error. Loaded-bar counts were not recorded; this is a loaded-history smoke check only.",
+    "evidence": [
+      "reports/tradingview_attempt.json",
+      "reports/tradingview_evidence/"
+    ],
+    "code_commit": "51e0aa20a5604b9d79e7214f6e2aca59ac01048a"
   },
   "EXECUTION_PARITY": {
-    "status": "BLOCKED",
-    "reason": "No actual Pine/native journal for runtime comparison; fixed common source identity is not execution equality",
-    "canonical_core_sha256": "c189ef479ccc106178a8a3b146da0dcd7d2fac852ddbeb8eebb298f385748dcc"
+    "status": "NOT_RUN",
+    "detail": "NO_FULL_EXPORTED_TRADE_RECONCILIATION",
+    "reason": "H1 visible baseline/fixed native aggregates matched under identical Default detail and native cost headers. No full exported OHLC or trade-by-trade Pine/native/PAPER reconciliation.",
+    "evidence": [
+      "reports/tradingview_attempt.json",
+      "reports/synthetic_tooling_comparison.json"
+    ],
+    "code_commit": "51e0aa20a5604b9d79e7214f6e2aca59ac01048a"
   },
   "OUT_OF_SAMPLE": {
     "status": "BLOCKED",
-    "detail": "PERFORMANCE_UNVERIFIED_MISSING_DATA",
-    "reason": "No real OHLC/tick data or complete Pine export; public data fetch failed; baseline plus one experimental policy specified, zero market optimization trials"
+    "detail": "PERFORMANCE_UNVERIFIED_MISSING_EXPORTED_DATA",
+    "reason": "Real chart/native UI observations exist, but no exported market dataset, complete journals or untouched OOS protocol. No performance-improvement claim.",
+    "evidence": [
+      "reports/tradingview_attempt.json"
+    ],
+    "code_commit": "51e0aa20a5604b9d79e7214f6e2aca59ac01048a"
   },
   "FORWARD_TEST": {
     "status": "NOT_RUN",
-    "reason": "No live forward observation"
+    "detail": "NO_FORWARD_OBSERVATION_PERIOD",
+    "reason": "No forward test or real alert-delivery verification.",
+    "evidence": [],
+    "code_commit": "51e0aa20a5604b9d79e7214f6e2aca59ac01048a"
   },
   "MOBILE_UI": {
-    "status": "BLOCKED",
-    "reason": "TradingView app not rendered; HTML is only a prototype",
-    "html_mock_subcheck": "PASS",
-    "html_cases": 9,
-    "evidence": "reports/mobile_mock.json"
+    "status": "FAIL",
+    "detail": "PARTIAL_FAIL_LAYOUT",
+    "reason": "Actual 390x844 and 430x932 TradingView captures show top-right table overlapping the chart header. No current mobile-layout PASS.",
+    "evidence": [
+      "reports/tradingview_evidence/tradingview_mobile_390.png",
+      "reports/tradingview_evidence/tradingview_mobile_430.png"
+    ],
+    "code_commit": "51e0aa20a5604b9d79e7214f6e2aca59ac01048a"
   },
-  "GITHUB": {
-    "modified": false,
-    "published": false
+  "priority_1_root_cause": "REPRODUCED_AND_FIXED_OBSERVED_RUNTIME_COMPATIBILITY_FAILURE",
+  "bar_magnifier_cause": "ESTABLISHED_FOR_OBSERVED_BASIC_PLAN_HIGH_DETAIL_FAILURE",
+  "code_fix": "use_bar_magnifier=false in native_header; Default (4 ticks/bar) works on observed Basic plan",
+  "pine_signal_core_changed": false,
+  "native_fill_default_changed": true,
+  "canonical_core_sha256": "c189ef479ccc106178a8a3b146da0dcd7d2fac852ddbeb8eebb298f385748dcc",
+  "compile_warnings": [
+    {
+      "code": "CW10003",
+      "line": 744,
+      "column": 35,
+      "function": "f_fast"
+    },
+    {
+      "code": "CW10003",
+      "line": 745,
+      "column": 35,
+      "function": "f_reversal"
+    }
+  ],
+  "profile_storage": {
+    "observed_plan": "Basic",
+    "observed_saved_script_limit": 1,
+    "new_script_save_refused": true,
+    "user_choice": "Replace existing personal script with PRO",
+    "pro_saved_privately_as": "QIRVANTA_SNIPER_PRO",
+    "pro_saved_version": 2,
+    "validation_delivery": "VALIDATION persists as a hidden chart instance after layout reload; separate Pine file is delivered, not saved as a second personal script",
+    "plan_purchased": false,
+    "restriction_bypassed": false,
+    "observed_chart_indicator_limit": 2,
+    "old_chart_instances_removed_to_respect_limit": true,
+    "layout_saved_and_reloaded": true,
+    "reload_observation": "M15 layout retained final PRO visible and final QIRV TEST hidden",
+    "validation_access": "Use the eye/Show control next to QIRV TEST to display validation and its Strategy Report"
   },
-  "BROKER": {
-    "connected": false,
-    "orders_submitted": false
-  },
+  "profitability_demonstrated": false,
+  "profitability_improvement_demonstrated": false,
   "production_ready": false,
-  "profitability_demonstrated": false
+  "publication_status": "PENDING_GITHUB_PUBLICATION",
+  "github_pushed": false,
+  "main_modified": false,
+  "broker_connected": false,
+  "orders_submitted": false,
+  "historical_acceptance": "reports/history_before_authenticated_tradingview/ACCEPTANCE.json"
 }

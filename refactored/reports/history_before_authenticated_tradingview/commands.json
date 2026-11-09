@@ -1,0 +1,76 @@
+{
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "runs": [
+    {
+      "name": "build_check",
+      "command": [
+        "C:\\Users\\azubu\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "tools/build.py",
+        "--check"
+      ],
+      "cwd": "refactored",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "current_build_check.log"
+    },
+    {
+      "name": "tests",
+      "command": [
+        "C:\\Users\\azubu\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "tools/run_tests.py"
+      ],
+      "cwd": "refactored",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "current_tests.log"
+    },
+    {
+      "name": "paired_synthetic",
+      "command": [
+        "C:\\Users\\azubu\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "tools/compare_runs.py",
+        "--bars",
+        "tests/fixtures/synthetic_ohlc.csv",
+        "--baseline-events",
+        "tests/fixtures/synthetic_events.jsonl",
+        "--fixed-events",
+        "tests/fixtures/synthetic_events.jsonl",
+        "--baseline-manifest",
+        "tests/fixtures/synthetic_manifest.json",
+        "--fixed-manifest",
+        "tests/fixtures/synthetic_manifest.json",
+        "--out",
+        "reports/synthetic_paired_run"
+      ],
+      "cwd": "refactored",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "current_paired_synthetic.log"
+    },
+    {
+      "name": "missing_market_data",
+      "command": [
+        "C:\\Users\\azubu\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "tools/validate.py",
+        "--out",
+        "reports/market_validation"
+      ],
+      "cwd": "refactored",
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "log": "current_missing_market_data.log"
+    },
+    {
+      "name": "diff_check",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "refactored",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "current_diff_check.log"
+    }
+  ]
+}
