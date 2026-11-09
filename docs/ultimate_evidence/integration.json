@@ -1,0 +1,63 @@
+{
+  "schema": "qirvanta.ultimate.integration.v1",
+  "checked_utc": "2026-11-09T19:09:04.068505+00:00",
+  "python": "3.12.14",
+  "sqlite": "3.53.1",
+  "pinned_parent": "c2212d7b7e0b4b7ea4be64c1fb3c9f7b33fa0f71",
+  "staged_snapshot_tree": "c700507d036951ad82fa7760e3630723251552dc",
+  "snapshot_note": "Source snapshot was tested before the integration evidence, release manifest and final reporting links were added.",
+  "protected_prior_tree": "ALL_EXISTING_PATHS_IDENTICAL",
+  "added_paths_in_snapshot": 84,
+  "test_count": 273,
+  "suites": {
+    "unified": {
+      "status": "PASS",
+      "tests": 113,
+      "transcript": "----------------------------------------------------------------------\r\nRan 113 tests in 2.809s\r\n\r\nOK"
+    },
+    "research": {
+      "status": "PASS",
+      "tests": 119,
+      "transcript": "----------------------------------------------------------------------\r\nRan 119 tests in 0.455s\r\n\r\nOK"
+    },
+    "service_risk_mt5": {
+      "status": "PASS",
+      "tests": 41,
+      "transcript": "----------------------------------------------------------------------\r\nRan 41 tests in 2.074s\r\n\r\nOK"
+    }
+  },
+  "champion_build": {
+    "QIRVANTA_UNIFIED.pine": {
+      "lines": 1582,
+      "sha256": "92307768be68946dc87cbe4ea45a8b5e32446fd3b7a0c1a38dce40dffe358be3"
+    }
+  },
+  "experimental_build": "QIRVANTA_ULTIMATE_EXPERIMENTAL.pine sha256=27ec778eff8da38c001b77f88c01a89d4e94b2691abd4a0232e7eacd0533e332",
+  "native_comparison_sha256": "b5f8339be965fce227b19fd8a435bf4faa9d0681c1b957148fe8dc955813b7d9",
+  "native_comparison_byte_replay": true,
+  "source_package": {
+    "status": "LOCALLY_TESTED",
+    "snapshot_tree": "c700507d036951ad82fa7760e3630723251552dc",
+    "source_archive_sha256": "7ed08c7084fe8a94a24d749f2cf4b6b08f7363274955d2345b588e39d2d5c993",
+    "dependencies": {
+      "tzdata_wheel_sha256": "0a10eec6e13ef16b627fabed9a5f2ba61a62b1c67f327305f4e7e412a70b4aec",
+      "site_packages_used": false
+    },
+    "review": {
+      "dataset_sha256": "7015f6386d2627237c57ff8625d59cbe3c9b852e4742b786cbb4679db3d48c56",
+      "evidence_class": "HISTORICAL_RESEARCH",
+      "roles": 12,
+      "state": "DATA_UNAVAILABLE",
+      "reason": "NEWS_DATA_UNAVAILABLE"
+    },
+    "mt5_environment_probe": {
+      "attachment_attempted": false,
+      "broker_orders_enabled": false,
+      "running_terminal_path_count": 0,
+      "sdk_discoverable": false,
+      "windows": true
+    }
+  },
+  "broker_orders_enabled": false,
+  "prospective_performance_verified": false
+}

@@ -1,0 +1,24 @@
+{
+  "schema": "qirvanta.ultimate.dependency.audit.v1",
+  "retrieved_utc": "2026-11-09T19:02:01.3055994+00:00",
+  "python": "3.12.14 AMD64 Windows",
+  "sqlite": "3.53.1",
+  "openssl": "3.5.8",
+  "ecosystem": "PyPI",
+  "package": "tzdata",
+  "version": "2026.6",
+  "wheel_sha256": "0a10eec6e13ef16b627fabed9a5f2ba61a62b1c67f327305f4e7e412a70b4aec",
+  "pypi_source": "https://pypi.org/pypi/tzdata/2026.6/json",
+  "pypi_vulnerability_count": 0,
+  "osv_source": "https://api.osv.dev/v1/query",
+  "osv_query_package_version": {
+    "version": "2026.6",
+    "package": {
+      "ecosystem": "PyPI",
+      "name": "tzdata"
+    }
+  },
+  "osv_response": {},
+  "status": "LOCALLY_TESTED_PACKAGE_ADVISORY_LOOKUP",
+  "scope": "Exact third-party pinned Python dependency. No assertion on bundled runtime, optional MT5 SDK, Windows, or unpublished vulnerabilities."
+}

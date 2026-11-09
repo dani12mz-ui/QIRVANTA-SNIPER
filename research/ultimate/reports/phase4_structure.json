@@ -1,0 +1,41 @@
+{
+  "rule_count": 10,
+  "rules": {
+    "D_OR_FAILURE": "Previous close outside completed London/NY opening range, current close reclaims inside",
+    "E_MICRO_PULLBACK": "Direction+EMA20 hold, one small counter candle, then close through its extreme",
+    "F_FAILED_AUCTION": "Wick sweeps known 20-bar extreme and reclaims, rejection wick >= 35% of range",
+    "G_RANGE_REVERSION": "RANGE regime, touch outer 15% of prior 20-bar envelope, then close back inside it",
+    "H_STRUCTURAL_RETEST": "Prior BOS within 1–3 bars, retest its old swing level within 0.15 ATR, trend agrees",
+    "I_EXHAUSTION": "Prior RSI <=30/ >=70, favorable RSI change >= 3, reversal body >= 0.25 ATR",
+    "J_EXPANSION_ACCEPTANCE": "Prior close broke a preceding 20-bar extreme, current close >=0.1 ATR farther than old level, ATR ratio >=1.35",
+    "K_SESSION_ADAPTATION": "LONDON trend-aligned four-bar break, otherwise NEW_YORK opening-range failure",
+    "L_TARGET_FEASIBILITY": "Four-bar breakout with known forward obstacle >=1 planned R",
+    "L_NO_ROOM_ABLATION": "Identical L setup and risk, omit only the forward-obstacle test"
+  },
+  "feature_event_counts": {
+    "bos": 553,
+    "choch": 186,
+    "mss": 135,
+    "sweep_up": 382,
+    "sweep_down": 406,
+    "causal_fvg": 1376,
+    "order_block_proxy": 322,
+    "asian_range_utc": 4712,
+    "repeated_sweep_up": 431,
+    "repeated_sweep_down": 447
+  },
+  "candidate_rejections": {
+    "archived_M15": {
+      "D_OR_FAILURE": 3,
+      "E_MICRO_PULLBACK": 6,
+      "F_FAILED_AUCTION": 52,
+      "G_RANGE_REVERSION": 68,
+      "H_STRUCTURAL_RETEST": 30,
+      "I_EXHAUSTION": 8,
+      "J_EXPANSION_ACCEPTANCE": 26,
+      "K_SESSION_ADAPTATION": 34,
+      "L_TARGET_FEASIBILITY": 921,
+      "L_NO_ROOM_ABLATION": 172
+    }
+  }
+}

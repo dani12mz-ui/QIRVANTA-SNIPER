@@ -1,0 +1,68 @@
+{
+  "schema": "qirvanta.ultimate.phase5_phase8_validation.v1",
+  "observed_at_utc": "2026-11-09T19:02:37.008610+00:00",
+  "runtime": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "phase5": "LOCALLY_TESTED",
+  "phase8_local": "LOCALLY_TESTED",
+  "phase8_platform": "BLOCKED_EXTERNAL",
+  "focused_test_command": "python -B -m unittest discover -s tests -p test_ultimate_risk_mt5.py -v",
+  "focused_tests_executed": 19,
+  "focused_test_status": "PASS",
+  "focused_test_log": [
+    "test_expiration_and_illegal_promotion (test_ultimate_risk_mt5.IntentLedgerTests.test_expiration_and_illegal_promotion) ... ok",
+    "test_parallel_reservation_serializes_exposure_limit (test_ultimate_risk_mt5.IntentLedgerTests.test_parallel_reservation_serializes_exposure_limit) ... ok",
+    "test_restart_reservation_and_event_reconciliation_are_idempotent (test_ultimate_risk_mt5.IntentLedgerTests.test_restart_reservation_and_event_reconciliation_are_idempotent) ... ok",
+    "test_explicit_attach_metadata_and_exact_closed_utc_bars (test_ultimate_risk_mt5.MT5ReaderTests.test_explicit_attach_metadata_and_exact_closed_utc_bars) ... ok",
+    "test_fill_flags_and_redacted_exposure (test_ultimate_risk_mt5.MT5ReaderTests.test_fill_flags_and_redacted_exposure) ... ok",
+    "test_no_implicit_attach_or_account_change (test_ultimate_risk_mt5.MT5ReaderTests.test_no_implicit_attach_or_account_change) ... ok",
+    "test_unselected_stale_and_missing_capabilities_fail_closed (test_ultimate_risk_mt5.MT5ReaderTests.test_unselected_stale_and_missing_capabilities_fail_closed) ... ok",
+    "test_vendor_symbol_requires_separate_verified_terms (test_ultimate_risk_mt5.MT5ReaderTests.test_vendor_symbol_requires_separate_verified_terms) ... ok",
+    "test_atr_trailing_never_loosens_and_requires_same_source (test_ultimate_risk_mt5.RiskGuardianTests.test_atr_trailing_never_loosens_and_requires_same_source) ... ok",
+    "test_bad_geometry_and_after_cost_reward (test_ultimate_risk_mt5.RiskGuardianTests.test_bad_geometry_and_after_cost_reward) ... ok",
+    "test_management_protective_fill_precedes_time_and_shock (test_ultimate_risk_mt5.RiskGuardianTests.test_management_protective_fill_precedes_time_and_shock) ... ok",
+    "test_margin_rounds_down_on_grid_and_keeps_three_closable_parts (test_ultimate_risk_mt5.RiskGuardianTests.test_margin_rounds_down_on_grid_and_keeps_three_closable_parts) ... ok",
+    "test_missing_capabilities_and_hard_veto_precede_margin (test_ultimate_risk_mt5.RiskGuardianTests.test_missing_capabilities_and_hard_veto_precede_margin) ... ok",
+    "test_quote_age_spread_and_exact_source_fail_closed (test_ultimate_risk_mt5.RiskGuardianTests.test_quote_age_spread_and_exact_source_fail_closed) ... ok",
+    "test_short_uses_bid_and_checks_ask_side_of_stop (test_ultimate_risk_mt5.RiskGuardianTests.test_short_uses_bid_and_checks_ask_side_of_stop) ... ok",
+    "test_target_progress_only_tightens_on_next_quote (test_ultimate_risk_mt5.RiskGuardianTests.test_target_progress_only_tightens_on_next_quote) ... ok",
+    "test_weekly_limit_counts_reserved_risk_and_available_size (test_ultimate_risk_mt5.RiskGuardianTests.test_weekly_limit_counts_reserved_risk_and_available_size) ... ok",
+    "test_aligned_feeds_aggregate_gaps_and_refuse_duplicate_timestamps (test_ultimate_risk_mt5.StressAndAlignmentTests.test_aligned_feeds_aggregate_gaps_and_refuse_duplicate_timestamps) ... ok",
+    "test_stress_counts_floor_crossings_and_duration (test_ultimate_risk_mt5.StressAndAlignmentTests.test_stress_counts_floor_crossings_and_duration) ... ok",
+    "",
+    "----------------------------------------------------------------------",
+    "Ran 19 tests in 0.118s",
+    "",
+    "OK"
+  ],
+  "stress_replay_exact_equal": true,
+  "stress_source": "diagnostics/accounting/B-ALL.audit.json",
+  "static_no_vendor_mutation_calls": true,
+  "real_preflight": {
+    "windows": true,
+    "sdk_discoverable": false,
+    "running_terminal_path_count": 0,
+    "attachment_attempted": false,
+    "broker_orders_enabled": false
+  },
+  "scope": "Existing user session and accessible process paths, optional package discovery in bundled Python. No broker I/O.",
+  "additional_desktop_installation_checks": [
+    "No matching MetaTrader or PU Prime uninstall registrations in the queried HKLM/HKCU uninstall keys.",
+    "No matching immediate child directories of Program Files, Program Files (x86), or user Local Programs in the queries.",
+    "No accessible user Roaming MetaQuotes directory returned by the targeted query."
+  ],
+  "blockers": [
+    "No discoverable MetaTrader5 SDK in this runtime and no selected running terminal path.",
+    "No independently verified broker account/symbol metadata, bid/ask, or timestamp-aligned PU Prime history.",
+    "BTC exact broker symbol and sessions are unknown."
+  ],
+  "executed_broker_actions": [],
+  "artifacts_sha256": {
+    "docs/ultimate_evidence/phase5_stress.json": "bd6fb43df3769a0c6f96dfff0faa2dde2989ec59ec8b48a9243f69af74366bcd",
+    "qirvanta_ultimate/mt5.py": "5706f8bbabc44b7172cf86626eb7c02ea77bdbecb68b5bf8b0f0abe3e4d27291",
+    "qirvanta_ultimate/risk.py": "121d3453811ec38a21b798fd73649955ee207a5e9786d2a8d0cd831f164869c8",
+    "qirvanta_ultimate/intents.py": "dac56bdff45c5729cc8b6c66514242dacee1e75c4621280980e2f6da3b71194a",
+    "qirvanta_ultimate/feed_compare.py": "441783fdbdd836e3a6188146b9b13dc989cab38caa201e650bdecf3a30b60d81",
+    "qirvanta_ultimate/risk_stress.py": "1d175be99604bc645e8d0bc70b1502d6349e51fde112b5ce2bdb6cdc7e01b929",
+    "tests/test_ultimate_risk_mt5.py": "a20ca3e2d3f0662993a09c6f73f85aec439d05125f6d6ec19cc7b38a0a57e8b0"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "schema": "qirvanta.calendar.v1",
+  "provider": "BLS_SCHEDULE_OBSERVED",
+  "source": "https://www.bls.gov/schedule/2026/11_sched.htm",
+  "observed_ms": 1794250129000,
+  "coverage_start_ms": 1794182400000,
+  "coverage_end_ms": 1794614400000,
+  "currencies": [
+    "USD"
+  ],
+  "coverage_scope": [
+    "BLS_SELECTED"
+  ],
+  "revisions": [
+    {
+      "event_id": "cpi-2026-10",
+      "scheduled_ms": 1794317400000,
+      "observed_ms": 1794250129000,
+      "country": "US",
+      "currency": "USD",
+      "title": "Consumer Price Index",
+      "impact": "UNKNOWN",
+      "timezone": "America/New_York",
+      "source": "https://www.bls.gov/schedule/2026/11_sched.htm",
+      "previous": null,
+      "consensus": null,
+      "actual": null
+    },
+    {
+      "event_id": "real-earnings-2026-10",
+      "scheduled_ms": 1794317400000,
+      "observed_ms": 1794250129000,
+      "country": "US",
+      "currency": "USD",
+      "title": "Real Earnings",
+      "impact": "UNKNOWN",
+      "timezone": "America/New_York",
+      "source": "https://www.bls.gov/schedule/2026/11_sched.htm",
+      "previous": null,
+      "consensus": null,
+      "actual": null
+    },
+    {
+      "event_id": "ppi-2026-10",
+      "scheduled_ms": 1794576600000,
+      "observed_ms": 1794250129000,
+      "country": "US",
+      "currency": "USD",
+      "title": "Producer Price Index",
+      "impact": "UNKNOWN",
+      "timezone": "America/New_York",
+      "source": "https://www.bls.gov/schedule/2026/11_sched.htm",
+      "previous": null,
+      "consensus": null,
+      "actual": null
+    }
+  ]
+}

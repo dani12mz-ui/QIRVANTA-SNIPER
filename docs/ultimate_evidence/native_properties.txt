@@ -1,0 +1,50 @@
+					1442 tab group indicator-properties-dialog-tabs
+						1443 tab (selectable, settable, boolean) Inputs, Value: 0, ID: inputs
+						1444 tab (selected, settable, boolean) Properties, Value: 1, ID: properties
+						1445 tab (selectable, settable, boolean) Style, Value: 0, ID: style
+						1446 tab (selectable, settable, boolean) Visibility, Value: 0, ID: visibilities
+					1447 container
+						1448 text GENERAL
+						1449 container Click here to learn more
+						1450 text Initial capital
+						1451 text field (settable) 100,000
+						1452 combo box (collapsed) Value: USD, ID: :r326:, Secondary Actions: Expand
+							1453 text USD
+						1454 text Default order size
+						1455 text field (settable) 3
+						1456 combo box (collapsed) Value: Quantity, ID: :r32a:, Secondary Actions: Expand
+							1457 text Quantity
+						1458 text Pyramiding
+						1459 text field (settable) 0
+						1460 text DETALIZATION AND EXECUTION
+						1461 container Click here to learn more
+						1462 text Bar detalization
+						1463 combo box (collapsed) Value: Default (4 ticks per bar), ID: :r32e:, Secondary Actions: Expand
+							1464 text Default (4 ticks per bar)
+						1465 text Script execution
+						1466 combo box (collapsed) Value: On bar close, ID: :r32i:, Secondary Actions: Expand
+							1467 text On bar close
+						1468 text BROKER EMULATOR
+						1469 container Click here to learn more
+						1470 text Commission
+						1471 text field (settable) 0.175
+						1472 combo box (collapsed) Value: Per contract, ID: :r32m:, Secondary Actions: Expand
+							1473 text Per contract
+						1474 text Long leverage
+						1475 text field (settable) 1x
+						1476 text Short leverage
+						1477 text field (settable) 1x
+						1478 text Slippage
+						1479 text field (settable) 2
+						1480 text ticks Limit order execution
+						1481 combo box (collapsed) Value: Requested price, ID: :r32q:, Secondary Actions: Expand
+							1482 text Requested price
+						1483 text Order execution delay
+						1484 combo box (collapsed) Value: One tick, ID: :r32u:, Secondary Actions: Expand
+							1485 text One tick
+					1486 pop up button (collapsed) Defaults, ID: property-actions, Secondary Actions: Expand
+					1487 container
+						1488 button Cancel
+						1489 button Ok
+
+The focused UI element is 1444 tab (selected, settable, boolean) Properties, Value: 1, ID: properties

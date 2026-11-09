@@ -1,0 +1,5317 @@
+{
+  "schema": "qirvanta.ultimate.native.compare.v1",
+  "registration_sha256": "601e09c40e903a7fc79969613be07b831422dd7621881d0f2417306155f1a889",
+  "experimental_sha256": "27ec778eff8da38c001b77f88c01a89d4e94b2691abd4a0232e7eacd0533e332",
+  "observer_sha256": "10ce8de563b7cc8798e677aad71f6d9dff7301b7d9a0940e1d473506bc532464",
+  "canonical_bars_sha256": "6c89015105a406c2a0c1567f0e9a5e445cb31ee7604a985d727f26892d8ba4b7",
+  "identical_bars_off_on_archived": true,
+  "off_campaign_objects_equal_to_archived_except_run_id": true,
+  "off_native_drawdown_equal_to_archived": true,
+  "costs": {
+    "commission_per_unit_per_fill": 0.175,
+    "slippage_ticks": 2
+  },
+  "coverage": {
+    "off": {
+      "log_sha256": "297496ce1428d2f50a68320792d6fc2d654cdd6b04a368d4f5b66bd43176fb49",
+      "audit_status": "PASS_OBSERVED_JOURNAL",
+      "bar_count": 6445,
+      "first_open_utc": "2026-08-02T22:00:00Z",
+      "last_close_utc": "2026-11-09T02:45:00Z",
+      "bar_gap_count": 70,
+      "campaign_metrics": {
+        "count": 72,
+        "wins": 33,
+        "losses": 39,
+        "breakevens": 0,
+        "net_cash": -144.492,
+        "sum_positive_net_cash": 1378.011,
+        "sum_negative_net_cash_magnitude": 1522.503,
+        "profit_factor": 0.9050957535059044,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.4583333333333333,
+        "average_net_cash": -2.0068333333333332,
+        "average_win_cash": 41.75790909090909,
+        "average_loss_cash": -39.03853846153846,
+        "closed_cash_event_drawdown": 812.069,
+        "campaign_close_drawdown": 812.069,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "TP1": 32,
+          "ИЗТЕКЪЛ СРОК": 3,
+          "SL": 150,
+          "TP2": 16,
+          "TP3": 10,
+          "ИЗХОД СЛЕД ГАП": 1
+        },
+        "exit_comment_quantities": {
+          "TP1": 32.0,
+          "ИЗТЕКЪЛ СРОК": 5.0,
+          "SL": 150.0,
+          "TP2": 16.0,
+          "TP3": 10.0,
+          "ИЗХОД СЛЕД ГАП": 3.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "ИЗТЕКЪЛ СРОК": 3,
+          "SL": 58,
+          "TP3": 10,
+          "ИЗХОД СЛЕД ГАП": 1
+        },
+        "win_rate_wilson95": [
+          0.34828627057626194,
+          0.5726013271401095
+        ],
+        "net_r_descriptive_interval": {
+          "n": 72,
+          "mean": -0.10206230726121861,
+          "ci95": [
+            -0.3602608462440046,
+            0.17355666428314775
+          ],
+          "block": 5,
+          "repetitions": 2000,
+          "seed": 20261109,
+          "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+        },
+        "campaign_cash_p05": -55.293749999999996,
+        "cash_drawdown_duration": {
+          "longest_ms": 4802400000,
+          "right_censored": true,
+          "scope": "Campaign-close cash peak to recovery or cutoff; excludes intrabar equity."
+        },
+        "tp_campaign_counts": {
+          "TP1": 32,
+          "TP2": 16,
+          "TP3": 10
+        }
+      },
+      "native_parts": 212,
+      "native_equity_max_drawdown": 842.255,
+      "cash_reconciliation": {
+        "derived_net_cash": -144.492,
+        "native_netprofit": -144.492,
+        "difference": 0.0,
+        "matches": true,
+        "commission_cash": 75.6,
+        "formula": "(exit_price-entry_price)*signed_size*pointvalue - commission, once; same currency required",
+        "api_profit_classifications": {
+          "NET": 212
+        }
+      },
+      "family": {
+        "1": {
+          "count": 1,
+          "wins": 1,
+          "losses": 0,
+          "breakevens": 0,
+          "net_cash": 20.819,
+          "sum_positive_net_cash": 20.819,
+          "sum_negative_net_cash_magnitude": 0.0,
+          "profit_factor": null,
+          "profit_factor_status": "NO_LOSSES",
+          "win_rate": 1.0,
+          "average_net_cash": 20.819,
+          "average_win_cash": 20.819,
+          "average_loss_cash": null,
+          "closed_cash_event_drawdown": 0.0,
+          "campaign_close_drawdown": 0.0,
+          "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+          "exit_comment_record_counts": {
+            "TP1": 1,
+            "TP2": 1,
+            "SL": 1
+          },
+          "exit_comment_quantities": {
+            "TP1": 1.0,
+            "TP2": 1.0,
+            "SL": 1.0
+          },
+          "final_exit_comment_campaign_counts": {
+            "SL": 1
+          }
+        },
+        "2": {
+          "count": 49,
+          "wins": 20,
+          "losses": 29,
+          "breakevens": 0,
+          "net_cash": -257.245,
+          "sum_positive_net_cash": 998.747,
+          "sum_negative_net_cash_magnitude": 1255.992,
+          "profit_factor": 0.7951857973617666,
+          "profit_factor_status": "DEFINED",
+          "win_rate": 0.40816326530612246,
+          "average_net_cash": -5.249897959183674,
+          "average_win_cash": 49.93735,
+          "average_loss_cash": -43.31006896551724,
+          "closed_cash_event_drawdown": 902.862,
+          "campaign_close_drawdown": 902.862,
+          "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+          "exit_comment_record_counts": {
+            "TP1": 20,
+            "SL": 109,
+            "TP2": 10,
+            "TP3": 7,
+            "ИЗТЕКЪЛ СРОК": 1
+          },
+          "exit_comment_quantities": {
+            "TP1": 20.0,
+            "SL": 109.0,
+            "TP2": 10.0,
+            "TP3": 7.0,
+            "ИЗТЕКЪЛ СРОК": 1.0
+          },
+          "final_exit_comment_campaign_counts": {
+            "SL": 41,
+            "TP3": 7,
+            "ИЗТЕКЪЛ СРОК": 1
+          }
+        },
+        "3": {
+          "count": 22,
+          "wins": 12,
+          "losses": 10,
+          "breakevens": 0,
+          "net_cash": 91.934,
+          "sum_positive_net_cash": 358.445,
+          "sum_negative_net_cash_magnitude": 266.511,
+          "profit_factor": 1.344953866819756,
+          "profit_factor_status": "DEFINED",
+          "win_rate": 0.5454545454545454,
+          "average_net_cash": 4.1788181818181815,
+          "average_win_cash": 29.870416666666667,
+          "average_loss_cash": -26.6511,
+          "closed_cash_event_drawdown": 80.678,
+          "campaign_close_drawdown": 80.678,
+          "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+          "exit_comment_record_counts": {
+            "TP1": 11,
+            "ИЗТЕКЪЛ СРОК": 2,
+            "SL": 40,
+            "TP2": 5,
+            "TP3": 3,
+            "ИЗХОД СЛЕД ГАП": 1
+          },
+          "exit_comment_quantities": {
+            "TP1": 11.0,
+            "ИЗТЕКЪЛ СРОК": 4.0,
+            "SL": 40.0,
+            "TP2": 5.0,
+            "TP3": 3.0,
+            "ИЗХОД СЛЕД ГАП": 3.0
+          },
+          "final_exit_comment_campaign_counts": {
+            "ИЗТЕКЪЛ СРОК": 2,
+            "SL": 16,
+            "TP3": 3,
+            "ИЗХОД СЛЕД ГАП": 1
+          }
+        }
+      },
+      "campaigns": [
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|-1|1786107600000|1786108500000",
+          "entry_time": 1786108500000,
+          "family": 3,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1786329000000,
+          "closed_record_count": 2,
+          "realized_net_cash": 58.565,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.767150024233374,
+          "partial_exits": [
+            {
+              "exit_time": 1786323600000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 25.123,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786329000000,
+              "exit_comment": "ИЗТЕКЪЛ СРОК",
+              "size": -2.0,
+              "profit": 33.442,
+              "commission": 0.7
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1786338000000|1786338000000",
+          "entry_time": 1786338000000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1786356000000,
+          "closed_record_count": 3,
+          "realized_net_cash": 17.99,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.3484813265147993,
+          "partial_exits": [
+            {
+              "exit_time": 1786344300000,
+              "exit_comment": "TP1",
+              "size": 1.0,
+              "profit": 16.974,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786356000000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": 0.508,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786356000000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": 0.508,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1786446000000|1786446000000",
+          "entry_time": 1786446000000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1786456800000,
+          "closed_record_count": 3,
+          "realized_net_cash": 12.302,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.34143769081321124,
+          "partial_exits": [
+            {
+              "exit_time": 1786449600000,
+              "exit_comment": "TP1",
+              "size": 1.0,
+              "profit": 11.806,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786456800000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": 0.248,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786456800000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": 0.248,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1786493700000|1786493700000",
+          "entry_time": 1786493700000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1786526100000,
+          "closed_record_count": 3,
+          "realized_net_cash": 81.681,
+          "realized_commission_cash": 1.05,
+          "net_r": 1.9882430261428363,
+          "partial_exits": [
+            {
+              "exit_time": 1786497300000,
+              "exit_comment": "TP1",
+              "size": 1.0,
+              "profit": 13.47,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786501800000,
+              "exit_comment": "TP2",
+              "size": 1.0,
+              "profit": 27.227,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786526100000,
+              "exit_comment": "TP3",
+              "size": 1.0,
+              "profit": 40.984,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1786617900000|1786617900000",
+          "entry_time": 1786617900000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1786627800000,
+          "closed_record_count": 3,
+          "realized_net_cash": -39.741,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0272974020938348,
+          "partial_exits": [
+            {
+              "exit_time": 1786627800000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -13.247,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786627800000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -13.247,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786627800000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -13.247,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1786684500000|1786684500000",
+          "entry_time": 1786684500000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1786686300000,
+          "closed_record_count": 3,
+          "realized_net_cash": 8.535,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.3265235854470332,
+          "partial_exits": [
+            {
+              "exit_time": 1786685400000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 8.369,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786686300000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.083,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786686300000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.083,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1786693500000|1786693500000",
+          "entry_time": 1786693500000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1786708800000,
+          "closed_record_count": 3,
+          "realized_net_cash": 64.689,
+          "realized_commission_cash": 1.05,
+          "net_r": 1.998980254009456,
+          "partial_exits": [
+            {
+              "exit_time": 1786698000000,
+              "exit_comment": "TP1",
+              "size": 1.0,
+              "profit": 10.663,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786707000000,
+              "exit_comment": "TP2",
+              "size": 1.0,
+              "profit": 21.563,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786708800000,
+              "exit_comment": "TP3",
+              "size": 1.0,
+              "profit": 32.463,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1786944600000|1786944600000",
+          "entry_time": 1786944600000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1786968900000,
+          "closed_record_count": 3,
+          "realized_net_cash": -41.193,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0263098886314372,
+          "partial_exits": [
+            {
+              "exit_time": 1786968900000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -13.731,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786968900000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -13.731,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786968900000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -13.731,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1787040000000|1787040000000",
+          "entry_time": 1787040000000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1787041800000,
+          "closed_record_count": 3,
+          "realized_net_cash": 8.639,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.3345726346772007,
+          "partial_exits": [
+            {
+              "exit_time": 1787040900000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 8.483,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787041800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.078,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787041800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.078,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|1|1787076900000|1787077800000",
+          "entry_time": 1787077800000,
+          "family": 3,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1787081400000,
+          "closed_record_count": 3,
+          "realized_net_cash": -27.015,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0406795331099041,
+          "partial_exits": [
+            {
+              "exit_time": 1787081400000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -9.005,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787081400000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -9.005,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787081400000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -9.005,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|1|1787096700000|1787097600000",
+          "entry_time": 1787097600000,
+          "family": 3,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1787101200000,
+          "closed_record_count": 3,
+          "realized_net_cash": 19.21,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.955151153540175,
+          "partial_exits": [
+            {
+              "exit_time": 1787097600000,
+              "exit_comment": "TP1",
+              "size": 1.0,
+              "profit": 6.28,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787098500000,
+              "exit_comment": "TP2",
+              "size": 1.0,
+              "profit": 12.947,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787101200000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -0.017,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1787114700000|1787114700000",
+          "entry_time": 1787114700000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1787124600000,
+          "closed_record_count": 3,
+          "realized_net_cash": -40.698,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0266384138035416,
+          "partial_exits": [
+            {
+              "exit_time": 1787124600000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.566,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787124600000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.566,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787124600000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.566,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1787236200000|1787236200000",
+          "entry_time": 1787236200000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1787283900000,
+          "closed_record_count": 3,
+          "realized_net_cash": 107.403,
+          "realized_commission_cash": 1.05,
+          "net_r": 1.5122497254371885,
+          "partial_exits": [
+            {
+              "exit_time": 1787237100000,
+              "exit_comment": "TP1",
+              "size": 1.0,
+              "profit": 23.3,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787238900000,
+              "exit_comment": "TP2",
+              "size": 1.0,
+              "profit": 46.962,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787283900000,
+              "exit_comment": "ИЗТЕКЪЛ СРОК",
+              "size": 1.0,
+              "profit": 37.141,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1787644800000|1787644800000",
+          "entry_time": 1787644800000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1787645700000,
+          "closed_record_count": 3,
+          "realized_net_cash": -45.423,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0238014740685644,
+          "partial_exits": [
+            {
+              "exit_time": 1787645700000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.141,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787645700000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.141,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787645700000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.141,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1787834700000|1787834700000",
+          "entry_time": 1787834700000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1787841000000,
+          "closed_record_count": 3,
+          "realized_net_cash": 15.016,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.3444352692907606,
+          "partial_exits": [
+            {
+              "exit_time": 1787837400000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 14.268,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787841000000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.374,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787841000000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.374,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1787845500000|1787845500000",
+          "entry_time": 1787845500000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1787854500000,
+          "closed_record_count": 3,
+          "realized_net_cash": 14.687,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.34223464988931607,
+          "partial_exits": [
+            {
+              "exit_time": 1787849100000,
+              "exit_comment": "TP1",
+              "size": 1.0,
+              "profit": 13.961,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787854500000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": 0.363,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787854500000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": 0.363,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|1|1787864400000|1787869800000",
+          "entry_time": 1787869800000,
+          "family": 3,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1787873400000,
+          "closed_record_count": 3,
+          "realized_net_cash": -25.989,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0423535073998316,
+          "partial_exits": [
+            {
+              "exit_time": 1787873400000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -8.663,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787873400000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -8.663,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787873400000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -8.663,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1787920200000|1787920200000",
+          "entry_time": 1787920200000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1787920200000,
+          "closed_record_count": 3,
+          "realized_net_cash": -34.986,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0311229000884172,
+          "partial_exits": [
+            {
+              "exit_time": 1787920200000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -11.662,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787920200000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -11.662,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787920200000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -11.662,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|-1|1788164100000|1788165900000",
+          "entry_time": 1788165900000,
+          "family": 3,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1788170400000,
+          "closed_record_count": 3,
+          "realized_net_cash": -46.884,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0230426813301912,
+          "partial_exits": [
+            {
+              "exit_time": 1788170400000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.628,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788170400000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.628,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788170400000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.628,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1788183900000|1788183900000",
+          "entry_time": 1788183900000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1788186600000,
+          "closed_record_count": 3,
+          "realized_net_cash": 15.897,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.3407497910102244,
+          "partial_exits": [
+            {
+              "exit_time": 1788183900000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 15.047,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788186600000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.425,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788186600000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.425,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1788236100000|1788236100000",
+          "entry_time": 1788236100000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1788241500000,
+          "closed_record_count": 3,
+          "realized_net_cash": -40.173,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0269959352711098,
+          "partial_exits": [
+            {
+              "exit_time": 1788241500000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.391,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788241500000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.391,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788241500000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.391,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1788247800000|1788247800000",
+          "entry_time": 1788247800000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1788249600000,
+          "closed_record_count": 3,
+          "realized_net_cash": 58.98,
+          "realized_commission_cash": 1.05,
+          "net_r": 1.9440324335014338,
+          "partial_exits": [
+            {
+              "exit_time": 1788247800000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 9.619,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788249600000,
+              "exit_comment": "TP2",
+              "size": -1.0,
+              "profit": 19.66,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788249600000,
+              "exit_comment": "TP3",
+              "size": -1.0,
+              "profit": 29.701,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1788280200000|1788280200000",
+          "entry_time": 1788280200000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1788319800000,
+          "closed_record_count": 3,
+          "realized_net_cash": 138.339,
+          "realized_commission_cash": 1.05,
+          "net_r": 1.9600034003485358,
+          "partial_exits": [
+            {
+              "exit_time": 1788287400000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 22.783,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788310800000,
+              "exit_comment": "TP2",
+              "size": -1.0,
+              "profit": 46.113,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788319800000,
+              "exit_comment": "TP3",
+              "size": -1.0,
+              "profit": 69.443,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|-1|1788449400000|1788450300000",
+          "entry_time": 1788450300000,
+          "family": 3,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1788498000000,
+          "closed_record_count": 2,
+          "realized_net_cash": 59.024,
+          "realized_commission_cash": 1.05,
+          "net_r": 1.129689174705252,
+          "partial_exits": [
+            {
+              "exit_time": 1788460200000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 17.202,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788498000000,
+              "exit_comment": "ИЗТЕКЪЛ СРОК",
+              "size": -2.0,
+              "profit": 41.822,
+              "commission": 0.7
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|1|1788514200000|1788516900000",
+          "entry_time": 1788516900000,
+          "family": 3,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1788525000000,
+          "closed_record_count": 3,
+          "realized_net_cash": -29.463,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0371739360016898,
+          "partial_exits": [
+            {
+              "exit_time": 1788525000000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -9.821,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788525000000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -9.821,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788525000000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -9.821,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|-1|1788535800000|1788537600000",
+          "entry_time": 1788537600000,
+          "family": 3,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1788549300000,
+          "closed_record_count": 3,
+          "realized_net_cash": 14.512,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.33955730263465767,
+          "partial_exits": [
+            {
+              "exit_time": 1788543000000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 13.792,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788549300000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.36,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788549300000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.36,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1788889500000|1788889500000",
+          "entry_time": 1788889500000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1788930000000,
+          "closed_record_count": 3,
+          "realized_net_cash": 57.728,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.9974428087635635,
+          "partial_exits": [
+            {
+              "exit_time": 1788893100000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 18.918,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788900300000,
+              "exit_comment": "TP2",
+              "size": -1.0,
+              "profit": 38.198,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788930000000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.612,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1789063200000|1789063200000",
+          "entry_time": 1789063200000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1789098300000,
+          "closed_record_count": 3,
+          "realized_net_cash": 97.893,
+          "realized_commission_cash": 1.05,
+          "net_r": 1.988361464871123,
+          "partial_exits": [
+            {
+              "exit_time": 1789065000000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 16.167,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789066800000,
+              "exit_comment": "TP2",
+              "size": -1.0,
+              "profit": 32.631,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789098300000,
+              "exit_comment": "TP3",
+              "size": -1.0,
+              "profit": 49.095,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1789124400000|1789124400000",
+          "entry_time": 1789124400000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1789129800000,
+          "closed_record_count": 3,
+          "realized_net_cash": -41.115,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.026361117351906,
+          "partial_exits": [
+            {
+              "exit_time": 1789129800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.705,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789129800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.705,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789129800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.705,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1789369200000|1789369200000",
+          "entry_time": 1789369200000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1789389900000,
+          "closed_record_count": 3,
+          "realized_net_cash": 103.758,
+          "realized_commission_cash": 1.05,
+          "net_r": 1.974537565654259,
+          "partial_exits": [
+            {
+              "exit_time": 1789375500000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 17.102,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789377300000,
+              "exit_comment": "TP2",
+              "size": -1.0,
+              "profit": 34.586,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789389900000,
+              "exit_comment": "TP3",
+              "size": -1.0,
+              "profit": 52.07,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1789415100000|1789415100000",
+          "entry_time": 1789415100000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1789437600000,
+          "closed_record_count": 3,
+          "realized_net_cash": -57.645,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0186608704871971,
+          "partial_exits": [
+            {
+              "exit_time": 1789437600000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -19.215,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789437600000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -19.215,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789437600000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -19.215,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|-1|1789441200000|1789442100000",
+          "entry_time": 1789442100000,
+          "family": 3,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1789452000000,
+          "closed_record_count": 3,
+          "realized_net_cash": 43.785,
+          "realized_commission_cash": 1.05,
+          "net_r": 1.9661861780951098,
+          "partial_exits": [
+            {
+              "exit_time": 1789443900000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 7.139,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789450200000,
+              "exit_comment": "TP2",
+              "size": -1.0,
+              "profit": 14.595,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789452000000,
+              "exit_comment": "TP3",
+              "size": -1.0,
+              "profit": 22.051,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1789474500000|1789474500000",
+          "entry_time": 1789474500000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1789476300000,
+          "closed_record_count": 3,
+          "realized_net_cash": -28.2,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0389036251105217,
+          "partial_exits": [
+            {
+              "exit_time": 1789476300000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -9.4,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789476300000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -9.4,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789476300000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -9.4,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1789614000000|1789614000000",
+          "entry_time": 1789614000000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1789623900000,
+          "closed_record_count": 3,
+          "realized_net_cash": -77.154,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0138768430182135,
+          "partial_exits": [
+            {
+              "exit_time": 1789623900000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -25.718,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789623900000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -25.718,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789623900000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -25.718,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|-1|1789718400000|1789719300000",
+          "entry_time": 1789719300000,
+          "family": 3,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1789733700000,
+          "closed_record_count": 3,
+          "realized_net_cash": 59.541,
+          "realized_commission_cash": 1.05,
+          "net_r": 1.9662175549831584,
+          "partial_exits": [
+            {
+              "exit_time": 1789723800000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 9.75,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789733700000,
+              "exit_comment": "TP2",
+              "size": -1.0,
+              "profit": 19.847,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789733700000,
+              "exit_comment": "TP3",
+              "size": -1.0,
+              "profit": 29.944,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1789983000000|1789983000000",
+          "entry_time": 1789983000000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1789990200000,
+          "closed_record_count": 3,
+          "realized_net_cash": -36.843,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0295079218710705,
+          "partial_exits": [
+            {
+              "exit_time": 1789990200000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -12.281,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789990200000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -12.281,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789990200000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -12.281,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1790021700000|1790021700000",
+          "entry_time": 1790021700000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1790030700000,
+          "closed_record_count": 3,
+          "realized_net_cash": -40.227,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0269587194608256,
+          "partial_exits": [
+            {
+              "exit_time": 1790030700000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.409,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790030700000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.409,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790030700000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.409,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1790071200000|1790071200000",
+          "entry_time": 1790071200000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1790074800000,
+          "closed_record_count": 3,
+          "realized_net_cash": -79.005,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0135473194011468,
+          "partial_exits": [
+            {
+              "exit_time": 1790074800000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -26.335,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790074800000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -26.335,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790074800000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -26.335,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1790088300000|1790088300000",
+          "entry_time": 1790088300000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1790099100000,
+          "closed_record_count": 3,
+          "realized_net_cash": -77.391,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0138337590882296,
+          "partial_exits": [
+            {
+              "exit_time": 1790099100000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -25.797,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790099100000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -25.797,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790099100000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -25.797,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|-1|1790101800000|1790102700000",
+          "entry_time": 1790102700000,
+          "family": 3,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1790105400000,
+          "closed_record_count": 3,
+          "realized_net_cash": -35.043,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.031070703504281,
+          "partial_exits": [
+            {
+              "exit_time": 1790105400000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -11.681,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790105400000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -11.681,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790105400000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -11.681,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|1|1790154000000|1790154900000",
+          "entry_time": 1790154900000,
+          "family": 3,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1790155800000,
+          "closed_record_count": 3,
+          "realized_net_cash": -16.911,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0666035950804162,
+          "partial_exits": [
+            {
+              "exit_time": 1790155800000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -5.637,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790155800000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -5.637,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790155800000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -5.637,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1790192700000|1790192700000",
+          "entry_time": 1790192700000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1790200800000,
+          "closed_record_count": 3,
+          "realized_net_cash": -36.639,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0296770929938455,
+          "partial_exits": [
+            {
+              "exit_time": 1790200800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -12.213,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790200800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -12.213,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790200800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -12.213,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|-1|1790300700000|1790301600000",
+          "entry_time": 1790301600000,
+          "family": 3,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1790312400000,
+          "closed_record_count": 3,
+          "realized_net_cash": 52.47,
+          "realized_commission_cash": 1.05,
+          "net_r": 1.9667153941302147,
+          "partial_exits": [
+            {
+              "exit_time": 1790304300000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 8.579,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790307900000,
+              "exit_comment": "TP2",
+              "size": -1.0,
+              "profit": 17.49,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790312400000,
+              "exit_comment": "TP3",
+              "size": -1.0,
+              "profit": 26.401,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1790602200000|1790602200000",
+          "entry_time": 1790602200000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1790603100000,
+          "closed_record_count": 3,
+          "realized_net_cash": -45.444,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0237902135712356,
+          "partial_exits": [
+            {
+              "exit_time": 1790603100000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.148,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790603100000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.148,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790603100000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.148,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|1|1790607600000|1790609400000",
+          "entry_time": 1790609400000,
+          "family": 3,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1790624700000,
+          "closed_record_count": 3,
+          "realized_net_cash": 16.233,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.34440837629686205,
+          "partial_exits": [
+            {
+              "exit_time": 1790612100000,
+              "exit_comment": "TP1",
+              "size": 1.0,
+              "profit": 15.367,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790624700000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": 0.433,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790624700000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": 0.433,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1790625600000|1790625600000",
+          "entry_time": 1790625600000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1790659800000,
+          "closed_record_count": 3,
+          "realized_net_cash": -53.37,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0201858011239822,
+          "partial_exits": [
+            {
+              "exit_time": 1790659800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -17.79,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790659800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -17.79,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790659800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -17.79,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1790687700000|1790687700000",
+          "entry_time": 1790687700000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1790694900000,
+          "closed_record_count": 3,
+          "realized_net_cash": 11.544,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.33530846985012197,
+          "partial_exits": [
+            {
+              "exit_time": 1790691300000,
+              "exit_comment": "TP1",
+              "size": 1.0,
+              "profit": 11.102,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790694900000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": 0.221,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790694900000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": 0.221,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1790700300000|1790700300000",
+          "entry_time": 1790700300000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1790704800000,
+          "closed_record_count": 3,
+          "realized_net_cash": -48.123,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.022436101727325,
+          "partial_exits": [
+            {
+              "exit_time": 1790704800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -16.041,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790704800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -16.041,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790704800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -16.041,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|1|1790792100000|1790793000000",
+          "entry_time": 1790793000000,
+          "family": 3,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1790813700000,
+          "closed_record_count": 3,
+          "realized_net_cash": -24.213,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0456017618862548,
+          "partial_exits": [
+            {
+              "exit_time": 1790813700000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -8.071,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790813700000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -8.071,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790813700000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -8.071,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1790973900000|1790973900000",
+          "entry_time": 1790973900000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1791158400000,
+          "closed_record_count": 3,
+          "realized_net_cash": -33.942,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0321109286626529,
+          "partial_exits": [
+            {
+              "exit_time": 1791158400000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -11.314,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1791158400000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -11.314,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1791158400000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -11.314,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1791261900000|1791261900000",
+          "entry_time": 1791261900000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1791267300000,
+          "closed_record_count": 3,
+          "realized_net_cash": -36.195,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0300520788867071,
+          "partial_exits": [
+            {
+              "exit_time": 1791267300000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -12.065,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1791267300000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -12.065,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1791267300000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -12.065,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|1|1791351000000|1791351900000",
+          "entry_time": 1791351900000,
+          "family": 3,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1791351900000,
+          "closed_record_count": 3,
+          "realized_net_cash": -19.056,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0586666666666666,
+          "partial_exits": [
+            {
+              "exit_time": 1791351900000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -6.352,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1791351900000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -6.352,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1791351900000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -6.352,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1791562500000|1791562500000",
+          "entry_time": 1791562500000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1791781200000,
+          "closed_record_count": 3,
+          "realized_net_cash": 27.561,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.9866824186446139,
+          "partial_exits": [
+            {
+              "exit_time": 1791763200000,
+              "exit_comment": "TP1",
+              "size": 1.0,
+              "profit": 9.047,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1791766800000,
+              "exit_comment": "TP2",
+              "size": 1.0,
+              "profit": 18.401,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1791781200000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": 0.113,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1791933300000|1791933300000",
+          "entry_time": 1791933300000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1791936000000,
+          "closed_record_count": 3,
+          "realized_net_cash": -17.685,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0635035179505683,
+          "partial_exits": [
+            {
+              "exit_time": 1791936000000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -5.895,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1791936000000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -5.895,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1791936000000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -5.895,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1792044900000|1792044900000",
+          "entry_time": 1792044900000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1792051200000,
+          "closed_record_count": 3,
+          "realized_net_cash": -47.1,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0229345843106594,
+          "partial_exits": [
+            {
+              "exit_time": 1792051200000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.7,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792051200000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.7,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792051200000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.7,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|-1|1792057500000|1792059300000",
+          "entry_time": 1792059300000,
+          "family": 3,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1792060200000,
+          "closed_record_count": 1,
+          "realized_net_cash": 4.698,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.2560078469838156,
+          "partial_exits": [
+            {
+              "exit_time": 1792060200000,
+              "exit_comment": "ИЗХОД СЛЕД ГАП",
+              "size": -3.0,
+              "profit": 4.698,
+              "commission": 1.05
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|-1|1792095300000|1792096200000",
+          "entry_time": 1792096200000,
+          "family": 3,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1792118700000,
+          "closed_record_count": 3,
+          "realized_net_cash": 22.555,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.9577494692144374,
+          "partial_exits": [
+            {
+              "exit_time": 1792106100000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 7.366,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792108800000,
+              "exit_comment": "TP2",
+              "size": -1.0,
+              "profit": 15.149,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792118700000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.04,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|-1|1792179900000|1792181700000",
+          "entry_time": 1792181700000,
+          "family": 3,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1792360800000,
+          "closed_record_count": 3,
+          "realized_net_cash": -19.866,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.056140350877193,
+          "partial_exits": [
+            {
+              "exit_time": 1792360800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -6.622,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792360800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -6.622,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792360800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -6.622,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|1|1792422000000|1792423800000",
+          "entry_time": 1792423800000,
+          "family": 3,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1792424700000,
+          "closed_record_count": 3,
+          "realized_net_cash": -22.071,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0502498215560314,
+          "partial_exits": [
+            {
+              "exit_time": 1792424700000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -7.357,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792424700000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -7.357,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792424700000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -7.357,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|1|-1|1792449900000|1792450800000",
+          "entry_time": 1792450800000,
+          "family": 1,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1792462500000,
+          "closed_record_count": 3,
+          "realized_net_cash": 20.819,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.969497997578467,
+          "partial_exits": [
+            {
+              "exit_time": 1792458000000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 6.824,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792458000000,
+              "exit_comment": "TP2",
+              "size": -1.0,
+              "profit": 13.99,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792462500000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.005,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1792466100000|1792466100000",
+          "entry_time": 1792466100000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1792474200000,
+          "closed_record_count": 3,
+          "realized_net_cash": -39.285,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0276230087106646,
+          "partial_exits": [
+            {
+              "exit_time": 1792474200000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -13.095,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792474200000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -13.095,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792474200000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -13.095,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1792656900000|1792656900000",
+          "entry_time": 1792656900000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1792672200000,
+          "closed_record_count": 3,
+          "realized_net_cash": 19.32,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.34795763993948564,
+          "partial_exits": [
+            {
+              "exit_time": 1792667700000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 18.174,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792672200000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.573,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792672200000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.573,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1792728900000|1792728900000",
+          "entry_time": 1792728900000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1792733400000,
+          "closed_record_count": 3,
+          "realized_net_cash": -33.624,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.032424465733235,
+          "partial_exits": [
+            {
+              "exit_time": 1792733400000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -11.208,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792733400000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -11.208,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792733400000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -11.208,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1792761300000|1792761300000",
+          "entry_time": 1792761300000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1792763100000,
+          "closed_record_count": 3,
+          "realized_net_cash": -35.709,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0304735520734136,
+          "partial_exits": [
+            {
+              "exit_time": 1792763100000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -11.903,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792763100000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -11.903,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792763100000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -11.903,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1792788300000|1792788300000",
+          "entry_time": 1792788300000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1792966500000,
+          "closed_record_count": 3,
+          "realized_net_cash": -25.305,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.043548187554126,
+          "partial_exits": [
+            {
+              "exit_time": 1792966500000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -8.435,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792966500000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -8.435,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792966500000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -8.435,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1793002500000|1793002500000",
+          "entry_time": 1793002500000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1793021400000,
+          "closed_record_count": 3,
+          "realized_net_cash": -38.916,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.027892234548336,
+          "partial_exits": [
+            {
+              "exit_time": 1793021400000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -12.972,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793021400000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -12.972,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793021400000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -12.972,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|-1|1793142000000|1793142900000",
+          "entry_time": 1793142900000,
+          "family": 3,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1793144700000,
+          "closed_record_count": 3,
+          "realized_net_cash": 2.269,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.24920373421197145,
+          "partial_exits": [
+            {
+              "exit_time": 1793143800000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 2.671,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793144700000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -0.201,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793144700000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -0.201,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|1|1793186100000|1793187900000",
+          "entry_time": 1793187900000,
+          "family": 3,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1793194200000,
+          "closed_record_count": 3,
+          "realized_net_cash": 5.583,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.31293088952412984,
+          "partial_exits": [
+            {
+              "exit_time": 1793189700000,
+              "exit_comment": "TP1",
+              "size": 1.0,
+              "profit": 5.693,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793194200000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -0.055,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793194200000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -0.055,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1793197800000|1793197800000",
+          "entry_time": 1793197800000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1793212200000,
+          "closed_record_count": 3,
+          "realized_net_cash": 11.376,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.3298538622129436,
+          "partial_exits": [
+            {
+              "exit_time": 1793210400000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 10.932,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793212200000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.222,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793212200000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.222,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1793232900000|1793232900000",
+          "entry_time": 1793232900000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1793236500000,
+          "closed_record_count": 3,
+          "realized_net_cash": -45.84,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0235798499464095,
+          "partial_exits": [
+            {
+              "exit_time": 1793236500000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.28,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793236500000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.28,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793236500000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.28,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1793648700000|1793648700000",
+          "entry_time": 1793648700000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1793664900000,
+          "closed_record_count": 3,
+          "realized_net_cash": -39.021,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0278150928486764,
+          "partial_exits": [
+            {
+              "exit_time": 1793664900000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.007,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793664900000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.007,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793664900000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.007,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1793808000000|1793808000000",
+          "entry_time": 1793808000000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1793840400000,
+          "closed_record_count": 3,
+          "realized_net_cash": 125.409,
+          "realized_commission_cash": 1.05,
+          "net_r": 1.9824062218428415,
+          "partial_exits": [
+            {
+              "exit_time": 1793813400000,
+              "exit_comment": "TP1",
+              "size": 1.0,
+              "profit": 20.723,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793838600000,
+              "exit_comment": "TP2",
+              "size": 1.0,
+              "profit": 41.803,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793840400000,
+              "exit_comment": "TP3",
+              "size": 1.0,
+              "profit": 62.883,
+              "commission": 0.35
+            }
+          ]
+        }
+      ]
+    },
+    "on": {
+      "log_sha256": "41865bd4f061a15c0c884e70742e36825e91d86e6ae7966b1560c906f00462b1",
+      "audit_status": "PASS_OBSERVED_JOURNAL",
+      "bar_count": 6445,
+      "first_open_utc": "2026-08-02T22:00:00Z",
+      "last_close_utc": "2026-11-09T02:45:00Z",
+      "bar_gap_count": 70,
+      "campaign_metrics": {
+        "count": 69,
+        "wins": 31,
+        "losses": 38,
+        "breakevens": 0,
+        "net_cash": -261.758,
+        "sum_positive_net_cash": 1183.354,
+        "sum_negative_net_cash_magnitude": 1445.112,
+        "profit_factor": 0.8188666345584287,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.4492753623188406,
+        "average_net_cash": -3.7935942028985505,
+        "average_win_cash": 38.172709677419356,
+        "average_loss_cash": -38.02926315789474,
+        "closed_cash_event_drawdown": 740.251,
+        "campaign_close_drawdown": 740.251,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "TP1": 30,
+          "ИЗТЕКЪЛ СРОК": 2,
+          "SL": 147,
+          "TP2": 14,
+          "TP3": 9,
+          "ИЗХОД СЛЕД ГАП": 1
+        },
+        "exit_comment_quantities": {
+          "TP1": 30.0,
+          "ИЗТЕКЪЛ СРОК": 4.0,
+          "SL": 147.0,
+          "TP2": 14.0,
+          "TP3": 9.0,
+          "ИЗХОД СЛЕД ГАП": 3.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "ИЗТЕКЪЛ СРОК": 2,
+          "SL": 57,
+          "TP3": 9,
+          "ИЗХОД СЛЕД ГАП": 1
+        },
+        "win_rate_wilson95": [
+          0.33768855629243716,
+          0.5662123249731188
+        ],
+        "net_r_descriptive_interval": {
+          "n": 69,
+          "mean": -0.1426439732700082,
+          "ci95": [
+            -0.38509284231938595,
+            0.1071099912054824
+          ],
+          "block": 5,
+          "repetitions": 2000,
+          "seed": 20261109,
+          "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+        },
+        "campaign_cash_p05": -51.27119999999999,
+        "cash_drawdown_duration": {
+          "longest_ms": 4802400000,
+          "right_censored": true,
+          "scope": "Campaign-close cash peak to recovery or cutoff; excludes intrabar equity."
+        },
+        "tp_campaign_counts": {
+          "TP1": 30,
+          "TP2": 14,
+          "TP3": 9
+        }
+      },
+      "native_parts": 203,
+      "native_equity_max_drawdown": 770.437,
+      "cash_reconciliation": {
+        "derived_net_cash": -261.758,
+        "native_netprofit": -261.758,
+        "difference": 0.0,
+        "matches": true,
+        "commission_cash": 72.45,
+        "formula": "(exit_price-entry_price)*signed_size*pointvalue - commission, once; same currency required",
+        "api_profit_classifications": {
+          "NET": 203
+        }
+      },
+      "family": {
+        "1": {
+          "count": 1,
+          "wins": 1,
+          "losses": 0,
+          "breakevens": 0,
+          "net_cash": 20.819,
+          "sum_positive_net_cash": 20.819,
+          "sum_negative_net_cash_magnitude": 0.0,
+          "profit_factor": null,
+          "profit_factor_status": "NO_LOSSES",
+          "win_rate": 1.0,
+          "average_net_cash": 20.819,
+          "average_win_cash": 20.819,
+          "average_loss_cash": null,
+          "closed_cash_event_drawdown": 0.0,
+          "campaign_close_drawdown": 0.0,
+          "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+          "exit_comment_record_counts": {
+            "TP1": 1,
+            "TP2": 1,
+            "SL": 1
+          },
+          "exit_comment_quantities": {
+            "TP1": 1.0,
+            "TP2": 1.0,
+            "SL": 1.0
+          },
+          "final_exit_comment_campaign_counts": {
+            "SL": 1
+          }
+        },
+        "2": {
+          "count": 46,
+          "wins": 18,
+          "losses": 28,
+          "breakevens": 0,
+          "net_cash": -374.511,
+          "sum_positive_net_cash": 804.09,
+          "sum_negative_net_cash_magnitude": 1178.601,
+          "profit_factor": 0.6822410637696726,
+          "profit_factor_status": "DEFINED",
+          "win_rate": 0.391304347826087,
+          "average_net_cash": -8.14154347826087,
+          "average_win_cash": 44.67166666666667,
+          "average_loss_cash": -42.09289285714286,
+          "closed_cash_event_drawdown": 831.044,
+          "campaign_close_drawdown": 831.044,
+          "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+          "exit_comment_record_counts": {
+            "TP1": 18,
+            "SL": 106,
+            "TP2": 8,
+            "TP3": 6
+          },
+          "exit_comment_quantities": {
+            "TP1": 18.0,
+            "SL": 106.0,
+            "TP2": 8.0,
+            "TP3": 6.0
+          },
+          "final_exit_comment_campaign_counts": {
+            "SL": 40,
+            "TP3": 6
+          }
+        },
+        "3": {
+          "count": 22,
+          "wins": 12,
+          "losses": 10,
+          "breakevens": 0,
+          "net_cash": 91.934,
+          "sum_positive_net_cash": 358.445,
+          "sum_negative_net_cash_magnitude": 266.511,
+          "profit_factor": 1.344953866819756,
+          "profit_factor_status": "DEFINED",
+          "win_rate": 0.5454545454545454,
+          "average_net_cash": 4.1788181818181815,
+          "average_win_cash": 29.870416666666667,
+          "average_loss_cash": -26.6511,
+          "closed_cash_event_drawdown": 80.678,
+          "campaign_close_drawdown": 80.678,
+          "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+          "exit_comment_record_counts": {
+            "TP1": 11,
+            "ИЗТЕКЪЛ СРОК": 2,
+            "SL": 40,
+            "TP2": 5,
+            "TP3": 3,
+            "ИЗХОД СЛЕД ГАП": 1
+          },
+          "exit_comment_quantities": {
+            "TP1": 11.0,
+            "ИЗТЕКЪЛ СРОК": 4.0,
+            "SL": 40.0,
+            "TP2": 5.0,
+            "TP3": 3.0,
+            "ИЗХОД СЛЕД ГАП": 3.0
+          },
+          "final_exit_comment_campaign_counts": {
+            "ИЗТЕКЪЛ СРОК": 2,
+            "SL": 16,
+            "TP3": 3,
+            "ИЗХОД СЛЕД ГАП": 1
+          }
+        }
+      },
+      "campaigns": [
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|-1|1786107600000|1786108500000",
+          "entry_time": 1786108500000,
+          "family": 3,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1786329000000,
+          "closed_record_count": 2,
+          "realized_net_cash": 58.565,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.767150024233374,
+          "partial_exits": [
+            {
+              "exit_time": 1786323600000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 25.123,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786329000000,
+              "exit_comment": "ИЗТЕКЪЛ СРОК",
+              "size": -2.0,
+              "profit": 33.442,
+              "commission": 0.7
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1786338000000|1786338000000",
+          "entry_time": 1786338000000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1786356000000,
+          "closed_record_count": 3,
+          "realized_net_cash": 17.99,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.3484813265147993,
+          "partial_exits": [
+            {
+              "exit_time": 1786344300000,
+              "exit_comment": "TP1",
+              "size": 1.0,
+              "profit": 16.974,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786356000000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": 0.508,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786356000000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": 0.508,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1786446000000|1786446000000",
+          "entry_time": 1786446000000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1786456800000,
+          "closed_record_count": 3,
+          "realized_net_cash": 12.302,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.34143769081321124,
+          "partial_exits": [
+            {
+              "exit_time": 1786449600000,
+              "exit_comment": "TP1",
+              "size": 1.0,
+              "profit": 11.806,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786456800000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": 0.248,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786456800000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": 0.248,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1786617900000|1786617900000",
+          "entry_time": 1786617900000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1786627800000,
+          "closed_record_count": 3,
+          "realized_net_cash": -39.741,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0272974020938348,
+          "partial_exits": [
+            {
+              "exit_time": 1786627800000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -13.247,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786627800000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -13.247,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786627800000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -13.247,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1786684500000|1786684500000",
+          "entry_time": 1786684500000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1786686300000,
+          "closed_record_count": 3,
+          "realized_net_cash": 8.535,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.3265235854470332,
+          "partial_exits": [
+            {
+              "exit_time": 1786685400000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 8.369,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786686300000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.083,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786686300000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.083,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1786693500000|1786693500000",
+          "entry_time": 1786693500000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1786708800000,
+          "closed_record_count": 3,
+          "realized_net_cash": 64.689,
+          "realized_commission_cash": 1.05,
+          "net_r": 1.998980254009456,
+          "partial_exits": [
+            {
+              "exit_time": 1786698000000,
+              "exit_comment": "TP1",
+              "size": 1.0,
+              "profit": 10.663,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786707000000,
+              "exit_comment": "TP2",
+              "size": 1.0,
+              "profit": 21.563,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786708800000,
+              "exit_comment": "TP3",
+              "size": 1.0,
+              "profit": 32.463,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1786944600000|1786944600000",
+          "entry_time": 1786944600000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1786968900000,
+          "closed_record_count": 3,
+          "realized_net_cash": -41.193,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0263098886314372,
+          "partial_exits": [
+            {
+              "exit_time": 1786968900000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -13.731,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786968900000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -13.731,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1786968900000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -13.731,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1787040000000|1787040000000",
+          "entry_time": 1787040000000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1787041800000,
+          "closed_record_count": 3,
+          "realized_net_cash": 8.639,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.3345726346772007,
+          "partial_exits": [
+            {
+              "exit_time": 1787040900000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 8.483,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787041800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.078,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787041800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.078,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|1|1787076900000|1787077800000",
+          "entry_time": 1787077800000,
+          "family": 3,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1787081400000,
+          "closed_record_count": 3,
+          "realized_net_cash": -27.015,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0406795331099041,
+          "partial_exits": [
+            {
+              "exit_time": 1787081400000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -9.005,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787081400000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -9.005,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787081400000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -9.005,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|1|1787096700000|1787097600000",
+          "entry_time": 1787097600000,
+          "family": 3,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1787101200000,
+          "closed_record_count": 3,
+          "realized_net_cash": 19.21,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.955151153540175,
+          "partial_exits": [
+            {
+              "exit_time": 1787097600000,
+              "exit_comment": "TP1",
+              "size": 1.0,
+              "profit": 6.28,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787098500000,
+              "exit_comment": "TP2",
+              "size": 1.0,
+              "profit": 12.947,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787101200000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -0.017,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1787114700000|1787114700000",
+          "entry_time": 1787114700000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1787124600000,
+          "closed_record_count": 3,
+          "realized_net_cash": -40.698,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0266384138035416,
+          "partial_exits": [
+            {
+              "exit_time": 1787124600000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.566,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787124600000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.566,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787124600000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.566,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1787644800000|1787644800000",
+          "entry_time": 1787644800000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1787645700000,
+          "closed_record_count": 3,
+          "realized_net_cash": -45.423,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0238014740685644,
+          "partial_exits": [
+            {
+              "exit_time": 1787645700000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.141,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787645700000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.141,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787645700000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.141,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1787834700000|1787834700000",
+          "entry_time": 1787834700000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1787841000000,
+          "closed_record_count": 3,
+          "realized_net_cash": 15.016,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.3444352692907606,
+          "partial_exits": [
+            {
+              "exit_time": 1787837400000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 14.268,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787841000000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.374,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787841000000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.374,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1787845500000|1787845500000",
+          "entry_time": 1787845500000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1787854500000,
+          "closed_record_count": 3,
+          "realized_net_cash": 14.687,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.34223464988931607,
+          "partial_exits": [
+            {
+              "exit_time": 1787849100000,
+              "exit_comment": "TP1",
+              "size": 1.0,
+              "profit": 13.961,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787854500000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": 0.363,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787854500000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": 0.363,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|1|1787864400000|1787869800000",
+          "entry_time": 1787869800000,
+          "family": 3,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1787873400000,
+          "closed_record_count": 3,
+          "realized_net_cash": -25.989,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0423535073998316,
+          "partial_exits": [
+            {
+              "exit_time": 1787873400000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -8.663,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787873400000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -8.663,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787873400000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -8.663,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1787920200000|1787920200000",
+          "entry_time": 1787920200000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1787920200000,
+          "closed_record_count": 3,
+          "realized_net_cash": -34.986,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0311229000884172,
+          "partial_exits": [
+            {
+              "exit_time": 1787920200000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -11.662,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787920200000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -11.662,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1787920200000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -11.662,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|-1|1788164100000|1788165900000",
+          "entry_time": 1788165900000,
+          "family": 3,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1788170400000,
+          "closed_record_count": 3,
+          "realized_net_cash": -46.884,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0230426813301912,
+          "partial_exits": [
+            {
+              "exit_time": 1788170400000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.628,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788170400000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.628,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788170400000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.628,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1788183900000|1788183900000",
+          "entry_time": 1788183900000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1788186600000,
+          "closed_record_count": 3,
+          "realized_net_cash": 15.897,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.3407497910102244,
+          "partial_exits": [
+            {
+              "exit_time": 1788183900000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 15.047,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788186600000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.425,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788186600000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.425,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1788236100000|1788236100000",
+          "entry_time": 1788236100000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1788241500000,
+          "closed_record_count": 3,
+          "realized_net_cash": -40.173,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0269959352711098,
+          "partial_exits": [
+            {
+              "exit_time": 1788241500000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.391,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788241500000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.391,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788241500000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.391,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1788247800000|1788247800000",
+          "entry_time": 1788247800000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1788249600000,
+          "closed_record_count": 3,
+          "realized_net_cash": 58.98,
+          "realized_commission_cash": 1.05,
+          "net_r": 1.9440324335014338,
+          "partial_exits": [
+            {
+              "exit_time": 1788247800000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 9.619,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788249600000,
+              "exit_comment": "TP2",
+              "size": -1.0,
+              "profit": 19.66,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788249600000,
+              "exit_comment": "TP3",
+              "size": -1.0,
+              "profit": 29.701,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1788280200000|1788280200000",
+          "entry_time": 1788280200000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1788319800000,
+          "closed_record_count": 3,
+          "realized_net_cash": 138.339,
+          "realized_commission_cash": 1.05,
+          "net_r": 1.9600034003485358,
+          "partial_exits": [
+            {
+              "exit_time": 1788287400000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 22.783,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788310800000,
+              "exit_comment": "TP2",
+              "size": -1.0,
+              "profit": 46.113,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788319800000,
+              "exit_comment": "TP3",
+              "size": -1.0,
+              "profit": 69.443,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|-1|1788449400000|1788450300000",
+          "entry_time": 1788450300000,
+          "family": 3,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1788498000000,
+          "closed_record_count": 2,
+          "realized_net_cash": 59.024,
+          "realized_commission_cash": 1.05,
+          "net_r": 1.129689174705252,
+          "partial_exits": [
+            {
+              "exit_time": 1788460200000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 17.202,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788498000000,
+              "exit_comment": "ИЗТЕКЪЛ СРОК",
+              "size": -2.0,
+              "profit": 41.822,
+              "commission": 0.7
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|1|1788514200000|1788516900000",
+          "entry_time": 1788516900000,
+          "family": 3,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1788525000000,
+          "closed_record_count": 3,
+          "realized_net_cash": -29.463,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0371739360016898,
+          "partial_exits": [
+            {
+              "exit_time": 1788525000000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -9.821,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788525000000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -9.821,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788525000000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -9.821,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|-1|1788535800000|1788537600000",
+          "entry_time": 1788537600000,
+          "family": 3,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1788549300000,
+          "closed_record_count": 3,
+          "realized_net_cash": 14.512,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.33955730263465767,
+          "partial_exits": [
+            {
+              "exit_time": 1788543000000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 13.792,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788549300000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.36,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788549300000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.36,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1788889500000|1788889500000",
+          "entry_time": 1788889500000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1788930000000,
+          "closed_record_count": 3,
+          "realized_net_cash": 57.728,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.9974428087635635,
+          "partial_exits": [
+            {
+              "exit_time": 1788893100000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 18.918,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788900300000,
+              "exit_comment": "TP2",
+              "size": -1.0,
+              "profit": 38.198,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1788930000000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.612,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1789063200000|1789063200000",
+          "entry_time": 1789063200000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1789098300000,
+          "closed_record_count": 3,
+          "realized_net_cash": 97.893,
+          "realized_commission_cash": 1.05,
+          "net_r": 1.988361464871123,
+          "partial_exits": [
+            {
+              "exit_time": 1789065000000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 16.167,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789066800000,
+              "exit_comment": "TP2",
+              "size": -1.0,
+              "profit": 32.631,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789098300000,
+              "exit_comment": "TP3",
+              "size": -1.0,
+              "profit": 49.095,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1789124400000|1789124400000",
+          "entry_time": 1789124400000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1789129800000,
+          "closed_record_count": 3,
+          "realized_net_cash": -41.115,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.026361117351906,
+          "partial_exits": [
+            {
+              "exit_time": 1789129800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.705,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789129800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.705,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789129800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.705,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1789369200000|1789369200000",
+          "entry_time": 1789369200000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1789389900000,
+          "closed_record_count": 3,
+          "realized_net_cash": 103.758,
+          "realized_commission_cash": 1.05,
+          "net_r": 1.974537565654259,
+          "partial_exits": [
+            {
+              "exit_time": 1789375500000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 17.102,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789377300000,
+              "exit_comment": "TP2",
+              "size": -1.0,
+              "profit": 34.586,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789389900000,
+              "exit_comment": "TP3",
+              "size": -1.0,
+              "profit": 52.07,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1789415100000|1789415100000",
+          "entry_time": 1789415100000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1789437600000,
+          "closed_record_count": 3,
+          "realized_net_cash": -57.645,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0186608704871971,
+          "partial_exits": [
+            {
+              "exit_time": 1789437600000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -19.215,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789437600000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -19.215,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789437600000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -19.215,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|-1|1789441200000|1789442100000",
+          "entry_time": 1789442100000,
+          "family": 3,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1789452000000,
+          "closed_record_count": 3,
+          "realized_net_cash": 43.785,
+          "realized_commission_cash": 1.05,
+          "net_r": 1.9661861780951098,
+          "partial_exits": [
+            {
+              "exit_time": 1789443900000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 7.139,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789450200000,
+              "exit_comment": "TP2",
+              "size": -1.0,
+              "profit": 14.595,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789452000000,
+              "exit_comment": "TP3",
+              "size": -1.0,
+              "profit": 22.051,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1789474500000|1789474500000",
+          "entry_time": 1789474500000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1789476300000,
+          "closed_record_count": 3,
+          "realized_net_cash": -28.2,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0389036251105217,
+          "partial_exits": [
+            {
+              "exit_time": 1789476300000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -9.4,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789476300000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -9.4,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789476300000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -9.4,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1789614000000|1789614000000",
+          "entry_time": 1789614000000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1789623900000,
+          "closed_record_count": 3,
+          "realized_net_cash": -77.154,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0138768430182135,
+          "partial_exits": [
+            {
+              "exit_time": 1789623900000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -25.718,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789623900000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -25.718,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789623900000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -25.718,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|-1|1789718400000|1789719300000",
+          "entry_time": 1789719300000,
+          "family": 3,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1789733700000,
+          "closed_record_count": 3,
+          "realized_net_cash": 59.541,
+          "realized_commission_cash": 1.05,
+          "net_r": 1.9662175549831584,
+          "partial_exits": [
+            {
+              "exit_time": 1789723800000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 9.75,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789733700000,
+              "exit_comment": "TP2",
+              "size": -1.0,
+              "profit": 19.847,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789733700000,
+              "exit_comment": "TP3",
+              "size": -1.0,
+              "profit": 29.944,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1789983000000|1789983000000",
+          "entry_time": 1789983000000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1789990200000,
+          "closed_record_count": 3,
+          "realized_net_cash": -36.843,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0295079218710705,
+          "partial_exits": [
+            {
+              "exit_time": 1789990200000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -12.281,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789990200000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -12.281,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1789990200000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -12.281,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1790021700000|1790021700000",
+          "entry_time": 1790021700000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1790030700000,
+          "closed_record_count": 3,
+          "realized_net_cash": -40.227,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0269587194608256,
+          "partial_exits": [
+            {
+              "exit_time": 1790030700000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.409,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790030700000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.409,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790030700000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.409,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1790071200000|1790071200000",
+          "entry_time": 1790071200000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1790074800000,
+          "closed_record_count": 3,
+          "realized_net_cash": -79.005,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0135473194011468,
+          "partial_exits": [
+            {
+              "exit_time": 1790074800000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -26.335,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790074800000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -26.335,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790074800000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -26.335,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|-1|1790101800000|1790102700000",
+          "entry_time": 1790102700000,
+          "family": 3,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1790105400000,
+          "closed_record_count": 3,
+          "realized_net_cash": -35.043,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.031070703504281,
+          "partial_exits": [
+            {
+              "exit_time": 1790105400000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -11.681,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790105400000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -11.681,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790105400000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -11.681,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|1|1790154000000|1790154900000",
+          "entry_time": 1790154900000,
+          "family": 3,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1790155800000,
+          "closed_record_count": 3,
+          "realized_net_cash": -16.911,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0666035950804162,
+          "partial_exits": [
+            {
+              "exit_time": 1790155800000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -5.637,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790155800000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -5.637,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790155800000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -5.637,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1790192700000|1790192700000",
+          "entry_time": 1790192700000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1790200800000,
+          "closed_record_count": 3,
+          "realized_net_cash": -36.639,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0296770929938455,
+          "partial_exits": [
+            {
+              "exit_time": 1790200800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -12.213,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790200800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -12.213,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790200800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -12.213,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|-1|1790300700000|1790301600000",
+          "entry_time": 1790301600000,
+          "family": 3,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1790312400000,
+          "closed_record_count": 3,
+          "realized_net_cash": 52.47,
+          "realized_commission_cash": 1.05,
+          "net_r": 1.9667153941302147,
+          "partial_exits": [
+            {
+              "exit_time": 1790304300000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 8.579,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790307900000,
+              "exit_comment": "TP2",
+              "size": -1.0,
+              "profit": 17.49,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790312400000,
+              "exit_comment": "TP3",
+              "size": -1.0,
+              "profit": 26.401,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1790602200000|1790602200000",
+          "entry_time": 1790602200000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1790603100000,
+          "closed_record_count": 3,
+          "realized_net_cash": -45.444,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0237902135712356,
+          "partial_exits": [
+            {
+              "exit_time": 1790603100000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.148,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790603100000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.148,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790603100000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.148,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|1|1790607600000|1790609400000",
+          "entry_time": 1790609400000,
+          "family": 3,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1790624700000,
+          "closed_record_count": 3,
+          "realized_net_cash": 16.233,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.34440837629686205,
+          "partial_exits": [
+            {
+              "exit_time": 1790612100000,
+              "exit_comment": "TP1",
+              "size": 1.0,
+              "profit": 15.367,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790624700000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": 0.433,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790624700000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": 0.433,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1790625600000|1790625600000",
+          "entry_time": 1790625600000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1790659800000,
+          "closed_record_count": 3,
+          "realized_net_cash": -53.37,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0201858011239822,
+          "partial_exits": [
+            {
+              "exit_time": 1790659800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -17.79,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790659800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -17.79,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790659800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -17.79,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1790687700000|1790687700000",
+          "entry_time": 1790687700000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1790694900000,
+          "closed_record_count": 3,
+          "realized_net_cash": 11.544,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.33530846985012197,
+          "partial_exits": [
+            {
+              "exit_time": 1790691300000,
+              "exit_comment": "TP1",
+              "size": 1.0,
+              "profit": 11.102,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790694900000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": 0.221,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790694900000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": 0.221,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1790700300000|1790700300000",
+          "entry_time": 1790700300000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1790704800000,
+          "closed_record_count": 3,
+          "realized_net_cash": -48.123,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.022436101727325,
+          "partial_exits": [
+            {
+              "exit_time": 1790704800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -16.041,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790704800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -16.041,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790704800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -16.041,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|1|1790792100000|1790793000000",
+          "entry_time": 1790793000000,
+          "family": 3,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1790813700000,
+          "closed_record_count": 3,
+          "realized_net_cash": -24.213,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0456017618862548,
+          "partial_exits": [
+            {
+              "exit_time": 1790813700000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -8.071,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790813700000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -8.071,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1790813700000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -8.071,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1790973900000|1790973900000",
+          "entry_time": 1790973900000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1791158400000,
+          "closed_record_count": 3,
+          "realized_net_cash": -33.942,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0321109286626529,
+          "partial_exits": [
+            {
+              "exit_time": 1791158400000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -11.314,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1791158400000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -11.314,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1791158400000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -11.314,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1791261900000|1791261900000",
+          "entry_time": 1791261900000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1791267300000,
+          "closed_record_count": 3,
+          "realized_net_cash": -36.195,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0300520788867071,
+          "partial_exits": [
+            {
+              "exit_time": 1791267300000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -12.065,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1791267300000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -12.065,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1791267300000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -12.065,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|1|1791351000000|1791351900000",
+          "entry_time": 1791351900000,
+          "family": 3,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1791351900000,
+          "closed_record_count": 3,
+          "realized_net_cash": -19.056,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0586666666666666,
+          "partial_exits": [
+            {
+              "exit_time": 1791351900000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -6.352,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1791351900000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -6.352,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1791351900000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -6.352,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1791562500000|1791562500000",
+          "entry_time": 1791562500000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1791781200000,
+          "closed_record_count": 3,
+          "realized_net_cash": 27.561,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.9866824186446139,
+          "partial_exits": [
+            {
+              "exit_time": 1791763200000,
+              "exit_comment": "TP1",
+              "size": 1.0,
+              "profit": 9.047,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1791766800000,
+              "exit_comment": "TP2",
+              "size": 1.0,
+              "profit": 18.401,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1791781200000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": 0.113,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1791933300000|1791933300000",
+          "entry_time": 1791933300000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1791936000000,
+          "closed_record_count": 3,
+          "realized_net_cash": -17.685,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0635035179505683,
+          "partial_exits": [
+            {
+              "exit_time": 1791936000000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -5.895,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1791936000000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -5.895,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1791936000000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -5.895,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1792044900000|1792044900000",
+          "entry_time": 1792044900000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1792051200000,
+          "closed_record_count": 3,
+          "realized_net_cash": -47.1,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0229345843106594,
+          "partial_exits": [
+            {
+              "exit_time": 1792051200000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.7,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792051200000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.7,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792051200000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.7,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|-1|1792057500000|1792059300000",
+          "entry_time": 1792059300000,
+          "family": 3,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1792060200000,
+          "closed_record_count": 1,
+          "realized_net_cash": 4.698,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.2560078469838156,
+          "partial_exits": [
+            {
+              "exit_time": 1792060200000,
+              "exit_comment": "ИЗХОД СЛЕД ГАП",
+              "size": -3.0,
+              "profit": 4.698,
+              "commission": 1.05
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|-1|1792095300000|1792096200000",
+          "entry_time": 1792096200000,
+          "family": 3,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1792118700000,
+          "closed_record_count": 3,
+          "realized_net_cash": 22.555,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.9577494692144374,
+          "partial_exits": [
+            {
+              "exit_time": 1792106100000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 7.366,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792108800000,
+              "exit_comment": "TP2",
+              "size": -1.0,
+              "profit": 15.149,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792118700000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.04,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|-1|1792179900000|1792181700000",
+          "entry_time": 1792181700000,
+          "family": 3,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1792360800000,
+          "closed_record_count": 3,
+          "realized_net_cash": -19.866,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.056140350877193,
+          "partial_exits": [
+            {
+              "exit_time": 1792360800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -6.622,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792360800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -6.622,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792360800000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -6.622,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|1|1792422000000|1792423800000",
+          "entry_time": 1792423800000,
+          "family": 3,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1792424700000,
+          "closed_record_count": 3,
+          "realized_net_cash": -22.071,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0502498215560314,
+          "partial_exits": [
+            {
+              "exit_time": 1792424700000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -7.357,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792424700000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -7.357,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792424700000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -7.357,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|1|-1|1792449900000|1792450800000",
+          "entry_time": 1792450800000,
+          "family": 1,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1792462500000,
+          "closed_record_count": 3,
+          "realized_net_cash": 20.819,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.969497997578467,
+          "partial_exits": [
+            {
+              "exit_time": 1792458000000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 6.824,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792458000000,
+              "exit_comment": "TP2",
+              "size": -1.0,
+              "profit": 13.99,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792462500000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.005,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1792466100000|1792466100000",
+          "entry_time": 1792466100000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1792474200000,
+          "closed_record_count": 3,
+          "realized_net_cash": -39.285,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0276230087106646,
+          "partial_exits": [
+            {
+              "exit_time": 1792474200000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -13.095,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792474200000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -13.095,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792474200000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -13.095,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1792666800000|1792666800000",
+          "entry_time": 1792666800000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1792672200000,
+          "closed_record_count": 3,
+          "realized_net_cash": 13.747,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.34066859960845536,
+          "partial_exits": [
+            {
+              "exit_time": 1792667700000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 13.107,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792672200000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.32,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792672200000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.32,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1792728900000|1792728900000",
+          "entry_time": 1792728900000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1792733400000,
+          "closed_record_count": 3,
+          "realized_net_cash": -33.624,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.032424465733235,
+          "partial_exits": [
+            {
+              "exit_time": 1792733400000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -11.208,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792733400000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -11.208,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792733400000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -11.208,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1792761300000|1792761300000",
+          "entry_time": 1792761300000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1792763100000,
+          "closed_record_count": 3,
+          "realized_net_cash": -35.709,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0304735520734136,
+          "partial_exits": [
+            {
+              "exit_time": 1792763100000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -11.903,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792763100000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -11.903,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792763100000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -11.903,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1792788300000|1792788300000",
+          "entry_time": 1792788300000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1792966500000,
+          "closed_record_count": 3,
+          "realized_net_cash": -25.305,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.043548187554126,
+          "partial_exits": [
+            {
+              "exit_time": 1792966500000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -8.435,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792966500000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -8.435,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1792966500000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -8.435,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1793002500000|1793002500000",
+          "entry_time": 1793002500000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1793021400000,
+          "closed_record_count": 3,
+          "realized_net_cash": -38.916,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.027892234548336,
+          "partial_exits": [
+            {
+              "exit_time": 1793021400000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -12.972,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793021400000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -12.972,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793021400000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -12.972,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|-1|1793142000000|1793142900000",
+          "entry_time": 1793142900000,
+          "family": 3,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1793144700000,
+          "closed_record_count": 3,
+          "realized_net_cash": 2.269,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.24920373421197145,
+          "partial_exits": [
+            {
+              "exit_time": 1793143800000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 2.671,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793144700000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -0.201,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793144700000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -0.201,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|3|1|1793186100000|1793187900000",
+          "entry_time": 1793187900000,
+          "family": 3,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1793194200000,
+          "closed_record_count": 3,
+          "realized_net_cash": 5.583,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.31293088952412984,
+          "partial_exits": [
+            {
+              "exit_time": 1793189700000,
+              "exit_comment": "TP1",
+              "size": 1.0,
+              "profit": 5.693,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793194200000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -0.055,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793194200000,
+              "exit_comment": "SL",
+              "size": 1.0,
+              "profit": -0.055,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1793197800000|1793197800000",
+          "entry_time": 1793197800000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1793212200000,
+          "closed_record_count": 3,
+          "realized_net_cash": 11.376,
+          "realized_commission_cash": 1.05,
+          "net_r": 0.3298538622129436,
+          "partial_exits": [
+            {
+              "exit_time": 1793210400000,
+              "exit_comment": "TP1",
+              "size": -1.0,
+              "profit": 10.932,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793212200000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.222,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793212200000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": 0.222,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1793232900000|1793232900000",
+          "entry_time": 1793232900000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1793236500000,
+          "closed_record_count": 3,
+          "realized_net_cash": -45.84,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0235798499464095,
+          "partial_exits": [
+            {
+              "exit_time": 1793236500000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.28,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793236500000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.28,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793236500000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -15.28,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|-1|1793648700000|1793648700000",
+          "entry_time": 1793648700000,
+          "family": 2,
+          "side": -1,
+          "state": "COMPLETE",
+          "last_exit_time": 1793664900000,
+          "closed_record_count": 3,
+          "realized_net_cash": -39.021,
+          "realized_commission_cash": 1.05,
+          "net_r": -1.0278150928486764,
+          "partial_exits": [
+            {
+              "exit_time": 1793664900000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.007,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793664900000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.007,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793664900000,
+              "exit_comment": "SL",
+              "size": -1.0,
+              "profit": -13.007,
+              "commission": 0.35
+            }
+          ]
+        },
+        {
+          "entry_id": "OANDA:XAUUSD|15|2|1|1793808000000|1793808000000",
+          "entry_time": 1793808000000,
+          "family": 2,
+          "side": 1,
+          "state": "COMPLETE",
+          "last_exit_time": 1793840400000,
+          "closed_record_count": 3,
+          "realized_net_cash": 125.409,
+          "realized_commission_cash": 1.05,
+          "net_r": 1.9824062218428415,
+          "partial_exits": [
+            {
+              "exit_time": 1793813400000,
+              "exit_comment": "TP1",
+              "size": 1.0,
+              "profit": 20.723,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793838600000,
+              "exit_comment": "TP2",
+              "size": 1.0,
+              "profit": 41.803,
+              "commission": 0.35
+            },
+            {
+              "exit_time": 1793840400000,
+              "exit_comment": "TP3",
+              "size": 1.0,
+              "profit": 62.883,
+              "commission": 0.35
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "admission_identity": {
+    "shared": 68,
+    "off_only_ids": [
+      "OANDA:XAUUSD|15|2|-1|1790088300000|1790088300000",
+      "OANDA:XAUUSD|15|2|-1|1792656900000|1792656900000",
+      "OANDA:XAUUSD|15|2|1|1786493700000|1786493700000",
+      "OANDA:XAUUSD|15|2|1|1787236200000|1787236200000"
+    ],
+    "on_only_ids": [
+      "OANDA:XAUUSD|15|2|-1|1792666800000|1792666800000"
+    ],
+    "off_fast_ids_failing_f1_geometry": [
+      "OANDA:XAUUSD|15|2|-1|1790088300000|1790088300000",
+      "OANDA:XAUUSD|15|2|-1|1792656900000|1792656900000",
+      "OANDA:XAUUSD|15|2|1|1786493700000|1786493700000",
+      "OANDA:XAUUSD|15|2|1|1787236200000|1787236200000"
+    ],
+    "scope": "Identity overlap and original geometry. Later admissions can change through occupancy."
+  },
+  "net_usd_change": -117.266,
+  "limitations": [
+    "Observed historical window",
+    "Native emulator execution",
+    "No prospective holdout"
+  ]
+}

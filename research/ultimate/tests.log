@@ -1,0 +1,20 @@
+test_drawdown_duration_counts_recovery_only_after_losses (test_ultimate_research.AnchoredReplayTests.test_drawdown_duration_counts_recovery_only_after_losses) ... ok
+test_gap_fill_is_preserved_and_market_exit_is_next_open (test_ultimate_research.AnchoredReplayTests.test_gap_fill_is_preserved_and_market_exit_is_next_open) ... ok
+test_invalidation_cannot_exit_backdated_or_delete_losses (test_ultimate_research.AnchoredReplayTests.test_invalidation_cannot_exit_backdated_or_delete_losses) ... ok
+test_open_carries_paid_fee_and_no_forced_exit (test_ultimate_research.AnchoredReplayTests.test_open_carries_paid_fee_and_no_forced_exit) ... ok
+test_opposite_confirmations_refuse_both (test_ultimate_research.AnchoredReplayTests.test_opposite_confirmations_refuse_both) ... ok
+test_order_fills_next_open_and_conservative_collision (test_ultimate_research.AnchoredReplayTests.test_order_fills_next_open_and_conservative_collision) ... ok
+test_partial_tp_lock_does_not_affect_same_bar (test_ultimate_research.AnchoredReplayTests.test_partial_tp_lock_does_not_affect_same_bar) ... ok
+test_bos_waits_until_swing_was_confirmed (test_ultimate_research.CausalityTests.test_bos_waits_until_swing_was_confirmed) ... ok
+test_confirmation_gap_cannot_be_counted_as_acceptance (test_ultimate_research.CausalityTests.test_confirmation_gap_cannot_be_counted_as_acceptance) ... ok
+test_delayed_acceptance_waits_for_close (test_ultimate_research.CausalityTests.test_delayed_acceptance_waits_for_close) ... ok
+test_expected_r_future_labels_do_not_change_predictions (test_ultimate_research.CausalityTests.test_expected_r_future_labels_do_not_change_predictions) ... ok
+test_incomplete_asian_range_and_gap_fvg_do_not_publish (test_ultimate_research.CausalityTests.test_incomplete_asian_range_and_gap_fvg_do_not_publish) ... ok
+test_overlapping_label_fit_is_rejected (test_ultimate_research.CausalityTests.test_overlapping_label_fit_is_rejected) ... ok
+test_same_bar_tp_stop_is_unknown_for_model_label (test_ultimate_research.CausalityTests.test_same_bar_tp_stop_is_unknown_for_model_label) ... ok
+test_scanner_prefix_is_identical_on_observed_market_data (test_ultimate_research.CausalityTests.test_scanner_prefix_is_identical_on_observed_market_data) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.205s
+
+OK

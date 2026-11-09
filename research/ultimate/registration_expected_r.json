@@ -1,0 +1,12 @@
+{
+  "schema": "qirvanta.ultimate.expected-net-r-registration.v1",
+  "registered_utc": "2026-11-09T18:58:49Z",
+  "parent_run_manifest_sha256": "91dcb341ced0379e1c913a84f790e7b230888077705e92dffab580246c3899d7",
+  "historical_class": "FOLLOWUP_ALREADY_OBSERVED_EXPLORATORY",
+  "hypothesis": "Fixed ridge regression can estimate net R more accurately than historical training mean using the same pre-entry features as the logistic experiment.",
+  "target": "Observed net USD after fees / actual initial risk cash. Omit unavailable R explicitly.",
+  "model": {"learning_rate": 0.05, "iterations": 1000, "l2": 0.1, "normalization": "train-only means and population SD"},
+  "evaluation": "Same chronological 60/20/20 indices and expanding 30 initial, 12 per test, 900000 ms embargo. Fixed ridge uses no validation tuning. Mean baseline, MSE and MAE, block-bootstrapped paired squared-error improvement, predicted net R > 0 cohort impact.",
+  "scope": "Supplement triggered after the first historical run, before any ridge fits. No repeated independent holdout claims or promotion.",
+  "concurrent_hygiene": "Remove unused realized native net field from Setup simulation input. Expect 77 prior results and sparse journals to remain exactly equal. Preserve previous results and source snapshots locally."
+}

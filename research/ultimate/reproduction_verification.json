@@ -1,0 +1,30 @@
+{
+  "status": "LOCALLY_TESTED",
+  "checked_utc": "2026-11-09T18:59:55.378435+00:00",
+  "previous_run_manifest_sha256": "91dcb341ced0379e1c913a84f790e7b230888077705e92dffab580246c3899d7",
+  "current_run_manifest_sha256": "db70a4178b333d221a474c1b5945d8eba202f0597334979e8b173d3b9f78ccdd",
+  "prior_77_runs_and_4_label_objectives_reproduced": true,
+  "checks": {
+    "phase2_results.json": {
+      "previous": "3c0b28e47c738f7c05d57ce621d752e256a76e4b5fd236230557d0ecf160bd3e",
+      "current": "3c0b28e47c738f7c05d57ce621d752e256a76e4b5fd236230557d0ecf160bd3e",
+      "byte_identical": true
+    },
+    "phase4_structure.json": {
+      "previous": "44a2efbe5dc1d216e7cfc2d67805400853bf3c32e78b97e075e9dda984c39011",
+      "current": "44a2efbe5dc1d216e7cfc2d67805400853bf3c32e78b97e075e9dda984c39011",
+      "byte_identical": true
+    },
+    "sparse_campaign_journals.json.gz": {
+      "previous": "fb12a7c0c187d92ccd3e7d4144550748117422d4a58cc31c51d369ff3f1e39ca",
+      "current": "fb12a7c0c187d92ccd3e7d4144550748117422d4a58cc31c51d369ff3f1e39ca",
+      "byte_identical": true
+    },
+    "phase3_models.json": {
+      "previous": "f9d9da024dc5b0a088a839ed77b5b4ad93abe392ea22c492ba479c54b6187d15",
+      "current": "3d5ad39fd2c5c07c5d3afcb518303bce5e93a13f60ee224c75a5a444b0805001",
+      "equal_excluding_measured_batch_latency": true
+    }
+  },
+  "historical_only": true
+}

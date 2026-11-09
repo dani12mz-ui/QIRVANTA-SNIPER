@@ -1,0 +1,93 @@
+{
+  "schema": "qirvanta.ultimate.research_run.v1",
+  "started_utc": "2026-11-09T18:55:16.601742+00:00",
+  "finished_utc": "2026-11-09T18:55:32.963198+00:00",
+  "python": "3.12.14",
+  "base_commit": "c2212d7b7e0b4b7ea4be64c1fb3c9f7b33fa0f71",
+  "sha256_inputs": {
+    "research/ultimate/fast.py": "cbcd998ee09b4d24e2d46d784c164d77b8f46e1980470a087789d0fc194fb7f0",
+    "research/ultimate/models.py": "4f34158c22f93c1d97b44a39fc3d033f03210aa82969f5e2d5de377d4b9f4331",
+    "research/ultimate/registration.json": "a737b0c84d7c198674d1ad2431c09f0309ad6695e12d21324d800852100c4779",
+    "research/ultimate/registration_scope.json": "612f9d869db3cafdf4d137f34a36342775d1669538fb58e7fe820641c36f014c",
+    "research/ultimate/replay.py": "82ba4fea798129e215bf989f215a2bf34308fcbc20b18eb3da35aff42099caf6",
+    "research/ultimate/run.py": "2dd81e12d53648a657ff3689fba52decc65983cb58b64b2b45c3e3029077c952",
+    "research/ultimate/strategies.py": "f34ff8e1014d14144bb41241ebef1081345b4f350eabab8aaeeb3f51866116f1",
+    "research/ultimate/structure.py": "7b81bfca8ca03e9dde6d15db35e05a66b717e75ad951db144b630139efb68171",
+    "research/backtesting/engine.py": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+    "research/features/causal.py": "553a030a5e83013f4699bdf6480b561433e553c4cc1f802ea2a70761d45449ea",
+    "research/strategies/library.py": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+    "research/data/loader.py": "b62bdc6075e56b90e094d24a55ff468b5357db0fd6702c091aa3c80fdb288209",
+    "research/validation/native_report.py": "a8a50fba4928eee03ad52dd366503e1a09bd46c4b166c5b5a2aef5ccdce69063",
+    "research/validation/statistics.py": "32fac0ead636b0c7dc65b485ec55a9097fde1473bb4c735930bd6cca55986fd0",
+    "research/models/logistic.py": "f70abd053a522d443eac54500a8803e75ad36329a891c8e1d40eb3f3d5219a41"
+  },
+  "sha256_outputs": {
+    "phase2_results.json": "3c0b28e47c738f7c05d57ce621d752e256a76e4b5fd236230557d0ecf160bd3e",
+    "phase3_models.json": "f9d9da024dc5b0a088a839ed77b5b4ad93abe392ea22c492ba479c54b6187d15",
+    "phase4_structure.json": "44a2efbe5dc1d216e7cfc2d67805400853bf3c32e78b97e075e9dda984c39011",
+    "sparse_campaign_journals.json.gz": "fb12a7c0c187d92ccd3e7d4144550748117422d4a58cc31c51d369ff3f1e39ca"
+  },
+  "datasets": {
+    "archived_M15": {
+      "sha256": "7015f6386d2627237c57ff8625d59cbe3c9b852e4742b786cbb4679db3d48c56",
+      "source": "TradingView observed OANDA:XAUUSD export",
+      "timezone": "UTC",
+      "first_open": 1785708000000,
+      "last_close": 1794192300000,
+      "bars": 6445,
+      "interval_minutes": 15,
+      "retained_time_gaps": 70,
+      "volume": "Provider-supplied volume, unverified as exchange-traded",
+      "bid_ask": "UNAVAILABLE",
+      "classification": "ALREADY_OBSERVED"
+    },
+    "actual_M5": {
+      "sha256": "44971f52b0008fefc4b61dda51c71043f08e4a2e3bc6d08121380e95232ace1d",
+      "source": "TradingView observed OANDA:XAUUSD export",
+      "timezone": "UTC",
+      "first_open": 1791756000000,
+      "last_close": 1794192300000,
+      "bars": 5565,
+      "interval_minutes": 5,
+      "retained_time_gaps": 20,
+      "volume": "Provider-supplied volume, unverified as exchange-traded",
+      "bid_ask": "UNAVAILABLE",
+      "classification": "ALREADY_OBSERVED"
+    },
+    "actual_M15": {
+      "sha256": "6c89015105a406c2a0c1567f0e9a5e445cb31ee7604a985d727f26892d8ba4b7",
+      "source": "TradingView observed OANDA:XAUUSD export",
+      "timezone": "UTC",
+      "first_open": 1785708000000,
+      "last_close": 1794192300000,
+      "bars": 6445,
+      "interval_minutes": 15,
+      "retained_time_gaps": 70,
+      "volume": "Provider-supplied volume, unverified as exchange-traded",
+      "bid_ask": "UNAVAILABLE",
+      "classification": "ALREADY_OBSERVED"
+    },
+    "actual_M30": {
+      "sha256": "1b31dc5dad532b9362c5340511211fbc13a33c64983d4a49485c7442a269c5d5",
+      "source": "TradingView observed OANDA:XAUUSD export",
+      "timezone": "UTC",
+      "first_open": 1767308400000,
+      "last_close": 1794191400000,
+      "bars": 10091,
+      "interval_minutes": 30,
+      "retained_time_gaps": 220,
+      "volume": "Provider-supplied volume, unverified as exchange-traded",
+      "bid_ask": "UNAVAILABLE",
+      "classification": "ALREADY_OBSERVED"
+    }
+  },
+  "costs": {
+    "fee_per_unit_per_fill": 0.175,
+    "market_stop_slippage_ticks": 2,
+    "tick": 0.001,
+    "point_value": 1,
+    "quantity": 3
+  },
+  "distinct_runs": 77,
+  "provenance": "Public export contains native context summaries, sparse simulated plans, outcome labels and metrics only."
+}

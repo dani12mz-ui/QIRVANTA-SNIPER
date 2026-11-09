@@ -1,0 +1,112 @@
+{
+  "schema": "qirvanta.ultimate.service-evidence.v1",
+  "observed_utc": "2026-11-09T19:08:09.416278+00:00",
+  "python": "3.12.14",
+  "sqlite": "3.53.1",
+  "tzdata": "2026.6",
+  "implementation_hash_at_run": "d061be81dc4899a19e26cfcb8273bd3977be2e25c12dc84c155ef9f5c977e11d",
+  "calendar": {
+    "local_snapshot_sha256": "63f129f1559ca8c3624bd80212e6dc5eaea8aaca2e53437854a96d6140c55074",
+    "limited_scope_assessment": {
+      "blocked": false,
+      "event_ids": [],
+      "provider": "BLS_SCHEDULE_OBSERVED",
+      "status": "CLEAR_IN_DECLARED_COVERAGE"
+    },
+    "default_assessment": {
+      "blocked": true,
+      "event_ids": [],
+      "provider": null,
+      "status": "NEWS_DATA_UNAVAILABLE"
+    }
+  },
+  "historical_review": {
+    "dataset_sha256": "7015f6386d2627237c57ff8625d59cbe3c9b852e4742b786cbb4679db3d48c56",
+    "bars": 6445,
+    "first_bar_ms": 1785708000000,
+    "cutoff_ms": 1794192300000,
+    "source": "OANDA",
+    "symbol": "OANDA:XAUUSD",
+    "decision": "DATA_UNAVAILABLE",
+    "reason": "NEWS_DATA_UNAVAILABLE",
+    "trace_id": "dc10f66c96f1560cc85e0dd3b1763686863b3b0a7277789d4fd74fe3f67bcdb7",
+    "specialist_status": {
+      "audit": "OK",
+      "entry": "SKIPPED",
+      "liquidity": "OK",
+      "macro": "OK",
+      "management": "SKIPPED",
+      "momentum": "OK",
+      "mtf": "UNAVAILABLE",
+      "regime": "OK",
+      "risk": "SKIPPED",
+      "strategy": "WATCH",
+      "structure": "OK",
+      "volatility": "OK"
+    },
+    "observed_latency_ms": {
+      "audit": 0.1963,
+      "entry": 0.168,
+      "liquidity": 0.1886,
+      "macro": 0.1897,
+      "management": 0.186,
+      "momentum": 0.2171,
+      "mtf": 0.157,
+      "regime": 1.3598,
+      "risk": 0.1601,
+      "strategy": 0.194,
+      "structure": 0.2781,
+      "volatility": 0.2717
+    },
+    "completed_campaigns": null
+  },
+  "local_process_smoke": {
+    "scope": "SYNTHETIC_CONFIGURATION_NO_MARKET_PACKETS",
+    "registration": {
+      "protocol_hash": "1eadd0075a89e77a51499c939706d8b68cdd7f29d5aa4f88885237c2e371810e",
+      "protocol_id": "synthetic-cli-startup-smoke",
+      "start_ms": 1794254885665,
+      "status": "REGISTERED"
+    },
+    "serve_once": {
+      "broker_orders": false,
+      "evidence": "OPERATOR_DECLARED",
+      "status": "LOCAL_PAPER_MONITOR_STARTED",
+      "transport": "LOCAL_SPOOL"
+    },
+    "health_after_restart": {
+      "broker_connection": "NOT_CONNECTED_BY_LOCAL_SERVICE",
+      "event_counts": {
+        "PAPER_REGISTERED": 1,
+        "STATE_COMMIT": 1
+      },
+      "journal": {
+        "events": 2,
+        "head": "bee55051e3793e267b02cdb4f44e9dd72759223d06a6327b6c6d188234856979",
+        "status": "LOCALLY_VERIFIED"
+      },
+      "last_quote_age_ms": null,
+      "mode": "PAPER",
+      "model_service": "NONE",
+      "observed_utc": "2026-11-09T19:08:06.407380+00:00",
+      "operator_paused": false,
+      "orders_enabled": false,
+      "quote_freshness": "UNAVAILABLE"
+    },
+    "report_status": "INSUFFICIENT_EVIDENCE",
+    "complete_campaigns": 0,
+    "profile_drift_rejected_before_started": true
+  },
+  "dependency_consistency": {
+    "pip_check": "No broken requirements found.",
+    "pip_audit_installed": false
+  },
+  "tests": {
+    "command": "python -B -m unittest discover -s tests -p test_ultimate_service.py -v",
+    "passed": 22,
+    "log_sha256": "f25de34a30c72baba7b6f8d99bb12c00ed01f174d3d62b8292d5bb4b2295a6b0"
+  },
+  "live_market_service_started": false,
+  "broker_orders": false,
+  "prospective_performance_verified": false
+}

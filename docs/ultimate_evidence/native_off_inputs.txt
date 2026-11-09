@@ -1,0 +1,4 @@
+							1167 checkbox (settable, integer) Description: F1 · тяло на FAST свещ ≥ 55%, Value: 0
+							1168 text F1 · тяло на FAST свещ ≥ 55% 01 / МОДЕЛИ Модел за този тест
+							1169 combo box (collapsed) Value: Всички, ID: in_1, Secondary Actions: Expand
+								1170 text Всички

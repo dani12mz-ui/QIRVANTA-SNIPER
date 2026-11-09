@@ -1,0 +1,29 @@
+{
+  "schema": "qirvanta.ultimate.implementation-registration.v1",
+  "registered_utc": "2026-11-09T18:53:51Z",
+  "refines": "registration.json",
+  "results_computed_before_this_record": false,
+  "exit_rule_source": "research/ultimate/replay.py EXIT_RULES",
+  "family_rule_source": "research/ultimate/strategies.py RULES and discover",
+  "additional_family_cost_stress": "None. Fixed assumptions in original registration.",
+  "fast_cost_sensitivity": "F0 BASE at 1.5 times per-fill fee and one additional adverse market/stop tick.",
+  "additional_family_stop": "One adverse tick-rounded stop from current/previous adverse extreme minus signed 0.12 ATR. Allowed distance [0.50, 2.50] signal ATR. Decision after close. Replay BASE.",
+  "common_window": {
+    "start_inclusive": "2026-10-23T20:00:00Z",
+    "end_exclusive_for_admissions": "2026-11-09T02:30:00Z",
+    "rule": "Reuse existing data-readiness window. Warm on preceding bars, start flat, no forced end exit. Bars are selected by confirmed close through end inclusive.",
+    "registry": "research/reports/actual_tf_registration.json",
+    "dataset_sha256": {
+      "5": "44971f52b0008fefc4b61dda51c71043f08e4a2e3bc6d08121380e95232ace1d",
+      "15": "6c89015105a406c2a0c1567f0e9a5e445cb31ee7604a985d727f26892d8ba4b7",
+      "30": "1b31dc5dad532b9362c5340511211fbc13a33c64983d4a49485c7442a269c5d5"
+    }
+  },
+  "s_library": "All S1–S10 isolated M15 using original engine and baseline configs. Use same dataset/costs but report separately from the anchored replay. S3/S5/S8 also compared at 1.5 times fee and one additional adverse tick.",
+  "controls": {
+    "full_m15": "F0–F12; named exit variants; all S1–S10; all additional families and L room ablation",
+    "common_tf": "Ten additional-family runs per M5/M15/M30, including L ablation",
+    "inference": "Holm across distinct exploratory replay runs, using campaign-level sign flips. Identical F11 and exit INVALIDATION reuse one hypothesis. Native retrospective subset filters are not inferential replays.",
+    "publication": "Derived summaries and sparse plan/exit journals only; raw OHLC and dense decisions excluded"
+  }
+}

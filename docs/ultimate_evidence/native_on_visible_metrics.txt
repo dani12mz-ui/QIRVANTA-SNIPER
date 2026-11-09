@@ -1,0 +1,8 @@
+					9 pop up button 15 minutes
+							879 text QIRV LAB
+								887 button Description: More options for QIRV LAB, Help: More
+					125 image Chart for OANDA:XAUUSD, 15 minutes
+					1029 button QIRV LAB
+						173 text QIRV LAB
+							1089 text Total PnL −303.86 USD −0.30% Max drawdown 770.44 USD 0.77% Profitable trades 40.78% 84/206 Profit factor 0.796
+							1109 text Gross profit 1,183.88 USD 1.18% Gross loss 1,487.75 USD 1.49% Profit factor 0.796 Commission load

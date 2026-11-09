@@ -1,0 +1,31 @@
+{
+  "schema": "qirvanta.ultimate.independent_review.v1",
+  "scope": "Independent engineering replay and source review. The market interval was already observed.",
+  "research": {
+    "reviewer_separate_from_research_implementation": true,
+    "rerun_command": "python -B -m research.ultimate.run --output NEW_LOCAL_DIRECTORY",
+    "registered_trials_reproduced": 77,
+    "manifest_input_hashes_checked": 18,
+    "manifest_output_hashes_checked": 5,
+    "byte_identical_outputs": ["phase2_results.json", "phase3_expected_r.json", "phase4_structure.json", "sparse_campaign_journals.json.gz"],
+    "classification_output_equal_excluding_measured_inference_latency": true,
+    "chronological_splits_checked": 20,
+    "feature_and_candidate_prefix_cuts_checked": 7,
+    "filled_plans_accounting_checked": 4260,
+    "complete_plans": 4247,
+    "open_plans": 13,
+    "native_baseline": {"campaigns": 72, "wins": 33, "losses": 39, "parts": 212, "net_usd": -144.492},
+    "review_finding": "No material leakage or difference from the registered scope in the checked paths. This is independent reproduction of historical research, not prospective validation."
+  },
+  "paper": {
+    "reviewer_separate_from_service_implementation": true,
+    "checked": ["next executable-side quote and adverse slippage", "limit no better than stated price", "target touch on executable side", "gap stop on observed quote with adverse slip", "entry fee once and exit fee per part", "stale/future quote, wrong symbol and closed-session treatment", "operator-declared provenance labels", "right-censoring of open positions"],
+    "addressed_in_review": ["Stable byte snapshot used for hash and parse", "Intra-batch chronological spool ordering", "Profile and implementation checks before startup success", "Quote age rechecked after SQLite lock", "Realized drawdown recovery duration"],
+    "remaining_boundary": "Content hashes attest bytes. Spool source and symbol fields are declarations by the operator. Independent feed authenticity and forward performance are unverified."
+  },
+  "pine": {
+    "protected_baseline_sha256": "92307768be68946dc87cbe4ea45a8b5e32446fd3b7a0c1a38dce40dffe358be3",
+    "checked": ["exact inherited native order call text", "F1 veto after selection", "R:R read-only UI data flow", "bounded visual allocations", "byte-replayed paired native accounting", "chart champion restoration and exact editor readback"],
+    "platform_verification_scope": "Exact final Pine build and paired fixed-window A/B on OANDA:XAUUSD M15."
+  }
+}

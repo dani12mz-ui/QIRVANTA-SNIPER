@@ -1,0 +1,194 @@
+{
+  "schema": "qirvanta.ultimate.risk_stress.v1",
+  "source_commit": "c2212d7b7e0b4b7ea4be64c1fb3c9f7b33fa0f71",
+  "source_sha256": "05e98c9831308bcbde40aaaa79b96db368dc856d06d4030a113eab00a00caa67",
+  "symbol": "OANDA:XAUUSD",
+  "minutes": 15,
+  "interval_utc": [
+    "2026-08-02T22:00:00Z",
+    "2026-11-09T02:45:00Z"
+  ],
+  "cost_scope": "Native simulated fills already include 2 ticks and 0.175 cash per raw unit per fill. All rows retained.",
+  "campaigns": 72,
+  "native_partials": 212,
+  "native_equity_drawdown_cash": {
+    "value": 842.255,
+    "source": "snapshot.strategy.max_drawdown",
+    "scope": "NATIVE_EQUITY_INTRABAR_METRIC_NOT_RECONSTRUCTED_FROM_CLOSED_ROWS"
+  },
+  "scenarios": {
+    "OBSERVED": {
+      "assumptions": {
+        "commission_multiplier": 1.0,
+        "additional_slippage_per_raw_unit_each_way": 0.0,
+        "additional_round_trip_spread_per_raw_unit": 0.0,
+        "financing_per_raw_unit_per_elapsed_day": 0.0,
+        "extra_observed_loss_fraction": 0.0
+      },
+      "metrics": {
+        "n": 72,
+        "wins": 33,
+        "losses": 39,
+        "breakeven": 0,
+        "net_cash": -144.49200000000002,
+        "mean_cash": -2.0068333333333337,
+        "profit_factor": 0.9050957535059044,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.4583333333333333,
+        "win_rate_wilson95": [
+          0.34828627057626194,
+          0.5726013271401095
+        ],
+        "campaign_close_drawdown": 812.069,
+        "max_consecutive_losses": 7,
+        "p05_cash": -55.293749999999996,
+        "small_n": false,
+        "average_win_cash": 41.75790909090909,
+        "average_loss_cash": -39.03853846153846,
+        "mean_net_r": -0.10206230726121862,
+        "campaign_close_drawdown_duration_hours": 1236.25
+      },
+      "order_stress": {
+        "repetitions": 2000,
+        "seed": 20261109,
+        "initial_cash": 100000,
+        "declared_capital_floor_cash": 99000,
+        "floor_crossings": 0,
+        "drawdown_cash_p95": 698.8378999999615,
+        "losing_streak_p95": 9.0,
+        "interpretation": "Permutation paths conditioned on these outcomes and scenario costs; no estimated live ruin probability."
+      }
+    },
+    "FEE_SLIP_SPREAD": {
+      "assumptions": {
+        "commission_multiplier": 1.5,
+        "additional_slippage_per_raw_unit_each_way": 0.002,
+        "additional_round_trip_spread_per_raw_unit": 0.05,
+        "financing_per_raw_unit_per_elapsed_day": 0.0,
+        "extra_observed_loss_fraction": 0.0
+      },
+      "metrics": {
+        "n": 72,
+        "wins": 33,
+        "losses": 39,
+        "breakeven": 0,
+        "net_cash": -193.95599999999996,
+        "mean_cash": -2.6938333333333326,
+        "profit_factor": 0.8748102363912382,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.4583333333333333,
+        "win_rate_wilson95": [
+          0.34828627057626194,
+          0.5726013271401095
+        ],
+        "campaign_close_drawdown": 840.236,
+        "max_consecutive_losses": 7,
+        "p05_cash": -55.98074999999999,
+        "small_n": false,
+        "average_win_cash": 41.07090909090909,
+        "average_loss_cash": -39.72553846153846,
+        "mean_net_r": -0.12334864063735666,
+        "campaign_close_drawdown_duration_hours": 1236.25
+      },
+      "order_stress": {
+        "repetitions": 2000,
+        "seed": 20261109,
+        "initial_cash": 100000,
+        "declared_capital_floor_cash": 99000,
+        "floor_crossings": 0,
+        "drawdown_cash_p95": 725.0718499999733,
+        "losing_streak_p95": 9.0,
+        "interpretation": "Permutation paths conditioned on these outcomes and scenario costs; no estimated live ruin probability."
+      }
+    },
+    "FINANCING_AND_GAP": {
+      "assumptions": {
+        "commission_multiplier": 1.5,
+        "additional_slippage_per_raw_unit_each_way": 0.002,
+        "additional_round_trip_spread_per_raw_unit": 0.05,
+        "financing_per_raw_unit_per_elapsed_day": 0.15,
+        "extra_observed_loss_fraction": 0.5
+      },
+      "metrics": {
+        "n": 72,
+        "wins": 33,
+        "losses": 39,
+        "breakeven": 0,
+        "net_cash": -964.4325000000001,
+        "mean_cash": -13.394895833333335,
+        "profit_factor": 0.5833682305761406,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.4583333333333333,
+        "win_rate_wilson95": [
+          0.34828627057626194,
+          0.5726013271401095
+        ],
+        "campaign_close_drawdown": 1400.8568749999997,
+        "max_consecutive_losses": 7,
+        "p05_cash": -83.778328125,
+        "small_n": false,
+        "average_win_cash": 40.92119318181818,
+        "average_loss_cash": -59.35466346153846,
+        "mean_net_r": -0.4066843385749679,
+        "campaign_close_drawdown_duration_hours": 1236.25
+      },
+      "order_stress": {
+        "repetitions": 2000,
+        "seed": 20261109,
+        "initial_cash": 100000,
+        "declared_capital_floor_cash": 99000,
+        "floor_crossings": 1125,
+        "drawdown_cash_p95": 1351.6198031250199,
+        "losing_streak_p95": 9.0,
+        "interpretation": "Permutation paths conditioned on these outcomes and scenario costs; no estimated live ruin probability."
+      }
+    },
+    "LOSS_TAIL": {
+      "assumptions": {
+        "commission_multiplier": 1.0,
+        "additional_slippage_per_raw_unit_each_way": 0.0,
+        "additional_round_trip_spread_per_raw_unit": 0.0,
+        "financing_per_raw_unit_per_elapsed_day": 0.0,
+        "extra_observed_loss_fraction": 1.0
+      },
+      "metrics": {
+        "n": 72,
+        "wins": 33,
+        "losses": 39,
+        "breakeven": 0,
+        "net_cash": -1666.9950000000001,
+        "mean_cash": -23.152708333333333,
+        "profit_factor": 0.4525478767529522,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.4583333333333333,
+        "win_rate_wilson95": [
+          0.34828627057626194,
+          0.5726013271401095
+        ],
+        "campaign_close_drawdown": 1962.9420000000002,
+        "max_consecutive_losses": 7,
+        "p05_cash": -110.58749999999999,
+        "small_n": false,
+        "average_win_cash": 41.75790909090909,
+        "average_loss_cash": -78.07707692307692,
+        "mean_net_r": -0.6611379386195563,
+        "campaign_close_drawdown_duration_hours": 2031.75
+      },
+      "order_stress": {
+        "repetitions": 2000,
+        "seed": 20261109,
+        "initial_cash": 100000,
+        "declared_capital_floor_cash": 99000,
+        "floor_crossings": 2000,
+        "drawdown_cash_p95": 1996.8327000000077,
+        "losing_streak_p95": 9.0,
+        "interpretation": "Permutation paths conditioned on these outcomes and scenario costs; no estimated live ruin probability."
+      }
+    }
+  },
+  "coincident_adverse_exposure_illustration": {
+    "cash_loss": 353.0,
+    "assumptions": "Illustrative two exposures 50 and 80 account-cash risk, gap multipliers 2 and 3, extra costs 4 and 9. No BTC observations or measured correlation."
+  },
+  "limitation": "Reorders or perturbs completed native campaigns. No broker spread, swap, margin, intra-campaign equity or forward execution data."
+}

@@ -1,0 +1,27 @@
+test_absent_stale_and_scope_insufficiency (test_ultimate_service.CalendarTests.test_absent_stale_and_scope_insufficiency) ... ok
+test_calendar_bitemporal_revisions (test_ultimate_service.CalendarTests.test_calendar_bitemporal_revisions) ... ok
+test_cancellation_and_future_snapshot_visibility (test_ultimate_service.CalendarTests.test_cancellation_and_future_snapshot_visibility) ... ok
+test_future_actual_and_late_forecast_rejected (test_ultimate_service.CalendarTests.test_future_actual_and_late_forecast_rejected) ... ok
+test_duplicate_json_fields_and_non_finite_rejected (test_ultimate_service.InputBoundaryTests.test_duplicate_json_fields_and_non_finite_rejected) ... ok
+test_closed_session_does_not_execute_quote_and_end_is_censored (test_ultimate_service.PaperLifecycleTests.test_closed_session_does_not_execute_quote_and_end_is_censored) ... ok
+test_drawdown_duration_includes_recovery_event (test_ultimate_service.PaperLifecycleTests.test_drawdown_duration_includes_recovery_event) ... ok
+test_invalid_quote_scope_and_profile_drift_roll_back (test_ultimate_service.PaperLifecycleTests.test_invalid_quote_scope_and_profile_drift_roll_back) ... ok
+test_journal_detects_tampered_index (test_ultimate_service.PaperLifecycleTests.test_journal_detects_tampered_index) ... ok
+test_no_broker_execution_profile_or_historical_registration (test_ultimate_service.PaperLifecycleTests.test_no_broker_execution_profile_or_historical_registration) ... ok
+test_open_stop_survives_missing_features_and_operator_pause (test_ultimate_service.PaperLifecycleTests.test_open_stop_survives_missing_features_and_operator_pause) ... ok
+test_partial_at_tp1_then_break_even_remainder (test_ultimate_service.PaperLifecycleTests.test_partial_at_tp1_then_break_even_remainder) ... ok
+test_pending_fill_three_parts_and_restart (test_ultimate_service.PaperLifecycleTests.test_pending_fill_three_parts_and_restart) ... ok
+test_reject_changed_duplicate_and_missing_calendar_cancels_pending (test_ultimate_service.PaperLifecycleTests.test_reject_changed_duplicate_and_missing_calendar_cancels_pending) ... ok
+test_spool_sorts_by_quote_not_filename_and_deduplicates_invalid (test_ultimate_service.PaperLifecycleTests.test_spool_sorts_by_quote_not_filename_and_deduplicates_invalid) ... ok
+test_unfilled_limit_retains_missed_outcome (test_ultimate_service.PaperLifecycleTests.test_unfilled_limit_retains_missed_outcome) ... ok
+test_actual_distinct_roles_causal_candidate_and_no_model_claim (test_ultimate_service.SpecialistTests.test_actual_distinct_roles_causal_candidate_and_no_model_claim) ... ok
+test_conflicting_buy_sell_suggestions (test_ultimate_service.SpecialistTests.test_conflicting_buy_sell_suggestions) ... ok
+test_future_bar_does_not_change_prefix (test_ultimate_service.SpecialistTests.test_future_bar_does_not_change_prefix) ... ok
+test_model_unavailable_and_regime_change_audited (test_ultimate_service.SpecialistTests.test_model_unavailable_and_regime_change_audited) ... ok
+test_no_calendar_no_h4_stale_quote_and_hard_veto (test_ultimate_service.SpecialistTests.test_no_calendar_no_h4_stale_quote_and_hard_veto) ... ok
+test_timeout_and_late_result_cannot_release_veto (test_ultimate_service.SpecialistTests.test_timeout_and_late_result_cannot_release_veto) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 2.028s
+
+OK

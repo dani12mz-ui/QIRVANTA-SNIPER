@@ -1,0 +1,22 @@
+{
+  "schema": "qirvanta.ultimate.native.registration.v1",
+  "registered_utc": "2026-11-09T18:49:25.7413883+00:00",
+  "champion_commit": "c2212d7b7e0b4b7ea4be64c1fb3c9f7b33fa0f71",
+  "champion_sha256": "92307768be68946dc87cbe4ea45a8b5e32446fd3b7a0c1a38dce40dffe358be3",
+  "experimental_sha256": "27ec778eff8da38c001b77f88c01a89d4e94b2691abd4a0232e7eacd0533e332",
+  "observer_sha256": "10ce8de563b7cc8798e677aad71f6d9dff7301b7d9a0940e1d473506bc532464",
+  "symbol": "OANDA:XAUUSD",
+  "timeframe": "15",
+  "first_open_utc": "2026-08-02T22:00:00Z",
+  "last_close_utc": "2026-11-09T02:45:00Z",
+  "variants": [
+    "F1_OFF",
+    "F1_ON"
+  ],
+  "rule": "Only selected FAST on confirmed admission. Reject if range <= 0, data missing, or side * (close - open) < 0.55 * (high - low).",
+  "hypothesis": "A fixed directional candle-body threshold can suppress weak FAST entries but changes portfolio occupancy and may suppress winning entries.",
+  "commission_per_unit_per_fill": 0.175,
+  "slippage_ticks": 2,
+  "raw_qty": 3,
+  "scope": "Previously observed fixed-window exploratory test. Match full bars and costs before comparison. Compare ALL campaigns and retain all losses; separate cutoff snapshot from chart metrics."
+}

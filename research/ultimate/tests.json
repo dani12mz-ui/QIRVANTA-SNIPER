@@ -1,0 +1,9 @@
+{
+  "status": "LOCALLY_TESTED",
+  "test_file": "research/tests/test_ultimate_research.py",
+  "test_file_sha256": "237766a4171117c33a3f174ecc58ac263f968eba411adf1142f112bc574a3324",
+  "observed_method_count": 15,
+  "observed_utc": "2026-11-09T19:03:01.069837+00:00",
+  "exit_code": 0,
+  "log_sha256": "766719a66badb27e3ac4e00c64a25e6a2ce3b68484ddf3ddc6f7eff55786bb3e"
+}

@@ -1,0 +1,49 @@
+{
+  "schema": "qirvanta.ultimate.registration.v1",
+  "registered_utc": "2026-11-09T18:48:16Z",
+  "source_commit": "c2212d7b7e0b4b7ea4be64c1fb3c9f7b33fa0f71",
+  "historical_class": "ALREADY_OBSERVED_EXPLORATORY",
+  "symbol": "OANDA:XAUUSD",
+  "timeframe": "M15",
+  "window_utc": ["2026-08-02T22:00:00Z", "2026-11-09T02:45:00Z"],
+  "dataset_sha256": "7015f6386d2627237c57ff8625d59cbe3c9b852e4742b786cbb4679db3d48c56",
+  "audit_sha256": {
+    "B-ALL": "05e98c9831308bcbde40aaaa79b96db368dc856d06d4030a113eab00a00caa67",
+    "B-FAST": "bd3408bf3b775d6d5f4728d1bcc80d189fcf420daa79bbf037c2e499d63e6f66",
+    "B-RETEST": "1dbdf2f5ef1ded1e63c8816e6757cd83afe85e3e8ab181d87d34d12b45049586",
+    "B-REVERSAL": "f72c54e7306ec30fd99906b84d5f5fecf7e48612d95c774e346b5e3cc9294d16"
+  },
+  "costs": {"fee_per_unit_per_fill": 0.175, "market_stop_slippage_ticks": 2, "tick": 0.001, "point_value": 1, "quantity": 3},
+  "native_scope": "49 original FAST campaigns from B-ALL, frozen original journal. Matched cohort gates report both excluded winners and losers. Delayed or exit variants do not get a retrospective native performance claim.",
+  "replay_scope": "Fixed universe of original submitted FAST plans, warmed from full OHLC. Next observed open, one portfolio, frozen signal reference/stop, 3 equal 1/2/3R parts and 0.05R lock after TP1, max holding 48 bars, invalid entry deviation greater than 0.20 signal ATR flattened next open if residual, conservative stop-first. Position competition outside that selected universe is unrecoverable.",
+  "fast_trials": {
+    "F0": "Original admissions, baseline comparator",
+    "F1": "Directional candle body / full signal range >= 0.55, zero range rejects",
+    "F2": "Next contiguous close at least 0.10 original signal ATR beyond frozen preceding four-bar breakout boundary, no prior stop breach; new decision at that close",
+    "F3": "Current close beyond previously confirmed 3/3 swing in signal direction and H1 closed EMA alignment agrees",
+    "F4": "First of next 1–4 contiguous bars whose adverse extreme lies within 0.15 original signal ATR of frozen boundary and closes beyond boundary; cancel on close through boundary or stop breach",
+    "F5": "0.8 <= signal ATR / trailing 40-bar ATR <= 1.4",
+    "F6": "Breakout extension <= 0.25 signal ATR at confirmation; proxy because original FAST setup birth equals confirmation",
+    "F7": "Known nearest forward obstacle (previous confirmed swing, preceding UTC day/week extreme or prior 20-bar extreme) at least 1 planned R from signal reference; unknown rejects",
+    "F8": "Directional base timeframe regime agrees with signal side",
+    "F9": "London or New York window at decision UTC, DST-aware using existing native-report helper",
+    "F10": "Directional RSI >= 55 long or <= 45 short and directional two-bar close change >= 0.25 ATR",
+    "F11": "F0 admission; first post-entry close at or through frozen preceding four-bar boundary queues residual exit at next open",
+    "F12": "F1 + F7 only, fixed before the new calculations; no optimized combination"
+  },
+  "entry_variant_stop_policy": "For F2/F4 keep original structural SL, recompute entry reference and R projections at delayed confirmation and reject if signed risk below one tick.",
+  "exit_trials": ["BASE", "FIXED_2R", "STRUCTURAL", "ATR_STOP", "PARTIAL_50_30_20", "BREAK_EVEN", "DELAYED_BREAK_EVEN", "STRUCTURAL_BREAK_EVEN", "ATR_TRAIL", "MOMENTUM_FAILURE", "TIME_24", "INVALIDATION"],
+  "other_trials": ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10", "D_OR_FAILURE", "E_MICRO_PULLBACK", "F_FAILED_AUCTION", "G_RANGE_REVERSION", "H_STRUCTURAL_RETEST", "I_EXHAUSTION", "J_EXPANSION_ACCEPTANCE", "K_SESSION_ADAPTATION", "L_TARGET_FEASIBILITY", "L_NO_ROOM_ABLATION"],
+  "model": {
+    "universe": "All complete campaigns from B-ALL; only confirmed bar feature values or submitted metadata",
+    "objectives": ["net_positive", "tp1_before_stop", "tp2_before_stop", "tp3_before_stop"],
+    "methods": ["constant train prevalence", "logistic fixed ridge", "validation-only Platt if adequate"],
+    "split": "chronological 60/20/20 and expanding walk-forward 30 initial/12 per block; label end < boundary minus 900000ms; train-only scaling",
+    "model_features": ["direction", "body_fraction", "break_extension_atr", "adx", "atr_ratio", "directional_rsi", "efficiency", "htf_agreement", "risk_atr"],
+    "policy": "fixed threshold 0.5 descriptive accepted/rejected net R and USD; model promotion disabled",
+    "advanced_models": "Defer pending >=300 nonoverlapping labeled campaigns and independent validation; evaluation set already observed"
+  },
+  "metrics": ["net cash", "mean net R", "campaign PF", "win rate Wilson 95%", "campaign-close drawdown and duration", "average winner and loser", "5th percentile cash", "TP counts", "bootstrap mean net R and exploratory Holm adjustment"],
+  "inference": "No new independent data, no promote; archive all positive, negative, zero and censored outcomes.",
+  "untouched_holdout": false
+}

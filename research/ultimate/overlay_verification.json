@@ -1,0 +1,19 @@
+{
+  "status": "LOCALLY_TESTED",
+  "test": "Two actual pinned archive renders were byte-identical and parsed as standalone SVG with structure markers.",
+  "utc": "2026-11-09T19:07:38.788007+00:00",
+  "source_code_sha256": "2bb3cf931e459521d29e29d4a57b3f9e099ecd20e2f33032d2fcd1ab21f6099f",
+  "source_dataset_sha256": "7015f6386d2627237c57ff8625d59cbe3c9b852e4742b786cbb4679db3d48c56",
+  "svg_sha256": "93697b3422f81c6d8721678e9cb8586cd8aa6e2130c8786ceccd03f4576e0e55",
+  "bars": 80,
+  "first_open_ms": 1793943900000,
+  "last_close_ms": 1794192300000,
+  "markers": {
+    "FVG": 18,
+    "MSS": 2,
+    "CHoCH": 2,
+    "BOS": 3
+  },
+  "artifact_local_path": "../ultimate_structure_M15.svg",
+  "svg_published": false
+}

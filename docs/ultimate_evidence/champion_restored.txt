@@ -1,0 +1,10 @@
+2026-11-09T18:59:15.878Z
+Saved editor buffer exactly matches champion.
+					9 pop up button 5 minutes
+					19 checkbox Description: Bar replay, Value: 0, ID: header-toolbar-replay
+							109 text QIRV ONE
+								117 button Description: More options for QIRV ONE, Help: More
+					125 image Chart for OANDA:XAUUSD, 5 minutes
+					137 button 5 days in 5 minutes intervals
+					163 checkbox Description: Pine Editor, Value: 0
+						173 text QIRV ONE
