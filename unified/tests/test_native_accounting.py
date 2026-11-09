@@ -147,11 +147,13 @@ class NativeAdapterContracts(unittest.TestCase):
             self.assertIn(field, message)
         self.assertNotIn('nativeUnitQty', message)
         self.assertNotIn('{{strategy.order.', message)
-        self.assertIn('заявен размер на целия план', message)
+        self.assertIn('Размер на плана', message)
 
     def test_time_and_gap_fill_messages_have_specific_titles(self):
-        self.assertIn('kind == "NATIVE_EXIT_TIME" ? "СИМУЛИРАН ИЗХОД — ИЗТЕКЪЛ СРОК"', ALERT_HELPERS)
-        self.assertIn('kind == "NATIVE_EXIT_GAP" ? "СИМУЛИРАН ИЗХОД — НЕВАЛИДЕН ГАП"', ALERT_HELPERS)
+        self.assertIn('kind == "NATIVE_EXIT_TIME" ? "ИЗХОД — ИЗТЕКЪЛ СРОК"', ALERT_HELPERS)
+        # The unchanged order comment can also represent risk/obstacle validation;
+        # human text must not falsely diagnose every such close as a price gap.
+        self.assertIn('kind == "NATIVE_EXIT_GAP" ? "НЕВАЛИДЕН ИЗПЪЛНЕН ВХОД"', ALERT_HELPERS)
 
 
 if __name__ == '__main__':

@@ -1,0 +1,203 @@
+Browser tab: 2, Title: "XAUUSD 4,104.120 ▲ +0.82% Unnamed", URL: "https://www.tradingview.com/chart/4foVQMDF/".
+0 AXWebArea XAUUSD 4,104.120 ▲ +0.82% Unnamed, URL: tradingview.com/chart/4foVQMDF/
+	1 container
+		2 container
+			3 pop up button Logged in as dani12mz Active layout: Unnamed
+			4 toolbar
+				5 container
+					6 button XAUUSD, Help: Symbol search, ID: header-toolbar-symbol-search
+					7 button Description: Switch data type, ID: header-toolbar-switch-data-type
+					8 pop up button Description: Compare symbols, ID: header-toolbar-compare
+					9 pop up button 15 minutes
+						10 container
+							11 text 15 m
+					12 pop up button Candles
+					13 container header-toolbar-indicators
+						14 button Indicators, metrics, and strategies
+							1380 text Indicators
+						16 pop up button Favorite indicators and indicators templates
+					17 button Description: Create alert, ID: header-toolbar-alerts
+						1381 text Alert
+					19 checkbox Description: Bar replay, Value: 0, ID: header-toolbar-replay
+						1382 text Replay
+					21 container header-toolbar-undo-redo
+						22 button Undo change resolution
+					23 pop up button Description: Layout setup, ID: header-toolbar-layouts
+					24 container header-toolbar-save-load
+						25 button (disabled) All changes saved
+							26 text Unnamed
+							27 text Save
+						28 pop up button Manage layouts
+					29 button Description: Quick search, ID: header-toolbar-quick-search
+					30 button Description: Settings, ID: header-toolbar-properties
+					31 button Description: Fullscreen mode, ID: header-toolbar-fullscreen
+					32 pop up button Take a snapshot
+				1383 pop up button Share your idea with the trade community
+				1384 container
+					1385 button Trade
+						1386 text Trade
+				1387 container
+					1388 button Upgrade
+						1389 text Upgrade
+			40 toolbar drawing-toolbar
+				41 container
+					42 container
+						43 button Cross
+						44 checkbox Description: Cursors, Value: 1
+					45 container
+						46 button Trendline
+						47 checkbox Description: Trend tools, Value: 0
+					48 container
+						49 button Fib retracement
+						50 checkbox Description: Gann and Fibonacci tools, Value: 0
+					51 container
+						52 button XABCD pattern
+						53 checkbox Description: Patterns, Value: 0
+					54 container
+						55 button Long position
+						56 checkbox Description: Forecasting and measurement tools, Value: 0
+					57 container
+						58 button Brush
+						59 checkbox Description: Geometric shapes, Value: 0
+					60 container
+						61 button Text
+						62 checkbox Description: Annotation tools, Value: 0
+					63 container
+						64 button Icon
+						65 checkbox Description: Icons, Value: 0
+					66 button Measure
+					67 button Zoom in
+					68 container
+						69 checkbox Description: Magnet mode snaps drawings placed near price bars to the closest OHLC value, Value: 0
+						70 checkbox Description: Magnets, Value: 0
+					71 checkbox Description: Keep drawing, Value: 0
+					72 container
+						73 checkbox Description: Lock drawings and indicators, Value: 0
+						74 checkbox Description: Lock options, Value: 0
+					75 container
+						76 checkbox Description: Hide all drawings, Value: 0
+						77 checkbox Description: Hide options, Value: 0
+					78 container
+						79 button Remove objects
+						80 button Remove options
+			81 container Chart #1
+				82 container
+					83 toolbar
+						1390 container
+							3085 container Change symbol
+								3086 container
+									3087 image
+									3088 text X
+								3089 button Change symbol
+							3090 container Change interval
+								3091 text ·
+								3092 button Change interval
+							3093 text ·
+							3094 text OANDA
+						94 container
+							95 button Unflag symbol
+							96 button Description: More options for Gold Spot / U.S. Dollar, Help: More
+								97 image
+						98 button Market open · Data updates once per second
+						3076 container
+							3077 text O 4,102.145 H 4,104.820 L 4,101.935 C 4,104.120 +1.960 (+0.05%)
+					1402 container
+						1403 text 4,103.89 0 SELL
+						1404 text 38.0
+						1405 text 4,104.27 0 BUY
+					105 container
+						106 button Hide indicator legend
+						3022 toolbar
+							3023 text QIRV ONE
+							3024 container
+								3025 button Hide
+									3026 image
+								3027 button Settings
+									3028 image
+								3029 button Remove
+									3030 image
+								3031 button Description: More options for QIRV ONE, Help: More
+									3032 image
+							3033 button Active strategy
+							3078 container
+								3079 text 4,112.465
+								3080 text 4,108.449
+								3081 text 0.000
+								3082 text 0.000
+					124 image Chart for OANDA:XAUUSD, 15 minutes
+				125 container
+					126 toolbar Navigation
+						1406 button Zoom out
+						1407 button Zoom in
+						1408 button Scroll to the left
+						1409 button Scroll to the right
+						131 button Reset chart view
+			132 toolbar
+				1410 container
+					1411 button 1 day in 1 minute intervals
+						1412 text 1D
+					1413 button 5 days in 5 minutes intervals
+						1414 text 5D
+					1415 button 1 month in 30 minutes intervals
+						1416 text 1M
+					1417 button 3 months in 1 hour intervals
+						1418 text 3M
+					1419 button 6 months in 2 hours intervals
+						1420 text 6M
+					1421 button Year to day in 1 day intervals
+						1422 text YTD
+					1423 button 1 year in 1 day intervals
+						1424 text 1Y
+					1425 button 5 years in 1 week intervals
+						1426 text 5Y
+					1427 button All data in 1 month intervals
+						1428 text All
+					1429 button Go to
+				153 button Timezone
+					154 text 18:03:34 UTC
+			1430 container
+				3095 container
+					3096 toolbar
+						3097 checkbox Description: Watchlist, details, and news, Value: 0
+						3098 checkbox Description: Alerts, Value: 1
+						3099 checkbox Description: Object tree and data window, Value: 0
+						3100 checkbox Description: AI Copilot, Value: 0
+						3101 checkbox Description: Screeners, Value: 0
+						3102 checkbox Description: Pine Editor, Value: 0
+						3103 checkbox Description: Calendars, Value: 0
+						3104 checkbox Description: Community, Value: 0
+						3105 checkbox Description: Notifications, Value: 0
+						3106 checkbox Description: Chats, Value: 0
+						3107 pop up button Products
+						3108 checkbox Description: Help Center, Value: 0
+				3109 container
+					3110 tab group
+						3111 tab (selected, settable, boolean) Alerts, Value: 1, ID: list
+						3112 tab (selectable, settable, boolean) Log, Value: 0, ID: log
+					3113 container Description: Alerts, ID: id_alert-widget-tabs-slots_tabpanel_list
+						3114 button Create Alert
+						3115 button Description: Search, ID: alerts-search-button
+						3116 pop up button (collapsed) Description: Sorted by date created (newest first), Secondary Actions: Expand
+						3117 pop up button (collapsed) Description: Options, Secondary Actions: Expand
+						3118 container
+							3119 container
+								3120 text QIRVANTA INFO TEST 2026-11-09
+								3121 text ТЕСТ НА ДОСТАВКА · QIRVANTA. Само информационно известие; НЕ е търговски сигнал или брокерска поръчка. Условие за транспортен тест: XAUUSD > 1. UTC {{timenow}}
+								3122 container
+									3123 text XAUUSD • Stopped — Triggered • Mon 09 Nov '26   20:02:51
+								3124 text QIRVANTA — TEST DELIVERY — no trade
+								3125 text ТЕСТ НА ДОСТАВКАТА. Това е еднократно информационно ценово известие (цена > 0), а не QIRVANTA сигнал или инструкция за сделка. Без брокерски поръчки.
+								3126 container
+									3127 text XAUUSD • Stopped — Triggered • Mon 09 Nov '26   05:27:22
+			1444 toolbar footer-chart-panel
+				1445 container
+					1446 button Open strategy report
+						1447 text QIRV ONE
+					1448 pop up button (collapsed) Description: Manage strategy, ID: :r9o:, Secondary Actions: Expand
+				1449 button Open panel
+				1450 button Maximize panel
+			1451 container Trading panel
+		3128 container common-tooltip-wrapper
+			3129 text Alerts
+
+The focused UI element is 0 AXWebArea XAUUSD 4,104.120 ▲ +0.82% Unnamed, URL: tradingview.com/chart/4foVQMDF/

@@ -1,0 +1,7 @@
+# Full research journals retain per-bar reference prices for private audit.
+# Publish only public_journals/ counterparts linked by the publication manifest.
+**/candidate_journals/
+# Retired, unpublished v1 projections still exposed a dense union of setup closes.
+**/private_publication_v1/
+research/reports/public_39_replay_verification.json
+research/reports/public_90_replay_verification.json

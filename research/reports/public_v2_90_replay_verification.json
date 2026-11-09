@@ -1,0 +1,556 @@
+{
+  "schema": "qirvanta.research.replay.v1",
+  "status": "PASS",
+  "scope": "90 frozen economic journals; deterministic rerun",
+  "economic_source_unchanged": true,
+  "public_evidence": {
+    "policy_id": "qirvanta.sparse_decision_prices.v2",
+    "manifest_sha256": "6ec210682609cf727601a221f8c260173c9304fa6010bafac5b07f6c3a952ac1",
+    "public_adapter_sha256": "9213a18f07d10e57f8accd76aa77b989e91fa654e6b153b42a2a4c127ac980c0"
+  },
+  "trials": [
+    {
+      "id": "S1-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S1-FIXED_R",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S1-STRUCTURAL",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S1-BREAKEVEN",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S1-ATR_TRAIL",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S1-DELAY2",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S1-COST1.5",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S1-COST2",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S2-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S2-FIXED_R",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S2-STRUCTURAL",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S2-BREAKEVEN",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S2-ATR_TRAIL",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S2-DELAY2",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S2-COST1.5",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S2-COST2",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S3-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S3-FIXED_R",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S3-STRUCTURAL",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S3-BREAKEVEN",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S3-ATR_TRAIL",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S3-DELAY2",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S3-COST1.5",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S3-COST2",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S4-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S4-FIXED_R",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S4-STRUCTURAL",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S4-BREAKEVEN",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S4-ATR_TRAIL",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S4-DELAY2",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S4-COST1.5",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S4-COST2",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S5-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S5-FIXED_R",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S5-STRUCTURAL",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S5-BREAKEVEN",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S5-ATR_TRAIL",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S5-DELAY2",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S5-COST1.5",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S5-COST2",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S6-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S6-FIXED_R",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S6-STRUCTURAL",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S6-BREAKEVEN",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S6-ATR_TRAIL",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S6-DELAY2",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S6-COST1.5",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S6-COST2",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S7-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S7-FIXED_R",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S7-STRUCTURAL",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S7-BREAKEVEN",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S7-ATR_TRAIL",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S7-DELAY2",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S7-COST1.5",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S7-COST2",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S8-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S8-FIXED_R",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S8-STRUCTURAL",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S8-BREAKEVEN",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S8-ATR_TRAIL",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S8-DELAY2",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S8-COST1.5",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S8-COST2",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S9-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S9-FIXED_R",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S9-STRUCTURAL",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S9-BREAKEVEN",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S9-ATR_TRAIL",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S9-DELAY2",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S9-COST1.5",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S9-COST2",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S10-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S10-FIXED_R",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S10-STRUCTURAL",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S10-BREAKEVEN",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S10-ATR_TRAIL",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S10-DELAY2",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S10-COST1.5",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S10-COST2",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S1-M30-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S2-M30-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S3-M30-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S4-M30-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S5-M30-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S6-M30-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S7-M30-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S8-M30-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S9-M30-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S10-M30-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": true,
+      "economic_replay_equal": true
+    }
+  ],
+  "count": 90,
+  "native_parity": false,
+  "profitability_validation": false
+}

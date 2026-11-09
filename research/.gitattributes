@@ -1,0 +1,4 @@
+# Research registrations and evidence hash exact bytes, including original CRLF.
+# Disable implicit Git newline conversion for these versioned research artifacts.
+# CRLF and terminal blank separators belong to frozen evidence bytes.
+* -text whitespace=-blank-at-eof,cr-at-eol

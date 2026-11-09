@@ -1,0 +1,26 @@
+{
+  "scope": "SYNTHETIC_ENGINE_REGRESSIONS_NOT_NATIVE_PARITY_OR_PROFITABILITY",
+  "tests": 62,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "source_sha256": {
+    "research/backtesting/engine.py": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+    "research/backtesting/verify_engine.py": "d0f7be4b334a82fd2fa3d666c9d02bdc622fb390f6fe1e0e82ea293bcc434f25",
+    "research/data/aggregate.py": "1c8f8da6ef3774501bf5f83b8de16e7ab1cd5f3c9cc49ef44b30cf92a2b5cb02",
+    "research/data/extract_platform.py": "badb0ceb833ce5a63a36e42d5f342b7a5e25d34cca8fca82b49f1cdb90c659fb",
+    "research/data/loader.py": "b62bdc6075e56b90e094d24a55ff468b5357db0fd6702c091aa3c80fdb288209",
+    "research/features/causal.py": "553a030a5e83013f4699bdf6480b561433e553c4cc1f802ea2a70761d45449ea",
+    "research/strategies/ablation.py": "4ecf36fdc940057f90b768d023cdc1aeb484d9303e6dab201790c600f30e7aaa",
+    "research/strategies/library.py": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+    "research/tests/test_engine_ablation.py": "b27cd59cb19a9477241bc0e756902c40902748af8a50a76168a91d6c4937aef1",
+    "research/tests/test_engine_aggregation.py": "b78ce301942da56f31bd0e108917394b5f1ad6f44f1eb7ac5dff4f1c59cf0ea2",
+    "research/tests/test_engine_candidates.py": "42751b551e03dd4fde363e19316243e48ccf8235b49faf8e98679960d1653f2c",
+    "research/tests/test_engine_cash_timing.py": "63d9ff7128c73d9e8d35498a854772488e701b2aeec84b4c136e57aa3853914c",
+    "research/tests/test_engine_execution.py": "b5722e77c3c8d38c4bd4fd838674f41fc71057191f0f10af4b29856760660aef",
+    "research/tests/test_engine_features.py": "77124997ca028299311fcbc8c8da2cc62ccdbfd26a0a6fc6d8ebb71f4cd9b26c",
+    "research/tests/test_engine_platform_extract.py": "e39052e2fdd55dbb3ba189da8aaef61a3216123a0d132921f0780a2f9efcf765"
+  }
+}

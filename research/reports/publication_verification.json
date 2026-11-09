@@ -1,0 +1,38 @@
+{
+  "schema": "qirvanta.publication_verification.v1",
+  "created_utc": "2026-11-09T18:23:50.714363+00:00",
+  "status": "PASS",
+  "policy_id": "qirvanta.sparse_decision_prices.v2",
+  "manifest": {
+    "path": "research/reports/public_journals_manifest.json",
+    "sha256": "6ec210682609cf727601a221f8c260173c9304fa6010bafac5b07f6c3a952ac1"
+  },
+  "exporter_sha256": "9213a18f07d10e57f8accd76aa77b989e91fa654e6b153b42a2a4c127ac980c0",
+  "tests_sha256": "3da8cb1c2461accaad30f5ed60bdb0d22c699e47617ef416c6d2da0b3c9808ac",
+  "unittest": {
+    "methods": 6,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "log": "research/reports/public_evidence_tests.log",
+    "log_sha256": "bcfe6f4896b51a125943c657563ee2fd68d2b67604bc9f16800e5dc954b0363d"
+  },
+  "full_original_hashes_verified": 219,
+  "public_compressed_and_canonical_hashes_verified": 219,
+  "all_non_decision_sections_exactly_equal": true,
+  "every_decision_exactly_original_minus_three_fields": true,
+  "remaining_prohibited_decision_price_fields": 0,
+  "decision_rows_retained": 2617569,
+  "fields_removed": 7457724,
+  "plans_retained_across_repeated_trials": 8795,
+  "losing_completed_plans_retained_across_repeated_trials": 5362,
+  "partial_exits_retained_across_repeated_trials": 23344,
+  "full_original_files_gitignored_and_untracked": 219,
+  "retired_unpublished_v1_files_gitignored_and_untracked": 224,
+  "public_v2_files_not_gitignored": 219,
+  "limitations": [
+    "Totals across trials include repeated trades, not unique independent observations.",
+    "Publication reduction is not proof of market-data licensing rights.",
+    "Private full journals remain unchanged locally; public files omit rejected/raw candidate price fields."
+  ]
+}

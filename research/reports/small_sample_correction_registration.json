@@ -1,0 +1,8 @@
+{
+  "schema": "qirvanta.research.analysis_correction.v1",
+  "registered_utc": "2026-11-09T17:37:25.686629+00:00",
+  "reason": "Circular block bootstrap with sample n<=block takes the entire sample per draw and creates degenerate mean CI; such intervals must be unavailable, not evidence. Discovered during report review after 80 economic runs.",
+  "correction": "Mark ci95 [null,null] and status INSUFFICIENT_BLOCKS when n<=block. Keep observed mean, N, all economic results and initial report. No strategy/config/fills/source engine changes; no new search.",
+  "original_statistics_sha256": "e51b6adf96eb3d6bfb2110a7b749e1baa1a8e78ef8329a3814bca88a71681b5a",
+  "original_results_sha256": "1665ae7b4d2b5ca3e0ff69b422ecf1a0e97c2893811908c78abf3f8852c28971"
+}

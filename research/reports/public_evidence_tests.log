@@ -1,0 +1,11 @@
+test_all_decision_prices_removed_without_mutation_or_outcome_loss (research.tests.test_public_evidence.PublicEvidenceTests.test_all_decision_prices_removed_without_mutation_or_outcome_loss) ... ok
+test_export_records_full_to_sparse_hashes_and_preserves_original_bytes (research.tests.test_public_evidence.PublicEvidenceTests.test_export_records_full_to_sparse_hashes_and_preserves_original_bytes) ... ok
+test_export_refuses_existing_outputs_and_loader_rejects_tampering (research.tests.test_public_evidence.PublicEvidenceTests.test_export_refuses_existing_outputs_and_loader_rejects_tampering) ... ok
+test_identical_full_bytes_in_two_archives_keep_both_paths (research.tests.test_public_evidence.PublicEvidenceTests.test_identical_full_bytes_in_two_archives_keep_both_paths) ... ok
+test_missing_or_non_boolean_true_flag_never_keeps_dense_prices (research.tests.test_public_evidence.PublicEvidenceTests.test_missing_or_non_boolean_true_flag_never_keeps_dense_prices) ... ok
+test_unknown_dense_fields_or_raw_bar_arrays_fail_closed (research.tests.test_public_evidence.PublicEvidenceTests.test_unknown_dense_fields_or_raw_bar_arrays_fail_closed) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.073s
+
+OK

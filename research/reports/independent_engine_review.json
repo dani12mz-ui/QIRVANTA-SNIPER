@@ -1,0 +1,557 @@
+{
+  "schema": "qirvanta.independent_engine_review.v1",
+  "status": "PASS",
+  "recorded_utc": "2026-11-09T17:51:42.558870+00:00",
+  "scope": "DETERMINISTIC_REPLAY_REVIEW_NOT_UNITTEST_COUNT_OR_NATIVE_PARITY",
+  "random_seed": null,
+  "determinism": "No random sampling; fixed prefixes, mirror transform and synthetic fixtures",
+  "review_tool": {
+    "path": "research/validation/independent_review.py",
+    "sha256": "56645c5f1e8ab819cf224115ad4aa68d0ed33dde1f5abde4dc33ab642912044a"
+  },
+  "dataset": {
+    "path": "diagnostics/protocol/datasets/B-ALL-FULL/bars.csv",
+    "sha256": "7015f6386d2627237c57ff8625d59cbe3c9b852e4742b786cbb4679db3d48c56",
+    "bars": 6445,
+    "first_open_ms": 1785708000000,
+    "last_close_ms": 1794192300000,
+    "status": "ACTUAL_ALREADY_OBSERVED_ARCHIVE_NOT_UNTOUCHED_HOLDOUT"
+  },
+  "original_freeze": {
+    "path": "research/reports/method_history/paid_cash_precorrection/candidate_source_freeze.json",
+    "sha256": "1b1e4685dad618983b2d99344fe5bdb5d6a95b8cbeb035e033e41b7cf599d74b",
+    "engine_sha256": "bbb2c5c17e2f7a6d5d4e467586a733a6c5476a2b5a14bdacc0367ccc0980d3ee",
+    "source_sha256": {
+      "research/backtesting/engine.py": "bbb2c5c17e2f7a6d5d4e467586a733a6c5476a2b5a14bdacc0367ccc0980d3ee",
+      "research/data/loader.py": "27fa3d1c2574f3c697fbc9d3ba127bf7ccb3b78c00292a6d4b67972e49e9bb8a",
+      "research/features/causal.py": "553a030a5e83013f4699bdf6480b561433e553c4cc1f802ea2a70761d45449ea",
+      "research/strategies/library.py": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5"
+    }
+  },
+  "corrected_source_sha256": {
+    "research/backtesting/engine.py": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+    "research/data/loader.py": "b62bdc6075e56b90e094d24a55ff468b5357db0fd6702c091aa3c80fdb288209",
+    "research/features/causal.py": "553a030a5e83013f4699bdf6480b561433e553c4cc1f802ea2a70761d45449ea",
+    "research/strategies/library.py": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5"
+  },
+  "sources_stable_through_replay": true,
+  "original_replay": {
+    "status": "PASS",
+    "all_numeric_outputs_finite": true,
+    "prefix_checks": [
+      {
+        "bars": 500,
+        "decisions_equal": true,
+        "events_equal": true
+      },
+      {
+        "bars": 2500,
+        "decisions_equal": true,
+        "events_equal": true
+      },
+      {
+        "bars": 5000,
+        "decisions_equal": true,
+        "events_equal": true
+      }
+    ],
+    "combined_families": [
+      "S1",
+      "S2",
+      "S3",
+      "S4",
+      "S5",
+      "S6",
+      "S7",
+      "S8",
+      "S9"
+    ],
+    "mirror": {
+      "transform": "P -> 10000 - P; high/low exchanged; timestamps unchanged",
+      "plans": 208,
+      "mirrored_plans": 208,
+      "same_timing_family_status_opposite_side": true,
+      "net_cash_delta": 8.003553375601768e-11,
+      "max_plan_net_cash_delta": 5.4569682106375694e-12,
+      "cash_tolerance": 1e-08
+    },
+    "summary": {
+      "complete_plans": 207,
+      "open_plans": 1,
+      "pending_plans": 0,
+      "native_closed_rows": null,
+      "partial_exit_rows": 623,
+      "net_cash": 1029.2819999996461,
+      "all_realized_net_cash": 1112.0069999996592,
+      "profit_factor": 1.2295756512172518,
+      "wins": 81,
+      "losses": 126,
+      "net_r": 7.055952882850405,
+      "unscored_r_plans": 0,
+      "closed_cash_drawdown": 589.5650000000309,
+      "native_equity_drawdown": null,
+      "ambiguous_plans": 4,
+      "decision_counts": {
+        "REJECTED": 8975,
+        "BLOCKED": 12890,
+        "NO_SETUP": 90023,
+        "WATCH": 3914,
+        "SUBMITTED": 208
+      },
+      "rejection_reasons": {
+        "WARMUP_OR_CRITICAL_FEATURE_MISSING": 3184,
+        "TRUE_VOLUME_AND_VERIFIED_BAR_VWAP_UNAVAILABLE": 12890,
+        "STRUCTURAL_STOP_RANGE": 303,
+        "PRIOR_COMPRESSION": 686,
+        "CHASE_LIMIT": 190,
+        "DIRECTIONAL_CONTEXT": 3020,
+        "EFFICIENCY": 1491,
+        "PRIOR_PAUSE": 790,
+        "EXHAUSTION_DISTANCE": 468,
+        "CONFIRMATION_CANDLE": 675,
+        "STRUCTURAL_INVALIDATION": 500,
+        "DISPLACEMENT": 688,
+        "EXCESSIVE_BAR": 104,
+        "SETUP_EXPIRED": 370,
+        "COOLDOWN": 34,
+        "PORTFOLIO_OCCUPIED": 386,
+        "ACCEPTANCE_FAILED": 105,
+        "FIXED_FAMILY_PRIORITY": 44,
+        "EXPANSION_REQUIRED": 218,
+        "TIME_GAP_ON_CONFIRMATION": 47,
+        "SETUP_TIME_GAP": 23
+      }
+    },
+    "config_sha256": "22d1086aa74bfae8aa6a2f443e33fde7512decce6f6314fd39454f24602d64a2"
+  },
+  "corrected_replay": {
+    "status": "PASS",
+    "all_numeric_outputs_finite": true,
+    "prefix_checks": [
+      {
+        "bars": 500,
+        "decisions_equal": true,
+        "events_equal": true
+      },
+      {
+        "bars": 2500,
+        "decisions_equal": true,
+        "events_equal": true
+      },
+      {
+        "bars": 5000,
+        "decisions_equal": true,
+        "events_equal": true
+      }
+    ],
+    "combined_families": [
+      "S1",
+      "S2",
+      "S3",
+      "S4",
+      "S5",
+      "S6",
+      "S7",
+      "S8",
+      "S9"
+    ],
+    "mirror": {
+      "transform": "P -> 10000 - P; high/low exchanged; timestamps unchanged",
+      "plans": 208,
+      "mirrored_plans": 208,
+      "same_timing_family_status_opposite_side": true,
+      "net_cash_delta": 8.003553375601768e-11,
+      "max_plan_net_cash_delta": 5.4569682106375694e-12,
+      "cash_tolerance": 1e-08
+    },
+    "summary": {
+      "complete_plans": 207,
+      "open_plans": 1,
+      "pending_plans": 0,
+      "native_closed_rows": null,
+      "partial_exit_rows": 623,
+      "net_cash": 1029.2819999996461,
+      "all_realized_net_cash": 1111.831999999665,
+      "profit_factor": 1.2295756512172518,
+      "wins": 81,
+      "losses": 126,
+      "net_r": 7.055952882850405,
+      "unscored_r_plans": 0,
+      "closed_cash_drawdown": 589.5650000000309,
+      "native_equity_drawdown": null,
+      "ambiguous_plans": 4,
+      "decision_counts": {
+        "REJECTED": 8975,
+        "BLOCKED": 12890,
+        "NO_SETUP": 90023,
+        "WATCH": 3914,
+        "SUBMITTED": 208
+      },
+      "rejection_reasons": {
+        "WARMUP_OR_CRITICAL_FEATURE_MISSING": 3184,
+        "TRUE_VOLUME_AND_VERIFIED_BAR_VWAP_UNAVAILABLE": 12890,
+        "STRUCTURAL_STOP_RANGE": 303,
+        "PRIOR_COMPRESSION": 686,
+        "CHASE_LIMIT": 190,
+        "DIRECTIONAL_CONTEXT": 3020,
+        "EFFICIENCY": 1491,
+        "PRIOR_PAUSE": 790,
+        "EXHAUSTION_DISTANCE": 468,
+        "CONFIRMATION_CANDLE": 675,
+        "STRUCTURAL_INVALIDATION": 500,
+        "DISPLACEMENT": 688,
+        "EXCESSIVE_BAR": 104,
+        "SETUP_EXPIRED": 370,
+        "COOLDOWN": 34,
+        "PORTFOLIO_OCCUPIED": 386,
+        "ACCEPTANCE_FAILED": 105,
+        "FIXED_FAMILY_PRIORITY": 44,
+        "EXPANSION_REQUIRED": 218,
+        "TIME_GAP_ON_CONFIRMATION": 47,
+        "SETUP_TIME_GAP": 23
+      },
+      "cash_paid_net": 1111.831999999665,
+      "closed_parts_net": 1112.0069999996592,
+      "cash_paid_drawdown": 590.0900000000282,
+      "unallocated_entry_fees": 0.17499999999999993,
+      "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+      "daily_cash_UTC": {
+        "20670": 5.2489999999972525,
+        "20671": 22.975999999998027,
+        "20672": 57.14899999999234,
+        "20675": 114.599999999996,
+        "20676": 115.85399999999483,
+        "20677": -11.390000000002876,
+        "20678": 108.90999999999367,
+        "20679": 91.16299999999447,
+        "20681": -32.70900000000293,
+        "20682": 29.660999999996786,
+        "20683": -41.73800000001083,
+        "20684": 164.36599999999493,
+        "20685": 90.03499999999204,
+        "20686": -77.67300000000967,
+        "20689": 43.51499999999433,
+        "20690": 127.35299999999498,
+        "20691": 89.9589999999971,
+        "20692": -38.50800000000746,
+        "20693": -122.82900000000517,
+        "20696": -38.027000000002765,
+        "20697": -281.2050000000133,
+        "20698": 74.02799999999661,
+        "20699": 133.82099999999008,
+        "20700": -24.405000000008464,
+        "20703": 31.050999999993106,
+        "20704": -98.2830000000078,
+        "20705": 77.17799999999716,
+        "20706": 131.51999999999808,
+        "20707": 17.092999999997662,
+        "20709": 44.30799999999927,
+        "20710": 207.9989999999949,
+        "20711": -20.46900000000696,
+        "20712": -123.56200000001225,
+        "20713": 67.18199999999743,
+        "20714": -35.63400000000328,
+        "20717": -98.68300000000436,
+        "20718": 175.96099999999552,
+        "20719": 27.416999999996012,
+        "20720": -8.374000000006165,
+        "20721": 12.664999999994693,
+        "20724": -120.8920000000064,
+        "20725": 88.57599999999002,
+        "20726": 4.606999999993782,
+        "20727": 127.50799999999509,
+        "20728": 21.08499999998712,
+        "20731": 113.53799999999447,
+        "20732": 15.240999999992521,
+        "20733": 7.392999999991396,
+        "20734": -52.75600000000649,
+        "20735": -40.702000000009875,
+        "20737": 5.555999999999404,
+        "20738": 63.73499999999367,
+        "20739": -71.38500000000549,
+        "20740": -70.08700000000563,
+        "20741": -90.47000000000807,
+        "20742": -78.69100000001417,
+        "20745": 58.74199999999528,
+        "20746": -99.52200000000866,
+        "20747": 40.787999999994824,
+        "20748": 127.95399999999736,
+        "20749": 130.1720000000003,
+        "20752": -30.260999999999147,
+        "20753": -44.95999999999676,
+        "20754": -3.245000000000809,
+        "20755": 101.06699999999945,
+        "20756": -159.43199999999663,
+        "20759": 12.555000000001478,
+        "20760": 69.22000000000108,
+        "20761": 50.93699999999971,
+        "20762": -84.60700000000578,
+        "20763": -70.43099999999932,
+        "20766": 83.07499999999973
+      }
+    },
+    "config_sha256": "22d1086aa74bfae8aa6a2f443e33fde7512decce6f6314fd39454f24602d64a2"
+  },
+  "original_fee_observations": {
+    "all_cases_explicitly_synthetic": true,
+    "open": {
+      "status": "OPEN",
+      "net_cash_closed_parts": 0.0,
+      "cash_paid_net": null,
+      "entry_fee_paid": 0.5249999999999999,
+      "unallocated_entry_fee": 0.5249999999999999,
+      "fees_paid": null,
+      "summary_all_realized_net_cash": 0.0,
+      "cash_paid_drawdown": null,
+      "daily_cash_UTC": null,
+      "cash_events": []
+    },
+    "partial": {
+      "status": "OPEN",
+      "net_cash_closed_parts": 0.6480000000000047,
+      "cash_paid_net": null,
+      "entry_fee_paid": 0.5249999999999999,
+      "unallocated_entry_fee": 0.3499999999999999,
+      "fees_paid": null,
+      "summary_all_realized_net_cash": 0.6480000000000047,
+      "cash_paid_drawdown": null,
+      "daily_cash_UTC": null,
+      "cash_events": []
+    },
+    "pending": {
+      "status": "PENDING",
+      "net_cash_closed_parts": 0.0,
+      "cash_paid_net": null,
+      "entry_fee_paid": 0.0,
+      "unallocated_entry_fee": 0.0,
+      "fees_paid": null,
+      "summary_all_realized_net_cash": 0.0,
+      "cash_paid_drawdown": null,
+      "daily_cash_UTC": null,
+      "cash_events": []
+    },
+    "cross_day": {
+      "status": "COMPLETE",
+      "net_cash_closed_parts": 4.944000000000013,
+      "cash_paid_net": null,
+      "entry_fee_paid": 0.5249999999999999,
+      "unallocated_entry_fee": 0.0,
+      "fees_paid": null,
+      "summary_all_realized_net_cash": 4.944000000000013,
+      "cash_paid_drawdown": null,
+      "daily_cash_UTC": null,
+      "cash_events": []
+    },
+    "cross_day_guard": {
+      "status": "REJECTED",
+      "reasons": [
+        "DAILY_REALIZED_LOSS_LIMIT"
+      ],
+      "daily_cash_UTC": null
+    }
+  },
+  "corrected_fee_observations": {
+    "all_cases_explicitly_synthetic": true,
+    "open": {
+      "status": "OPEN",
+      "net_cash_closed_parts": 0.0,
+      "cash_paid_net": -0.5249999999999999,
+      "entry_fee_paid": 0.5249999999999999,
+      "unallocated_entry_fee": 0.5249999999999999,
+      "fees_paid": 0.5249999999999999,
+      "summary_all_realized_net_cash": -0.5249999999999999,
+      "cash_paid_drawdown": 0.5249999999999999,
+      "daily_cash_UTC": {
+        "19723": -0.5249999999999999
+      },
+      "cash_events": [
+        {
+          "index": 1,
+          "time": 1704068100000,
+          "kind": "ENTRY_FEE",
+          "cash_change": -0.5249999999999999,
+          "net_cash": -0.5249999999999999,
+          "entry_id": "OANDA:XAUUSD|15|S1|1|1704068100000|76ba3e267005|ENTRY"
+        }
+      ]
+    },
+    "partial": {
+      "status": "OPEN",
+      "net_cash_closed_parts": 0.6480000000000047,
+      "cash_paid_net": 0.2980000000000047,
+      "entry_fee_paid": 0.5249999999999999,
+      "unallocated_entry_fee": 0.3499999999999999,
+      "fees_paid": 0.7,
+      "summary_all_realized_net_cash": 0.2980000000000047,
+      "cash_paid_drawdown": 0.5249999999999999,
+      "daily_cash_UTC": {
+        "19723": 0.2980000000000047
+      },
+      "cash_events": [
+        {
+          "index": 1,
+          "time": 1704068100000,
+          "kind": "ENTRY_FEE",
+          "cash_change": -0.5249999999999999,
+          "net_cash": -0.5249999999999999,
+          "entry_id": "OANDA:XAUUSD|15|S1|1|1704068100000|76ba3e267005|ENTRY"
+        },
+        {
+          "index": 1,
+          "time": 1704069000000,
+          "kind": "EXIT_GROSS_MINUS_EXIT_FEE",
+          "cash_change": 0.8230000000000046,
+          "net_cash": 0.2980000000000047,
+          "exit_component_id": "OANDA:XAUUSD|15|S1|1|1704068100000|76ba3e267005|TP1"
+        }
+      ]
+    },
+    "pending": {
+      "status": "PENDING",
+      "net_cash_closed_parts": 0.0,
+      "cash_paid_net": 0.0,
+      "entry_fee_paid": 0.0,
+      "unallocated_entry_fee": 0.0,
+      "fees_paid": 0.0,
+      "summary_all_realized_net_cash": 0.0,
+      "cash_paid_drawdown": 0.0,
+      "daily_cash_UTC": {},
+      "cash_events": []
+    },
+    "cross_day": {
+      "status": "COMPLETE",
+      "net_cash_closed_parts": 4.944000000000013,
+      "cash_paid_net": 4.944000000000014,
+      "entry_fee_paid": 0.5249999999999999,
+      "unallocated_entry_fee": 0.0,
+      "fees_paid": 1.05,
+      "summary_all_realized_net_cash": 4.944000000000014,
+      "cash_paid_drawdown": 0.5249999999999999,
+      "daily_cash_UTC": {
+        "19723": -0.5249999999999999,
+        "19724": 5.469000000000014
+      },
+      "cash_events": [
+        {
+          "index": 1,
+          "time": 1704152700000,
+          "kind": "ENTRY_FEE",
+          "cash_change": -0.5249999999999999,
+          "net_cash": -0.5249999999999999,
+          "entry_id": "OANDA:XAUUSD|15|S1|1|1704152700000|76ba3e267005|ENTRY"
+        },
+        {
+          "index": 2,
+          "time": 1704154500000,
+          "kind": "EXIT_GROSS_MINUS_EXIT_FEE",
+          "cash_change": 0.8230000000000046,
+          "net_cash": 0.2980000000000047,
+          "exit_component_id": "OANDA:XAUUSD|15|S1|1|1704152700000|76ba3e267005|TP1"
+        },
+        {
+          "index": 2,
+          "time": 1704154500000,
+          "kind": "EXIT_GROSS_MINUS_EXIT_FEE",
+          "cash_change": 1.8230000000000046,
+          "net_cash": 2.1210000000000093,
+          "exit_component_id": "OANDA:XAUUSD|15|S1|1|1704152700000|76ba3e267005|TP2"
+        },
+        {
+          "index": 2,
+          "time": 1704154500000,
+          "kind": "EXIT_GROSS_MINUS_EXIT_FEE",
+          "cash_change": 2.823000000000005,
+          "net_cash": 4.944000000000014,
+          "exit_component_id": "OANDA:XAUUSD|15|S1|1|1704152700000|76ba3e267005|TP3"
+        }
+      ]
+    },
+    "cross_day_guard": {
+      "status": "SUBMITTED",
+      "reasons": [],
+      "daily_cash_UTC": {
+        "19723": -0.5249999999999999,
+        "19724": -0.5369999999999719
+      }
+    }
+  },
+  "fractional_csv": {
+    "original": {
+      ".5": "ACCEPTED",
+      ".00001": "ACCEPTED"
+    },
+    "corrected": {
+      ".5": "REJECTED",
+      ".00001": "REJECTED"
+    }
+  },
+  "correction_checks": {
+    "open_entry_fee_debited": true,
+    "open_paid_drawdown_keeps_fee": true,
+    "partial_remaining_entry_fee_included": true,
+    "pending_has_no_paid_fee": true,
+    "cross_day_entry_debit_correct": true,
+    "cross_day_exit_gross_minus_exit_fee": true,
+    "completed_plan_paid_equals_allocated": true,
+    "opt_in_daily_guard_uses_paid_day": true,
+    "fractional_csv_rejected_before_float_precision_loss": true
+  },
+  "paired_original_vs_corrected": {
+    "decisions_identical_default_daily_guard_off": true,
+    "events_identical": true,
+    "all_original_plan_and_exit_fields_identical": true,
+    "closed_part_equity_identical": true,
+    "completed_net_cash_identical": true
+  },
+  "original_journal_impact": {
+    "archived_journals_inspected": 90,
+    "affected_at_cutoff": [
+      {
+        "journal": "research/reports/method_history/paid_cash_precorrection/candidate_journals/S7-BASE.json.gz",
+        "sha256": "c33321cfcfc869c2ea083d9cabf8d62b9fde950fb09fc4ffc79ddda20d014431",
+        "entry_fee_missing_from_old_all_realized_cash": 0.17499999999999993,
+        "open_plans": 1
+      },
+      {
+        "journal": "research/reports/method_history/paid_cash_precorrection/candidate_journals/S7-BREAKEVEN.json.gz",
+        "sha256": "0d586898013a6a18552aa0faed56ea743226ed35237b99cc32530775006a977b",
+        "entry_fee_missing_from_old_all_realized_cash": 0.17499999999999993,
+        "open_plans": 1
+      },
+      {
+        "journal": "research/reports/method_history/paid_cash_precorrection/candidate_journals/S7-COST1.5.json.gz",
+        "sha256": "66d17a1fa3cb73cae713337ccad2165ea6ac7eb7bb293c89bc837bb8c6b8e936",
+        "entry_fee_missing_from_old_all_realized_cash": 0.26249999999999996,
+        "open_plans": 1
+      },
+      {
+        "journal": "research/reports/method_history/paid_cash_precorrection/candidate_journals/S7-COST2.json.gz",
+        "sha256": "c913365a1aec80f78520b510b0e53f17321263372c6f03f8508d03a9844c3d8b",
+        "entry_fee_missing_from_old_all_realized_cash": 0.34999999999999987,
+        "open_plans": 1
+      }
+    ],
+    "completed_plan_net_cash_unchanged_by_fee_allocation": true
+  },
+  "findings": [
+    {
+      "id": "ENTRY_FEE_TIMING",
+      "original_severity": "MATERIAL_ACCOUNTING",
+      "status": "RESOLVED",
+      "detail": "Original cash/daily ledger deferred paid entry fee until exits; corrected paid ledger debits entry and exit fees on their respective observed execution days."
+    },
+    {
+      "id": "FRACTIONAL_TIMESTAMP_TRUNCATION",
+      "status": "RESOLVED",
+      "detail": "Original CSV conversion could silently truncate/round fractional milliseconds; correction must reject both ordinary and sub-float-resolution fractions."
+    }
+  ],
+  "limitations": [
+    "Replay checks are not additional unittest methods.",
+    "No Pine/broker execution equivalence or future profitability established.",
+    "Mirror/prefix checks cover fixed defaults with S1-S9 combined; they are not an exhaustive configuration proof.",
+    "All archived prices were already observed; mirror prices and fee fixtures are synthetic and explicitly labeled.",
+    "Paid cash and closed-part cash exclude unrealized mark-to-market; intrabar exit timestamps remain OHLC approximations.",
+    "The opt-in daily guard intentionally changes admission in the cross-day synthetic fixture; original trial defaults have this guard disabled."
+  ]
+}

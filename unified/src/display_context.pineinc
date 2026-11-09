@@ -1,0 +1,36 @@
+// DISPLAY ONLY. No downstream decision/order module can depend on these values.
+// Higher requests are made only above the chart timeframe: never disguise lower-TF values as HTF.
+float uiLocalEMA50 = ta.ema(close, 50)
+float uiH1Close = na
+float uiH1EMA = na
+float uiH1EarlierEMA = na
+int uiH1ClosedAt = na
+float uiH4Close = na
+float uiH4EMA = na
+float uiH4EarlierEMA = na
+int uiH4ClosedAt = na
+if showMTFContext and tfSeconds < 3600
+    [uiC1, uiE1, uiP1, uiT1] = request.security(syminfo.tickerid, "60", [close[1], ta.ema(close, 50)[1], ta.ema(close, 50)[3], time_close[1]], lookahead=barmerge.lookahead_on)
+    uiH1Close := uiC1
+    uiH1EMA := uiE1
+    uiH1EarlierEMA := uiP1
+    uiH1ClosedAt := uiT1
+else if showMTFContext and tfSeconds == 3600
+    uiH1Close := barstate.isconfirmed ? close : close[1]
+    uiH1EMA := barstate.isconfirmed ? uiLocalEMA50 : uiLocalEMA50[1]
+    uiH1EarlierEMA := barstate.isconfirmed ? uiLocalEMA50[2] : uiLocalEMA50[3]
+    uiH1ClosedAt := barstate.isconfirmed ? time_close : time_close[1]
+if showMTFContext and tfSeconds < 14400
+    [uiC4, uiE4, uiP4, uiT4] = request.security(syminfo.tickerid, "240", [close[1], ta.ema(close, 50)[1], ta.ema(close, 50)[3], time_close[1]], lookahead=barmerge.lookahead_on)
+    uiH4Close := uiC4
+    uiH4EMA := uiE4
+    uiH4EarlierEMA := uiP4
+    uiH4ClosedAt := uiT4
+else if showMTFContext and tfSeconds == 14400
+    uiH4Close := barstate.isconfirmed ? close : close[1]
+    uiH4EMA := barstate.isconfirmed ? uiLocalEMA50 : uiLocalEMA50[1]
+    uiH4EarlierEMA := barstate.isconfirmed ? uiLocalEMA50[2] : uiLocalEMA50[3]
+    uiH4ClosedAt := barstate.isconfirmed ? time_close : time_close[1]
+int uiH1Bias = na(uiH1EarlierEMA) ? 0 : uiH1Close > uiH1EMA and uiH1EMA > uiH1EarlierEMA ? 1 : uiH1Close < uiH1EMA and uiH1EMA < uiH1EarlierEMA ? -1 : 0
+int uiH4Bias = na(uiH4EarlierEMA) ? 0 : uiH4Close > uiH4EMA and uiH4EMA > uiH4EarlierEMA ? 1 : uiH4Close < uiH4EMA and uiH4EMA < uiH4EarlierEMA ? -1 : 0
+string uiRegime = not warmup ? "Недостатъчно данни" : not validATR ? "Волатилност извън обхват" : atr > atrMean * 1.9 ? "Разширяване" : atr < atrMean * 0.7 ? "Свиване" : adx < minADX ? "Диапазон" : bullLocal and bullHTF ? "Тренд нагоре" : bearLocal and bearHTF ? "Тренд надолу" : "Преход / неясно"

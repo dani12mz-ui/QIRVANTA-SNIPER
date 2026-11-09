@@ -1,0 +1,655 @@
+{
+  "schema": "qirvanta.research.multiple_testing.v1",
+  "count": 129,
+  "accounting_reruns_counted_as_new": false,
+  "scope": "All129 registered mission trials, prior external/posthoc ideas not included; p-values descriptive not confirmatory",
+  "trials": [
+    {
+      "id": "S1-BASE",
+      "p": 0.7551224387806097,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S1-FIXED_R",
+      "p": 0.8500749625187406,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S1-STRUCTURAL",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S1-BREAKEVEN",
+      "p": 0.6286856571714143,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S1-ATR_TRAIL",
+      "p": 0.5272363818090955,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S1-DELAY2",
+      "p": 0.7141429285357321,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S1-COST1.5",
+      "p": 0.7551224387806097,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S1-COST2",
+      "p": 0.7551224387806097,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S2-BASE",
+      "p": 0.9570214892553723,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S2-FIXED_R",
+      "p": 0.7316341829085458,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S2-STRUCTURAL",
+      "p": 0.928535732133933,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S2-BREAKEVEN",
+      "p": 0.9000499750124937,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S2-ATR_TRAIL",
+      "p": 0.5782108945527237,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S2-DELAY2",
+      "p": 0.6956521739130435,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S2-COST1.5",
+      "p": 0.9700149925037481,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S2-COST2",
+      "p": 0.9770114942528736,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S3-BASE",
+      "p": 0.049475262368815595,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S3-FIXED_R",
+      "p": 0.08595702148925537,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S3-STRUCTURAL",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S3-BREAKEVEN",
+      "p": 0.04247876061969016,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S3-ATR_TRAIL",
+      "p": 0.06796601699150424,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S3-DELAY2",
+      "p": 0.08295852073963018,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S3-COST1.5",
+      "p": 0.051974012993503245,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S3-COST2",
+      "p": 0.05697151424287856,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S4-BASE",
+      "p": 0.8185907046476761,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S4-FIXED_R",
+      "p": 0.6626686656671664,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S4-STRUCTURAL",
+      "p": 0.49825087456271866,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S4-BREAKEVEN",
+      "p": 0.8875562218890555,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S4-ATR_TRAIL",
+      "p": 0.912543728135932,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S4-DELAY2",
+      "p": 0.9960019990004998,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S4-COST1.5",
+      "p": 0.8340829585207397,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S4-COST2",
+      "p": 0.847576211894053,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S5-BASE",
+      "p": 0.4947526236881559,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S5-FIXED_R",
+      "p": 0.4257871064467766,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S5-STRUCTURAL",
+      "p": 0.6411794102948526,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S5-BREAKEVEN",
+      "p": 0.31084457771114443,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S5-ATR_TRAIL",
+      "p": 0.4012993503248376,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S5-DELAY2",
+      "p": 0.5477261369315343,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S5-COST1.5",
+      "p": 0.5702148925537232,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S5-COST2",
+      "p": 0.6436781609195402,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S6-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S6-FIXED_R",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S6-STRUCTURAL",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S6-BREAKEVEN",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S6-ATR_TRAIL",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S6-DELAY2",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S6-COST1.5",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S6-COST2",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S7-BASE",
+      "p": 0.672663668165917,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S7-FIXED_R",
+      "p": 0.768615692153923,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S7-STRUCTURAL",
+      "p": 0.9540229885057471,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S7-BREAKEVEN",
+      "p": 0.7346326836581709,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S7-ATR_TRAIL",
+      "p": 0.8950524737631185,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S7-DELAY2",
+      "p": 0.6916541729135433,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S7-COST1.5",
+      "p": 0.7101449275362319,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S7-COST2",
+      "p": 0.7436281859070465,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S8-BASE",
+      "p": 0.1489255372313843,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S8-FIXED_R",
+      "p": 0.0769615192403798,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S8-STRUCTURAL",
+      "p": 0.49825087456271866,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S8-BREAKEVEN",
+      "p": 0.11744127936031984,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S8-ATR_TRAIL",
+      "p": 0.20339830084957522,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S8-DELAY2",
+      "p": 0.567216391804098,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S8-COST1.5",
+      "p": 0.1584207896051974,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S8-COST2",
+      "p": 0.16741629185407297,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S9-BASE",
+      "p": 0.8990504747626187,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S9-FIXED_R",
+      "p": 0.7926036981509246,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S9-STRUCTURAL",
+      "p": 0.6326836581709145,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S9-BREAKEVEN",
+      "p": 0.8755622188905547,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S9-ATR_TRAIL",
+      "p": 0.8730634682658671,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S9-DELAY2",
+      "p": 0.4672663668165917,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S9-COST1.5",
+      "p": 0.9190404797601199,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S9-COST2",
+      "p": 0.9340329835082459,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S10-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S10-FIXED_R",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S10-STRUCTURAL",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S10-BREAKEVEN",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S10-ATR_TRAIL",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S10-DELAY2",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S10-COST1.5",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S10-COST2",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S1-M30-BASE",
+      "p": 0.5037481259370314,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S2-M30-BASE",
+      "p": 0.6156921539230384,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S3-M30-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S4-M30-BASE",
+      "p": 0.5227386306846576,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S5-M30-BASE",
+      "p": 0.02848575712143928,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S6-M30-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S7-M30-BASE",
+      "p": 0.9035482258870565,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S8-M30-BASE",
+      "p": 0.06596701649175413,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S9-M30-BASE",
+      "p": 0.5757121439280359,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S10-M30-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S1-ACTUAL-M5-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S2-ACTUAL-M5-BASE",
+      "p": 0.84007996001999,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S3-ACTUAL-M5-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S4-ACTUAL-M5-BASE",
+      "p": 0.30334832583708143,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S5-ACTUAL-M5-BASE",
+      "p": 0.20189905047476261,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S6-ACTUAL-M5-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S7-ACTUAL-M5-BASE",
+      "p": 0.19640179910044978,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S8-ACTUAL-M5-BASE",
+      "p": 0.7181409295352323,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S9-ACTUAL-M5-BASE",
+      "p": 0.7381309345327336,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S10-ACTUAL-M5-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S1-ACTUAL-M15-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S2-ACTUAL-M15-BASE",
+      "p": 0.16891554222888555,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S3-ACTUAL-M15-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S4-ACTUAL-M15-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S5-ACTUAL-M15-BASE",
+      "p": 0.703648175912044,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S6-ACTUAL-M15-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S7-ACTUAL-M15-BASE",
+      "p": 0.9835082458770614,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S8-ACTUAL-M15-BASE",
+      "p": 0.5227386306846576,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S9-ACTUAL-M15-BASE",
+      "p": 0.3468265867066467,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S10-ACTUAL-M15-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S1-ACTUAL-M30-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S2-ACTUAL-M30-BASE",
+      "p": 0.7631184407796102,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S3-ACTUAL-M30-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S4-ACTUAL-M30-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S5-ACTUAL-M30-BASE",
+      "p": 0.079960019990005,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S6-ACTUAL-M30-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S7-ACTUAL-M30-BASE",
+      "p": 0.6901549225387307,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S8-ACTUAL-M30-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S9-ACTUAL-M30-BASE",
+      "p": 0.2283858070964518,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S10-ACTUAL-M30-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S3-BODY0.2",
+      "p": 0.049475262368815595,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S3-BODY0.3",
+      "p": 0.07096451774112944,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S5-BODY0.2",
+      "p": 0.551224387806097,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S5-BODY0.3",
+      "p": 0.30884557721139433,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S8-ADX18",
+      "p": 0.21739130434782608,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S8-ADX22",
+      "p": 0.18790604697651175,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S3-ABLATE-CONFIRMATION_CANDLE",
+      "p": 0.24037981009495252,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S5-ABLATE-CONFIRMATION_CANDLE",
+      "p": 0.9080459770114943,
+      "holm_adjusted_p_all_129": 1
+    },
+    {
+      "id": "S8-ABLATE-PRIOR_PAUSE",
+      "p": 0.06846576711644178,
+      "holm_adjusted_p_all_129": 1
+    }
+  ],
+  "significant_count_05": 0,
+  "champion_promoted": false
+}

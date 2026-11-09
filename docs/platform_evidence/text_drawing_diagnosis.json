@@ -1,0 +1,17 @@
+{
+  "observed_at_utc": "2026-11-09T17:26:14.698Z",
+  "object_type": "TradingView Text Drawing",
+  "font_size": 14,
+  "characters": 115724,
+  "sha256": "0a4e328ba1a29d591f2e4763adbaf4572a090215da202931e8380e21749354ba",
+  "starts_with": "//@version=6\n//@strategy_alert_message {{strategy.order.alert_message}} | Изпълнена симулация: {{strategy.orde",
+  "contains": [
+    "NATIVE_EXIT_GAP",
+    "NATIVE_SUBMITTED",
+    "plannedCampaignQty",
+    "maxDeviationATRFrozen",
+    "f_price(e.tp1)",
+    "e.reason"
+  ],
+  "is_pine_generated_label": false
+}

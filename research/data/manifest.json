@@ -1,0 +1,18 @@
+{
+  "schema": "qirvanta.research.dataset-reference.v1",
+  "dataset_path": "diagnostics/protocol/datasets/B-ALL-FULL/bars.csv",
+  "sha256": "7015f6386d2627237c57ff8625d59cbe3c9b852e4742b786cbb4679db3d48c56",
+  "rows": 6445,
+  "status": "ALREADY_OBSERVED_NOT_UNTOUCHED",
+  "volume_status": "UNVERIFIED_TICK_OR_PROVIDER_VOLUME_NOT_TRUE_VWAP",
+  "new_platform_observation": "33 volume corrections, original locked archive retained; OHLC/HTF unchanged per root platform evidence",
+  "raw_copies_created": false,
+  "real_timeframes": [
+    "M15"
+  ],
+  "synthetic_format_tests": [
+    "M5",
+    "M15",
+    "M30"
+  ]
+}

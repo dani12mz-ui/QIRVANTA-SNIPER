@@ -1,0 +1,18 @@
+{
+  "created_utc": "2026-11-09T18:04:52.376585+00:00",
+  "registration_sha256": {
+    "actual_tf": "57b0802da29a5414051dd096a0253b4046889efc19a8749edf3cc44f1d7a5e9b",
+    "ablation": "ba132d93fc093777e6a0bd5f28666548b882093598b80b94f8499c46cc298dcf"
+  },
+  "economic_source_sha256": {
+    "research/data/loader.py": "b62bdc6075e56b90e094d24a55ff468b5357db0fd6702c091aa3c80fdb288209",
+    "research/data/aggregate.py": "1c8f8da6ef3774501bf5f83b8de16e7ab1cd5f3c9cc49ef44b30cf92a2b5cb02",
+    "research/features/causal.py": "553a030a5e83013f4699bdf6480b561433e553c4cc1f802ea2a70761d45449ea",
+    "research/strategies/library.py": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+    "research/backtesting/engine.py": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993"
+  },
+  "ablation_adapter_sha256": "4ecf36fdc940057f90b768d023cdc1aeb484d9303e6dab201790c600f30e7aaa",
+  "runner_sha256": "c717a0ba59bef04f6d15b9653bc8fc8f40cfaaa979dd4240cf9fbc6603732627",
+  "common_window_helper_sha256": "b90e7eb916e8a00dea2380fd0063cf76c7005f61ea8e0d868785d25c6e3f9b5d",
+  "statistics_sha256": "32fac0ead636b0c7dc65b485ec55a9097fde1473bb4c735930bd6cca55986fd0"
+}

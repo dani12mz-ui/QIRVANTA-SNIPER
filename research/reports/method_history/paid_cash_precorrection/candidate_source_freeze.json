@@ -1,0 +1,63 @@
+{
+  "recorded_utc": "2026-11-09T17:34:36.381265+00:00",
+  "registration_sha256": "6d422f4384cdcd012330b39fdee444be09d1aee9a984e7f036df0c15aac6b1cd",
+  "strategy_defaults": {
+    "stop_buffer_atr": 0.12,
+    "min_stop_atr": 0.4,
+    "max_stop_atr": 3.5,
+    "max_bar_atr": 3.0,
+    "max_chase_atr": 0.75,
+    "efficiency_min": 0.25,
+    "adx_min": 20,
+    "confirmation_body_atr": 0.25,
+    "setup_age": 3,
+    "retest_age": 5,
+    "retest_tolerance_atr": 0.2,
+    "compression_ratio": 0.75,
+    "compression_width_atr": 6,
+    "vwap_deviation_sd": 2,
+    "require_htf": false,
+    "sessions": []
+  },
+  "engine_defaults": {
+    "enabled_families": [],
+    "strategy_params": {},
+    "commission_per_unit": 0.175,
+    "slippage_ticks": 2,
+    "mintick": 0.001,
+    "quantity": 3,
+    "pointvalue": 1,
+    "exit_variant": "PARTIAL_R",
+    "target_rs": [
+      1.0,
+      2.0,
+      3.0
+    ],
+    "fixed_target_r": 2,
+    "max_hold_bars": 48,
+    "entry_delay_bars": 1,
+    "cooldown_bars": 8,
+    "max_entry_deviation_atr": 0.2,
+    "daily_loss_limit_cash": null,
+    "max_risk_cash": null,
+    "manual_news_pause": false,
+    "validation_manifest": null,
+    "volume_kind": "UNVERIFIED",
+    "verified_bar_vwap": false,
+    "trade_start_ms": null,
+    "trade_end_ms": null,
+    "symbol": "OANDA:XAUUSD"
+  },
+  "source_sha256": {
+    "research\\data\\loader.py": "27fa3d1c2574f3c697fbc9d3ba127bf7ccb3b78c00292a6d4b67972e49e9bb8a",
+    "research\\features\\causal.py": "553a030a5e83013f4699bdf6480b561433e553c4cc1f802ea2a70761d45449ea",
+    "research\\strategies\\library.py": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+    "research\\backtesting\\engine.py": "bbb2c5c17e2f7a6d5d4e467586a733a6c5476a2b5a14bdacc0367ccc0980d3ee",
+    "research\\validation\\native_report.py": "eb469db9ae2e4d71e407eab1ede24d775998759316b4b6e177d4178b2066df35",
+    "research\\validation\\protocol.py": "eff74ea47803a0d647d47581d74b8b8985656a98647f87dddbe450443d94f4de",
+    "research\\validation\\run_experiments.py": "5745149f912500d067bffdfc97865fba9c9bea4f2ead1761d7456a0ce11bdd52",
+    "research\\validation\\statistics.py": "e51b6adf96eb3d6bfb2110a7b749e1baa1a8e78ef8329a3814bca88a71681b5a",
+    "research\\models\\logistic.py": "fb71fafdfa2312719adff256e84bbd858db1b8af506efbddaceb648f94923075",
+    "research\\labeling\\barriers.py": "895c71bb32d8d970393c05e5b270b1c8a1f758c6b6624a754c4b599417133fd1"
+  }
+}

@@ -1,0 +1,627 @@
+{
+  "schema": "qirvanta.research.registration.v1",
+  "registered_utc": "2026-11-09T17:29:12.111407+00:00",
+  "stage": "EXPLORATORY_ALREADY_OBSERVED_DATA_NOT_CONFIRMATORY",
+  "baseline_freeze_sha256": "8fa82918b505e380e631a7a6eeca1d7521abe3add0081764764fe9e9241586d5",
+  "seed": 20261109,
+  "data": {
+    "symbol": "OANDA:XAUUSD",
+    "timeframe": "M15",
+    "bars": 6445,
+    "start_utc": "2026-08-02T22:00:00Z",
+    "end_exclusive_utc": "2026-11-09T02:45:00Z",
+    "sha256": "7015f6386d2627237c57ff8625d59cbe3c9b852e4742b786cbb4679db3d48c56",
+    "already_observed": true
+  },
+  "fixed_engine_assumptions": {
+    "quantity": 3,
+    "pointvalue": 1,
+    "commission_per_unit_per_fill": 0.175,
+    "slippage_ticks": 2,
+    "mintick": 0.001,
+    "max_hold_bars": 48,
+    "cooldown_bars": 8,
+    "max_entry_deviation_atr": 0.2
+  },
+  "experiments": [
+    {
+      "id": "S1-BASE",
+      "family": "S1",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S1-FIXED_R",
+      "family": "S1",
+      "exit_variant": "FIXED_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S1-STRUCTURAL",
+      "family": "S1",
+      "exit_variant": "STRUCTURAL",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S1-BREAKEVEN",
+      "family": "S1",
+      "exit_variant": "BREAKEVEN",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S1-ATR_TRAIL",
+      "family": "S1",
+      "exit_variant": "ATR_TRAIL",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S1-DELAY2",
+      "family": "S1",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 2,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S1-COST1.5",
+      "family": "S1",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1.5
+    },
+    {
+      "id": "S1-COST2",
+      "family": "S1",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 2
+    },
+    {
+      "id": "S2-BASE",
+      "family": "S2",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S2-FIXED_R",
+      "family": "S2",
+      "exit_variant": "FIXED_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S2-STRUCTURAL",
+      "family": "S2",
+      "exit_variant": "STRUCTURAL",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S2-BREAKEVEN",
+      "family": "S2",
+      "exit_variant": "BREAKEVEN",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S2-ATR_TRAIL",
+      "family": "S2",
+      "exit_variant": "ATR_TRAIL",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S2-DELAY2",
+      "family": "S2",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 2,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S2-COST1.5",
+      "family": "S2",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1.5
+    },
+    {
+      "id": "S2-COST2",
+      "family": "S2",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 2
+    },
+    {
+      "id": "S3-BASE",
+      "family": "S3",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S3-FIXED_R",
+      "family": "S3",
+      "exit_variant": "FIXED_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S3-STRUCTURAL",
+      "family": "S3",
+      "exit_variant": "STRUCTURAL",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S3-BREAKEVEN",
+      "family": "S3",
+      "exit_variant": "BREAKEVEN",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S3-ATR_TRAIL",
+      "family": "S3",
+      "exit_variant": "ATR_TRAIL",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S3-DELAY2",
+      "family": "S3",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 2,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S3-COST1.5",
+      "family": "S3",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1.5
+    },
+    {
+      "id": "S3-COST2",
+      "family": "S3",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 2
+    },
+    {
+      "id": "S4-BASE",
+      "family": "S4",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S4-FIXED_R",
+      "family": "S4",
+      "exit_variant": "FIXED_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S4-STRUCTURAL",
+      "family": "S4",
+      "exit_variant": "STRUCTURAL",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S4-BREAKEVEN",
+      "family": "S4",
+      "exit_variant": "BREAKEVEN",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S4-ATR_TRAIL",
+      "family": "S4",
+      "exit_variant": "ATR_TRAIL",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S4-DELAY2",
+      "family": "S4",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 2,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S4-COST1.5",
+      "family": "S4",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1.5
+    },
+    {
+      "id": "S4-COST2",
+      "family": "S4",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 2
+    },
+    {
+      "id": "S5-BASE",
+      "family": "S5",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S5-FIXED_R",
+      "family": "S5",
+      "exit_variant": "FIXED_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S5-STRUCTURAL",
+      "family": "S5",
+      "exit_variant": "STRUCTURAL",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S5-BREAKEVEN",
+      "family": "S5",
+      "exit_variant": "BREAKEVEN",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S5-ATR_TRAIL",
+      "family": "S5",
+      "exit_variant": "ATR_TRAIL",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S5-DELAY2",
+      "family": "S5",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 2,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S5-COST1.5",
+      "family": "S5",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1.5
+    },
+    {
+      "id": "S5-COST2",
+      "family": "S5",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 2
+    },
+    {
+      "id": "S6-BASE",
+      "family": "S6",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S6-FIXED_R",
+      "family": "S6",
+      "exit_variant": "FIXED_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S6-STRUCTURAL",
+      "family": "S6",
+      "exit_variant": "STRUCTURAL",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S6-BREAKEVEN",
+      "family": "S6",
+      "exit_variant": "BREAKEVEN",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S6-ATR_TRAIL",
+      "family": "S6",
+      "exit_variant": "ATR_TRAIL",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S6-DELAY2",
+      "family": "S6",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 2,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S6-COST1.5",
+      "family": "S6",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1.5
+    },
+    {
+      "id": "S6-COST2",
+      "family": "S6",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 2
+    },
+    {
+      "id": "S7-BASE",
+      "family": "S7",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S7-FIXED_R",
+      "family": "S7",
+      "exit_variant": "FIXED_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S7-STRUCTURAL",
+      "family": "S7",
+      "exit_variant": "STRUCTURAL",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S7-BREAKEVEN",
+      "family": "S7",
+      "exit_variant": "BREAKEVEN",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S7-ATR_TRAIL",
+      "family": "S7",
+      "exit_variant": "ATR_TRAIL",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S7-DELAY2",
+      "family": "S7",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 2,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S7-COST1.5",
+      "family": "S7",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1.5
+    },
+    {
+      "id": "S7-COST2",
+      "family": "S7",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 2
+    },
+    {
+      "id": "S8-BASE",
+      "family": "S8",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S8-FIXED_R",
+      "family": "S8",
+      "exit_variant": "FIXED_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S8-STRUCTURAL",
+      "family": "S8",
+      "exit_variant": "STRUCTURAL",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S8-BREAKEVEN",
+      "family": "S8",
+      "exit_variant": "BREAKEVEN",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S8-ATR_TRAIL",
+      "family": "S8",
+      "exit_variant": "ATR_TRAIL",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S8-DELAY2",
+      "family": "S8",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 2,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S8-COST1.5",
+      "family": "S8",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1.5
+    },
+    {
+      "id": "S8-COST2",
+      "family": "S8",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 2
+    },
+    {
+      "id": "S9-BASE",
+      "family": "S9",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S9-FIXED_R",
+      "family": "S9",
+      "exit_variant": "FIXED_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S9-STRUCTURAL",
+      "family": "S9",
+      "exit_variant": "STRUCTURAL",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S9-BREAKEVEN",
+      "family": "S9",
+      "exit_variant": "BREAKEVEN",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S9-ATR_TRAIL",
+      "family": "S9",
+      "exit_variant": "ATR_TRAIL",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S9-DELAY2",
+      "family": "S9",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 2,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S9-COST1.5",
+      "family": "S9",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1.5
+    },
+    {
+      "id": "S9-COST2",
+      "family": "S9",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 2
+    },
+    {
+      "id": "S10-BASE",
+      "family": "S10",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S10-FIXED_R",
+      "family": "S10",
+      "exit_variant": "FIXED_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S10-STRUCTURAL",
+      "family": "S10",
+      "exit_variant": "STRUCTURAL",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S10-BREAKEVEN",
+      "family": "S10",
+      "exit_variant": "BREAKEVEN",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S10-ATR_TRAIL",
+      "family": "S10",
+      "exit_variant": "ATR_TRAIL",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S10-DELAY2",
+      "family": "S10",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 2,
+      "cost_multiplier": 1
+    },
+    {
+      "id": "S10-COST1.5",
+      "family": "S10",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 1.5
+    },
+    {
+      "id": "S10-COST2",
+      "family": "S10",
+      "exit_variant": "PARTIAL_R",
+      "entry_delay_bars": 1,
+      "cost_multiplier": 2
+    }
+  ],
+  "hypotheses": [
+    "S1-S9 fixed rule families are exploratory implementations, not validated translations of native baseline.",
+    "S6 must stay blocked without independent meaningful volume semantics; S10 without independent validation manifest.",
+    "Exit, delayed entry and cost variants measure fragility; selection of the best variant is forbidden as a promotion rule.",
+    "A causal logistic model using pre-entry native metadata may fail to beat train-prevalence Brier; all failures are retained."
+  ],
+  "analysis": {
+    "native_campaign_unit": "one original entry_id aggregating all partial exits",
+    "wilson_confidence": 0.95,
+    "bootstrap": "circular moving blocks of 5 campaigns, 2000 repetitions, fixed seed",
+    "permutation": "campaign sign-flip exploratory null; independence not assured",
+    "multiple_testing": "Holm over ALL 80 candidate trial p-values; blocked/zero-trade p=1",
+    "chronology": "60/20/20 by signal time with event-end purge and 1 M15-bar embargo; rolling expanding train with 12-trade test blocks",
+    "calibration": "fit scaler/model only on train; Platt on validation only; compare Brier to train prevalence",
+    "small_sample_threshold": 30
+  },
+  "failure_and_promotion_policy": {
+    "record_every_trial": true,
+    "zero_trade_and_all_loss_trials_retained": true,
+    "no_parameter_threshold_search": true,
+    "no_champion_change": true,
+    "new_holdout_required": true,
+    "future_research_interval": "[2026-11-10,2026-12-10) UTC, currently unavailable",
+    "minimum_complete_future_campaigns": 30,
+    "necessary_not_sufficient": [
+      "positive net after base and doubled costs",
+      "PF > 1 in future holdout",
+      "positive lower uncertainty bound for expected R",
+      "acceptable predeclared equity-risk limit and no hidden open trades",
+      "native parity or explicit independently validated execution engine"
+    ]
+  },
+  "unavailable": [
+    "untouched test data",
+    "M5/M30 original feed histories",
+    "PU Prime executable bid/ask and account symbol specification",
+    "point-in-time macro/news history",
+    "actual broker executions"
+  ]
+}

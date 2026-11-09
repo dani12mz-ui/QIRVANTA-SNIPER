@@ -1,0 +1,105 @@
+Browser tab: 2, Title: "XAUUSD 4,105.540 ▲ +0.86% Unnamed", URL: "https://www.tradingview.com/chart/4foVQMDF/".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 623-639, 647-649, 776, 793-801
+~0 AXWebArea XAUUSD 4,105.540 ▲ +0.86% Unnamed, URL: tradingview.com/chart/4foVQMDF/
+~						25 button Save all charts for all symbols and intervals on your layout
+~							100 text O 4,105.675 H 4,106.575 L 4,103.935 C 4,105.540 −0.085 (−0.00%)
+~						102 text 4,105.38 0 SELL
+~						103 text 47.0
+~						104 text 4,105.85 0 BUY
++						1166 toolbar
++							1167 text QIRV ONE
++							1168 container
++								1169 button Hide
++									1170 image
++								1171 button Settings
++									1172 image
++								1173 button Remove
++									1174 image
++								1175 button Description: More options for QIRV ONE, Help: More
++									1176 image
++							1177 button Active strategy · Opened in Pine Editor
++							1178 container
++								1179 text 4,114.487
++								1180 text 4,108.871
++								1181 text 0.000
++								1182 text 0.000
+~					154 text 17:36:41 UTC
++					1183 text QIRV ONE
++					1184 container
++						1185 text Waiting on logs We're holding out for some logs, but there's none available here yet.
++					1186 button (collapsed) Description: 100 K, Secondary Actions: Expand
++						1187 container
++							1188 text 100 K USD
++					1189 button (disabled) Update on chart
++							1190 row
++								1191 cell
++									1192 text 19:36:15 ч.
++								1193 cell
++									1194 container
++										1195 text Warning at 96 : 39
++									1196 text The inputs with the `inline` argument "levels1" might not align correctly in the "Settings/Inputs" tab. To ensure that inline inputs align consistently, specify a title for only the first input on each line, and use an empty title for all others.
++									1197 link Description: Learn more, Value: tradingview.com/pine-script-docs/errors/CW10026
++							1198 row
++								1199 cell
++									1200 text 19:36:15 ч.
++								1201 cell
++									1202 container
++										1203 text Warning at 98 : 38
++									1204 text The inputs with the `inline` argument "levels2" might not align correctly in the "Settings/Inputs" tab. To ensure that inline inputs align consistently, specify a title for only the first input on each line, and use an empty title for all others.
++									1205 link Description: Learn more, Value: tradingview.com/pine-script-docs/errors/CW10026
++							1206 row
++								1207 cell
++									1208 text 19:36:15 ч.
++								1209 cell
++									1210 container
++										1211 text Warning at 99 : 38
++									1212 text The inputs with the `inline` argument "levels2" might not align correctly in the "Settings/Inputs" tab. To ensure that inline inputs align consistently, specify a title for only the first input on each line, and use an empty title for all others.
++									1213 link Description: Learn more, Value: tradingview.com/pine-script-docs/errors/CW10026
++							1214 row
++								1215 cell
++									1216 text 19:36:15 ч.
++								1217 cell
++									1218 container
++										1219 text Warning at 101 : 41
++									1220 text The inputs with the `inline` argument "side" might not align correctly in the "Settings/Inputs" tab. To ensure that inline inputs align consistently, specify a title for only the first input on each line, and use an empty title for all others.
++									1221 link Description: Learn more, Value: tradingview.com/pine-script-docs/errors/CW10026
++							1222 row
++								1223 cell
++									1224 text 19:36:15 ч.
++								1225 cell
++									1226 container
++										1227 text Warning at 766 : 35
++									1228 text The function "f_fast" should be called on each calculation for consistency. It is recommended to extract the call from this scope
++									1229 link Description: Learn more, Value: tradingview.com/pine-script-docs/errors/CW10003
++							1230 row
++								1231 cell
++									1232 text 19:36:15 ч.
++								1233 cell
++									1234 container
++										1235 text Warning at 767 : 35
++									1236 text The function "f_reversal" should be called on each calculation for consistency. It is recommended to extract the call from this scope
++									1237 link Description: Learn more, Value: tradingview.com/pine-script-docs/errors/CW10003
++							1238 row
++								1239 cell
++									1240 text 19:36:15 ч.
++								1241 cell
++									1242 container
++										1243 text Warning at 1375 : 39
++									1244 text Strategies without "calc_on_every_tick = true" only calculate on confirmed chart bars. In this case, "barstate.islast" may not initially return "true" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable "calc_on_every_tick" in the "strategy()" function.
++							1245 row
++								1246 cell
++									1247 text 19:36:15 ч.
++								1248 cell
++									1249 container
++										1250 text Warning at 1439 : 39
++									1251 text Strategies without "calc_on_every_tick = true" only calculate on confirmed chart bars. In this case, "barstate.islast" may not initially return "true" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable "calc_on_every_tick" in the "strategy()" function.
++							1252 row
++								1253 cell
++									1254 text 19:36:15 ч.
++								1255 cell
++									1256 text "QIRVANTA_UNIFIED" saved.
+~						1160 button 11 ∙ Today, 19:36
+The focused UI element is 828 editor (settable) Description: Editor content;Press Alt+F1 for Accessibility Options., Value: f_json(e)
+    if readableBatch != ""
+        alert(alertJson ? "{\"qirvanta\":\"advisory_only\",\"events\":[" + jsonBatch + "]}" : readableBatch, alert.freq_once_per_bar_close)

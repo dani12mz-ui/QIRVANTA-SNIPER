@@ -1,0 +1,15 @@
+{
+  "created_utc": "2026-11-09T17:47:39.871211+00:00",
+  "registration_sha256": "29147fbeb2093257cc9e22df83269528a29521f6e9a2d65766762d33f0cbf8cf",
+  "source_sha256": {
+    "research/data/loader.py": "fb87b20e8e2e825887ce936ed290342d620d41cf710c548e3a924c5e10ed78ad",
+    "research/data/aggregate.py": "1c8f8da6ef3774501bf5f83b8de16e7ab1cd5f3c9cc49ef44b30cf92a2b5cb02",
+    "research/features/causal.py": "553a030a5e83013f4699bdf6480b561433e553c4cc1f802ea2a70761d45449ea",
+    "research/strategies/library.py": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+    "research/backtesting/engine.py": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+    "research/validation/statistics.py": "32fac0ead636b0c7dc65b485ec55a9097fde1473bb4c735930bd6cca55986fd0"
+  },
+  "old_engine_sha256": "bbb2c5c17e2f7a6d5d4e467586a733a6c5476a2b5a14bdacc0367ccc0980d3ee",
+  "old_loader_sha256": "27fa3d1c2574f3c697fbc9d3ba127bf7ccb3b78c00292a6d4b67972e49e9bb8a",
+  "scope": "ENTRY_FEE_PAID_CASH_AND_INPUT_TIMESTAMP_CORRECTION_NO_SIGNAL_CHANGE"
+}

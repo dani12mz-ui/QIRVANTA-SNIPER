@@ -1,0 +1,1800 @@
+{
+  "created_utc": "2026-11-09T17:25:30.369556+00:00",
+  "branch": "engineering/qirvanta-master-validation",
+  "mission_parent": "dd1819515b6fe27e2a08bff91c1fbad6bfd7bcc9",
+  "champion_commit": "48e5cddab17ea831bdc277f17f0406329fdfe39c",
+  "parent_tree": "2a3c2713cb002d792a5c56b3929894ce8e51ee45",
+  "baseline_pine_sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "mode": "100644",
+      "git_blob": "ab73968e4e2a1150c0e9f2143a5172d0a4a32ea7"
+    },
+    {
+      "path": "QIRVANTA_SNIPER_v7_2.pine",
+      "mode": "100644",
+      "git_blob": "aec3ba1981338fe8925c3d22728277b215e35dc8"
+    },
+    {
+      "path": "QIRVANTA_SNIPER_v7_3_CHART_FIRST.pine",
+      "mode": "100644",
+      "git_blob": "75536d584ae65aa37f415ca8caed3b24494d0a33"
+    },
+    {
+      "path": "QIRVANTA_SNIPER_v7_4_CLEAN_CHART.pine",
+      "mode": "100644",
+      "git_blob": "b42013ff78d8c6240ec083acdfe2f0f3b4dcb753"
+    },
+    {
+      "path": "QIRVANTA_SNIPER_v7_5_AUDITED.pine",
+      "mode": "100644",
+      "git_blob": "f13a981c86752cadfa7ecd3c9230c8e0a4ee183e"
+    },
+    {
+      "path": "QIRVANTA_SNIPER_v7_6_TIMELY_SIGNALS.pine",
+      "mode": "100644",
+      "git_blob": "46263e3c4740e4fc57553b785ccc76b89df32865"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "git_blob": "fef32b3225db6ae2501aca6e32f5dbd5f129fdfa"
+    },
+    {
+      "path": "audited/AUDIT_BG.md",
+      "mode": "100644",
+      "git_blob": "14bc8e9ee4aebbd0d3a04f829f886648dcd78814"
+    },
+    {
+      "path": "audited/BASELINE_REPORT_BG.md",
+      "mode": "100644",
+      "git_blob": "b07d04b4f494780662d30ede1e84ac0d503a2d88"
+    },
+    {
+      "path": "audited/CHANGELOG_BG.md",
+      "mode": "100644",
+      "git_blob": "abd7530f75b95d2dfee03087baf45a7a7f918996"
+    },
+    {
+      "path": "audited/CONFIG_MANIFEST.json",
+      "mode": "100644",
+      "git_blob": "a5e6b1e60582fe55228d0e03c324a9d449e5307b"
+    },
+    {
+      "path": "audited/QIRVANTA_SNIPER_PRO.pine",
+      "mode": "100644",
+      "git_blob": "f68060b85729ef804914b60a613e1ceba1ca8f88"
+    },
+    {
+      "path": "audited/QIRVANTA_SNIPER_VALIDATION.pine",
+      "mode": "100644",
+      "git_blob": "b1bc0b6c84e94c51e8af55f7d7e8f0b5209417cf"
+    },
+    {
+      "path": "audited/README.md",
+      "mode": "100644",
+      "git_blob": "98f12e0056cdbc9c50caf1f1680fcc5992628d49"
+    },
+    {
+      "path": "audited/README_BG.md",
+      "mode": "100644",
+      "git_blob": "acec7c1478a45dec84163e02b212fb65855cfb85"
+    },
+    {
+      "path": "audited/SOURCE_FILES.json",
+      "mode": "100644",
+      "git_blob": "e111a0387ca5ae6277623a139461b763c27038bd"
+    },
+    {
+      "path": "audited/VALIDATION_BG.md",
+      "mode": "100644",
+      "git_blob": "14f889bb6423933dcd52dbfc13f3c8a1b514058a"
+    },
+    {
+      "path": "audited/reports/ACCEPTANCE.json",
+      "mode": "100644",
+      "git_blob": "883d7a496d8fb8673acf9a23f539c854f7cac972"
+    },
+    {
+      "path": "audited/reports/ACCEPTANCE_FROM_PACKAGE.json",
+      "mode": "100644",
+      "git_blob": "9360b3476135355ac9ebfa726030c369c531e6d6"
+    },
+    {
+      "path": "audited/reports/EVIDENCE_README.md",
+      "mode": "100644",
+      "git_blob": "c908674d025a7f6558bf08da9bb4cd408b1f4fec"
+    },
+    {
+      "path": "audited/reports/STATUS.json",
+      "mode": "100644",
+      "git_blob": "883d7a496d8fb8673acf9a23f539c854f7cac972"
+    },
+    {
+      "path": "audited/reports/build.json",
+      "mode": "100644",
+      "git_blob": "51064f5d61b3172d3ccef9b25a9da1a663d74865"
+    },
+    {
+      "path": "audited/reports/commands.json",
+      "mode": "100644",
+      "git_blob": "34adf436fac1171b516ee0c50b464c72a8cd4055"
+    },
+    {
+      "path": "audited/reports/current_build_check.log",
+      "mode": "100644",
+      "git_blob": "e9c2e16a62c7c4b83d4f2389f5b30a206b411798"
+    },
+    {
+      "path": "audited/reports/publication.json",
+      "mode": "100644",
+      "git_blob": "7e8cca060480f568695d44e95ee8345e39680cc8"
+    },
+    {
+      "path": "audited/reports/tests.json",
+      "mode": "100644",
+      "git_blob": "6031e934829297c7bc287ffa554db373f4aa60b2"
+    },
+    {
+      "path": "audited/reports/tradingview_attempt.json",
+      "mode": "100644",
+      "git_blob": "03c33d0767bae10c086cd5cd8912b3b03176f995"
+    },
+    {
+      "path": "audited/reports/unit_tests.log",
+      "mode": "100644",
+      "git_blob": "ed91e6f379c53a198a05e1003979d2d9a19e461f"
+    },
+    {
+      "path": "diagnostics/.gitattributes",
+      "mode": "100644",
+      "git_blob": "b623075fc05f9e73877dfd0626f8ac7e4f2622fb"
+    },
+    {
+      "path": "diagnostics/.gitignore",
+      "mode": "100644",
+      "git_blob": "dfa272eac6cddc557c82c8320b95100c965ded69"
+    },
+    {
+      "path": "diagnostics/BREAKDOWNS_BG.md",
+      "mode": "100644",
+      "git_blob": "267263a475f49705999fd6a2d24c32bab11d5af2"
+    },
+    {
+      "path": "diagnostics/EVIDENCE_SHA256.json",
+      "mode": "100644",
+      "git_blob": "8f354891e2f796a536e568f279d52a5bbe2a472a"
+    },
+    {
+      "path": "diagnostics/REPORT_BG.md",
+      "mode": "100644",
+      "git_blob": "7321ab1f7396483c7be1a85d09ec43aea66c83c9"
+    },
+    {
+      "path": "diagnostics/REPRODUCE_BG.md",
+      "mode": "100644",
+      "git_blob": "532df063596d345e9c47bb5e3d3704eb839aff1f"
+    },
+    {
+      "path": "diagnostics/STATUS.json",
+      "mode": "100644",
+      "git_blob": "45456bdc529a9be7c237864ba632572c39b0861f"
+    },
+    {
+      "path": "diagnostics/accounting/B-ALL-FULL.audit.json",
+      "mode": "100644",
+      "git_blob": "2741b2a8cfb8106857253a81ae5b5e5f972fe63c"
+    },
+    {
+      "path": "diagnostics/accounting/B-ALL.audit.json",
+      "mode": "100644",
+      "git_blob": "dd086790bc962fc47c22bc591fa8ab67bdcd635d"
+    },
+    {
+      "path": "diagnostics/accounting/B-FAST.audit.json",
+      "mode": "100644",
+      "git_blob": "08f123b7c0f2ac535fe6bb2a70e3007fb5886372"
+    },
+    {
+      "path": "diagnostics/accounting/B-RETEST.audit.json",
+      "mode": "100644",
+      "git_blob": "d606595d062fd7363b990767d161587be19f93f0"
+    },
+    {
+      "path": "diagnostics/accounting/B-REVERSAL.audit.json",
+      "mode": "100644",
+      "git_blob": "6e1eaf4ad5d576c279dddaccdd570446a4756af4"
+    },
+    {
+      "path": "diagnostics/accounting/H1-ALL.audit.json",
+      "mode": "100644",
+      "git_blob": "aca59a36207b813e3e386c971455cc30dcf8894d"
+    },
+    {
+      "path": "diagnostics/accounting/H1-FAST.audit.json",
+      "mode": "100644",
+      "git_blob": "ee4fcd389b0500ce76a5ac9cf987555cfeeca8fa"
+    },
+    {
+      "path": "diagnostics/accounting/H1_accounting_summary.json",
+      "mode": "100644",
+      "git_blob": "bef214ee658c7ed4b848c9b1e7b0d87118b28258"
+    },
+    {
+      "path": "diagnostics/accounting/README_BG.md",
+      "mode": "100644",
+      "git_blob": "c6a5cd3aa8e7763dafe25e6555f81bed9c7eae4c"
+    },
+    {
+      "path": "diagnostics/accounting/RUNS_BG.md",
+      "mode": "100644",
+      "git_blob": "c807d301c51f998861a3611f1974936bf615e2d3"
+    },
+    {
+      "path": "diagnostics/accounting/audit.py",
+      "mode": "100644",
+      "git_blob": "d2d1121f4d6393fe474bede3edc211d521b66787"
+    },
+    {
+      "path": "diagnostics/accounting/breakdowns_manifest.json",
+      "mode": "100644",
+      "git_blob": "5d932423e712a7b093389e6c7a50fc0e8f780966"
+    },
+    {
+      "path": "diagnostics/accounting/compare_runs.py",
+      "mode": "100644",
+      "git_blob": "c67af67e4313308ab234b914800462e6a44a32c5"
+    },
+    {
+      "path": "diagnostics/accounting/probe_journal_comparison.json",
+      "mode": "100644",
+      "git_blob": "ff88b45b0c972c5ee6d4486a7da34cdfc7255257"
+    },
+    {
+      "path": "diagnostics/accounting/render_breakdowns.py",
+      "mode": "100644",
+      "git_blob": "7fa7068956240f5f6c813c39f4c250d4ed68f740"
+    },
+    {
+      "path": "diagnostics/accounting/run_comparison.json",
+      "mode": "100644",
+      "git_blob": "daad812b747c71775e63b99e2e082beb9c6d2416"
+    },
+    {
+      "path": "diagnostics/accounting/run_tests.py",
+      "mode": "100644",
+      "git_blob": "e6198d50dbd51877aca8871c8ee8124aee3bb03b"
+    },
+    {
+      "path": "diagnostics/accounting/test_audit.py",
+      "mode": "100644",
+      "git_blob": "4c78d7ea8bc555357b14496a6313e2d2e6e0c809"
+    },
+    {
+      "path": "diagnostics/accounting/tests.json",
+      "mode": "100644",
+      "git_blob": "f1206751583e66e9c738ff1a8d0808bce69d2e69"
+    },
+    {
+      "path": "diagnostics/accounting/tests.log",
+      "mode": "100644",
+      "git_blob": "779f8b78e06aff089867684f48fb58089fb19560"
+    },
+    {
+      "path": "diagnostics/diagnosis/CAMPAIGN_DIAGNOSIS.txt",
+      "mode": "100644",
+      "git_blob": "cd593dffe8b8b4f85b7ace2b64e24965641317d8"
+    },
+    {
+      "path": "diagnostics/diagnosis/H1_COMPARISON.json",
+      "mode": "100644",
+      "git_blob": "49ecd4145648b78936b3897e5c6a759f2cc9335f"
+    },
+    {
+      "path": "diagnostics/diagnosis/H1_EVIDENCE_PIN_REFRESH.json",
+      "mode": "100644",
+      "git_blob": "b96b7f556aa6b3aafd5be16c3c06a5c5fa81ff58"
+    },
+    {
+      "path": "diagnostics/diagnosis/H1_EVIDENCE_PIN_REFRESH_FINAL.json",
+      "mode": "100644",
+      "git_blob": "e7d98e02cd4ff8ce6050c06ad2706b69b3eabc94"
+    },
+    {
+      "path": "diagnostics/diagnosis/H1_GENERATED.json",
+      "mode": "100644",
+      "git_blob": "68d03b9007eb9550ffb1e66c5bc49cbff99964d7"
+    },
+    {
+      "path": "diagnostics/diagnosis/H1_GENERATED_v2.json",
+      "mode": "100644",
+      "git_blob": "912ad4b1900d719deac582a971390dcdea4713d5"
+    },
+    {
+      "path": "diagnostics/diagnosis/H1_PREREGISTRATION.json",
+      "mode": "100644",
+      "git_blob": "7bd7483aabd85e61f3d7a221c13b1ff1964de749"
+    },
+    {
+      "path": "diagnostics/diagnosis/H1_RESULTS.txt",
+      "mode": "100644",
+      "git_blob": "67fc98ab2a8c7d7775567bbcfbf2d8b632d2d550"
+    },
+    {
+      "path": "diagnostics/diagnosis/analysis_plan.json",
+      "mode": "100644",
+      "git_blob": "f55ce82283061a2668e6219a626da65456f17ebf"
+    },
+    {
+      "path": "diagnostics/diagnosis/analyze.py",
+      "mode": "100644",
+      "git_blob": "7c212c8e3c4d5d37ff50cdc4f77aedc75e670c19"
+    },
+    {
+      "path": "diagnostics/diagnosis/audit_revision_check.json",
+      "mode": "100644",
+      "git_blob": "15b2bdd3dbb41ed242266ff629c267ffc54e5a59"
+    },
+    {
+      "path": "diagnostics/diagnosis/compare_h1.py",
+      "mode": "100644",
+      "git_blob": "9e6a3ab8a4e915fc9fca6726feafc5f169adf118"
+    },
+    {
+      "path": "diagnostics/diagnosis/descriptive_results.json",
+      "mode": "100644",
+      "git_blob": "6cdfa40f67210c0cd05eafae337a0d444334df0b"
+    },
+    {
+      "path": "diagnostics/diagnosis/raw_schema_verification.json",
+      "mode": "100644",
+      "git_blob": "4f515b3e30db70814401abad5df165ee59ef05e8"
+    },
+    {
+      "path": "diagnostics/diagnosis/register_hypothesis.py",
+      "mode": "100644",
+      "git_blob": "578b51c5315be446362756791255ff657bd3d3f3"
+    },
+    {
+      "path": "diagnostics/diagnosis/register_plan.py",
+      "mode": "100644",
+      "git_blob": "d0bd4824ffb94c495b7965d1d114fa2712ce09c8"
+    },
+    {
+      "path": "diagnostics/diagnosis/test_analyze.py",
+      "mode": "100644",
+      "git_blob": "cd9d3c02d6ddec2a85fd8221995da48d75c39436"
+    },
+    {
+      "path": "diagnostics/diagnosis/test_compare_h1.py",
+      "mode": "100644",
+      "git_blob": "0228cddd8b042a0315e09341f0f4e0fdd4aa7989"
+    },
+    {
+      "path": "diagnostics/diagnosis/verified_tests.log",
+      "mode": "100644",
+      "git_blob": "a620992964048bcb56d923ea1f0dd1ea39ef7658"
+    },
+    {
+      "path": "diagnostics/evidence/B-ALL-FULL.pine-logs.csv",
+      "mode": "100644",
+      "git_blob": "7debcba52b4325c727dfd4b73b82791372bf4b8e"
+    },
+    {
+      "path": "diagnostics/evidence/B-ALL.pine-logs.csv",
+      "mode": "100644",
+      "git_blob": "0ec4ff37beb44d470ed743946b3c3c40b2c2693c"
+    },
+    {
+      "path": "diagnostics/evidence/B-FAST.inputs.txt",
+      "mode": "100644",
+      "git_blob": "56bbe42c206fe8a6b29f54ca99c13d325867d475"
+    },
+    {
+      "path": "diagnostics/evidence/B-FAST.pine-logs.csv",
+      "mode": "100644",
+      "git_blob": "d85e8db4f465ef4368df77c4fdf5741f5884c17e"
+    },
+    {
+      "path": "diagnostics/evidence/B-RETEST.inputs.txt",
+      "mode": "100644",
+      "git_blob": "87cd62dd7610fef97dca870b353970a675314048"
+    },
+    {
+      "path": "diagnostics/evidence/B-RETEST.pine-logs.csv",
+      "mode": "100644",
+      "git_blob": "b28e87d084d858d003c01fb4a9614ea822b01763"
+    },
+    {
+      "path": "diagnostics/evidence/B-REVERSAL.inputs.txt",
+      "mode": "100644",
+      "git_blob": "5d42cffb7ea0c658a216f334064421be979652e0"
+    },
+    {
+      "path": "diagnostics/evidence/B-REVERSAL.pine-logs.csv",
+      "mode": "100644",
+      "git_blob": "e88ae8767c77b2cd31c4b0c10ff757137059de11"
+    },
+    {
+      "path": "diagnostics/evidence/H1-ALL.inputs.txt",
+      "mode": "100644",
+      "git_blob": "6ab89f8a0016ab2315f26b2df430a9b55197cfa1"
+    },
+    {
+      "path": "diagnostics/evidence/H1-ALL.pine-logs.csv",
+      "mode": "100644",
+      "git_blob": "22a0aac9e82c26316f385175f34a268d84d94e07"
+    },
+    {
+      "path": "diagnostics/evidence/H1-FAST.inputs.txt",
+      "mode": "100644",
+      "git_blob": "ef92f1da24edf42e4a9de606631b55704d494826"
+    },
+    {
+      "path": "diagnostics/evidence/H1-FAST.pine-logs.csv",
+      "mode": "100644",
+      "git_blob": "0b1a12668bd5c421588ff5e03037e1199ded897c"
+    },
+    {
+      "path": "diagnostics/evidence/H1_compile.txt",
+      "mode": "100644",
+      "git_blob": "cb0b5c7bfb0e44392f046e20c6122855953ad88b"
+    },
+    {
+      "path": "diagnostics/evidence/combined_visible_native_rows.txt",
+      "mode": "100644",
+      "git_blob": "afcbdbc3b7854a0619269bcb0054ae4124fad1e6"
+    },
+    {
+      "path": "diagnostics/evidence/final_baseline_chart.png",
+      "mode": "100644",
+      "git_blob": "4446f7b715d5d32682ab3a2139a384a18cbe9cec"
+    },
+    {
+      "path": "diagnostics/evidence/final_baseline_chart.txt",
+      "mode": "100644",
+      "git_blob": "14d7f032ef203bed922a308d3ba61ab2b337e110"
+    },
+    {
+      "path": "diagnostics/evidence/final_inputs_restored.txt",
+      "mode": "100644",
+      "git_blob": "1cc76ff136380b9160880d69c9395e441d0f6771"
+    },
+    {
+      "path": "diagnostics/evidence/final_properties_restored.txt",
+      "mode": "100644",
+      "git_blob": "b802fba846dba9fa5d956a776412074abee01b3c"
+    },
+    {
+      "path": "diagnostics/evidence/final_restored_compile.txt",
+      "mode": "100644",
+      "git_blob": "66141b5adaab7b996140b3c15f8a6d6afc1d89b1"
+    },
+    {
+      "path": "diagnostics/evidence/final_restored_editor.json",
+      "mode": "100644",
+      "git_blob": "13db58f0042c3f4e7f7da9dfe6501f603c578db5"
+    },
+    {
+      "path": "diagnostics/evidence/mobile_390_final_flat.png",
+      "mode": "100644",
+      "git_blob": "9727c133a0cbd37f6812e10ca637665f6256cff4"
+    },
+    {
+      "path": "diagnostics/evidence/mobile_390_final_flat.txt",
+      "mode": "100644",
+      "git_blob": "fcc3f72cdb48d4ccab1d66e595f0acceb25c3d94"
+    },
+    {
+      "path": "diagnostics/evidence/mobile_390_no_active_plan.png",
+      "mode": "100644",
+      "git_blob": "050b81427e57b310faea9286ffaf3ffbc795726e"
+    },
+    {
+      "path": "diagnostics/evidence/mobile_replay_plan_limit.png",
+      "mode": "100644",
+      "git_blob": "9bf31b3afaf5067e421f736516d9babe4a6a49ae"
+    },
+    {
+      "path": "diagnostics/evidence/mobile_replay_plan_limit.txt",
+      "mode": "100644",
+      "git_blob": "220c1c1f480552a2b89ac8ee34313623be2dffe8"
+    },
+    {
+      "path": "diagnostics/evidence/observer_compile.txt",
+      "mode": "100644",
+      "git_blob": "0674330404f7724563e4b43ce95b02c9d51e0b3f"
+    },
+    {
+      "path": "diagnostics/evidence/observer_null_string_compile_error.txt",
+      "mode": "100644",
+      "git_blob": "8e28236ae892f3b7f6b5803509f5ecffe416a548"
+    },
+    {
+      "path": "diagnostics/evidence/observer_with_warning_compile.txt",
+      "mode": "100644",
+      "git_blob": "4049d137985858133d0cedbe2d926fea3d46f8a4"
+    },
+    {
+      "path": "diagnostics/evidence/original_inputs.txt",
+      "mode": "100644",
+      "git_blob": "8a2e7ff79a90ecb6ef93d3575ad65eb24a93f698"
+    },
+    {
+      "path": "diagnostics/evidence/original_properties.txt",
+      "mode": "100644",
+      "git_blob": "3ea6e9c732373abbfe8a85fe1db5e5860ab31cf3"
+    },
+    {
+      "path": "diagnostics/evidence/price_delivery_test_configuration.txt",
+      "mode": "100644",
+      "git_blob": "9502de57d07c4a9b01775c496746fe4702d50b95"
+    },
+    {
+      "path": "diagnostics/evidence/price_delivery_test_received.png",
+      "mode": "100644",
+      "git_blob": "0d0c5ce864e754779b1d0f53dbc22b07ddea7779"
+    },
+    {
+      "path": "diagnostics/evidence/price_delivery_test_received.txt",
+      "mode": "100644",
+      "git_blob": "2a73e4b3c6c084d1734c026eb97d95bae107f79a"
+    },
+    {
+      "path": "diagnostics/evidence/restored_baseline_compile.txt",
+      "mode": "100644",
+      "git_blob": "58b4af09c1841d14a76ef27250d07eee98613c12"
+    },
+    {
+      "path": "diagnostics/evidence/script_alert_configuration.txt",
+      "mode": "100644",
+      "git_blob": "2d3944fca63359fa51254366db8f1b430a46a5a5"
+    },
+    {
+      "path": "diagnostics/evidence/script_alert_notifications.txt",
+      "mode": "100644",
+      "git_blob": "0623cae80014a4cbca9356d517fb179b204e9aca"
+    },
+    {
+      "path": "diagnostics/evidence/script_alert_plan_limit.png",
+      "mode": "100644",
+      "git_blob": "0706231e702c7c013b23aa8d0602c55285b872af"
+    },
+    {
+      "path": "diagnostics/evidence/script_alert_plan_limit.txt",
+      "mode": "100644",
+      "git_blob": "cbaa1c8a6cdf293d7469049d37a3494abc1aa401"
+    },
+    {
+      "path": "diagnostics/finalize_evidence.py",
+      "mode": "100644",
+      "git_blob": "94189ff0967c6c09397a77c467bf846448ef02d2"
+    },
+    {
+      "path": "diagnostics/make_h1_probe.py",
+      "mode": "100644",
+      "git_blob": "617f7a946e8f9e6bef8ccbeb77f6e80ae301a88d"
+    },
+    {
+      "path": "diagnostics/make_probe.py",
+      "mode": "100644",
+      "git_blob": "df4e6af1139ad9e53cbb9b8e66d76a869c85096f"
+    },
+    {
+      "path": "diagnostics/protocol/EVALUATION_PROTOCOL_BG.md",
+      "mode": "100644",
+      "git_blob": "6e0f31d070462989e17b3c6acdfe8a424647209e"
+    },
+    {
+      "path": "diagnostics/protocol/H1_TEST_METADATA_REFRESH_02.json",
+      "mode": "100644",
+      "git_blob": "1ec673c4d98a7de5dc8af508c1da6902370525ab"
+    },
+    {
+      "path": "diagnostics/protocol/H1_TEST_METADATA_REFRESH_03.json",
+      "mode": "100644",
+      "git_blob": "7cd72fbd7473d320d21a431f1dd708b39ec2eea1"
+    },
+    {
+      "path": "diagnostics/protocol/H1_evidence_comparison.json",
+      "mode": "100644",
+      "git_blob": "9eb494926c1b4b8743d85264c73dbdac78749d30"
+    },
+    {
+      "path": "diagnostics/protocol/H1_integrity_tests.log",
+      "mode": "100644",
+      "git_blob": "8d7c9a633578cb0f702e76daafa0269f506d67a4"
+    },
+    {
+      "path": "diagnostics/protocol/README_BG.md",
+      "mode": "100644",
+      "git_blob": "13f7f80125b9cdea05f00aacaea0f4a91c08525a"
+    },
+    {
+      "path": "diagnostics/protocol/baseline_evidence.json",
+      "mode": "100644",
+      "git_blob": "1814cb8e973a0db2d54d2e68177bb2c02f4d5468"
+    },
+    {
+      "path": "diagnostics/protocol/baseline_integrity.json",
+      "mode": "100644",
+      "git_blob": "ad29a9362ec5d6de6fd1667ce3e5cefc95fae5d8"
+    },
+    {
+      "path": "diagnostics/protocol/baseline_manifest.json",
+      "mode": "100644",
+      "git_blob": "1b342ba8617eb80bf117fbe029bc480048b3220a"
+    },
+    {
+      "path": "diagnostics/protocol/baseline_tests.json",
+      "mode": "100644",
+      "git_blob": "6342f06780c439ee61d7c107c4650493fae43071"
+    },
+    {
+      "path": "diagnostics/protocol/capture_baseline.py",
+      "mode": "100644",
+      "git_blob": "675d686bb2ada62af098ba29ab4e3e300dcb5e59"
+    },
+    {
+      "path": "diagnostics/protocol/capture_protocol_record.py",
+      "mode": "100644",
+      "git_blob": "4148a2245c921216230d94537e681759901102ba"
+    },
+    {
+      "path": "diagnostics/protocol/catalog_evidence.py",
+      "mode": "100644",
+      "git_blob": "ad1deaeccb4d176062ef301e77f7be47c61ba6b0"
+    },
+    {
+      "path": "diagnostics/protocol/compare_h1_evidence.py",
+      "mode": "100644",
+      "git_blob": "218f6b14362c5e3e1e937581a5a81aeba2180066"
+    },
+    {
+      "path": "diagnostics/protocol/compare_isolated_settings.py",
+      "mode": "100644",
+      "git_blob": "af2854fdb074c15be2da5712c7bca475c6e404c1"
+    },
+    {
+      "path": "diagnostics/protocol/current_ui_settings.json",
+      "mode": "100644",
+      "git_blob": "7959644a6c2c70a9a86ea05c0ab55105abea7a1a"
+    },
+    {
+      "path": "diagnostics/protocol/current_ui_settings_v2.json",
+      "mode": "100644",
+      "git_blob": "baacd453b84421de6816ad20a882e817ca3bfb08"
+    },
+    {
+      "path": "diagnostics/protocol/datasets/B-ALL-FULL/bars.csv",
+      "mode": "100644",
+      "git_blob": "3ae65c1ff79c64085fcaa97822638ab282045b8d"
+    },
+    {
+      "path": "diagnostics/protocol/datasets/B-ALL-FULL/bars.json",
+      "mode": "100644",
+      "git_blob": "1b7b14e8c0b78cd5e9bee1ffd20ca91c677f1758"
+    },
+    {
+      "path": "diagnostics/protocol/datasets/B-ALL-FULL/dataset_manifest.json",
+      "mode": "100644",
+      "git_blob": "8f39ad9d98f8d21c655fd2fee965614d713f3125"
+    },
+    {
+      "path": "diagnostics/protocol/datasets/H1-ALL/bars.csv",
+      "mode": "100644",
+      "git_blob": "3ae65c1ff79c64085fcaa97822638ab282045b8d"
+    },
+    {
+      "path": "diagnostics/protocol/datasets/H1-ALL/bars.json",
+      "mode": "100644",
+      "git_blob": "1b7b14e8c0b78cd5e9bee1ffd20ca91c677f1758"
+    },
+    {
+      "path": "diagnostics/protocol/datasets/H1-ALL/dataset_manifest.json",
+      "mode": "100644",
+      "git_blob": "7f71a3e1d155fb870422ef802d9502e9aa5ad46c"
+    },
+    {
+      "path": "diagnostics/protocol/datasets/H1-FAST/bars.csv",
+      "mode": "100644",
+      "git_blob": "3ae65c1ff79c64085fcaa97822638ab282045b8d"
+    },
+    {
+      "path": "diagnostics/protocol/datasets/H1-FAST/bars.json",
+      "mode": "100644",
+      "git_blob": "1b7b14e8c0b78cd5e9bee1ffd20ca91c677f1758"
+    },
+    {
+      "path": "diagnostics/protocol/datasets/H1-FAST/dataset_manifest.json",
+      "mode": "100644",
+      "git_blob": "37190887c630b227dc2c517bf298abdd4384128f"
+    },
+    {
+      "path": "diagnostics/protocol/diagnostic_dataset_comparison.json",
+      "mode": "100644",
+      "git_blob": "09b19c368b85ad6495273262e077d0d232adb408"
+    },
+    {
+      "path": "diagnostics/protocol/diagnostic_dataset_comparison_v2.json",
+      "mode": "100644",
+      "git_blob": "2a35158850ce3cd124080e3d57e857c22165f712"
+    },
+    {
+      "path": "diagnostics/protocol/evidence_catalog.json",
+      "mode": "100644",
+      "git_blob": "3b0e805a16ac806ad89eb71802c2ab54b8183679"
+    },
+    {
+      "path": "diagnostics/protocol/extract_bars.py",
+      "mode": "100644",
+      "git_blob": "875cb9f982ee0889254f53f2bf888fb7712b0cfa"
+    },
+    {
+      "path": "diagnostics/protocol/final_restore_verification.json",
+      "mode": "100644",
+      "git_blob": "e2225da1d847e9acef38e0a312386e4899ceb644"
+    },
+    {
+      "path": "diagnostics/protocol/isolated_settings_comparison.json",
+      "mode": "100644",
+      "git_blob": "61b0ec14130868e76808afaf65167c461558962d"
+    },
+    {
+      "path": "diagnostics/protocol/isolated_settings_comparison_v2.json",
+      "mode": "100644",
+      "git_blob": "4259ef9c3eaa5b6ecce76348e061bba1fda60fe2"
+    },
+    {
+      "path": "diagnostics/protocol/preregistration.json",
+      "mode": "100644",
+      "git_blob": "7226b804e50287505b6326435781456d9b9249c2"
+    },
+    {
+      "path": "diagnostics/protocol/record_dataset_amendment.py",
+      "mode": "100644",
+      "git_blob": "5c4bf5603aac5c26593413e189ca9bad9578a717"
+    },
+    {
+      "path": "diagnostics/protocol/refactored_baseline_tests.log",
+      "mode": "100644",
+      "git_blob": "e4e7753e2199444bfa65b1d81c17cfd83b39a3bb"
+    },
+    {
+      "path": "diagnostics/protocol/registration_amendment_01.json",
+      "mode": "100644",
+      "git_blob": "bbd7e64c78d3af0764f114ea79b4e887e2cd2b2a"
+    },
+    {
+      "path": "diagnostics/protocol/registration_amendment_02.json",
+      "mode": "100644",
+      "git_blob": "f0a490fc3c1849c9e9f9f4e3c43dde00d61b019c"
+    },
+    {
+      "path": "diagnostics/protocol/registration_amendment_03.json",
+      "mode": "100644",
+      "git_blob": "f015e075d6fea881ffc2c89d06fb606bef471e2d"
+    },
+    {
+      "path": "diagnostics/protocol/source_default_profile.json",
+      "mode": "100644",
+      "git_blob": "17967f672190fd31275aa5805c71d07c62897cd8"
+    },
+    {
+      "path": "diagnostics/protocol/test_extract_bars.py",
+      "mode": "100644",
+      "git_blob": "74de8741baec212e6846263f2086a822bfa7cc5f"
+    },
+    {
+      "path": "diagnostics/protocol/test_h1_integrity.py",
+      "mode": "100644",
+      "git_blob": "705c69ca46f3dd9a799f847dbc160d36fb4ea0e6"
+    },
+    {
+      "path": "diagnostics/protocol/unified_baseline_tests.log",
+      "mode": "100644",
+      "git_blob": "f94b5810ec5254be9f0ce9a90caba500fd288192"
+    },
+    {
+      "path": "diagnostics/protocol/verify_final_restore.py",
+      "mode": "100644",
+      "git_blob": "afa3026000895e679219ad844f0b27ed399a0ea3"
+    },
+    {
+      "path": "diagnostics/warnings/ANALYSIS.txt",
+      "mode": "100644",
+      "git_blob": "65ad67c7d235b5171e168374dfaab3172cfdea5d"
+    },
+    {
+      "path": "diagnostics/warnings/PINE_PROBES.txt",
+      "mode": "100644",
+      "git_blob": "8127a0ae684e4867d082c899aa35baa526cfe2f4"
+    },
+    {
+      "path": "diagnostics/warnings/audit.json",
+      "mode": "100644",
+      "git_blob": "308d770834dcb398fb9cd3a081df73b1e85c8074"
+    },
+    {
+      "path": "diagnostics/warnings/audit.py",
+      "mode": "100644",
+      "git_blob": "ce48009d52e0143cf60b4ae6b8c8d570af4f3ab9"
+    },
+    {
+      "path": "diagnostics/warnings/combined_observer_with_warnings.manifest.json",
+      "mode": "100644",
+      "git_blob": "190f1e2c1fd5607798e6d44f849a4be63b116ef0"
+    },
+    {
+      "path": "diagnostics/warnings/combined_observer_with_warnings_v2.manifest.json",
+      "mode": "100644",
+      "git_blob": "fd1d14788b5b6409260cd11536c4682694536c79"
+    },
+    {
+      "path": "diagnostics/warnings/inject_warning_probe.py",
+      "mode": "100644",
+      "git_blob": "ca2606833a1475ff4916328e5ac614906d4882d9"
+    },
+    {
+      "path": "diagnostics/warnings/test_audit.py",
+      "mode": "100644",
+      "git_blob": "9261dee3808e169005afd9c7110bc78de638f92e"
+    },
+    {
+      "path": "diagnostics/warnings/verified_tests.log",
+      "mode": "100644",
+      "git_blob": "b6108b5ee3a87908cab396a1b70867fb95db85d3"
+    },
+    {
+      "path": "refactored/.gitignore",
+      "mode": "100644",
+      "git_blob": "bdddce3e268533f59b4011ba103b7ae609d82283"
+    },
+    {
+      "path": "refactored/AUDIT_BG.md",
+      "mode": "100644",
+      "git_blob": "6cb557c997a3c45618589f217f987518a56b1107"
+    },
+    {
+      "path": "refactored/BASELINE_REPORT_BG.md",
+      "mode": "100644",
+      "git_blob": "242a116960c917246c0e2d324a9ca9ae7d166d51"
+    },
+    {
+      "path": "refactored/CHANGELOG_BG.md",
+      "mode": "100644",
+      "git_blob": "e0b1c163a8a62b2448af2e45ecd8c5b5496777ac"
+    },
+    {
+      "path": "refactored/CONFIG_MANIFEST.json",
+      "mode": "100644",
+      "git_blob": "d7274b9d85e08c5ff64ab00e38ab2af54927c454"
+    },
+    {
+      "path": "refactored/PUBLICATION_BG.md",
+      "mode": "100644",
+      "git_blob": "d00015096a684eccb805bbb21dcbfce9a90e5813"
+    },
+    {
+      "path": "refactored/QIRVANTA_SNIPER_PRO.pine",
+      "mode": "100644",
+      "git_blob": "f68060b85729ef804914b60a613e1ceba1ca8f88"
+    },
+    {
+      "path": "refactored/QIRVANTA_SNIPER_VALIDATION.pine",
+      "mode": "100644",
+      "git_blob": "b1bc0b6c84e94c51e8af55f7d7e8f0b5209417cf"
+    },
+    {
+      "path": "refactored/README_BG.md",
+      "mode": "100644",
+      "git_blob": "9b2d31828befdb3dff845a19f16c786d1088f672"
+    },
+    {
+      "path": "refactored/VALIDATION_BG.md",
+      "mode": "100644",
+      "git_blob": "15f95bc0607b6c3e86b36f72c0f1d2d62cf9bf40"
+    },
+    {
+      "path": "refactored/baseline/QIRVANTA_SNIPER_v7_6_TIMELY_SIGNALS.pine",
+      "mode": "100644",
+      "git_blob": "46263e3c4740e4fc57553b785ccc76b89df32865"
+    },
+    {
+      "path": "refactored/baseline/audited/QIRVANTA_SNIPER_PRO.pine",
+      "mode": "100644",
+      "git_blob": "2fbdee556d6c6d96d62ea0afdd6475027fcc5de5"
+    },
+    {
+      "path": "refactored/baseline/audited/QIRVANTA_SNIPER_VALIDATION.pine",
+      "mode": "100644",
+      "git_blob": "c8019f615a7d0e67a4ebcb1b5c1f87c422815a7c"
+    },
+    {
+      "path": "refactored/baseline/delivery_103bc307.zip",
+      "mode": "100644",
+      "git_blob": "12eb2b6d7c854927fe1de878567758e229d21a36"
+    },
+    {
+      "path": "refactored/baseline/delivery_manifest.json",
+      "mode": "100644",
+      "git_blob": "9df78237c4ca47e2114f2acf17300b5c5db99fc3"
+    },
+    {
+      "path": "refactored/baseline/manifest.json",
+      "mode": "100644",
+      "git_blob": "f88754e2d214a7ef5f659d26c6c00e10d951876c"
+    },
+    {
+      "path": "refactored/data/MANIFEST_EXAMPLE.json",
+      "mode": "100644",
+      "git_blob": "8403c7217af94325e7304300b2a71a5cb489ea15"
+    },
+    {
+      "path": "refactored/docs/ACCEPTANCE_MATRIX_BG.md",
+      "mode": "100644",
+      "git_blob": "68e8a9209cca7aa06c8dabcc1113bba8b321f8b5"
+    },
+    {
+      "path": "refactored/docs/DATA_AND_REPLAY_BG.md",
+      "mode": "100644",
+      "git_blob": "3089b13ea5a27343a0c855c85d6d4983b889dd0b"
+    },
+    {
+      "path": "refactored/docs/EXECUTION_MODEL_BG.md",
+      "mode": "100644",
+      "git_blob": "92ba5c63e329c784a679055c5a97eabc57ddba20"
+    },
+    {
+      "path": "refactored/docs/PINE_COMPILATION_CHECKLIST_BG.md",
+      "mode": "100644",
+      "git_blob": "a43379ed90f35d440f909bca8cabb0b9cd86dbdd"
+    },
+    {
+      "path": "refactored/docs/SIGNAL_RULES_BG.md",
+      "mode": "100644",
+      "git_blob": "3f91d3d38dbf2fa81928dfc1f4a755fcec3fcd0a"
+    },
+    {
+      "path": "refactored/previews/mobile_layout_mock.html",
+      "mode": "100644",
+      "git_blob": "b781670465f8d0513f7bd76761dafc4775c29af0"
+    },
+    {
+      "path": "refactored/reports/ACCEPTANCE.json",
+      "mode": "100644",
+      "git_blob": "883d7a496d8fb8673acf9a23f539c854f7cac972"
+    },
+    {
+      "path": "refactored/reports/STATUS.json",
+      "mode": "100644",
+      "git_blob": "883d7a496d8fb8673acf9a23f539c854f7cac972"
+    },
+    {
+      "path": "refactored/reports/baseline_commands.json",
+      "mode": "100644",
+      "git_blob": "f97cb8b1f49573e988981f2d67ef627b69613da0"
+    },
+    {
+      "path": "refactored/reports/baseline_tests_0.log",
+      "mode": "100644",
+      "git_blob": "a16297d6c735770d5df628d168f5efd362bcb03b"
+    },
+    {
+      "path": "refactored/reports/baseline_tests_1.log",
+      "mode": "100644",
+      "git_blob": "10389835e86fd7c3da6a9e5c439596f8c8561eec"
+    },
+    {
+      "path": "refactored/reports/build.json",
+      "mode": "100644",
+      "git_blob": "51064f5d61b3172d3ccef9b25a9da1a663d74865"
+    },
+    {
+      "path": "refactored/reports/build_run.log",
+      "mode": "100644",
+      "git_blob": "828426d4f69f0970709f766c3135870a81c58a5c"
+    },
+    {
+      "path": "refactored/reports/changes.patch",
+      "mode": "100644",
+      "git_blob": "cf76417c6f321a6d0e90131815226bf4556a8772"
+    },
+    {
+      "path": "refactored/reports/commands.json",
+      "mode": "100644",
+      "git_blob": "34adf436fac1171b516ee0c50b464c72a8cd4055"
+    },
+    {
+      "path": "refactored/reports/current_build_check.log",
+      "mode": "100644",
+      "git_blob": "e9c2e16a62c7c4b83d4f2389f5b30a206b411798"
+    },
+    {
+      "path": "refactored/reports/current_diff_check.log",
+      "mode": "100644",
+      "git_blob": "337bf9ce4d16a22a8decc2aa8fd868d7a8e533f0"
+    },
+    {
+      "path": "refactored/reports/current_missing_market_data.log",
+      "mode": "100644",
+      "git_blob": "a9f835ac4636ffaccd36d9e786756a9cc7087722"
+    },
+    {
+      "path": "refactored/reports/current_paired_synthetic.log",
+      "mode": "100644",
+      "git_blob": "d4fa1d17927c272ec3ae946d5cb057e1ebb5e8f2"
+    },
+    {
+      "path": "refactored/reports/current_tests.log",
+      "mode": "100644",
+      "git_blob": "11c7080550e0fa1f84d220165c7de749b765e9df"
+    },
+    {
+      "path": "refactored/reports/delivery_code_commit.txt",
+      "mode": "100644",
+      "git_blob": "8695bc7e8a2ced9f61f264d518dfaf6538f726d3"
+    },
+    {
+      "path": "refactored/reports/history_before_authenticated_tradingview/ACCEPTANCE.json",
+      "mode": "100644",
+      "git_blob": "36a1a2f81cbbff6eb0c90775cbef46cfda6de495"
+    },
+    {
+      "path": "refactored/reports/history_before_authenticated_tradingview/STATUS.json",
+      "mode": "100644",
+      "git_blob": "36a1a2f81cbbff6eb0c90775cbef46cfda6de495"
+    },
+    {
+      "path": "refactored/reports/history_before_authenticated_tradingview/commands.json",
+      "mode": "100644",
+      "git_blob": "124413810a98c3d4fa15834d9498306960b1ccee"
+    },
+    {
+      "path": "refactored/reports/history_before_authenticated_tradingview/current_diff_check.log",
+      "mode": "100644",
+      "git_blob": "2da51200e4006332ed74cc24271b77d4806baaae"
+    },
+    {
+      "path": "refactored/reports/history_before_authenticated_tradingview/current_missing_market_data.log",
+      "mode": "100644",
+      "git_blob": "654a1276b1cab2c16c7caa15d3a1cdbf7005387e"
+    },
+    {
+      "path": "refactored/reports/history_before_authenticated_tradingview/current_paired_synthetic.log",
+      "mode": "100644",
+      "git_blob": "ef56e37e071a366d94f1f45b04a76af67bdf3400"
+    },
+    {
+      "path": "refactored/reports/history_before_authenticated_tradingview/current_tests.log",
+      "mode": "100644",
+      "git_blob": "ff54b30f2a3ea68a1fae1208ff90a1f2b53190c8"
+    },
+    {
+      "path": "refactored/reports/market_validation/status.json",
+      "mode": "100644",
+      "git_blob": "5a43d3f473c14839d80b5828b479d137e70f62ff"
+    },
+    {
+      "path": "refactored/reports/mobile_mock.json",
+      "mode": "100644",
+      "git_blob": "b95d5987ca082dfca4ef23b6f690a91996916862"
+    },
+    {
+      "path": "refactored/reports/patch_check.log",
+      "mode": "100644",
+      "git_blob": "8b137891791fe96927ad78e64b0aad7bded08bdc"
+    },
+    {
+      "path": "refactored/reports/publication.json",
+      "mode": "100644",
+      "git_blob": "7e8cca060480f568695d44e95ee8345e39680cc8"
+    },
+    {
+      "path": "refactored/reports/source_recovery.json",
+      "mode": "100644",
+      "git_blob": "f781cf5777886490fd11f15320e4f92d1ae32652"
+    },
+    {
+      "path": "refactored/reports/synthetic_paired_run/baseline/events.jsonl",
+      "mode": "100644",
+      "git_blob": "1be32445b35b8da49a0273606a61f847844cd9cc"
+    },
+    {
+      "path": "refactored/reports/synthetic_paired_run/baseline/metrics.json",
+      "mode": "100644",
+      "git_blob": "821d65fc69822a2a58c4234ca66132ea8548b5e6"
+    },
+    {
+      "path": "refactored/reports/synthetic_paired_run/baseline/trades.csv",
+      "mode": "100644",
+      "git_blob": "bdf1cbb8fc501c73bc22ed50ee9af6e2094e682f"
+    },
+    {
+      "path": "refactored/reports/synthetic_paired_run/baseline/trades.jsonl",
+      "mode": "100644",
+      "git_blob": "050b38d845b03534c6492f71010bc602d9d09845"
+    },
+    {
+      "path": "refactored/reports/synthetic_paired_run/candidate_comparison.json",
+      "mode": "100644",
+      "git_blob": "ddc033da5d0307f0534c510473867ce529695ed8"
+    },
+    {
+      "path": "refactored/reports/synthetic_paired_run/comparison.json",
+      "mode": "100644",
+      "git_blob": "729e3e01b64ae5ce26a93abd77f4ae2f23d4cbef"
+    },
+    {
+      "path": "refactored/reports/synthetic_paired_run/fixed/events.jsonl",
+      "mode": "100644",
+      "git_blob": "1be32445b35b8da49a0273606a61f847844cd9cc"
+    },
+    {
+      "path": "refactored/reports/synthetic_paired_run/fixed/metrics.json",
+      "mode": "100644",
+      "git_blob": "821d65fc69822a2a58c4234ca66132ea8548b5e6"
+    },
+    {
+      "path": "refactored/reports/synthetic_paired_run/fixed/trades.csv",
+      "mode": "100644",
+      "git_blob": "bdf1cbb8fc501c73bc22ed50ee9af6e2094e682f"
+    },
+    {
+      "path": "refactored/reports/synthetic_paired_run/fixed/trades.jsonl",
+      "mode": "100644",
+      "git_blob": "050b38d845b03534c6492f71010bc602d9d09845"
+    },
+    {
+      "path": "refactored/reports/synthetic_tooling_comparison.json",
+      "mode": "100644",
+      "git_blob": "1f2eeb53c1a8f25a6982507ffa276147bc2f5a7f"
+    },
+    {
+      "path": "refactored/reports/tests.json",
+      "mode": "100644",
+      "git_blob": "6031e934829297c7bc287ffa554db373f4aa60b2"
+    },
+    {
+      "path": "refactored/reports/tradingview_attempt.json",
+      "mode": "100644",
+      "git_blob": "03c33d0767bae10c086cd5cd8912b3b03176f995"
+    },
+    {
+      "path": "refactored/reports/tradingview_evidence/tradingview_baseline_standard.png",
+      "mode": "100644",
+      "git_blob": "022fbf4d85b712b3e8e9d1ca878d87461da71763"
+    },
+    {
+      "path": "refactored/reports/tradingview_evidence/tradingview_fixed_h1.txt",
+      "mode": "100644",
+      "git_blob": "836e8852f2057f92d56a71d6487fbe5b3ae08e53"
+    },
+    {
+      "path": "refactored/reports/tradingview_evidence/tradingview_fixed_h4.txt",
+      "mode": "100644",
+      "git_blob": "a25a21630c709ab991424fdd8b21d38936292320"
+    },
+    {
+      "path": "refactored/reports/tradingview_evidence/tradingview_fixed_m15.txt",
+      "mode": "100644",
+      "git_blob": "81d659888deb9411bf643391de6f57a766f11112"
+    },
+    {
+      "path": "refactored/reports/tradingview_evidence/tradingview_fixed_m30.txt",
+      "mode": "100644",
+      "git_blob": "63c0a0deedd086ff964bca588c78f3874ecfdfb4"
+    },
+    {
+      "path": "refactored/reports/tradingview_evidence/tradingview_fixed_m5.txt",
+      "mode": "100644",
+      "git_blob": "c88feb4105fdf9f7bad8ca2a728c905c20a5c2fd"
+    },
+    {
+      "path": "refactored/reports/tradingview_evidence/tradingview_fixed_standard.png",
+      "mode": "100644",
+      "git_blob": "12e0d1a1b45fb6b4b8ff432ce227d8f0ce9dc64d"
+    },
+    {
+      "path": "refactored/reports/tradingview_evidence/tradingview_integrated_pro.png",
+      "mode": "100644",
+      "git_blob": "3a8a113f1b741ae9bcaecfa597f40bd46fc5eb4d"
+    },
+    {
+      "path": "refactored/reports/tradingview_evidence/tradingview_mobile_390.png",
+      "mode": "100644",
+      "git_blob": "62e88bbe2519f2a0eb127083d2e30d188b98e160"
+    },
+    {
+      "path": "refactored/reports/tradingview_evidence/tradingview_mobile_430.png",
+      "mode": "100644",
+      "git_blob": "839d13a32ac435cedbd8a5baa74bc6d76a098058"
+    },
+    {
+      "path": "refactored/reports/tradingview_evidence/tradingview_properties.txt",
+      "mode": "100644",
+      "git_blob": "fb7b85ba70bf297ec404ad228d93688206eedcbb"
+    },
+    {
+      "path": "refactored/reports/tradingview_evidence/tradingview_runtime_error.png",
+      "mode": "100644",
+      "git_blob": "6f64a3f3ee5355390e3a0c30f62d5a286768d8f6"
+    },
+    {
+      "path": "refactored/reports/unit_tests.log",
+      "mode": "100644",
+      "git_blob": "ed91e6f379c53a198a05e1003979d2d9a19e461f"
+    },
+    {
+      "path": "refactored/requirements-ui.txt",
+      "mode": "100644",
+      "git_blob": "88ecfad9d4a6c9fe50b20be4b8aab9437f814707"
+    },
+    {
+      "path": "refactored/requirements.txt",
+      "mode": "100644",
+      "git_blob": "8b11f916b967935e120dade81246d4d72c9125b8"
+    },
+    {
+      "path": "refactored/src/decision.pineinc",
+      "mode": "100644",
+      "git_blob": "9f1a332561a2b65336ee36508e6624c4198f9537"
+    },
+    {
+      "path": "refactored/src/features.pineinc",
+      "mode": "100644",
+      "git_blob": "70bfd73b60814db25211501f8aac3481dc7b747d"
+    },
+    {
+      "path": "refactored/src/indicator_adapter.pineinc",
+      "mode": "100644",
+      "git_blob": "900963f3b84f1780eb380c39594d420735c1a7af"
+    },
+    {
+      "path": "refactored/src/indicator_extra.pineinc",
+      "mode": "100644",
+      "git_blob": "c0292a19368904f0f7ae66508f4cc0dc238aceee"
+    },
+    {
+      "path": "refactored/src/indicator_header.pineinc",
+      "mode": "100644",
+      "git_blob": "1b04cb174cc56d468b75c4b9a45e2928c179a0e8"
+    },
+    {
+      "path": "refactored/src/inputs.pineinc",
+      "mode": "100644",
+      "git_blob": "3046e82374d52a3b0a01deefaaa66a7be7492bd9"
+    },
+    {
+      "path": "refactored/src/native_adapter.pineinc",
+      "mode": "100644",
+      "git_blob": "d87a08c3843387b4ce30454d86d0a730c877cdac"
+    },
+    {
+      "path": "refactored/src/native_extra.pineinc",
+      "mode": "100644",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "refactored/src/native_header.pineinc",
+      "mode": "100644",
+      "git_blob": "3fad75c83b10a36c4a5afeff3aa94f93309ea6ab"
+    },
+    {
+      "path": "refactored/src/paper_engine.pineinc",
+      "mode": "100644",
+      "git_blob": "bb72b49762ad516b880c586822e7ec0110e33ff1"
+    },
+    {
+      "path": "refactored/src/types_helpers.pineinc",
+      "mode": "100644",
+      "git_blob": "a0687f09f199e67eed991bc56c18d5e8fc9f7cbb"
+    },
+    {
+      "path": "refactored/src/visual_alerts.pineinc",
+      "mode": "100644",
+      "git_blob": "db3af11de7fb560113745d6827a972adaa614382"
+    },
+    {
+      "path": "refactored/tests/fixtures/synthetic_events.jsonl",
+      "mode": "100644",
+      "git_blob": "9cac21f1a179af7cb68449be1078282eb2001c40"
+    },
+    {
+      "path": "refactored/tests/fixtures/synthetic_manifest.json",
+      "mode": "100644",
+      "git_blob": "522e3cef9e2f97b0ed483f6dbc0f3bd8ab0279c1"
+    },
+    {
+      "path": "refactored/tests/fixtures/synthetic_ohlc.csv",
+      "mode": "100644",
+      "git_blob": "d3e8246c9ddbeb7ec96d255f1c32195788c105c3"
+    },
+    {
+      "path": "refactored/tests/test_audited_simulation.py",
+      "mode": "100644",
+      "git_blob": "9d5285b5c81a99ebaa43f0860b86877aaea748b1"
+    },
+    {
+      "path": "refactored/tests/test_compare_runs.py",
+      "mode": "100644",
+      "git_blob": "73676e73ffd1becb759f3651e85bea7da4736c65"
+    },
+    {
+      "path": "refactored/tests/test_delivery_integrity.py",
+      "mode": "100644",
+      "git_blob": "4b390db92ef50b8b86711d9997f5d78fb925a3bc"
+    },
+    {
+      "path": "refactored/tests/test_reference.py",
+      "mode": "100644",
+      "git_blob": "bde2b803a5fa1a21b47497e8b2e6367625620e21"
+    },
+    {
+      "path": "refactored/tests/test_source_and_tools.py",
+      "mode": "100644",
+      "git_blob": "f7bed128eb979cfe8200b627873e6c8e4bd13c95"
+    },
+    {
+      "path": "refactored/tools/build.py",
+      "mode": "100644",
+      "git_blob": "9f9c81209cfe38de3a7a2106dc396acd9597019e"
+    },
+    {
+      "path": "refactored/tools/compare_events.py",
+      "mode": "100644",
+      "git_blob": "89766a7d1d091a3337e4e9a2b818a5ff06ee9185"
+    },
+    {
+      "path": "refactored/tools/compare_runs.py",
+      "mode": "100644",
+      "git_blob": "22250681fc74a863569b1ec0f4d2e865de472c5e"
+    },
+    {
+      "path": "refactored/tools/package.py",
+      "mode": "100644",
+      "git_blob": "b0cf4a28b1c52ec7a4019d4da53c2a9b51422497"
+    },
+    {
+      "path": "refactored/tools/provenance.py",
+      "mode": "100644",
+      "git_blob": "2c49c6304bdd912d0ce08dc397484b97426f2e90"
+    },
+    {
+      "path": "refactored/tools/ref_engine.py",
+      "mode": "100644",
+      "git_blob": "e39196ba94c4eb3727e064650e840faf20caf708"
+    },
+    {
+      "path": "refactored/tools/render_ui_mock.py",
+      "mode": "100644",
+      "git_blob": "a36d1d77bab93d4435ecc69d699c75bea56414a1"
+    },
+    {
+      "path": "refactored/tools/run_tests.py",
+      "mode": "100644",
+      "git_blob": "e9feab1ec91d24847262a24202eefc6fd942ae75"
+    },
+    {
+      "path": "refactored/tools/validate.py",
+      "mode": "100644",
+      "git_blob": "45c79628f6818c1f177a12f64e944510fe09029b"
+    },
+    {
+      "path": "unified/.gitattributes",
+      "mode": "100644",
+      "git_blob": "70e773d69de69c52b2581722e5f59b10683b299b"
+    },
+    {
+      "path": "unified/.gitignore",
+      "mode": "100644",
+      "git_blob": "a011ef9fa3e9825e83b9a9ed804e2a5476d794c5"
+    },
+    {
+      "path": "unified/MIGRATION_BG.md",
+      "mode": "100644",
+      "git_blob": "cfe578b43008803d2afea5a57f9961396f4d86ee"
+    },
+    {
+      "path": "unified/QIRVANTA_UNIFIED.pine",
+      "mode": "100644",
+      "git_blob": "d0713e48fd2396aaf7126a63f1ed4bc16d97cb17"
+    },
+    {
+      "path": "unified/README_BG.md",
+      "mode": "100644",
+      "git_blob": "832d0d2419c000751db1d74e5b45e025aee961cf"
+    },
+    {
+      "path": "unified/VALIDATION_BG.md",
+      "mode": "100644",
+      "git_blob": "2ccd93c39ac219517dae8c3aac9293f0d9915fb9"
+    },
+    {
+      "path": "unified/docs/ALERTS_BG.md",
+      "mode": "100644",
+      "git_blob": "558d6b8dd9f1bf85b1abb1da6051fbf0e4b9c9b3"
+    },
+    {
+      "path": "unified/docs/SIGNAL_RULES_BG.md",
+      "mode": "100644",
+      "git_blob": "d7cbcd062e3d625b290912c2894b19b987ed0499"
+    },
+    {
+      "path": "unified/reports/ACCEPTANCE.json",
+      "mode": "100644",
+      "git_blob": "950a2e8812d11ddba0c9e631916d879d80f008ef"
+    },
+    {
+      "path": "unified/reports/EVIDENCE_SHA256.json",
+      "mode": "100644",
+      "git_blob": "c1650f9359b3696d96f38d7b4fa179ba23ed1791"
+    },
+    {
+      "path": "unified/reports/baseline_manifest.json",
+      "mode": "100644",
+      "git_blob": "9f0743375700d37973b1f4bc95c99fac80e5d61c"
+    },
+    {
+      "path": "unified/reports/baseline_tests.log",
+      "mode": "100644",
+      "git_blob": "b4ab68e01266097e3cb603d261cff96e0dc2995b"
+    },
+    {
+      "path": "unified/reports/build.json",
+      "mode": "100644",
+      "git_blob": "209d0316627cd945dff35a9698287d691d1017d4"
+    },
+    {
+      "path": "unified/reports/native_sample_reconciliation.json",
+      "mode": "100644",
+      "git_blob": "c374ca8c7624e6b2c19a97c25082f2f9be9025d7"
+    },
+    {
+      "path": "unified/reports/publication.json",
+      "mode": "100644",
+      "git_blob": "5ec73b87188e73c477e9864fcf0203c0372d539e"
+    },
+    {
+      "path": "unified/reports/runtime_summary.json",
+      "mode": "100644",
+      "git_blob": "4a379aabed79ccf7c588c61df1954a603e7cdb93"
+    },
+    {
+      "path": "unified/reports/signal_parity.json",
+      "mode": "100644",
+      "git_blob": "f445ca9295149b97a192c839e46408982d53d3c1"
+    },
+    {
+      "path": "unified/reports/synthetic_reference_comparison.json",
+      "mode": "100644",
+      "git_blob": "4c672a06cf4a81be9dc706ff59def2b94139fd62"
+    },
+    {
+      "path": "unified/reports/tests.json",
+      "mode": "100644",
+      "git_blob": "e48257ed2c12bc835f71571d736940d2c6305d3e"
+    },
+    {
+      "path": "unified/reports/tradingview/alert_platform_caution.txt",
+      "mode": "100644",
+      "git_blob": "faaa38db268cafc43dffebf0a58f1480ab67e76c"
+    },
+    {
+      "path": "unified/reports/tradingview/alert_routes_template.txt",
+      "mode": "100644",
+      "git_blob": "5997d6c8a4d9e98dff69a02d2b09e16b86c6b032"
+    },
+    {
+      "path": "unified/reports/tradingview/baseline_M15.txt",
+      "mode": "100644",
+      "git_blob": "80dd810620327c01fef8a21e3ebd2dbe56ba137a"
+    },
+    {
+      "path": "unified/reports/tradingview/baseline_properties.txt",
+      "mode": "100644",
+      "git_blob": "8fa726cee4713bc433f127cb8f9ff2086622f568"
+    },
+    {
+      "path": "unified/reports/tradingview/csv_blocked_and_trade_sample.txt",
+      "mode": "100644",
+      "git_blob": "bc52cb061db4a01a71a862570f3f50886fd2100e"
+    },
+    {
+      "path": "unified/reports/tradingview/deselected_series_layering.png",
+      "mode": "100644",
+      "git_blob": "cf8d26a132c884f2a00f9730f663c00a913f7c8a"
+    },
+    {
+      "path": "unified/reports/tradingview/detail_M15_same_results.txt",
+      "mode": "100644",
+      "git_blob": "af4b0657effe0a3c12359ea9e9f2b9c51f01e102"
+    },
+    {
+      "path": "unified/reports/tradingview/detail_desktop.png",
+      "mode": "100644",
+      "git_blob": "d076ba5f93e8b1cebad48af369aff6af1cdecf9f"
+    },
+    {
+      "path": "unified/reports/tradingview/detail_desktop_deselected.png",
+      "mode": "100644",
+      "git_blob": "534ba87d9c145d7d4efcac368793474651ed3067"
+    },
+    {
+      "path": "unified/reports/tradingview/execution_settings.png",
+      "mode": "100644",
+      "git_blob": "75ac79d49b44ac85ce021894ec6591250dbeb8ff"
+    },
+    {
+      "path": "unified/reports/tradingview/final_H1.txt",
+      "mode": "100644",
+      "git_blob": "35d2cfa358b7812e672315b2e660cea85c38a212"
+    },
+    {
+      "path": "unified/reports/tradingview/final_H4.txt",
+      "mode": "100644",
+      "git_blob": "9bd2b8c9d09a69449e174a17dd6266f4a9d9b166"
+    },
+    {
+      "path": "unified/reports/tradingview/final_M15.txt",
+      "mode": "100644",
+      "git_blob": "ae687d0795adad7e0fcc4756cb036c711d955d43"
+    },
+    {
+      "path": "unified/reports/tradingview/final_M30.txt",
+      "mode": "100644",
+      "git_blob": "fe67c5623667a81888fda18d8eae79268dd308ce"
+    },
+    {
+      "path": "unified/reports/tradingview/final_M5.txt",
+      "mode": "100644",
+      "git_blob": "22230568fab56701268a625be2b2f92de600f94a"
+    },
+    {
+      "path": "unified/reports/tradingview/final_compile.txt",
+      "mode": "100644",
+      "git_blob": "b807e231cf1acb7dca3ad83f28f8677917bc1c6d"
+    },
+    {
+      "path": "unified/reports/tradingview/final_properties.txt",
+      "mode": "100644",
+      "git_blob": "f0b030d7d7e0f5222b0772ca57d6e912d449c9fd"
+    },
+    {
+      "path": "unified/reports/tradingview/final_saved_chart.png",
+      "mode": "100644",
+      "git_blob": "ecfbe29e46d26cdfe80c1b3b85a8149f5f4ef832"
+    },
+    {
+      "path": "unified/reports/tradingview/final_saved_chart.txt",
+      "mode": "100644",
+      "git_blob": "a56bcbf6588565c6354d4929a2cc08cbb155b6a6"
+    },
+    {
+      "path": "unified/reports/tradingview/initial_missing_panel.png",
+      "mode": "100644",
+      "git_blob": "fe2e18ec9e006333976f13c21e61e5435fac440f"
+    },
+    {
+      "path": "unified/reports/tradingview/minimal_strategy.txt",
+      "mode": "100644",
+      "git_blob": "cf0d52329bd0d4bb3e20b0f6fdf8928258dac940"
+    },
+    {
+      "path": "unified/reports/tradingview/mobile_390.png",
+      "mode": "100644",
+      "git_blob": "bc635dfa50c604f842d262e6d7793a5c6a5cc0d7"
+    },
+    {
+      "path": "unified/reports/tradingview/mobile_430.png",
+      "mode": "100644",
+      "git_blob": "2996a05fdbc2d17f3020f09d75ab6220a810ffda"
+    },
+    {
+      "path": "unified/reports/tradingview/readded_final_compile.txt",
+      "mode": "100644",
+      "git_blob": "adf4f3bdf3cd1743ebe7ba595a36e9e4f81c96be"
+    },
+    {
+      "path": "unified/reports/tradingview/saved_final_compile.txt",
+      "mode": "100644",
+      "git_blob": "fb1d373ebe1a0ab63aa606d2b09ea7cb4e95ca21"
+    },
+    {
+      "path": "unified/reports/tradingview/selected_series_layering.png",
+      "mode": "100644",
+      "git_blob": "21eea8b2a7a050a347c6b096ebe9f198cd18f2c5"
+    },
+    {
+      "path": "unified/reports/tradingview/table_behind_candles.png",
+      "mode": "100644",
+      "git_blob": "d6f201b4a97e4cb9c0bcbc8c375220e77bdea344"
+    },
+    {
+      "path": "unified/reports/unit_tests.log",
+      "mode": "100644",
+      "git_blob": "daa1115fb8a600d439e6a0f5c99528ee4d491ea7"
+    },
+    {
+      "path": "unified/src/alerts.pineinc",
+      "mode": "100644",
+      "git_blob": "afcbfb00aff4d5ccd08e8939382926ee4b2d5847"
+    },
+    {
+      "path": "unified/src/alerts_helpers.pineinc",
+      "mode": "100644",
+      "git_blob": "5e9e0a252d06ae723c1fb86996793000595191e3"
+    },
+    {
+      "path": "unified/src/decision.pineinc",
+      "mode": "100644",
+      "git_blob": "9f1a332561a2b65336ee36508e6624c4198f9537"
+    },
+    {
+      "path": "unified/src/features.pineinc",
+      "mode": "100644",
+      "git_blob": "70bfd73b60814db25211501f8aac3481dc7b747d"
+    },
+    {
+      "path": "unified/src/indicator_adapter.pineinc",
+      "mode": "100644",
+      "git_blob": "900963f3b84f1780eb380c39594d420735c1a7af"
+    },
+    {
+      "path": "unified/src/indicator_extra.pineinc",
+      "mode": "100644",
+      "git_blob": "c0292a19368904f0f7ae66508f4cc0dc238aceee"
+    },
+    {
+      "path": "unified/src/indicator_header.pineinc",
+      "mode": "100644",
+      "git_blob": "1b04cb174cc56d468b75c4b9a45e2928c179a0e8"
+    },
+    {
+      "path": "unified/src/inputs.pineinc",
+      "mode": "100644",
+      "git_blob": "73dabd9de3845062368d041a2f881efc6c8c0bd2"
+    },
+    {
+      "path": "unified/src/native_adapter.pineinc",
+      "mode": "100644",
+      "git_blob": "bf9276524d5e6732c3532fa85cfb02e166a233d1"
+    },
+    {
+      "path": "unified/src/native_extra.pineinc",
+      "mode": "100644",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "unified/src/native_header.pineinc",
+      "mode": "100644",
+      "git_blob": "d322e77dbcee46d17a25fb97bcb803fb30b4799f"
+    },
+    {
+      "path": "unified/src/paper_engine.pineinc",
+      "mode": "100644",
+      "git_blob": "bb72b49762ad516b880c586822e7ec0110e33ff1"
+    },
+    {
+      "path": "unified/src/types_helpers.pineinc",
+      "mode": "100644",
+      "git_blob": "9c7f1715d7441f73437149286e76dd4fa470f361"
+    },
+    {
+      "path": "unified/src/visual_alerts.pineinc",
+      "mode": "100644",
+      "git_blob": "61e1e1e24329ff78cce7a46a34c06aeecca9632a"
+    },
+    {
+      "path": "unified/tests/fixtures/synthetic_events.jsonl",
+      "mode": "100644",
+      "git_blob": "9cac21f1a179af7cb68449be1078282eb2001c40"
+    },
+    {
+      "path": "unified/tests/fixtures/synthetic_manifest.json",
+      "mode": "100644",
+      "git_blob": "522e3cef9e2f97b0ed483f6dbc0f3bd8ab0279c1"
+    },
+    {
+      "path": "unified/tests/fixtures/synthetic_ohlc.csv",
+      "mode": "100644",
+      "git_blob": "eff9821b388fc556ab4edd5664cfa294ee56f3c2"
+    },
+    {
+      "path": "unified/tests/test_alert_routes.py",
+      "mode": "100644",
+      "git_blob": "ab447bfbfe2bdff309fbaa681684d3684bdcb626"
+    },
+    {
+      "path": "unified/tests/test_baseline_reference.py",
+      "mode": "100644",
+      "git_blob": "702348250ebf36fa40ec05c4bd363c83fa5215d4"
+    },
+    {
+      "path": "unified/tests/test_native_accounting.py",
+      "mode": "100644",
+      "git_blob": "09c3cc0b1cc037a3e04445f878d3742c65f5ea69"
+    },
+    {
+      "path": "unified/tests/test_shadow_reference.py",
+      "mode": "100644",
+      "git_blob": "bde2b803a5fa1a21b47497e8b2e6367625620e21"
+    },
+    {
+      "path": "unified/tests/test_ui_contract.py",
+      "mode": "100644",
+      "git_blob": "45c7328545e84d019fcccb2b1345ef308e596244"
+    },
+    {
+      "path": "unified/tests/test_unified_artifact.py",
+      "mode": "100644",
+      "git_blob": "d993abb5d66dd66b205a13d316ffff08b31211f0"
+    },
+    {
+      "path": "unified/tools/build.py",
+      "mode": "100644",
+      "git_blob": "c9bf69e48c1413a8f7a6b5febaa4864207e57bef"
+    },
+    {
+      "path": "unified/tools/check_signal_parity.py",
+      "mode": "100644",
+      "git_blob": "92c99e941e85f4eb7644ac02345aa6674bec4963"
+    },
+    {
+      "path": "unified/tools/compare_baseline_reference.py",
+      "mode": "100644",
+      "git_blob": "441be284a08ce60267bd3ea7dd54f3690982b642"
+    },
+    {
+      "path": "unified/tools/compare_events.py",
+      "mode": "100644",
+      "git_blob": "89766a7d1d091a3337e4e9a2b818a5ff06ee9185"
+    },
+    {
+      "path": "unified/tools/compare_runs.py",
+      "mode": "100644",
+      "git_blob": "22250681fc74a863569b1ec0f4d2e865de472c5e"
+    },
+    {
+      "path": "unified/tools/native_accounting.py",
+      "mode": "100644",
+      "git_blob": "099d5f85d04041fd14af79f2989145740d0237d6"
+    },
+    {
+      "path": "unified/tools/package.py",
+      "mode": "100644",
+      "git_blob": "f8a52496bdd5c84b3005aa178dfe7f93ca66bd49"
+    },
+    {
+      "path": "unified/tools/provenance.py",
+      "mode": "100644",
+      "git_blob": "9e81dd3ab702af6baeac3e9294c4b66ab63f7758"
+    },
+    {
+      "path": "unified/tools/ref_engine.py",
+      "mode": "100644",
+      "git_blob": "e39196ba94c4eb3727e064650e840faf20caf708"
+    },
+    {
+      "path": "unified/tools/render_ui_mock.py",
+      "mode": "100644",
+      "git_blob": "a36d1d77bab93d4435ecc69d699c75bea56414a1"
+    },
+    {
+      "path": "unified/tools/run_tests.py",
+      "mode": "100644",
+      "git_blob": "5af6bf99d1b580ee597e0e3addefb24a94e0ad21"
+    },
+    {
+      "path": "unified/tools/validate.py",
+      "mode": "100644",
+      "git_blob": "45c79628f6818c1f177a12f64e944510fe09029b"
+    }
+  ],
+  "prior_diagnostics_must_remain_byte_identical": true,
+  "champion_trading_logic_must_remain_identical": true,
+  "new_challengers_default_enabled": false,
+  "live_orders_authorized": false,
+  "new_market_data_redistribution_rights": "NOT_ESTABLISHED; new full OHLC exports stay local, commit hashes/manifests only"
+}

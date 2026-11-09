@@ -1,0 +1,1691 @@
+{
+  "schema": "qirvanta.research.m30_experiments.v1",
+  "amendment_sha256": "b3aaf63d393566779f6e08fb1cf28985dcb2d8ede04f67347df5e7ef686b509f",
+  "source_freeze_sha256": "cc047f8a6e7291ba3109b9380e4656201fbb5f14f8ed47492d91870dacb631b8",
+  "aggregation_manifest_sha256": "9a05cd44e9ba994e89533ed0b54ce9be3f703051b8618e796a61f99baf2c5629",
+  "completed_utc": "2026-11-09T17:41:59.572460+00:00",
+  "native_m30_history": false,
+  "independent_data": false,
+  "champion_promoted": false,
+  "bars": 3222,
+  "trials": [
+    {
+      "trial": {
+        "id": "S1-M30-BASE",
+        "family": "S1",
+        "exit_variant": "PARTIAL_R",
+        "entry_delay_bars": 1,
+        "cost_multiplier": 1
+      },
+      "status": "EXPLORATORY_RESULT",
+      "engine": "PYTHON_CONSERVATIVE_OHLC_NOT_NATIVE_PARITY",
+      "config_sha256": "6aea60cc93bacc825a3181469c1ecaa19a8a20c02181603a86312eb03e8095f6",
+      "summary": {
+        "complete_plans": 2,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 6,
+        "net_cash": 97.71299999999736,
+        "all_realized_net_cash": 97.71299999999736,
+        "profit_factor": 4.090520922288469,
+        "wins": 1,
+        "losses": 1,
+        "net_r": 0.9408849141409343,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 31.6170000000009,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 1067,
+          "NO_SETUP": 5375,
+          "SUBMITTED": 2
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "DIRECTIONAL_CONTEXT": 667,
+          "CONFIRMATION_CANDLE": 162,
+          "TIME_GAP_ON_CONFIRMATION": 24,
+          "EXCESSIVE_BAR": 9,
+          "STRUCTURAL_STOP_RANGE": 6
+        },
+        "cash_paid_net": 97.71299999999736,
+        "closed_parts_net": 97.71299999999738,
+        "cash_paid_drawdown": 31.617000000000914,
+        "unallocated_entry_fees": 0.0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20686": 129.32999999999828,
+          "20735": -31.617000000000917
+        }
+      },
+      "blocked_families": {},
+      "campaign_metrics": {
+        "n": 2,
+        "wins": 1,
+        "losses": 1,
+        "breakeven": 0,
+        "net_cash": 97.71299999999736,
+        "mean_cash": 48.85649999999868,
+        "profit_factor": 4.090520922288469,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.5,
+        "win_rate_wilson95": [
+          0.09453120573423074,
+          0.9054687942657693
+        ],
+        "campaign_close_drawdown": 31.617000000000914,
+        "max_consecutive_losses": 1,
+        "p05_cash": -23.569650000000955,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 2,
+        "mean": 0.47044245707046717,
+        "ci95": [
+          null,
+          null
+        ],
+        "status": "INSUFFICIENT_BLOCKS",
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "reason": "A whole-sample circular block produces a degenerate mean; no inferential interval reported"
+      },
+      "sign_flip_p": 0.5037481259370314,
+      "journal": "research\\reports\\candidate_journals\\S1-M30-BASE.json.gz",
+      "journal_sha256": "9d9169b76a23b83ff305c3e0641ea8751257fde9ce653ee058e40ef0f257d6cc",
+      "accounting_correction": {
+        "trial_id": "S1-M30-BASE",
+        "signals_plans_fills_exact": true,
+        "data_exact": true,
+        "complete_net_exact": true,
+        "closed_part_equity_exact": true,
+        "old_closed_part_net": 97.71299999999738,
+        "new_paid_cash_net": 97.71299999999736,
+        "expected_unallocated_fee_delta": -0.0,
+        "old_closed_part_dd": 31.6170000000009,
+        "new_paid_cash_dd": 31.617000000000914,
+        "old_journal_sha256": "d5485e60d9f0e50ece839c3de0a50f2da74e4e8f6f1375c14bcab561f9b144fa",
+        "new_journal_sha256": "9d9169b76a23b83ff305c3e0641ea8751257fde9ce653ee058e40ef0f257d6cc"
+      }
+    },
+    {
+      "trial": {
+        "id": "S2-M30-BASE",
+        "family": "S2",
+        "exit_variant": "PARTIAL_R",
+        "entry_delay_bars": 1,
+        "cost_multiplier": 1
+      },
+      "status": "EXPLORATORY_RESULT",
+      "engine": "PYTHON_CONSERVATIVE_OHLC_NOT_NATIVE_PARITY",
+      "config_sha256": "8132e01a261384207e2e19e1c9f97f2a1636dba485e3d94a718521aebc7d178e",
+      "summary": {
+        "complete_plans": 51,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 153,
+        "net_cash": -357.9370000000805,
+        "all_realized_net_cash": -357.9370000000808,
+        "profit_factor": 0.8095156748828459,
+        "wins": 16,
+        "losses": 35,
+        "net_r": -2.5283188597243575,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 891.2220000000461,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 563,
+          "NO_SETUP": 5371,
+          "WATCH": 459,
+          "SUBMITTED": 51
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "STRUCTURAL_INVALIDATION": 68,
+          "CONFIRMATION_CANDLE": 23,
+          "PORTFOLIO_OCCUPIED": 16,
+          "SETUP_TIME_GAP": 7,
+          "SETUP_EXPIRED": 43,
+          "COOLDOWN": 9,
+          "EXCESSIVE_BAR": 1,
+          "STRUCTURAL_STOP_RANGE": 2
+        },
+        "cash_paid_net": -357.9370000000808,
+        "closed_parts_net": -357.9370000000811,
+        "cash_paid_drawdown": 890.8720000000462,
+        "unallocated_entry_fees": 0.0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20675": 113.65799999999781,
+          "20676": 76.58999999999924,
+          "20677": 8.415999999999439,
+          "20678": 95.14800000000014,
+          "20679": 185.70000000000016,
+          "20682": -0.5249999999999999,
+          "20683": -99.26700000000146,
+          "20684": -56.37500000000472,
+          "20686": -22.336000000001878,
+          "20689": 28.180999999999404,
+          "20690": -131.01800000000313,
+          "20691": -106.44300000000366,
+          "20692": -68.3670000000031,
+          "20693": 30.557999999997808,
+          "20698": 158.05199999999985,
+          "20699": -53.33700000000299,
+          "20700": 150.78899999999865,
+          "20703": -49.437000000002996,
+          "20704": 140.54099999999852,
+          "20705": 73.89399999999932,
+          "20706": 47.455999999999406,
+          "20707": -12.799000000001618,
+          "20710": -104.92800000000243,
+          "20711": 19.521999999999387,
+          "20712": -40.65300000000279,
+          "20713": -65.19600000000155,
+          "20714": 18.629999999995018,
+          "20717": -0.5249999999999999,
+          "20718": -90.03900000000195,
+          "20721": -0.5249999999999999,
+          "20724": -160.95000000000712,
+          "20726": -49.3310000000034,
+          "20727": 20.50600000000013,
+          "20728": -43.174000000000525,
+          "20731": -66.50700000000124,
+          "20738": -35.5350000000024,
+          "20740": -89.3370000000069,
+          "20741": 34.70100000000021,
+          "20742": 8.756999999993603,
+          "20745": 52.065999999998894,
+          "20746": 52.762999999999195,
+          "20747": -0.5249999999999999,
+          "20748": -93.61200000000136,
+          "20752": -67.6349999999994,
+          "20753": 87.17400000000107,
+          "20754": 45.96800000000076,
+          "20755": -53.803999999999725,
+          "20761": -143.68199999999987,
+          "20763": -101.14500000000207
+        }
+      },
+      "blocked_families": {},
+      "campaign_metrics": {
+        "n": 51,
+        "wins": 16,
+        "losses": 35,
+        "breakeven": 0,
+        "net_cash": -357.9370000000805,
+        "mean_cash": -7.018372549021187,
+        "profit_factor": 0.8095156748828459,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.3137254901960784,
+        "win_rate_wilson95": [
+          0.2032767846552545,
+          0.4502699953069435
+        ],
+        "campaign_close_drawdown": 879.8150000000464,
+        "max_consecutive_losses": 11,
+        "p05_cash": -96.70200000000142,
+        "small_n": false
+      },
+      "mean_r_uncertainty": {
+        "n": 51,
+        "mean": -0.049574879602438386,
+        "ci95": [
+          -0.41696012896889784,
+          0.32907584439955434
+        ],
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+      },
+      "sign_flip_p": 0.6156921539230384,
+      "journal": "research\\reports\\candidate_journals\\S2-M30-BASE.json.gz",
+      "journal_sha256": "34db976590f3fd1f24414aa0b3a15473785ba31a7ef83b44da005e1caa1ceb09",
+      "accounting_correction": {
+        "trial_id": "S2-M30-BASE",
+        "signals_plans_fills_exact": true,
+        "data_exact": true,
+        "complete_net_exact": true,
+        "closed_part_equity_exact": true,
+        "old_closed_part_net": -357.9370000000811,
+        "new_paid_cash_net": -357.9370000000808,
+        "expected_unallocated_fee_delta": -0.0,
+        "old_closed_part_dd": 891.2220000000461,
+        "new_paid_cash_dd": 890.8720000000462,
+        "old_journal_sha256": "3ee83fa3cf2119827f135f03ac14622b621ce79dccbbd691112366c7a52f77b8",
+        "new_journal_sha256": "34db976590f3fd1f24414aa0b3a15473785ba31a7ef83b44da005e1caa1ceb09"
+      }
+    },
+    {
+      "trial": {
+        "id": "S3-M30-BASE",
+        "family": "S3",
+        "exit_variant": "PARTIAL_R",
+        "entry_delay_bars": 1,
+        "cost_multiplier": 1
+      },
+      "status": "EXPLORATORY_RESULT",
+      "engine": "PYTHON_CONSERVATIVE_OHLC_NOT_NATIVE_PARITY",
+      "config_sha256": "ecf13f5b026f5eb36de39860257b302a2dde009daeb494ed5e24de57ae38f9cb",
+      "summary": {
+        "complete_plans": 5,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 15,
+        "net_cash": -354.2290000000044,
+        "all_realized_net_cash": -354.2290000000044,
+        "profit_factor": 0.0,
+        "wins": 0,
+        "losses": 5,
+        "net_r": -3.3150738986888637,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 371.3490000000046,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 568,
+          "WATCH": 695,
+          "NO_SETUP": 5176,
+          "SUBMITTED": 5
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "SETUP_EXPIRED": 62,
+          "CONFIRMATION_CANDLE": 34,
+          "STRUCTURAL_INVALIDATION": 12,
+          "ACCEPTANCE_FAILED": 46,
+          "SETUP_TIME_GAP": 10,
+          "STRUCTURAL_STOP_RANGE": 5,
+          "CHASE_LIMIT": 8,
+          "PORTFOLIO_OCCUPIED": 1
+        },
+        "cash_paid_net": -354.2290000000044,
+        "closed_parts_net": -354.22900000000436,
+        "cash_paid_drawdown": 370.9990000000047,
+        "unallocated_entry_fees": 0.0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20676": -18.752000000000226,
+          "20692": -110.03400000000401,
+          "20746": -12.54200000000201,
+          "20749": -0.5249999999999999,
+          "20752": -66.85199999999841,
+          "20763": -0.5249999999999999,
+          "20766": -144.99899999999968
+        }
+      },
+      "blocked_families": {},
+      "campaign_metrics": {
+        "n": 5,
+        "wins": 0,
+        "losses": 5,
+        "breakeven": 0,
+        "net_cash": -354.2290000000044,
+        "mean_cash": -70.84580000000088,
+        "profit_factor": 0.0,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.0,
+        "win_rate_wilson95": [
+          0,
+          0.43448246478317476
+        ],
+        "campaign_close_drawdown": 354.2290000000044,
+        "max_consecutive_losses": 5,
+        "p05_cash": -138.42600000000058,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 5,
+        "mean": -0.6630147797377728,
+        "ci95": [
+          null,
+          null
+        ],
+        "status": "INSUFFICIENT_BLOCKS",
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "reason": "A whole-sample circular block produces a degenerate mean; no inferential interval reported"
+      },
+      "sign_flip_p": 1.0,
+      "journal": "research\\reports\\candidate_journals\\S3-M30-BASE.json.gz",
+      "journal_sha256": "7503529829482f96be8409a2882f98ce27f79e2970851221d101d37f632cbea8",
+      "accounting_correction": {
+        "trial_id": "S3-M30-BASE",
+        "signals_plans_fills_exact": true,
+        "data_exact": true,
+        "complete_net_exact": true,
+        "closed_part_equity_exact": true,
+        "old_closed_part_net": -354.22900000000436,
+        "new_paid_cash_net": -354.2290000000044,
+        "expected_unallocated_fee_delta": -0.0,
+        "old_closed_part_dd": 371.3490000000046,
+        "new_paid_cash_dd": 370.9990000000047,
+        "old_journal_sha256": "5d367c9dc7e17222c52f881f34e55b80730150ab7532a798ab69ab7fb63d4ea1",
+        "new_journal_sha256": "7503529829482f96be8409a2882f98ce27f79e2970851221d101d37f632cbea8"
+      }
+    },
+    {
+      "trial": {
+        "id": "S4-M30-BASE",
+        "family": "S4",
+        "exit_variant": "PARTIAL_R",
+        "entry_delay_bars": 1,
+        "cost_multiplier": 1
+      },
+      "status": "EXPLORATORY_RESULT",
+      "engine": "PYTHON_CONSERVATIVE_OHLC_NOT_NATIVE_PARITY",
+      "config_sha256": "1a04eeb8d50ded17c1c1249dddf73b1a812da3d1174b481751321bd18b6d0e80",
+      "summary": {
+        "complete_plans": 3,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 9,
+        "net_cash": 36.40899999999563,
+        "all_realized_net_cash": 36.40899999999566,
+        "profit_factor": 1.4561216691930092,
+        "wins": 1,
+        "losses": 2,
+        "net_r": 0.6179726776347129,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 79.82300000000451,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 735,
+          "NO_SETUP": 5706,
+          "SUBMITTED": 3
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "PRIOR_COMPRESSION": 334,
+          "CONFIRMATION_CANDLE": 63,
+          "EXPANSION_REQUIRED": 90,
+          "EXCESSIVE_BAR": 16,
+          "STRUCTURAL_STOP_RANGE": 58,
+          "CHASE_LIMIT": 72
+        },
+        "cash_paid_net": 36.40899999999566,
+        "closed_parts_net": 36.408999999995636,
+        "cash_paid_drawdown": 80.3480000000045,
+        "unallocated_entry_fees": 0.0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20697": -60.76800000000257,
+          "20704": -19.05500000000193,
+          "20719": 57.79500000000007,
+          "20720": 58.43700000000008
+        }
+      },
+      "blocked_families": {},
+      "campaign_metrics": {
+        "n": 3,
+        "wins": 1,
+        "losses": 2,
+        "breakeven": 0,
+        "net_cash": 36.40899999999563,
+        "mean_cash": 12.136333333331876,
+        "profit_factor": 1.4561216691930092,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.3333333333333333,
+        "win_rate_wilson95": [
+          0.06149194472039621,
+          0.7923403991979522
+        ],
+        "campaign_close_drawdown": 79.82300000000451,
+        "max_consecutive_losses": 2,
+        "p05_cash": -56.596700000002514,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 3,
+        "mean": 0.2059908925449043,
+        "ci95": [
+          null,
+          null
+        ],
+        "status": "INSUFFICIENT_BLOCKS",
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "reason": "A whole-sample circular block produces a degenerate mean; no inferential interval reported"
+      },
+      "sign_flip_p": 0.5227386306846576,
+      "journal": "research\\reports\\candidate_journals\\S4-M30-BASE.json.gz",
+      "journal_sha256": "75f2fe4326b4020cea2832b1608b96332f874ad94d2610db4e8639ba9c211858",
+      "accounting_correction": {
+        "trial_id": "S4-M30-BASE",
+        "signals_plans_fills_exact": true,
+        "data_exact": true,
+        "complete_net_exact": true,
+        "closed_part_equity_exact": true,
+        "old_closed_part_net": 36.408999999995636,
+        "new_paid_cash_net": 36.40899999999566,
+        "expected_unallocated_fee_delta": -0.0,
+        "old_closed_part_dd": 79.82300000000451,
+        "new_paid_cash_dd": 80.3480000000045,
+        "old_journal_sha256": "7c0e5dc890649e2a0718630a735beb385adb1c0f33387749d0a110a3706455b4",
+        "new_journal_sha256": "75f2fe4326b4020cea2832b1608b96332f874ad94d2610db4e8639ba9c211858"
+      }
+    },
+    {
+      "trial": {
+        "id": "S5-M30-BASE",
+        "family": "S5",
+        "exit_variant": "PARTIAL_R",
+        "entry_delay_bars": 1,
+        "cost_multiplier": 1
+      },
+      "status": "EXPLORATORY_RESULT",
+      "engine": "PYTHON_CONSERVATIVE_OHLC_NOT_NATIVE_PARITY",
+      "config_sha256": "3aa1b784bb37e8a9d31fbfe1266ed80d973062218deee995f12f8c03914bed8f",
+      "summary": {
+        "complete_plans": 52,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 156,
+        "net_cash": 705.5229999999252,
+        "all_realized_net_cash": 705.5229999999272,
+        "profit_factor": 1.590658275769317,
+        "wins": 27,
+        "losses": 25,
+        "net_r": 17.608335344893124,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 288.92200000003226,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 3,
+        "decision_counts": {
+          "REJECTED": 577,
+          "NO_SETUP": 5444,
+          "WATCH": 371,
+          "SUBMITTED": 52
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "STRUCTURAL_INVALIDATION": 116,
+          "SETUP_EXPIRED": 21,
+          "CONFIRMATION_CANDLE": 19,
+          "PORTFOLIO_OCCUPIED": 16,
+          "SETUP_TIME_GAP": 4,
+          "COOLDOWN": 4,
+          "STRUCTURAL_STOP_RANGE": 4,
+          "EXCESSIVE_BAR": 1
+        },
+        "cash_paid_net": 705.5229999999272,
+        "closed_parts_net": 705.5229999999236,
+        "cash_paid_drawdown": 289.27200000003245,
+        "unallocated_entry_fees": 0.0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20672": -45.927000000002224,
+          "20675": 95.41799999999803,
+          "20676": 73.64999999999873,
+          "20677": 8.415999999999439,
+          "20682": 23.15099999999966,
+          "20683": 70.06199999999845,
+          "20686": -9.129000000001545,
+          "20689": 29.05699999999815,
+          "20690": 49.20499999999811,
+          "20691": -16.8570000000007,
+          "20692": -32.68100000000395,
+          "20693": -154.21300000000645,
+          "20696": 60.74099999999926,
+          "20697": 54.66299999999974,
+          "20698": -55.914000000003576,
+          "20699": -94.50300000000735,
+          "20700": 98.07599999999857,
+          "20704": -51.855000000003926,
+          "20705": -96.2040000000039,
+          "20706": 88.58699999999881,
+          "20707": -27.30000000000091,
+          "20711": 40.793999999998235,
+          "20712": -0.5249999999999999,
+          "20713": 189.70699999999908,
+          "20717": -37.998000000002136,
+          "20718": -0.5249999999999999,
+          "20719": 46.790999999996345,
+          "20720": 24.620999999999004,
+          "20721": -10.318000000002575,
+          "20724": -15.90000000000255,
+          "20725": 14.597999999997775,
+          "20726": 26.529999999999564,
+          "20727": 61.81199999999844,
+          "20728": 35.08099999999995,
+          "20731": 111.19199999999947,
+          "20739": 23.281999999999424,
+          "20741": -15.740000000001421,
+          "20742": -7.637000000002626,
+          "20745": -95.72099999999992,
+          "20746": 69.61799999999438,
+          "20747": 11.375999999999475,
+          "20748": -53.62199999999902,
+          "20749": -46.16399999999948,
+          "20752": 51.228000000000605,
+          "20753": 66.41400000000085,
+          "20754": 16.432000000000517,
+          "20755": 98.7559999999995,
+          "20756": -116.07299999999859,
+          "20759": 11.716000000000166,
+          "20760": 147.29000000000008,
+          "20762": -124.93800000000219,
+          "20763": 19.027000000000317,
+          "20766": 97.97600000000048
+        }
+      },
+      "blocked_families": {},
+      "campaign_metrics": {
+        "n": 52,
+        "wins": 27,
+        "losses": 25,
+        "breakeven": 0,
+        "net_cash": 705.5229999999252,
+        "mean_cash": 13.567749999998563,
+        "profit_factor": 1.590658275769317,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.5192307692307693,
+        "win_rate_wilson95": [
+          0.38685682768056057,
+          0.6489588555454449
+        ],
+        "campaign_close_drawdown": 271.89000000003176,
+        "max_consecutive_losses": 4,
+        "p05_cash": -89.71529999999979,
+        "small_n": false
+      },
+      "mean_r_uncertainty": {
+        "n": 52,
+        "mean": 0.33862183355563696,
+        "ci95": [
+          0.10221291198658011,
+          0.5774294421635187
+        ],
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+      },
+      "sign_flip_p": 0.02848575712143928,
+      "journal": "research\\reports\\candidate_journals\\S5-M30-BASE.json.gz",
+      "journal_sha256": "1a07e11a85d219d77c131da149ec70a3c64c0a1bde587336d8b3f47d848d04ab",
+      "accounting_correction": {
+        "trial_id": "S5-M30-BASE",
+        "signals_plans_fills_exact": true,
+        "data_exact": true,
+        "complete_net_exact": true,
+        "closed_part_equity_exact": true,
+        "old_closed_part_net": 705.5229999999236,
+        "new_paid_cash_net": 705.5229999999272,
+        "expected_unallocated_fee_delta": -0.0,
+        "old_closed_part_dd": 288.92200000003226,
+        "new_paid_cash_dd": 289.27200000003245,
+        "old_journal_sha256": "d5bdc794ebfc255fc3a7ca30c4da7f56b5aba2bcbd615305224dd20059262615",
+        "new_journal_sha256": "1a07e11a85d219d77c131da149ec70a3c64c0a1bde587336d8b3f47d848d04ab"
+      }
+    },
+    {
+      "trial": {
+        "id": "S6-M30-BASE",
+        "family": "S6",
+        "exit_variant": "PARTIAL_R",
+        "entry_delay_bars": 1,
+        "cost_multiplier": 1
+      },
+      "status": "BLOCKED_NO_VALID_INPUTS",
+      "engine": "PYTHON_CONSERVATIVE_OHLC_NOT_NATIVE_PARITY",
+      "config_sha256": "7efeadb8b5415efad2b86cd85b7e3d3eb5eba99c1ea0194021f78b7e02cb5bfc",
+      "summary": {
+        "complete_plans": 0,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 0,
+        "net_cash": 0,
+        "all_realized_net_cash": 0.0,
+        "profit_factor": null,
+        "wins": 0,
+        "losses": 0,
+        "net_r": 0,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 0.0,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "BLOCKED": 6444
+        },
+        "rejection_reasons": {
+          "TRUE_VOLUME_AND_VERIFIED_BAR_VWAP_UNAVAILABLE": 6444
+        },
+        "cash_paid_net": 0.0,
+        "closed_parts_net": 0.0,
+        "cash_paid_drawdown": 0.0,
+        "unallocated_entry_fees": 0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {}
+      },
+      "blocked_families": {
+        "S6": "TRUE_VOLUME_AND_VERIFIED_BAR_VWAP_UNAVAILABLE"
+      },
+      "campaign_metrics": {
+        "n": 0,
+        "wins": 0,
+        "losses": 0,
+        "breakeven": 0,
+        "net_cash": 0,
+        "mean_cash": null,
+        "profit_factor": null,
+        "profit_factor_status": "NO_TRADES",
+        "win_rate": null,
+        "win_rate_wilson95": [
+          null,
+          null
+        ],
+        "campaign_close_drawdown": 0.0,
+        "max_consecutive_losses": 0,
+        "p05_cash": null,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 0,
+        "mean": null,
+        "ci95": [
+          null,
+          null
+        ]
+      },
+      "sign_flip_p": 1.0,
+      "journal": "research\\reports\\candidate_journals\\S6-M30-BASE.json.gz",
+      "journal_sha256": "e8c0dbcd9f94403bbc5609f439e599238e8b7a15f47ca8d5d55c62b71c3d2780",
+      "accounting_correction": {
+        "trial_id": "S6-M30-BASE",
+        "signals_plans_fills_exact": true,
+        "data_exact": true,
+        "complete_net_exact": true,
+        "closed_part_equity_exact": true,
+        "old_closed_part_net": 0.0,
+        "new_paid_cash_net": 0.0,
+        "expected_unallocated_fee_delta": 0,
+        "old_closed_part_dd": 0.0,
+        "new_paid_cash_dd": 0.0,
+        "old_journal_sha256": "1931fdc4f6c9a0f72f0dcad781453bfb5e032806bc0b57f2502e3f3ca6352ff8",
+        "new_journal_sha256": "e8c0dbcd9f94403bbc5609f439e599238e8b7a15f47ca8d5d55c62b71c3d2780"
+      }
+    },
+    {
+      "trial": {
+        "id": "S7-M30-BASE",
+        "family": "S7",
+        "exit_variant": "PARTIAL_R",
+        "entry_delay_bars": 1,
+        "cost_multiplier": 1
+      },
+      "status": "EXPLORATORY_RESULT",
+      "engine": "PYTHON_CONSERVATIVE_OHLC_NOT_NATIVE_PARITY",
+      "config_sha256": "716525cf31c400cf5cbc494474a8e1012a89ca49f5e060271bb8d2b8a2ff58d4",
+      "summary": {
+        "complete_plans": 69,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 207,
+        "net_cash": -867.3780000001162,
+        "all_realized_net_cash": -867.3780000001112,
+        "profit_factor": 0.6847939570772206,
+        "wins": 21,
+        "losses": 48,
+        "net_r": -12.053499319567551,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 1282.5260000000978,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 2,
+        "decision_counts": {
+          "REJECTED": 462,
+          "NO_SETUP": 5913,
+          "SUBMITTED": 69
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "CONFIRMATION_CANDLE": 29,
+          "PORTFOLIO_OCCUPIED": 25,
+          "COOLDOWN": 8,
+          "STRUCTURAL_STOP_RANGE": 3,
+          "EXCESSIVE_BAR": 4
+        },
+        "cash_paid_net": -867.3780000001112,
+        "closed_parts_net": -867.3780000001177,
+        "cash_paid_drawdown": 1283.0510000000916,
+        "unallocated_entry_fees": 0.0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20672": -0.5249999999999999,
+          "20675": -51.28200000000234,
+          "20676": 39.766999999998916,
+          "20677": 40.353999999999544,
+          "20678": -18.60000000000127,
+          "20679": 22.468999999998235,
+          "20682": -63.7270000000055,
+          "20683": -28.014000000003033,
+          "20684": -42.61800000000202,
+          "20685": 138.0409999999962,
+          "20686": 66.20700000000033,
+          "20689": 66.44400000000023,
+          "20690": -88.84900000000674,
+          "20691": -21.082000000001425,
+          "20692": -91.9920000000042,
+          "20697": -101.58000000000065,
+          "20698": -60.01500000000196,
+          "20699": 122.24399999999896,
+          "20700": -0.5249999999999999,
+          "20703": -129.15200000000422,
+          "20704": -72.59300000000549,
+          "20706": 124.5239999999978,
+          "20707": 13.845999999997726,
+          "20710": 165.6479999999985,
+          "20711": -106.86500000000377,
+          "20712": -95.6430000000042,
+          "20713": -77.32800000000334,
+          "20714": -175.43400000000295,
+          "20717": -40.70400000000227,
+          "20718": -75.23100000000231,
+          "20719": 85.54499999999753,
+          "20720": -0.5249999999999999,
+          "20721": -48.185000000005495,
+          "20723": -58.74000000000197,
+          "20724": -0.5249999999999999,
+          "20725": -196.35000000000602,
+          "20726": -51.075000000002724,
+          "20727": 35.18599999999933,
+          "20728": 28.852999999999884,
+          "20731": 69.32199999999867,
+          "20732": 55.651999999999134,
+          "20733": 43.16199999999608,
+          "20734": -55.281000000000674,
+          "20735": -12.662000000000992,
+          "20738": 49.28399999999802,
+          "20739": 49.82699999999859,
+          "20740": -117.33000000000092,
+          "20741": -58.75900000000421,
+          "20742": -165.258000000004,
+          "20745": 52.065999999998894,
+          "20746": -67.19200000000146,
+          "20747": -34.80600000000395,
+          "20748": 114.71699999999983,
+          "20749": -23.34899999999998,
+          "20752": -0.5249999999999999,
+          "20753": 116.08200000000089,
+          "20754": -54.23499999999885,
+          "20756": -79.0439999999996,
+          "20759": -123.89100000000089,
+          "20760": -47.19300000000039,
+          "20761": -76.56600000000009,
+          "20762": 159.3390000000006,
+          "20763": 87.29300000000022
+        }
+      },
+      "blocked_families": {},
+      "campaign_metrics": {
+        "n": 69,
+        "wins": 21,
+        "losses": 48,
+        "breakeven": 0,
+        "net_cash": -867.3780000001162,
+        "mean_cash": -12.570695652175598,
+        "profit_factor": 0.6847939570772206,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.30434782608695654,
+        "win_rate_wilson95": [
+          0.20849626891709952,
+          0.4208357016786164
+        ],
+        "campaign_close_drawdown": 1282.5260000000949,
+        "max_consecutive_losses": 10,
+        "p05_cash": -116.90340000000107,
+        "small_n": false
+      },
+      "mean_r_uncertainty": {
+        "n": 69,
+        "mean": -0.1746883959357616,
+        "ci95": [
+          -0.42189618584798483,
+          0.08511171534396515
+        ],
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+      },
+      "sign_flip_p": 0.9035482258870565,
+      "journal": "research\\reports\\candidate_journals\\S7-M30-BASE.json.gz",
+      "journal_sha256": "c77d66f0788f0f92a865f36213df69dfc73189c54b8099b8d6a058c11a0c063d",
+      "accounting_correction": {
+        "trial_id": "S7-M30-BASE",
+        "signals_plans_fills_exact": true,
+        "data_exact": true,
+        "complete_net_exact": true,
+        "closed_part_equity_exact": true,
+        "old_closed_part_net": -867.3780000001177,
+        "new_paid_cash_net": -867.3780000001112,
+        "expected_unallocated_fee_delta": -0.0,
+        "old_closed_part_dd": 1282.5260000000978,
+        "new_paid_cash_dd": 1283.0510000000916,
+        "old_journal_sha256": "22476d1ecc517eb4c0e03a764a12cdfe899e9d522bacfd7efcb0a6fe7a844284",
+        "new_journal_sha256": "c77d66f0788f0f92a865f36213df69dfc73189c54b8099b8d6a058c11a0c063d"
+      }
+    },
+    {
+      "trial": {
+        "id": "S8-M30-BASE",
+        "family": "S8",
+        "exit_variant": "PARTIAL_R",
+        "entry_delay_bars": 1,
+        "cost_multiplier": 1
+      },
+      "status": "EXPLORATORY_RESULT",
+      "engine": "PYTHON_CONSERVATIVE_OHLC_NOT_NATIVE_PARITY",
+      "config_sha256": "133daadeeba19b6377869fc162f6438e48d21c9094a4856381a6e5519a57efe6",
+      "summary": {
+        "complete_plans": 6,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 18,
+        "net_cash": 425.8249999999877,
+        "all_realized_net_cash": 425.82499999998765,
+        "profit_factor": 10.962916169485096,
+        "wins": 5,
+        "losses": 1,
+        "net_r": 5.696338119409981,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 62.30700000000297,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 1,
+        "decision_counts": {
+          "REJECTED": 1383,
+          "NO_SETUP": 5055,
+          "SUBMITTED": 6
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "DIRECTIONAL_CONTEXT": 856,
+          "EFFICIENCY": 738,
+          "PRIOR_PAUSE": 399,
+          "DISPLACEMENT": 342,
+          "EXHAUSTION_DISTANCE": 211,
+          "EXCESSIVE_BAR": 19,
+          "STRUCTURAL_STOP_RANGE": 66,
+          "TIME_GAP_ON_CONFIRMATION": 17,
+          "PORTFOLIO_OCCUPIED": 2,
+          "COOLDOWN": 1
+        },
+        "cash_paid_net": 425.82499999998765,
+        "closed_parts_net": 425.8249999999875,
+        "cash_paid_drawdown": 62.65700000000288,
+        "unallocated_entry_fees": 0.0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20686": -0.5249999999999999,
+          "20689": 186.38299999999765,
+          "20697": 22.091999999999462,
+          "20698": 114.20099999999948,
+          "20706": 57.03199999999924,
+          "20707": -19.39100000000035,
+          "20727": -42.74100000000253,
+          "20733": 85.51799999999703,
+          "20745": -0.5249999999999999,
+          "20746": 23.780999999997764
+        }
+      },
+      "blocked_families": {},
+      "campaign_metrics": {
+        "n": 6,
+        "wins": 5,
+        "losses": 1,
+        "breakeven": 0,
+        "net_cash": 425.8249999999877,
+        "mean_cash": 70.97083333333129,
+        "profit_factor": 10.962916169485096,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.8333333333333334,
+        "win_rate_wilson95": [
+          0.43649717781352987,
+          0.9699466302516935
+        ],
+        "campaign_close_drawdown": 42.74100000000254,
+        "max_consecutive_losses": 1,
+        "p05_cash": -26.241750000002455,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 6,
+        "mean": 0.9493896865683302,
+        "ci95": [
+          0.44893650472530927,
+          1.4468476895462805
+        ],
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+      },
+      "sign_flip_p": 0.06596701649175413,
+      "journal": "research\\reports\\candidate_journals\\S8-M30-BASE.json.gz",
+      "journal_sha256": "bfaf0170ddce80a96ba7918140c403daf34cf2dc3db954e9c2122d3fc4a47e68",
+      "accounting_correction": {
+        "trial_id": "S8-M30-BASE",
+        "signals_plans_fills_exact": true,
+        "data_exact": true,
+        "complete_net_exact": true,
+        "closed_part_equity_exact": true,
+        "old_closed_part_net": 425.8249999999875,
+        "new_paid_cash_net": 425.82499999998765,
+        "expected_unallocated_fee_delta": -0.0,
+        "old_closed_part_dd": 62.30700000000297,
+        "new_paid_cash_dd": 62.65700000000288,
+        "old_journal_sha256": "b97db7a7c3e11e94869d5980f35de7e1ebb257e8f248b08cc647b0b40ecfe13e",
+        "new_journal_sha256": "bfaf0170ddce80a96ba7918140c403daf34cf2dc3db954e9c2122d3fc4a47e68"
+      }
+    },
+    {
+      "trial": {
+        "id": "S9-M30-BASE",
+        "family": "S9",
+        "exit_variant": "PARTIAL_R",
+        "entry_delay_bars": 1,
+        "cost_multiplier": 1
+      },
+      "status": "EXPLORATORY_RESULT",
+      "engine": "PYTHON_CONSERVATIVE_OHLC_NOT_NATIVE_PARITY",
+      "config_sha256": "ddf965bbfe330cb2da7489b79d0b34032840c87a678de85ef703ab3bc21dc7f5",
+      "summary": {
+        "complete_plans": 34,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 102,
+        "net_cash": -207.23900000006276,
+        "all_realized_net_cash": -207.2390000000629,
+        "profit_factor": 0.8382093015266873,
+        "wins": 11,
+        "losses": 23,
+        "net_r": -1.3758558630035653,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 535.1130000000214,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 540,
+          "NO_SETUP": 5529,
+          "WATCH": 341,
+          "SUBMITTED": 34
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "SETUP_EXPIRED": 61,
+          "STRUCTURAL_INVALIDATION": 41,
+          "CONFIRMATION_CANDLE": 22,
+          "SETUP_TIME_GAP": 3,
+          "PORTFOLIO_OCCUPIED": 11,
+          "EXCESSIVE_BAR": 3,
+          "STRUCTURAL_STOP_RANGE": 2,
+          "COOLDOWN": 4
+        },
+        "cash_paid_net": -207.2390000000629,
+        "closed_parts_net": -207.2390000000624,
+        "cash_paid_drawdown": 535.6380000000215,
+        "unallocated_entry_fees": 0.0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20679": 77.46799999999894,
+          "20682": 78.14499999999971,
+          "20683": -51.375000000003816,
+          "20684": -42.09300000000202,
+          "20686": -22.336000000001878,
+          "20690": -0.5249999999999999,
+          "20691": -125.48400000000346,
+          "20692": -38.880000000003925,
+          "20693": 30.557999999997808,
+          "20696": -0.5249999999999999,
+          "20697": 159.7109999999999,
+          "20703": -20.36800000000294,
+          "20704": 140.54099999999852,
+          "20705": -69.04500000000262,
+          "20710": -33.254000000002634,
+          "20711": -37.36600000000144,
+          "20712": -70.05300000000334,
+          "20713": -46.068000000003664,
+          "20717": -0.5249999999999999,
+          "20718": -90.03900000000195,
+          "20721": -55.05300000000279,
+          "20724": -79.18800000000138,
+          "20725": -54.52200000000157,
+          "20726": -0.5249999999999999,
+          "20727": 43.922999999999405,
+          "20728": 126.36199999999917,
+          "20731": 69.32199999999867,
+          "20740": -41.166000000003166,
+          "20741": 34.17600000000021,
+          "20742": -26.576000000005664,
+          "20747": -26.826000000001113,
+          "20748": -93.61200000000136,
+          "20752": 43.264000000000124,
+          "20753": 17.310999999999876,
+          "20754": 26.051000000000204,
+          "20755": -54.32899999999972,
+          "20756": 128.5889999999996,
+          "20760": -0.5249999999999999,
+          "20761": -93.19200000000038,
+          "20762": 91.93499999999831,
+          "20763": -101.14500000000207
+        }
+      },
+      "blocked_families": {},
+      "campaign_metrics": {
+        "n": 34,
+        "wins": 11,
+        "losses": 23,
+        "breakeven": 0,
+        "net_cash": -207.23900000006276,
+        "mean_cash": -6.095264705884198,
+        "profit_factor": 0.8382093015266873,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.3235294117647059,
+        "win_rate_wilson95": [
+          0.1913164356402551,
+          0.49157105406091794
+        ],
+        "campaign_close_drawdown": 535.1130000000214,
+        "max_consecutive_losses": 9,
+        "p05_cash": -96.58980000000162,
+        "small_n": false
+      },
+      "mean_r_uncertainty": {
+        "n": 34,
+        "mean": -0.040466348911869565,
+        "ci95": [
+          -0.4559521067834542,
+          0.3738969470710269
+        ],
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+      },
+      "sign_flip_p": 0.5757121439280359,
+      "journal": "research\\reports\\candidate_journals\\S9-M30-BASE.json.gz",
+      "journal_sha256": "d4c7c9fad7f3ee8a42a0746341dbd64aae6af3cbbd57eac0c6cefd7113e0fa07",
+      "accounting_correction": {
+        "trial_id": "S9-M30-BASE",
+        "signals_plans_fills_exact": true,
+        "data_exact": true,
+        "complete_net_exact": true,
+        "closed_part_equity_exact": true,
+        "old_closed_part_net": -207.2390000000624,
+        "new_paid_cash_net": -207.2390000000629,
+        "expected_unallocated_fee_delta": -0.0,
+        "old_closed_part_dd": 535.1130000000214,
+        "new_paid_cash_dd": 535.6380000000215,
+        "old_journal_sha256": "fb1105512b46e7d7c849e27e7b6eb24e0bbda0800c4688416f4d53158cd2117e",
+        "new_journal_sha256": "d4c7c9fad7f3ee8a42a0746341dbd64aae6af3cbbd57eac0c6cefd7113e0fa07"
+      }
+    },
+    {
+      "trial": {
+        "id": "S10-M30-BASE",
+        "family": "S10",
+        "exit_variant": "PARTIAL_R",
+        "entry_delay_bars": 1,
+        "cost_multiplier": 1
+      },
+      "status": "BLOCKED_NO_VALID_INPUTS",
+      "engine": "PYTHON_CONSERVATIVE_OHLC_NOT_NATIVE_PARITY",
+      "config_sha256": "327b5d6dac645019a4eebf63087632ba6c9e4d3e68ea25987b996825045b2aaf",
+      "summary": {
+        "complete_plans": 0,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 0,
+        "net_cash": 0,
+        "all_realized_net_cash": 0.0,
+        "profit_factor": null,
+        "wins": 0,
+        "losses": 0,
+        "net_r": 0,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 0.0,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "BLOCKED": 3222
+        },
+        "rejection_reasons": {
+          "NO_INDEPENDENT_VALIDATION": 3222
+        },
+        "cash_paid_net": 0.0,
+        "closed_parts_net": 0.0,
+        "cash_paid_drawdown": 0.0,
+        "unallocated_entry_fees": 0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {}
+      },
+      "blocked_families": {
+        "S10": "NO_INDEPENDENT_VALIDATION"
+      },
+      "campaign_metrics": {
+        "n": 0,
+        "wins": 0,
+        "losses": 0,
+        "breakeven": 0,
+        "net_cash": 0,
+        "mean_cash": null,
+        "profit_factor": null,
+        "profit_factor_status": "NO_TRADES",
+        "win_rate": null,
+        "win_rate_wilson95": [
+          null,
+          null
+        ],
+        "campaign_close_drawdown": 0.0,
+        "max_consecutive_losses": 0,
+        "p05_cash": null,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 0,
+        "mean": null,
+        "ci95": [
+          null,
+          null
+        ]
+      },
+      "sign_flip_p": 1.0,
+      "journal": "research\\reports\\candidate_journals\\S10-M30-BASE.json.gz",
+      "journal_sha256": "141f2ccc31a7ba85e4e274aa816cca6be6ca1c321c9cb090943632b44b62dc2c",
+      "accounting_correction": {
+        "trial_id": "S10-M30-BASE",
+        "signals_plans_fills_exact": true,
+        "data_exact": true,
+        "complete_net_exact": true,
+        "closed_part_equity_exact": true,
+        "old_closed_part_net": 0.0,
+        "new_paid_cash_net": 0.0,
+        "expected_unallocated_fee_delta": 0,
+        "old_closed_part_dd": 0.0,
+        "new_paid_cash_dd": 0.0,
+        "old_journal_sha256": "eb56b45ae58ea5db0bd9d3d86acf32effa037c4f12fd0318fd49cf5a9efb1a49",
+        "new_journal_sha256": "141f2ccc31a7ba85e4e274aa816cca6be6ca1c321c9cb090943632b44b62dc2c"
+      }
+    }
+  ],
+  "combined_multiple_testing": [
+    {
+      "trial_id": "S1-BASE",
+      "p": 0.7551224387806097,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S1-FIXED_R",
+      "p": 0.8500749625187406,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S1-STRUCTURAL",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S1-BREAKEVEN",
+      "p": 0.6286856571714143,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S1-ATR_TRAIL",
+      "p": 0.5272363818090955,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S1-DELAY2",
+      "p": 0.7141429285357321,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S1-COST1.5",
+      "p": 0.7551224387806097,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S1-COST2",
+      "p": 0.7551224387806097,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S2-BASE",
+      "p": 0.9570214892553723,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S2-FIXED_R",
+      "p": 0.7316341829085458,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S2-STRUCTURAL",
+      "p": 0.928535732133933,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S2-BREAKEVEN",
+      "p": 0.9000499750124937,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S2-ATR_TRAIL",
+      "p": 0.5782108945527237,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S2-DELAY2",
+      "p": 0.6956521739130435,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S2-COST1.5",
+      "p": 0.9700149925037481,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S2-COST2",
+      "p": 0.9770114942528736,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S3-BASE",
+      "p": 0.049475262368815595,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S3-FIXED_R",
+      "p": 0.08595702148925537,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S3-STRUCTURAL",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S3-BREAKEVEN",
+      "p": 0.04247876061969016,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S3-ATR_TRAIL",
+      "p": 0.06796601699150424,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S3-DELAY2",
+      "p": 0.08295852073963018,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S3-COST1.5",
+      "p": 0.051974012993503245,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S3-COST2",
+      "p": 0.05697151424287856,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S4-BASE",
+      "p": 0.8185907046476761,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S4-FIXED_R",
+      "p": 0.6626686656671664,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S4-STRUCTURAL",
+      "p": 0.49825087456271866,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S4-BREAKEVEN",
+      "p": 0.8875562218890555,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S4-ATR_TRAIL",
+      "p": 0.912543728135932,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S4-DELAY2",
+      "p": 0.9960019990004998,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S4-COST1.5",
+      "p": 0.8340829585207397,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S4-COST2",
+      "p": 0.847576211894053,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S5-BASE",
+      "p": 0.4947526236881559,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S5-FIXED_R",
+      "p": 0.4257871064467766,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S5-STRUCTURAL",
+      "p": 0.6411794102948526,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S5-BREAKEVEN",
+      "p": 0.31084457771114443,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S5-ATR_TRAIL",
+      "p": 0.4012993503248376,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S5-DELAY2",
+      "p": 0.5477261369315343,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S5-COST1.5",
+      "p": 0.5702148925537232,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S5-COST2",
+      "p": 0.6436781609195402,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S6-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S6-FIXED_R",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S6-STRUCTURAL",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S6-BREAKEVEN",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S6-ATR_TRAIL",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S6-DELAY2",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S6-COST1.5",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S6-COST2",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S7-BASE",
+      "p": 0.672663668165917,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S7-FIXED_R",
+      "p": 0.768615692153923,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S7-STRUCTURAL",
+      "p": 0.9540229885057471,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S7-BREAKEVEN",
+      "p": 0.7346326836581709,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S7-ATR_TRAIL",
+      "p": 0.8950524737631185,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S7-DELAY2",
+      "p": 0.6916541729135433,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S7-COST1.5",
+      "p": 0.7101449275362319,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S7-COST2",
+      "p": 0.7436281859070465,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S8-BASE",
+      "p": 0.1489255372313843,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S8-FIXED_R",
+      "p": 0.0769615192403798,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S8-STRUCTURAL",
+      "p": 0.49825087456271866,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S8-BREAKEVEN",
+      "p": 0.11744127936031984,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S8-ATR_TRAIL",
+      "p": 0.20339830084957522,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S8-DELAY2",
+      "p": 0.567216391804098,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S8-COST1.5",
+      "p": 0.1584207896051974,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S8-COST2",
+      "p": 0.16741629185407297,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S9-BASE",
+      "p": 0.8990504747626187,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S9-FIXED_R",
+      "p": 0.7926036981509246,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S9-STRUCTURAL",
+      "p": 0.6326836581709145,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S9-BREAKEVEN",
+      "p": 0.8755622188905547,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S9-ATR_TRAIL",
+      "p": 0.8730634682658671,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S9-DELAY2",
+      "p": 0.4672663668165917,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S9-COST1.5",
+      "p": 0.9190404797601199,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S9-COST2",
+      "p": 0.9340329835082459,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S10-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S10-FIXED_R",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S10-STRUCTURAL",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S10-BREAKEVEN",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S10-ATR_TRAIL",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S10-DELAY2",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S10-COST1.5",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S10-COST2",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S1-M30-BASE",
+      "p": 0.5037481259370314,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S2-M30-BASE",
+      "p": 0.6156921539230384,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S3-M30-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S4-M30-BASE",
+      "p": 0.5227386306846576,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S5-M30-BASE",
+      "p": 0.02848575712143928,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S6-M30-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S7-M30-BASE",
+      "p": 0.9035482258870565,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S8-M30-BASE",
+      "p": 0.06596701649175413,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S9-M30-BASE",
+      "p": 0.5757121439280359,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S10-M30-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    }
+  ],
+  "limitations": [
+    "Coarser OHLC derived only from exact contiguous M15 pairs, not fresh broker or native M30",
+    "Same numeric bar-count settings double wall-clock hold/cooldown; entry latency and intrabar ambiguity change",
+    "Already observed period; exploratory post-original-results amendment, not untouched test",
+    "M5 cannot be reconstructed; volume still unverified; S6/S10 stay blocked"
+  ],
+  "paid_cash_correction": {
+    "registration_sha256": "29147fbeb2093257cc9e22df83269528a29521f6e9a2d65766762d33f0cbf8cf",
+    "source_freeze_sha256": "bb5be487800b2a3952d8ed15ee4405f74273c34fd826f3c26e5c6d6e44739a82",
+    "archived_original_report": "research\\reports\\method_history\\paid_cash_precorrection\\m30_results.json",
+    "all_old_signals_fills_complete_nets_preserved": true
+  }
+}

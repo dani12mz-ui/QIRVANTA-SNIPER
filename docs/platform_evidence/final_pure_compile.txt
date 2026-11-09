@@ -1,0 +1,71 @@
+Browser tab: 2, Title: "XAUUSD 4,101.570 ▲ +0.76% Unnamed", URL: "https://www.tradingview.com/chart/4foVQMDF/".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 1262-1291
+~0 AXWebArea XAUUSD 4,101.570 ▲ +0.76% Unnamed, URL: tradingview.com/chart/4foVQMDF/
+~							100 text O 4,105.675 H 4,106.575 L 4,100.650 C 4,101.540 −4.085 (−0.10%)
+~						102 text 4,101.42 0 SELL
+~						103 text 29.0
+~						104 text 4,101.71 0 BUY
++						1333 toolbar
++							1334 text QIRV ONE
++							1335 container
++								1336 button Hide
++									1337 image
++								1338 button Settings
++									1339 image
++								1340 button Remove
++									1341 image
++								1342 button Description: More options for QIRV ONE, Help: More
++									1343 image
++							1344 button Active strategy · Opened in Pine Editor
++							1345 container
++								1346 text 4,114.487
++								1347 text 4,108.871
++								1348 text 0.000
++								1349 text 0.000
+~					154 text 17:41:33 UTC
++					1350 text QIRV ONE
++					1351 container
++						1352 text Waiting on logs We're holding out for some logs, but there's none available here yet.
++					1353 button (collapsed) Description: 100 K, Secondary Actions: Expand
++						1354 container
++							1355 text 100 K USD
++		1356 text The report has been updated successfully
++					1357 button (disabled) Update on chart
++							1358 row
++								1359 cell
++									1360 text 19:41:25 ч.
++								1361 cell
++									1362 container
++										1363 text Warning at 766 : 35
++									1364 text The function "f_fast" should be called on each calculation for consistency. It is recommended to extract the call from this scope
++									1365 link Description: Learn more, Value: tradingview.com/pine-script-docs/errors/CW10003
++							1366 row
++								1367 cell
++									1368 text 19:41:25 ч.
++								1369 cell
++									1370 container
++										1371 text Warning at 767 : 35
++									1372 text The function "f_reversal" should be called on each calculation for consistency. It is recommended to extract the call from this scope
++									1373 link Description: Learn more, Value: tradingview.com/pine-script-docs/errors/CW10003
++							1374 row
++								1375 cell
++									1376 text 19:41:25 ч.
++								1377 cell
++									1378 container
++										1379 text Warning at 1375 : 39
++									1380 text Strategies without "calc_on_every_tick = true" only calculate on confirmed chart bars. In this case, "barstate.islast" may not initially return "true" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable "calc_on_every_tick" in the "strategy()" function.
++							1381 row
++								1382 cell
++									1383 text 19:41:25 ч.
++								1384 cell
++									1385 container
++										1386 text Warning at 1439 : 39
++									1387 text Strategies without "calc_on_every_tick = true" only calculate on confirmed chart bars. In this case, "barstate.islast" may not initially return "true" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable "calc_on_every_tick" in the "strategy()" function.
++							1388 row
++								1389 cell
++									1390 text 19:41:25 ч.
++								1391 cell
++									1392 text "QIRVANTA_UNIFIED" saved.
+~						1160 button 13 ∙ Today, 19:41
+The focused UI element is 828 editor (settable) Description: Editor content;Press Alt+F1 for Accessibility Options., Value: \"events\":[" + jsonBatch + "]}" : readableBatch, alert.freq_once_per_bar_close)

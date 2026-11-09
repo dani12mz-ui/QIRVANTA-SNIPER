@@ -1,0 +1,298 @@
+"""Deterministic conservative OHLC simulator. NOT a Pine broker-emulator replica."""
+import argparse
+from collections import Counter
+from dataclasses import asdict, dataclass, field
+import hashlib
+import json
+from math import isfinite
+from pathlib import Path
+
+from research.data.loader import load_bars, validate_bars
+from research.features.causal import build_features
+from research.strategies.library import CandidateLibrary, FAMILIES, validated_selection
+
+
+@dataclass(frozen=True)
+class BacktestConfig:
+    enabled_families: tuple = ()
+    strategy_params: dict = field(default_factory=dict)
+    commission_per_unit: float = .175
+    slippage_ticks: float = 2
+    mintick: float = .001
+    quantity: float = 3
+    pointvalue: float = 1
+    exit_variant: str = 'PARTIAL_R'
+    target_rs: tuple = (1.,2.,3.)
+    fixed_target_r: float = 2
+    max_hold_bars: int = 48
+    entry_delay_bars: int = 1
+    cooldown_bars: int = 8
+    max_entry_deviation_atr: float = .2
+    daily_loss_limit_cash: float | None = None
+    max_risk_cash: float | None = None
+    manual_news_pause: bool = False
+    validation_manifest: object = None
+    volume_kind: str = 'UNVERIFIED'
+    verified_bar_vwap: bool = False
+    trade_start_ms: int | None = None
+    trade_end_ms: int | None = None
+    symbol: str = 'OANDA:XAUUSD'
+
+    def __post_init__(self):
+        if any(s not in FAMILIES for s in self.enabled_families) or len(set(self.enabled_families))!=len(self.enabled_families):
+            raise ValueError('Unknown or duplicate enabled family')
+        if self.exit_variant not in ('PARTIAL_R','FIXED_R','STRUCTURAL','BREAKEVEN','ATR_TRAIL'):
+            raise ValueError('Unknown exit variant')
+        for name in ('commission_per_unit','slippage_ticks','mintick','quantity','pointvalue','max_entry_deviation_atr','fixed_target_r'):
+            v=getattr(self,name)
+            if isinstance(v,bool) or not isinstance(v,(int,float)) or not isfinite(v) or v<0:
+                raise ValueError(f'Invalid {name}')
+        if min(self.mintick,self.quantity,self.pointvalue,self.fixed_target_r)<=0:
+            raise ValueError('Positive contract specifications required')
+        for name in ('max_hold_bars','entry_delay_bars','cooldown_bars'):
+            value=getattr(self,name)
+            if isinstance(value,bool) or not isinstance(value,int) or value<(0 if name=='cooldown_bars' else 1):
+                raise ValueError(f'Invalid {name}')
+        if len(self.target_rs)!=3 or not all(isfinite(x) for x in self.target_rs) or not 0<self.target_rs[0]<self.target_rs[1]<self.target_rs[2]:
+            raise ValueError('Three strictly increasing positive R targets required')
+        for name in ('daily_loss_limit_cash','max_risk_cash'):
+            value=getattr(self,name)
+            if value is not None and (not isfinite(value) or value<=0):
+                raise ValueError(f'Invalid {name}')
+        if self.trade_start_ms is not None and self.trade_end_ms is not None and self.trade_start_ms>=self.trade_end_ms:
+            raise ValueError('Empty trading interval')
+
+
+def _digest(obj):
+    return hashlib.sha256(json.dumps(obj,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
+
+
+def run_backtest(bars, config=None, *, candidate_provider=None):
+    """candidate_provider is an explicit synthetic-test seam, marked in every result.
+
+    Provider signature (index,bars,features)->list of confirmed/rejected decision dicts.
+    Production research callers use the default causal library.
+    """
+    config=config or BacktestConfig()
+    interval=validate_bars(bars)
+    features=build_features(bars,volume_kind=config.volume_kind,verified_bar_vwap=config.verified_bar_vwap)
+    cfg=asdict(config)
+    cfg['validation_manifest']=str(config.validation_manifest) if isinstance(config.validation_manifest,Path) else config.validation_manifest
+    config_hash=_digest(cfg)
+    library=CandidateLibrary(config.strategy_params,config.mintick)
+    routing,selector_reason=validated_selection(config.validation_manifest,bars[0]['time'] if bars else 0)
+    decisions,plans,events,equity,paid_equity=[],[],[],[],[]
+    current=None
+    closed_cash=0.
+    paid_cash=0.
+    daily_cash={}
+    last_confirmation={}
+    seen=set()
+    slip=config.slippage_ticks*config.mintick
+    blocked={}
+    if 'S6' in config.enabled_families and not any(f['vwap_available'] for f in features):
+        blocked['S6']='TRUE_VOLUME_AND_VERIFIED_BAR_VWAP_UNAVAILABLE'
+    if 'S10' in config.enabled_families and selector_reason:
+        blocked['S10']=selector_reason
+
+    def exit_part(plan, leg, price, b, i, reason, phase, ambiguous=False):
+        nonlocal closed_cash, paid_cash
+        qty=leg['quantity']
+        gross=(price-plan['entry_price'])*plan['side']*qty*config.pointvalue
+        fee=2*config.commission_per_unit*qty
+        net=gross-fee
+        row={'exit_component_id':plan['plan_id']+'|'+leg['id'],'entry_id':plan['entry_id'],'plan_id':plan['plan_id'],'index':i,'time':b['time'] if phase=='OPEN' else b['time_close'],'time_precision':'BAR_OPEN' if phase=='OPEN' else 'INTRABAR_UNKNOWN_RECORDED_AT_CLOSE','price':price,'quantity':qty,'gross_cash':gross,'commission_cash':fee,'net_cash':net,'reason':reason,'ambiguous':ambiguous}
+        row.update(allocated_entry_fee=config.commission_per_unit*qty,exit_fee_paid=config.commission_per_unit*qty,cash_paid_change=gross-config.commission_per_unit*qty)
+        plan['exits'].append(row)
+        plan['remaining_quantity']-=qty
+        leg['closed']=True
+        plan['net_cash']+=net
+        plan['fees']+=fee
+        plan['gross_cash']+=gross
+        plan['fees_paid']+=row['exit_fee_paid']
+        plan['cash_paid_net']+=row['cash_paid_change']
+        plan['net_r']=plan['net_cash']/plan['initial_risk_cash'] if plan['initial_risk_cash'] and plan['initial_risk_cash']>0 else None
+        plan['tp_hits'][leg['id']]=reason.startswith('TP')
+        plan['stop_hit'] |= reason in ('SL','SL_GAP')
+        plan['ambiguous'] |= ambiguous
+        closed_cash+=net
+        paid_cash+=row['cash_paid_change']
+        day=b['time']//86400000
+        daily_cash[day]=daily_cash.get(day,0)+row['cash_paid_change']
+        equity.append({'index':i,'time':row['time'],'net_cash':closed_cash,'exit_component_id':row['exit_component_id']})
+        paid_equity.append({'index':i,'time':row['time'],'kind':'EXIT_GROSS_MINUS_EXIT_FEE','cash_change':row['cash_paid_change'],'net_cash':paid_cash,'exit_component_id':row['exit_component_id']})
+        if plan['remaining_quantity']<config.quantity*1e-9:
+            plan.update(status='COMPLETE',remaining_quantity=0.,final_exit_time=row['time'],final_exit_index=i,exit_reason=reason,duration_bars=i-plan['entry_index']+1)
+
+    for i,b in enumerate(bars):
+        f=features[i]
+        # Existing market orders fill at this observed open, including gaps. No hindsight rejection.
+        if current and current['status']=='PENDING' and i>=current['fill_due_index']:
+            p=current
+            p.update(status='OPEN',entry_index=i,entry_time=b['time'],entry_price=b['open']+p['side']*slip,entry_id=p['plan_id']+'|ENTRY',entry_fee_paid=config.commission_per_unit*config.quantity)
+            # Fees are paid at the fill, including still-open positions and UTC day boundaries.
+            p['fees_paid']=p['entry_fee_paid']
+            p['cash_paid_net']=-p['entry_fee_paid']
+            paid_cash-=p['entry_fee_paid']
+            day=b['time']//86400000
+            daily_cash[day]=daily_cash.get(day,0)-p['entry_fee_paid']
+            paid_equity.append({'index':i,'time':b['time'],'kind':'ENTRY_FEE','cash_change':-p['entry_fee_paid'],'net_cash':paid_cash,'entry_id':p['entry_id']})
+            risk=(p['entry_price']-p['initial_stop'])*p['side']
+            p['initial_risk_cash']=risk*config.quantity*config.pointvalue if risk>=config.mintick else None
+            p['entry_deviation_atr']=abs(p['entry_price']-p['reference'])/p['signal_atr']
+            p['entry_gap']=b['time'] != bars[i-1]['time_close'] if i else False
+            p['gap_invalid']=risk<config.mintick or p['entry_deviation_atr']>config.max_entry_deviation_atr or any((t-p['entry_price'])*p['side']<=0 for t in p['targets'])
+            events.append({'kind':'ENTRY','plan_id':p['plan_id'],'index':i,'time':b['time'],'price':p['entry_price'],'gap_invalid':p['gap_invalid']})
+        if current and current['status']=='OPEN':
+            p=current
+            side=p['side']
+            active=[leg for leg in p['legs'] if not leg['closed']]
+            # A close-based time/gap instruction cannot exit at the earlier close.
+            if p.get('market_exit_due') is not None and i>=p['market_exit_due']:
+                for leg in active:
+                    exit_part(p,leg,b['open']-side*slip,b,i,p['market_exit_reason'],'OPEN')
+            else:
+                stop_open=(b['open']-p['current_stop'])*side<=0
+                if stop_open:
+                    for leg in active:
+                        exit_part(p,leg,b['open']-side*slip,b,i,'SL_GAP','OPEN')
+                else:
+                    # Targets marketable at the open are causally earlier than intrabar extremes.
+                    for leg in active:
+                        if (b['open']-leg['target'])*side>=0:
+                            exit_part(p,leg,b['open'],b,i,leg['id'],'OPEN')
+                    active=[leg for leg in p['legs'] if not leg['closed']]
+                    stop_touched=(b['low']<=p['current_stop']) if side==1 else (b['high']>=p['current_stop'])
+                    hit_targets=[leg for leg in active if (b['high']>=leg['target'] if side==1 else b['low']<=leg['target'])]
+                    ambiguity=bool(stop_touched and hit_targets)
+                    if stop_touched:
+                        for leg in active:
+                            exit_part(p,leg,p['current_stop']-side*slip,b,i,'SL','INTRABAR',ambiguity)
+                    else:
+                        for leg in hit_targets:
+                            exit_part(p,leg,leg['target'],b,i,leg['id'],'INTRABAR')
+            # Whole-candle excursions are labelled bounds, never exact intrabar trade paths.
+            favorable=max(0,(b['high']-p['entry_price']) if side==1 else (p['entry_price']-b['low']))
+            adverse=max(0,(p['entry_price']-b['low']) if side==1 else (b['high']-p['entry_price']))
+            p['mfe_price_upper_bound']=max(p['mfe_price_upper_bound'],favorable)
+            p['mae_price_upper_bound']=max(p['mae_price_upper_bound'],adverse)
+            p['duration_bars']=i-p['entry_index']+1
+            if p['status']=='OPEN':
+                # All changes become effective on the next bar, never retroactively within this bar.
+                old=p['current_stop']
+                if config.exit_variant=='BREAKEVEN' and p['tp_hits'].get('TP1'):
+                    p['current_stop']=max(old,p['entry_price']) if side==1 else min(old,p['entry_price'])
+                    p['breakeven_active']=True
+                elif config.exit_variant=='ATR_TRAIL' and f['atr']:
+                    proposed=b['close']-side*2*f['atr']
+                    p['current_stop']=max(old,proposed) if side==1 else min(old,proposed)
+                if p['current_stop']!=old:
+                    events.append({'kind':'STOP_UPDATED_FOR_NEXT_BAR','plan_id':p['plan_id'],'index':i,'available_at':b['time_close'],'price':p['current_stop']})
+                if p['gap_invalid'] or p['duration_bars']>=config.max_hold_bars:
+                    p['market_exit_due']=i+1
+                    p['market_exit_reason']='INVALID_GAP_FLATTEN' if p['gap_invalid'] else 'TIME_LIMIT'
+            else:
+                current=None
+        selected_families=[s for s in FAMILIES if s in config.enabled_families and s!='S10']
+        selector_selected=[]
+        if 'S10' in config.enabled_families and not selector_reason:
+            selector_selected=list(routing.get(f['regime'],[]))
+            selected_families=list(dict.fromkeys(selected_families+selector_selected))
+        if candidate_provider:
+            rows=candidate_provider(i,bars,features)
+        else:
+            rows=[library.evaluate(s,d,i,bars,features) for s in selected_families for d in (1,-1)]
+            if 'S10' in config.enabled_families:
+                rows.append({'family':'S10','side':0,'index':i,'confirmation_time':b['time_close'],'status':'BLOCKED' if selector_reason else 'ROUTING','raw_setup':False,'reasons':[selector_reason] if selector_reason else (['NO_VALIDATED_STRATEGY_FOR_REGIME'] if not selector_selected else []),'selected_families':selector_selected})
+        confirmed=[]
+        for row in rows:
+            row=dict(row)
+            row['reasons']=list(row.get('reasons',[]))
+            row.setdefault('index',i)
+            row.setdefault('confirmation_time',b['time_close'])
+            if row.get('status')=='CONFIRMED':
+                family=row['family']
+                side=row['side']
+                if side not in (1,-1) or family not in FAMILIES[:9] or row['index']!=i or row['confirmation_time']!=b['time_close']:
+                    raise ValueError('Invalid candidate time/side/family')
+                row.setdefault('signal_id',f"{family}|{side}|{b['time_close']}")
+                reasons=[]
+                if row['signal_id'] in seen: reasons.append('DUPLICATE_SIGNAL')
+                seen.add(row['signal_id'])
+                if current: reasons.append('PORTFOLIO_OCCUPIED')
+                if config.manual_news_pause: reasons.append('MANUAL_NEWS_PAUSE_NO_EXTERNAL_CALENDAR')
+                if config.trade_start_ms is not None and b['time_close']<config.trade_start_ms: reasons.append('BEFORE_TRADE_WINDOW')
+                if config.trade_end_ms is not None and b['time_close']>=config.trade_end_ms: reasons.append('AFTER_TRADE_WINDOW')
+                if family in last_confirmation and i-last_confirmation[family]<=config.cooldown_bars: reasons.append('COOLDOWN')
+                if config.daily_loss_limit_cash is not None and daily_cash.get(b['time']//86400000,0)<=-config.daily_loss_limit_cash: reasons.append('DAILY_REALIZED_LOSS_LIMIT')
+                planned_risk=(row['reference']-row['initial_stop'])*side
+                if not isfinite(planned_risk) or planned_risk<config.mintick: reasons.append('INVALID_PLANNED_RISK')
+                if config.max_risk_cash is not None and planned_risk*config.quantity*config.pointvalue>config.max_risk_cash: reasons.append('MAX_PLANNED_RISK_CASH')
+                if config.exit_variant=='STRUCTURAL' and (row.get('structure_target') is None or (row['structure_target']-row['reference'])*side<planned_risk): reasons.append('NO_STRUCTURAL_TARGET_AT_LEAST_1R')
+                if reasons:
+                    row.update(status='REJECTED',reasons=row['reasons']+reasons)
+                else:
+                    confirmed.append(row)
+            decisions.append(row)
+        if len({r['side'] for r in confirmed})>1:
+            for row in confirmed:
+                row.update(status='REJECTED',reasons=['SIMULTANEOUS_OPPOSING_SIGNALS'])
+        elif confirmed:
+            confirmed.sort(key=lambda r:FAMILIES.index(r['family']))
+            row=confirmed[0]
+            for loser in confirmed[1:]:
+                loser.update(status='REJECTED',reasons=['FIXED_FAMILY_PRIORITY'])
+            family,side=row['family'],row['side']
+            risk=(row['reference']-row['initial_stop'])*side
+            if config.exit_variant=='FIXED_R':
+                targets=[row['reference']+side*risk*config.fixed_target_r]
+            elif config.exit_variant=='STRUCTURAL':
+                targets=[row['structure_target']]
+            else:
+                targets=[row['reference']+side*risk*r for r in config.target_rs]
+            targets=[round(t/config.mintick)*config.mintick for t in targets]
+            if any((t-row['reference'])*side<=0 for t in targets) or any((targets[j+1]-targets[j])*side<=0 for j in range(len(targets)-1)):
+                row.update(status='REJECTED',reasons=['INVALID_ROUNDED_TARGETS'])
+                continue
+            pid=f"{config.symbol}|{interval//60000}|{row['signal_id']}|{config_hash[:12]}"
+            current={'signal_id':row['signal_id'],'plan_id':pid,'entry_id':None,'family':family,'side':side,'status':'PENDING','confirmation_index':i,'confirmation_time':b['time_close'],'fill_due_index':i+config.entry_delay_bars,'reference':row['reference'],'initial_stop':row['initial_stop'],'current_stop':row['initial_stop'],'targets':targets,'target_kind':'STRUCTURAL_FROZEN' if config.exit_variant=='STRUCTURAL' else 'R_PROJECTION_FROM_SIGNAL_CLOSE','quantity':config.quantity,'remaining_quantity':config.quantity,'signal_atr':f['atr'] or 1.,'regime':f['regime'],'sessions':list(f['sessions']),'h1_bias':f['h1']['bias'],'h4_bias':f['h4']['bias'],'features_at_confirmation':{k:f[k] for k in ('adx','efficiency','atr_ratio','rsi','direction')},'setup_born_index':row.get('setup_born_index',i),'entry_index':None,'entry_time':None,'entry_price':None,'final_exit_index':None,'final_exit_time':None,'initial_risk_cash':None,'entry_fee_paid':0.,'legs':[{'id':f'TP{j+1}','target':t,'quantity':config.quantity/len(targets),'closed':False} for j,t in enumerate(targets)],'exits':[],'net_cash':0.,'gross_cash':0.,'fees':0.,'net_r':None,'tp_hits':{},'stop_hit':False,'breakeven_active':False,'ambiguous':False,'mfe_price_upper_bound':0.,'mae_price_upper_bound':0.,'duration_bars':0,'exit_reason':None}
+            plans.append(current)
+            current.update(fees_paid=0.,cash_paid_net=0.)
+            last_confirmation[family]=i
+            row['status']='SUBMITTED'
+            row['plan_id']=pid
+            events.append({'kind':'SUBMITTED','plan_id':pid,'index':i,'time':b['time_close']})
+    complete=[p for p in plans if p['status']=='COMPLETE']
+    for p in plans:
+        p['partial_exit_count']=len(p['exits'])
+        p['unallocated_entry_fee']=p['entry_fee_paid']-sum(config.commission_per_unit*r['quantity'] for r in p['exits'])
+    peak=dd=0.
+    for e in equity:
+        peak=max(peak,e['net_cash']);dd=max(dd,peak-e['net_cash'])
+    paid_peak=paid_dd=0.
+    for e in paid_equity:
+        paid_peak=max(paid_peak,e['net_cash']);paid_dd=max(paid_dd,paid_peak-e['net_cash'])
+    positive=sum(p['net_cash'] for p in complete if p['net_cash']>0)
+    negative=-sum(p['net_cash'] for p in complete if p['net_cash']<0)
+    summary={'complete_plans':len(complete),'open_plans':sum(p['status']=='OPEN' for p in plans),'pending_plans':sum(p['status']=='PENDING' for p in plans),'native_closed_rows':None,'partial_exit_rows':sum(len(p['exits']) for p in plans),'net_cash':sum(p['net_cash'] for p in complete),'all_realized_net_cash':closed_cash,'profit_factor':positive/negative if negative else None,'wins':sum(p['net_cash']>0 for p in complete),'losses':sum(p['net_cash']<0 for p in complete),'net_r':sum(p['net_r'] for p in complete if p['net_r'] is not None),'unscored_r_plans':sum(p['net_r'] is None for p in complete),'closed_cash_drawdown':dd,'native_equity_drawdown':None,'ambiguous_plans':sum(p['ambiguous'] for p in plans),'decision_counts':dict(Counter(d['status'] for d in decisions)),'rejection_reasons':dict(Counter(reason for d in decisions if d['status'] in ('REJECTED','BLOCKED') for reason in d['reasons']))}
+    summary.update(all_realized_net_cash=paid_cash,cash_paid_net=paid_cash,closed_parts_net=closed_cash,cash_paid_drawdown=paid_dd,unallocated_entry_fees=sum(p['unallocated_entry_fee'] for p in plans),cash_scope='Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market',daily_cash_UTC={str(k):v for k,v in sorted(daily_cash.items())})
+    return {'schema':'qirvanta.research.backtest.v2','implementation':'PYTHON_CONSERVATIVE_OHLC_NOT_NATIVE_PARITY','synthetic_candidate_provider':candidate_provider is not None,'config':cfg,'config_sha256':config_hash,'dataset':{'bars':len(bars),'first_open':bars[0]['time'] if bars else None,'last_close':bars[-1]['time_close'] if bars else None,'canonical_input_sha256':_digest(bars),'interval_ms':interval,'historical_status':'ALREADY_OBSERVED_NOT_UNTOUCHED'},'blocked_families':blocked,'decisions':decisions,'plans':plans,'events':events,'equity_closed_cash':equity,'equity_cash_paid':paid_equity,'summary':summary,'limitations':['OHLC stop-first ambiguity; unknown intrabar sequence','Excursions are whole-bar upper bounds, not exact MAE/MFE','No native emulator parity demonstrated','No broker bid/ask, financing or execution record','No external news calendar or automatic order dispatch','No forced final close; open and pending plans remain visible','Closed-part net and cash-paid chronology are separate; neither is mark-to-market equity']}
+
+
+def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--data',type=Path)
+    parser.add_argument('--family',action='append',choices=FAMILIES,default=[])
+    parser.add_argument('--exit-variant',default='PARTIAL_R')
+    parser.add_argument('--output',type=Path,required=True)
+    args=parser.parse_args()
+    if args.output.exists():
+        raise FileExistsError('Refusing to replace prior evidence')
+    result=run_backtest(load_bars(args.data),BacktestConfig(enabled_families=tuple(args.family),exit_variant=args.exit_variant))
+    args.output.parent.mkdir(parents=True,exist_ok=True)
+    args.output.write_text(json.dumps(result,ensure_ascii=False,indent=2,allow_nan=False)+'\n',encoding='utf-8')
+    print(json.dumps(result['summary'],ensure_ascii=False))
+
+
+if __name__=='__main__':
+    main()

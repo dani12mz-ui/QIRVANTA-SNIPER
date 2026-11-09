@@ -1,0 +1,7 @@
+test_existing_outputs_and_production_extension_refused_even_optimized (test_ui_probe.UIProbeSafety.test_existing_outputs_and_production_extension_refused_even_optimized) ... ok
+test_new_buffer_preserves_entire_current_source_and_has_no_new_orders (test_ui_probe.UIProbeSafety.test_new_buffer_preserves_entire_current_source_and_has_no_new_orders) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 2.166s
+
+OK

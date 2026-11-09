@@ -1,0 +1,38 @@
+{
+  "verified_at_utc": "2026-11-09T17:32:05.604618+00:00",
+  "actual_platform": "TradingView Pine Logs public download control",
+  "source_baseline_sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+  "cutoff_utc": "2026-11-09T02:45:00Z",
+  "bars": 6445,
+  "bar_field_change_counts": {
+    "volume": 33
+  },
+  "full_dataset_byte_identical": false,
+  "ohlc_and_htf_values_identical": true,
+  "volume_revisions_do_not_affect_champion_decisions": true,
+  "all_72_campaign_objects_exactly_equal_to_original": true,
+  "all_original_winners_and_losers_preserved": true,
+  "actual_net": {
+    "derived_net_cash": -144.492,
+    "native_netprofit": -144.492,
+    "difference": 0.0,
+    "matches": true,
+    "commission_cash": 75.6,
+    "formula": "(exit_price-entry_price)*signed_size*pointvalue - commission, once; same currency required",
+    "api_profit_classifications": {
+      "NET": 212
+    }
+  },
+  "dataset_sha256_original": "7015f6386d2627237c57ff8625d59cbe3c9b852e4742b786cbb4679db3d48c56",
+  "dataset_sha256_reobserved": "6c89015105a406c2a0c1567f0e9a5e445cb31ee7604a985d727f26892d8ba4b7",
+  "new_raw_local_path": "work/mission/BASELINE_REPRO.pine-logs.csv",
+  "new_raw_sha256": "5f0b7ca5c1426ae326925fb1d4c41c4558d7f80fc625104be3319317e734ff40",
+  "new_market_bar_archive_committed": false,
+  "reason": "Redistribution rights for additional full market-data exports not established. Existing original dataset retained unchanged; hashes and reconciliation results published.",
+  "current_uncut_tester_at_start": {
+    "net_usd": -110.87,
+    "closed_native_rows": 215,
+    "equivalence_claim": false,
+    "reason": "Includes later Nov9 bars beyond fixed originalcutoff"
+  }
+}

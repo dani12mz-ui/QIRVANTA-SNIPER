@@ -1,0 +1,1248 @@
+{
+  "schema": "qirvanta.research.m30_experiments.v1",
+  "amendment_sha256": "b3aaf63d393566779f6e08fb1cf28985dcb2d8ede04f67347df5e7ef686b509f",
+  "source_freeze_sha256": "cc047f8a6e7291ba3109b9380e4656201fbb5f14f8ed47492d91870dacb631b8",
+  "aggregation_manifest_sha256": "9a05cd44e9ba994e89533ed0b54ce9be3f703051b8618e796a61f99baf2c5629",
+  "completed_utc": "2026-11-09T17:41:59.572460+00:00",
+  "native_m30_history": false,
+  "independent_data": false,
+  "champion_promoted": false,
+  "bars": 3222,
+  "trials": [
+    {
+      "trial": {
+        "id": "S1-M30-BASE",
+        "family": "S1",
+        "exit_variant": "PARTIAL_R",
+        "entry_delay_bars": 1,
+        "cost_multiplier": 1
+      },
+      "status": "EXPLORATORY_RESULT",
+      "engine": "PYTHON_CONSERVATIVE_OHLC_NOT_NATIVE_PARITY",
+      "config_sha256": "6aea60cc93bacc825a3181469c1ecaa19a8a20c02181603a86312eb03e8095f6",
+      "summary": {
+        "complete_plans": 2,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 6,
+        "net_cash": 97.71299999999736,
+        "all_realized_net_cash": 97.71299999999738,
+        "profit_factor": 4.090520922288469,
+        "wins": 1,
+        "losses": 1,
+        "net_r": 0.9408849141409343,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 31.6170000000009,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 1067,
+          "NO_SETUP": 5375,
+          "SUBMITTED": 2
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "DIRECTIONAL_CONTEXT": 667,
+          "CONFIRMATION_CANDLE": 162,
+          "TIME_GAP_ON_CONFIRMATION": 24,
+          "EXCESSIVE_BAR": 9,
+          "STRUCTURAL_STOP_RANGE": 6
+        }
+      },
+      "blocked_families": {},
+      "campaign_metrics": {
+        "n": 2,
+        "wins": 1,
+        "losses": 1,
+        "breakeven": 0,
+        "net_cash": 97.71299999999736,
+        "mean_cash": 48.85649999999868,
+        "profit_factor": 4.090520922288469,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.5,
+        "win_rate_wilson95": [
+          0.09453120573423074,
+          0.9054687942657693
+        ],
+        "campaign_close_drawdown": 31.617000000000914,
+        "max_consecutive_losses": 1,
+        "p05_cash": -23.569650000000955,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 2,
+        "mean": 0.47044245707046717,
+        "ci95": [
+          null,
+          null
+        ],
+        "status": "INSUFFICIENT_BLOCKS",
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "reason": "A whole-sample circular block produces a degenerate mean; no inferential interval reported"
+      },
+      "sign_flip_p": 0.5037481259370314,
+      "journal": "research\\reports\\candidate_journals\\S1-M30-BASE.json.gz",
+      "journal_sha256": "d5485e60d9f0e50ece839c3de0a50f2da74e4e8f6f1375c14bcab561f9b144fa"
+    },
+    {
+      "trial": {
+        "id": "S2-M30-BASE",
+        "family": "S2",
+        "exit_variant": "PARTIAL_R",
+        "entry_delay_bars": 1,
+        "cost_multiplier": 1
+      },
+      "status": "EXPLORATORY_RESULT",
+      "engine": "PYTHON_CONSERVATIVE_OHLC_NOT_NATIVE_PARITY",
+      "config_sha256": "8132e01a261384207e2e19e1c9f97f2a1636dba485e3d94a718521aebc7d178e",
+      "summary": {
+        "complete_plans": 51,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 153,
+        "net_cash": -357.9370000000805,
+        "all_realized_net_cash": -357.9370000000811,
+        "profit_factor": 0.8095156748828459,
+        "wins": 16,
+        "losses": 35,
+        "net_r": -2.5283188597243575,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 891.2220000000461,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 563,
+          "NO_SETUP": 5371,
+          "WATCH": 459,
+          "SUBMITTED": 51
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "STRUCTURAL_INVALIDATION": 68,
+          "CONFIRMATION_CANDLE": 23,
+          "PORTFOLIO_OCCUPIED": 16,
+          "SETUP_TIME_GAP": 7,
+          "SETUP_EXPIRED": 43,
+          "COOLDOWN": 9,
+          "EXCESSIVE_BAR": 1,
+          "STRUCTURAL_STOP_RANGE": 2
+        }
+      },
+      "blocked_families": {},
+      "campaign_metrics": {
+        "n": 51,
+        "wins": 16,
+        "losses": 35,
+        "breakeven": 0,
+        "net_cash": -357.9370000000805,
+        "mean_cash": -7.018372549021187,
+        "profit_factor": 0.8095156748828459,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.3137254901960784,
+        "win_rate_wilson95": [
+          0.2032767846552545,
+          0.4502699953069435
+        ],
+        "campaign_close_drawdown": 879.8150000000464,
+        "max_consecutive_losses": 11,
+        "p05_cash": -96.70200000000142,
+        "small_n": false
+      },
+      "mean_r_uncertainty": {
+        "n": 51,
+        "mean": -0.049574879602438386,
+        "ci95": [
+          -0.41696012896889784,
+          0.32907584439955434
+        ],
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+      },
+      "sign_flip_p": 0.6156921539230384,
+      "journal": "research\\reports\\candidate_journals\\S2-M30-BASE.json.gz",
+      "journal_sha256": "3ee83fa3cf2119827f135f03ac14622b621ce79dccbbd691112366c7a52f77b8"
+    },
+    {
+      "trial": {
+        "id": "S3-M30-BASE",
+        "family": "S3",
+        "exit_variant": "PARTIAL_R",
+        "entry_delay_bars": 1,
+        "cost_multiplier": 1
+      },
+      "status": "EXPLORATORY_RESULT",
+      "engine": "PYTHON_CONSERVATIVE_OHLC_NOT_NATIVE_PARITY",
+      "config_sha256": "ecf13f5b026f5eb36de39860257b302a2dde009daeb494ed5e24de57ae38f9cb",
+      "summary": {
+        "complete_plans": 5,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 15,
+        "net_cash": -354.2290000000044,
+        "all_realized_net_cash": -354.22900000000436,
+        "profit_factor": 0.0,
+        "wins": 0,
+        "losses": 5,
+        "net_r": -3.3150738986888637,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 371.3490000000046,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 568,
+          "WATCH": 695,
+          "NO_SETUP": 5176,
+          "SUBMITTED": 5
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "SETUP_EXPIRED": 62,
+          "CONFIRMATION_CANDLE": 34,
+          "STRUCTURAL_INVALIDATION": 12,
+          "ACCEPTANCE_FAILED": 46,
+          "SETUP_TIME_GAP": 10,
+          "STRUCTURAL_STOP_RANGE": 5,
+          "CHASE_LIMIT": 8,
+          "PORTFOLIO_OCCUPIED": 1
+        }
+      },
+      "blocked_families": {},
+      "campaign_metrics": {
+        "n": 5,
+        "wins": 0,
+        "losses": 5,
+        "breakeven": 0,
+        "net_cash": -354.2290000000044,
+        "mean_cash": -70.84580000000088,
+        "profit_factor": 0.0,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.0,
+        "win_rate_wilson95": [
+          0,
+          0.43448246478317476
+        ],
+        "campaign_close_drawdown": 354.2290000000044,
+        "max_consecutive_losses": 5,
+        "p05_cash": -138.42600000000058,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 5,
+        "mean": -0.6630147797377728,
+        "ci95": [
+          null,
+          null
+        ],
+        "status": "INSUFFICIENT_BLOCKS",
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "reason": "A whole-sample circular block produces a degenerate mean; no inferential interval reported"
+      },
+      "sign_flip_p": 1.0,
+      "journal": "research\\reports\\candidate_journals\\S3-M30-BASE.json.gz",
+      "journal_sha256": "5d367c9dc7e17222c52f881f34e55b80730150ab7532a798ab69ab7fb63d4ea1"
+    },
+    {
+      "trial": {
+        "id": "S4-M30-BASE",
+        "family": "S4",
+        "exit_variant": "PARTIAL_R",
+        "entry_delay_bars": 1,
+        "cost_multiplier": 1
+      },
+      "status": "EXPLORATORY_RESULT",
+      "engine": "PYTHON_CONSERVATIVE_OHLC_NOT_NATIVE_PARITY",
+      "config_sha256": "1a04eeb8d50ded17c1c1249dddf73b1a812da3d1174b481751321bd18b6d0e80",
+      "summary": {
+        "complete_plans": 3,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 9,
+        "net_cash": 36.40899999999563,
+        "all_realized_net_cash": 36.408999999995636,
+        "profit_factor": 1.4561216691930092,
+        "wins": 1,
+        "losses": 2,
+        "net_r": 0.6179726776347129,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 79.82300000000451,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 735,
+          "NO_SETUP": 5706,
+          "SUBMITTED": 3
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "PRIOR_COMPRESSION": 334,
+          "CONFIRMATION_CANDLE": 63,
+          "EXPANSION_REQUIRED": 90,
+          "EXCESSIVE_BAR": 16,
+          "STRUCTURAL_STOP_RANGE": 58,
+          "CHASE_LIMIT": 72
+        }
+      },
+      "blocked_families": {},
+      "campaign_metrics": {
+        "n": 3,
+        "wins": 1,
+        "losses": 2,
+        "breakeven": 0,
+        "net_cash": 36.40899999999563,
+        "mean_cash": 12.136333333331876,
+        "profit_factor": 1.4561216691930092,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.3333333333333333,
+        "win_rate_wilson95": [
+          0.06149194472039621,
+          0.7923403991979522
+        ],
+        "campaign_close_drawdown": 79.82300000000451,
+        "max_consecutive_losses": 2,
+        "p05_cash": -56.596700000002514,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 3,
+        "mean": 0.2059908925449043,
+        "ci95": [
+          null,
+          null
+        ],
+        "status": "INSUFFICIENT_BLOCKS",
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "reason": "A whole-sample circular block produces a degenerate mean; no inferential interval reported"
+      },
+      "sign_flip_p": 0.5227386306846576,
+      "journal": "research\\reports\\candidate_journals\\S4-M30-BASE.json.gz",
+      "journal_sha256": "7c0e5dc890649e2a0718630a735beb385adb1c0f33387749d0a110a3706455b4"
+    },
+    {
+      "trial": {
+        "id": "S5-M30-BASE",
+        "family": "S5",
+        "exit_variant": "PARTIAL_R",
+        "entry_delay_bars": 1,
+        "cost_multiplier": 1
+      },
+      "status": "EXPLORATORY_RESULT",
+      "engine": "PYTHON_CONSERVATIVE_OHLC_NOT_NATIVE_PARITY",
+      "config_sha256": "3aa1b784bb37e8a9d31fbfe1266ed80d973062218deee995f12f8c03914bed8f",
+      "summary": {
+        "complete_plans": 52,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 156,
+        "net_cash": 705.5229999999252,
+        "all_realized_net_cash": 705.5229999999236,
+        "profit_factor": 1.590658275769317,
+        "wins": 27,
+        "losses": 25,
+        "net_r": 17.608335344893124,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 288.92200000003226,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 3,
+        "decision_counts": {
+          "REJECTED": 577,
+          "NO_SETUP": 5444,
+          "WATCH": 371,
+          "SUBMITTED": 52
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "STRUCTURAL_INVALIDATION": 116,
+          "SETUP_EXPIRED": 21,
+          "CONFIRMATION_CANDLE": 19,
+          "PORTFOLIO_OCCUPIED": 16,
+          "SETUP_TIME_GAP": 4,
+          "COOLDOWN": 4,
+          "STRUCTURAL_STOP_RANGE": 4,
+          "EXCESSIVE_BAR": 1
+        }
+      },
+      "blocked_families": {},
+      "campaign_metrics": {
+        "n": 52,
+        "wins": 27,
+        "losses": 25,
+        "breakeven": 0,
+        "net_cash": 705.5229999999252,
+        "mean_cash": 13.567749999998563,
+        "profit_factor": 1.590658275769317,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.5192307692307693,
+        "win_rate_wilson95": [
+          0.38685682768056057,
+          0.6489588555454449
+        ],
+        "campaign_close_drawdown": 271.89000000003176,
+        "max_consecutive_losses": 4,
+        "p05_cash": -89.71529999999979,
+        "small_n": false
+      },
+      "mean_r_uncertainty": {
+        "n": 52,
+        "mean": 0.33862183355563696,
+        "ci95": [
+          0.10221291198658011,
+          0.5774294421635187
+        ],
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+      },
+      "sign_flip_p": 0.02848575712143928,
+      "journal": "research\\reports\\candidate_journals\\S5-M30-BASE.json.gz",
+      "journal_sha256": "d5bdc794ebfc255fc3a7ca30c4da7f56b5aba2bcbd615305224dd20059262615"
+    },
+    {
+      "trial": {
+        "id": "S6-M30-BASE",
+        "family": "S6",
+        "exit_variant": "PARTIAL_R",
+        "entry_delay_bars": 1,
+        "cost_multiplier": 1
+      },
+      "status": "BLOCKED_NO_VALID_INPUTS",
+      "engine": "PYTHON_CONSERVATIVE_OHLC_NOT_NATIVE_PARITY",
+      "config_sha256": "7efeadb8b5415efad2b86cd85b7e3d3eb5eba99c1ea0194021f78b7e02cb5bfc",
+      "summary": {
+        "complete_plans": 0,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 0,
+        "net_cash": 0,
+        "all_realized_net_cash": 0.0,
+        "profit_factor": null,
+        "wins": 0,
+        "losses": 0,
+        "net_r": 0,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 0.0,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "BLOCKED": 6444
+        },
+        "rejection_reasons": {
+          "TRUE_VOLUME_AND_VERIFIED_BAR_VWAP_UNAVAILABLE": 6444
+        }
+      },
+      "blocked_families": {
+        "S6": "TRUE_VOLUME_AND_VERIFIED_BAR_VWAP_UNAVAILABLE"
+      },
+      "campaign_metrics": {
+        "n": 0,
+        "wins": 0,
+        "losses": 0,
+        "breakeven": 0,
+        "net_cash": 0,
+        "mean_cash": null,
+        "profit_factor": null,
+        "profit_factor_status": "NO_TRADES",
+        "win_rate": null,
+        "win_rate_wilson95": [
+          null,
+          null
+        ],
+        "campaign_close_drawdown": 0.0,
+        "max_consecutive_losses": 0,
+        "p05_cash": null,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 0,
+        "mean": null,
+        "ci95": [
+          null,
+          null
+        ]
+      },
+      "sign_flip_p": 1.0,
+      "journal": "research\\reports\\candidate_journals\\S6-M30-BASE.json.gz",
+      "journal_sha256": "1931fdc4f6c9a0f72f0dcad781453bfb5e032806bc0b57f2502e3f3ca6352ff8"
+    },
+    {
+      "trial": {
+        "id": "S7-M30-BASE",
+        "family": "S7",
+        "exit_variant": "PARTIAL_R",
+        "entry_delay_bars": 1,
+        "cost_multiplier": 1
+      },
+      "status": "EXPLORATORY_RESULT",
+      "engine": "PYTHON_CONSERVATIVE_OHLC_NOT_NATIVE_PARITY",
+      "config_sha256": "716525cf31c400cf5cbc494474a8e1012a89ca49f5e060271bb8d2b8a2ff58d4",
+      "summary": {
+        "complete_plans": 69,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 207,
+        "net_cash": -867.3780000001162,
+        "all_realized_net_cash": -867.3780000001177,
+        "profit_factor": 0.6847939570772206,
+        "wins": 21,
+        "losses": 48,
+        "net_r": -12.053499319567551,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 1282.5260000000978,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 2,
+        "decision_counts": {
+          "REJECTED": 462,
+          "NO_SETUP": 5913,
+          "SUBMITTED": 69
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "CONFIRMATION_CANDLE": 29,
+          "PORTFOLIO_OCCUPIED": 25,
+          "COOLDOWN": 8,
+          "STRUCTURAL_STOP_RANGE": 3,
+          "EXCESSIVE_BAR": 4
+        }
+      },
+      "blocked_families": {},
+      "campaign_metrics": {
+        "n": 69,
+        "wins": 21,
+        "losses": 48,
+        "breakeven": 0,
+        "net_cash": -867.3780000001162,
+        "mean_cash": -12.570695652175598,
+        "profit_factor": 0.6847939570772206,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.30434782608695654,
+        "win_rate_wilson95": [
+          0.20849626891709952,
+          0.4208357016786164
+        ],
+        "campaign_close_drawdown": 1282.5260000000949,
+        "max_consecutive_losses": 10,
+        "p05_cash": -116.90340000000107,
+        "small_n": false
+      },
+      "mean_r_uncertainty": {
+        "n": 69,
+        "mean": -0.1746883959357616,
+        "ci95": [
+          -0.42189618584798483,
+          0.08511171534396515
+        ],
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+      },
+      "sign_flip_p": 0.9035482258870565,
+      "journal": "research\\reports\\candidate_journals\\S7-M30-BASE.json.gz",
+      "journal_sha256": "22476d1ecc517eb4c0e03a764a12cdfe899e9d522bacfd7efcb0a6fe7a844284"
+    },
+    {
+      "trial": {
+        "id": "S8-M30-BASE",
+        "family": "S8",
+        "exit_variant": "PARTIAL_R",
+        "entry_delay_bars": 1,
+        "cost_multiplier": 1
+      },
+      "status": "EXPLORATORY_RESULT",
+      "engine": "PYTHON_CONSERVATIVE_OHLC_NOT_NATIVE_PARITY",
+      "config_sha256": "133daadeeba19b6377869fc162f6438e48d21c9094a4856381a6e5519a57efe6",
+      "summary": {
+        "complete_plans": 6,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 18,
+        "net_cash": 425.8249999999877,
+        "all_realized_net_cash": 425.8249999999875,
+        "profit_factor": 10.962916169485096,
+        "wins": 5,
+        "losses": 1,
+        "net_r": 5.696338119409981,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 62.30700000000297,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 1,
+        "decision_counts": {
+          "REJECTED": 1383,
+          "NO_SETUP": 5055,
+          "SUBMITTED": 6
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "DIRECTIONAL_CONTEXT": 856,
+          "EFFICIENCY": 738,
+          "PRIOR_PAUSE": 399,
+          "DISPLACEMENT": 342,
+          "EXHAUSTION_DISTANCE": 211,
+          "EXCESSIVE_BAR": 19,
+          "STRUCTURAL_STOP_RANGE": 66,
+          "TIME_GAP_ON_CONFIRMATION": 17,
+          "PORTFOLIO_OCCUPIED": 2,
+          "COOLDOWN": 1
+        }
+      },
+      "blocked_families": {},
+      "campaign_metrics": {
+        "n": 6,
+        "wins": 5,
+        "losses": 1,
+        "breakeven": 0,
+        "net_cash": 425.8249999999877,
+        "mean_cash": 70.97083333333129,
+        "profit_factor": 10.962916169485096,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.8333333333333334,
+        "win_rate_wilson95": [
+          0.43649717781352987,
+          0.9699466302516935
+        ],
+        "campaign_close_drawdown": 42.74100000000254,
+        "max_consecutive_losses": 1,
+        "p05_cash": -26.241750000002455,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 6,
+        "mean": 0.9493896865683302,
+        "ci95": [
+          0.44893650472530927,
+          1.4468476895462805
+        ],
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+      },
+      "sign_flip_p": 0.06596701649175413,
+      "journal": "research\\reports\\candidate_journals\\S8-M30-BASE.json.gz",
+      "journal_sha256": "b97db7a7c3e11e94869d5980f35de7e1ebb257e8f248b08cc647b0b40ecfe13e"
+    },
+    {
+      "trial": {
+        "id": "S9-M30-BASE",
+        "family": "S9",
+        "exit_variant": "PARTIAL_R",
+        "entry_delay_bars": 1,
+        "cost_multiplier": 1
+      },
+      "status": "EXPLORATORY_RESULT",
+      "engine": "PYTHON_CONSERVATIVE_OHLC_NOT_NATIVE_PARITY",
+      "config_sha256": "ddf965bbfe330cb2da7489b79d0b34032840c87a678de85ef703ab3bc21dc7f5",
+      "summary": {
+        "complete_plans": 34,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 102,
+        "net_cash": -207.23900000006276,
+        "all_realized_net_cash": -207.2390000000624,
+        "profit_factor": 0.8382093015266873,
+        "wins": 11,
+        "losses": 23,
+        "net_r": -1.3758558630035653,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 535.1130000000214,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 540,
+          "NO_SETUP": 5529,
+          "WATCH": 341,
+          "SUBMITTED": 34
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "SETUP_EXPIRED": 61,
+          "STRUCTURAL_INVALIDATION": 41,
+          "CONFIRMATION_CANDLE": 22,
+          "SETUP_TIME_GAP": 3,
+          "PORTFOLIO_OCCUPIED": 11,
+          "EXCESSIVE_BAR": 3,
+          "STRUCTURAL_STOP_RANGE": 2,
+          "COOLDOWN": 4
+        }
+      },
+      "blocked_families": {},
+      "campaign_metrics": {
+        "n": 34,
+        "wins": 11,
+        "losses": 23,
+        "breakeven": 0,
+        "net_cash": -207.23900000006276,
+        "mean_cash": -6.095264705884198,
+        "profit_factor": 0.8382093015266873,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.3235294117647059,
+        "win_rate_wilson95": [
+          0.1913164356402551,
+          0.49157105406091794
+        ],
+        "campaign_close_drawdown": 535.1130000000214,
+        "max_consecutive_losses": 9,
+        "p05_cash": -96.58980000000162,
+        "small_n": false
+      },
+      "mean_r_uncertainty": {
+        "n": 34,
+        "mean": -0.040466348911869565,
+        "ci95": [
+          -0.4559521067834542,
+          0.3738969470710269
+        ],
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+      },
+      "sign_flip_p": 0.5757121439280359,
+      "journal": "research\\reports\\candidate_journals\\S9-M30-BASE.json.gz",
+      "journal_sha256": "fb1105512b46e7d7c849e27e7b6eb24e0bbda0800c4688416f4d53158cd2117e"
+    },
+    {
+      "trial": {
+        "id": "S10-M30-BASE",
+        "family": "S10",
+        "exit_variant": "PARTIAL_R",
+        "entry_delay_bars": 1,
+        "cost_multiplier": 1
+      },
+      "status": "BLOCKED_NO_VALID_INPUTS",
+      "engine": "PYTHON_CONSERVATIVE_OHLC_NOT_NATIVE_PARITY",
+      "config_sha256": "327b5d6dac645019a4eebf63087632ba6c9e4d3e68ea25987b996825045b2aaf",
+      "summary": {
+        "complete_plans": 0,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 0,
+        "net_cash": 0,
+        "all_realized_net_cash": 0.0,
+        "profit_factor": null,
+        "wins": 0,
+        "losses": 0,
+        "net_r": 0,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 0.0,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "BLOCKED": 3222
+        },
+        "rejection_reasons": {
+          "NO_INDEPENDENT_VALIDATION": 3222
+        }
+      },
+      "blocked_families": {
+        "S10": "NO_INDEPENDENT_VALIDATION"
+      },
+      "campaign_metrics": {
+        "n": 0,
+        "wins": 0,
+        "losses": 0,
+        "breakeven": 0,
+        "net_cash": 0,
+        "mean_cash": null,
+        "profit_factor": null,
+        "profit_factor_status": "NO_TRADES",
+        "win_rate": null,
+        "win_rate_wilson95": [
+          null,
+          null
+        ],
+        "campaign_close_drawdown": 0.0,
+        "max_consecutive_losses": 0,
+        "p05_cash": null,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 0,
+        "mean": null,
+        "ci95": [
+          null,
+          null
+        ]
+      },
+      "sign_flip_p": 1.0,
+      "journal": "research\\reports\\candidate_journals\\S10-M30-BASE.json.gz",
+      "journal_sha256": "eb56b45ae58ea5db0bd9d3d86acf32effa037c4f12fd0318fd49cf5a9efb1a49"
+    }
+  ],
+  "combined_multiple_testing": [
+    {
+      "trial_id": "S1-BASE",
+      "p": 0.7551224387806097,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S1-FIXED_R",
+      "p": 0.8500749625187406,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S1-STRUCTURAL",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S1-BREAKEVEN",
+      "p": 0.6286856571714143,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S1-ATR_TRAIL",
+      "p": 0.5272363818090955,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S1-DELAY2",
+      "p": 0.7141429285357321,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S1-COST1.5",
+      "p": 0.7551224387806097,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S1-COST2",
+      "p": 0.7551224387806097,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S2-BASE",
+      "p": 0.9570214892553723,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S2-FIXED_R",
+      "p": 0.7316341829085458,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S2-STRUCTURAL",
+      "p": 0.928535732133933,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S2-BREAKEVEN",
+      "p": 0.9000499750124937,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S2-ATR_TRAIL",
+      "p": 0.5782108945527237,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S2-DELAY2",
+      "p": 0.6956521739130435,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S2-COST1.5",
+      "p": 0.9700149925037481,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S2-COST2",
+      "p": 0.9770114942528736,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S3-BASE",
+      "p": 0.049475262368815595,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S3-FIXED_R",
+      "p": 0.08595702148925537,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S3-STRUCTURAL",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S3-BREAKEVEN",
+      "p": 0.04247876061969016,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S3-ATR_TRAIL",
+      "p": 0.06796601699150424,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S3-DELAY2",
+      "p": 0.08295852073963018,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S3-COST1.5",
+      "p": 0.051974012993503245,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S3-COST2",
+      "p": 0.05697151424287856,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S4-BASE",
+      "p": 0.8185907046476761,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S4-FIXED_R",
+      "p": 0.6626686656671664,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S4-STRUCTURAL",
+      "p": 0.49825087456271866,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S4-BREAKEVEN",
+      "p": 0.8875562218890555,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S4-ATR_TRAIL",
+      "p": 0.912543728135932,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S4-DELAY2",
+      "p": 0.9960019990004998,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S4-COST1.5",
+      "p": 0.8340829585207397,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S4-COST2",
+      "p": 0.847576211894053,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S5-BASE",
+      "p": 0.4947526236881559,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S5-FIXED_R",
+      "p": 0.4257871064467766,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S5-STRUCTURAL",
+      "p": 0.6411794102948526,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S5-BREAKEVEN",
+      "p": 0.31084457771114443,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S5-ATR_TRAIL",
+      "p": 0.4012993503248376,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S5-DELAY2",
+      "p": 0.5477261369315343,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S5-COST1.5",
+      "p": 0.5702148925537232,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S5-COST2",
+      "p": 0.6436781609195402,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S6-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S6-FIXED_R",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S6-STRUCTURAL",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S6-BREAKEVEN",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S6-ATR_TRAIL",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S6-DELAY2",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S6-COST1.5",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S6-COST2",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S7-BASE",
+      "p": 0.672663668165917,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S7-FIXED_R",
+      "p": 0.768615692153923,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S7-STRUCTURAL",
+      "p": 0.9540229885057471,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S7-BREAKEVEN",
+      "p": 0.7346326836581709,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S7-ATR_TRAIL",
+      "p": 0.8950524737631185,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S7-DELAY2",
+      "p": 0.6916541729135433,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S7-COST1.5",
+      "p": 0.7101449275362319,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S7-COST2",
+      "p": 0.7436281859070465,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S8-BASE",
+      "p": 0.1489255372313843,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S8-FIXED_R",
+      "p": 0.0769615192403798,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S8-STRUCTURAL",
+      "p": 0.49825087456271866,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S8-BREAKEVEN",
+      "p": 0.11744127936031984,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S8-ATR_TRAIL",
+      "p": 0.20339830084957522,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S8-DELAY2",
+      "p": 0.567216391804098,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S8-COST1.5",
+      "p": 0.1584207896051974,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S8-COST2",
+      "p": 0.16741629185407297,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S9-BASE",
+      "p": 0.8990504747626187,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S9-FIXED_R",
+      "p": 0.7926036981509246,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S9-STRUCTURAL",
+      "p": 0.6326836581709145,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S9-BREAKEVEN",
+      "p": 0.8755622188905547,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S9-ATR_TRAIL",
+      "p": 0.8730634682658671,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S9-DELAY2",
+      "p": 0.4672663668165917,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S9-COST1.5",
+      "p": 0.9190404797601199,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S9-COST2",
+      "p": 0.9340329835082459,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S10-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S10-FIXED_R",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S10-STRUCTURAL",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S10-BREAKEVEN",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S10-ATR_TRAIL",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S10-DELAY2",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S10-COST1.5",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S10-COST2",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S1-M30-BASE",
+      "p": 0.5037481259370314,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S2-M30-BASE",
+      "p": 0.6156921539230384,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S3-M30-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S4-M30-BASE",
+      "p": 0.5227386306846576,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S5-M30-BASE",
+      "p": 0.02848575712143928,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S6-M30-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S7-M30-BASE",
+      "p": 0.9035482258870565,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S8-M30-BASE",
+      "p": 0.06596701649175413,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S9-M30-BASE",
+      "p": 0.5757121439280359,
+      "holm_adjusted_p_all_90": 1
+    },
+    {
+      "trial_id": "S10-M30-BASE",
+      "p": 1.0,
+      "holm_adjusted_p_all_90": 1
+    }
+  ],
+  "limitations": [
+    "Coarser OHLC derived only from exact contiguous M15 pairs, not fresh broker or native M30",
+    "Same numeric bar-count settings double wall-clock hold/cooldown; entry latency and intrabar ambiguity change",
+    "Already observed period; exploratory post-original-results amendment, not untouched test",
+    "M5 cannot be reconstructed; volume still unverified; S6/S10 stay blocked"
+  ]
+}

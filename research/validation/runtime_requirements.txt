@@ -1,0 +1,5 @@
+# Observed runtime: CPython 3.12.14, Windows AMD64. No installation was performed.
+# Python zoneinfo TZPATH was empty, so DST data used this existing package.
+# For equivalent DST/session reproduction on other systems, select this provider
+# explicitly (PYTHONTZPATH="") rather than silently using a different OS database.
+tzdata==2026.6

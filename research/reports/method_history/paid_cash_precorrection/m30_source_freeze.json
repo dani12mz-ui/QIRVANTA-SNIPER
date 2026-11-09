@@ -1,0 +1,8 @@
+{
+  "registered_utc": "2026-11-09T17:41:56.297672+00:00",
+  "amendment_sha256": "b3aaf63d393566779f6e08fb1cf28985dcb2d8ede04f67347df5e7ef686b509f",
+  "economic_source_freeze_sha256": "1b1e4685dad618983b2d99344fe5bdb5d6a95b8cbeb035e033e41b7cf599d74b",
+  "new_aggregation_sha256": "1c8f8da6ef3774501bf5f83b8de16e7ab1cd5f3c9cc49ef44b30cf92a2b5cb02",
+  "current_statistics_sha256": "32fac0ead636b0c7dc65b485ec55a9097fde1473bb4c735930bd6cca55986fd0",
+  "runner_sha256": "2948324141cb5d076c0f0ec70dc40269c9d0fe5166f782011325f77f76ae9d35"
+}

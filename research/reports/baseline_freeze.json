@@ -1,0 +1,68 @@
+{
+  "schema": "qirvanta.research.baseline.v1",
+  "created_utc": "2026-11-09T17:29:12.111407+00:00",
+  "mission_parent": "dd1819515b6fe27e2a08bff91c1fbad6bfd7bcc9",
+  "champion_source_commit": "48e5cddab17ea831bdc277f17f0406329fdfe39c",
+  "champion_source_sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+  "native_audit_sha256": "05e98c9831308bcbde40aaaa79b96db368dc856d06d4030a113eab00a00caa67",
+  "bar_data_sha256": "7015f6386d2627237c57ff8625d59cbe3c9b852e4742b786cbb4679db3d48c56",
+  "baseline_snapshot_sha256": "985e757210898f063cbba0f5a27c1382f301df5e14d6bfc46bdada2fcb1696f3",
+  "native_campaign_metrics": {
+    "count": 72,
+    "wins": 33,
+    "losses": 39,
+    "breakevens": 0,
+    "net_cash": -144.492,
+    "sum_positive_net_cash": 1378.011,
+    "sum_negative_net_cash_magnitude": 1522.503,
+    "profit_factor": 0.9050957535059044,
+    "profit_factor_status": "DEFINED",
+    "win_rate": 0.4583333333333333,
+    "average_net_cash": -2.0068333333333332,
+    "average_win_cash": 41.75790909090909,
+    "average_loss_cash": -39.03853846153846,
+    "closed_cash_event_drawdown": 812.069,
+    "campaign_close_drawdown": 812.069,
+    "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+    "exit_comment_record_counts": {
+      "TP1": 32,
+      "ИЗТЕКЪЛ СРОК": 3,
+      "SL": 150,
+      "TP2": 16,
+      "TP3": 10,
+      "ИЗХОД СЛЕД ГАП": 1
+    },
+    "exit_comment_quantities": {
+      "TP1": 32.0,
+      "ИЗТЕКЪЛ СРОК": 5.0,
+      "SL": 150.0,
+      "TP2": 16.0,
+      "TP3": 10.0,
+      "ИЗХОД СЛЕД ГАП": 3.0
+    },
+    "final_exit_comment_campaign_counts": {
+      "ИЗТЕКЪЛ СРОК": 3,
+      "SL": 58,
+      "TP3": 10,
+      "ИЗХОД СЛЕД ГАП": 1
+    }
+  },
+  "native_cash_reconciliation": {
+    "derived_net_cash": -144.492,
+    "native_netprofit": -144.492,
+    "difference": 0.0,
+    "matches": true,
+    "commission_cash": 75.6,
+    "formula": "(exit_price-entry_price)*signed_size*pointvalue - commission, once; same currency required",
+    "api_profit_classifications": {
+      "NET": 212
+    }
+  },
+  "native_equity_max_drawdown": {
+    "value": 842.255,
+    "source": "snapshot.strategy.max_drawdown",
+    "scope": "NATIVE_EQUITY_INTRABAR_METRIC_NOT_RECONSTRUCTED_FROM_CLOSED_ROWS"
+  },
+  "untouched_test_available": false,
+  "production_change_allowed_by_this_registration": false
+}

@@ -1,0 +1,249 @@
+{
+  "schema": "qirvanta.research.local-platform-manifest.v1",
+  "created_utc": "2026-11-09T17:57:13.342137+00:00",
+  "source_log": "C:\\Users\\azubu\\Documents\\Codex\\2026-11-08\\qirvanta-sniper-qirvanta-refactored-delivery-pro\\work\\mission\\M5_NATIVE.pine-logs.csv",
+  "source_log_sha256": "64a71a7533ef98fbf6754608ac6d76dc2a6b4622e25554babe573fcc49f66443",
+  "source_log_bytes": 851475,
+  "expected_strategy_source_sha256": "92307768be68946dc87cbe4ea45a8b5e32446fd3b7a0c1a38dce40dffe358be3",
+  "source_metadata": {
+    "columns": [
+      "time",
+      "time_close",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume",
+      "htfClose",
+      "htfEMA50",
+      "htfEMA200",
+      "htfEMA50prev",
+      "priorDayHigh",
+      "priorDayLow"
+    ],
+    "price_serialization": "8 decimal places",
+    "source": "Pine observed OHLC/HTF; symbol and timeframe in run header"
+  },
+  "run_metadata": {
+    "schema": "qirvanta.native.v1",
+    "run_id": "ui_only|Всички",
+    "kind": "run",
+    "symbol": "OANDA:XAUUSD",
+    "timeframe": "5",
+    "source_sha256": "92307768be68946dc87cbe4ea45a8b5e32446fd3b7a0c1a38dce40dffe358be3",
+    "account_currency": "USD",
+    "symbol_currency": "USD",
+    "pointvalue": 1,
+    "profit_semantics": "UNVERIFIED",
+    "first_bar_time": 1791756000000,
+    "last_bar_open": 1794192000000,
+    "cutoff": 1794192300000,
+    "bar_count": 5565,
+    "checksum1": 482866632,
+    "checksum2": 934054441,
+    "mintick": 0.001
+  },
+  "cutoff_snapshot": {
+    "schema": "qirvanta.native.v1",
+    "run_id": "ui_only|Всички",
+    "kind": "snapshot",
+    "at_time": 1794192300000,
+    "at_bar": 5564,
+    "closed_count": 134,
+    "first_closed_index": 0,
+    "submitted_count": 46,
+    "open_complete": true,
+    "open": [],
+    "netprofit": 50.438,
+    "max_drawdown": 217.513
+  },
+  "canonical_csv": {
+    "file": "bars.csv",
+    "sha256": "44971f52b0008fefc4b61dda51c71043f08e4a2e3bc6d08121380e95232ace1d",
+    "bytes": 741809
+  },
+  "redistribution": "LOCAL_ONLY_RIGHTS_NOT_ESTABLISHED_DO_NOT_COMMIT_RAW_OR_FULL_OHLC",
+  "volume_status": "PROVIDER_VOLUME_SEMANTICS_UNVERIFIED_NOT_TRUE_VWAP",
+  "history_status": "ACTUAL_PLATFORM_EXPORT_ALREADY_OBSERVED_CALENDAR_PERIOD_NOT_UNTOUCHED",
+  "precision": "Exported Decimal serialization preserved; not proof of backend full precision",
+  "no_reconstruction": "All rows and order preserved; no gap fill, deduplication or synthetic candles",
+  "timestamp_scope": "CSV log Date is logging-bar metadata; market timestamps are the explicit bar columns",
+  "native_accounting": "Separate native journal reconciliation required; extracting OHLC does not validate native P&L",
+  "status": "PASS_ACTUAL_SERIALIZED_PLATFORM_EXPORT",
+  "symbol": "OANDA:XAUUSD",
+  "timeframe": "5",
+  "bar_count": 5565,
+  "interval_ms": 300000,
+  "first_open": 1791756000000,
+  "first_open_utc": "2026-10-11T22:00:00Z",
+  "last_close": 1794192300000,
+  "last_close_utc": "2026-11-09T02:45:00Z",
+  "gaps": [
+    {
+      "previous_row": 275,
+      "next_row": 276,
+      "previous_close": 1791838800000,
+      "next_open": 1791842400000,
+      "unobserved_intervals": 12
+    },
+    {
+      "previous_row": 551,
+      "next_row": 552,
+      "previous_close": 1791925200000,
+      "next_open": 1791928800000,
+      "unobserved_intervals": 12
+    },
+    {
+      "previous_row": 827,
+      "next_row": 828,
+      "previous_close": 1792011600000,
+      "next_open": 1792015200000,
+      "unobserved_intervals": 12
+    },
+    {
+      "previous_row": 1103,
+      "next_row": 1104,
+      "previous_close": 1792098000000,
+      "next_open": 1792101600000,
+      "unobserved_intervals": 12
+    },
+    {
+      "previous_row": 1379,
+      "next_row": 1380,
+      "previous_close": 1792184400000,
+      "next_open": 1792360800000,
+      "unobserved_intervals": 588
+    },
+    {
+      "previous_row": 1655,
+      "next_row": 1656,
+      "previous_close": 1792443600000,
+      "next_open": 1792447200000,
+      "unobserved_intervals": 12
+    },
+    {
+      "previous_row": 1931,
+      "next_row": 1932,
+      "previous_close": 1792530000000,
+      "next_open": 1792533600000,
+      "unobserved_intervals": 12
+    },
+    {
+      "previous_row": 2207,
+      "next_row": 2208,
+      "previous_close": 1792616400000,
+      "next_open": 1792620000000,
+      "unobserved_intervals": 12
+    },
+    {
+      "previous_row": 2483,
+      "next_row": 2484,
+      "previous_close": 1792702800000,
+      "next_open": 1792706400000,
+      "unobserved_intervals": 12
+    },
+    {
+      "previous_row": 2759,
+      "next_row": 2760,
+      "previous_close": 1792789200000,
+      "next_open": 1792965600000,
+      "unobserved_intervals": 588
+    },
+    {
+      "previous_row": 3035,
+      "next_row": 3036,
+      "previous_close": 1793048400000,
+      "next_open": 1793052000000,
+      "unobserved_intervals": 12
+    },
+    {
+      "previous_row": 3311,
+      "next_row": 3312,
+      "previous_close": 1793134800000,
+      "next_open": 1793138400000,
+      "unobserved_intervals": 12
+    },
+    {
+      "previous_row": 3587,
+      "next_row": 3588,
+      "previous_close": 1793221200000,
+      "next_open": 1793224800000,
+      "unobserved_intervals": 12
+    },
+    {
+      "previous_row": 3863,
+      "next_row": 3864,
+      "previous_close": 1793307600000,
+      "next_open": 1793311200000,
+      "unobserved_intervals": 12
+    },
+    {
+      "previous_row": 4139,
+      "next_row": 4140,
+      "previous_close": 1793394000000,
+      "next_open": 1793574000000,
+      "unobserved_intervals": 600
+    },
+    {
+      "previous_row": 4415,
+      "next_row": 4416,
+      "previous_close": 1793656800000,
+      "next_open": 1793660400000,
+      "unobserved_intervals": 12
+    },
+    {
+      "previous_row": 4691,
+      "next_row": 4692,
+      "previous_close": 1793743200000,
+      "next_open": 1793746800000,
+      "unobserved_intervals": 12
+    },
+    {
+      "previous_row": 4967,
+      "next_row": 4968,
+      "previous_close": 1793829600000,
+      "next_open": 1793833200000,
+      "unobserved_intervals": 12
+    },
+    {
+      "previous_row": 5243,
+      "next_row": 5244,
+      "previous_close": 1793916000000,
+      "next_open": 1793919600000,
+      "unobserved_intervals": 12
+    },
+    {
+      "previous_row": 5519,
+      "next_row": 5520,
+      "previous_close": 1794002400000,
+      "next_open": 1794178800000,
+      "unobserved_intervals": 588
+    }
+  ],
+  "gap_count": 20,
+  "null_counts": {
+    "time": 0,
+    "time_close": 0,
+    "open": 0,
+    "high": 0,
+    "low": 0,
+    "close": 0,
+    "volume": 0,
+    "htfClose": 0,
+    "htfEMA50": 0,
+    "htfEMA200": 0,
+    "htfEMA50prev": 0,
+    "priorDayHigh": 0,
+    "priorDayLow": 0
+  },
+  "checks": {
+    "source_hash": true,
+    "schema_symbol_timeframe": true,
+    "native_run_snapshot_identity": true,
+    "count_index_bounds": true,
+    "strict_integer_times": true,
+    "uniform_interval_utc_alignment": true,
+    "no_duplicates_backwards_overlaps": true,
+    "no_future_rows": true
+  }
+}

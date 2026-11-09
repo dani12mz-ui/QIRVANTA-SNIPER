@@ -1,0 +1,3 @@
+# Preserve exact captured evidence bytes and associated hashes.
+# CRLF and terminal blank separators belong to captured evidence bytes.
+* -text whitespace=-blank-at-eof,cr-at-eol

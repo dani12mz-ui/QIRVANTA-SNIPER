@@ -7,7 +7,7 @@ import json
 
 ROOT = Path(__file__).resolve().parents[1]
 COMMON = ['inputs', 'features', 'types_helpers', 'decision', 'paper_engine']
-TAIL = ['alerts_helpers', 'native_adapter', 'visual_alerts', 'alerts']
+TAIL = ['alerts_helpers', 'native_adapter', 'display_context', 'visual_alerts', 'alerts']
 OUTPUT = 'QIRVANTA_UNIFIED.pine'
 OUTPUTS = {OUTPUT: 'native'}
 

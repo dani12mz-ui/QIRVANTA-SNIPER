@@ -1,0 +1,16 @@
+{
+  "schema": "qirvanta.research.accounting_correction_registration.v1",
+  "registered_utc": "2026-11-09T17:44:19.006222+00:00",
+  "reason": "Independent review: Python cash equity and daily cash deferred entry commission to partial exits; open residual entry commission omitted. Completed campaign net remains correct but entry debit timing/daily risk and open cash are wrong. CSV loader also truncated fractional timestamp before validation.",
+  "economic_correction": "Debit full entry commission at actual entry; exit cash adds gross minus exit commission only. Per-part net continues allocate both fees exactly once; final campaign net unchanged. All paid cash and DD include open unallocated entry fee. daily-loss guard observes paid cash, including entry.",
+  "data_correction": "Reject fractional/nonfinite timestamps before integer conversion; locked actual CSV all timestamps integer, canonical data must remain identical.",
+  "hypothesis_before_rerun": "All90 default scenarios use daily guard None; signal/submission/entry/exit/qty/prices/complete net expected identical. all_realized cash and cash-equity timing/DD can differ; open residual entry fee creates exact delta.",
+  "forbidden": "No strategy/filter/parameter thresholds, price path, fills, stop/target or chronology change. No new trial selection or search.",
+  "trial_ids": "Same original80 M15 and10 derived M30; no new hypothesis count. Preserve all90 precorrection journals and reports under method_history/paid_cash_precorrection.",
+  "old_engine_sha256": "bbb2c5c17e2f7a6d5d4e467586a733a6c5476a2b5a14bdacc0367ccc0980d3ee",
+  "old_loader_sha256": "27fa3d1c2574f3c697fbc9d3ba127bf7ccb3b78c00292a6d4b67972e49e9bb8a",
+  "old_experiment_results_sha256": "70cb9c40c867ac9f299003fe7b567eece939cf87be10e9f7c7c96c7b1e8e3441",
+  "old_m30_results_sha256": "263680ba20571b33b96eebd30cd9efd6c5d4429b9b513a87af59a836d2c53784",
+  "original_data_sha256": "7015f6386d2627237c57ff8625d59cbe3c9b852e4742b786cbb4679db3d48c56",
+  "promotion_allowed": false
+}

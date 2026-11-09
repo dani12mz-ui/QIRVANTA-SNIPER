@@ -1,0 +1,23 @@
+{
+  "status": "UNVERIFIED_BLOCKED",
+  "requested_symbol": "XAUUSD.s",
+  "broker": "PU Prime",
+  "server": null,
+  "account_currency": null,
+  "account_type": null,
+  "verified": false,
+  "contract_size": null,
+  "point": null,
+  "tick_size": null,
+  "tick_value_loss_account_ccy": null,
+  "volume_min": null,
+  "volume_max": null,
+  "volume_step": null,
+  "stops_level_points": null,
+  "freeze_level_points": null,
+  "commission_round_trip_per_lot": null,
+  "currency_conversion_verified": false,
+  "bid_ask_available": false,
+  "orders_enabled": false,
+  "reason": "Generic broker website examples do not establish this user's account/server-specific XAUUSD.s contract, fees, executable quotes or margin. No lot calculation is enabled."
+}

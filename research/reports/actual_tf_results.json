@@ -1,0 +1,3141 @@
+{
+  "schema": "qirvanta.research.actual_tf_results.v1",
+  "registration_sha256": "57b0802da29a5414051dd096a0253b4046889efc19a8749edf3cc44f1d7a5e9b",
+  "source_freeze_sha256": "c2f1a28476c240a591bea5a8e3f4ea1710288ab55bfb970dc8856f3a82cb5d0e",
+  "completed_utc": "2026-11-09T18:05:10.143090+00:00",
+  "common_window": {
+    "status": "AVAILABLE",
+    "first_valid_by_tf": {
+      "5": 1792785600000,
+      "15": 1786737600000,
+      "30": 1768507200000
+    },
+    "start": 1792785600000,
+    "end": 1794191400000,
+    "alignment_ms": 1800000,
+    "criterion": "latest first ready entry feature with completed H1/H4 bias (SMA-seeded EMA20/50), ceil UTC half-hour; min last bar close floor half-hour",
+    "uses_returns": false,
+    "partial_end_bars_excluded": {
+      "5": 3,
+      "15": 1,
+      "30": 0
+    }
+  },
+  "sources": [
+    {
+      "timeframe": "5",
+      "local_csv": "../mission/M5_dataset/bars.csv",
+      "csv_sha256": "44971f52b0008fefc4b61dda51c71043f08e4a2e3bc6d08121380e95232ace1d",
+      "bar_count": 5565,
+      "first_open": 1791756000000,
+      "last_close": 1794192300000,
+      "native_audit": "docs/platform_evidence/M5_native.audit.json",
+      "native_audit_sha256": "4b2091254eccdc7b095f5f44459df77f71f66843488ef390488691975c5e8685",
+      "publication": "new raw OHLC local only; no fresh market archives copied into repo"
+    },
+    {
+      "timeframe": "15",
+      "local_csv": "../mission/ui_dataset/bars.csv",
+      "csv_sha256": "6c89015105a406c2a0c1567f0e9a5e445cb31ee7604a985d727f26892d8ba4b7",
+      "bar_count": 6445,
+      "first_open": 1785708000000,
+      "last_close": 1794192300000,
+      "native_audit": "docs/platform_evidence/ui_parity.audit.json",
+      "native_audit_sha256": "eff3e84a64775e0889ce212f90721d02e946128abc97303b98b98c7a0f19ec2f",
+      "publication": "new raw OHLC local only; no fresh market archives copied into repo"
+    },
+    {
+      "timeframe": "30",
+      "local_csv": "../mission/M30_dataset/bars.csv",
+      "csv_sha256": "1b31dc5dad532b9362c5340511211fbc13a33c64983d4a49485c7442a269c5d5",
+      "bar_count": 10091,
+      "first_open": 1767308400000,
+      "last_close": 1794191400000,
+      "native_audit": "docs/platform_evidence/M30_native.audit.json",
+      "native_audit_sha256": "f75a5a68d147e828c0592db552fbd13ddba7dd2502aa38d9f885a66073adf2e5",
+      "publication": "new raw OHLC local only; no fresh market archives copied into repo"
+    }
+  ],
+  "trials": [
+    {
+      "trial": {
+        "id": "S1-ACTUAL-M5-BASE",
+        "family": "S1",
+        "timeframe": "5"
+      },
+      "status": "EXPLORATORY_RESULT",
+      "summary": {
+        "complete_plans": 3,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 9,
+        "net_cash": -66.88799999999755,
+        "all_realized_net_cash": -66.88799999999755,
+        "profit_factor": 0.0,
+        "wins": 0,
+        "losses": 3,
+        "net_r": -3.1615970716298714,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 66.88799999999756,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 1540,
+          "NO_SETUP": 9581,
+          "SUBMITTED": 3
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "DIRECTIONAL_CONTEXT": 1134,
+          "CONFIRMATION_CANDLE": 228,
+          "BEFORE_TRADE_WINDOW": 5,
+          "EXCESSIVE_BAR": 12,
+          "STRUCTURAL_STOP_RANGE": 14,
+          "TIME_GAP_ON_CONFIRMATION": 8
+        },
+        "cash_paid_net": -66.88799999999755,
+        "closed_parts_net": -66.88799999999756,
+        "cash_paid_drawdown": 66.88799999999755,
+        "unallocated_entry_fees": 0.0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20755": -14.801999999999499,
+          "20760": -24.683999999999106,
+          "20761": -27.401999999998953
+        }
+      },
+      "blocked_families": {},
+      "variant_identity": {
+        "trial_id": "S1-ACTUAL-M5-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "f598ef48b9fa03a474e390111a194d6df51259e239b588ca5f8e29fa59908be0",
+        "ablation": null,
+        "composite_sha256": "b8027822139c8094513efd9f21460ca1b76df33d51ef89b49348780d7c2d2ca8"
+      },
+      "campaign_metrics": {
+        "n": 3,
+        "wins": 0,
+        "losses": 3,
+        "breakeven": 0,
+        "net_cash": -66.88799999999755,
+        "mean_cash": -22.295999999999182,
+        "profit_factor": 0.0,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.0,
+        "win_rate_wilson95": [
+          5.551115123125783e-17,
+          0.5614970317550454
+        ],
+        "campaign_close_drawdown": 66.88799999999755,
+        "max_consecutive_losses": 3,
+        "p05_cash": -27.130199999998965,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 3,
+        "mean": -1.0538656905432904,
+        "ci95": [
+          null,
+          null
+        ],
+        "status": "INSUFFICIENT_BLOCKS",
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "reason": "A whole-sample circular block produces a degenerate mean; no inferential interval reported"
+      },
+      "sign_flip_p": 1.0,
+      "journal": "research/reports/candidate_journals/S1-ACTUAL-M5-BASE.json.gz",
+      "journal_sha256": "2fad962b2b1d2316f297a2638d006473e64f86ed2851ab4346714d8a0444f493",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S2-ACTUAL-M5-BASE",
+        "family": "S2",
+        "timeframe": "5"
+      },
+      "status": "EXPLORATORY_RESULT",
+      "summary": {
+        "complete_plans": 50,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 150,
+        "net_cash": -336.03199999999055,
+        "all_realized_net_cash": -336.0319999999913,
+        "profit_factor": 0.5919242703001452,
+        "wins": 14,
+        "losses": 36,
+        "net_r": -7.89659297024275,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 357.0799999999949,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 746,
+          "NO_SETUP": 9493,
+          "WATCH": 835,
+          "SUBMITTED": 50
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "BEFORE_TRADE_WINDOW": 76,
+          "SETUP_EXPIRED": 87,
+          "STRUCTURAL_INVALIDATION": 117,
+          "CONFIRMATION_CANDLE": 39,
+          "EXCESSIVE_BAR": 2,
+          "STRUCTURAL_STOP_RANGE": 4,
+          "COOLDOWN": 7,
+          "SETUP_TIME_GAP": 2,
+          "PORTFOLIO_OCCUPIED": 19
+        },
+        "cash_paid_net": -336.0319999999913,
+        "closed_parts_net": -336.0319999999907,
+        "cash_paid_drawdown": 356.7299999999955,
+        "unallocated_entry_fees": 0.0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20749": -0.5249999999999999,
+          "20751": -15.335999999999693,
+          "20752": 28.16500000000406,
+          "20753": -122.56200000000153,
+          "20754": 38.70100000000113,
+          "20755": -5.027999999997519,
+          "20756": -44.20699999999786,
+          "20759": -72.08999999999723,
+          "20760": 7.33300000000035,
+          "20761": -77.93999999999805,
+          "20762": 24.83199999999306,
+          "20763": -88.86599999999741,
+          "20765": 6.946999999999935,
+          "20766": -15.455999999999767
+        }
+      },
+      "blocked_families": {},
+      "variant_identity": {
+        "trial_id": "S2-ACTUAL-M5-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "8f946d32320bc05809921eb25e1c9eb38c15c2039c90fb36e4d3a18bad8b68b7",
+        "ablation": null,
+        "composite_sha256": "ce9bf513eaba2dcde650e5c43511f6043d67447444a1f4b88357d2d022f118f7"
+      },
+      "campaign_metrics": {
+        "n": 50,
+        "wins": 14,
+        "losses": 36,
+        "breakeven": 0,
+        "net_cash": -336.03199999999055,
+        "mean_cash": -6.720639999999811,
+        "profit_factor": 0.5919242703001452,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.28,
+        "win_rate_wilson95": [
+          0.17474170665911232,
+          0.4166512369595657
+        ],
+        "campaign_close_drawdown": 353.4039999999947,
+        "max_consecutive_losses": 6,
+        "p05_cash": -41.01165,
+        "small_n": false
+      },
+      "mean_r_uncertainty": {
+        "n": 50,
+        "mean": -0.15793185940485502,
+        "ci95": [
+          -0.44182813435563667,
+          0.1563365128252035
+        ],
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+      },
+      "sign_flip_p": 0.84007996001999,
+      "journal": "research/reports/candidate_journals/S2-ACTUAL-M5-BASE.json.gz",
+      "journal_sha256": "e0f0182eb0fc0526d39848e99e67cadc199687919352d8ed2c5b525478c32013",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S3-ACTUAL-M5-BASE",
+        "family": "S3",
+        "timeframe": "5"
+      },
+      "status": "ZERO_COMPLETED_TRADES",
+      "summary": {
+        "complete_plans": 0,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 0,
+        "net_cash": 0,
+        "all_realized_net_cash": 0.0,
+        "profit_factor": null,
+        "wins": 0,
+        "losses": 0,
+        "net_r": 0,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 0.0,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 755,
+          "NO_SETUP": 8993,
+          "WATCH": 1376
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "ACCEPTANCE_FAILED": 101,
+          "SETUP_EXPIRED": 122,
+          "CONFIRMATION_CANDLE": 82,
+          "SETUP_TIME_GAP": 6,
+          "STRUCTURAL_INVALIDATION": 27,
+          "CHASE_LIMIT": 20,
+          "BEFORE_TRADE_WINDOW": 4,
+          "STRUCTURAL_STOP_RANGE": 12
+        },
+        "cash_paid_net": 0.0,
+        "closed_parts_net": 0.0,
+        "cash_paid_drawdown": 0.0,
+        "unallocated_entry_fees": 0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {}
+      },
+      "blocked_families": {},
+      "variant_identity": {
+        "trial_id": "S3-ACTUAL-M5-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "3ad438ac7ff3f81893c2482e7dc07007c08ad0b2cbfd6b4499727180a33799db",
+        "ablation": null,
+        "composite_sha256": "90bd87f36f382ce0ad436e97e7977619766e4c675c253c1debc86faa503308db"
+      },
+      "campaign_metrics": {
+        "n": 0,
+        "wins": 0,
+        "losses": 0,
+        "breakeven": 0,
+        "net_cash": 0,
+        "mean_cash": null,
+        "profit_factor": null,
+        "profit_factor_status": "NO_TRADES",
+        "win_rate": null,
+        "win_rate_wilson95": [
+          null,
+          null
+        ],
+        "campaign_close_drawdown": 0.0,
+        "max_consecutive_losses": 0,
+        "p05_cash": null,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 0,
+        "mean": null,
+        "ci95": [
+          null,
+          null
+        ]
+      },
+      "sign_flip_p": 1.0,
+      "journal": "research/reports/candidate_journals/S3-ACTUAL-M5-BASE.json.gz",
+      "journal_sha256": "7f54e629e6f8a5d85568db0366135c1cfbaaafc8db4b57dd517eed0d6650ba92",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S4-ACTUAL-M5-BASE",
+        "family": "S4",
+        "timeframe": "5"
+      },
+      "status": "EXPLORATORY_RESULT",
+      "summary": {
+        "complete_plans": 13,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 39,
+        "net_cash": -18.20199999999921,
+        "all_realized_net_cash": -18.20199999999921,
+        "profit_factor": 0.844719331172162,
+        "wins": 6,
+        "losses": 7,
+        "net_r": 2.0076165456231627,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 72.55400000000137,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 1043,
+          "NO_SETUP": 10068,
+          "SUBMITTED": 13
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "PRIOR_COMPRESSION": 563,
+          "EXPANSION_REQUIRED": 214,
+          "CONFIRMATION_CANDLE": 146,
+          "BEFORE_TRADE_WINDOW": 12,
+          "TIME_GAP_ON_CONFIRMATION": 4,
+          "CHASE_LIMIT": 125,
+          "STRUCTURAL_STOP_RANGE": 85,
+          "EXCESSIVE_BAR": 14,
+          "PORTFOLIO_OCCUPIED": 6,
+          "COOLDOWN": 5
+        },
+        "cash_paid_net": -18.20199999999921,
+        "closed_parts_net": -18.201999999999245,
+        "cash_paid_drawdown": 72.20400000000134,
+        "unallocated_entry_fees": 0.0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20752": 13.017000000000007,
+          "20754": -6.3090000000000135,
+          "20755": -27.908999999998827,
+          "20756": 25.58699999999999,
+          "20758": -9.32599999999984,
+          "20759": 33.698000000000775,
+          "20760": 17.278000000000066,
+          "20761": -5.298999999999795,
+          "20762": -2.1310000000019507,
+          "20763": -56.80799999999962
+        }
+      },
+      "blocked_families": {},
+      "variant_identity": {
+        "trial_id": "S4-ACTUAL-M5-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "8cd07bdb580743a3bec4585c6b765aad1b8c8c52263277f0a03e5697aeffbab0",
+        "ablation": null,
+        "composite_sha256": "1ef428ee16c8661c95d2db30aceba0c66589500bfac561baba5c885970201c3c"
+      },
+      "campaign_metrics": {
+        "n": 13,
+        "wins": 6,
+        "losses": 7,
+        "breakeven": 0,
+        "net_cash": -18.20199999999921,
+        "mean_cash": -1.4001538461537852,
+        "profit_factor": 0.844719331172162,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.46153846153846156,
+        "win_rate_wilson95": [
+          0.23206067809538303,
+          0.7085620428549398
+        ],
+        "campaign_close_drawdown": 69.11200000000143,
+        "max_consecutive_losses": 5,
+        "p05_cash": -34.739399999999655,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 13,
+        "mean": 0.1544320419710125,
+        "ci95": [
+          -0.4282452305800728,
+          0.8503103500707805
+        ],
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+      },
+      "sign_flip_p": 0.30334832583708143,
+      "journal": "research/reports/candidate_journals/S4-ACTUAL-M5-BASE.json.gz",
+      "journal_sha256": "60b2fed4c0c52475c90ee27f39a9204d426f7aa938bec0021cd4c52dc29253ea",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S5-ACTUAL-M5-BASE",
+        "family": "S5",
+        "timeframe": "5"
+      },
+      "status": "EXPLORATORY_RESULT",
+      "summary": {
+        "complete_plans": 48,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 144,
+        "net_cash": 146.63499999999536,
+        "all_realized_net_cash": 146.63499999999502,
+        "profit_factor": 1.3771903198921558,
+        "wins": 22,
+        "losses": 26,
+        "net_r": 8.120116259853587,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 127.0040000000067,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 1,
+        "decision_counts": {
+          "REJECTED": 795,
+          "NO_SETUP": 9586,
+          "WATCH": 695,
+          "SUBMITTED": 48
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "BEFORE_TRADE_WINDOW": 72,
+          "CONFIRMATION_CANDLE": 47,
+          "STRUCTURAL_INVALIDATION": 221,
+          "SETUP_TIME_GAP": 3,
+          "SETUP_EXPIRED": 37,
+          "EXCESSIVE_BAR": 1,
+          "STRUCTURAL_STOP_RANGE": 8,
+          "PORTFOLIO_OCCUPIED": 10,
+          "COOLDOWN": 8
+        },
+        "cash_paid_net": 146.63499999999502,
+        "closed_parts_net": 146.6349999999955,
+        "cash_paid_drawdown": 127.52900000000697,
+        "unallocated_entry_fees": 0.0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20751": 6.727999999999884,
+          "20752": -8.610000000000401,
+          "20753": -45.27799999999912,
+          "20754": 27.875000000002,
+          "20755": 3.6979999999988635,
+          "20756": 8.927000000000223,
+          "20758": 20.242999999999665,
+          "20759": 15.469000000001682,
+          "20760": 26.814000000001485,
+          "20761": 98.47300000000061,
+          "20762": 30.443999999989984,
+          "20763": -20.36099999999897,
+          "20766": -17.787000000000535
+        }
+      },
+      "blocked_families": {},
+      "variant_identity": {
+        "trial_id": "S5-ACTUAL-M5-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "f763ede733d291d00421012e3a7c93c347a02d96f21c47a7b8130d75abf1a4fb",
+        "ablation": null,
+        "composite_sha256": "b6ecda698dba394f027f6a839046eaeb58aacf3f51a719f7216a544cf96bcf5c"
+      },
+      "campaign_metrics": {
+        "n": 48,
+        "wins": 22,
+        "losses": 26,
+        "breakeven": 0,
+        "net_cash": 146.63499999999536,
+        "mean_cash": 3.0548958333332368,
+        "profit_factor": 1.3771903198921558,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.4583333333333333,
+        "win_rate_wilson95": [
+          0.32575242292867446,
+          0.5970892545435019
+        ],
+        "campaign_close_drawdown": 127.00400000000685,
+        "max_consecutive_losses": 6,
+        "p05_cash": -28.858350000001245,
+        "small_n": false
+      },
+      "mean_r_uncertainty": {
+        "n": 48,
+        "mean": 0.16916908874694972,
+        "ci95": [
+          -0.1809685234480323,
+          0.5032718623412803
+        ],
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+      },
+      "sign_flip_p": 0.20189905047476261,
+      "journal": "research/reports/candidate_journals/S5-ACTUAL-M5-BASE.json.gz",
+      "journal_sha256": "3d5967b293601988ee85ee4bd623fa60f9a5ab268e105956c81550b667f29443",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S6-ACTUAL-M5-BASE",
+        "family": "S6",
+        "timeframe": "5"
+      },
+      "status": "BLOCKED_NO_VALID_INPUTS",
+      "summary": {
+        "complete_plans": 0,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 0,
+        "net_cash": 0,
+        "all_realized_net_cash": 0.0,
+        "profit_factor": null,
+        "wins": 0,
+        "losses": 0,
+        "net_r": 0,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 0.0,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "BLOCKED": 11124
+        },
+        "rejection_reasons": {
+          "TRUE_VOLUME_AND_VERIFIED_BAR_VWAP_UNAVAILABLE": 11124
+        },
+        "cash_paid_net": 0.0,
+        "closed_parts_net": 0.0,
+        "cash_paid_drawdown": 0.0,
+        "unallocated_entry_fees": 0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {}
+      },
+      "blocked_families": {
+        "S6": "TRUE_VOLUME_AND_VERIFIED_BAR_VWAP_UNAVAILABLE"
+      },
+      "variant_identity": {
+        "trial_id": "S6-ACTUAL-M5-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "3de994bf83d92fe2c0511df4c6cb84c307d5476c053a28be343f8b0d2cb59613",
+        "ablation": null,
+        "composite_sha256": "a689a2738bb9482029b2e3e1d2f7024e531e0e394862bebfc2ec8b2191e717cb"
+      },
+      "campaign_metrics": {
+        "n": 0,
+        "wins": 0,
+        "losses": 0,
+        "breakeven": 0,
+        "net_cash": 0,
+        "mean_cash": null,
+        "profit_factor": null,
+        "profit_factor_status": "NO_TRADES",
+        "win_rate": null,
+        "win_rate_wilson95": [
+          null,
+          null
+        ],
+        "campaign_close_drawdown": 0.0,
+        "max_consecutive_losses": 0,
+        "p05_cash": null,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 0,
+        "mean": null,
+        "ci95": [
+          null,
+          null
+        ]
+      },
+      "sign_flip_p": 1.0,
+      "journal": "research/reports/candidate_journals/S6-ACTUAL-M5-BASE.json.gz",
+      "journal_sha256": "3c957e3847f04db59c0768e5806fbfd7480491e665b0e4249014187935c01b9d",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S7-ACTUAL-M5-BASE",
+        "family": "S7",
+        "timeframe": "5"
+      },
+      "status": "EXPLORATORY_RESULT",
+      "summary": {
+        "complete_plans": 10,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 30,
+        "net_cash": 136.26500000000124,
+        "all_realized_net_cash": 136.2650000000012,
+        "profit_factor": 2.2761045869153946,
+        "wins": 6,
+        "losses": 4,
+        "net_r": 3.1811889464032954,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 42.75300000000223,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 466,
+          "NO_SETUP": 10648,
+          "SUBMITTED": 10
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "BEFORE_TRADE_WINDOW": 23,
+          "CONFIRMATION_CANDLE": 18,
+          "STRUCTURAL_STOP_RANGE": 29,
+          "PORTFOLIO_OCCUPIED": 2
+        },
+        "cash_paid_net": 136.2650000000012,
+        "closed_parts_net": 136.26500000000132,
+        "cash_paid_drawdown": 43.27800000000225,
+        "unallocated_entry_fees": 0.0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20752": 6.12300000000023,
+          "20753": 92.89200000000218,
+          "20754": 32.61499999999951,
+          "20755": -2.801999999999498,
+          "20760": 3.1620000000001696,
+          "20762": -42.753000000002245,
+          "20763": 47.02800000000089
+        }
+      },
+      "blocked_families": {},
+      "variant_identity": {
+        "trial_id": "S7-ACTUAL-M5-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "d3d02a80d51ff0b6b654b0e2b8984825e117268b8879a4fb4214b5bb0c9fc348",
+        "ablation": null,
+        "composite_sha256": "be94fa25314a0a7f250a8c5bd3242431134b34e252aa00f9c95110c40230bab8"
+      },
+      "campaign_metrics": {
+        "n": 10,
+        "wins": 6,
+        "losses": 4,
+        "breakeven": 0,
+        "net_cash": 136.26500000000124,
+        "mean_cash": 13.626500000000124,
+        "profit_factor": 2.2761045869153946,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.6,
+        "win_rate_wilson95": [
+          0.31267376973365824,
+          0.8318196702937638
+        ],
+        "campaign_close_drawdown": 42.753000000002245,
+        "max_consecutive_losses": 2,
+        "p05_cash": -37.81470000000115,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 10,
+        "mean": 0.31811889464032955,
+        "ci95": [
+          -0.08091681723981113,
+          0.7171546065204703
+        ],
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+      },
+      "sign_flip_p": 0.19640179910044978,
+      "journal": "research/reports/candidate_journals/S7-ACTUAL-M5-BASE.json.gz",
+      "journal_sha256": "57327c55124ca15681e5823471a2dc0c979f9850f6fd9618a4278fc212d2138e",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S8-ACTUAL-M5-BASE",
+        "family": "S8",
+        "timeframe": "5"
+      },
+      "status": "EXPLORATORY_RESULT",
+      "summary": {
+        "complete_plans": 6,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 18,
+        "net_cash": -11.013000000002005,
+        "all_realized_net_cash": -11.013000000002013,
+        "profit_factor": 0.8443084143858613,
+        "wins": 2,
+        "losses": 4,
+        "net_r": -1.4453497996208604,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 48.66800000000285,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 2079,
+          "NO_SETUP": 9039,
+          "SUBMITTED": 6
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "DIRECTIONAL_CONTEXT": 1462,
+          "EFFICIENCY": 1325,
+          "DISPLACEMENT": 558,
+          "PRIOR_PAUSE": 711,
+          "TIME_GAP_ON_CONFIRMATION": 9,
+          "EXHAUSTION_DISTANCE": 335,
+          "STRUCTURAL_STOP_RANGE": 112,
+          "BEFORE_TRADE_WINDOW": 9,
+          "EXCESSIVE_BAR": 20,
+          "PORTFOLIO_OCCUPIED": 2,
+          "COOLDOWN": 2
+        },
+        "cash_paid_net": -11.013000000002013,
+        "closed_parts_net": -11.013000000002009,
+        "cash_paid_drawdown": 48.318000000002854,
+        "unallocated_entry_fees": 0.0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20752": -16.751999999998407,
+          "20753": 14.614999999999963,
+          "20756": 27.791999999999824,
+          "20762": -13.23200000000343,
+          "20763": -23.435999999999968
+        }
+      },
+      "blocked_families": {},
+      "variant_identity": {
+        "trial_id": "S8-ACTUAL-M5-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "34c9923aeee4715de2281224d182cbd6a8e07edd77defd2bcec1357582dd67b0",
+        "ablation": null,
+        "composite_sha256": "f291b920dce174040ca5bbb6e92cf673f53fb234743968ca28208a0b77a1338c"
+      },
+      "campaign_metrics": {
+        "n": 6,
+        "wins": 2,
+        "losses": 4,
+        "breakeven": 0,
+        "net_cash": -11.013000000002005,
+        "mean_cash": -1.8355000000003343,
+        "profit_factor": 0.8443084143858613,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.3333333333333333,
+        "win_rate_wilson95": [
+          0.09677141110578041,
+          0.700006684861608
+        ],
+        "campaign_close_drawdown": 36.66800000000339,
+        "max_consecutive_losses": 2,
+        "p05_cash": -21.90599999999999,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 6,
+        "mean": -0.2408916332701434,
+        "ci95": [
+          -0.6620959424679421,
+          0.18031267592765532
+        ],
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+      },
+      "sign_flip_p": 0.7181409295352323,
+      "journal": "research/reports/candidate_journals/S8-ACTUAL-M5-BASE.json.gz",
+      "journal_sha256": "3c5c746db30fdb4620e294b16c1b5ac4064a38faf2bc8fc7a1f40c491968edca",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S9-ACTUAL-M5-BASE",
+        "family": "S9",
+        "timeframe": "5"
+      },
+      "status": "EXPLORATORY_RESULT",
+      "summary": {
+        "complete_plans": 40,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 120,
+        "net_cash": -238.09700000000197,
+        "all_realized_net_cash": -238.09700000000265,
+        "profit_factor": 0.6235739581357105,
+        "wins": 13,
+        "losses": 27,
+        "net_r": -5.190012627005976,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 255.30500000000367,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 1,
+        "decision_counts": {
+          "REJECTED": 668,
+          "NO_SETUP": 9842,
+          "WATCH": 574,
+          "SUBMITTED": 40
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "STRUCTURAL_INVALIDATION": 70,
+          "BEFORE_TRADE_WINDOW": 51,
+          "SETUP_EXPIRED": 99,
+          "CONFIRMATION_CANDLE": 34,
+          "PORTFOLIO_OCCUPIED": 13,
+          "EXCESSIVE_BAR": 2,
+          "STRUCTURAL_STOP_RANGE": 1,
+          "COOLDOWN": 7
+        },
+        "cash_paid_net": -238.09700000000265,
+        "closed_parts_net": -238.09700000000169,
+        "cash_paid_drawdown": 255.30500000000464,
+        "unallocated_entry_fees": 0.0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20751": -21.560999999999968,
+          "20752": 38.76900000000197,
+          "20753": -59.45600000000011,
+          "20754": -5.986999999999442,
+          "20755": 23.19400000000069,
+          "20756": -35.49799999999813,
+          "20758": -56.261999999999176,
+          "20759": -52.13299999999926,
+          "20760": 17.5980000000005,
+          "20761": 17.976000000001566,
+          "20762": -88.11300000001484,
+          "20763": -10.02899999999617,
+          "20765": 5.093000000000121,
+          "20766": -11.687999999999738
+        }
+      },
+      "blocked_families": {},
+      "variant_identity": {
+        "trial_id": "S9-ACTUAL-M5-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "77cee29bdd5339f67c0b3de2b795cda827f3b6e0a80a3b82264b08c89970b4b0",
+        "ablation": null,
+        "composite_sha256": "08bb62a930b3b37b76c057e62a4b3ed9b8102d1e339cfbd5376f80fb86857092"
+      },
+      "campaign_metrics": {
+        "n": 40,
+        "wins": 13,
+        "losses": 27,
+        "breakeven": 0,
+        "net_cash": -238.09700000000197,
+        "mean_cash": -5.95242500000005,
+        "profit_factor": 0.6235739581357105,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.325,
+        "win_rate_wilson95": [
+          0.200845022317827,
+          0.47982253810122333
+        ],
+        "campaign_close_drawdown": 255.30500000000416,
+        "max_consecutive_losses": 8,
+        "p05_cash": -40.5875999999999,
+        "small_n": false
+      },
+      "mean_r_uncertainty": {
+        "n": 40,
+        "mean": -0.1297503156751494,
+        "ci95": [
+          -0.5547036804768996,
+          0.2386270614593903
+        ],
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+      },
+      "sign_flip_p": 0.7381309345327336,
+      "journal": "research/reports/candidate_journals/S9-ACTUAL-M5-BASE.json.gz",
+      "journal_sha256": "0e8a2c7acd30e114ecf515500bedaf64e46f91939aa1b7e88f1f1c52bcfd2c8b",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S10-ACTUAL-M5-BASE",
+        "family": "S10",
+        "timeframe": "5"
+      },
+      "status": "BLOCKED_NO_VALID_INPUTS",
+      "summary": {
+        "complete_plans": 0,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 0,
+        "net_cash": 0,
+        "all_realized_net_cash": 0.0,
+        "profit_factor": null,
+        "wins": 0,
+        "losses": 0,
+        "net_r": 0,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 0.0,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "BLOCKED": 5562
+        },
+        "rejection_reasons": {
+          "NO_INDEPENDENT_VALIDATION": 5562
+        },
+        "cash_paid_net": 0.0,
+        "closed_parts_net": 0.0,
+        "cash_paid_drawdown": 0.0,
+        "unallocated_entry_fees": 0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {}
+      },
+      "blocked_families": {
+        "S10": "NO_INDEPENDENT_VALIDATION"
+      },
+      "variant_identity": {
+        "trial_id": "S10-ACTUAL-M5-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "fa744dfb4debdd23196342d93072e2e77d7c0947c9532bfb33905af0652b914a",
+        "ablation": null,
+        "composite_sha256": "2d3f9332ac62075ae37a4c17eefe8705b17aaadaa19b5cf9ed0efbde7982fe6e"
+      },
+      "campaign_metrics": {
+        "n": 0,
+        "wins": 0,
+        "losses": 0,
+        "breakeven": 0,
+        "net_cash": 0,
+        "mean_cash": null,
+        "profit_factor": null,
+        "profit_factor_status": "NO_TRADES",
+        "win_rate": null,
+        "win_rate_wilson95": [
+          null,
+          null
+        ],
+        "campaign_close_drawdown": 0.0,
+        "max_consecutive_losses": 0,
+        "p05_cash": null,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 0,
+        "mean": null,
+        "ci95": [
+          null,
+          null
+        ]
+      },
+      "sign_flip_p": 1.0,
+      "journal": "research/reports/candidate_journals/S10-ACTUAL-M5-BASE.json.gz",
+      "journal_sha256": "ec6f27e3cd5a5cb47f9b9a685c5581c59c3da428d9fee855ebc6d066c5487bb2",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S1-ACTUAL-M15-BASE",
+        "family": "S1",
+        "timeframe": "15"
+      },
+      "status": "EXPLORATORY_RESULT",
+      "summary": {
+        "complete_plans": 1,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 3,
+        "net_cash": -27.428999999998993,
+        "all_realized_net_cash": -27.428999999998997,
+        "profit_factor": 0.0,
+        "wins": 0,
+        "losses": 1,
+        "net_r": -1.0400409509725814,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 27.428999999998993,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 1754,
+          "NO_SETUP": 11133,
+          "SUBMITTED": 1
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "DIRECTIONAL_CONTEXT": 1348,
+          "CONFIRMATION_CANDLE": 291,
+          "BEFORE_TRADE_WINDOW": 4,
+          "TIME_GAP_ON_CONFIRMATION": 21,
+          "EXCESSIVE_BAR": 16,
+          "STRUCTURAL_STOP_RANGE": 9
+        },
+        "cash_paid_net": -27.428999999998997,
+        "closed_parts_net": -27.428999999998993,
+        "cash_paid_drawdown": 27.428999999998997,
+        "unallocated_entry_fees": 0.0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20754": -27.428999999998997
+        }
+      },
+      "blocked_families": {},
+      "variant_identity": {
+        "trial_id": "S1-ACTUAL-M15-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "f598ef48b9fa03a474e390111a194d6df51259e239b588ca5f8e29fa59908be0",
+        "ablation": null,
+        "composite_sha256": "6de77756673674c9ace66e900e7de5c44176e32076c008c61ced598c265d45c4"
+      },
+      "campaign_metrics": {
+        "n": 1,
+        "wins": 0,
+        "losses": 1,
+        "breakeven": 0,
+        "net_cash": -27.428999999998993,
+        "mean_cash": -27.428999999998993,
+        "profit_factor": 0.0,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.0,
+        "win_rate_wilson95": [
+          0,
+          0.7934506856227626
+        ],
+        "campaign_close_drawdown": 27.428999999998993,
+        "max_consecutive_losses": 1,
+        "p05_cash": -27.428999999998993,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 1,
+        "mean": -1.0400409509725814,
+        "ci95": [
+          null,
+          null
+        ],
+        "status": "INSUFFICIENT_BLOCKS",
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "reason": "A whole-sample circular block produces a degenerate mean; no inferential interval reported"
+      },
+      "sign_flip_p": 1.0,
+      "journal": "research/reports/candidate_journals/S1-ACTUAL-M15-BASE.json.gz",
+      "journal_sha256": "99300695fed3a35f694a95ec58a46ff59b56b9b20cfec654e834390d09e397db",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S2-ACTUAL-M15-BASE",
+        "family": "S2",
+        "timeframe": "15"
+      },
+      "status": "EXPLORATORY_RESULT",
+      "summary": {
+        "complete_plans": 15,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 45,
+        "net_cash": 152.66800000000146,
+        "all_realized_net_cash": 152.66800000000148,
+        "profit_factor": 1.6475266254119567,
+        "wins": 8,
+        "losses": 7,
+        "net_r": 4.6989124693029805,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 132.24899999999806,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 835,
+          "NO_SETUP": 11130,
+          "WATCH": 908,
+          "SUBMITTED": 15
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "STRUCTURAL_INVALIDATION": 147,
+          "BEFORE_TRADE_WINDOW": 142,
+          "SETUP_EXPIRED": 89,
+          "CONFIRMATION_CANDLE": 37,
+          "SETUP_TIME_GAP": 6,
+          "STRUCTURAL_STOP_RANGE": 5,
+          "EXCESSIVE_BAR": 3,
+          "COOLDOWN": 3,
+          "PORTFOLIO_OCCUPIED": 9
+        },
+        "cash_paid_net": 152.66800000000148,
+        "closed_parts_net": 152.6680000000015,
+        "cash_paid_drawdown": 132.77399999999807,
+        "unallocated_entry_fees": 0.0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20752": -1.5899999999995114,
+          "20753": 13.369000000001686,
+          "20754": -12.557000000001066,
+          "20755": 101.06699999999945,
+          "20756": -110.06699999999792,
+          "20760": 22.48899999999985,
+          "20761": 50.55099999999911,
+          "20762": 36.533999999999835,
+          "20763": 52.87200000000003
+        }
+      },
+      "blocked_families": {},
+      "variant_identity": {
+        "trial_id": "S2-ACTUAL-M15-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "8f946d32320bc05809921eb25e1c9eb38c15c2039c90fb36e4d3a18bad8b68b7",
+        "ablation": null,
+        "composite_sha256": "e3a1ac4fd5d9988e492980ce6400151adb01bfd3a9d7d13dbe03b397f37c9d23"
+      },
+      "campaign_metrics": {
+        "n": 15,
+        "wins": 8,
+        "losses": 7,
+        "breakeven": 0,
+        "net_cash": 152.66800000000146,
+        "mean_cash": 10.177866666666763,
+        "profit_factor": 1.6475266254119567,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.5333333333333333,
+        "win_rate_wilson95": [
+          0.30116980025498397,
+          0.7519046463426261
+        ],
+        "campaign_close_drawdown": 132.2489999999981,
+        "max_consecutive_losses": 2,
+        "p05_cash": -59.789099999999195,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 15,
+        "mean": 0.3132608312868653,
+        "ci95": [
+          -0.055037611517050854,
+          0.7119310605997334
+        ],
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+      },
+      "sign_flip_p": 0.16891554222888555,
+      "journal": "research/reports/candidate_journals/S2-ACTUAL-M15-BASE.json.gz",
+      "journal_sha256": "c3308e4ffed4b5450b40955df704251fa0fe5d9ee81ca02704b127b8447bec35",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S3-ACTUAL-M15-BASE",
+        "family": "S3",
+        "timeframe": "15"
+      },
+      "status": "EXPLORATORY_RESULT",
+      "summary": {
+        "complete_plans": 1,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 3,
+        "net_cash": -10.234000000000195,
+        "all_realized_net_cash": -10.234000000000199,
+        "profit_factor": 0.0,
+        "wins": 0,
+        "losses": 1,
+        "net_r": -0.37136221786777085,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 19.076000000000203,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 795,
+          "WATCH": 1537,
+          "NO_SETUP": 10555,
+          "SUBMITTED": 1
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "SETUP_EXPIRED": 136,
+          "CONFIRMATION_CANDLE": 83,
+          "ACCEPTANCE_FAILED": 105,
+          "STRUCTURAL_STOP_RANGE": 15,
+          "CHASE_LIMIT": 35,
+          "BEFORE_TRADE_WINDOW": 13,
+          "STRUCTURAL_INVALIDATION": 25,
+          "SETUP_TIME_GAP": 7,
+          "EXCESSIVE_BAR": 1
+        },
+        "cash_paid_net": -10.234000000000199,
+        "closed_parts_net": -10.234000000000195,
+        "cash_paid_drawdown": 18.726000000000205,
+        "unallocated_entry_fees": 0.0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20754": -10.234000000000199
+        }
+      },
+      "blocked_families": {},
+      "variant_identity": {
+        "trial_id": "S3-ACTUAL-M15-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "3ad438ac7ff3f81893c2482e7dc07007c08ad0b2cbfd6b4499727180a33799db",
+        "ablation": null,
+        "composite_sha256": "6d452cd9750b2108461a3d410aabc61d55f6ea361ce9a53c2a8f5f2f8a53af32"
+      },
+      "campaign_metrics": {
+        "n": 1,
+        "wins": 0,
+        "losses": 1,
+        "breakeven": 0,
+        "net_cash": -10.234000000000195,
+        "mean_cash": -10.234000000000195,
+        "profit_factor": 0.0,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.0,
+        "win_rate_wilson95": [
+          0,
+          0.7934506856227626
+        ],
+        "campaign_close_drawdown": 10.234000000000195,
+        "max_consecutive_losses": 1,
+        "p05_cash": -10.234000000000195,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 1,
+        "mean": -0.37136221786777085,
+        "ci95": [
+          null,
+          null
+        ],
+        "status": "INSUFFICIENT_BLOCKS",
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "reason": "A whole-sample circular block produces a degenerate mean; no inferential interval reported"
+      },
+      "sign_flip_p": 1.0,
+      "journal": "research/reports/candidate_journals/S3-ACTUAL-M15-BASE.json.gz",
+      "journal_sha256": "60bb74e66beecde2da0704cbd8123ac8e2ab39cf522c7ed8f3a5b9281372484f",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S4-ACTUAL-M15-BASE",
+        "family": "S4",
+        "timeframe": "15"
+      },
+      "status": "EXPLORATORY_RESULT",
+      "summary": {
+        "complete_plans": 1,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 3,
+        "net_cash": -28.37400000000052,
+        "all_realized_net_cash": -28.374000000000525,
+        "profit_factor": 0.0,
+        "wins": 0,
+        "losses": 1,
+        "net_r": -1.0386558313200025,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 28.37400000000052,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 1146,
+          "NO_SETUP": 11741,
+          "SUBMITTED": 1
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "STRUCTURAL_STOP_RANGE": 114,
+          "PRIOR_COMPRESSION": 686,
+          "CHASE_LIMIT": 155,
+          "CONFIRMATION_CANDLE": 154,
+          "EXCESSIVE_BAR": 33,
+          "EXPANSION_REQUIRED": 218,
+          "BEFORE_TRADE_WINDOW": 24,
+          "TIME_GAP_ON_CONFIRMATION": 3
+        },
+        "cash_paid_net": -28.374000000000525,
+        "closed_parts_net": -28.37400000000052,
+        "cash_paid_drawdown": 28.374000000000525,
+        "unallocated_entry_fees": 0.0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20753": -28.374000000000525
+        }
+      },
+      "blocked_families": {},
+      "variant_identity": {
+        "trial_id": "S4-ACTUAL-M15-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "8cd07bdb580743a3bec4585c6b765aad1b8c8c52263277f0a03e5697aeffbab0",
+        "ablation": null,
+        "composite_sha256": "5f2aee4e8ab6f27ccc990a46987c1d062fd1475d2f248c77eb0c63f3d7afe4df"
+      },
+      "campaign_metrics": {
+        "n": 1,
+        "wins": 0,
+        "losses": 1,
+        "breakeven": 0,
+        "net_cash": -28.37400000000052,
+        "mean_cash": -28.37400000000052,
+        "profit_factor": 0.0,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.0,
+        "win_rate_wilson95": [
+          0,
+          0.7934506856227626
+        ],
+        "campaign_close_drawdown": 28.37400000000052,
+        "max_consecutive_losses": 1,
+        "p05_cash": -28.37400000000052,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 1,
+        "mean": -1.0386558313200025,
+        "ci95": [
+          null,
+          null
+        ],
+        "status": "INSUFFICIENT_BLOCKS",
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "reason": "A whole-sample circular block produces a degenerate mean; no inferential interval reported"
+      },
+      "sign_flip_p": 1.0,
+      "journal": "research/reports/candidate_journals/S4-ACTUAL-M15-BASE.json.gz",
+      "journal_sha256": "be99c67d1a8eec80af0337d93985a316535021db43f2aba520ffa8c2146c8c82",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S5-ACTUAL-M15-BASE",
+        "family": "S5",
+        "timeframe": "15"
+      },
+      "status": "EXPLORATORY_RESULT",
+      "summary": {
+        "complete_plans": 17,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 51,
+        "net_cash": -121.69099999999946,
+        "all_realized_net_cash": -121.69099999999939,
+        "profit_factor": 0.6666383594216562,
+        "wins": 5,
+        "losses": 12,
+        "net_r": -2.963393661757372,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 198.664999999999,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 2,
+        "decision_counts": {
+          "REJECTED": 900,
+          "NO_SETUP": 11147,
+          "WATCH": 824,
+          "SUBMITTED": 17
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "STRUCTURAL_INVALIDATION": 246,
+          "BEFORE_TRADE_WINDOW": 158,
+          "CONFIRMATION_CANDLE": 43,
+          "SETUP_EXPIRED": 42,
+          "STRUCTURAL_STOP_RANGE": 8,
+          "SETUP_TIME_GAP": 4,
+          "EXCESSIVE_BAR": 3,
+          "COOLDOWN": 4,
+          "PORTFOLIO_OCCUPIED": 1
+        },
+        "cash_paid_net": -121.69099999999939,
+        "closed_parts_net": -121.69099999999938,
+        "cash_paid_drawdown": 198.664999999999,
+        "unallocated_entry_fees": 0.0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20752": 16.44200000000028,
+          "20753": 5.062000000000262,
+          "20754": 23.624999999999197,
+          "20755": -17.690999999998713,
+          "20756": -143.6339999999972,
+          "20759": 106.80100000000012,
+          "20760": 45.82100000000093,
+          "20761": -108.28300000000117,
+          "20762": -49.83400000000311
+        }
+      },
+      "blocked_families": {},
+      "variant_identity": {
+        "trial_id": "S5-ACTUAL-M15-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "f763ede733d291d00421012e3a7c93c347a02d96f21c47a7b8130d75abf1a4fb",
+        "ablation": null,
+        "composite_sha256": "bfe22dfebb178f8540c3ae6dc655617215e201981de6832d0e7e7e53f2c32afc"
+      },
+      "campaign_metrics": {
+        "n": 17,
+        "wins": 5,
+        "losses": 12,
+        "breakeven": 0,
+        "net_cash": -121.69099999999946,
+        "mean_cash": -7.158294117647027,
+        "profit_factor": 0.6666383594216562,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.29411764705882354,
+        "win_rate_wilson95": [
+          0.1327998961029523,
+          0.5313311006653985
+        ],
+        "campaign_close_drawdown": 198.66499999999905,
+        "max_consecutive_losses": 6,
+        "p05_cash": -59.35799999999909,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 17,
+        "mean": -0.1743172742210219,
+        "ci95": [
+          -0.7532712628928314,
+          0.49725134894128137
+        ],
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+      },
+      "sign_flip_p": 0.703648175912044,
+      "journal": "research/reports/candidate_journals/S5-ACTUAL-M15-BASE.json.gz",
+      "journal_sha256": "e8a32df6bc43c367752057c0ce7223d3ec45ee686116f5a18df3d57a7a00e8cd",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S6-ACTUAL-M15-BASE",
+        "family": "S6",
+        "timeframe": "15"
+      },
+      "status": "BLOCKED_NO_VALID_INPUTS",
+      "summary": {
+        "complete_plans": 0,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 0,
+        "net_cash": 0,
+        "all_realized_net_cash": 0.0,
+        "profit_factor": null,
+        "wins": 0,
+        "losses": 0,
+        "net_r": 0,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 0.0,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "BLOCKED": 12888
+        },
+        "rejection_reasons": {
+          "TRUE_VOLUME_AND_VERIFIED_BAR_VWAP_UNAVAILABLE": 12888
+        },
+        "cash_paid_net": 0.0,
+        "closed_parts_net": 0.0,
+        "cash_paid_drawdown": 0.0,
+        "unallocated_entry_fees": 0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {}
+      },
+      "blocked_families": {
+        "S6": "TRUE_VOLUME_AND_VERIFIED_BAR_VWAP_UNAVAILABLE"
+      },
+      "variant_identity": {
+        "trial_id": "S6-ACTUAL-M15-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "3de994bf83d92fe2c0511df4c6cb84c307d5476c053a28be343f8b0d2cb59613",
+        "ablation": null,
+        "composite_sha256": "b4fddf459a277796c8a05a42d8b1bddabf57abe611e0f31ca46aa8350e820656"
+      },
+      "campaign_metrics": {
+        "n": 0,
+        "wins": 0,
+        "losses": 0,
+        "breakeven": 0,
+        "net_cash": 0,
+        "mean_cash": null,
+        "profit_factor": null,
+        "profit_factor_status": "NO_TRADES",
+        "win_rate": null,
+        "win_rate_wilson95": [
+          null,
+          null
+        ],
+        "campaign_close_drawdown": 0.0,
+        "max_consecutive_losses": 0,
+        "p05_cash": null,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 0,
+        "mean": null,
+        "ci95": [
+          null,
+          null
+        ]
+      },
+      "sign_flip_p": 1.0,
+      "journal": "research/reports/candidate_journals/S6-ACTUAL-M15-BASE.json.gz",
+      "journal_sha256": "8a843855726428c1e7e23a44c126b0983fe53f34f2bfa3060352e30ddbd32aea",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S7-ACTUAL-M15-BASE",
+        "family": "S7",
+        "timeframe": "15"
+      },
+      "status": "EXPLORATORY_RESULT",
+      "summary": {
+        "complete_plans": 10,
+        "open_plans": 1,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 32,
+        "net_cash": -243.6309999999967,
+        "all_realized_net_cash": -161.08099999999718,
+        "profit_factor": 0.3095924960326506,
+        "wins": 2,
+        "losses": 8,
+        "net_r": -5.601603973384998,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 243.63099999999656,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 559,
+          "NO_SETUP": 12318,
+          "SUBMITTED": 11
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "BEFORE_TRADE_WINDOW": 113,
+          "CONFIRMATION_CANDLE": 31,
+          "STRUCTURAL_STOP_RANGE": 13,
+          "EXCESSIVE_BAR": 2,
+          "COOLDOWN": 4,
+          "PORTFOLIO_OCCUPIED": 4
+        },
+        "cash_paid_net": -161.08099999999718,
+        "closed_parts_net": -160.90599999999682,
+        "cash_paid_drawdown": 244.1559999999969,
+        "unallocated_entry_fees": 0.17499999999999993,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20753": -32.849999999999724,
+          "20754": -54.77899999999963,
+          "20756": -40.4699999999998,
+          "20759": -64.08499999999859,
+          "20760": -16.664000000000215,
+          "20761": 35.12300000000059,
+          "20763": -70.43099999999932,
+          "20766": 83.07499999999973
+        }
+      },
+      "blocked_families": {},
+      "variant_identity": {
+        "trial_id": "S7-ACTUAL-M15-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "d3d02a80d51ff0b6b654b0e2b8984825e117268b8879a4fb4214b5bb0c9fc348",
+        "ablation": null,
+        "composite_sha256": "f3cbc87141332dcb34966301ecf198aafc86c88a3a7cb96d3175ea2bbe4529c4"
+      },
+      "campaign_metrics": {
+        "n": 10,
+        "wins": 2,
+        "losses": 8,
+        "breakeven": 0,
+        "net_cash": -243.6309999999967,
+        "mean_cash": -24.363099999999672,
+        "profit_factor": 0.3095924960326506,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.2,
+        "win_rate_wilson95": [
+          0.05668215145437519,
+          0.5098375284633583
+        ],
+        "campaign_close_drawdown": 243.63099999999673,
+        "max_consecutive_losses": 4,
+        "p05_cash": -74.85014999999936,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 10,
+        "mean": -0.5601603973384999,
+        "ci95": [
+          -0.7504063924306559,
+          -0.36991440224634375
+        ],
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+      },
+      "sign_flip_p": 0.9835082458770614,
+      "journal": "research/reports/candidate_journals/S7-ACTUAL-M15-BASE.json.gz",
+      "journal_sha256": "1c3b3a0e9a382fce1b5408c50edf1be8428a43617ef5c07f364479bf650f66dc",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S8-ACTUAL-M15-BASE",
+        "family": "S8",
+        "timeframe": "15"
+      },
+      "status": "EXPLORATORY_RESULT",
+      "summary": {
+        "complete_plans": 3,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 9,
+        "net_cash": 1.6410000000015312,
+        "all_realized_net_cash": 1.6410000000015472,
+        "profit_factor": 1.0320745866072778,
+        "wins": 1,
+        "losses": 2,
+        "net_r": 0.5525916436846416,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 51.161999999999445,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 2396,
+          "NO_SETUP": 10489,
+          "SUBMITTED": 3
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "STRUCTURAL_STOP_RANGE": 131,
+          "DIRECTIONAL_CONTEXT": 1672,
+          "EFFICIENCY": 1491,
+          "PRIOR_PAUSE": 790,
+          "EXHAUSTION_DISTANCE": 468,
+          "DISPLACEMENT": 688,
+          "EXCESSIVE_BAR": 38,
+          "BEFORE_TRADE_WINDOW": 20,
+          "TIME_GAP_ON_CONFIRMATION": 23
+        },
+        "cash_paid_net": 1.6410000000015472,
+        "closed_parts_net": 1.641000000001526,
+        "cash_paid_drawdown": 51.68699999999943,
+        "unallocated_entry_fees": 0.0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20753": -42.88499999999994,
+          "20754": -8.276999999999497,
+          "20761": -0.5249999999999999,
+          "20762": 53.32800000000097
+        }
+      },
+      "blocked_families": {},
+      "variant_identity": {
+        "trial_id": "S8-ACTUAL-M15-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "34c9923aeee4715de2281224d182cbd6a8e07edd77defd2bcec1357582dd67b0",
+        "ablation": null,
+        "composite_sha256": "9a2cfd7467d63df539f420e076fb09c1173c46396717a695154b39ba28ba9559"
+      },
+      "campaign_metrics": {
+        "n": 3,
+        "wins": 1,
+        "losses": 2,
+        "breakeven": 0,
+        "net_cash": 1.6410000000015312,
+        "mean_cash": 0.5470000000005104,
+        "profit_factor": 1.0320745866072778,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.3333333333333333,
+        "win_rate_wilson95": [
+          0.06149194472039621,
+          0.7923403991979522
+        ],
+        "campaign_close_drawdown": 51.16199999999944,
+        "max_consecutive_losses": 2,
+        "p05_cash": -39.0041999999999,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 3,
+        "mean": 0.18419721456154722,
+        "ci95": [
+          null,
+          null
+        ],
+        "status": "INSUFFICIENT_BLOCKS",
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "reason": "A whole-sample circular block produces a degenerate mean; no inferential interval reported"
+      },
+      "sign_flip_p": 0.5227386306846576,
+      "journal": "research/reports/candidate_journals/S8-ACTUAL-M15-BASE.json.gz",
+      "journal_sha256": "19b780f06ae4f3155bbe74c7af50ae36b6572ec183ab52b82fa2bae4c44600b8",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S9-ACTUAL-M15-BASE",
+        "family": "S9",
+        "timeframe": "15"
+      },
+      "status": "EXPLORATORY_RESULT",
+      "summary": {
+        "complete_plans": 16,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 48,
+        "net_cash": 103.46200000000061,
+        "all_realized_net_cash": 103.46200000000063,
+        "profit_factor": 1.3881188267378946,
+        "wins": 7,
+        "losses": 9,
+        "net_r": 2.297584954152591,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 92.78999999999806,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 1,
+        "decision_counts": {
+          "REJECTED": 733,
+          "NO_SETUP": 11495,
+          "WATCH": 644,
+          "SUBMITTED": 16
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "STRUCTURAL_INVALIDATION": 82,
+          "SETUP_EXPIRED": 103,
+          "BEFORE_TRADE_WINDOW": 90,
+          "CONFIRMATION_CANDLE": 36,
+          "EXCESSIVE_BAR": 8,
+          "STRUCTURAL_STOP_RANGE": 8,
+          "SETUP_TIME_GAP": 6,
+          "PORTFOLIO_OCCUPIED": 7
+        },
+        "cash_paid_net": 103.46200000000063,
+        "closed_parts_net": 103.46200000000064,
+        "cash_paid_drawdown": 93.31499999999807,
+        "unallocated_entry_fees": 0.0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20752": 1.1490000000005214,
+          "20753": -12.10999999999704,
+          "20754": -19.01700000000165,
+          "20755": 5.4330000000004475,
+          "20756": -28.10399999999927,
+          "20759": 60.363000000000014,
+          "20760": 91.02600000000002,
+          "20761": 2.961000000000425,
+          "20762": 1.76099999999715
+        }
+      },
+      "blocked_families": {},
+      "variant_identity": {
+        "trial_id": "S9-ACTUAL-M15-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "77cee29bdd5339f67c0b3de2b795cda827f3b6e0a80a3b82264b08c89970b4b0",
+        "ablation": null,
+        "composite_sha256": "633bf994e292bda65b900ecf4827147a613d8c4ef185e8a27f99308075368098"
+      },
+      "campaign_metrics": {
+        "n": 16,
+        "wins": 7,
+        "losses": 9,
+        "breakeven": 0,
+        "net_cash": 103.46200000000061,
+        "mean_cash": 6.466375000000038,
+        "profit_factor": 1.3881188267378946,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.4375,
+        "win_rate_wilson95": [
+          0.23098652405492354,
+          0.6682144360118811
+        ],
+        "campaign_close_drawdown": 92.78999999999803,
+        "max_consecutive_losses": 3,
+        "p05_cash": -38.651250000001866,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 16,
+        "mean": 0.14359905963453692,
+        "ci95": [
+          -0.2539247573175059,
+          0.5981321574431988
+        ],
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+      },
+      "sign_flip_p": 0.3468265867066467,
+      "journal": "research/reports/candidate_journals/S9-ACTUAL-M15-BASE.json.gz",
+      "journal_sha256": "f94ccbe93b584786555c49f993ef469e972c3c7c6578f29c8dcf6d8a6318cbfd",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S10-ACTUAL-M15-BASE",
+        "family": "S10",
+        "timeframe": "15"
+      },
+      "status": "BLOCKED_NO_VALID_INPUTS",
+      "summary": {
+        "complete_plans": 0,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 0,
+        "net_cash": 0,
+        "all_realized_net_cash": 0.0,
+        "profit_factor": null,
+        "wins": 0,
+        "losses": 0,
+        "net_r": 0,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 0.0,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "BLOCKED": 6444
+        },
+        "rejection_reasons": {
+          "NO_INDEPENDENT_VALIDATION": 6444
+        },
+        "cash_paid_net": 0.0,
+        "closed_parts_net": 0.0,
+        "cash_paid_drawdown": 0.0,
+        "unallocated_entry_fees": 0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {}
+      },
+      "blocked_families": {
+        "S10": "NO_INDEPENDENT_VALIDATION"
+      },
+      "variant_identity": {
+        "trial_id": "S10-ACTUAL-M15-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "fa744dfb4debdd23196342d93072e2e77d7c0947c9532bfb33905af0652b914a",
+        "ablation": null,
+        "composite_sha256": "b49094c6870426f03d5bfa9e321cff298171256e3b75733f7de1ee63eeb949ff"
+      },
+      "campaign_metrics": {
+        "n": 0,
+        "wins": 0,
+        "losses": 0,
+        "breakeven": 0,
+        "net_cash": 0,
+        "mean_cash": null,
+        "profit_factor": null,
+        "profit_factor_status": "NO_TRADES",
+        "win_rate": null,
+        "win_rate_wilson95": [
+          null,
+          null
+        ],
+        "campaign_close_drawdown": 0.0,
+        "max_consecutive_losses": 0,
+        "p05_cash": null,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 0,
+        "mean": null,
+        "ci95": [
+          null,
+          null
+        ]
+      },
+      "sign_flip_p": 1.0,
+      "journal": "research/reports/candidate_journals/S10-ACTUAL-M15-BASE.json.gz",
+      "journal_sha256": "fb79589dcdcdd1e2fa1fd6091afe25987b5d398259215de22ad0d455fe8319cc",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S1-ACTUAL-M30-BASE",
+        "family": "S1",
+        "timeframe": "30"
+      },
+      "status": "ZERO_COMPLETED_TRADES",
+      "summary": {
+        "complete_plans": 0,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 0,
+        "net_cash": 0,
+        "all_realized_net_cash": 0.0,
+        "profit_factor": null,
+        "wins": 0,
+        "losses": 0,
+        "net_r": 0,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 0.0,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 2527,
+          "NO_SETUP": 17655
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "DIRECTIONAL_CONTEXT": 2117,
+          "CONFIRMATION_CANDLE": 548,
+          "BEFORE_TRADE_WINDOW": 8,
+          "TIME_GAP_ON_CONFIRMATION": 71,
+          "EXCESSIVE_BAR": 23,
+          "STRUCTURAL_STOP_RANGE": 15
+        },
+        "cash_paid_net": 0.0,
+        "closed_parts_net": 0.0,
+        "cash_paid_drawdown": 0.0,
+        "unallocated_entry_fees": 0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {}
+      },
+      "blocked_families": {},
+      "variant_identity": {
+        "trial_id": "S1-ACTUAL-M30-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "f598ef48b9fa03a474e390111a194d6df51259e239b588ca5f8e29fa59908be0",
+        "ablation": null,
+        "composite_sha256": "0b0af86cc3d22bdb57a2438da4c022341094bd896c1ee8915dfc18a0433cf405"
+      },
+      "campaign_metrics": {
+        "n": 0,
+        "wins": 0,
+        "losses": 0,
+        "breakeven": 0,
+        "net_cash": 0,
+        "mean_cash": null,
+        "profit_factor": null,
+        "profit_factor_status": "NO_TRADES",
+        "win_rate": null,
+        "win_rate_wilson95": [
+          null,
+          null
+        ],
+        "campaign_close_drawdown": 0.0,
+        "max_consecutive_losses": 0,
+        "p05_cash": null,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 0,
+        "mean": null,
+        "ci95": [
+          null,
+          null
+        ]
+      },
+      "sign_flip_p": 1.0,
+      "journal": "research/reports/candidate_journals/S1-ACTUAL-M30-BASE.json.gz",
+      "journal_sha256": "3d2f3578f0a7e9afaa9441164ed849277b7ebc9c69e5b552b714240a8ac6aa0f",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S2-ACTUAL-M30-BASE",
+        "family": "S2",
+        "timeframe": "30"
+      },
+      "status": "EXPLORATORY_RESULT",
+      "summary": {
+        "complete_plans": 8,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 24,
+        "net_cash": -233.1239999999993,
+        "all_realized_net_cash": -233.12399999999928,
+        "profit_factor": 0.3147744808430002,
+        "wins": 2,
+        "losses": 6,
+        "net_r": -2.1502215150536905,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 298.98100000000164,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 1085,
+          "NO_SETUP": 17609,
+          "WATCH": 1480,
+          "SUBMITTED": 8
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "BEFORE_TRADE_WINDOW": 222,
+          "STRUCTURAL_INVALIDATION": 220,
+          "SETUP_TIME_GAP": 19,
+          "CONFIRMATION_CANDLE": 76,
+          "SETUP_EXPIRED": 142,
+          "STRUCTURAL_STOP_RANGE": 6,
+          "EXCESSIVE_BAR": 5
+        },
+        "cash_paid_net": -233.12399999999928,
+        "closed_parts_net": -233.12399999999923,
+        "cash_paid_drawdown": 298.63100000000173,
+        "unallocated_entry_fees": 0.0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20752": -67.6349999999994,
+          "20753": 87.17400000000107,
+          "20754": 45.96800000000076,
+          "20755": -53.803999999999725,
+          "20761": -143.68199999999987,
+          "20763": -101.14500000000207
+        }
+      },
+      "blocked_families": {},
+      "variant_identity": {
+        "trial_id": "S2-ACTUAL-M30-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "8f946d32320bc05809921eb25e1c9eb38c15c2039c90fb36e4d3a18bad8b68b7",
+        "ablation": null,
+        "composite_sha256": "d32323bd6ca7080abf4f5cbafc5579780747220b8b87ecec1569ece75ec13343"
+      },
+      "campaign_metrics": {
+        "n": 8,
+        "wins": 2,
+        "losses": 6,
+        "breakeven": 0,
+        "net_cash": -233.1239999999993,
+        "mean_cash": -29.140499999999914,
+        "profit_factor": 0.3147744808430002,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.25,
+        "win_rate_wilson95": [
+          0.071479212752109,
+          0.5907245696898311
+        ],
+        "campaign_close_drawdown": 272.5800000000015,
+        "max_consecutive_losses": 4,
+        "p05_cash": -95.13795000000113,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 8,
+        "mean": -0.2687776893817113,
+        "ci95": [
+          -0.9326013977494629,
+          0.3950460189860403
+        ],
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+      },
+      "sign_flip_p": 0.7631184407796102,
+      "journal": "research/reports/candidate_journals/S2-ACTUAL-M30-BASE.json.gz",
+      "journal_sha256": "dca0c41a2005716f6e3117a5dac92783aa846e7c9b3c6227eb51a1f7d99ec9b4",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S3-ACTUAL-M30-BASE",
+        "family": "S3",
+        "timeframe": "30"
+      },
+      "status": "EXPLORATORY_RESULT",
+      "summary": {
+        "complete_plans": 2,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 6,
+        "net_cash": -163.58099999999934,
+        "all_realized_net_cash": -163.5809999999993,
+        "profit_factor": 0.0,
+        "wins": 0,
+        "losses": 2,
+        "net_r": -1.2128905595149495,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 163.5809999999993,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 964,
+          "NO_SETUP": 17032,
+          "WATCH": 2184,
+          "SUBMITTED": 2
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "SETUP_EXPIRED": 187,
+          "SETUP_TIME_GAP": 33,
+          "CONFIRMATION_CANDLE": 130,
+          "CHASE_LIMIT": 33,
+          "STRUCTURAL_STOP_RANGE": 10,
+          "ACCEPTANCE_FAILED": 158,
+          "BEFORE_TRADE_WINDOW": 6,
+          "STRUCTURAL_INVALIDATION": 25
+        },
+        "cash_paid_net": -163.5809999999993,
+        "closed_parts_net": -163.5809999999993,
+        "cash_paid_drawdown": 163.5809999999993,
+        "unallocated_entry_fees": 0.0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20752": -0.5249999999999999,
+          "20753": -17.531999999999606,
+          "20763": -0.5249999999999999,
+          "20766": -144.99899999999968
+        }
+      },
+      "blocked_families": {},
+      "variant_identity": {
+        "trial_id": "S3-ACTUAL-M30-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "3ad438ac7ff3f81893c2482e7dc07007c08ad0b2cbfd6b4499727180a33799db",
+        "ablation": null,
+        "composite_sha256": "4590d06ba54d01600807cea4b71a6754d6f0d66fc36b757786f49c24674f6035"
+      },
+      "campaign_metrics": {
+        "n": 2,
+        "wins": 0,
+        "losses": 2,
+        "breakeven": 0,
+        "net_cash": -163.58099999999934,
+        "mean_cash": -81.79049999999967,
+        "profit_factor": 0.0,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.0,
+        "win_rate_wilson95": [
+          0,
+          0.6576197724933469
+        ],
+        "campaign_close_drawdown": 163.58099999999934,
+        "max_consecutive_losses": 2,
+        "p05_cash": -139.1506499999997,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 2,
+        "mean": -0.6064452797574748,
+        "ci95": [
+          null,
+          null
+        ],
+        "status": "INSUFFICIENT_BLOCKS",
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "reason": "A whole-sample circular block produces a degenerate mean; no inferential interval reported"
+      },
+      "sign_flip_p": 1.0,
+      "journal": "research/reports/candidate_journals/S3-ACTUAL-M30-BASE.json.gz",
+      "journal_sha256": "88f75acaefeec4eb112d354aee01e66b54e1f8430d0a0544d4ba150e7e7dc7f0",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S4-ACTUAL-M30-BASE",
+        "family": "S4",
+        "timeframe": "30"
+      },
+      "status": "ZERO_COMPLETED_TRADES",
+      "summary": {
+        "complete_plans": 0,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 0,
+        "net_cash": 0,
+        "all_realized_net_cash": 0.0,
+        "profit_factor": null,
+        "wins": 0,
+        "losses": 0,
+        "net_r": 0,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 0.0,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 1423,
+          "NO_SETUP": 18759
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "PRIOR_COMPRESSION": 996,
+          "EXPANSION_REQUIRED": 245,
+          "EXCESSIVE_BAR": 52,
+          "STRUCTURAL_STOP_RANGE": 201,
+          "CONFIRMATION_CANDLE": 209,
+          "TIME_GAP_ON_CONFIRMATION": 17,
+          "CHASE_LIMIT": 238,
+          "BEFORE_TRADE_WINDOW": 13
+        },
+        "cash_paid_net": 0.0,
+        "closed_parts_net": 0.0,
+        "cash_paid_drawdown": 0.0,
+        "unallocated_entry_fees": 0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {}
+      },
+      "blocked_families": {},
+      "variant_identity": {
+        "trial_id": "S4-ACTUAL-M30-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "8cd07bdb580743a3bec4585c6b765aad1b8c8c52263277f0a03e5697aeffbab0",
+        "ablation": null,
+        "composite_sha256": "e639a217f1ecbffc252ba946d8459ec69f76706621ea571713e2cbcf0cde7f9d"
+      },
+      "campaign_metrics": {
+        "n": 0,
+        "wins": 0,
+        "losses": 0,
+        "breakeven": 0,
+        "net_cash": 0,
+        "mean_cash": null,
+        "profit_factor": null,
+        "profit_factor_status": "NO_TRADES",
+        "win_rate": null,
+        "win_rate_wilson95": [
+          null,
+          null
+        ],
+        "campaign_close_drawdown": 0.0,
+        "max_consecutive_losses": 0,
+        "p05_cash": null,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 0,
+        "mean": null,
+        "ci95": [
+          null,
+          null
+        ]
+      },
+      "sign_flip_p": 1.0,
+      "journal": "research/reports/candidate_journals/S4-ACTUAL-M30-BASE.json.gz",
+      "journal_sha256": "417c70f6bd33501e4eaec8d86321d6b0ea2594043dcf4e611378d65e7edef2fd",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S5-ACTUAL-M30-BASE",
+        "family": "S5",
+        "timeframe": "30"
+      },
+      "status": "EXPLORATORY_RESULT",
+      "summary": {
+        "complete_plans": 9,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 27,
+        "net_cash": 261.30699999999996,
+        "all_realized_net_cash": 261.30699999999996,
+        "profit_factor": 2.0842119239370778,
+        "wins": 6,
+        "losses": 3,
+        "net_r": 6.995372520852729,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 124.93800000000218,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 1,
+        "decision_counts": {
+          "REJECTED": 1103,
+          "NO_SETUP": 17874,
+          "WATCH": 1196,
+          "SUBMITTED": 9
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "STRUCTURAL_INVALIDATION": 330,
+          "BEFORE_TRADE_WINDOW": 201,
+          "CONFIRMATION_CANDLE": 71,
+          "SETUP_EXPIRED": 80,
+          "STRUCTURAL_STOP_RANGE": 12,
+          "SETUP_TIME_GAP": 18,
+          "EXCESSIVE_BAR": 4,
+          "PORTFOLIO_OCCUPIED": 2
+        },
+        "cash_paid_net": 261.30699999999996,
+        "closed_parts_net": 261.3070000000002,
+        "cash_paid_drawdown": 125.46300000000221,
+        "unallocated_entry_fees": 0.0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20752": 19.716000000000168,
+          "20753": 91.40499999999966,
+          "20754": 16.432000000000517,
+          "20755": 98.7559999999995,
+          "20756": -116.07299999999859,
+          "20759": 11.716000000000166,
+          "20760": 147.29000000000008,
+          "20762": -124.93800000000219,
+          "20763": 19.027000000000317,
+          "20766": 97.97600000000048
+        }
+      },
+      "blocked_families": {},
+      "variant_identity": {
+        "trial_id": "S5-ACTUAL-M30-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "f763ede733d291d00421012e3a7c93c347a02d96f21c47a7b8130d75abf1a4fb",
+        "ablation": null,
+        "composite_sha256": "2408d238727ee4eb831701a41aef8e9028dd5e220c43c00ca59a96b9169d106c"
+      },
+      "campaign_metrics": {
+        "n": 9,
+        "wins": 6,
+        "losses": 3,
+        "breakeven": 0,
+        "net_cash": 261.30699999999996,
+        "mean_cash": 29.03411111111111,
+        "profit_factor": 2.0842119239370778,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.6666666666666666,
+        "win_rate_wilson95": [
+          0.3542021355803963,
+          0.879416181613089
+        ],
+        "campaign_close_drawdown": 124.9380000000022,
+        "max_consecutive_losses": 2,
+        "p05_cash": -108.7116000000012,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 9,
+        "mean": 0.7772636134280809,
+        "ci95": [
+          0.25023535904582717,
+          1.2868150142579462
+        ],
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+      },
+      "sign_flip_p": 0.079960019990005,
+      "journal": "research/reports/candidate_journals/S5-ACTUAL-M30-BASE.json.gz",
+      "journal_sha256": "b9220e187910741afa491a10e79eae802231f2ec373d24b72e696f0383fe3ee3",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S6-ACTUAL-M30-BASE",
+        "family": "S6",
+        "timeframe": "30"
+      },
+      "status": "BLOCKED_NO_VALID_INPUTS",
+      "summary": {
+        "complete_plans": 0,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 0,
+        "net_cash": 0,
+        "all_realized_net_cash": 0.0,
+        "profit_factor": null,
+        "wins": 0,
+        "losses": 0,
+        "net_r": 0,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 0.0,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "BLOCKED": 20182
+        },
+        "rejection_reasons": {
+          "TRUE_VOLUME_AND_VERIFIED_BAR_VWAP_UNAVAILABLE": 20182
+        },
+        "cash_paid_net": 0.0,
+        "closed_parts_net": 0.0,
+        "cash_paid_drawdown": 0.0,
+        "unallocated_entry_fees": 0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {}
+      },
+      "blocked_families": {
+        "S6": "TRUE_VOLUME_AND_VERIFIED_BAR_VWAP_UNAVAILABLE"
+      },
+      "variant_identity": {
+        "trial_id": "S6-ACTUAL-M30-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "3de994bf83d92fe2c0511df4c6cb84c307d5476c053a28be343f8b0d2cb59613",
+        "ablation": null,
+        "composite_sha256": "3f8f5d323c1c2d9456aa004d621e1573cb26696569510c2de1150b950a509d68"
+      },
+      "campaign_metrics": {
+        "n": 0,
+        "wins": 0,
+        "losses": 0,
+        "breakeven": 0,
+        "net_cash": 0,
+        "mean_cash": null,
+        "profit_factor": null,
+        "profit_factor_status": "NO_TRADES",
+        "win_rate": null,
+        "win_rate_wilson95": [
+          null,
+          null
+        ],
+        "campaign_close_drawdown": 0.0,
+        "max_consecutive_losses": 0,
+        "p05_cash": null,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 0,
+        "mean": null,
+        "ci95": [
+          null,
+          null
+        ]
+      },
+      "sign_flip_p": 1.0,
+      "journal": "research/reports/candidate_journals/S6-ACTUAL-M30-BASE.json.gz",
+      "journal_sha256": "f5e7a148beeb6a18b94046b7d10382c4e5472da2d2d8509232ead74be0e3f71c",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S7-ACTUAL-M30-BASE",
+        "family": "S7",
+        "timeframe": "30"
+      },
+      "status": "EXPLORATORY_RESULT",
+      "summary": {
+        "complete_plans": 9,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 27,
+        "net_cash": -18.739999999998204,
+        "all_realized_net_cash": -18.739999999998222,
+        "profit_factor": 0.9507365853145651,
+        "wins": 3,
+        "losses": 6,
+        "net_r": -1.8418949887491223,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 380.40399999999977,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 811,
+          "NO_SETUP": 19362,
+          "SUBMITTED": 9
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "BEFORE_TRADE_WINDOW": 313,
+          "CONFIRMATION_CANDLE": 82,
+          "EXCESSIVE_BAR": 10,
+          "STRUCTURAL_STOP_RANGE": 10,
+          "PORTFOLIO_OCCUPIED": 6,
+          "COOLDOWN": 1
+        },
+        "cash_paid_net": -18.739999999998222,
+        "closed_parts_net": -18.739999999998098,
+        "cash_paid_drawdown": 380.92899999999986,
+        "unallocated_entry_fees": 0.0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20752": -0.5249999999999999,
+          "20753": 116.08200000000089,
+          "20754": -54.23499999999885,
+          "20756": -79.0439999999996,
+          "20759": -123.89100000000089,
+          "20760": -47.19300000000039,
+          "20761": -76.56600000000009,
+          "20762": 159.3390000000006,
+          "20763": 87.29300000000022
+        }
+      },
+      "blocked_families": {},
+      "variant_identity": {
+        "trial_id": "S7-ACTUAL-M30-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "d3d02a80d51ff0b6b654b0e2b8984825e117268b8879a4fb4214b5bb0c9fc348",
+        "ablation": null,
+        "composite_sha256": "1eb5d45b45f6b3a760485dd21d519d8d2b18adb67fee011451638086670a83d5"
+      },
+      "campaign_metrics": {
+        "n": 9,
+        "wins": 3,
+        "losses": 6,
+        "breakeven": 0,
+        "net_cash": -18.739999999998204,
+        "mean_cash": -2.082222222222023,
+        "profit_factor": 0.9507365853145651,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.3333333333333333,
+        "win_rate_wilson95": [
+          0.1205838183869109,
+          0.6457978644196036
+        ],
+        "campaign_close_drawdown": 380.4039999999998,
+        "max_consecutive_losses": 6,
+        "p05_cash": -106.05720000000039,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 9,
+        "mean": -0.20465499874990248,
+        "ci95": [
+          -0.943106049378742,
+          0.533796051878937
+        ],
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+      },
+      "sign_flip_p": 0.6901549225387307,
+      "journal": "research/reports/candidate_journals/S7-ACTUAL-M30-BASE.json.gz",
+      "journal_sha256": "3473008dd7759648c62761aac77ca1b3beddcc507f6b31b3abecb224d46dad27",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S8-ACTUAL-M30-BASE",
+        "family": "S8",
+        "timeframe": "30"
+      },
+      "status": "ZERO_COMPLETED_TRADES",
+      "summary": {
+        "complete_plans": 0,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 0,
+        "net_cash": 0,
+        "all_realized_net_cash": 0.0,
+        "profit_factor": null,
+        "wins": 0,
+        "losses": 0,
+        "net_r": 0,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 0.0,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 3392,
+          "NO_SETUP": 16790
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "DIRECTIONAL_CONTEXT": 2476,
+          "EFFICIENCY": 2169,
+          "PRIOR_PAUSE": 1192,
+          "DISPLACEMENT": 978,
+          "BEFORE_TRADE_WINDOW": 38,
+          "EXHAUSTION_DISTANCE": 685,
+          "EXCESSIVE_BAR": 62,
+          "STRUCTURAL_STOP_RANGE": 224,
+          "TIME_GAP_ON_CONFIRMATION": 78
+        },
+        "cash_paid_net": 0.0,
+        "closed_parts_net": 0.0,
+        "cash_paid_drawdown": 0.0,
+        "unallocated_entry_fees": 0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {}
+      },
+      "blocked_families": {},
+      "variant_identity": {
+        "trial_id": "S8-ACTUAL-M30-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "34c9923aeee4715de2281224d182cbd6a8e07edd77defd2bcec1357582dd67b0",
+        "ablation": null,
+        "composite_sha256": "28c7bf91e391598c1a89388e05db817bb446e6da01552ce024ae0ba149f37113"
+      },
+      "campaign_metrics": {
+        "n": 0,
+        "wins": 0,
+        "losses": 0,
+        "breakeven": 0,
+        "net_cash": 0,
+        "mean_cash": null,
+        "profit_factor": null,
+        "profit_factor_status": "NO_TRADES",
+        "win_rate": null,
+        "win_rate_wilson95": [
+          null,
+          null
+        ],
+        "campaign_close_drawdown": 0.0,
+        "max_consecutive_losses": 0,
+        "p05_cash": null,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 0,
+        "mean": null,
+        "ci95": [
+          null,
+          null
+        ]
+      },
+      "sign_flip_p": 1.0,
+      "journal": "research/reports/candidate_journals/S8-ACTUAL-M30-BASE.json.gz",
+      "journal_sha256": "2e04d4569ebf0e995a1461997044554468bf2248ff9b65fb535837c6e531f23c",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S9-ACTUAL-M30-BASE",
+        "family": "S9",
+        "timeframe": "30"
+      },
+      "status": "EXPLORATORY_RESULT",
+      "summary": {
+        "complete_plans": 6,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 18,
+        "net_cash": 57.95899999999587,
+        "all_realized_net_cash": 57.958999999995925,
+        "profit_factor": 1.2603553219683998,
+        "wins": 3,
+        "losses": 3,
+        "net_r": 2.9769558848419417,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 102.92700000000409,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "REJECTED": 964,
+          "NO_SETUP": 18118,
+          "WATCH": 1094,
+          "SUBMITTED": 6
+        },
+        "rejection_reasons": {
+          "WARMUP_OR_CRITICAL_FEATURE_MISSING": 398,
+          "STRUCTURAL_INVALIDATION": 145,
+          "BEFORE_TRADE_WINDOW": 148,
+          "SETUP_EXPIRED": 189,
+          "CONFIRMATION_CANDLE": 61,
+          "EXCESSIVE_BAR": 6,
+          "SETUP_TIME_GAP": 13,
+          "STRUCTURAL_STOP_RANGE": 4,
+          "PORTFOLIO_OCCUPIED": 3,
+          "COOLDOWN": 1
+        },
+        "cash_paid_net": 57.958999999995925,
+        "closed_parts_net": 57.95899999999596,
+        "cash_paid_drawdown": 102.92700000000416,
+        "unallocated_entry_fees": 0.0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {
+          "20752": 43.264000000000124,
+          "20753": 17.310999999999876,
+          "20754": 26.051000000000204,
+          "20755": -54.32899999999972,
+          "20756": 128.5889999999996,
+          "20760": -0.5249999999999999,
+          "20761": -93.19200000000038,
+          "20762": 91.93499999999831,
+          "20763": -101.14500000000207
+        }
+      },
+      "blocked_families": {},
+      "variant_identity": {
+        "trial_id": "S9-ACTUAL-M30-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "77cee29bdd5339f67c0b3de2b795cda827f3b6e0a80a3b82264b08c89970b4b0",
+        "ablation": null,
+        "composite_sha256": "15eece2d89380c0a3b252e5035a5874e7504bac394899aafb9701a36a86e2719"
+      },
+      "campaign_metrics": {
+        "n": 6,
+        "wins": 3,
+        "losses": 3,
+        "breakeven": 0,
+        "net_cash": 57.95899999999587,
+        "mean_cash": 9.659833333332644,
+        "profit_factor": 1.2603553219683998,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.5,
+        "win_rate_wilson95": [
+          0.1876163064826506,
+          0.8123836935173494
+        ],
+        "campaign_close_drawdown": 102.92700000000417,
+        "max_consecutive_losses": 1,
+        "p05_cash": -99.28800000000166,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 6,
+        "mean": 0.4961593141403236,
+        "ci95": [
+          -0.004139237090275823,
+          0.9964578653709231
+        ],
+        "block": 5,
+        "repetitions": 2000,
+        "seed": 20261109,
+        "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+      },
+      "sign_flip_p": 0.2283858070964518,
+      "journal": "research/reports/candidate_journals/S9-ACTUAL-M30-BASE.json.gz",
+      "journal_sha256": "e4370428362f9075c6293203a715b1cfee9eba8ad957e3b7523d3ecd8561c10b",
+      "ablation_altered_decisions": 0
+    },
+    {
+      "trial": {
+        "id": "S10-ACTUAL-M30-BASE",
+        "family": "S10",
+        "timeframe": "30"
+      },
+      "status": "BLOCKED_NO_VALID_INPUTS",
+      "summary": {
+        "complete_plans": 0,
+        "open_plans": 0,
+        "pending_plans": 0,
+        "native_closed_rows": null,
+        "partial_exit_rows": 0,
+        "net_cash": 0,
+        "all_realized_net_cash": 0.0,
+        "profit_factor": null,
+        "wins": 0,
+        "losses": 0,
+        "net_r": 0,
+        "unscored_r_plans": 0,
+        "closed_cash_drawdown": 0.0,
+        "native_equity_drawdown": null,
+        "ambiguous_plans": 0,
+        "decision_counts": {
+          "BLOCKED": 10091
+        },
+        "rejection_reasons": {
+          "NO_INDEPENDENT_VALIDATION": 10091
+        },
+        "cash_paid_net": 0.0,
+        "closed_parts_net": 0.0,
+        "cash_paid_drawdown": 0.0,
+        "unallocated_entry_fees": 0,
+        "cash_scope": "Actual simulated paid cash: entry commission at entry; exit gross minus exit commission at exit; excludes unrealized mark-to-market",
+        "daily_cash_UTC": {}
+      },
+      "blocked_families": {
+        "S10": "NO_INDEPENDENT_VALIDATION"
+      },
+      "variant_identity": {
+        "trial_id": "S10-ACTUAL-M30-BASE",
+        "engine_sha256": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+        "library_sha256": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+        "config_sha256": "fa744dfb4debdd23196342d93072e2e77d7c0947c9532bfb33905af0652b914a",
+        "ablation": null,
+        "composite_sha256": "65b9e779d6153f9526fd5bfe64c37cdcdd44c560652e0ea48696d1440d32dca3"
+      },
+      "campaign_metrics": {
+        "n": 0,
+        "wins": 0,
+        "losses": 0,
+        "breakeven": 0,
+        "net_cash": 0,
+        "mean_cash": null,
+        "profit_factor": null,
+        "profit_factor_status": "NO_TRADES",
+        "win_rate": null,
+        "win_rate_wilson95": [
+          null,
+          null
+        ],
+        "campaign_close_drawdown": 0.0,
+        "max_consecutive_losses": 0,
+        "p05_cash": null,
+        "small_n": true
+      },
+      "mean_r_uncertainty": {
+        "n": 0,
+        "mean": null,
+        "ci95": [
+          null,
+          null
+        ]
+      },
+      "sign_flip_p": 1.0,
+      "journal": "research/reports/candidate_journals/S10-ACTUAL-M30-BASE.json.gz",
+      "journal_sha256": "776296d23351fcf3e2cb57b34e791a9462228d36f64d516b28bee1e5f91ada12",
+      "ablation_altered_decisions": 0
+    }
+  ],
+  "native_cohorts": {
+    "5": {
+      "full_loaded_history_metrics": {
+        "count": 46,
+        "wins": 25,
+        "losses": 21,
+        "breakevens": 0,
+        "net_cash": 50.438,
+        "sum_positive_net_cash": 549.701,
+        "sum_negative_net_cash_magnitude": 499.263,
+        "profit_factor": 1.101024910718399,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.5434782608695652,
+        "average_net_cash": 1.0964782608695651,
+        "average_win_cash": 21.98804,
+        "average_loss_cash": -23.774428571428572,
+        "closed_cash_event_drawdown": 194.752,
+        "campaign_close_drawdown": 194.752,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "SL": 88,
+          "TP1": 25,
+          "ИЗТЕКЪЛ СРОК": 6,
+          "TP2": 10,
+          "TP3": 5
+        },
+        "exit_comment_quantities": {
+          "SL": 88.0,
+          "TP1": 25.0,
+          "ИЗТЕКЪЛ СРОК": 10.0,
+          "TP2": 10.0,
+          "TP3": 5.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "SL": 35,
+          "ИЗТЕКЪЛ СРОК": 6,
+          "TP3": 5
+        }
+      },
+      "full_loaded_history_native_dd": {
+        "value": 217.513,
+        "source": "snapshot.strategy.max_drawdown",
+        "scope": "NATIVE_EQUITY_INTRABAR_METRIC_NOT_RECONSTRUCTED_FROM_CLOSED_ROWS"
+      },
+      "cohort_metrics": {
+        "n": 22,
+        "wins": 12,
+        "losses": 10,
+        "breakeven": 0,
+        "net_cash": -79.69999999999999,
+        "mean_cash": -3.6227272727272726,
+        "profit_factor": 0.7473955114369297,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.5454545454545454,
+        "win_rate_wilson95": [
+          0.3465979532073494,
+          0.7307970581918668
+        ],
+        "campaign_close_drawdown": 194.752,
+        "max_consecutive_losses": 5,
+        "p05_cash": -47.3682,
+        "small_n": true
+      },
+      "cohort_net_r": -2.4209385772220795,
+      "complete_cohort_ids": [
+        "OANDA:XAUUSD|5|2|-1|1792995300000|1792995300000",
+        "OANDA:XAUUSD|5|2|-1|1793010600000|1793010600000",
+        "OANDA:XAUUSD|5|2|-1|1793037000000|1793037000000",
+        "OANDA:XAUUSD|5|3|-1|1793201100000|1793201400000",
+        "OANDA:XAUUSD|5|2|1|1793220300000|1793220300000",
+        "OANDA:XAUUSD|5|3|-1|1793237400000|1793237700000",
+        "OANDA:XAUUSD|5|2|-1|1793252400000|1793252400000",
+        "OANDA:XAUUSD|5|2|-1|1793295600000|1793295600000",
+        "OANDA:XAUUSD|5|2|-1|1793312700000|1793312700000",
+        "OANDA:XAUUSD|5|2|-1|1793327400000|1793327400000",
+        "OANDA:XAUUSD|5|2|-1|1793345700000|1793345700000",
+        "OANDA:XAUUSD|5|1|-1|1793356200000|1793357100000",
+        "OANDA:XAUUSD|5|1|-1|1793375400000|1793376900000",
+        "OANDA:XAUUSD|5|2|-1|1793391900000|1793391900000",
+        "OANDA:XAUUSD|5|2|-1|1793587500000|1793587500000",
+        "OANDA:XAUUSD|5|2|-1|1793601600000|1793601600000",
+        "OANDA:XAUUSD|5|2|-1|1793701500000|1793701500000",
+        "OANDA:XAUUSD|5|3|-1|1793763300000|1793763600000",
+        "OANDA:XAUUSD|5|2|1|1793853900000|1793853900000",
+        "OANDA:XAUUSD|5|2|-1|1793863500000|1793863500000",
+        "OANDA:XAUUSD|5|2|1|1793896800000|1793896800000",
+        "OANDA:XAUUSD|5|2|-1|1793933100000|1793933100000"
+      ],
+      "end_censored_ids": [],
+      "prewindow_carryover_ids": [],
+      "scope": "Actual native full-history run then entry-cohort selection, not native restart at window; prewindow occupancy may differ from flat-start Python; no forced closes or native equity DD invented for cohort"
+    },
+    "15": {
+      "full_loaded_history_metrics": {
+        "count": 72,
+        "wins": 33,
+        "losses": 39,
+        "breakevens": 0,
+        "net_cash": -144.492,
+        "sum_positive_net_cash": 1378.011,
+        "sum_negative_net_cash_magnitude": 1522.503,
+        "profit_factor": 0.9050957535059044,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.4583333333333333,
+        "average_net_cash": -2.0068333333333332,
+        "average_win_cash": 41.75790909090909,
+        "average_loss_cash": -39.03853846153846,
+        "closed_cash_event_drawdown": 812.069,
+        "campaign_close_drawdown": 812.069,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "TP1": 32,
+          "ИЗТЕКЪЛ СРОК": 3,
+          "SL": 150,
+          "TP2": 16,
+          "TP3": 10,
+          "ИЗХОД СЛЕД ГАП": 1
+        },
+        "exit_comment_quantities": {
+          "TP1": 32.0,
+          "ИЗТЕКЪЛ СРОК": 5.0,
+          "SL": 150.0,
+          "TP2": 16.0,
+          "TP3": 10.0,
+          "ИЗХОД СЛЕД ГАП": 3.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "ИЗТЕКЪЛ СРОК": 3,
+          "SL": 58,
+          "TP3": 10,
+          "ИЗХОД СЛЕД ГАП": 1
+        }
+      },
+      "full_loaded_history_native_dd": {
+        "value": 842.255,
+        "source": "snapshot.strategy.max_drawdown",
+        "scope": "NATIVE_EQUITY_INTRABAR_METRIC_NOT_RECONSTRUCTED_FROM_CLOSED_ROWS"
+      },
+      "cohort_metrics": {
+        "n": 8,
+        "wins": 4,
+        "losses": 4,
+        "breakeven": 0,
+        "net_cash": -4.444999999999995,
+        "mean_cash": -0.5556249999999994,
+        "profit_factor": 0.9701841939335399,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.5,
+        "win_rate_wilson95": [
+          0.21521606221387757,
+          0.7847839377861224
+        ],
+        "campaign_close_drawdown": 129.854,
+        "max_consecutive_losses": 2,
+        "p05_cash": -43.45335,
+        "small_n": true
+      },
+      "cohort_net_r": -1.2484406571056614,
+      "complete_cohort_ids": [
+        "OANDA:XAUUSD|15|2|-1|1792788300000|1792788300000",
+        "OANDA:XAUUSD|15|2|1|1793002500000|1793002500000",
+        "OANDA:XAUUSD|15|3|-1|1793142000000|1793142900000",
+        "OANDA:XAUUSD|15|3|1|1793186100000|1793187900000",
+        "OANDA:XAUUSD|15|2|-1|1793197800000|1793197800000",
+        "OANDA:XAUUSD|15|2|-1|1793232900000|1793232900000",
+        "OANDA:XAUUSD|15|2|-1|1793648700000|1793648700000",
+        "OANDA:XAUUSD|15|2|1|1793808000000|1793808000000"
+      ],
+      "end_censored_ids": [],
+      "prewindow_carryover_ids": [],
+      "scope": "Actual native full-history run then entry-cohort selection, not native restart at window; prewindow occupancy may differ from flat-start Python; no forced closes or native equity DD invented for cohort"
+    },
+    "30": {
+      "full_loaded_history_metrics": {
+        "count": 97,
+        "wins": 43,
+        "losses": 54,
+        "breakevens": 0,
+        "net_cash": -376.557,
+        "sum_positive_net_cash": 3530.714,
+        "sum_negative_net_cash_magnitude": 3907.271,
+        "profit_factor": 0.903626597694401,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.44329896907216493,
+        "average_net_cash": -3.8820309278350513,
+        "average_win_cash": 82.10962790697674,
+        "average_loss_cash": -72.35687037037037,
+        "closed_cash_event_drawdown": 1577.952,
+        "campaign_close_drawdown": 1577.952,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "TP1": 42,
+          "TP2": 23,
+          "TP3": 11,
+          "SL": 199,
+          "ИЗТЕКЪЛ СРОК": 4,
+          "ИЗХОД СЛЕД ГАП": 4
+        },
+        "exit_comment_quantities": {
+          "TP1": 42.0,
+          "TP2": 23.0,
+          "TP3": 11.0,
+          "SL": 199.0,
+          "ИЗТЕКЪЛ СРОК": 6.0,
+          "ИЗХОД СЛЕД ГАП": 10.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "TP3": 11,
+          "SL": 78,
+          "ИЗТЕКЪЛ СРОК": 4,
+          "ИЗХОД СЛЕД ГАП": 4
+        }
+      },
+      "full_loaded_history_native_dd": {
+        "value": 1595.163,
+        "source": "snapshot.strategy.max_drawdown",
+        "scope": "NATIVE_EQUITY_INTRABAR_METRIC_NOT_RECONSTRUCTED_FROM_CLOSED_ROWS"
+      },
+      "cohort_metrics": {
+        "n": 5,
+        "wins": 3,
+        "losses": 2,
+        "breakeven": 0,
+        "net_cash": 62.724,
+        "mean_cash": 12.5448,
+        "profit_factor": 2.2584819726731005,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.6,
+        "win_rate_wilson95": [
+          0.2307242812760128,
+          0.882379225767352
+        ],
+        "campaign_close_drawdown": 49.84100000000001,
+        "max_consecutive_losses": 2,
+        "p05_cash": -39.3784,
+        "small_n": true
+      },
+      "cohort_net_r": 1.5207791440219611,
+      "complete_cohort_ids": [
+        "OANDA:XAUUSD|30|3|-1|1793305800000|1793307600000",
+        "OANDA:XAUUSD|30|3|1|1793334600000|1793336400000",
+        "OANDA:XAUUSD|30|2|-1|1793608200000|1793608200000",
+        "OANDA:XAUUSD|30|2|-1|1793676600000|1793676600000",
+        "OANDA:XAUUSD|30|2|-1|1793966400000|1793966400000"
+      ],
+      "end_censored_ids": [],
+      "prewindow_carryover_ids": [],
+      "scope": "Actual native full-history run then entry-cohort selection, not native restart at window; prewindow occupancy may differ from flat-start Python; no forced closes or native equity DD invented for cohort"
+    }
+  },
+  "native_parity": false,
+  "untouched_holdout": false,
+  "champion_promoted": false,
+  "limitations": [
+    "Actual supplied datasets; raw OHLC kept local because redistribution rights not established",
+    "Shared dates selected by data availability/HTF warmup, not return",
+    "Different fixed bar-count horizons and next-open latency across TF",
+    "Native cohorts inherit prior occupancy, Python starts flat; no paired native improvement claim",
+    "No forced terminal close; open/pending visible; S6/S10 blocked"
+  ]
+}

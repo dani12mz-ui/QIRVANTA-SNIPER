@@ -1,9 +1,9 @@
 {
-  "canonical_core_sha256": "d364dbd4239d901e7bb0aa5475de8693610be7073191a9503a405ce001209c6b",
+  "canonical_core_sha256": "9afd1f74af1f487d0069a70e017b57d73a9fb079c5090de6466d0b6f8c32acc1",
   "outputs": {
     "QIRVANTA_UNIFIED.pine": {
-      "lines": 1485,
-      "sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5"
+      "lines": 1582,
+      "sha256": "92307768be68946dc87cbe4ea45a8b5e32446fd3b7a0c1a38dce40dffe358be3"
     }
   },
   "pine_compile": "NOT_TESTED_BY_GENERATOR",
@@ -16,6 +16,7 @@
     "paper_engine",
     "alerts_helpers",
     "native_adapter",
+    "display_context",
     "visual_alerts",
     "alerts"
   ],

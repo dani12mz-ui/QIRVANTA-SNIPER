@@ -1,0 +1,41 @@
+test_latest_warmup_and_earliest_complete_end (test_validation_common_window.CommonWindowTests.test_latest_warmup_and_earliest_complete_end) ... ok
+test_missing_h4_never_manufactures_context (test_validation_common_window.CommonWindowTests.test_missing_h4_never_manufactures_context) ... ok
+test_neutral_bias_is_available_not_missing (test_validation_common_window.CommonWindowTests.test_neutral_bias_is_available_not_missing) ... ok
+test_no_post_warmup_interval_blocks (test_validation_common_window.CommonWindowTests.test_no_post_warmup_interval_blocks) ... ok
+test_ambiguous_bar_is_not_labeled_win (test_validation_models.ModelTests.test_ambiguous_bar_is_not_labeled_win) ... ok
+test_brier_exact (test_validation_models.ModelTests.test_brier_exact) ... ok
+test_censored_outcome_remains_unknown (test_validation_models.ModelTests.test_censored_outcome_remains_unknown) ... ok
+test_future_test_label_does_not_change_predictions (test_validation_models.ModelTests.test_future_test_label_does_not_change_predictions) ... ok
+test_scaler_fits_training_only (test_validation_models.ModelTests.test_scaler_fits_training_only) ... ok
+test_short_barrier_side (test_validation_models.ModelTests.test_short_barrier_side) ... ok
+test_single_class_refused (test_validation_models.ModelTests.test_single_class_refused) ... ok
+test_cost_stress_no_double_base_fee (test_validation_native.NativeTests.test_cost_stress_no_double_base_fee) ... ok
+test_endpoint_extremes_are_only_upper_bounds (test_validation_native.NativeTests.test_endpoint_extremes_are_only_upper_bounds) ... ok
+test_misaligned_timestamps_refused (test_validation_native.NativeTests.test_misaligned_timestamps_refused) ... ok
+test_real_native_complete_accounting_and_causal_feature_schema (test_validation_native.NativeTests.test_real_native_complete_accounting_and_causal_feature_schema) ... ok
+test_same_bar_entry_exit_no_full_bar_lower_bound (test_validation_native.NativeTests.test_same_bar_entry_exit_no_full_bar_lower_bound) ... ok
+test_sessions_use_dst_not_constant_utc (test_validation_native.NativeTests.test_sessions_use_dst_not_constant_utc) ... ok
+test_currency_conversion_and_tick_grid (test_validation_risk.RiskTests.test_currency_conversion_and_tick_grid) ... ok
+test_manual_pause_and_limits (test_validation_risk.RiskTests.test_manual_pause_and_limits) ... ok
+test_minimum_lot_not_rounded_up (test_validation_risk.RiskTests.test_minimum_lot_not_rounded_up) ... ok
+test_missing_or_nonfinite_verified_parameters_still_block (test_validation_risk.RiskTests.test_missing_or_nonfinite_verified_parameters_still_block) ... ok
+test_short_uses_ask_for_stop (test_validation_risk.RiskTests.test_short_uses_ask_for_stop) ... ok
+test_sizing_rounds_down_with_spread_fees_and_slip (test_validation_risk.RiskTests.test_sizing_rounds_down_with_spread_fees_and_slip) ... ok
+test_stale_quote_and_spec (test_validation_risk.RiskTests.test_stale_quote_and_spec) ... ok
+test_stop_distance_uses_bid_for_long (test_validation_risk.RiskTests.test_stop_distance_uses_bid_for_long) ... ok
+test_unverified_never_sizes (test_validation_risk.RiskTests.test_unverified_never_sizes) ... ok
+test_volume_step_is_zero_anchored_not_minimum_anchored (test_validation_risk.RiskTests.test_volume_step_is_zero_anchored_not_minimum_anchored) ... ok
+test_all_losses_and_zero_trades_remain (test_validation_statistics.StatisticalTests.test_all_losses_and_zero_trades_remain) ... ok
+test_bootstrap_seed_reproducible_and_interval_not_total (test_validation_statistics.StatisticalTests.test_bootstrap_seed_reproducible_and_interval_not_total) ... ok
+test_holm_uses_all_trials (test_validation_statistics.StatisticalTests.test_holm_uses_all_trials) ... ok
+test_purge_overlap_and_embargo (test_validation_statistics.StatisticalTests.test_purge_overlap_and_embargo) ... ok
+test_sign_flip_keeps_all_losses_as_failure (test_validation_statistics.StatisticalTests.test_sign_flip_keeps_all_losses_as_failure) ... ok
+test_walkforward_never_uses_future_label (test_validation_statistics.StatisticalTests.test_walkforward_never_uses_future_label) ... ok
+test_whole_sample_block_never_claims_zero_uncertainty (test_validation_statistics.StatisticalTests.test_whole_sample_block_never_claims_zero_uncertainty) ... ok
+test_wilson_never_certifies_one_win (test_validation_statistics.StatisticalTests.test_wilson_never_certifies_one_win) ... ok
+test_wilson_zero_sample_is_undefined (test_validation_statistics.StatisticalTests.test_wilson_zero_sample_is_undefined) ... ok
+
+----------------------------------------------------------------------
+Ran 36 tests in 0.196s
+
+OK

@@ -1,0 +1,66 @@
+{
+  "status": "PASS",
+  "baseline_commit": "dd1819515b6fe27e2a08bff91c1fbad6bfd7bcc9",
+  "scope": "EXACT_SOURCE_PROJECTION_NOT_PINE_RUNTIME_PROOF",
+  "components": {
+    "native_header": {
+      "baseline_sha256": "6b3333bf02a85fb553ed559a7fdc1d8206d894a8989eb0e5e36294466fc02b4a",
+      "current_sha256": "6b3333bf02a85fb553ed559a7fdc1d8206d894a8989eb0e5e36294466fc02b4a",
+      "byte_identical": true
+    },
+    "features": {
+      "baseline_sha256": "14c82834109b0df8be4f2076b539c7cf58a73cc31b6201d47b7ceaf2b9ddd2e5",
+      "current_sha256": "14c82834109b0df8be4f2076b539c7cf58a73cc31b6201d47b7ceaf2b9ddd2e5",
+      "byte_identical": true
+    },
+    "types_helpers": {
+      "baseline_sha256": "f1b33ba27ab9de2d7a8abaf2aef380cb0b3afcb8357a05fff66d3a2d49798190",
+      "current_sha256": "f1b33ba27ab9de2d7a8abaf2aef380cb0b3afcb8357a05fff66d3a2d49798190",
+      "byte_identical": true
+    },
+    "decision": {
+      "baseline_sha256": "0c07bef363335e749eb12606effe5bdc573972e6521a219459e2de7fdee05f1b",
+      "current_sha256": "0c07bef363335e749eb12606effe5bdc573972e6521a219459e2de7fdee05f1b",
+      "byte_identical": true
+    },
+    "paper_engine": {
+      "baseline_sha256": "759a80c06cc765844f2785dd410053a17dde3394bf02d1a94fd78f7e5c6590a4",
+      "current_sha256": "759a80c06cc765844f2785dd410053a17dde3394bf02d1a94fd78f7e5c6590a4",
+      "byte_identical": true
+    },
+    "native_adapter": {
+      "baseline_sha256": "63889b0b793751b87b519c332f011205f8dcede28eb644a7a7a2212b02531817",
+      "current_sha256": "63889b0b793751b87b519c332f011205f8dcede28eb644a7a7a2212b02531817",
+      "byte_identical": true
+    },
+    "alerts": {
+      "baseline_sha256": "2193791302a52908a74d2afe078e82a7c2a8b31ca46be8f1e36160da10e67812",
+      "current_sha256": "2193791302a52908a74d2afe078e82a7c2a8b31ca46be8f1e36160da10e67812",
+      "byte_identical": true
+    },
+    "inputs_without_display": {
+      "baseline_sha256": "12bd4f0402641b99fa805e1218ef8e93e451a07a81300bbfbd2391be90a957a4",
+      "current_sha256": "12bd4f0402641b99fa805e1218ef8e93e451a07a81300bbfbd2391be90a957a4",
+      "byte_identical": true
+    },
+    "alert_admission_routes": {
+      "baseline_sha256": "c069aa74a7ac6598aef55f90d153be123b8727d1a676dc74df97aa3ce48837d2",
+      "current_sha256": "c069aa74a7ac6598aef55f90d153be123b8727d1a676dc74df97aa3ce48837d2",
+      "byte_identical": true
+    }
+  },
+  "baseline_projection_sha256": "114df1fddfcc1282c3fe3aff430fc306ba0e215787fb05a2845be04cabdea95d",
+  "current_projection_sha256": "114df1fddfcc1282c3fe3aff430fc306ba0e215787fb05a2845be04cabdea95d",
+  "differences": [],
+  "allowed_changes": [
+    "06 presentation inputs",
+    "display_context",
+    "visual rendering",
+    "human alert formatting"
+  ],
+  "limitations": [
+    "Pine compilation and matched runtime journals are separate evidence.",
+    "CORE_SHA256 includes display input text, so its change alone is not an economic change.",
+    "Alert routing is identical; human message payloads intentionally differ."
+  ]
+}

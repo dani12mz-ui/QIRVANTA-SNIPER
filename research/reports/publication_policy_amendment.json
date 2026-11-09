@@ -1,0 +1,27 @@
+{
+  "reason": "Union of raw_setup reference prices still disclosed a dense history; all decision price fields will be removed in v2",
+  "previous_policy_id": "qirvanta.sparse_decision_prices.v1",
+  "new_policy_id": "qirvanta.sparse_decision_prices.v2",
+  "scope": "Unpublished publication projections only; full economic journals unchanged",
+  "previous_manifest_sha256": "f4e893109d8528ae7a94b0bf2a36a48655bfe2c87ecd04bc002d9f728506f49e",
+  "coverage_by_timeframe": [
+    {
+      "minutes": 5,
+      "unique_bar_closes": 5562,
+      "raw_setup_price_closes": 2535,
+      "fraction": 0.4557713052858684
+    },
+    {
+      "minutes": 15,
+      "unique_bar_closes": 6445,
+      "raw_setup_price_closes": 2959,
+      "fraction": 0.4591155934833204
+    },
+    {
+      "minutes": 30,
+      "unique_bar_closes": 10091,
+      "raw_setup_price_closes": 4491,
+      "fraction": 0.44505004459419284
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "scope": "OBSERVED_DATA_QUALITY_NOT_STRATEGY_OR_NATIVE_PARITY",
+  "locked_M15_source_sha256": "7015f6386d2627237c57ff8625d59cbe3c9b852e4742b786cbb4679db3d48c56",
+  "actual_M30_csv_sha256": "1b31dc5dad532b9362c5340511211fbc13a33c64983d4a49485c7442a269c5d5",
+  "derived_M30_canonical_sha256": "c4ac207edd749f272e2cbd3fd01ed1c81a726be5d4a6ee2cae5874381c9df11f",
+  "derived_rows": 3222,
+  "actual_rows": 10091,
+  "matched_shared_timestamps": 3222,
+  "missing_derived_times_in_actual": [],
+  "mismatch_counts": {
+    "open": 0,
+    "high": 0,
+    "low": 0,
+    "close": 0,
+    "volume": 31
+  },
+  "maximum_absolute_difference": {
+    "open": 0,
+    "high": 0,
+    "low": 0,
+    "close": 0,
+    "volume": 138.0
+  },
+  "OHLC_mismatch_timestamps": [],
+  "ohlc_equal_on_all_shared_bins": true,
+  "volume_semantics": "Unverified provider volume; revisions do not establish true traded volume/VWAP",
+  "HTF_comparison": "Not compared: native automaticHTF differs across chart timeframes",
+  "not_independent_holdout": true,
+  "no_prices_or_full_OHLC_rows_written": true
+}

@@ -1,0 +1,175 @@
+{
+  "schema": "qirvanta.platform_acceptance.v1",
+  "created_utc": "2026-11-09T18:17:02.029948+00:00",
+  "production_source_sha256": "92307768be68946dc87cbe4ea45a8b5e32446fd3b7a0c1a38dce40dffe358be3",
+  "tradingview_saved_version": 17,
+  "final_compile_utc": "2026-11-09T17:59:24Z",
+  "compiler_errors": 0,
+  "remaining_warnings": [
+    "f_fast consistency",
+    "f_reversal consistency",
+    "barstate.islast close-only (2 locations)"
+  ],
+  "real_runtime_checked": [
+    "5",
+    "15",
+    "30",
+    "60",
+    "240"
+  ],
+  "runtime_scope": "Loaded current source; observed rendered output after recalculation, not universal settings or forward profit validation",
+  "native_paired_M15": {
+    "verified_at_utc": "2026-11-09T17:40:32.009246+00:00",
+    "status": "PASS_ACTUAL_NATIVE_PARITY_FIXED_OBSERVED_PERIOD",
+    "baseline_source_sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+    "ui_source_sha256": "92307768be68946dc87cbe4ea45a8b5e32446fd3b7a0c1a38dce40dffe358be3",
+    "dataset_rows": 6445,
+    "reobserved_dataset_csv_sha256": "6c89015105a406c2a0c1567f0e9a5e445cb31ee7604a985d727f26892d8ba4b7",
+    "baseline_ui_dataset_byte_equal": true,
+    "campaign_count": 72,
+    "closed_native_rows": 212,
+    "complete_campaign_objects_equal_excluding_only_run_id": true,
+    "metadata_exclusion": [
+      "run_id: baseline|Всички vs ui_only|Всички"
+    ],
+    "economic_or_decision_exclusions": [],
+    "identical_report_sections": [
+      "complete_campaign_metrics",
+      "complete_campaign_groups",
+      "observed_closed_row_metrics",
+      "cash_reconciliation",
+      "closed_cash_drawdown",
+      "complete_campaign_close_drawdown",
+      "native_equity_max_drawdown",
+      "campaign_state_counts",
+      "coverage"
+    ],
+    "net_usd": -144.492,
+    "native_equity_dd": {
+      "value": 842.255,
+      "source": "snapshot.strategy.max_drawdown",
+      "scope": "NATIVE_EQUITY_INTRABAR_METRIC_NOT_RECONSTRUCTED_FROM_CLOSED_ROWS"
+    },
+    "baseline_audit_sha256": "c9084d7d83f58be026629072c84955c2f77e5fa8641cb0a5517db0e10d455f0b",
+    "ui_audit_sha256": "eff3e84a64775e0889ce212f90721d02e946128abc97303b98b98c7a0f19ec2f",
+    "raw_ui_log_local_path": "work/mission/UI_PARITY.pine-logs.csv",
+    "raw_ui_log_sha256": "026372ba09a07c3035b88ed970e316c75b75cf40b702e8694703e44e4d230d23",
+    "no_claim": [
+      "No broker execution",
+      "No new profitable trading edge",
+      "No untouched final holdout",
+      "No equality to original dataset volume:33 values were revised by provider"
+    ],
+    "old_baseline_journal_all_campaigns_preserved": true
+  },
+  "final_settings": {
+    "inputs_observed": 118,
+    "defaults_match": true,
+    "properties_groups": 11,
+    "properties_match_baseline": true
+  },
+  "ui_modes_observed": [
+    "MINIMAL",
+    "STANDARD",
+    "PRO",
+    "DEBUG"
+  ],
+  "external_text_drawing": {
+    "characters": 115724,
+    "action": "HIDDEN_REVERSIBLY",
+    "pine_generated": false
+  },
+  "mobile": {
+    "viewport": [
+      390,
+      844
+    ],
+    "flat_preparation_readability": "PASS_OBSERVED",
+    "active_entry_sl_tp": "NOT_VERIFIED",
+    "physical_iphone": "NOT_VERIFIED",
+    "blocker": "No current active plan; intraday Replay unavailable on Basic"
+  },
+  "alerts": {
+    "strategy_server_alert": "BLOCKED_BASIC_ZERO_TECHNICAL",
+    "generic_information_transport": "DELIVERED_WEB_TOAST",
+    "delivery_utc": "2026-11-09T18:02:51Z",
+    "test_stopped_triggered": true,
+    "strategy_event_delivery": "NOT_VERIFIED",
+    "physical_iphone_push": "NOT_VERIFIED"
+  },
+  "delivery_state": {
+    "timeframe": "15",
+    "mode": "STANDARD",
+    "history": false,
+    "zones": false,
+    "debug_archive": false,
+    "temporary_observer_removed": true,
+    "viewport_override_reset": true,
+    "bar_replay": false,
+    "external_text_drawing_hidden": true
+  },
+  "limitations": [
+    "Four compiler warnings retained after analysis",
+    "Platform repainting caution displayed; no universal no-repaint claim",
+    "Optional dense history/native order markers can overlap",
+    "No live broker orders",
+    "No untouched final holdout",
+    "No proven profitability improvement"
+  ],
+  "evidence_sha256": {
+    "alert_configuration.txt": "636d12012ec1d1f1dda110fd2cfdb353c548178d2ec2c5a766195f4bb2a00023",
+    "alert_warning.txt": "c5b158df7c2a9e390eb8b344613e87d6d48900d2077b4221b766613c11d81454",
+    "baseline_inputs.txt": "78d16179a4113a755f3e9c82b76b5cc4e326ea8c5452007df9627aa1112286db",
+    "baseline_observer_compile.txt": "a16ab73ade811c69393332a828242f0d22720d44784a458244f3637971ad5f64",
+    "baseline_properties.txt": "6bc49e623441fefe269136668c441b75d08fa127b0794321b75d55fd208b6aae",
+    "baseline_repro.audit.json": "c9084d7d83f58be026629072c84955c2f77e5fa8641cb0a5517db0e10d455f0b",
+    "baseline_reproduction.json": "2d7f7a6b559ca6de0bed0c6205c99b4b43316272e7fad4015bdfb478e7ff582b",
+    "baseline_settings_verified.json": "08bf5531f524a30111fc505f9590357ea266f793636bd9599e425a4b2e6b349b",
+    "before_chart.png": "5ae46b6435c0b7c0b1e20016bab3e4e59ce36226d5855937f812fe5340d3ce75",
+    "delivery_M15.png": "d78fc67cac74aba74d9d873bb8720ae18cd1cab0f072a6796bef30be489442f7",
+    "delivery_state.txt": "9e87dd07a304904ab7d7993507dd18a03749bbb2da74ae69c0141c1188300d4d",
+    "editor_before.json": "a7345b8bad0e702d7788637c81fa6838172431da8a5e2e56cd63e3f5256e4ee0",
+    "final_editor_readback.json": "5c8eeb3f0619bd0b3f610859de69aa45daeea806d69c13fe2b5663b3ab01a275",
+    "final_inputs_standard.txt": "da2a18da9311a09eef273bfcd04d4584f93d57186fd9ace0441c031ba0db8572",
+    "final_properties.txt": "adcc57b343c1af51b4fbb24a61add8396e8c28440bf2dee7ca2f506a7ac31b85",
+    "final_pure_compile.txt": "ec1f3a6886ebab646fc8c4a54d27e3e210f5a534561946f4b940e79af1aa0047",
+    "final_settings_verified.json": "ce9da84d988469b3f62685f737589fdb2f5f21186160162d38bc7164389152cc",
+    "H1_runtime.txt": "5d904bd92be288c9533f11c8d8b283b37565b311e4037df176f5a890c3cc6eaf",
+    "H1_STANDARD_desktop.png": "9e1e79ed029be8f418565222390276be5e5c27839e070b6cdfd1b921a9c7c0dc",
+    "H4_runtime.txt": "c1742414cd12fde2ded71eb630b80bcbdb27036a874a7204d1e416dc45522f4c",
+    "H4_STANDARD_desktop.png": "819b0a0a7f8f8222d57bf2b48d912c6b6458edbd55e99f8a899d163702d928a9",
+    "info_alert_delivered.png": "efff0e40af7df4e91b0b7d2d24aa2c648a49029f3c44d3efba3b8675414807aa",
+    "info_alert_delivered.txt": "d88ed8386f9ab79c4e93bc4ed7e2d0e36cef52a327abc3ea0f31197d4f843493",
+    "info_alert_stopped.txt": "d6ab2b4db3cd5039c4165ed48af652fa48d55e197e05678e52756829100914d3",
+    "info_alert_test_configuration.txt": "1bd91f23cfc950254a45769fff789420e2ca0714005563d4e64fd626fbd6d605",
+    "M15_DEBUG_desktop.png": "4a37e745a33775b2d44ac7ac8462895375fcb6409deb7fda70a84b3a60d96511",
+    "M15_DEBUG_history_zones.png": "7758dcc4bcdcf0fc7194ff93bc1ee4fae83c18b825fb13fd94a076a9f4e2b52b",
+    "M15_MINIMAL_desktop.png": "9cce5bcdeb3754326d5a388cfedcf4a10c76961f3b9201d6f9e83677db5c1121",
+    "M15_PRO_desktop.png": "f005e9ea7ceab29f11ce04fff149f36ebe9269dad556103a6ce7d08c9daa38a4",
+    "M15_STANDARD_desktop.png": "2cde15cc60afb1ab8a7c2fdd26701e750e16b761fae2a01ff6d7b9290bdd6cbf",
+    "M15_STANDARD_mobile_390.png": "4eb05ed7ea5d704b3d1412680a736f9535fd20fe8729b52ed6d9c7721dc75877",
+    "M30_dataset_manifest.json": "4d312c0e6a3a518d3c6fc16dabf0ae7bf1c3c83f89de78020a19edfe47415b97",
+    "M30_derived_actual_comparison.json": "71dd02136ee18dd2813b05d4c5ca097c9452abdfe090c259012c5846b2dc8b00",
+    "M30_native.audit.json": "f75a5a68d147e828c0592db552fbd13ddba7dd2502aa38d9f885a66073adf2e5",
+    "M30_observer_compile.txt": "77108d9064e889e57180c804e932475d293663018570eda23b2b1d8745f8ab03",
+    "M30_runtime.txt": "a58e0836758e62e24ca2a4b9d643f59c816bdf68b571b152dd68a3e3e992be96",
+    "M30_STANDARD_desktop.png": "ffc71897369f2bb56bff2a3640531d3746c6d790ba2a347e08208f473b3e9101",
+    "M5_dataset_manifest.json": "a305b7f68de0debc08f890a2fb5ed9c8e35437562213b49203c43f49c4c86db9",
+    "M5_native.audit.json": "4b2091254eccdc7b095f5f44459df77f71f66843488ef390488691975c5e8685",
+    "M5_observer_compile.txt": "edcc2c360b2b990eb3c55e4e75383eb609b08307c85bdb7abb73f50a5f03ee72",
+    "M5_runtime.txt": "0ef65adf86a3d6af22925d883cf4e3093035761ece725d0ff1fb7fe73bbedeba",
+    "M5_STANDARD_desktop.png": "6ce93147df45504454a184e4cf3c36a57776605948e961a501dbef7952806c95",
+    "replay_blocked.txt": "260d889e4498fbaef39694ad377f20ae4d48b736fccbd365da751091914e22dc",
+    "restored_editor_readback.json": "443f1623746c6eb49e983145ace03c941f059b78ceee8b43450a086ffd2d1be6",
+    "restored_pure_compile.txt": "e49e4431af0df0fb0c9c65528a15c0e48923ab791b3706f2c25395e4933f46e4",
+    "technical_alert_blocked.png": "ed39fe4446c59861cbecfc2f9199a7e31f5e097fad767c014a1eb46f3499ffb3",
+    "technical_alert_blocked.txt": "c516d6237320e9bea53c693d9d2c51c82b210719e14517324ee565c5bc231898",
+    "text_drawing_diagnosis.json": "2c6c31250de8d4042bea6eeba287985e897f835d3172cc7845d851bb13a913de",
+    "text_drawing_dialog.png": "b9ef08035221af8c890b34f91553417187aec45f7d40e6df92a7d4e204b47393",
+    "text_drawing_hidden.png": "a9f27ac07d779b3d502080cbad44ccff1b46d7be8b96c3734da9d3588f79f7f6",
+    "ui_compile_initial.txt": "a4f9d9cea871a80891dd6ab0e9f11fc6b91383ae0e0d3069d5e852b83439782f",
+    "ui_native_parity.json": "dc47bbdba6291a835ea8d27851621e0bfbf4a97ca9ebcf10fb8def680b1540b1",
+    "ui_observer_compile.txt": "3135d29ec63b7552f5fb95e2984d21c32382aee2d4073e9f3a04ba5d05da47b3",
+    "ui_parity.audit.json": "eff3e84a64775e0889ce212f90721d02e946128abc97303b98b98c7a0f19ec2f"
+  }
+}

@@ -1,0 +1,218 @@
+{
+  "schema": "qirvanta.research.actual_tf_registration.v1",
+  "registered_utc": "2026-11-09T18:01:54.508420+00:00",
+  "status": "EXPLORATORY_NEW_TIMEFRAME_GRANULARITY_WITHIN_ALREADY_OBSERVED_CALENDAR_PERIOD",
+  "sources": [
+    {
+      "timeframe": "5",
+      "local_csv": "../mission/M5_dataset/bars.csv",
+      "csv_sha256": "44971f52b0008fefc4b61dda51c71043f08e4a2e3bc6d08121380e95232ace1d",
+      "bar_count": 5565,
+      "first_open": 1791756000000,
+      "last_close": 1794192300000,
+      "native_audit": "docs/platform_evidence/M5_native.audit.json",
+      "native_audit_sha256": "4b2091254eccdc7b095f5f44459df77f71f66843488ef390488691975c5e8685",
+      "publication": "new raw OHLC local only; no fresh market archives copied into repo"
+    },
+    {
+      "timeframe": "15",
+      "local_csv": "../mission/ui_dataset/bars.csv",
+      "csv_sha256": "6c89015105a406c2a0c1567f0e9a5e445cb31ee7604a985d727f26892d8ba4b7",
+      "bar_count": 6445,
+      "first_open": 1785708000000,
+      "last_close": 1794192300000,
+      "native_audit": "docs/platform_evidence/ui_parity.audit.json",
+      "native_audit_sha256": "eff3e84a64775e0889ce212f90721d02e946128abc97303b98b98c7a0f19ec2f",
+      "publication": "new raw OHLC local only; no fresh market archives copied into repo"
+    },
+    {
+      "timeframe": "30",
+      "local_csv": "../mission/M30_dataset/bars.csv",
+      "csv_sha256": "1b31dc5dad532b9362c5340511211fbc13a33c64983d4a49485c7442a269c5d5",
+      "bar_count": 10091,
+      "first_open": 1767308400000,
+      "last_close": 1794191400000,
+      "native_audit": "docs/platform_evidence/M30_native.audit.json",
+      "native_audit_sha256": "f75a5a68d147e828c0592db552fbd13ddba7dd2502aa38d9f885a66073adf2e5",
+      "publication": "new raw OHLC local only; no fresh market archives copied into repo"
+    }
+  ],
+  "common_window": {
+    "status": "AVAILABLE",
+    "first_valid_by_tf": {
+      "5": 1792785600000,
+      "15": 1786737600000,
+      "30": 1768507200000
+    },
+    "start": 1792785600000,
+    "end": 1794191400000,
+    "alignment_ms": 1800000,
+    "criterion": "latest first ready entry feature with completed H1/H4 bias (SMA-seeded EMA20/50), ceil UTC half-hour; min last bar close floor half-hour",
+    "uses_returns": false,
+    "partial_end_bars_excluded": {
+      "5": 3,
+      "15": 1,
+      "30": 0
+    }
+  },
+  "procedure_approval": "data-only common start/end approved by task owner before data selection; no return values used",
+  "trials": [
+    {
+      "id": "S1-ACTUAL-M5-BASE",
+      "family": "S1",
+      "timeframe": "5"
+    },
+    {
+      "id": "S2-ACTUAL-M5-BASE",
+      "family": "S2",
+      "timeframe": "5"
+    },
+    {
+      "id": "S3-ACTUAL-M5-BASE",
+      "family": "S3",
+      "timeframe": "5"
+    },
+    {
+      "id": "S4-ACTUAL-M5-BASE",
+      "family": "S4",
+      "timeframe": "5"
+    },
+    {
+      "id": "S5-ACTUAL-M5-BASE",
+      "family": "S5",
+      "timeframe": "5"
+    },
+    {
+      "id": "S6-ACTUAL-M5-BASE",
+      "family": "S6",
+      "timeframe": "5"
+    },
+    {
+      "id": "S7-ACTUAL-M5-BASE",
+      "family": "S7",
+      "timeframe": "5"
+    },
+    {
+      "id": "S8-ACTUAL-M5-BASE",
+      "family": "S8",
+      "timeframe": "5"
+    },
+    {
+      "id": "S9-ACTUAL-M5-BASE",
+      "family": "S9",
+      "timeframe": "5"
+    },
+    {
+      "id": "S10-ACTUAL-M5-BASE",
+      "family": "S10",
+      "timeframe": "5"
+    },
+    {
+      "id": "S1-ACTUAL-M15-BASE",
+      "family": "S1",
+      "timeframe": "15"
+    },
+    {
+      "id": "S2-ACTUAL-M15-BASE",
+      "family": "S2",
+      "timeframe": "15"
+    },
+    {
+      "id": "S3-ACTUAL-M15-BASE",
+      "family": "S3",
+      "timeframe": "15"
+    },
+    {
+      "id": "S4-ACTUAL-M15-BASE",
+      "family": "S4",
+      "timeframe": "15"
+    },
+    {
+      "id": "S5-ACTUAL-M15-BASE",
+      "family": "S5",
+      "timeframe": "15"
+    },
+    {
+      "id": "S6-ACTUAL-M15-BASE",
+      "family": "S6",
+      "timeframe": "15"
+    },
+    {
+      "id": "S7-ACTUAL-M15-BASE",
+      "family": "S7",
+      "timeframe": "15"
+    },
+    {
+      "id": "S8-ACTUAL-M15-BASE",
+      "family": "S8",
+      "timeframe": "15"
+    },
+    {
+      "id": "S9-ACTUAL-M15-BASE",
+      "family": "S9",
+      "timeframe": "15"
+    },
+    {
+      "id": "S10-ACTUAL-M15-BASE",
+      "family": "S10",
+      "timeframe": "15"
+    },
+    {
+      "id": "S1-ACTUAL-M30-BASE",
+      "family": "S1",
+      "timeframe": "30"
+    },
+    {
+      "id": "S2-ACTUAL-M30-BASE",
+      "family": "S2",
+      "timeframe": "30"
+    },
+    {
+      "id": "S3-ACTUAL-M30-BASE",
+      "family": "S3",
+      "timeframe": "30"
+    },
+    {
+      "id": "S4-ACTUAL-M30-BASE",
+      "family": "S4",
+      "timeframe": "30"
+    },
+    {
+      "id": "S5-ACTUAL-M30-BASE",
+      "family": "S5",
+      "timeframe": "30"
+    },
+    {
+      "id": "S6-ACTUAL-M30-BASE",
+      "family": "S6",
+      "timeframe": "30"
+    },
+    {
+      "id": "S7-ACTUAL-M30-BASE",
+      "family": "S7",
+      "timeframe": "30"
+    },
+    {
+      "id": "S8-ACTUAL-M30-BASE",
+      "family": "S8",
+      "timeframe": "30"
+    },
+    {
+      "id": "S9-ACTUAL-M30-BASE",
+      "family": "S9",
+      "timeframe": "30"
+    },
+    {
+      "id": "S10-ACTUAL-M30-BASE",
+      "family": "S10",
+      "timeframe": "30"
+    }
+  ],
+  "parameters": "Same frozen BASE numeric settings, costs, quantity; entry_delay1,maxhold48,cooldown8, PARTIAL_R. Bar periods imply different clock horizons. Prewindow data for feature/setup warmup; start flat; truncate input to commonend; no forced final close.",
+  "native_comparison": "Actual native full-history runs are extracted as common-window entry cohorts, with prewindow carryover and end censoring listed; different strategies/prior occupancy/engine, not paired improvement evidence.",
+  "same_source": "UI champion92307768 with unchanged trading logic; Python enginev2; all new modules remain OFF in production.",
+  "hypotheses": "No candidate promotion; fixed-family behavior across actual supplied bars only; no threshold tuning. S6 andS10 blocks retained.",
+  "multiple_testing": "Joint Holm includes original90 + these30 + separately registered9 perturbation/ablation trials =129; reruns not new hypotheses. Exploratory p-values not independent confirmation.",
+  "untouched_holdout": false,
+  "promotion_allowed": false
+}

@@ -1,0 +1,80 @@
+{
+  "schema": "qirvanta.research.ablation_registration.v1",
+  "registered_utc": "2026-11-09T18:01:54.526456+00:00",
+  "status": "EXPLORATORY_POST_SELECTION_BEFORE_VARIANT_EXECUTION",
+  "selection_disclosure": "S3,S5,S8 were positive default M15 trials; selected after seeing that table to test fragility, not as independent confirmations. All variants reported; no promotion or best-config selection.",
+  "data": "original lockedM15 SHA7015f6386d2627237c57ff8625d59cbe3c9b852e4742b786cbb4679db3d48c56; full original6445bars; originalBASE reference reused",
+  "trials": [
+    {
+      "id": "S3-BODY0.2",
+      "family": "S3",
+      "parameter": {
+        "confirmation_body_atr": 0.2
+      },
+      "remove_gate": null
+    },
+    {
+      "id": "S3-BODY0.3",
+      "family": "S3",
+      "parameter": {
+        "confirmation_body_atr": 0.3
+      },
+      "remove_gate": null
+    },
+    {
+      "id": "S5-BODY0.2",
+      "family": "S5",
+      "parameter": {
+        "confirmation_body_atr": 0.2
+      },
+      "remove_gate": null
+    },
+    {
+      "id": "S5-BODY0.3",
+      "family": "S5",
+      "parameter": {
+        "confirmation_body_atr": 0.3
+      },
+      "remove_gate": null
+    },
+    {
+      "id": "S8-ADX18",
+      "family": "S8",
+      "parameter": {
+        "adx_min": 18
+      },
+      "remove_gate": null
+    },
+    {
+      "id": "S8-ADX22",
+      "family": "S8",
+      "parameter": {
+        "adx_min": 22
+      },
+      "remove_gate": null
+    },
+    {
+      "id": "S3-ABLATE-CONFIRMATION_CANDLE",
+      "family": "S3",
+      "parameter": {},
+      "remove_gate": "CONFIRMATION_CANDLE"
+    },
+    {
+      "id": "S5-ABLATE-CONFIRMATION_CANDLE",
+      "family": "S5",
+      "parameter": {},
+      "remove_gate": "CONFIRMATION_CANDLE"
+    },
+    {
+      "id": "S8-ABLATE-PRIOR_PAUSE",
+      "family": "S8",
+      "parameter": {},
+      "remove_gate": "PRIOR_PAUSE"
+    }
+  ],
+  "ablation_semantics": "Isolated CandidateLibrary subclass invokes unchanged original evaluate, then only on targetfamily raw_setup REJECTED removes exactly specified reason. Other reasons remain; status becomesCONFIRMED only if empty. Original raw-trigger setup consumption unchanged. All changed decisions record originalreasons/removedgate. No frozenproduction/library/engine file edit.",
+  "threshold_stability": "S3/S5 body .20/.30 around.25; S8 ADX18/22 around20. No parameter chosen from outcomes. S8 hard efficiency .35 remains unchanged.",
+  "hypothesis": "Component necessity or threshold robustness may fail; retain all negative/zero/blocked results. More signals is not success and ablation is never production change.",
+  "multiple_testing": "Joint129registeredtrials; formal p-values remain exploratory",
+  "promotion_allowed": false
+}

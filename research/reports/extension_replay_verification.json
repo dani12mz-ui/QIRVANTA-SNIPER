@@ -1,0 +1,244 @@
+{
+  "schema": "qirvanta.research.extension_replay.v1",
+  "status": "PASS",
+  "count": 39,
+  "execute": true,
+  "trials": [
+    {
+      "id": "S1-ACTUAL-M5-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S2-ACTUAL-M5-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S3-ACTUAL-M5-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S4-ACTUAL-M5-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S5-ACTUAL-M5-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S6-ACTUAL-M5-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S7-ACTUAL-M5-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S8-ACTUAL-M5-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S9-ACTUAL-M5-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S10-ACTUAL-M5-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S1-ACTUAL-M15-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S2-ACTUAL-M15-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S3-ACTUAL-M15-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S4-ACTUAL-M15-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S5-ACTUAL-M15-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S6-ACTUAL-M15-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S7-ACTUAL-M15-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S8-ACTUAL-M15-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S9-ACTUAL-M15-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S10-ACTUAL-M15-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S1-ACTUAL-M30-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S2-ACTUAL-M30-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S3-ACTUAL-M30-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S4-ACTUAL-M30-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S5-ACTUAL-M30-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S6-ACTUAL-M30-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S7-ACTUAL-M30-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S8-ACTUAL-M30-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S9-ACTUAL-M30-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S10-ACTUAL-M30-BASE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S3-BODY0.2",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S3-BODY0.3",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S5-BODY0.2",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S5-BODY0.3",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S8-ADX18",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S8-ADX22",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S3-ABLATE-CONFIRMATION_CANDLE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S5-ABLATE-CONFIRMATION_CANDLE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    },
+    {
+      "id": "S8-ABLATE-PRIOR_PAUSE",
+      "journal_verified": true,
+      "public_sparse_evidence": false,
+      "economic_replay_equal": true
+    }
+  ],
+  "native_parity": false,
+  "profitability_validation": false
+}

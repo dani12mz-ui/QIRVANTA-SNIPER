@@ -1,0 +1,44 @@
+{
+  "verified_at_utc": "2026-11-09T17:40:32.009246+00:00",
+  "status": "PASS_ACTUAL_NATIVE_PARITY_FIXED_OBSERVED_PERIOD",
+  "baseline_source_sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+  "ui_source_sha256": "92307768be68946dc87cbe4ea45a8b5e32446fd3b7a0c1a38dce40dffe358be3",
+  "dataset_rows": 6445,
+  "reobserved_dataset_csv_sha256": "6c89015105a406c2a0c1567f0e9a5e445cb31ee7604a985d727f26892d8ba4b7",
+  "baseline_ui_dataset_byte_equal": true,
+  "campaign_count": 72,
+  "closed_native_rows": 212,
+  "complete_campaign_objects_equal_excluding_only_run_id": true,
+  "metadata_exclusion": [
+    "run_id: baseline|Всички vs ui_only|Всички"
+  ],
+  "economic_or_decision_exclusions": [],
+  "identical_report_sections": [
+    "complete_campaign_metrics",
+    "complete_campaign_groups",
+    "observed_closed_row_metrics",
+    "cash_reconciliation",
+    "closed_cash_drawdown",
+    "complete_campaign_close_drawdown",
+    "native_equity_max_drawdown",
+    "campaign_state_counts",
+    "coverage"
+  ],
+  "net_usd": -144.492,
+  "native_equity_dd": {
+    "value": 842.255,
+    "source": "snapshot.strategy.max_drawdown",
+    "scope": "NATIVE_EQUITY_INTRABAR_METRIC_NOT_RECONSTRUCTED_FROM_CLOSED_ROWS"
+  },
+  "baseline_audit_sha256": "c9084d7d83f58be026629072c84955c2f77e5fa8641cb0a5517db0e10d455f0b",
+  "ui_audit_sha256": "eff3e84a64775e0889ce212f90721d02e946128abc97303b98b98c7a0f19ec2f",
+  "raw_ui_log_local_path": "work/mission/UI_PARITY.pine-logs.csv",
+  "raw_ui_log_sha256": "026372ba09a07c3035b88ed970e316c75b75cf40b702e8694703e44e4d230d23",
+  "no_claim": [
+    "No broker execution",
+    "No new profitable trading edge",
+    "No untouched final holdout",
+    "No equality to original dataset volume:33 values were revised by provider"
+  ],
+  "old_baseline_journal_all_campaigns_preserved": true
+}

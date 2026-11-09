@@ -1,0 +1,2493 @@
+{
+  "status": "EXPLORATORY_OLD_DATA_NO_DEPLOYMENT",
+  "labels": "one complete native campaign profitable after actual commission",
+  "feature_schema": [
+    "signal_efficiency20",
+    "signal_local_aligned",
+    "signal_countertrend",
+    "side",
+    "planned_stop_distance_over_signal_atr",
+    "family_FAST",
+    "family_REVERSAL"
+  ],
+  "feature_availability": "submitted_metadata at confirmed signal close",
+  "seed": 20261109,
+  "split_ids": {
+    "train": [
+      "OANDA:XAUUSD|15|3|-1|1786107600000|1786108500000",
+      "OANDA:XAUUSD|15|2|1|1786338000000|1786338000000",
+      "OANDA:XAUUSD|15|2|1|1786446000000|1786446000000",
+      "OANDA:XAUUSD|15|2|1|1786493700000|1786493700000",
+      "OANDA:XAUUSD|15|2|1|1786617900000|1786617900000",
+      "OANDA:XAUUSD|15|2|-1|1786684500000|1786684500000",
+      "OANDA:XAUUSD|15|2|1|1786693500000|1786693500000",
+      "OANDA:XAUUSD|15|2|1|1786944600000|1786944600000",
+      "OANDA:XAUUSD|15|2|-1|1787040000000|1787040000000",
+      "OANDA:XAUUSD|15|3|1|1787076900000|1787077800000",
+      "OANDA:XAUUSD|15|3|1|1787096700000|1787097600000",
+      "OANDA:XAUUSD|15|2|-1|1787114700000|1787114700000",
+      "OANDA:XAUUSD|15|2|1|1787236200000|1787236200000",
+      "OANDA:XAUUSD|15|2|-1|1787644800000|1787644800000",
+      "OANDA:XAUUSD|15|2|-1|1787834700000|1787834700000",
+      "OANDA:XAUUSD|15|2|1|1787845500000|1787845500000",
+      "OANDA:XAUUSD|15|3|1|1787864400000|1787869800000",
+      "OANDA:XAUUSD|15|2|1|1787920200000|1787920200000",
+      "OANDA:XAUUSD|15|3|-1|1788164100000|1788165900000",
+      "OANDA:XAUUSD|15|2|-1|1788183900000|1788183900000",
+      "OANDA:XAUUSD|15|2|-1|1788236100000|1788236100000",
+      "OANDA:XAUUSD|15|2|-1|1788247800000|1788247800000",
+      "OANDA:XAUUSD|15|2|-1|1788280200000|1788280200000",
+      "OANDA:XAUUSD|15|3|-1|1788449400000|1788450300000",
+      "OANDA:XAUUSD|15|3|1|1788514200000|1788516900000",
+      "OANDA:XAUUSD|15|3|-1|1788535800000|1788537600000",
+      "OANDA:XAUUSD|15|2|-1|1788889500000|1788889500000",
+      "OANDA:XAUUSD|15|2|-1|1789063200000|1789063200000",
+      "OANDA:XAUUSD|15|2|-1|1789124400000|1789124400000",
+      "OANDA:XAUUSD|15|2|-1|1789369200000|1789369200000",
+      "OANDA:XAUUSD|15|2|-1|1789415100000|1789415100000",
+      "OANDA:XAUUSD|15|3|-1|1789441200000|1789442100000",
+      "OANDA:XAUUSD|15|2|-1|1789474500000|1789474500000",
+      "OANDA:XAUUSD|15|2|-1|1789614000000|1789614000000",
+      "OANDA:XAUUSD|15|3|-1|1789718400000|1789719300000",
+      "OANDA:XAUUSD|15|2|-1|1789983000000|1789983000000",
+      "OANDA:XAUUSD|15|2|-1|1790021700000|1790021700000",
+      "OANDA:XAUUSD|15|2|1|1790071200000|1790071200000",
+      "OANDA:XAUUSD|15|2|-1|1790088300000|1790088300000",
+      "OANDA:XAUUSD|15|3|-1|1790101800000|1790102700000",
+      "OANDA:XAUUSD|15|3|1|1790154000000|1790154900000",
+      "OANDA:XAUUSD|15|2|-1|1790192700000|1790192700000",
+      "OANDA:XAUUSD|15|3|-1|1790300700000|1790301600000"
+    ],
+    "validation": [
+      "OANDA:XAUUSD|15|2|-1|1790602200000|1790602200000",
+      "OANDA:XAUUSD|15|3|1|1790607600000|1790609400000",
+      "OANDA:XAUUSD|15|2|-1|1790625600000|1790625600000",
+      "OANDA:XAUUSD|15|2|1|1790687700000|1790687700000",
+      "OANDA:XAUUSD|15|2|-1|1790700300000|1790700300000",
+      "OANDA:XAUUSD|15|3|1|1790792100000|1790793000000",
+      "OANDA:XAUUSD|15|2|-1|1790973900000|1790973900000",
+      "OANDA:XAUUSD|15|2|-1|1791261900000|1791261900000",
+      "OANDA:XAUUSD|15|3|1|1791351000000|1791351900000",
+      "OANDA:XAUUSD|15|2|1|1791562500000|1791562500000",
+      "OANDA:XAUUSD|15|2|-1|1791933300000|1791933300000",
+      "OANDA:XAUUSD|15|2|-1|1792044900000|1792044900000",
+      "OANDA:XAUUSD|15|3|-1|1792057500000|1792059300000",
+      "OANDA:XAUUSD|15|3|-1|1792095300000|1792096200000"
+    ],
+    "test": [
+      "OANDA:XAUUSD|15|3|-1|1792179900000|1792181700000",
+      "OANDA:XAUUSD|15|3|1|1792422000000|1792423800000",
+      "OANDA:XAUUSD|15|1|-1|1792449900000|1792450800000",
+      "OANDA:XAUUSD|15|2|1|1792466100000|1792466100000",
+      "OANDA:XAUUSD|15|2|-1|1792656900000|1792656900000",
+      "OANDA:XAUUSD|15|2|-1|1792728900000|1792728900000",
+      "OANDA:XAUUSD|15|2|1|1792761300000|1792761300000",
+      "OANDA:XAUUSD|15|2|-1|1792788300000|1792788300000",
+      "OANDA:XAUUSD|15|2|1|1793002500000|1793002500000",
+      "OANDA:XAUUSD|15|3|-1|1793142000000|1793142900000",
+      "OANDA:XAUUSD|15|3|1|1793186100000|1793187900000",
+      "OANDA:XAUUSD|15|2|-1|1793197800000|1793197800000",
+      "OANDA:XAUUSD|15|2|-1|1793232900000|1793232900000",
+      "OANDA:XAUUSD|15|2|-1|1793648700000|1793648700000",
+      "OANDA:XAUUSD|15|2|1|1793808000000|1793808000000"
+    ],
+    "purged": []
+  },
+  "chronological_60_20_20": {
+    "status": "EXPLORATORY_ONLY",
+    "train_n": 43,
+    "validation_n": 14,
+    "test_n": 15,
+    "train_prevalence": 0.5116279069767442,
+    "train_scaler_means": [
+      0.1758026634883721,
+      0.5116279069767442,
+      0.2558139534883721,
+      -0.3023255813953488,
+      1.6102866265802316,
+      0.6976744186046512,
+      0.3023255813953488
+    ],
+    "raw": {
+      "n": 15,
+      "brier": 0.28062182759124527,
+      "log_loss": 0.7624000867881423,
+      "calibration_bins": [
+        {
+          "lower": 0.0,
+          "upper": 0.2,
+          "n": 0,
+          "mean_probability": null,
+          "observed_frequency": null
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.4,
+          "n": 2,
+          "mean_probability": 0.35627044436152994,
+          "observed_frequency": 0.5
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.6,
+          "n": 9,
+          "mean_probability": 0.48536339109924076,
+          "observed_frequency": 0.3333333333333333
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.8,
+          "n": 4,
+          "mean_probability": 0.6498950277114558,
+          "observed_frequency": 0.5
+        },
+        {
+          "lower": 0.8,
+          "upper": 1.0,
+          "n": 0,
+          "mean_probability": null,
+          "observed_frequency": null
+        }
+      ]
+    },
+    "model_artifact": {
+      "algorithm": "fixed_gradient_logistic_v1",
+      "iterations": 1000,
+      "rate": 0.05,
+      "ridge": 0.1,
+      "means": [
+        0.1758026634883721,
+        0.5116279069767442,
+        0.2558139534883721,
+        -0.3023255813953488,
+        1.6102866265802316,
+        0.6976744186046512,
+        0.3023255813953488
+      ],
+      "scales": [
+        0.13268831691119665,
+        0.499864773493132,
+        0.4363177450998539,
+        0.9532047224148464,
+        0.37453305412096394,
+        0.45926552693329065,
+        0.45926552693329065
+      ],
+      "weights": [
+        0.05553759785206067,
+        0.502513766985426,
+        -0.1704634235372452,
+        0.0683820770949628,
+        -0.11188728421707869,
+        0.02120625623695617,
+        0.09023713999856664,
+        -0.09023713999856664
+      ],
+      "training_sha256": "3a5f6581d96b85894b2154e95fee14fd580d8f8602779fc558c1c814eb9801c4",
+      "orders_enabled": false
+    },
+    "test_predictions": [
+      {
+        "id": "OANDA:XAUUSD|15|3|-1|1792179900000|1792181700000",
+        "probability": 0.6047837281982973,
+        "label": 0
+      },
+      {
+        "id": "OANDA:XAUUSD|15|3|1|1792422000000|1792423800000",
+        "probability": 0.5641413196542279,
+        "label": 0
+      },
+      {
+        "id": "OANDA:XAUUSD|15|1|-1|1792449900000|1792450800000",
+        "probability": 0.45728059498977286,
+        "label": 1
+      },
+      {
+        "id": "OANDA:XAUUSD|15|2|1|1792466100000|1792466100000",
+        "probability": 0.4465637258781886,
+        "label": 0
+      },
+      {
+        "id": "OANDA:XAUUSD|15|2|-1|1792656900000|1792656900000",
+        "probability": 0.6040820054796746,
+        "label": 1
+      },
+      {
+        "id": "OANDA:XAUUSD|15|2|-1|1792728900000|1792728900000",
+        "probability": 0.47145214015214854,
+        "label": 0
+      },
+      {
+        "id": "OANDA:XAUUSD|15|2|1|1792761300000|1792761300000",
+        "probability": 0.7800000525264109,
+        "label": 0
+      },
+      {
+        "id": "OANDA:XAUUSD|15|2|-1|1792788300000|1792788300000",
+        "probability": 0.387191685788078,
+        "label": 0
+      },
+      {
+        "id": "OANDA:XAUUSD|15|2|1|1793002500000|1793002500000",
+        "probability": 0.4112170726134231,
+        "label": 0
+      },
+      {
+        "id": "OANDA:XAUUSD|15|3|-1|1793142000000|1793142900000",
+        "probability": 0.40560181079062163,
+        "label": 1
+      },
+      {
+        "id": "OANDA:XAUUSD|15|3|1|1793186100000|1793187900000",
+        "probability": 0.5518372568876133,
+        "label": 1
+      },
+      {
+        "id": "OANDA:XAUUSD|15|2|-1|1793197800000|1793197800000",
+        "probability": 0.6107143246414403,
+        "label": 1
+      },
+      {
+        "id": "OANDA:XAUUSD|15|2|-1|1793232900000|1793232900000",
+        "probability": 0.4979427450965584,
+        "label": 0
+      },
+      {
+        "id": "OANDA:XAUUSD|15|2|-1|1793648700000|1793648700000",
+        "probability": 0.5622338538306126,
+        "label": 0
+      },
+      {
+        "id": "OANDA:XAUUSD|15|2|1|1793808000000|1793808000000",
+        "probability": 0.3253492029349819,
+        "label": 1
+      }
+    ],
+    "constant_train_prevalence": {
+      "n": 15,
+      "brier": 0.25246078961600865,
+      "log_loss": 0.6980696717161823,
+      "calibration_bins": [
+        {
+          "lower": 0.0,
+          "upper": 0.2,
+          "n": 0,
+          "mean_probability": null,
+          "observed_frequency": null
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.4,
+          "n": 0,
+          "mean_probability": null,
+          "observed_frequency": null
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.6,
+          "n": 15,
+          "mean_probability": 0.5116279069767442,
+          "observed_frequency": 0.4
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.8,
+          "n": 0,
+          "mean_probability": null,
+          "observed_frequency": null
+        },
+        {
+          "lower": 0.8,
+          "upper": 1.0,
+          "n": 0,
+          "mean_probability": null,
+          "observed_frequency": null
+        }
+      ]
+    },
+    "platt_validation_only": {
+      "n": 15,
+      "brier": 0.24609191195239996,
+      "log_loss": 0.6862716531901493,
+      "calibration_bins": [
+        {
+          "lower": 0.0,
+          "upper": 0.2,
+          "n": 0,
+          "mean_probability": null,
+          "observed_frequency": null
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.4,
+          "n": 14,
+          "mean_probability": 0.3490793119811409,
+          "observed_frequency": 0.42857142857142855
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.6,
+          "n": 1,
+          "mean_probability": 0.41167203535886504,
+          "observed_frequency": 0
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.8,
+          "n": 0,
+          "mean_probability": null,
+          "observed_frequency": null
+        },
+        {
+          "lower": 0.8,
+          "upper": 1.0,
+          "n": 0,
+          "mean_probability": null,
+          "observed_frequency": null
+        }
+      ]
+    },
+    "calibration_artifact": {
+      "algorithm": "fixed_gradient_logistic_v1",
+      "iterations": 1000,
+      "rate": 0.05,
+      "ridge": 0.1,
+      "means": [
+        0.1362747379284352
+      ],
+      "scales": [
+        0.5660512884767283
+      ],
+      "weights": [
+        -0.5896384175966841,
+        0.11656953872790977
+      ],
+      "training_sha256": "615135fef9408e44799e4460360382adfe640caf9dd40059c8abf315e313bb3c",
+      "orders_enabled": false
+    }
+  },
+  "rolling_expanding_walk_forward": [
+    {
+      "test_ids": [
+        "OANDA:XAUUSD|15|3|1|1788514200000|1788516900000",
+        "OANDA:XAUUSD|15|3|-1|1788535800000|1788537600000",
+        "OANDA:XAUUSD|15|2|-1|1788889500000|1788889500000",
+        "OANDA:XAUUSD|15|2|-1|1789063200000|1789063200000",
+        "OANDA:XAUUSD|15|2|-1|1789124400000|1789124400000",
+        "OANDA:XAUUSD|15|2|-1|1789369200000|1789369200000",
+        "OANDA:XAUUSD|15|2|-1|1789415100000|1789415100000",
+        "OANDA:XAUUSD|15|3|-1|1789441200000|1789442100000",
+        "OANDA:XAUUSD|15|2|-1|1789474500000|1789474500000",
+        "OANDA:XAUUSD|15|2|-1|1789614000000|1789614000000",
+        "OANDA:XAUUSD|15|3|-1|1789718400000|1789719300000",
+        "OANDA:XAUUSD|15|2|-1|1789983000000|1789983000000"
+      ],
+      "purged_n": 0,
+      "status": "EXPLORATORY_ONLY",
+      "train_n": 19,
+      "validation_n": 5,
+      "test_n": 12,
+      "train_prevalence": 0.5789473684210527,
+      "train_scaler_means": [
+        0.16569276894736842,
+        0.47368421052631576,
+        0.3157894736842105,
+        0.2631578947368421,
+        1.6331532168342286,
+        0.7368421052631579,
+        0.2631578947368421
+      ],
+      "raw": {
+        "n": 12,
+        "brier": 0.30715347857044206,
+        "log_loss": 0.826937570593481,
+        "calibration_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.2,
+            "n": 1,
+            "mean_probability": 0.16756602942675303,
+            "observed_frequency": 1
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.4,
+            "n": 4,
+            "mean_probability": 0.28202819964891346,
+            "observed_frequency": 0.5
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.6,
+            "n": 4,
+            "mean_probability": 0.47762839878466723,
+            "observed_frequency": 0.25
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.8,
+            "n": 2,
+            "mean_probability": 0.7227655759381338,
+            "observed_frequency": 0.5
+          },
+          {
+            "lower": 0.8,
+            "upper": 1.0,
+            "n": 1,
+            "mean_probability": 0.8804226967732599,
+            "observed_frequency": 1
+          }
+        ]
+      },
+      "model_artifact": {
+        "algorithm": "fixed_gradient_logistic_v1",
+        "iterations": 1000,
+        "rate": 0.05,
+        "ridge": 0.1,
+        "means": [
+          0.16569276894736842,
+          0.47368421052631576,
+          0.3157894736842105,
+          0.2631578947368421,
+          1.6331532168342286,
+          0.7368421052631579,
+          0.2631578947368421
+        ],
+        "scales": [
+          0.1207633969247064,
+          0.49930699897395464,
+          0.464829519280413,
+          0.96475277788544,
+          0.3557115804212281,
+          0.4403473823863555,
+          0.44034738238635557
+        ],
+        "weights": [
+          0.30759434230911986,
+          0.5625371313375002,
+          -0.4098745439542902,
+          0.7143880316101917,
+          0.20582048254771912,
+          0.38822320260460896,
+          0.2573247919019178,
+          -0.25732479190191776
+        ],
+        "training_sha256": "0c4a44d5dd1c24715ca652ac0d25ce68afb341c46ef07ff04d4ec308f7cec657",
+        "orders_enabled": false
+      },
+      "test_predictions": [
+        {
+          "id": "OANDA:XAUUSD|15|3|1|1788514200000|1788516900000",
+          "probability": 0.21962498788271012,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|3|-1|1788535800000|1788537600000",
+          "probability": 0.16756602942675303,
+          "label": 1
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|-1|1788889500000|1788889500000",
+          "probability": 0.42564182386921867,
+          "label": 1
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|-1|1789063200000|1789063200000",
+          "probability": 0.2873403109583659,
+          "label": 1
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|-1|1789124400000|1789124400000",
+          "probability": 0.5340935856138485,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|-1|1789369200000|1789369200000",
+          "probability": 0.670720604722516,
+          "label": 1
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|-1|1789415100000|1789415100000",
+          "probability": 0.521656393799233,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|3|-1|1789441200000|1789442100000",
+          "probability": 0.27646578437747393,
+          "label": 1
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|-1|1789474500000|1789474500000",
+          "probability": 0.4291217918563688,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|-1|1789614000000|1789614000000",
+          "probability": 0.3446817153771039,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|3|-1|1789718400000|1789719300000",
+          "probability": 0.8804226967732599,
+          "label": 1
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|-1|1789983000000|1789983000000",
+          "probability": 0.7748105471537516,
+          "label": 0
+        }
+      ],
+      "constant_train_prevalence": {
+        "n": 12,
+        "brier": 0.2562326869806094,
+        "log_loss": 0.7057705719273373,
+        "calibration_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.2,
+            "n": 0,
+            "mean_probability": null,
+            "observed_frequency": null
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.4,
+            "n": 0,
+            "mean_probability": null,
+            "observed_frequency": null
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.6,
+            "n": 12,
+            "mean_probability": 0.5789473684210527,
+            "observed_frequency": 0.5
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.8,
+            "n": 0,
+            "mean_probability": null,
+            "observed_frequency": null
+          },
+          {
+            "lower": 0.8,
+            "upper": 1.0,
+            "n": 0,
+            "mean_probability": null,
+            "observed_frequency": null
+          }
+        ]
+      },
+      "calibration_status": "INSUFFICIENT_VALIDATION_CLASSES_OR_ROWS"
+    },
+    {
+      "test_ids": [
+        "OANDA:XAUUSD|15|2|-1|1790021700000|1790021700000",
+        "OANDA:XAUUSD|15|2|1|1790071200000|1790071200000",
+        "OANDA:XAUUSD|15|2|-1|1790088300000|1790088300000",
+        "OANDA:XAUUSD|15|3|-1|1790101800000|1790102700000",
+        "OANDA:XAUUSD|15|3|1|1790154000000|1790154900000",
+        "OANDA:XAUUSD|15|2|-1|1790192700000|1790192700000",
+        "OANDA:XAUUSD|15|3|-1|1790300700000|1790301600000",
+        "OANDA:XAUUSD|15|2|-1|1790602200000|1790602200000",
+        "OANDA:XAUUSD|15|3|1|1790607600000|1790609400000",
+        "OANDA:XAUUSD|15|2|-1|1790625600000|1790625600000",
+        "OANDA:XAUUSD|15|2|1|1790687700000|1790687700000",
+        "OANDA:XAUUSD|15|2|-1|1790700300000|1790700300000"
+      ],
+      "purged_n": 0,
+      "status": "EXPLORATORY_ONLY",
+      "train_n": 28,
+      "validation_n": 8,
+      "test_n": 12,
+      "train_prevalence": 0.6428571428571429,
+      "train_scaler_means": [
+        0.16376963642857142,
+        0.5357142857142857,
+        0.25,
+        -0.07142857142857142,
+        1.6051653218728503,
+        0.7142857142857143,
+        0.2857142857142857
+      ],
+      "raw": {
+        "n": 12,
+        "brier": 0.35396277527381903,
+        "log_loss": 0.9224070067535258,
+        "calibration_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.2,
+            "n": 0,
+            "mean_probability": null,
+            "observed_frequency": null
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.4,
+            "n": 0,
+            "mean_probability": null,
+            "observed_frequency": null
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.6,
+            "n": 5,
+            "mean_probability": 0.5582464141562984,
+            "observed_frequency": 0.2
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.8,
+            "n": 6,
+            "mean_probability": 0.7111455328000902,
+            "observed_frequency": 0.16666666666666666
+          },
+          {
+            "lower": 0.8,
+            "upper": 1.0,
+            "n": 1,
+            "mean_probability": 0.8341903923057497,
+            "observed_frequency": 1
+          }
+        ]
+      },
+      "model_artifact": {
+        "algorithm": "fixed_gradient_logistic_v1",
+        "iterations": 1000,
+        "rate": 0.05,
+        "ridge": 0.1,
+        "means": [
+          0.16376963642857142,
+          0.5357142857142857,
+          0.25,
+          -0.07142857142857142,
+          1.6051653218728503,
+          0.7142857142857143,
+          0.2857142857142857
+        ],
+        "scales": [
+          0.11992285986028221,
+          0.4987228587060336,
+          0.4330127018922193,
+          0.9974457174120672,
+          0.34830744964845506,
+          0.45175395145262565,
+          0.45175395145262565
+        ],
+        "weights": [
+          0.6464472969671126,
+          0.4627724466130398,
+          -0.3294401587992136,
+          0.29186093837308835,
+          -0.3177047365105367,
+          0.13155324986081388,
+          0.25908691440979603,
+          -0.25908691440979603
+        ],
+        "training_sha256": "58b89849e00cceffe02014af848a7455264c2f978fff21424ee9678ac43927de",
+        "orders_enabled": false
+      },
+      "test_predictions": [
+        {
+          "id": "OANDA:XAUUSD|15|2|-1|1790021700000|1790021700000",
+          "probability": 0.7134449033655528,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|1|1790071200000|1790071200000",
+          "probability": 0.7802833539857641,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|-1|1790088300000|1790088300000",
+          "probability": 0.5975986602001389,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|3|-1|1790101800000|1790102700000",
+          "probability": 0.46918819875083656,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|3|1|1790154000000|1790154900000",
+          "probability": 0.781193547447311,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|-1|1790192700000|1790192700000",
+          "probability": 0.5874990162607738,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|3|-1|1790300700000|1790301600000",
+          "probability": 0.5777083606334323,
+          "label": 1
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|-1|1790602200000|1790602200000",
+          "probability": 0.5592378349363101,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|3|1|1790607600000|1790609400000",
+          "probability": 0.6278461996347846,
+          "label": 1
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|-1|1790625600000|1790625600000",
+          "probability": 0.612888177278697,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|1|1790687700000|1790687700000",
+          "probability": 0.8341903923057497,
+          "label": 1
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|-1|1790700300000|1790700300000",
+          "probability": 0.751217015088432,
+          "label": 0
+        }
+      ],
+      "constant_train_prevalence": {
+        "n": 12,
+        "brier": 0.3418367346938776,
+        "log_loss": 0.8826727509556286,
+        "calibration_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.2,
+            "n": 0,
+            "mean_probability": null,
+            "observed_frequency": null
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.4,
+            "n": 0,
+            "mean_probability": null,
+            "observed_frequency": null
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.6,
+            "n": 0,
+            "mean_probability": null,
+            "observed_frequency": null
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.8,
+            "n": 12,
+            "mean_probability": 0.6428571428571429,
+            "observed_frequency": 0.25
+          },
+          {
+            "lower": 0.8,
+            "upper": 1.0,
+            "n": 0,
+            "mean_probability": null,
+            "observed_frequency": null
+          }
+        ]
+      },
+      "platt_validation_only": {
+        "n": 12,
+        "brier": 0.18374241706561914,
+        "log_loss": 0.5539760105105402,
+        "calibration_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.2,
+            "n": 2,
+            "mean_probability": 0.1733082910124334,
+            "observed_frequency": 0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.4,
+            "n": 9,
+            "mean_probability": 0.2701703581386841,
+            "observed_frequency": 0.2222222222222222
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.6,
+            "n": 1,
+            "mean_probability": 0.427187183881358,
+            "observed_frequency": 1
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.8,
+            "n": 0,
+            "mean_probability": null,
+            "observed_frequency": null
+          },
+          {
+            "lower": 0.8,
+            "upper": 1.0,
+            "n": 0,
+            "mean_probability": null,
+            "observed_frequency": null
+          }
+        ]
+      },
+      "calibration_artifact": {
+        "algorithm": "fixed_gradient_logistic_v1",
+        "iterations": 1000,
+        "rate": 0.05,
+        "ridge": 0.1,
+        "means": [
+          1.3226443454282863
+        ],
+        "scales": [
+          0.545065780849776
+        ],
+        "weights": [
+          -0.5332734076810566,
+          0.44638735820887876
+        ],
+        "training_sha256": "47129dab9194f9129b60de64fa3827bb46a2a3dc7a562d9102c7d704a7c71000",
+        "orders_enabled": false
+      }
+    },
+    {
+      "test_ids": [
+        "OANDA:XAUUSD|15|3|1|1790792100000|1790793000000",
+        "OANDA:XAUUSD|15|2|-1|1790973900000|1790973900000",
+        "OANDA:XAUUSD|15|2|-1|1791261900000|1791261900000",
+        "OANDA:XAUUSD|15|3|1|1791351000000|1791351900000",
+        "OANDA:XAUUSD|15|2|1|1791562500000|1791562500000",
+        "OANDA:XAUUSD|15|2|-1|1791933300000|1791933300000",
+        "OANDA:XAUUSD|15|2|-1|1792044900000|1792044900000",
+        "OANDA:XAUUSD|15|3|-1|1792057500000|1792059300000",
+        "OANDA:XAUUSD|15|3|-1|1792095300000|1792096200000",
+        "OANDA:XAUUSD|15|3|-1|1792179900000|1792181700000",
+        "OANDA:XAUUSD|15|3|1|1792422000000|1792423800000",
+        "OANDA:XAUUSD|15|1|-1|1792449900000|1792450800000"
+      ],
+      "purged_n": 0,
+      "status": "EXPLORATORY_ONLY",
+      "train_n": 38,
+      "validation_n": 10,
+      "test_n": 12,
+      "train_prevalence": 0.5526315789473685,
+      "train_scaler_means": [
+        0.17748611105263157,
+        0.5263157894736842,
+        0.2631578947368421,
+        -0.2631578947368421,
+        1.6335981966320274,
+        0.7368421052631579,
+        0.2631578947368421
+      ],
+      "raw": {
+        "n": 12,
+        "brier": 0.35184499855078327,
+        "log_loss": 0.9537906588474837,
+        "calibration_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.2,
+            "n": 0,
+            "mean_probability": null,
+            "observed_frequency": null
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.4,
+            "n": 1,
+            "mean_probability": 0.3809515840640127,
+            "observed_frequency": 0
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.6,
+            "n": 6,
+            "mean_probability": 0.5231102014691815,
+            "observed_frequency": 0.5
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.8,
+            "n": 3,
+            "mean_probability": 0.6633775130934,
+            "observed_frequency": 0.3333333333333333
+          },
+          {
+            "lower": 0.8,
+            "upper": 1.0,
+            "n": 2,
+            "mean_probability": 0.8624541621925788,
+            "observed_frequency": 0
+          }
+        ]
+      },
+      "model_artifact": {
+        "algorithm": "fixed_gradient_logistic_v1",
+        "iterations": 1000,
+        "rate": 0.05,
+        "ridge": 0.1,
+        "means": [
+          0.17748611105263157,
+          0.5263157894736842,
+          0.2631578947368421,
+          -0.2631578947368421,
+          1.6335981966320274,
+          0.7368421052631579,
+          0.2631578947368421
+        ],
+        "scales": [
+          0.1277624355298455,
+          0.49930699897395464,
+          0.44034738238635557,
+          0.96475277788544,
+          0.3610471870487442,
+          0.4403473823863555,
+          0.44034738238635557
+        ],
+        "weights": [
+          0.24375114966343608,
+          0.5505489675440068,
+          -0.13074875257357205,
+          0.134262837797548,
+          -0.05031296800394356,
+          -0.04077787014045048,
+          0.07694874301949674,
+          -0.0769487430194967
+        ],
+        "training_sha256": "8cdcfef3162a35b52135459dd4f703206777e4ccac4c38ec9c07602076a4a602",
+        "orders_enabled": false
+      },
+      "test_predictions": [
+        {
+          "id": "OANDA:XAUUSD|15|3|1|1790792100000|1790793000000",
+          "probability": 0.889322194399052,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|-1|1790973900000|1790973900000",
+          "probability": 0.4265151510848958,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|-1|1791261900000|1791261900000",
+          "probability": 0.5510966554848046,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|3|1|1791351000000|1791351900000",
+          "probability": 0.8355861299861055,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|1|1791562500000|1791562500000",
+          "probability": 0.5767476568534458,
+          "label": 1
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|-1|1791933300000|1791933300000",
+          "probability": 0.3809515840640127,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|-1|1792044900000|1792044900000",
+          "probability": 0.5792893935361967,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|3|-1|1792057500000|1792059300000",
+          "probability": 0.5276362100111267,
+          "label": 1
+        },
+        {
+          "id": "OANDA:XAUUSD|15|3|-1|1792095300000|1792096200000",
+          "probability": 0.6161295034397924,
+          "label": 1
+        },
+        {
+          "id": "OANDA:XAUUSD|15|3|-1|1792179900000|1792181700000",
+          "probability": 0.6896759630914876,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|3|1|1792422000000|1792423800000",
+          "probability": 0.68432707274892,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|1|-1|1792449900000|1792450800000",
+          "probability": 0.47737614184461946,
+          "label": 1
+        }
+      ],
+      "constant_train_prevalence": {
+        "n": 12,
+        "brier": 0.2703139427516159,
+        "log_loss": 0.7339364511144341,
+        "calibration_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.2,
+            "n": 0,
+            "mean_probability": null,
+            "observed_frequency": null
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.4,
+            "n": 0,
+            "mean_probability": null,
+            "observed_frequency": null
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.6,
+            "n": 12,
+            "mean_probability": 0.5526315789473685,
+            "observed_frequency": 0.3333333333333333
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.8,
+            "n": 0,
+            "mean_probability": null,
+            "observed_frequency": null
+          },
+          {
+            "lower": 0.8,
+            "upper": 1.0,
+            "n": 0,
+            "mean_probability": null,
+            "observed_frequency": null
+          }
+        ]
+      },
+      "platt_validation_only": {
+        "n": 12,
+        "brier": 0.2907510246429134,
+        "log_loss": 0.7793823785906442,
+        "calibration_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.2,
+            "n": 1,
+            "mean_probability": 0.1845660441409508,
+            "observed_frequency": 0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.4,
+            "n": 7,
+            "mean_probability": 0.2927330851628593,
+            "observed_frequency": 0.5714285714285714
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.6,
+            "n": 2,
+            "mean_probability": 0.4267223587201907,
+            "observed_frequency": 0
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.8,
+            "n": 2,
+            "mean_probability": 0.6676128578525429,
+            "observed_frequency": 0
+          },
+          {
+            "lower": 0.8,
+            "upper": 1.0,
+            "n": 0,
+            "mean_probability": null,
+            "observed_frequency": null
+          }
+        ]
+      },
+      "calibration_artifact": {
+        "algorithm": "fixed_gradient_logistic_v1",
+        "iterations": 1000,
+        "rate": 0.05,
+        "ridge": 0.1,
+        "means": [
+          0.11877193831398157
+        ],
+        "scales": [
+          0.715274399960419
+        ],
+        "weights": [
+          -0.9200205626268708,
+          0.6695956694218547
+        ],
+        "training_sha256": "d620cba1ab1608a8e79f2c42582fce9e5d5b655eadb2743bcdcee7ab58815f4a",
+        "orders_enabled": false
+      }
+    },
+    {
+      "test_ids": [
+        "OANDA:XAUUSD|15|2|1|1792466100000|1792466100000",
+        "OANDA:XAUUSD|15|2|-1|1792656900000|1792656900000",
+        "OANDA:XAUUSD|15|2|-1|1792728900000|1792728900000",
+        "OANDA:XAUUSD|15|2|1|1792761300000|1792761300000",
+        "OANDA:XAUUSD|15|2|-1|1792788300000|1792788300000",
+        "OANDA:XAUUSD|15|2|1|1793002500000|1793002500000",
+        "OANDA:XAUUSD|15|3|-1|1793142000000|1793142900000",
+        "OANDA:XAUUSD|15|3|1|1793186100000|1793187900000",
+        "OANDA:XAUUSD|15|2|-1|1793197800000|1793197800000",
+        "OANDA:XAUUSD|15|2|-1|1793232900000|1793232900000",
+        "OANDA:XAUUSD|15|2|-1|1793648700000|1793648700000",
+        "OANDA:XAUUSD|15|2|1|1793808000000|1793808000000"
+      ],
+      "purged_n": 0,
+      "status": "EXPLORATORY_ONLY",
+      "train_n": 48,
+      "validation_n": 12,
+      "test_n": 12,
+      "train_prevalence": 0.5,
+      "train_scaler_means": [
+        0.172147366875,
+        0.5208333333333334,
+        0.2708333333333333,
+        -0.2916666666666667,
+        1.618820201527064,
+        0.7083333333333334,
+        0.2916666666666667
+      ],
+      "raw": {
+        "n": 12,
+        "brier": 0.26551249775050373,
+        "log_loss": 0.7412208027675812,
+        "calibration_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.2,
+            "n": 0,
+            "mean_probability": null,
+            "observed_frequency": null
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.4,
+            "n": 3,
+            "mean_probability": 0.34317701300886744,
+            "observed_frequency": 0.6666666666666666
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.6,
+            "n": 7,
+            "mean_probability": 0.4838725094478428,
+            "observed_frequency": 0.2857142857142857
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.8,
+            "n": 1,
+            "mean_probability": 0.6922435322772269,
+            "observed_frequency": 1
+          },
+          {
+            "lower": 0.8,
+            "upper": 1.0,
+            "n": 1,
+            "mean_probability": 0.8330578483325545,
+            "observed_frequency": 0
+          }
+        ]
+      },
+      "model_artifact": {
+        "algorithm": "fixed_gradient_logistic_v1",
+        "iterations": 1000,
+        "rate": 0.05,
+        "ridge": 0.1,
+        "means": [
+          0.172147366875,
+          0.5208333333333334,
+          0.2708333333333333,
+          -0.2916666666666667,
+          1.618820201527064,
+          0.7083333333333334,
+          0.2916666666666667
+        ],
+        "scales": [
+          0.13302585276493148,
+          0.4995657836784083,
+          0.4443901876604488,
+          0.9565200236040831,
+          0.36070255547369656,
+          0.45452967144315476,
+          0.45452967144315476
+        ],
+        "weights": [
+          0.019795474372066142,
+          0.5708666751338021,
+          -0.10881293227087568,
+          0.16950563360068974,
+          0.0286974489892412,
+          0.020332760742022057,
+          0.04893994723040521,
+          -0.04893994723040523
+        ],
+        "training_sha256": "5d73f58697afd51be664730974331afa6e9dd5a9ba11b32e5ba559228ccedd2b",
+        "orders_enabled": false
+      },
+      "test_predictions": [
+        {
+          "id": "OANDA:XAUUSD|15|2|1|1792466100000|1792466100000",
+          "probability": 0.48190546600266787,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|-1|1792656900000|1792656900000",
+          "probability": 0.5712446777438059,
+          "label": 1
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|-1|1792728900000|1792728900000",
+          "probability": 0.42215437504775055,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|1|1792761300000|1792761300000",
+          "probability": 0.8330578483325545,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|-1|1792788300000|1792788300000",
+          "probability": 0.3305156001170655,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|1|1793002500000|1793002500000",
+          "probability": 0.4830475942104526,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|3|-1|1793142000000|1793142900000",
+          "probability": 0.36522996350906156,
+          "label": 1
+        },
+        {
+          "id": "OANDA:XAUUSD|15|3|1|1793186100000|1793187900000",
+          "probability": 0.6922435322772269,
+          "label": 1
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|-1|1793197800000|1793197800000",
+          "probability": 0.5374154312123249,
+          "label": 1
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|-1|1793232900000|1793232900000",
+          "probability": 0.40965683843793615,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|-1|1793648700000|1793648700000",
+          "probability": 0.4816831834799617,
+          "label": 0
+        },
+        {
+          "id": "OANDA:XAUUSD|15|2|1|1793808000000|1793808000000",
+          "probability": 0.3337854754004752,
+          "label": 1
+        }
+      ],
+      "constant_train_prevalence": {
+        "n": 12,
+        "brier": 0.25,
+        "log_loss": 0.6931471805599453,
+        "calibration_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.2,
+            "n": 0,
+            "mean_probability": null,
+            "observed_frequency": null
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.4,
+            "n": 0,
+            "mean_probability": null,
+            "observed_frequency": null
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.6,
+            "n": 12,
+            "mean_probability": 0.5,
+            "observed_frequency": 0.4166666666666667
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.8,
+            "n": 0,
+            "mean_probability": null,
+            "observed_frequency": null
+          },
+          {
+            "lower": 0.8,
+            "upper": 1.0,
+            "n": 0,
+            "mean_probability": null,
+            "observed_frequency": null
+          }
+        ]
+      },
+      "platt_validation_only": {
+        "n": 12,
+        "brier": 0.251973117250068,
+        "log_loss": 0.6982846236956824,
+        "calibration_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.2,
+            "n": 1,
+            "mean_probability": 0.19596609339506935,
+            "observed_frequency": 0
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.4,
+            "n": 7,
+            "mean_probability": 0.3468912457769228,
+            "observed_frequency": 0.42857142857142855
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.6,
+            "n": 4,
+            "mean_probability": 0.4288324600794802,
+            "observed_frequency": 0.5
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.8,
+            "n": 0,
+            "mean_probability": null,
+            "observed_frequency": null
+          },
+          {
+            "lower": 0.8,
+            "upper": 1.0,
+            "n": 0,
+            "mean_probability": null,
+            "observed_frequency": null
+          }
+        ]
+      },
+      "calibration_artifact": {
+        "algorithm": "fixed_gradient_logistic_v1",
+        "iterations": 1000,
+        "rate": 0.05,
+        "ridge": 0.1,
+        "means": [
+          0.27065480736346953
+        ],
+        "scales": [
+          0.8058921445993225
+        ],
+        "weights": [
+          -0.7239769856580628,
+          -0.41459457096196983
+        ],
+        "training_sha256": "8db055b5ff863ee00087fc457147936d415c9b1c9366419eca7811a88cc122a3",
+        "orders_enabled": false
+      }
+    }
+  ],
+  "limitations": [
+    "72 campaign selected sample; not all no-trade bars",
+    "later labels already inspected before this mission",
+    "no untouched test or independent calibration test",
+    "no position sizing or Pine integration",
+    "complex models deferred: inadequate independent sample, no supported point-in-time macro/features"
+  ],
+  "events": [
+    {
+      "id": "OANDA:XAUUSD|15|3|-1|1786107600000|1786108500000",
+      "start": 1786108500000,
+      "end": 1786329900000,
+      "x": [
+        0.31930685,
+        0.0,
+        1.0,
+        -1,
+        1.8981011580159377,
+        0.0,
+        1.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|1|1786338000000|1786338000000",
+      "start": 1786338000000,
+      "end": 1786356900000,
+      "x": [
+        0.06853117,
+        1.0,
+        0.0,
+        1,
+        2.203671439398711,
+        1.0,
+        0.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|1|1786446000000|1786446000000",
+      "start": 1786446000000,
+      "end": 1786457700000,
+      "x": [
+        0.10951498,
+        0.0,
+        0.0,
+        1,
+        1.625086967975643,
+        1.0,
+        0.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|1|1786493700000|1786493700000",
+      "start": 1786493700000,
+      "end": 1786527000000,
+      "x": [
+        0.186335,
+        0.0,
+        0.0,
+        1,
+        1.939057277626519,
+        1.0,
+        0.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|1|1786617900000|1786617900000",
+      "start": 1786617900000,
+      "end": 1786628700000,
+      "x": [
+        0.04017729,
+        0.0,
+        0.0,
+        1,
+        1.9006477278313891,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1786684500000|1786684500000",
+      "start": 1786684500000,
+      "end": 1786687200000,
+      "x": [
+        0.39432958,
+        1.0,
+        1.0,
+        -1,
+        1.2148464302676167,
+        1.0,
+        0.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|1|1786693500000|1786693500000",
+      "start": 1786693500000,
+      "end": 1786709700000,
+      "x": [
+        0.25976658,
+        0.0,
+        0.0,
+        1,
+        1.4954826750595398,
+        1.0,
+        0.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|1|1786944600000|1786944600000",
+      "start": 1786944600000,
+      "end": 1786969800000,
+      "x": [
+        0.11914075,
+        1.0,
+        0.0,
+        1,
+        1.7845672160548633,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1787040000000|1787040000000",
+      "start": 1787040000000,
+      "end": 1787042700000,
+      "x": [
+        0.10201647,
+        1.0,
+        1.0,
+        -1,
+        1.50571816156707,
+        1.0,
+        0.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|3|1|1787076900000|1787077800000",
+      "start": 1787077800000,
+      "end": 1787082300000,
+      "x": [
+        0.29093767,
+        0.0,
+        0.0,
+        1,
+        1.0507246382546032,
+        0.0,
+        1.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|3|1|1787096700000|1787097600000",
+      "start": 1787097600000,
+      "end": 1787102100000,
+      "x": [
+        0.41122432,
+        0.0,
+        1.0,
+        1,
+        0.9627415983397692,
+        0.0,
+        1.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1787114700000|1787114700000",
+      "start": 1787114700000,
+      "end": 1787125500000,
+      "x": [
+        0.23307644,
+        1.0,
+        0.0,
+        -1,
+        1.8926835617903575,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|1|1787236200000|1787236200000",
+      "start": 1787236200000,
+      "end": 1787284800000,
+      "x": [
+        0.01742507,
+        0.0,
+        0.0,
+        1,
+        2.3431128498404297,
+        1.0,
+        0.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1787644800000|1787644800000",
+      "start": 1787644800000,
+      "end": 1787646600000,
+      "x": [
+        0.00664519,
+        1.0,
+        1.0,
+        -1,
+        1.5023615641944243,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1787834700000|1787834700000",
+      "start": 1787834700000,
+      "end": 1787841900000,
+      "x": [
+        0.13940873,
+        1.0,
+        1.0,
+        -1,
+        1.8417003797028704,
+        1.0,
+        0.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|1|1787845500000|1787845500000",
+      "start": 1787845500000,
+      "end": 1787855400000,
+      "x": [
+        0.17274858,
+        0.0,
+        0.0,
+        1,
+        1.4047352525767287,
+        1.0,
+        0.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|3|1|1787864400000|1787869800000",
+      "start": 1787869800000,
+      "end": 1787874300000,
+      "x": [
+        0.0002371,
+        1.0,
+        0.0,
+        1,
+        1.271195676212844,
+        0.0,
+        1.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|1|1787920200000|1787920200000",
+      "start": 1787920200000,
+      "end": 1787921100000,
+      "x": [
+        0.13740029,
+        0.0,
+        0.0,
+        1,
+        1.639094552741936,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|3|-1|1788164100000|1788165900000",
+      "start": 1788165900000,
+      "end": 1788171300000,
+      "x": [
+        0.13994055,
+        1.0,
+        0.0,
+        -1,
+        1.5543819923990907,
+        0.0,
+        1.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1788183900000|1788183900000",
+      "start": 1788183900000,
+      "end": 1788187500000,
+      "x": [
+        0.01623293,
+        1.0,
+        0.0,
+        -1,
+        1.7057612750674398,
+        1.0,
+        0.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1788236100000|1788236100000",
+      "start": 1788236100000,
+      "end": 1788242400000,
+      "x": [
+        0.13989637,
+        1.0,
+        0.0,
+        -1,
+        1.6717139623220785,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1788247800000|1788247800000",
+      "start": 1788247800000,
+      "end": 1788250500000,
+      "x": [
+        0.14245028,
+        1.0,
+        0.0,
+        -1,
+        1.3376031822279302,
+        1.0,
+        0.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1788280200000|1788280200000",
+      "start": 1788280200000,
+      "end": 1788320700000,
+      "x": [
+        0.18417462,
+        1.0,
+        0.0,
+        -1,
+        1.9866499744469746,
+        1.0,
+        0.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|3|-1|1788449400000|1788450300000",
+      "start": 1788450300000,
+      "end": 1788498900000,
+      "x": [
+        0.45762376,
+        0.0,
+        1.0,
+        -1,
+        1.3683428596692027,
+        0.0,
+        1.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|3|1|1788514200000|1788516900000",
+      "start": 1788516900000,
+      "end": 1788525900000,
+      "x": [
+        0.04794167,
+        0.0,
+        0.0,
+        1,
+        1.425642750196383,
+        0.0,
+        1.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|3|-1|1788535800000|1788537600000",
+      "start": 1788537600000,
+      "end": 1788550200000,
+      "x": [
+        0.18571575,
+        0.0,
+        0.0,
+        -1,
+        0.9215017004134721,
+        0.0,
+        1.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1788889500000|1788889500000",
+      "start": 1788889500000,
+      "end": 1788930900000,
+      "x": [
+        0.13298957,
+        1.0,
+        0.0,
+        -1,
+        2.0219982608612304,
+        1.0,
+        0.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1789063200000|1789063200000",
+      "start": 1789063200000,
+      "end": 1789099200000,
+      "x": [
+        0.13036226,
+        1.0,
+        0.0,
+        -1,
+        1.4755039273847539,
+        1.0,
+        0.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1789124400000|1789124400000",
+      "start": 1789124400000,
+      "end": 1789130700000,
+      "x": [
+        0.1230193,
+        0.0,
+        0.0,
+        -1,
+        1.7121186185491901,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1789369200000|1789369200000",
+      "start": 1789369200000,
+      "end": 1789390800000,
+      "x": [
+        0.3504206,
+        1.0,
+        0.0,
+        -1,
+        2.0204123026866867,
+        1.0,
+        0.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1789415100000|1789415100000",
+      "start": 1789415100000,
+      "end": 1789438500000,
+      "x": [
+        0.17547643,
+        1.0,
+        0.0,
+        -1,
+        2.1946423363524628,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|3|-1|1789441200000|1789442100000",
+      "start": 1789442100000,
+      "end": 1789452900000,
+      "x": [
+        0.29695675,
+        0.0,
+        0.0,
+        -1,
+        1.0339587785485687,
+        0.0,
+        1.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1789474500000|1789474500000",
+      "start": 1789474500000,
+      "end": 1789477200000,
+      "x": [
+        0.12712804,
+        0.0,
+        0.0,
+        -1,
+        1.3079028289609753,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1789614000000|1789614000000",
+      "start": 1789614000000,
+      "end": 1789624800000,
+      "x": [
+        0.09774001,
+        1.0,
+        0.0,
+        -1,
+        1.8583129323074752,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|3|-1|1789718400000|1789719300000",
+      "start": 1789719300000,
+      "end": 1789734600000,
+      "x": [
+        0.54613407,
+        0.0,
+        1.0,
+        -1,
+        1.2730155509712056,
+        0.0,
+        1.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1789983000000|1789983000000",
+      "start": 1789983000000,
+      "end": 1789991100000,
+      "x": [
+        0.23329665,
+        1.0,
+        1.0,
+        -1,
+        1.5924592843183774,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1790021700000|1790021700000",
+      "start": 1790021700000,
+      "end": 1790031600000,
+      "x": [
+        0.16173913,
+        1.0,
+        0.0,
+        -1,
+        1.9368417131430626,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|1|1790071200000|1790071200000",
+      "start": 1790071200000,
+      "end": 1790075700000,
+      "x": [
+        0.04701142,
+        0.0,
+        1.0,
+        1,
+        2.2024381137392335,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1790088300000|1790088300000",
+      "start": 1790088300000,
+      "end": 1790100000000,
+      "x": [
+        0.0014352,
+        1.0,
+        0.0,
+        -1,
+        2.2066236722596835,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|3|-1|1790101800000|1790102700000",
+      "start": 1790102700000,
+      "end": 1790106300000,
+      "x": [
+        0.09060939,
+        0.0,
+        0.0,
+        -1,
+        1.2097031458502325,
+        0.0,
+        1.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|3|1|1790154000000|1790154900000",
+      "start": 1790154900000,
+      "end": 1790156700000,
+      "x": [
+        0.46717516,
+        0.0,
+        1.0,
+        1,
+        0.9605994755162882,
+        0.0,
+        1.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1790192700000|1790192700000",
+      "start": 1790192700000,
+      "end": 1790201700000,
+      "x": [
+        0.05888835,
+        1.0,
+        0.0,
+        -1,
+        1.508859849219275,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|3|-1|1790300700000|1790301600000",
+      "start": 1790301600000,
+      "end": 1790313300000,
+      "x": [
+        0.19693421,
+        0.0,
+        0.0,
+        -1,
+        1.2798073280874367,
+        0.0,
+        1.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1790602200000|1790602200000",
+      "start": 1790602200000,
+      "end": 1790604000000,
+      "x": [
+        0.02637405,
+        1.0,
+        0.0,
+        -1,
+        1.5350807626517393,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|3|1|1790607600000|1790609400000",
+      "start": 1790609400000,
+      "end": 1790625600000,
+      "x": [
+        0.22585891,
+        0.0,
+        1.0,
+        1,
+        1.4413397598130422,
+        0.0,
+        1.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1790625600000|1790625600000",
+      "start": 1790625600000,
+      "end": 1790660700000,
+      "x": [
+        0.0437323,
+        1.0,
+        0.0,
+        -1,
+        1.943919315151068,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|1|1790687700000|1790687700000",
+      "start": 1790687700000,
+      "end": 1790695800000,
+      "x": [
+        0.36053369,
+        1.0,
+        1.0,
+        1,
+        1.6702969131536103,
+        1.0,
+        0.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1790700300000|1790700300000",
+      "start": 1790700300000,
+      "end": 1790705700000,
+      "x": [
+        0.04706013,
+        0.0,
+        0.0,
+        -1,
+        1.8704079795796522,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|3|1|1790792100000|1790793000000",
+      "start": 1790793000000,
+      "end": 1790814600000,
+      "x": [
+        0.57864591,
+        0.0,
+        1.0,
+        1,
+        0.9931738172556188,
+        0.0,
+        1.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1790973900000|1790973900000",
+      "start": 1790973900000,
+      "end": 1791159300000,
+      "x": [
+        0.06156701,
+        1.0,
+        0.0,
+        -1,
+        1.336481065151528,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1791261900000|1791261900000",
+      "start": 1791261900000,
+      "end": 1791268200000,
+      "x": [
+        0.18529732,
+        1.0,
+        0.0,
+        -1,
+        1.619699611225953,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|3|1|1791351000000|1791351900000",
+      "start": 1791351900000,
+      "end": 1791352800000,
+      "x": [
+        0.4794469,
+        0.0,
+        1.0,
+        1,
+        1.2643286334443793,
+        0.0,
+        1.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|1|1791562500000|1791562500000",
+      "start": 1791562500000,
+      "end": 1791782100000,
+      "x": [
+        0.22767046,
+        1.0,
+        0.0,
+        1,
+        1.3891126297286234,
+        1.0,
+        0.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1791933300000|1791933300000",
+      "start": 1791933300000,
+      "end": 1791936900000,
+      "x": [
+        0.01639344,
+        1.0,
+        0.0,
+        -1,
+        1.2901512754242883,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1792044900000|1792044900000",
+      "start": 1792044900000,
+      "end": 1792052100000,
+      "x": [
+        0.16476388,
+        0.0,
+        0.0,
+        -1,
+        2.1387580285803107,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|3|-1|1792057500000|1792059300000",
+      "start": 1792059300000,
+      "end": 1792061100000,
+      "x": [
+        0.1667514,
+        0.0,
+        0.0,
+        -1,
+        0.972445671787397,
+        0.0,
+        1.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|3|-1|1792095300000|1792096200000",
+      "start": 1792096200000,
+      "end": 1792119600000,
+      "x": [
+        0.25792688,
+        0.0,
+        0.0,
+        -1,
+        1.241567906636915,
+        0.0,
+        1.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|3|-1|1792179900000|1792181700000",
+      "start": 1792181700000,
+      "end": 1792361700000,
+      "x": [
+        0.25645066,
+        0.0,
+        1.0,
+        -1,
+        1.0032883237522765,
+        0.0,
+        1.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|3|1|1792422000000|1792423800000",
+      "start": 1792423800000,
+      "end": 1792425600000,
+      "x": [
+        0.27446301,
+        0.0,
+        1.0,
+        1,
+        0.987274244534181,
+        0.0,
+        1.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|1|-1|1792449900000|1792450800000",
+      "start": 1792450800000,
+      "end": 1792463400000,
+      "x": [
+        0.16486533,
+        1.0,
+        0.0,
+        -1,
+        1.9107269391570463,
+        0.0,
+        0.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|1|1792466100000|1792466100000",
+      "start": 1792466100000,
+      "end": 1792475100000,
+      "x": [
+        0.03043623,
+        0.0,
+        1.0,
+        1,
+        2.023256751752007,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1792656900000|1792656900000",
+      "start": 1792656900000,
+      "end": 1792673100000,
+      "x": [
+        0.26561822,
+        1.0,
+        0.0,
+        -1,
+        2.1888582323559977,
+        1.0,
+        0.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1792728900000|1792728900000",
+      "start": 1792728900000,
+      "end": 1792734300000,
+      "x": [
+        0.13812059,
+        1.0,
+        0.0,
+        -1,
+        1.2357958028226501,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|1|1792761300000|1792761300000",
+      "start": 1792761300000,
+      "end": 1792764000000,
+      "x": [
+        0.42619823,
+        0.0,
+        1.0,
+        1,
+        1.6949579947134226,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1792788300000|1792788300000",
+      "start": 1792788300000,
+      "end": 1792967400000,
+      "x": [
+        0.04478201,
+        1.0,
+        0.0,
+        -1,
+        1.3889721410507314,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|1|1793002500000|1793002500000",
+      "start": 1793002500000,
+      "end": 1793022300000,
+      "x": [
+        0.081517,
+        1.0,
+        1.0,
+        1,
+        2.0796932586825108,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|3|-1|1793142000000|1793142900000",
+      "start": 1793142900000,
+      "end": 1793145600000,
+      "x": [
+        0.08762129,
+        0.0,
+        0.0,
+        -1,
+        0.8001168804819497,
+        0.0,
+        1.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|3|1|1793186100000|1793187900000",
+      "start": 1793187900000,
+      "end": 1793195100000,
+      "x": [
+        0.34651712,
+        1.0,
+        1.0,
+        1,
+        1.3095537736474738,
+        0.0,
+        1.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1793197800000|1793197800000",
+      "start": 1793197800000,
+      "end": 1793213100000,
+      "x": [
+        0.18311214,
+        0.0,
+        0.0,
+        -1,
+        2.175767616938148,
+        1.0,
+        0.0
+      ],
+      "y": 1
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1793232900000|1793232900000",
+      "start": 1793232900000,
+      "end": 1793237400000,
+      "x": [
+        0.07022809,
+        0.0,
+        0.0,
+        -1,
+        1.6276740049327953,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|-1|1793648700000|1793648700000",
+      "start": 1793648700000,
+      "end": 1793665800000,
+      "x": [
+        0.13695941,
+        0.0,
+        0.0,
+        -1,
+        1.7290321837740112,
+        1.0,
+        0.0
+      ],
+      "y": 0
+    },
+    {
+      "id": "OANDA:XAUUSD|15|2|1|1793808000000|1793808000000",
+      "start": 1793808000000,
+      "end": 1793841300000,
+      "x": [
+        0.02555655,
+        1.0,
+        0.0,
+        1,
+        2.049625995760417,
+        1.0,
+        0.0
+      ],
+      "y": 1
+    }
+  ]
+}

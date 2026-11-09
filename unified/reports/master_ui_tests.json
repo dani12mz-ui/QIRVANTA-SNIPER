@@ -1,0 +1,31 @@
+{
+  "generated_utc": "2026-11-09T17:57:31.462745+00:00",
+  "status": "PASS",
+  "test_count": 109,
+  "command": "python -X utf8 -m unittest discover -s tests -v",
+  "source_sha256": "92307768be68946dc87cbe4ea45a8b5e32446fd3b7a0c1a38dce40dffe358be3",
+  "test_log_sha256": "4b2b462a3964c514ee1fabc037441360a84cb4db409f0506bc729a8348840f67",
+  "generator_and_probe_test_sha256": {
+    "tools/build.py": "91691a6650032f16626d92f6a12fcb850796c7aeb8360cab1a76d8786de99cc4",
+    "tools/make_ui_probe.py": "84fe81b5f956ca2a34cc9513e582df1c0f8ee0ae1064db8fa8dc75c895677f1e",
+    "tests/test_ui_probe.py": "6fa3c3e9e90cc01616d50e3fe877a110c7eb7561b480d421b4f2a66df14b4348"
+  },
+  "observer_timeframes_tested": [
+    5,
+    15,
+    30
+  ],
+  "scope": "Local static/source and reference regressions, not a Pine compiler or phone delivery test",
+  "generator_docstring_amendment": {
+    "recorded_utc": "2026-11-09T18:13:55.771845+00:00",
+    "previous_generator_sha256": "69f49288992df25f29c0a474ce6e12608df24678262ad0e312491828addb5f46",
+    "current_generator_sha256": "84fe81b5f956ca2a34cc9513e582df1c0f8ee0ae1064db8fa8dc75c895677f1e",
+    "only_module_docstring_changed": true,
+    "executable_ast_identical": true,
+    "focused_existing_tests": 2,
+    "status": "PASS",
+    "focused_log": "unified/reports/master_ui_probe_docstring_tests.log",
+    "focused_log_sha256": "0081dd0aa191c8df0efd10b634f4e3d815d6d40fe29ca057d11a2080c038edc8",
+    "counting": "Same two methods already included in109; not additional tests"
+  }
+}

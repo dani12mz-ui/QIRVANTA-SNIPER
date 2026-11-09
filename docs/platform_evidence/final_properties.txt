@@ -1,0 +1,56 @@
+- dialog "QIRV ONE":
+  - generic: QIRV ONE
+  - button "Close menu":
+    - generic: Close menu
+  - tablist:
+    - tab "Inputs"
+    - tab "Properties" [active] [selected]
+    - tab "Style"
+    - tab "Visibility"
+  - generic: General
+  - generic "Click here to learn more":
+  - generic: Initial capital
+  - textbox: 100,000
+  - combobox:
+    - generic: USD
+  - generic: Default order size
+  - textbox: "3"
+  - combobox:
+    - generic: Quantity
+  - generic: Pyramiding
+  - textbox: "0"
+  - generic: Detalization and execution
+  - generic "Click here to learn more":
+  - generic: Bar detalization
+  - combobox:
+    - generic: Default (4 ticks per bar)
+  - generic: Script execution
+  - combobox:
+    - generic: On bar close
+  - generic: Broker emulator
+  - generic "Click here to learn more":
+  - generic: Commission
+  - textbox: "0.175"
+  - combobox:
+    - generic: Per contract
+  - generic: Long leverage
+  - textbox: 1x
+  - generic: Short leverage
+  - textbox: 1x
+  - generic: Slippage
+  - textbox: "2"
+  - generic: ticks
+  - generic: Limit order execution
+  - combobox:
+    - generic: Requested price
+  - generic: Order execution delay
+  - combobox:
+    - generic: One tick
+  - button "Defaults":
+    - generic: Defaults
+  - button "Cancel":
+    - generic: Cancel
+  - button "Ok":
+    - generic: Ok
+- alert
+- alert

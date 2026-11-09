@@ -1,0 +1,27 @@
+{
+  "schema": "qirvanta.research.final_reproduction.v1",
+  "created_utc": "2026-11-09T17:50:19.522145+00:00",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "python_version": "3.12.14",
+  "implementation": "cpython",
+  "tzdata_version": "2026.6",
+  "zoneinfo_TZPATH": [],
+  "zoneinfo_provider": "tzdata package fallback",
+  "source_sha256": {
+    "research/data/loader.py": "b62bdc6075e56b90e094d24a55ff468b5357db0fd6702c091aa3c80fdb288209",
+    "research/data/aggregate.py": "1c8f8da6ef3774501bf5f83b8de16e7ab1cd5f3c9cc49ef44b30cf92a2b5cb02",
+    "research/features/causal.py": "553a030a5e83013f4699bdf6480b561433e553c4cc1f802ea2a70761d45449ea",
+    "research/strategies/library.py": "b0fc4c3fb006325d7dca0fa6a7d99ee5fba163472502af05a5b1aa923583b7c5",
+    "research/backtesting/engine.py": "99b7e27fb4aedf968300583da22ebbf1980df29b3ab2a030c2cfd1d502687993",
+    "research/validation/statistics.py": "32fac0ead636b0c7dc65b485ec55a9097fde1473bb4c735930bd6cca55986fd0"
+  },
+  "prior_paid_cash_freeze_sha256": "bb5be487800b2a3952d8ed15ee4405f74273c34fd826f3c26e5c6d6e44739a82",
+  "loader_refinement": "Decimal lexical timestamp check closes float precision truncation case, within registered reject-fractional-before-cast scope; actual bars equal original element-for-element",
+  "original_final_loaded_bars_equal": true,
+  "bar_count": 6445,
+  "canonical_input_sha256": "a00823f6022cffae8f64241591604a8e95e5b1c078e8d814bf50c7a1ac419fe9",
+  "economic_rerun_comparison_sha256": "1fa2f38252c5c56ea2b4108505800c9262784e072f70f6f6e2afb9966aa91055",
+  "trial_count": 90,
+  "correction_reruns_are_not_new_hypotheses": true,
+  "production_or_live_execution": false
+}

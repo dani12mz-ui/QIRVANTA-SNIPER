@@ -118,7 +118,8 @@ class PresentationIsolation(unittest.TestCase):
         self.assertRegex(inputs, r'panelPosition = input.string\("Долу вляво"')
         self.assertRegex(inputs, r'showContextLabels = input.bool\(false')
         self.assertRegex(inputs, r'showSetupLevel = input.bool\(false')
-        self.assertIn('uiMode == "ДИАГНОСТИКА" and showContextLabels', source('visual_alerts'))
+        self.assertIn('uiMode == "DEBUG" and showContextLabels and showHistoricalLabels', source('visual_alerts'))
+        self.assertRegex(inputs, r'showHistoricalLabels = input.bool\(false')
         self.assertNotIn('string displayBook =', inputs)
 
 if __name__ == '__main__':

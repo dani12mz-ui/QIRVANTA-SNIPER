@@ -1,0 +1,169 @@
+Browser tab: 2, Title: "XAUUSD 4,102.225 ▲ +0.78% Unnamed", URL: "https://www.tradingview.com/chart/4foVQMDF/".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 2187-2198, 2237-2241
+~0 AXWebArea XAUUSD 4,102.225 ▲ +0.78% Unnamed, URL: tradingview.com/chart/4foVQMDF/
+~						22 button Undo update QIRV ONE script
+~							2236 text O 4,105.675 H 4,106.575 L 4,100.650 C 4,102.225 −3.400 (−0.08%)
+~						1403 text 4,102.07 0 SELL
+~						1404 text 31.0
+~						1405 text 4,102.38 0 BUY
++						2838 toolbar
++							2839 text QIRV ONE
++							2840 container
++								2841 button Hide
++									2842 image
++								2843 button Settings
++									2844 image
++								2845 button Remove
++									2846 image
++								2847 button Description: More options for QIRV ONE, Help: More
++									2848 image
++							2849 button Active strategy · Opened in Pine Editor
++							2850 container
++								2851 text 4,111.202
++								2852 text 4,099.298
++								2853 text 0.000
++								2854 text 0.000
+~					154 text 17:58:39 UTC
+~					1446 button Collapse strategy report
+~				1449 button Collapse panel
++			2855 container bottom-area
++				2856 container
++					2857 tab group report-tabs
++						2858 tab (selected, settable, boolean) Value: 1, ID: Strategy report
++						2859 tab (selectable, settable, boolean) Value: 0, ID: List of Trades
++					2860 button (collapsed) Description: Jan 2, 2026 — Nov 9, 2026, Secondary Actions: Expand
++						2861 text Jan 2, 2026 — Nov 9, 2026
++					2862 button (collapsed) Description: 100 K, Secondary Actions: Expand
++						2863 container
++							2864 text 100 K USD
++					2865 button (collapsed) Description: Default detalization, Secondary Actions: Expand
++						2866 text Default detalization
++					2867 button (collapsed) Description: Script execution, Secondary Actions: Expand
++						2868 container
++							2869 text Script execution 1
++					2870 button Settings
++					2871 button Add alert
++					2872 container
++						2873 text Key stats
++						2874 text Total PnL
++						2875 container
++							2876 text −376.56 USD −0.38%
++						2877 text Max drawdown
++						2878 container
++							2879 text 1,595.16 USD 1.58%
++						2880 text Profitable trades
++						2881 container
++							2882 text 43.46% 123/283
++						2883 text Profit factor
++						2884 text 0.904
++						2885 text Performance
++						2886 link Description: Show description, Value: tradingview.com/support/solutions/43000681735
++						2887 pop up button (collapsed) Description: Scale, ID: :r2l2:, Secondary Actions: Expand
++						2888 button Take a snapshot
++						2889 button Expand chart
++						2890 container
++							2891 text Cumulative PnL Buy and hold
++							2892 button Show
++							2893 text Trades excursions Run-ups and drawdowns
++							2894 button Hide metrics legend
++						2895 text Performance analysis
++						2896 tab group blocks-wrapper-tabs
++							2897 tab (selected, settable, boolean) Breakdown, Value: 1, ID: strategy-report-summary
++							2898 tab (selectable, settable, boolean) Periodical, Value: 0, ID: periodical-tab
++							2899 tab (selectable, settable, boolean) Benchmarking, Value: 0, ID: benchmarking-tab
++							2900 tab (selectable, settable, boolean) Margin usage, Value: 0, ID: margin-tab
++							2901 tab (selectable, settable, boolean) Growth and decline, Value: 0, ID: growth-and-decline-tab
++						2902 text Gross profit
++						2903 container
++							2904 text 3,551.08 USD 3.55%
++						2905 text Gross loss
++						2906 container
++							2907 text 3,927.63 USD 3.93%
++						2908 text Profit factor
++						2909 text 0.904
++						2910 text Commission load
++						2911 button Upgrade to get full access to Strategy report data
++						2912 text Profits and losses
++						2913 radio button By signals, Value: 1
++						2914 radio button By side, Value: 0
++						2915 text All signals
++						2916 text −376.56 USD
++						2917 text Обръщане
++						2918 text +145.27 USD
++						2919 text Ретест
++						2920 text −226.44 USD
++						2921 text Пробив
++						2922 text −295.39 USD Trades analysis
++						2923 tab group blocks-wrapper-tabs
++							2924 tab (selected, settable, boolean) Distribution, Value: 1, ID: strategy-report-summary
++							2925 tab (selectable, settable, boolean) Streaks, Value: 0, ID: streaks-tab
++							2926 tab (selectable, settable, boolean) Time patterns, Value: 0, ID: time-pattern-tab
++						2927 text Expectancy
++						2928 container
++							2929 text −1.33 USD −0.04%
++						2930 text Outliers PnL
++						2931 container
++							2932 text 1,244.45 USD 1.24%
++						2933 text Largest profit
++						2934 button Upgrade to get full access to Strategy report data
++						2935 text Largest loss
++						2936 button Upgrade to get full access to Strategy report data
++						2937 text Returns distribution
++						2938 text Losers Winners Average loss −0.54% Average profit 0.44% Trades distribution
++						2939 container
++							2940 text 283
++							2941 text Total trades
++							2942 image
++						2943 text Winners
++						2944 text 123 trades
++						2945 text 43.46%
++						2946 text Losers
++						2947 text 160 trades
++						2948 text 56.54%
++						2949 text Breakevens
++						2950 text 0 trades
++						2951 text 0.00%
++					2952 button (disabled) Update on chart
++							2953 row
++								2954 cell
++									2955 text 19:58:27 ч.
++								2956 cell
++									2957 container
++										2958 text Warning at 766 : 35
++									2959 text The function "f_fast" should be called on each calculation for consistency. It is recommended to extract the call from this scope
++									2960 link Description: Learn more, Value: tradingview.com/pine-script-docs/errors/CW10003
++							2961 row
++								2962 cell
++									2963 text 19:58:27 ч.
++								2964 cell
++									2965 container
++										2966 text Warning at 767 : 35
++									2967 text The function "f_reversal" should be called on each calculation for consistency. It is recommended to extract the call from this scope
++									2968 link Description: Learn more, Value: tradingview.com/pine-script-docs/errors/CW10003
++							2969 row
++								2970 cell
++									2971 text 19:58:27 ч.
++								2972 cell
++									2973 container
++										2974 text Warning at 1375 : 39
++									2975 text Strategies without "calc_on_every_tick = true" only calculate on confirmed chart bars. In this case, "barstate.islast" may not initially return "true" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable "calc_on_every_tick" in the "strategy()" function.
++							2976 row
++								2977 cell
++									2978 text 19:58:27 ч.
++								2979 cell
++									2980 container
++										2981 text Warning at 1439 : 39
++									2982 text Strategies without "calc_on_every_tick = true" only calculate on confirmed chart bars. In this case, "barstate.islast" may not initially return "true" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable "calc_on_every_tick" in the "strategy()" function.
++							2983 row
++								2984 cell
++									2985 text 19:58:27 ч.
++								2986 cell
++									2987 text "QIRVANTA_UNIFIED" saved.
+~						2832 button 16 ∙ Today, 19:58
+The focused UI element is 2268 editor (settable) Description: Editor content;Press Alt+F1 for Accessibility Options., Value:             if bars != ""
+                log.info(bars)
+            log.info("QIRVANTA_BARS_END")
+
+if barstate.isfirst and timeframe.in_seconds() != 1800
+    runtime.error("Observer timeframe does not match the registered export")
