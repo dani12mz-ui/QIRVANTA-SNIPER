@@ -1,0 +1,25 @@
+{
+  "status": "PUBLISHED_AND_VERIFIED",
+  "repository": "dani12mz-ui/QIRVANTA-SNIPER",
+  "branch": "feature/qirvanta-unified",
+  "verified_code_publication_commit": "ca82cc9f558c30f57de06f3a6eed16d164a5a112",
+  "verified_code_publication_tree": "9a503cd524ffb6c14c2df2426914711b62c8739f",
+  "matching_local_delivery_commit": "488966cb937e42d97c752009378537c5c3033f92",
+  "tested_local_code_commit": "3098b9096a017e3a51f321ba490feb8669c434f3",
+  "artifact_sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+  "artifact_git_blob": "d0713e48fd2396aaf7126a63f1ed4bc16d97cb17",
+  "method": "Authorized GitHub Git Data connector; full remote tree equals local committed tree. Remote code blob readback matches local Git blob.",
+  "history_note": "Remote Git Data commit authorship produces a different commit id. Its parent is the existing corrected remote delivery commit with a tree identical to the local baseline, not main or stale source.",
+  "remote_parent": "03ecbb683e5a98bfa915b742c9d540957236b598",
+  "unchanged_other_refs": {
+    "main": "7fe6534f72fa23da18aa9282ee8f5ac11dcc9df6",
+    "fix/audited-validation-integrity": "03ecbb683e5a98bfa915b742c9d540957236b598",
+    "qirvanta-refactored-delivery": "103bc30788b18234f5938ed0f5346e142097a6fe"
+  },
+  "github": "https://github.com/dani12mz-ui/QIRVANTA-SNIPER/blob/ca82cc9f558c30f57de06f3a6eed16d164a5a112/unified/QIRVANTA_UNIFIED.pine",
+  "raw": "https://raw.githubusercontent.com/dani12mz-ui/QIRVANTA-SNIPER/ca82cc9f558c30f57de06f3a6eed16d164a5a112/unified/QIRVANTA_UNIFIED.pine",
+  "subsequent_metadata_commit": "This record is added by a metadata-only fast-forward on the same feature branch; final branch tip is independently read back and given in the delivery response.",
+  "force_push": false,
+  "main_changed": false,
+  "live_trading": false
+}

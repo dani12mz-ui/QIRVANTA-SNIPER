@@ -8,7 +8,7 @@
   "tested_source_sha256": "970b2044371c7c1b9be4f1ba0b9072c5eddf085e034f06c93a60eaa986d7c303",
   "tested_code_commit": "3098b9096a017e3a51f321ba490feb8669c434f3",
   "tested_commit_qualification": "Exact committed code was retested after the visual layer fix; source/artifact hashes also match the local test report.",
-  "publication_commit": null,
+  "publication_commit": "ca82cc9f558c30f57de06f3a6eed16d164a5a112",
   "baseline_local_head": "b7962f28fa58df2d753daf7e8c441241ecd92f0b",
   "baseline_tested_code_commit": "51e0aa20a5604b9d79e7214f6e2aca59ac01048a",
   "baseline_preserved_files": 128,
@@ -201,10 +201,11 @@
   },
   "configuration_scope": "Only the recorded close-only/default-detail execution settings. Safety or parity with tick/fill/on-close Properties overrides has not been established.",
   "live_trading": "NONE: no broker connection, MT5 integration or executable order webhook",
-  "publication": "PENDING_NEW_BRANCH_ONLY; no main change, force push or other-branch rewrite authorized",
+  "publication": "PUBLISHED_AND_READ_BACK_VERIFIED_ON_NEW_BRANCH_ONLY",
   "local_test_command": [
     "C:\\Users\\azubu\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
     "unified/tools/run_tests.py"
   ],
-  "evidence_hash_manifest": "reports/EVIDENCE_SHA256.json"
+  "evidence_hash_manifest": "reports/EVIDENCE_SHA256.json",
+  "publication_commit_qualification": "This is the verified code-and-evidence publication. Later commits on the same branch may update publication metadata only; the Pine artifact and tested code remain identical. The final delivery tip is supplied to the user separately to avoid a self-referential commit hash."
 }
