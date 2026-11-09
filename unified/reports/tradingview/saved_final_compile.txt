@@ -1,0 +1,320 @@
+- 'button "Logged in as dani12mz Active layout: Unnamed"'
+- toolbar:
+  - button "XAUUSD":
+    - generic: XAUUSD
+  - button "Switch data type":
+  - button "Compare symbols":
+  - separator
+  - button "4 hours":
+    - generic: 4h
+  - separator
+  - button "Candles":
+  - separator
+  - button "Indicators, metrics, and strategies":
+    - generic: Indicators
+  - button "Favorite indicators and indicators templates":
+  - separator
+  - button "Create alert":
+    - generic: Alert
+  - button "Bar replay":
+    - generic: Replay
+  - separator
+  - button "Undo change resolution":
+  - button [disabled]:
+  - button "Layout setup":
+  - button "All changes saved" [disabled]:
+    - generic: Unnamed
+    - generic: Save
+  - button "Manage layouts":
+  - separator
+  - button "Quick search":
+  - button "Settings":
+  - button "Fullscreen mode":
+  - button "Take a snapshot":
+  - button "Share your idea with the trade community":
+  - button "Trade":
+    - generic: Trade
+  - button "Upgrade":
+    - generic: Upgrade
+- toolbar:
+  - button "Cross":
+  - button "Cursors" [pressed]:
+  - button "Trendline":
+  - button "Trend tools":
+  - button "Fib retracement":
+  - button "Gann and Fibonacci tools":
+  - button "XABCD pattern":
+  - button "Patterns":
+  - button "Long position":
+  - button "Forecasting and measurement tools":
+  - button "Brush":
+  - button "Geometric shapes":
+  - button "Text":
+  - button "Annotation tools":
+  - button "Icon":
+  - button "Icons":
+  - button "Measure":
+  - button "Zoom in":
+  - button "Magnet mode snaps drawings placed near price bars to the closest OHLC value":
+  - button "Magnets":
+  - button "Keep drawing":
+  - button "Lock drawings and indicators":
+  - button "Lock options":
+  - button "Hide all drawings":
+  - button "Hide options":
+  - button "Remove objects":
+  - button "Remove options":
+- 'region "Chart #1"':
+  - toolbar:
+    - generic "Change symbol":
+      - generic: X
+      - button "Change symbol": Gold Spot / U.S. Dollar
+    - text: ·
+    - button "Change interval": 4h
+    - text: ·
+    - generic: OANDA
+    - button "Unflag symbol":
+    - button "More options for Gold Spot / U.S. Dollar":
+    - button "Market open · Data updates once per second":
+    - generic: O
+    - generic: 4,123.915
+    - generic: H
+    - generic: 4,134.135
+    - generic: L
+    - generic: 4,121.710
+    - generic: C
+    - generic: 4,131.720
+    - generic: +7.855 (+0.19%)
+  - generic: 4,131.370
+  - generic: Sell
+  - generic "Spread": "57.0"
+  - generic: 4,131.940
+  - generic: Buy
+  - button "Hide indicator legend":
+  - toolbar:
+    - generic "QIRVANTA Обединен":
+      - generic: QIRV ONE
+    - button "Hide":
+    - button "Settings":
+    - generic "Source code":
+    - button "Remove":
+    - button "More options for QIRV ONE":
+    - button "Active strategy":
+    - generic "EMA21 — текуща": 4,055.997
+    - generic "EMA55 — текуща": 4,037.656
+    - generic "План за покупка — заявен, не изпълнение": "0.000"
+    - generic "План за продажба — заявен, не изпълнение": "0.000"
+  - generic "Chart for OANDA:XAUUSD, 4 hours"
+  - toolbar "Navigation":
+    - button "Zoom out":
+    - button "Zoom in":
+    - button "Scroll to the left":
+    - button "Scroll to the right":
+    - button "Reset chart view":
+- toolbar:
+  - button "1 day in 1 minute intervals":
+    - generic: 1D
+  - button "5 days in 5 minutes intervals":
+    - generic: 5D
+  - button "1 month in 30 minutes intervals":
+    - generic: 1M
+  - button "3 months in 1 hour intervals":
+    - generic: 3M
+  - button "6 months in 2 hours intervals":
+    - generic: 6M
+  - button "Year to day in 1 day intervals":
+    - generic: YTD
+  - button "1 year in 1 day intervals":
+    - generic: 1Y
+  - button "5 years in 1 week intervals":
+    - generic: 5Y
+  - button "All data in 1 month intervals":
+    - generic: All
+  - separator
+  - button "Go to":
+  - button "Timezone":
+    - generic: 02:42:02 UTC
+- toolbar:
+  - button "Watchlist, details, and news":
+  - button "Alerts":
+  - button "Object tree and data window":
+  - button "AI Copilot":
+  - button "Screeners":
+  - button "Pine Editor":
+  - button "Calendars":
+  - button "Community":
+  - button "Notifications":
+  - button "Chats":
+  - button "Products":
+  - separator
+  - button "Help Center":
+- toolbar:
+  - button "Open strategy report":
+    - generic: QIRV ONE
+  - button "Manage strategy":
+  - button "Open panel":
+  - button "Maximize panel":
+- generic "Trading panel"
+- generic: Untitled script
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- generic: Pine Editor
+- button "Collapse panel":
+- button "Close":
+- button "QIRVANTA_SNIPER_PRO":
+  - heading "QIRVANTA_SNIPER_PRO" [level=2]
+- button "Add to chart":
+- button "Publish script":
+  - generic: Publish script
+- button "More":
+- code:
+  - generic: "1464"
+  - generic: "1465"
+  - generic: "1466"
+  - generic: 
+  - generic: "1467"
+  - generic: "1468"
+  - generic: 
+  - generic: "1469"
+  - generic: "1470"
+  - generic: 
+  - generic: "1471"
+  - generic: "1472"
+  - generic: "1473"
+  - generic: "1474"
+  - generic: 
+  - generic: "1475"
+  - generic: "1476"
+  - generic: "1477"
+  - generic: 
+  - generic: "1478"
+  - generic: 
+  - generic: "1479"
+  - generic: "1480"
+  - generic: 
+  - generic: "1481"
+  - generic: "1482"
+  - generic: "1483"
+  - generic: 
+  - generic: "1484"
+  - generic: "1485"
+  - generic: "1486"
+  - generic: "\"ТЕХНИЧЕСКИ КАНДИДАТ\" : \"БЕЗ ИЗПЪЛНЕНИЕ\""
+  - generic: string detail = f_short(chosenEvent.
+  - generic: reason, 30)
+  - generic: label h = label.new(bar_index, d == 1 ?
+  - generic: "low - nz(atr) * 0.25 : high + nz(atr) * 0."
+  - generic: 25, name + "\n" + detail, style=d == 1 ?
+  - generic: "label.style_label_up : label."
+  - generic: style_label_down, color=color.new(caution,
+  - text: 18), textcolor=
+  - text: color.black, size=size.
+  - generic: small, tooltip=chosenEvent.planId + "\n" +
+  - generic: chosenEvent.reason)
+  - generic: array.push(contextLabels, h)
+  - generic: if array.size(contextLabels) > keepLabels
+  - generic: label.delete(array.shift
+  - generic: (contextLabels))
+  - generic: if d == 1
+  - generic: lastContextBuyBar := bar_index
+  - generic: else
+  - generic: lastContextSellBar := bar_index
+  - generic: // One close-time batch preserves all events; native fill
+  - generic: observations are journal-only.
+  - generic: if processBar and array.size(events) > 0
+  - generic: string readableBatch = ""
+  - generic: string jsonBatch = ""
+  - generic: for e in events
+  - generic: if exportEvents
+  - generic: log.info(f_json(e))
+  - generic: if f_allowedUnifiedEvent(e)
+  - generic: "readableBatch += (readableBatch == \"\" ? \"\" :"
+  - generic: "\"\\n\") + f_readableEvent(e)"
+  - generic: "jsonBatch += (jsonBatch == \"\" ? \"\" : \",\") +"
+  - generic: f_json(e)
+  - generic: if readableBatch != ""
+  - generic: "alert(alertJson ? \"{\\\"qirvanta\\\":\\\"advisory_only\\\","
+  - generic: "\\\"events\\\":[\" + jsonBatch + \"]}\" : readableBatch,"
+  - generic: alert.freq_once_per_bar_close)
+  - textbox "Editor content;Press Alt+F1 for Accessibility Options." [active]: "alert(alertJson ? \"{\\\"qirvanta\\\":\\\"advisory_only\\\",\\\"events\\\":[\" + jsonBatch + \"]}\" : readableBatch, alert.freq_once_per_bar_close)"
+- separator
+- table:
+  - rowgroup:
+    - row "04:41:16 ч. \"QIRVANTA_SNIPER_PRO\" opened":
+      - cell "04:41:16 ч."
+      - cell "\"QIRVANTA_SNIPER_PRO\" opened"
+    - row "04:41:29 ч. Compiling...":
+      - cell "04:41:29 ч."
+      - cell "Compiling..."
+    - row "04:41:53 ч. Warning at 755:35 The function \"f_fast\" should be called on each calculation for consistency. It is recommended to extract the call from this scope Learn more":
+      - cell "04:41:53 ч."
+      - cell "Warning at 755:35 The function \"f_fast\" should be called on each calculation for consistency. It is recommended to extract the call from this scope Learn more":
+        - text: Warning at 755:35
+        - text: The function "f_fast" should be called on each calculation for consistency. It is recommended to extract the call from this scope
+        - link "Learn more":
+          - /url: https://www.tradingview.com/pine-script-docs/errors/CW10003
+    - row "04:41:53 ч. Warning at 756:35 The function \"f_reversal\" should be called on each calculation for consistency. It is recommended to extract the call from this scope Learn more":
+      - cell "04:41:53 ч."
+      - cell "Warning at 756:35 The function \"f_reversal\" should be called on each calculation for consistency. It is recommended to extract the call from this scope Learn more":
+        - text: Warning at 756:35
+        - text: The function "f_reversal" should be called on each calculation for consistency. It is recommended to extract the call from this scope
+        - link "Learn more":
+          - /url: https://www.tradingview.com/pine-script-docs/errors/CW10003
+    - row "04:41:53 ч. Warning at 1304:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+      - cell "04:41:53 ч."
+      - cell "Warning at 1304:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+        - text: Warning at 1304:39
+        - text: Strategies without "calc_on_every_tick = true" only calculate on confirmed chart bars. In this case, "barstate.islast" may not initially return "true" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable "calc_on_every_tick" in the "strategy()" function.
+    - row "04:41:53 ч. Warning at 1369:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+      - cell "04:41:53 ч."
+      - cell "Warning at 1369:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+        - text: Warning at 1369:39
+        - text: Strategies without "calc_on_every_tick = true" only calculate on confirmed chart bars. In this case, "barstate.islast" may not initially return "true" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable "calc_on_every_tick" in the "strategy()" function.
+    - row "04:41:53 ч. \"QIRVANTA_SNIPER_PRO\" saved.":
+      - cell "04:41:53 ч."
+      - cell "\"QIRVANTA_SNIPER_PRO\" saved."
+- button:
+- button "3 ∙ Today, 04:41"
+- button "Line 1486, Col 1"
+- link "Pine Script® v6":
+  - /url: https://www.tradingview.com/pine-script-reference/v6
+- alert
+- alert

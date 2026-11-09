@@ -1,0 +1,220 @@
+// Presentation only: admission, orders and fills belong to the native adapter.
+bool showConfirmedLabels = input.bool(false, "Подробен архив на допуснатите планове", group="06 / ИЗГЛЕД", display=display.none)
+f_direction(int d) => d == 1 ? "НАГОРЕ" : d == -1 ? "НАДОЛУ" : "НЕУТРАЛНО"
+f_planTitle(int d) => d == 1 ? "ПЛАН ЗА ПОКУПКА" : "ПЛАН ЗА ПРОДАЖБА"
+f_wrapUi(string value, int columns) =>
+    array<string> words = str.split(value, " ")
+    string result = ""
+    int used = 0
+    for word in words
+        int count = str.length(word)
+        bool nextLine = used > 0 and used + count + 1 > columns
+        result += (result == "" ? "" : nextLine ? "\n" : " ") + word
+        used := nextLine ? count : used + count + (used == 0 ? 0 : 1)
+    result
+color ink = color.rgb(14, 23, 37)
+color paperInk = color.rgb(25, 38, 55)
+color textLight = color.rgb(231, 237, 244)
+color muted = color.rgb(166, 184, 203)
+color upColor = color.rgb(34, 201, 157)
+color downColor = color.rgb(248, 97, 114)
+color caution = color.rgb(242, 187, 81)
+color infoColor = color.rgb(88, 174, 243)
+string panelAnchor = panelPosition == "Горе вляво" ? position.top_left : panelPosition == "Долу вляво" ? position.bottom_left : panelPosition == "Горе вдясно" ? position.top_right : position.bottom_right
+int panelRows = uiMode == "ДИАГНОСТИКА" ? 8 : uiMode == "ПОДРОБЕН" ? 10 : uiMode == "СТАТИСТИКА" ? 7 : 6
+// One transparent footer row keeps the data above TradingView's lower-left watermark.
+var table dashboard = table.new(panelAnchor, 2, panelRows + 1, bgcolor=color.new(ink, 100), frame_color=color.rgb(66, 82, 101), frame_width=1)
+f_cell(table t, int row, string name, string value, color tone, string hint) =>
+    table.cell(t, 0, row, name, bgcolor=row % 2 == 0 ? paperInk : ink, text_color=muted, text_size=uiFontPt, text_halign=text.align_left, tooltip=hint)
+    table.cell(t, 1, row, value, bgcolor=row % 2 == 0 ? paperInk : ink, text_color=tone, text_size=uiFontPt, text_halign=text.align_left, tooltip=hint)
+    t
+f_shadowText(Ledger l) => str.tostring(l.closed) + " плана / " + str.tostring(l.net, "#.##") + "R"
+f_shadowTip(Ledger l) =>
+    "ОТДЕЛНА симулация по OHLC; не е резултатът на Strategy Tester.\nБруто " + str.tostring(l.gross, "#.###") + "R; разходи " + str.tostring(l.costs, "#.###") + "R.\nЗагуби " + str.tostring(l.negative) + "; отменени " + str.tostring(l.cancelled) + "; зает портфейл " + str.tostring(l.capacitySkipped) + ".\nСтатистическата защита запазва този източник, а не native отчетността."
+int uiModelIndex = runModel == "Бърз пробив" ? 1 : runModel == "Ранно обръщане" ? 2 : 0
+int uiFocus = localPressure != 0 ? localPressure : closedHtfBias == -1 ? -1 : 1
+if shownActive
+    uiModelIndex := shownPlan.family - 1
+    uiFocus := shownPlan.side
+else if runModel == "Всички"
+    Setup uiRetest = array.get(retestStates, uiFocus == 1 ? 0 : 1)
+    Setup uiReversal = array.get(reversalStates, uiFocus == 1 ? 0 : 1)
+    uiModelIndex := uiRetest.phase != 0 ? 0 : uiReversal.phase != 0 ? 2 : useFastBreakout ? 1 : 0
+Setup uiSetup = uiModelIndex == 2 ? array.get(reversalStates, uiFocus == 1 ? 0 : 1) : array.get(retestStates, uiFocus == 1 ? 0 : 1)
+bool uiPreparing = not shownActive and uiModelIndex != 1 and uiSetup.phase != 0
+string uiReason = array.get(uiFocus == 1 ? buyReasons : sellReasons, uiModelIndex)
+string uiStatus = nativeLastStatus != "" ? nativeLastStatus : uiReason
+float uiTrigger = uiModelIndex == 2 ? (uiFocus == 1 ? uiSetup.rejectionHigh : uiSetup.rejectionLow) : uiSetup.trigger
+string uiConfirmation = uiModelIndex == 2 ? "Следващо затваряне " + (uiFocus == 1 ? "над " : "под ") + f_price(uiTrigger) + "; свещ и филтри" : uiSetup.phase == 2 ? "Ретест при " + f_price(uiTrigger) + "; затваряне " + (uiFocus == 1 ? "над" : "под") + " нивото и филтри" : "Импулсно затваряне " + (uiFocus == 1 ? "над " : "под ") + f_price(uiTrigger) + "; после ретест"
+float uiCancelBoundary = uiModelIndex == 2 ? (uiFocus == 1 ? uiSetup.rejectionLow - syminfo.mintick : uiSetup.rejectionHigh + syminfo.mintick) : uiSetup.anchor - uiFocus * slBufferATR * atr
+string uiInvalidation = (uiModelIndex == 2 ? "Екстремум " : "Затваряне ") + (uiFocus == 1 ? "под " : "над ") + f_price(uiCancelBoundary) + (uiModelIndex == 2 ? "; срок " + str.tostring(reversalWaitBars) + " свещи" : "; обратен пробив или срок")
+if barstate.islastconfirmedhistory or barstate.islast
+    table.clear(dashboard, 0, 0, 1, panelRows)
+    if showPanel
+        if uiMode == "ДИАГНОСТИКА"
+            f_cell(dashboard, 0, "Кандидати", "Опити / потв. / откази", muted, "Технически кандидати на затворени свещи; това НЕ са изпълнени сделки.")
+            for idx = 0 to 5
+                int family = int(idx / 2) + 1
+                int direction = idx % 2 == 0 ? 1 : -1
+                string detail = str.tostring(array.get(triggerAttempts, idx)) + " / " + str.tostring(array.get(confirmedCounts, idx)) + " / " + str.tostring(array.get(refusedCounts, idx))
+                f_cell(dashboard, idx + 1, f_model(family) + (direction == 1 ? " ↑" : " ↓"), detail, muted, "Последен технически отказ: " + array.get(lastRefusals, idx))
+            f_cell(dashboard, 7, "Допускане", f_wrapUi(uiStatus, 25), caution, "Текущо състояние на избрания native портфейл.\n" + nativeLastStatus)
+        else if uiMode == "СТАТИСТИКА"
+            f_cell(dashboard, 0, "Източник", "ЕМУЛАТОР / " + nativePortfolio, textLight, "Следващите три реда използват native резултата. Независимите симулации по-долу не се прибавят към него.")
+            f_cell(dashboard, 1, "Нетно", str.tostring(strategy.netprofit, "#.##") + " " + strategy.account_currency, strategy.netprofit < 0 ? downColor : upColor, "Точно strategy.netprofit; включва отчетените частични изходи. Без второ начисляване на комисиона.")
+            f_cell(dashboard, 2, "Затворени", str.tostring(nativeClosedCampaigns) + " плана\n" + str.tostring(strategy.closedtrades) + " части", muted, "Един план може да има три отделни изхода. Броят native части не е броят планове.")
+            f_cell(dashboard, 3, "Измерено R", str.tostring(nativeTotalR, "#.###") + "R\nБез R: " + str.tostring(nativeUnscoredCampaigns), muted, "Само завършени native кампании с положителен първоначален риск и пълен журнал. Нетната сума остава отчетена и при невалиден знаменател за R.")
+            Ledger rawL = array.get(ledgers, 3)
+            Ledger filterL = array.get(ledgers, 4)
+            f_cell(dashboard, 4, "Сянка RAW", f_shadowText(rawL), rawL.net < 0 ? downColor : muted, f_shadowTip(rawL))
+            f_cell(dashboard, 5, "Сянка филтър", f_shadowText(filterL), filterL.net < 0 ? downColor : muted, f_shadowTip(filterL))
+            f_cell(dashboard, 6, "Защита", "Отделните PAPER книги", caution, "Източникът на статистическата защита е непроменен. Това не е точен native backtest.")
+        else
+            string directionText = f_direction(localPressure) + " / " + timeframe.period + "\n" + f_direction(closedHtfBias) + " / " + htf
+            string contextTip = "Първи ред: локална посока. Втори: потвърден по-висок контекст.\n" + lastContext + ". И двете решения използват завършени свещи."
+            string stageText = shownActive ? (shownPending ? f_planTitle(shownPlan.side) : "СИМУЛИРАНА ПОЗИЦИЯ") : uiPreparing ? "ПОДГОТОВКА " + f_direction(uiFocus) : "НЯМА ПЛАН"
+            string planTip = shownActive ? shownPlan.id + "\n" + f_model(shownPlan.family) + "\n" + shownPlan.evidence + "\nSL е структурен. TP1–TP3 са замразени R проекции от ориентир " + f_price(shownReference) + ", не структурни цели. Преградата е отделно известното ниво; не е поръчка за изход." : "Няма текущ допуснат план. Старите нива не се представят като действащи."
+            string clockText = na(lastAnalysisClose) ? "Няма данни" : str.format_time(lastAnalysisClose, "dd.MM HH:mm", riskTimezone)
+            f_cell(dashboard, 0, "Посока\nЛокална / HTF", directionText, localPressure == -1 ? downColor : localPressure == 1 ? upColor : caution, contextTip)
+            f_cell(dashboard, 1, "Етап", f_wrapUi(stageText, 22), shownActive ? (shownPlan.side == 1 ? upColor : downColor) : caution, shownStage + "\n" + planTip)
+            if shownActive
+                string entryText = shownPending ? "Ориентир " + f_price(shownReference) + "\nЗаявено " + str.tostring(nativeCampaignQty, "#.########") + "\nИзпълнено 0" : "Сим. вход " + f_price(shownEntry) + "\nОриентир " + f_price(shownReference) + "\nОстатък " + str.tostring(shownRemainingQty, "#.########")
+                string priceText = "SL нач. " + f_price(shownInitialStop) + "\nSL сега " + f_price(shownStop) + "\nTP1 R " + f_price(shownPlan.tp1) + "\nTP2 R " + f_price(shownPlan.tp2) + "\nTP3 R " + f_price(shownPlan.tp3)
+                f_cell(dashboard, 2, "Вход", entryText, textLight, "Симулираният вход и оставащото количество са от емулатора. Ориентирът е замразен при потвърждението.\n" + planTip)
+                f_cell(dashboard, 3, "Стоп / цели", priceText, textLight, planTip + "\nПромяна на стоп след TP1 се заявява след установения native fill; не действа назад във вече приключила свещ.")
+                f_cell(dashboard, 4, "Преграда", f_price(shownPlan.obstacle), caution, "Отделна структурна/EMA преграда, не R цел. Планираният риск е " + f_price(shownPlan.risk) + ".")
+            else
+                f_cell(dashboard, 2, uiPreparing ? "Нужно" : "Причина", f_wrapUi(uiPreparing ? uiConfirmation : uiStatus, 23), caution, uiStatus + "\n" + uiConfirmation)
+                f_cell(dashboard, 3, uiPreparing ? "Отмяна" : "Портфейл", f_wrapUi(uiPreparing ? uiInvalidation : "Емулатор / " + nativePortfolio, 23), muted, uiInvalidation + "\nНепотвърдената подготовка не е поръчка или сделка.")
+                f_cell(dashboard, 4, "Риск", "Няма активни нива", muted, "Изтеклите и приключилите планове са в историята, а не като текущи цени.")
+            string currentNotice = shownActive and nativeLastStatus != "" ? nativeLastStatus : newsPaused ? "НОВИНИ: ПАУЗА" : "Новини: ръчна проверка"
+            f_cell(dashboard, 5, "Затваряне", clockText + "\n" + f_wrapUi(currentNotice, 23), newsPaused ? downColor : muted, "Режим на затваряне; няма незабавен tick анализ.\n" + riskTimezone + ". Календар за новини не е свързан.\n" + nativeLastStatus)
+            if uiMode == "ПОДРОБЕН"
+                f_cell(dashboard, 6, "Модел / id", shownActive ? f_model(shownPlan.family) + "\n" + f_wrapUi(shownPlan.id, 36) : "Няма текущ план", muted, planTip)
+                f_cell(dashboard, 7, "Доказателства", shownActive ? f_wrapUi(shownPlan.evidence, 32) : "Няма доказана доходност", caution, "Техническото потвърждение не доказва бъдеща доходност.")
+                f_cell(dashboard, 8, "Емулатор", str.tostring(strategy.netprofit, "#.##") + " " + strategy.account_currency + "\n" + str.tostring(strategy.closedtrades) + " затворени части", strategy.netprofit < 0 ? downColor : muted, lastResultInfo)
+                string timingText = shownActive ? "Задържане ≤ " + str.tostring(shownPlan.maxHoldBarsFrozen) + " св.\nГап допуск " + str.tostring(shownPlan.maxDeviationATRFrozen, "#.##") + " ATR\nЗаявка: " + (shownPending ? "+" + str.tostring(math.max(0, shownPlan.expiresAfterBar - bar_index)) + " затваряне" : "изпълнена") : "Затваряне → следв. тик\nЦели: R; SL: структура"
+                f_cell(dashboard, 9, "Срок / гап", timingText, muted, "Замразени условия при избора на плана. Срокът за заявката е следващото затваряне; срокът за позицията започва от native входа. Гапът се проверява след действителното изпълнение; допускът не е предварително условие за вече изпълнена market поръчка и не изтрива историята.")
+        table.cell(dashboard, 0, panelRows, "", height=str.contains(panelPosition, "Долу") ? 6 : 0, bgcolor=color.new(ink, 100))
+        table.cell(dashboard, 1, panelRows, "", height=str.contains(panelPosition, "Долу") ? 6 : 0, bgcolor=color.new(ink, 100))
+
+plot(displayEMAs ? emaFast : na, "EMA21 — текуща", color=color.rgb(88, 174, 243), linewidth=1)
+plot(displayEMAs ? emaSlow : na, "EMA55 — текуща", color=color.rgb(242, 187, 81), linewidth=1)
+// Reuse fixed pools. Historical events NEVER compete with active plan objects.
+var array<line> planLines = array.new<line>()
+var array<line> leaderLines = array.new<line>()
+var array<label> planLabels = array.new<label>()
+var line setupLine = na
+var label setupLabel = na
+if barstate.isfirst
+    for i = 0 to 4
+        array.push(planLines, line.new(bar_index, na, bar_index, na))
+        array.push(leaderLines, line.new(bar_index, na, bar_index, na, style=line.style_dotted))
+        array.push(planLabels, label.new(bar_index, na, "", style=label.style_label_left))
+    setupLine := line.new(bar_index, na, bar_index, na, style=line.style_dashed)
+    setupLabel := label.new(bar_index, na, "", style=label.style_label_left)
+if barstate.islastconfirmedhistory or barstate.islast
+    // Hiding is a setter operation, not delete/recreate on every realtime update.
+    for i = 0 to 4
+        line.set_y1(array.get(planLines, i), na)
+        line.set_y2(array.get(planLines, i), na)
+        line.set_y1(array.get(leaderLines, i), na)
+        line.set_y2(array.get(leaderLines, i), na)
+        label.set_y(array.get(planLabels, i), na)
+    line.set_y1(setupLine, na)
+    line.set_y2(setupLine, na)
+    label.set_y(setupLabel, na)
+    if showLevels and shownActive
+        array<float> prices = array.from(shownEntry, shownStop, shownPlan.tp1, shownPlan.tp2, shownPlan.tp3)
+        array<string> names = array.from(shownPending ? "ОРИЕНТИР" : "ВХОД СИМ.", shownStop == shownPlan.initialStop ? "SL НАЧАЛ." : "SL СИМ. СЕГА", "TP1 R", "TP2 R", "TP3 R")
+        array<int> sortedIndices = array.sort_indices(prices, order.ascending)
+        float previousLabelY = na
+        float minLabelGap = math.max(nz(atr) * 0.18, syminfo.mintick * 5)
+        string labelSize = levelFont == "Малък" ? size.small : levelFont == "Голям" ? size.large : size.normal
+        for i in sortedIndices
+            float price = array.get(prices, i)
+            float labelY = separateLevelLabels and not na(previousLabelY) ? math.max(price, previousLabelY + minLabelGap) : price
+            previousLabelY := labelY
+            color lineColor = i == 0 ? textLight : i == 1 ? downColor : i == 4 ? upColor : infoColor
+            line l = array.get(planLines, i)
+            line.set_xy1(l, bar_index, price)
+            line.set_xy2(l, bar_index + levelOffset, price)
+            line.set_color(l, lineColor)
+            line.set_width(l, i < 2 ? 2 : 1)
+            if labelY != price
+                line leader = array.get(leaderLines, i)
+                line.set_xy1(leader, bar_index + levelOffset, price)
+                line.set_xy2(leader, bar_index + levelOffset + 2, labelY)
+                line.set_color(leader, color.new(lineColor, 40))
+            label lb = array.get(planLabels, i)
+            label.set_xy(lb, bar_index + levelOffset + 2, labelY)
+            label.set_text(lb, array.get(names, i) + " " + f_price(price))
+            label.set_color(lb, color.new(ink, 8))
+            label.set_textcolor(lb, lineColor)
+            label.set_size(lb, labelSize)
+            label.set_tooltip(lb, shownPlan.id + "\n" + shownPlan.evidence + "\nЛинията е на точната цена. Не е MT5 изпълнение.")
+    else if showSetupLevel and not shownActive
+        int focus = localPressure != 0 ? localPressure : closedHtfBias == -1 ? -1 : 1
+        Setup rt = array.get(retestStates, focus == 1 ? 0 : 1)
+        Setup rv = array.get(reversalStates, focus == 1 ? 0 : 1)
+        Setup candidate = rt.phase != 0 ? rt : rv
+        if candidate.phase != 0 and not na(candidate.trigger) and not na(atr) and math.abs(candidate.trigger - close) <= atr * 6
+            float trigger = candidate.trigger
+            line.set_xy1(setupLine, bar_index, trigger)
+            line.set_xy2(setupLine, bar_index + levelOffset + 2, trigger)
+            line.set_color(setupLine, caution)
+            label.set_xy(setupLabel, bar_index + levelOffset + 2, trigger)
+            label.set_text(setupLabel, "ПОДГОТОВКА " + f_direction(focus) + "\n" + f_price(trigger) + " · ЧАКА ПОТВЪРЖДЕНИЕ")
+            label.set_color(setupLabel, color.new(ink, 8))
+            label.set_textcolor(setupLabel, caution)
+            label.set_size(setupLabel, size.small)
+            label.set_tooltip(setupLabel, candidate.id + "\nСамо trigger на подготвящ се модел, не потвърден вход.")
+
+// The sole signal marker source is the actual admitted native submission event.
+// No independent f_pick() here: one selected Plan/id drives marker, prices and order.
+Event visualSubmitted = na
+if processBar and array.size(events) > 0
+    for e in events
+        if e.book == "NATIVE" and e.kind == "NATIVE_SUBMITTED"
+            visualSubmitted := e
+bool technicalBuy = not na(visualSubmitted) and visualSubmitted.side == 1
+bool technicalSell = not na(visualSubmitted) and visualSubmitted.side == -1
+plotshape(showSignalMarkers and technicalBuy, "План за покупка — заявен, не изпълнение", style=shape.triangleup, location=location.belowbar, color=upColor, size=size.small, text="ПЛАН", textcolor=upColor)
+plotshape(showSignalMarkers and technicalSell, "План за продажба — заявен, не изпълнение", style=shape.triangledown, location=location.abovebar, color=downColor, size=size.small, text="ПЛАН", textcolor=downColor)
+var array<label> signalLabels = array.new<label>()
+var array<label> contextLabels = array.new<label>()
+var int lastContextBuyBar = na
+var int lastContextSellBar = na
+if processBar
+    if not na(visualSubmitted) and showConfirmedLabels
+        Event e = visualSubmitted
+        string tip = e.planId + "\n" + e.evidence + "\nОриентир " + f_price(e.reference) + "\nSL " + f_price(e.stop) + "\nTP1 R " + f_price(e.tp1) + " | TP2 R " + f_price(e.tp2) + " | TP3 R " + f_price(e.tp3) + "\nПреграда " + f_price(e.obstacle) + "\nЗаявена симулирана поръчка; това не е изпълнение."
+        label h = label.new(bar_index, e.side == 1 ? low - nz(atr) * 0.35 : high + nz(atr) * 0.35, f_planTitle(e.side) + "\n" + f_model(e.family), style=e.side == 1 ? label.style_label_up : label.style_label_down, color=e.side == 1 ? upColor : downColor, textcolor=color.black, size=size.small, tooltip=tip)
+        array.push(signalLabels, h)
+        if array.size(signalLabels) > keepSignalLabels
+            label.delete(array.shift(signalLabels))
+    else if na(visualSubmitted) and uiMode == "ДИАГНОСТИКА" and showContextLabels and keepLabels > 0
+        int bestRank = 0
+        Event chosenEvent = na
+        if array.size(events) > 0
+            for e in events
+                if e.book == "CORE" or e.book == "NATIVE"
+                    int rank = e.kind == "NATIVE_BLOCKED" or e.kind == "NATIVE_NOT_FILLED" ? 5 : e.kind == "REJECTED" ? 4 : e.kind == "CANCELLED" or e.kind == "EXPIRED" ? 3 : e.kind == "WATCH" ? 2 : e.kind == "CONFIRMED" ? 1 : 0
+                    if rank > bestRank
+                        bestRank := rank
+                        chosenEvent := e
+        if not na(chosenEvent)
+            int d = chosenEvent.side
+            int lastBar = d == 1 ? lastContextBuyBar : lastContextSellBar
+            if na(lastBar) or bar_index - lastBar >= contextLabelSpacing
+                string name = chosenEvent.kind == "WATCH" ? "ПОДГОТОВКА " + f_direction(d) : chosenEvent.kind == "CONFIRMED" ? "ТЕХНИЧЕСКИ КАНДИДАТ" : "БЕЗ ИЗПЪЛНЕНИЕ"
+                string detail = f_short(chosenEvent.reason, 30)
+                label h = label.new(bar_index, d == 1 ? low - nz(atr) * 0.25 : high + nz(atr) * 0.25, name + "\n" + detail, style=d == 1 ? label.style_label_up : label.style_label_down, color=color.new(caution, 18), textcolor=color.black, size=size.small, tooltip=chosenEvent.planId + "\n" + chosenEvent.reason)
+                array.push(contextLabels, h)
+                if array.size(contextLabels) > keepLabels
+                    label.delete(array.shift(contextLabels))
+                if d == 1
+                    lastContextBuyBar := bar_index
+                else
+                    lastContextSellBar := bar_index
+

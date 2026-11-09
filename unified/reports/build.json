@@ -1,0 +1,24 @@
+{
+  "canonical_core_sha256": "d364dbd4239d901e7bb0aa5475de8693610be7073191a9503a405ce001209c6b",
+  "outputs": {
+    "QIRVANTA_UNIFIED.pine": {
+      "lines": 1485,
+      "sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5"
+    }
+  },
+  "pine_compile": "NOT_TESTED_BY_GENERATOR",
+  "assembly": [
+    "native_header",
+    "inputs",
+    "features",
+    "types_helpers",
+    "decision",
+    "paper_engine",
+    "alerts_helpers",
+    "native_adapter",
+    "visual_alerts",
+    "alerts"
+  ],
+  "source": "unified/src; corrected baseline in ../refactored and ../audited is immutable",
+  "line_endings": "LF"
+}

@@ -1,0 +1,21 @@
+// Native fill messages contain known plan/order levels, never an invented future fill.
+// Actual fill price/quantity are supplied by the strategy_alert_message UI template.
+f_alertSide(int d) => d == 1 ? "ПОКУПКА" : d == -1 ? "ПРОДАЖБА" : "БЕЗ ПОСОКА"
+f_eventTitle(string kind) =>
+    (kind == "ENTRY" or kind == "NATIVE_ENTRY") ? "СИМУЛИРАН ВХОД" : (kind == "TP1" or kind == "NATIVE_TP1") ? "СИМУЛИРАН ИЗХОД TP1" : (kind == "TP2" or kind == "NATIVE_TP2") ? "СИМУЛИРАН ИЗХОД TP2" : (kind == "TP3" or kind == "NATIVE_TP3") ? "СИМУЛИРАН ИЗХОД TP3" : (kind == "SL" or str.startswith(kind, "NATIVE_SL")) ? "СИМУЛИРАН СТОП" : kind == "NATIVE_EXIT_TIME" ? "СИМУЛИРАН ИЗХОД — ИЗТЕКЪЛ СРОК" : kind == "NATIVE_EXIT_GAP" ? "СИМУЛИРАН ИЗХОД — НЕВАЛИДЕН ГАП" : kind == "NATIVE_SUBMITTED" ? "ПЛАН И ЗАЯВЕНА СИМУЛАЦИЯ — ОЩЕ НЯМА FILL" : kind == "WATCH" ? "ПОДГОТОВКА — ОЩЕ НЯМА ПЛАН" : kind == "CONFIRMED" ? "ТЕХНИЧЕСКИ КАНДИДАТ — НЕ Е СДЕЛКА" : kind == "NATIVE_BLOCKED" ? "КАНДИДАТ БЕЗ ПОРЪЧКА" : kind == "NATIVE_STOP_SCHEDULED" ? "ЗАЯВЕН НОВ СТОП — БЕЗ ОБРАТНО ДЕЙСТВИЕ" : "СЪБИТИЕ / ПРЕДУПРЕЖДЕНИЕ"
+f_nativeMessage(Plan p, float plannedCampaignQty, string eventKind, string reason, float level) =>
+    "QIRVANTA | " + f_eventTitle(eventKind) + " | " + syminfo.tickerid + " | рамка " + timeframe.period + " | план " + p.id + " | " + f_model(p.family) + " | " + f_alertSide(p.side) + " | потвърждение ms " + str.tostring(p.signalTime) + " | ориентир " + f_price(p.reference) + " | начален SL " + f_price(p.initialStop) + " | TP1(R) " + f_price(p.tp1) + " | TP2(R) " + f_price(p.tp2) + " | TP3(R) " + f_price(p.tp3) + " | заявено ниво " + f_price(level) + " | заявен размер на целия план " + f_num(plannedCampaignQty) + " единици | лимит на отклонение " + f_num(p.maxDeviationATRFrozen) + " ATR | срок за държане " + f_int(p.maxHoldBarsFrozen) + " свещи след входа; след това заявка за изход | неизпълнена заявка: отмяна на затварянето на бар " + f_int(p.expiresAfterBar) + " | основание: " + p.cancellationReason + " | " + reason + " | Само симулация"
+f_isRiskEvent(Event e) =>
+    e.kind == "CANCELLED" or e.kind == "EXPIRED" or e.kind == "REJECTED" or e.kind == "EVIDENCE" or e.kind == "CONFLICT" or e.kind == "AMBIGUOUS" or e.kind == "NATIVE_BLOCKED" or e.kind == "NATIVE_DIVERGENCE" or e.kind == "NATIVE_NOT_FILLED" or e.kind == "NATIVE_LEDGER_INCOMPLETE" or e.kind == "NATIVE_STOP_SCHEDULED"
+f_allowedUnifiedEvent(Event e) =>
+    bool shadow = e.book != "CORE" and e.book != "NATIVE"
+    bool nativeFillObservation = e.kind == "NATIVE_ENTRY" or str.startswith(e.kind, "NATIVE_EXIT_") or e.kind == "NATIVE_CLOSED"
+    bool selectedPlan = e.book == "NATIVE" and e.kind == "NATIVE_SUBMITTED" and alertPlan
+    bool watch = e.book == "CORE" and e.kind == "WATCH" and alertWatch
+    bool risk = not shadow and f_isRiskEvent(e) and alertRisk and (e.book == "NATIVE" or e.kind == "EVIDENCE")
+    bool diagnostic = alertDiagnostics and e.book == "CORE" and (e.kind == "CONFIRMED" or f_isRiskEvent(e))
+    alertsEnabled and not nativeFillObservation and (selectedPlan or watch or risk or diagnostic or (shadow and alertShadow))
+f_readableEvent(Event e) =>
+    string origin = e.book == "CORE" ? "ТЕХНИЧЕСКИ АНАЛИЗ" : e.book == "NATIVE" ? "NATIVE СИМУЛАЦИЯ" : "ОТДЕЛНА СЕНЧЕСТА КНИГА " + e.book
+    "QIRVANTA | " + f_eventTitle(e.kind) + " | " + origin + " | " + syminfo.tickerid + " | рамка " + timeframe.period + " | план " + e.planId + " | " + f_model(e.family) + " | " + f_alertSide(e.side) + " | събитие " + e.kind + " | време на събитието ms " + f_int(e.effectiveTime) + " | обработено ms " + f_int(e.knownTime) + " | цена " + f_price(e.price) + " | ориентир " + f_price(e.reference) + " | начален SL " + f_price(e.stop) + " | TP1(R) " + f_price(e.tp1) + " | TP2(R) " + f_price(e.tp2) + " | TP3(R) " + f_price(e.tp3) + " | " + e.reason
+

@@ -1,0 +1,12 @@
+// One close-time batch preserves all events; native fill observations are journal-only.
+if processBar and array.size(events) > 0
+    string readableBatch = ""
+    string jsonBatch = ""
+    for e in events
+        if exportEvents
+            log.info(f_json(e))
+        if f_allowedUnifiedEvent(e)
+            readableBatch += (readableBatch == "" ? "" : "\n") + f_readableEvent(e)
+            jsonBatch += (jsonBatch == "" ? "" : ",") + f_json(e)
+    if readableBatch != ""
+        alert(alertJson ? "{\"qirvanta\":\"advisory_only\",\"events\":[" + jsonBatch + "]}" : readableBatch, alert.freq_once_per_bar_close)

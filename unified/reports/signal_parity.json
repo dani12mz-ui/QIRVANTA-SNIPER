@@ -1,0 +1,37 @@
+{
+  "status": "PASS_SOURCE_AND_CONFIGURATION",
+  "scope": "STATIC_PINE_SIGNAL_SOURCE_IDENTITY_NOT_RUNTIME_PARITY",
+  "modules": {
+    "features": {
+      "baseline_sha256_lf": "14c82834109b0df8be4f2076b539c7cf58a73cc31b6201d47b7ceaf2b9ddd2e5",
+      "unified_sha256_lf": "14c82834109b0df8be4f2076b539c7cf58a73cc31b6201d47b7ceaf2b9ddd2e5",
+      "identical": true,
+      "candidate_semantics_identical": true
+    },
+    "types_helpers": {
+      "baseline_sha256_lf": "0452ce8e3785579bc443bdf5021106a8736622cbc5291144459b45a0f6b5e040",
+      "unified_sha256_lf": "f1b33ba27ab9de2d7a8abaf2aef380cb0b3afcb8357a05fff66d3a2d49798190",
+      "identical": false,
+      "candidate_semantics_identical": true
+    },
+    "decision": {
+      "baseline_sha256_lf": "0c07bef363335e749eb12606effe5bdc573972e6521a219459e2de7fdee05f1b",
+      "unified_sha256_lf": "0c07bef363335e749eb12606effe5bdc573972e6521a219459e2de7fdee05f1b",
+      "identical": true,
+      "candidate_semantics_identical": true
+    },
+    "paper_engine": {
+      "baseline_sha256_lf": "759a80c06cc765844f2785dd410053a17dde3394bf02d1a94fd78f7e5c6590a4",
+      "unified_sha256_lf": "759a80c06cc765844f2785dd410053a17dde3394bf02d1a94fd78f7e5c6590a4",
+      "identical": true,
+      "candidate_semantics_identical": true
+    }
+  },
+  "signal_input_count": 80,
+  "changed_signal_inputs": [],
+  "derived_input_logic_identical": true,
+  "differences": [],
+  "documented_exception": "types_helpers: additive frozen Plan lifetime/deviation metadata; exact approved lines excluded, all prior fields and calculations retained",
+  "pine_runtime_signal_parity": "UNVERIFIED_UNTIL_MATCHED_PINE_EVENT_EXPORTS",
+  "synthetic_reference": "See tests for identical supplied-candidate reference replay; this is not OHLC-to-signal Pine evaluation."
+}

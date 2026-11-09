@@ -1,0 +1,314 @@
+{
+  "report_state": "VALIDATED_WITH_LIMITATIONS",
+  "observed_date": "2026-11-09",
+  "timezone": "Europe/Sofia",
+  "artifact_sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+  "baseline_artifact_sha256": "44a579eee6e1542fdb7f30b9dceb9ec78aac9f3c6d9bc0346a52fa4d9bf529b2",
+  "minimal_standard_strategy": {
+    "status": "PASS_COMPILE_AND_ADD",
+    "time_local": "04:27:14",
+    "evidence": "tradingview/minimal_strategy.txt"
+  },
+  "initial_unified": {
+    "artifact_sha256_prefix": "c1a60",
+    "compile_time_local": "04:28:59",
+    "status": "PASS_COMPILE_AND_M15_RUNTIME",
+    "qualification": "Superseded by final artifact above; initial source reproduced missing panel on open-market load"
+  },
+  "baseline_recompile": {
+    "time_local": "04:35:54",
+    "status": "PASS_COMPILE_AND_M15_RUNTIME",
+    "evidence": [
+      "tradingview/baseline_M15.txt",
+      "tradingview/baseline_properties.txt"
+    ]
+  },
+  "execution_configuration": {
+    "symbol": "OANDA:XAUUSD",
+    "chart_type": "standard Candles",
+    "native_portfolio": "RAW",
+    "model_selection": "All",
+    "initial_capital": 100000,
+    "currency": "USD",
+    "total_units_per_plan": 3,
+    "units_per_partial": 1,
+    "pyramiding": 0,
+    "commission": {
+      "type": "cash_per_contract_per_fill",
+      "value": 0.175
+    },
+    "slippage_ticks": 2,
+    "long_leverage": "1x",
+    "short_leverage": "1x",
+    "margin_long_percent": 100,
+    "margin_short_percent": 100,
+    "bar_detail": "Default (4 ticks per bar)",
+    "script_execution": "On bar close",
+    "order_execution_delay": "One tick",
+    "limit_execution": "Requested price",
+    "calc_on_every_tick": false,
+    "calc_on_order_fills": false,
+    "process_orders_on_close": false,
+    "use_bar_magnifier": false,
+    "evidence": [
+      "tradingview/baseline_properties.txt",
+      "tradingview/execution_settings.png",
+      "tradingview/final_properties.txt"
+    ]
+  },
+  "same_chart_m15_visible_comparison": {
+    "status": "PASS_VISIBLE_AGGREGATES_ONLY",
+    "loaded_period_display": "2026-08-03 through 2026-11-09",
+    "baseline": {
+      "net_usd": -144.49,
+      "max_equity_drawdown_usd": 842.26,
+      "closed_parts": 212,
+      "winning_parts": 90,
+      "losing_parts": 122,
+      "profit_factor": 0.905,
+      "gross_profit_usd": 1378.54,
+      "gross_loss_usd": 1523.03,
+      "entry_family_net_usd": {
+        "retest": 20.82,
+        "reversal": 91.93,
+        "fast_breakout": -257.24
+      }
+    },
+    "final_unified": {
+      "net_usd": -144.49,
+      "max_equity_drawdown_usd": 842.26,
+      "closed_parts": 212,
+      "winning_parts": 90,
+      "losing_parts": 122,
+      "profit_factor": 0.905,
+      "gross_profit_usd": 1378.54,
+      "gross_loss_usd": 1523.03,
+      "entry_family_net_usd": {
+        "retest": 20.82,
+        "reversal": 91.93,
+        "fast_breakout": -257.24
+      }
+    },
+    "configuration_match": "Same temporary chart, provider, timeframe, date settings and native costs/properties; rerun a few minutes apart",
+    "dataset_hash": null,
+    "loaded_bar_count": null,
+    "limitations": [
+      "Market was open and the unconfirmed live OHLC could change; no bit-identical dataset hash",
+      "Aggregate equality does not establish exact candidate/event/trade-by-trade parity",
+      "Full CSV export blocked by Basic-plan upgrade requirement"
+    ],
+    "evidence": [
+      "tradingview/baseline_M15.txt",
+      "tradingview/final_M15.txt",
+      "tradingview/baseline_properties.txt",
+      "tradingview/final_properties.txt"
+    ],
+    "unified_artifact_sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+    "qualification": "Final saved/re-added artifact has the same visible M15 aggregates. Checks were minutes apart on an open market; no matched full dataset/candidate-event export claim."
+  },
+  "final_interval_smoke": [
+    {
+      "interval": "M5",
+      "artifact_sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+      "status": "PASS_LOADED_HISTORY_SMOKE",
+      "net_usd": 50.44,
+      "closed_parts": 134,
+      "winning_parts": 66,
+      "losing_parts": 68,
+      "max_equity_drawdown_usd": 217.51,
+      "profit_factor": 1.1,
+      "loaded_period_display": "2026-10-12 through 2026-11-09",
+      "observed_runtime_errors": 0,
+      "evidence": "tradingview/final_M5.txt"
+    },
+    {
+      "interval": "M15",
+      "artifact_sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+      "status": "PASS_LOADED_HISTORY_SMOKE",
+      "net_usd": -144.49,
+      "closed_parts": 212,
+      "winning_parts": 90,
+      "losing_parts": 122,
+      "max_equity_drawdown_usd": 842.26,
+      "profit_factor": 0.905,
+      "loaded_period_display": "2026-08-03 through 2026-11-09",
+      "observed_runtime_errors": 0,
+      "evidence": "tradingview/final_M15.txt"
+    },
+    {
+      "interval": "M30",
+      "artifact_sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+      "status": "PASS_LOADED_HISTORY_SMOKE",
+      "net_usd": -376.56,
+      "closed_parts": 283,
+      "winning_parts": 123,
+      "losing_parts": 160,
+      "max_equity_drawdown_usd": 1595.16,
+      "profit_factor": 0.904,
+      "loaded_period_display": "2026-01-02 through 2026-11-09",
+      "observed_runtime_errors": 0,
+      "evidence": "tradingview/final_M30.txt"
+    },
+    {
+      "interval": "H1",
+      "artifact_sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+      "status": "PASS_LOADED_HISTORY_SMOKE",
+      "net_usd": 667.34,
+      "closed_parts": 110,
+      "winning_parts": 51,
+      "losing_parts": 59,
+      "max_equity_drawdown_usd": 649.13,
+      "profit_factor": 1.248,
+      "loaded_period_display": "2026-01-02 through 2026-11-09",
+      "observed_runtime_errors": 0,
+      "evidence": "tradingview/final_H1.txt"
+    },
+    {
+      "interval": "H4",
+      "artifact_sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+      "status": "PASS_LOADED_HISTORY_SMOKE",
+      "net_usd": 2284.47,
+      "closed_parts": 123,
+      "winning_parts": 74,
+      "losing_parts": 49,
+      "max_equity_drawdown_usd": 892.79,
+      "profit_factor": 2.055,
+      "loaded_period_display": "2023-01-03 through 2026-11-09",
+      "observed_runtime_errors": 0,
+      "evidence": "tradingview/final_H4.txt"
+    }
+  ],
+  "native_sample": {
+    "status": "PASS_VISIBLE_ROUNDED_SAMPLE_ONLY",
+    "evidence": "native_sample_reconciliation.json",
+    "full_cash_r_audit": "UNVERIFIED"
+  },
+  "mobile_render": {
+    "status": "PARTIAL",
+    "viewports": [
+      {
+        "width": 390,
+        "height": 844,
+        "status": "PASS_CURRENT_PREPARATION_LAYOUT",
+        "evidence": "tradingview/mobile_390.png"
+      },
+      {
+        "width": 430,
+        "height": 932,
+        "status": "PASS_CURRENT_PREPARATION_LAYOUT",
+        "evidence": "tradingview/mobile_430.png"
+      }
+    ],
+    "physical_device_test": false,
+    "active_plan_prices": "UNVERIFIED",
+    "detailed_vs_mobile_native_aggregate": "PASS_M15_VISIBLE_AGGREGATES",
+    "detail_evidence": "tradingview/detail_M15_same_results.txt",
+    "chart_interaction": {
+      "cause": "Selected main price series temporarily displays its candles above the table",
+      "resolution": "Click empty chart space to deselect; Escape alone may leave the series selected",
+      "status": "REPRODUCED_AND_NORMAL_VIEW_RESTORED",
+      "before": "tradingview/selected_series_layering.png",
+      "after": "tradingview/deselected_series_layering.png"
+    },
+    "normal_detailed_view": {
+      "status": "PASS_OBSERVED",
+      "evidence": "tradingview/detail_desktop_deselected.png"
+    }
+  },
+  "forward_server_alerts": "NOT_OBSERVED",
+  "forward_realtime_behavior": "NOT_VALIDATED",
+  "properties_overrides": "UNVERIFIED; no safety/parity claim for intrabar, fill-recalculation or on-close overrides",
+  "performance_improvement_claim": false,
+  "pre_layer_artifact_sha256": "270fcf2c1d5b9de18aff5cc1d3583b46a3f0deba49a12b00a02c13e2d5bd5428",
+  "prior_artifact_compile": {
+    "time_local": "04:37:25",
+    "status": "PASS",
+    "messages": [
+      "Compiled.",
+      "Updated on chart."
+    ],
+    "observed_errors": 0,
+    "observed_warnings": 0,
+    "evidence": "tradingview/final_compile.txt"
+  },
+  "final_compile": {
+    "time_local": "04:41:53",
+    "status": "PASS_WITH_REVIEWED_WARNINGS",
+    "observed_errors": 0,
+    "observed_warnings": 4,
+    "warnings": [
+      {
+        "line": 755,
+        "column": 35,
+        "code": "CW10003",
+        "function": "f_fast",
+        "message_summary": "Function should be called on each calculation for consistency",
+        "review": "Unchanged baseline call in confirmed-bar direction loop; historical feature series computed globally. No intrabar/fill override guarantee."
+      },
+      {
+        "line": 756,
+        "column": 35,
+        "code": "CW10003",
+        "function": "f_reversal",
+        "message_summary": "Function should be called on each calculation for consistency",
+        "review": "Unchanged baseline call in confirmed-bar direction loop; historical feature series computed globally. No intrabar/fill override guarantee."
+      },
+      {
+        "line": 1304,
+        "column": 39,
+        "code": "CLOSE_ONLY_BARSTATE_ISLAST",
+        "message_summary": "islast may not be true on initial unconfirmed realtime bar",
+        "review": "Table render also uses islastconfirmedhistory, addressing reproduced initial-load defect without enabling every-tick trading."
+      },
+      {
+        "line": 1369,
+        "column": 39,
+        "code": "CLOSE_ONLY_BARSTATE_ISLAST",
+        "message_summary": "islast may not be true on initial unconfirmed realtime bar",
+        "review": "Current-level render also uses islastconfirmedhistory; no instant tick-analysis claim."
+      }
+    ],
+    "evidence": "tradingview/saved_final_compile.txt"
+  },
+  "alerts_ui": {
+    "status": "PASS_ROUTES_AND_TEMPLATE_ONLY",
+    "active_alert_created": false,
+    "server_delivery": "UNVERIFIED",
+    "platform_caution_recorded": true,
+    "evidence": [
+      "tradingview/alert_routes_template.txt",
+      "tradingview/alert_platform_caution.txt"
+    ]
+  },
+  "saved_personal_script": {
+    "name": "QIRVANTA_UNIFIED",
+    "version": 3,
+    "replaced_authorized_existing_slot": true,
+    "artifact_sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+    "qualification": "Replaced the previously authorized PRO script slot; no paid plan upgrade or broker automation",
+    "readback": {
+      "status": "PASS_CRLF_NORMALIZED_EXACT_SOURCE_MATCH",
+      "lf_characters": 109255,
+      "crlf_characters": 110740,
+      "saved_version": 3
+    }
+  },
+  "readded_final": {
+    "time_local": "04:42:50",
+    "status": "PASS_COMPILED_AND_ADDED",
+    "evidence": "tradingview/readded_final_compile.txt"
+  },
+  "final_saved_chart": {
+    "status": "PASS_OBSERVED",
+    "private_script": "QIRVANTA_UNIFIED",
+    "version": 3,
+    "chart": "OANDA:XAUUSD M15 standard Candles",
+    "display": "Compact table overlay plus Strategy Tester; one script",
+    "active_alert_created": false,
+    "live_trading": false,
+    "evidence": [
+      "tradingview/final_saved_chart.png",
+      "tradingview/final_saved_chart.txt"
+    ]
+  }
+}

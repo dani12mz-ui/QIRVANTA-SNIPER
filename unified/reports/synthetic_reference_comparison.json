@@ -1,0 +1,55 @@
+{
+  "status": "PASS_SYNTHETIC_REFERENCE_REPLAY",
+  "scope": "SYNTHETIC_SUPPLIED_CANDIDATES_NOT_PINE_SIGNAL_OR_NATIVE_FILL_PARITY",
+  "identical_data_and_costs": true,
+  "bars": 72,
+  "cost_price": 0.3,
+  "runs": [
+    {
+      "policy": "БАЗОВ",
+      "identical": true,
+      "supplied_candidates": 15,
+      "candidate_eligibility_records": 15,
+      "event_counts": {
+        "M1": 12,
+        "M2": 16,
+        "M3": 14,
+        "RAW": 30,
+        "FILTERED": 20
+      },
+      "closed_counts": {
+        "M1": 2,
+        "M2": 2,
+        "M3": 2,
+        "RAW": 6,
+        "FILTERED": 4
+      },
+      "baseline_result_sha256": "c16bd9bb9e8e54c7c176665b410d62536ae1ac52ce357881acb609925a1d6a48",
+      "unified_result_sha256": "c16bd9bb9e8e54c7c176665b410d62536ae1ac52ce357881acb609925a1d6a48"
+    },
+    {
+      "policy": "СЪГЛАСУВАН ТРЕНД — ПРОБЕН",
+      "identical": true,
+      "supplied_candidates": 15,
+      "candidate_eligibility_records": 15,
+      "event_counts": {
+        "M1": 12,
+        "M2": 16,
+        "M3": 14,
+        "RAW": 30,
+        "FILTERED": 0
+      },
+      "closed_counts": {
+        "M1": 2,
+        "M2": 2,
+        "M3": 2,
+        "RAW": 6,
+        "FILTERED": 0
+      },
+      "baseline_result_sha256": "04da5667bd9da7ab747ee6edc2bc95f6f28ad86f740a05da99218beb2254c215",
+      "unified_result_sha256": "04da5667bd9da7ab747ee6edc2bc95f6f28ad86f740a05da99218beb2254c215"
+    }
+  ],
+  "dataset_sha256": "c8e5a1789e5e8101d62ffcc29bbbd3f777d73ae31747ae20a1b8102f674422fa",
+  "performance_claim": false
+}

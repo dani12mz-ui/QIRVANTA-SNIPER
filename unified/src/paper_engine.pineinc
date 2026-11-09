@@ -1,0 +1,246 @@
+// Conservative OHLC engine. Execution events are OBSERVED at bar close.
+// Entry effective_time can be the bar open; intrabar touch times remain unknown (null).
+f_addClosed(Ledger a, Paper s) =>
+    float net = s.gross - s.costs
+    a.closed += 1
+    a.gross += s.gross
+    a.costs += s.costs
+    a.net += net
+    if net > 1e-10
+        a.positive += 1
+        a.gains += net
+    else if net < -1e-10
+        a.negative += 1
+        a.losses += -net
+    else
+        a.zero += 1
+    a.peak := math.max(a.peak, a.net)
+    a.drawdown := math.max(a.drawdown, a.peak - a.net)
+    a.holdBars += bar_index - s.fillBar
+    a
+f_realize(Paper s, float fraction, float px, string kind, string book, int effective, array<Event> ev) =>
+    float part = math.min(fraction, s.remaining)
+    float gross = part * (px - s.entry) * s.p.side / s.risk
+    float rate = s.p.side == 1 ? fundingLong : fundingShort
+    int durationEnd = na(effective) ? time_close : effective
+    float days = math.max(0.0, (durationEnd - s.fillTime) / 86400000.0)
+    float costs = part * (s.p.costPrice + rate * days) / s.risk
+    s.remaining := math.max(0.0, s.remaining - part)
+    s.gross += gross
+    s.costs += costs
+    s.lastExecutionPrice := px
+    s.lastExecutionTime := effective
+    s.dayNet += gross - costs
+    Event e = f_planEvent(ev, s.p, kind, book, effective, px, "Виртуален изход; известен при затваряне")
+    e.quantityFraction := part
+    e.grossR := gross
+    e.costR := costs
+    e.netR := gross - costs
+    e
+f_finish(Paper s, Ledger a, string book, string reason, array<Event> ev) =>
+    f_addClosed(a, s)
+    float net = s.gross - s.costs
+    if net < -1e-10
+        s.dayStreak += 1
+    else if net > 1e-10
+        s.dayStreak := 0
+    s.lastClosedId := s.p.id
+    s.lastClosedReason := reason
+    s.lastClosedNet := net
+    Event e = f_planEvent(ev, s.p, "CLOSED", book, s.lastExecutionTime, s.lastExecutionPrice, reason)
+    e.quantityFraction := 1.0
+    e.grossR := s.gross
+    e.costR := s.costs
+    e.netR := net
+    s.phase := 0
+    s.exitNextOpen := false
+    s.lockBar := na
+    s
+f_openRejection(Plan p, float fill, int fillTime) =>
+    float risk = (fill - p.initialStop) * p.side
+    bool wrongSide = risk < syminfo.mintick or (p.tp1 - fill) * p.side <= 0
+    bool farOpen = math.abs(fill - p.reference) > p.atrValue * maxOpenDeviationATR
+    bool riskOpen = risk >= minStopATR * p.atrValue and risk <= p.maxRiskATR * p.atrValue and risk > 0 and p.costPrice / risk <= maxCostRisk
+    bool roomOpen = f_targetRoom(p, fill, risk)
+    bool newsAtOpen = manualNewsPause or (useNewsWindow and fillTime >= newsAt - newsBefore * 60000 and fillTime <= newsAt + newsAfter * 60000)
+    wrongSide ? "Отваряне извън SL/TP1" : newsAtOpen ? "Новинарска пауза при отваряне" : paperGapFilter and farOpen ? "Гап/отстояние" : paperGapFilter and not riskOpen ? "Риск/разходи при отваряне" : paperGapFilter and not roomOpen ? "Недостатъчно място при отваряне" : ""
+f_takeTargets(Paper s, Ledger a, string book, array<Event> ev, bool atOpen) =>
+    bool closed = false
+    int effective = atOpen ? time : na
+    float favorable = atOpen ? open : s.p.side == 1 ? high : low
+    if (favorable - s.p.tp1) * s.p.side >= 0 and not s.hit1
+        f_realize(s, 1.0 / 3.0, s.p.tp1, "SIM_TP1", book, effective, ev)
+        s.hit1 := true
+        s.lockBar := bar_index + 1
+    if (favorable - s.p.tp2) * s.p.side >= 0 and not s.hit2
+        f_realize(s, 1.0 / 3.0, s.p.tp2, "SIM_TP2", book, effective, ev)
+        s.hit2 := true
+    if (favorable - s.p.tp3) * s.p.side >= 0 and not s.hit3
+        f_realize(s, s.remaining, s.p.tp3, "SIM_TP3", book, effective, ev)
+        s.hit3 := true
+        f_finish(s, a, book, "TP3", ev)
+        closed := true
+    closed
+f_step(Paper s, Ledger a, string book, array<Event> ev) =>
+    int today = f_day(time)
+    if na(s.dayKey) or s.dayKey != today
+        s.dayKey := today
+        s.dayNet := 0.0
+        s.dayStreak := 0
+    bool closedNow = false
+    if s.phase == 1 and bar_index > s.p.signalBar
+        float openRisk = (open - s.p.initialStop) * s.p.side
+        string openReason = f_openRejection(s.p, open, time)
+        bool reject = openReason != ""
+        if reject
+            a.cancelled += 1
+            s.lastCancelledId := s.p.id
+            s.lastCancelledReason := openReason
+            f_planEvent(ev, s.p, "CANCELLED", book, time, open, s.lastCancelledReason)
+            s.phase := 0
+        else
+            s.phase := 2
+            s.entry := open
+            s.risk := openRisk
+            s.stop := s.p.initialStop
+            s.remaining := 1.0
+            s.hit1 := false
+            s.hit2 := false
+            s.hit3 := false
+            s.fillBar := bar_index
+            s.fillTime := time
+            s.lockBar := na
+            s.exitNextOpen := false
+            s.gross := 0.0
+            s.costs := 0.0
+            a.entered += 1
+            Event fillEvent = f_planEvent(ev, s.p, "SIM_ENTRY", book, time, s.entry, "Предполагаемо next-open; съобщено при close")
+            fillEvent.quantityFraction := 1.0
+    if s.phase == 2
+        // Lock is established at the preceding close, effective from this bar.
+        if not na(s.lockBar) and bar_index >= s.lockBar
+            float nextSL = f_stopRound(s.entry + s.p.side * s.risk * profitLockR, s.p.side)
+            float previous = s.stop
+            s.stop := s.p.side == 1 ? math.max(s.stop, nextSL) : math.min(s.stop, nextSL)
+            if s.stop != previous
+                f_planEvent(ev, s.p, "STOP_UPDATE", book, time, s.stop, "Брутен буфер; не гарантира нетна печалба")
+            s.lockBar := na
+        if s.exitNextOpen
+            bool gapStop = (open - s.stop) * s.p.side <= 0
+            f_realize(s, s.remaining, open, gapStop ? "SIM_SL" : "SIM_TIME", book, time, ev)
+            f_finish(s, a, book, gapStop ? "STOP_GAP" : "TIME_NEXT_OPEN", ev)
+            closedNow := true
+        else if (open - s.stop) * s.p.side <= 0
+            // A gap through SL is a known open event, not an ambiguous intrabar path.
+            f_realize(s, s.remaining, open, "SIM_SL", book, time, ev)
+            f_finish(s, a, book, "STOP_GAP", ev)
+            closedNow := true
+        else
+            // Already-marketable targets at open must execute before any later reversal.
+            // Price improvement is deliberately not assumed: use each frozen target price.
+            closedNow := f_takeTargets(s, a, book, ev, true)
+            if s.phase == 2
+                bool stopTouched = s.p.side == 1 ? low <= s.stop : high >= s.stop
+                bool tp1Touched = (s.p.side == 1 ? high >= s.p.tp1 : low <= s.p.tp1) and not s.hit1
+                bool tp2Touched = (s.p.side == 1 ? high >= s.p.tp2 : low <= s.p.tp2) and not s.hit2
+                bool tp3Touched = (s.p.side == 1 ? high >= s.p.tp3 : low <= s.p.tp3) and not s.hit3
+                if stopTouched
+                    if tp1Touched or tp2Touched or tp3Touched
+                        a.ambiguousBars += 1
+                        f_planEvent(ev, s.p, "AMBIGUOUS", book, na, s.stop, "Неизвестен ред след open: SL-first за остатъка")
+                    f_realize(s, s.remaining, s.stop, "SIM_SL", book, na, ev)
+                    f_finish(s, a, book, "STOP_FIRST", ev)
+                    closedNow := true
+                else
+                    closedNow := f_takeTargets(s, a, book, ev, false)
+                    if s.phase == 2 and bar_index - s.fillBar >= maxHoldBars
+                        s.exitNextOpen := true
+                        f_planEvent(ev, s.p, "TIME_PENDING", book, time_close, close, "Планиран виртуален изход на следващо отваряне")
+    closedNow
+f_queue(Paper s, Ledger a, Plan p, string book, array<Event> ev) =>
+    bool accepted = s.phase == 0
+    if accepted
+        s.p := p.copy()
+        s.phase := 1
+        f_planEvent(ev, p, "QUEUED", book, time_close, p.reference, "Чака следващо отваряне; няма брокерска поръчка")
+    else
+        a.capacitySkipped += 1
+        f_planEvent(ev, p, "CAPACITY", book, time_close, p.reference, "Портфейлът има виртуална позиция; кандидатът е запазен в журнала")
+    accepted
+f_gate(EvidenceGate g, Ledger a, bool globalGate, array<Event> ev, int model) =>
+    bool previous = g.paused
+    int minimum = globalGate ? globalMinClosed : modelMinClosed
+    float metric = globalGate ? a.net : a.closed > 0 ? a.net / a.closed : 0.0
+    float pauseAt = globalGate ? globalStopNetR : modelStopAvgR
+    float recoverAt = globalGate ? globalStopNetR * 0.5 : 0.0
+    if enableEvidenceShield and a.closed >= minimum
+        if not g.paused and metric <= pauseAt
+            g.paused := true
+            g.pausedAtCount := a.closed
+        else if g.paused and a.closed >= g.pausedAtCount + recoveryTrades and metric >= recoverAt
+            g.paused := false
+    else if not enableEvidenceShield
+        g.paused := false
+    if previous != g.paused
+        f_emit(ev, "EVIDENCE", "CORE", "EVIDENCE|" + str.tostring(model), model, 0, time_close, na, g.paused ? "Пауза: отрицателна виртуална извадка" : "Излязъл от пауза; остава невалидиран")
+    g
+f_pick(array<Plan> plans, int family, bool eligibleOnly) =>
+    Plan chosen = na
+    bool conflict = false
+    int seenSide = 0
+    if array.size(plans) > 0
+        for p in plans
+            if (family == 0 or p.family == family) and (not eligibleOnly or p.filterEligible)
+                if seenSide != 0 and seenSide != p.side
+                    conflict := true
+                seenSide := p.side
+                if na(chosen) or p.family < chosen.family
+                    chosen := p
+    conflict ? na : chosen
+
+// M1/M2/M3 are independent shadow books. RAW is a single-capacity combined portfolio.
+// FILTERED is a separate portfolio; neither can suppress independent candidate discovery.
+var array<Paper> books = array.new<Paper>()
+var array<Ledger> ledgers = array.new<Ledger>()
+var array<EvidenceGate> gates = array.new<EvidenceGate>()
+if barstate.isfirst
+    for n = 0 to 4
+        array.push(books, Paper.new())
+        array.push(ledgers, Ledger.new())
+    for n = 0 to 3
+        array.push(gates, EvidenceGate.new())
+
+var string lastEvidence = "НЕВАЛИДИРАН"
+if processBar
+    // Step existing portfolios BEFORE queuing any newly confirmed plan.
+    for i = 0 to 4
+        string name = i < 3 ? "M" + str.tostring(i + 1) : i == 3 ? "RAW" : "FILTERED"
+        f_step(array.get(books, i), array.get(ledgers, i), name, events)
+    for i = 0 to 3
+        f_gate(array.get(gates, i), array.get(ledgers, i == 0 ? 3 : i - 1), i == 0, events, i)
+    Paper filtered = array.get(books, 4)
+    bool dailyPass = filtered.dayNet > -maxPaperDailyLossR and filtered.dayStreak < maxPaperLosingStreak
+    if array.size(candidates) > 0
+        for p in candidates
+            EvidenceGate globalG = array.get(gates, 0)
+            EvidenceGate familyG = array.get(gates, p.family)
+            Ledger familyL = array.get(ledgers, p.family - 1)
+            bool shieldPaused = enableEvidenceShield and (globalG.paused or familyG.paused)
+            bool contraPause = observeCountertrendOnly and p.countertrend
+            string policyReason = f_policyReason(p)
+            p.filterEligible := not shieldPaused and not contraPause and dailyPass and policyReason == ""
+            p.evidence := policyReason != "" ? "ПРОБНА ПОЛИТИКА: " + policyReason : shieldPaused ? "ПАУЗА: ИЗВАДКА" : contraPause ? "ИЗСЛЕДВАНЕ: КОНТРАТРЕНД" : not dailyPass ? "ПАУЗА: ДНЕВЕН ЛИМИТ" : familyL.closed < modelMinClosed ? "НЕВАЛИДИРАН: МАЛКА ИЗВАДКА" : "НЕВАЛИДИРАН: НЯМА OOS"
+            lastEvidence := p.evidence
+            f_planEvent(events, p, "CONFIRMED", "CORE", time_close, p.reference, "Техническите правила са изпълнени; НЕ е препоръка за поръчка")
+    for m = 1 to 3
+        Plan independent = f_pick(candidates, m, false)
+        if not na(independent)
+            f_queue(array.get(books, m - 1), array.get(ledgers, m - 1), independent, "M" + str.tostring(m), events)
+    Plan combined = f_pick(candidates, 0, false)
+    Plan permitted = f_pick(candidates, 0, true)
+    if not na(combined)
+        f_queue(array.get(books, 3), array.get(ledgers, 3), combined, "RAW", events)
+    else if array.size(candidates) > 0
+        f_emit(events, "CONFLICT", "RAW", "RAW|" + str.tostring(time_close), 0, 0, time_close, close, "Противоположни технически модели; няма портфейлен избор")
+    if not na(permitted)
+        f_queue(array.get(books, 4), array.get(ledgers, 4), permitted, "FILTERED", events)

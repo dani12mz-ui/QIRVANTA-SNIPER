@@ -1,9 +1,12 @@
-# QIRVANTA — готови файлове за TradingView
+# QIRVANTA Обединен — един файл за TradingView
 
-**Последните готови Pine файлове в този клон са в [`audited/`](audited/).**
+**Основният файл за ежедневна употреба в този клон е [`unified/QIRVANTA_UNIFIED.pine`](unified/QIRVANTA_UNIFIED.pine).** Една Pine v6 strategy предоставя анализ, избран план, структурен SL, TP1–TP3 R проекции, информационни известия и Strategy Tester. Не се изисква втори индикатор.
 
-- [QIRVANTA_SNIPER_PRO.pine](audited/QIRVANTA_SNIPER_PRO.pine) — индикатор за анализ и предупреждения.
-- [QIRVANTA_SNIPER_VALIDATION.pine](audited/QIRVANTA_SNIPER_VALIDATION.pine) — отделен Strategy Tester скрипт.
-- [Инструкции и обхват на публикацията](audited/README.md).
+- [Инструкции](unified/README_BG.md)
+- [Миграция, настройки и разлики в изпълнението](unified/MIGRATION_BG.md)
+- [Проверки и ограничения](unified/VALIDATION_BG.md)
+- [Действителен статус и доказателства](unified/reports/ACCEPTANCE.json)
 
-Папка `refactored/` и v7.x файловете в корена са предишни доставки, не текущият генератор за `audited/`. Main е оставен непроменен. Скриптовете не изпълняват реални MT5 поръчки. Pine компилацията и пазарната доходност на последната доставка не са потвърдени.
+Клонът `feature/qirvanta-unified` започва от поправената локална доставка. [`refactored/`](refactored/) и [`audited/`](audited/) остават неизменен baseline с предишните PRO/VALIDATION и техните тестове; v7.x файловете са исторически архив. Текущият генератор е `unified/tools/build.py` и записва само един общ файл. Main и старите delivery клонове не се променят.
+
+Симулацията не изпълнява реални MT5/брокерски поръчки. Обединяването не доказва по-добра доходност; обхватът на действителните compiler/runtime, parity, native accounting, alerts и mobile проверки се отчита отделно.

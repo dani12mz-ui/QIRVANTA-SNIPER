@@ -1,0 +1,343 @@
+- 'button "Logged in as dani12mz Active layout: Unnamed"'
+- toolbar:
+  - button "XAUUSD":
+    - generic: XAUUSD
+  - button "Switch data type":
+  - button "Compare symbols":
+  - separator
+  - button "30 minutes":
+    - generic: 30m
+  - separator
+  - button "Candles":
+  - separator
+  - button "Indicators, metrics, and strategies":
+    - generic: Indicators
+  - button "Favorite indicators and indicators templates":
+  - separator
+  - button "Create alert":
+    - generic: Alert
+  - button "Bar replay":
+    - generic: Replay
+  - separator
+  - button "Undo change resolution":
+  - button [disabled]:
+  - button "Layout setup":
+  - button "Save all charts for all symbols and intervals on your layout":
+    - generic: Unnamed
+    - generic: Save
+  - button "Manage layouts":
+  - separator
+  - button "Quick search":
+  - button "Settings":
+  - button "Fullscreen mode":
+  - button "Take a snapshot":
+  - button "Share your idea with the trade community":
+  - button "Trade":
+    - generic: Trade
+  - button "Upgrade":
+    - generic: Upgrade
+- toolbar:
+  - button "Cross":
+  - button "Cursors" [pressed]:
+  - button "Trendline":
+  - button "Trend tools":
+  - button "Fib retracement":
+  - button "Gann and Fibonacci tools":
+  - button "XABCD pattern":
+  - button "Patterns":
+  - button "Long position":
+  - button "Forecasting and measurement tools":
+  - button "Brush":
+  - button "Geometric shapes":
+  - button "Text":
+  - button "Annotation tools":
+  - button "Icon":
+  - button "Icons":
+  - button "Measure":
+  - button "Zoom in":
+  - button "Magnet mode snaps drawings placed near price bars to the closest OHLC value":
+  - button "Magnets":
+  - button "Keep drawing":
+  - button "Lock drawings and indicators":
+  - button "Lock options":
+  - button "Hide all drawings":
+  - button "Hide options":
+  - button "Remove objects":
+  - button "Remove options":
+- 'region "Chart #1"':
+  - toolbar:
+    - generic "Change symbol":
+      - generic: X
+      - button "Change symbol": Gold Spot / U.S. Dollar
+    - text: ·
+    - button "Change interval": "30"
+    - text: ·
+    - generic: OANDA
+    - button "Unflag symbol":
+    - button "More options for Gold Spot / U.S. Dollar":
+    - button "Market open · Data updates once per second":
+    - generic: O
+    - generic: 4,127.885
+    - generic: H
+    - generic: 4,132.760
+    - generic: L
+    - generic: 4,124.180
+    - generic: C
+    - generic: 4,130.460
+    - generic: +2.480 (+0.06%)
+  - generic: 4,130.260
+  - generic: Sell
+  - generic "Spread": "50.0"
+  - generic: 4,130.760
+  - generic: Buy
+  - button "Hide indicator legend":
+  - toolbar:
+    - generic "QIRVANTA Обединен":
+      - generic: QIRV ONE
+    - button "Hide":
+    - button "Settings":
+    - generic "Source code":
+    - button "Remove":
+    - button "More options for QIRV ONE":
+    - button "Active strategy":
+    - generic "EMA21 — текуща": 4,080.848
+    - generic "EMA55 — текуща": 4,074.215
+    - generic "План за покупка — заявен, не изпълнение": "0.000"
+    - generic "План за продажба — заявен, не изпълнение": "0.000"
+  - generic "Chart for OANDA:XAUUSD, 30 minutes"
+  - toolbar "Navigation":
+    - button "Zoom out":
+    - button "Zoom in":
+    - button "Scroll to the left":
+    - button "Scroll to the right":
+    - button "Reset chart view":
+- toolbar:
+  - button "1 day in 1 minute intervals":
+    - generic: 1D
+  - button "5 days in 5 minutes intervals":
+    - generic: 5D
+  - button "1 month in 30 minutes intervals":
+    - generic: 1M
+  - button "3 months in 1 hour intervals":
+    - generic: 3M
+  - button "6 months in 2 hours intervals":
+    - generic: 6M
+  - button "Year to day in 1 day intervals":
+    - generic: YTD
+  - button "1 year in 1 day intervals":
+    - generic: 1Y
+  - button "5 years in 1 week intervals":
+    - generic: 5Y
+  - button "All data in 1 month intervals":
+    - generic: All
+  - separator
+  - button "Go to":
+  - button "Timezone":
+    - generic: 02:43:55 UTC
+- toolbar:
+  - button "Watchlist, details, and news":
+  - button "Alerts":
+  - button "Object tree and data window":
+  - button "AI Copilot":
+  - button "Screeners":
+  - button "Pine Editor":
+  - button "Calendars":
+  - button "Community":
+  - button "Notifications":
+  - button "Chats":
+  - button "Products":
+  - separator
+  - button "Help Center":
+- toolbar:
+  - button "Collapse strategy report":
+    - generic: QIRV ONE
+  - button "Manage strategy":
+  - button "Collapse panel":
+  - button "Maximize panel":
+- tablist:
+  - tab [selected]:
+    - generic "Metrics":
+  - tab:
+    - generic "Trades":
+- button "Jan 2, 2026 — Nov 9, 2026":
+  - generic: Jan 2, 2026 — Nov 9, 2026
+- button "100 K":
+  - generic: 100 K USD
+- button "Default detalization":
+  - generic: Default detalization
+- button "Script execution":
+  - generic: Script execution
+  - generic: "1"
+- separator
+- button "Settings":
+- button "Add alert":
+- paragraph: Key stats
+- generic: Total PnL
+- text: −376.56USD
+- text: −0.38%
+- generic: Max drawdown
+- text: 1,595.16USD
+- text: 1.58%
+- generic: Profitable trades
+- text: 43.46%
+- text: 123/283
+- generic: Profit factor
+- generic: "0.904"
+- generic: Performance
+- link "Show description":
+  - /url: /support/solutions/43000681735
+- button "Scale":
+- button "Take a snapshot":
+- button "Expand chart":
+- generic: Cumulative PnL
+- generic: Buy and hold
+- button "Show":
+- generic: Trades excursions
+- generic: Run-ups and drawdowns
+- button "Hide metrics legend":
+- table:
+  - row:
+    - cell
+    - cell
+    - cell
+  - row:
+    - cell
+    - cell
+    - cell
+- paragraph: Performance analysis
+- tablist:
+  - tab "Breakdown" [selected]:
+    - generic: Breakdown
+  - tab "Periodical":
+    - generic: Periodical
+  - tab "Benchmarking":
+    - generic: Benchmarking
+  - tab "Margin usage":
+    - generic: Margin usage
+  - tab "Growth and decline":
+    - generic: Growth and decline
+  - button:
+    - generic: More
+- generic: Gross profit
+- text: 3,551.08USD
+- text: 3.55%
+- generic: Gross loss
+- text: 3,927.63USD
+- text: 3.93%
+- generic: Profit factor
+- generic: "0.904"
+- generic: Commission load
+- button "Upgrade to get full access to Strategy report data":
+- generic: Profits and losses
+- radiogroup:
+  - radio "By signals" [checked]:
+    - generic: By signals
+  - radio "By side":
+    - generic: By side
+- generic "All signals"
+- generic: −376.56
+- generic: USD
+- separator
+- separator
+- separator
+- generic "Обръщане"
+- generic: "+145.27"
+- generic: USD
+- generic "Ретест"
+- generic: −226.44
+- generic: USD
+- generic "Пробив"
+- generic: −295.39
+- generic: USD
+- paragraph: Trades analysis
+- tablist:
+  - tab "Distribution" [selected]:
+    - generic: Distribution
+  - tab "Streaks":
+    - generic: Streaks
+  - tab "Time patterns":
+    - generic: Time patterns
+  - button:
+    - generic: More
+- generic: Expectancy
+- text: −1.33USD
+- text: −0.04%
+- generic: Outliers PnL
+- text: 1,244.45USD
+- text: 1.24%
+- generic: Largest profit
+- button "Upgrade to get full access to Strategy report data":
+- generic: Largest loss
+- button "Upgrade to get full access to Strategy report data":
+- generic: Returns distribution
+- table:
+  - row:
+    - cell
+    - cell
+    - cell
+  - row:
+    - cell
+    - cell
+    - cell
+- generic: Losers
+- generic: Winners
+- generic: Average loss
+- generic: −0.54%
+- generic: Average profit
+- generic: 0.44%
+- generic: Trades distribution
+- generic: "283"
+- generic: Total trades
+- generic: Winners
+- generic: 123 trades
+- generic: 43.46%
+- generic: Losers
+- generic: 160 trades
+- generic: 56.54%
+- generic: Breakevens
+- generic: 0 trades
+- generic: 0.00%
+- generic "Trading panel"
+- generic: Change interval
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- alert
+- alert

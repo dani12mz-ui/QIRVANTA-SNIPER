@@ -1,0 +1,34 @@
+{
+  "dataset_kind": "synthetic",
+  "symbol": "SYNTHETIC:TEST",
+  "provider": "Handwritten deterministic unit fixture, NOT MARKET DATA",
+  "timeframe_seconds": 900,
+  "pine_core_sha256": "SYNTHETIC_NO_PINE_EXECUTION",
+  "pine_inputs": {
+    "fixture_only": true
+  },
+  "coverage_complete": true,
+  "config": {
+    "tick": 0.001,
+    "min_stop_atr": 0.8,
+    "max_open_deviation_atr": 0.2,
+    "max_cost_risk": 0.18,
+    "gap_filter": true,
+    "profit_lock_r": 0.05,
+    "max_hold_bars": 48,
+    "timezone": "Europe/Sofia",
+    "funding_long": 0.0,
+    "funding_short": 0.0,
+    "manual_news_pause": false,
+    "news_windows": [],
+    "shield_enabled": true,
+    "global_min_closed": 30,
+    "global_stop_net_r": -5.0,
+    "model_min_closed": 20,
+    "model_stop_average_r": -0.15,
+    "recovery_trades": 5,
+    "countertrend_observe_only": true,
+    "daily_loss_r": 3.0,
+    "daily_losing_streak": 3
+  }
+}

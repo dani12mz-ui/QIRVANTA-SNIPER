@@ -1,0 +1,210 @@
+{
+  "report_version": 1,
+  "report_state": "VALIDATED_WITH_LIMITATIONS",
+  "branch": "feature/qirvanta-unified",
+  "artifact": "unified/QIRVANTA_UNIFIED.pine",
+  "artifact_sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+  "artifact_lines": 1485,
+  "tested_source_sha256": "970b2044371c7c1b9be4f1ba0b9072c5eddf085e034f06c93a60eaa986d7c303",
+  "tested_code_commit": "3098b9096a017e3a51f321ba490feb8669c434f3",
+  "tested_commit_qualification": "Exact committed code was retested after the visual layer fix; source/artifact hashes also match the local test report.",
+  "publication_commit": null,
+  "baseline_local_head": "b7962f28fa58df2d753daf7e8c441241ecd92f0b",
+  "baseline_tested_code_commit": "51e0aa20a5604b9d79e7214f6e2aca59ac01048a",
+  "baseline_preserved_files": 128,
+  "CODE_TESTS": {
+    "status": "PASS",
+    "scope": "PYTHON_REFERENCE_AND_STATIC_PINE_CONTRACTS",
+    "tests": 99,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "baseline_tests": 127,
+    "details": "One strategy output, reproducible generator bytes, immutable old baseline, preserved source/config, semantic synthetic reference/native regressions, actual alert route expressions and presentation isolation/resource checks. tests.json pine_compile=UNVERIFIED is the local test-runner scope, not a denial of the later TradingView evidence below.",
+    "evidence": [
+      "reports/tests.json",
+      "reports/unit_tests.log",
+      "reports/build.json",
+      "reports/baseline_manifest.json",
+      "reports/baseline_tests.log"
+    ]
+  },
+  "PINE_COMPILE": {
+    "status": "PASS",
+    "scope": "EXACT_FINAL_ARTIFACT_TRADINGVIEW_COMPILER",
+    "compiler_messages": [
+      "Compiling...",
+      "Four warnings reported",
+      "QIRVANTA_SNIPER_PRO saved.",
+      "Script renamed",
+      "Compiled.",
+      "Added to chart."
+    ],
+    "observed_errors": 0,
+    "observed_warnings": 4,
+    "minimal_standard_strategy": "PASS: Compiled and Added to chart at 04:27:14 Europe/Sofia",
+    "details": "The exact final artifact compiled and was saved as version3 in the authorized single personal-script slot, then renamed QIRVANTA_UNIFIED. Four warnings are explicitly retained and reviewed; this is not warning-free compilation.",
+    "evidence": [
+      "reports/tradingview/saved_final_compile.txt",
+      "reports/tradingview/minimal_strategy.txt",
+      "reports/tradingview/readded_final_compile.txt"
+    ],
+    "previous_artifact_compile": {
+      "artifact_sha256": "270fcf2c1d5b9de18aff5cc1d3583b46a3f0deba49a12b00a02c13e2d5bd5428",
+      "compiled_at": "2026-11-09T04:37:25+02:00",
+      "status": "PASS",
+      "evidence": "reports/tradingview/final_compile.txt"
+    },
+    "detail": "PASS_WITH_REVIEWED_WARNINGS",
+    "compiled_at": "2026-11-09T04:41:53+02:00",
+    "warnings": [
+      {
+        "line": 755,
+        "column": 35,
+        "code": "CW10003",
+        "function": "f_fast",
+        "message_summary": "Function should be called on each calculation for consistency",
+        "review": "Unchanged baseline call in confirmed-bar direction loop; historical feature series computed globally. No intrabar/fill override guarantee."
+      },
+      {
+        "line": 756,
+        "column": 35,
+        "code": "CW10003",
+        "function": "f_reversal",
+        "message_summary": "Function should be called on each calculation for consistency",
+        "review": "Unchanged baseline call in confirmed-bar direction loop; historical feature series computed globally. No intrabar/fill override guarantee."
+      },
+      {
+        "line": 1304,
+        "column": 39,
+        "code": "CLOSE_ONLY_BARSTATE_ISLAST",
+        "message_summary": "islast may not be true on initial unconfirmed realtime bar",
+        "review": "Table render also uses islastconfirmedhistory, addressing reproduced initial-load defect without enabling every-tick trading."
+      },
+      {
+        "line": 1369,
+        "column": 39,
+        "code": "CLOSE_ONLY_BARSTATE_ISLAST",
+        "message_summary": "islast may not be true on initial unconfirmed realtime bar",
+        "review": "Current-level render also uses islastconfirmedhistory; no instant tick-analysis claim."
+      }
+    ],
+    "readded_at": "2026-11-09T04:42:50+02:00",
+    "saved_script_readback": "PASS: clipboard text from saved version3, CRLF normalized to LF, exactly matched local final source (109255 LF characters; 110740 CRLF characters)"
+  },
+  "PINE_RUNTIME": {
+    "status": "PASS",
+    "scope": "FINAL_LOADED_HISTORY_SMOKE_M5_M15_M30_H1_H4",
+    "symbol": "OANDA:XAUUSD",
+    "chart_type": "standard Candles",
+    "verified_intervals": [
+      "M5",
+      "M15",
+      "M30",
+      "H1",
+      "H4"
+    ],
+    "pending_intervals": [],
+    "observed_runtime_errors": 0,
+    "details": "The exact final saved version was removed/re-added at04:42:50 and rechecked on all five requested intervals. No runtime error was observed. The current M30 position was flat. This does not verify every active-plan layout, realtime forward behavior, all historical order edge cases or a full trade export audit.",
+    "evidence": [
+      "reports/tradingview/final_M5.txt",
+      "reports/tradingview/final_M15.txt",
+      "reports/tradingview/final_M30.txt",
+      "reports/tradingview/final_H1.txt",
+      "reports/tradingview/final_H4.txt",
+      "reports/tradingview/readded_final_compile.txt",
+      "reports/tradingview/final_properties.txt",
+      "reports/runtime_summary.json"
+    ]
+  },
+  "SIGNAL_PARITY": {
+    "status": "PARTIAL",
+    "source_and_configuration": "PASS: 80 functional input contracts and candidate source preserved; only approved additive frozen Plan metadata is excluded from exact helper comparison",
+    "synthetic_reference": "PASS: 72 bars, 15 supplied candidates, identical data/costs, both BASE and trial FILTERED policies, identical candidate eligibility/events/trades/shadow ledgers",
+    "real_visible_aggregate_comparison": "PASS_M15_VISIBLE_AGGREGATES_ONLY",
+    "complete_pine_candidate_event_parity": "UNVERIFIED: no matched complete OHLC/candidate-event exports or dataset hash",
+    "details": "Source identity and Python supplied-candidate replay are scoped evidence, not execution of the Pine candidate engine. Same-chart M15 aggregates were compared a few minutes apart while the market was open; no bit-identical live dataset is claimed.",
+    "evidence": [
+      "reports/signal_parity.json",
+      "reports/synthetic_reference_comparison.json",
+      "reports/tradingview/baseline_M15.txt",
+      "reports/tradingview/final_M15.txt",
+      "reports/runtime_summary.json"
+    ]
+  },
+  "NATIVE_ACCOUNTING": {
+    "status": "PARTIAL",
+    "synthetic_and_static_tests": "PASS: 17 native-record/adapter regressions",
+    "visible_native_sample": "PASS_DISPLAY_ROUNDED_SAMPLE: three one-unit partials and one losing short row reconcile with one round-trip commission charge",
+    "full_native_ledger_cash_and_r": "UNVERIFIED: CSV export requires Essential in this Basic profile; no full journal audit or independently verified initial-risk R",
+    "details": "Native fills remain the primary position/cash source. Synthetic cases cover same-bar entry/exit, simultaneous partial exits, retained gap loss, zero/invalid risk denominator, no overclose and duplicate records. These cases are not claimed as all observed in TradingView. The four visible native rows were from the earlier run; candidate/order/accounting source is unchanged by the final chart-layer declaration.",
+    "evidence": [
+      "reports/unit_tests.log",
+      "reports/native_sample_reconciliation.json",
+      "reports/tradingview/csv_blocked_and_trade_sample.txt",
+      "reports/tradingview/baseline_properties.txt"
+    ]
+  },
+  "ALERTS": {
+    "status": "PARTIAL",
+    "local_routing": "PASS: 9 tests evaluate the actual side-effect-free Pine route expressions and order-call/template contracts",
+    "native_disable_alert": "PASS_STATIC_CONTRACT_AND_FINAL_PINE_COMPILE",
+    "server_side_delivery": "UNVERIFIED: no forward server-side fill/advisory delivery proof",
+    "details": "Plan alert() and native fill messages are distinct; native entry/exit observations do not create a second manual fill alert. Actual order fills use the supported message/disable_alert channel. Old alerts must be recreated for the new code and settings.",
+    "evidence": [
+      "reports/unit_tests.log",
+      "docs/ALERTS_BG.md",
+      "reports/tradingview/final_compile.txt",
+      "reports/tradingview/alert_routes_template.txt",
+      "reports/tradingview/alert_platform_caution.txt"
+    ],
+    "create_alert_ui": "PASS: all three routes and default annotation placeholders are visible in authenticated TradingView",
+    "platform_caution": "TradingView displayed a generic warning that the script can get repainted. This is retained as an observation; no future-free realtime or server-delivery proof is inferred.",
+    "active_alert_created": false
+  },
+  "MOBILE_UI": {
+    "status": "PARTIAL",
+    "static_contracts": "PASS: 10 presentation/isolation/resource regressions",
+    "reproduced_defect": "Close-only initial-load panel/levels defect reproduced and fixed by also rendering on islastconfirmedhistory. A separate apparent candle-over-table issue was traced to selected main price series; empty-chart deselection restores normal table layering.",
+    "final_viewport_checks": "PASS_CURRENT_PREPARATION_LAYOUT: actual browser viewports390x844 and430x932, text visible, no clipping, latest candles unobstructed",
+    "details": "Current-preparation/no-active-plan layouts are legible in both actual browser viewports and the normal desktop detailed view. Active-plan SL/TP mobile layout and physical-device rendering remain unverified. The final saved profile contains one private unified script and the compact overlay plus Strategy Tester.",
+    "evidence": [
+      "reports/unit_tests.log",
+      "reports/tradingview/mobile_390.png",
+      "reports/tradingview/mobile_430.png",
+      "reports/tradingview/detail_M15_same_results.txt",
+      "reports/tradingview/detail_desktop.png",
+      "reports/tradingview/initial_missing_panel.png",
+      "reports/tradingview/table_behind_candles.png",
+      "reports/tradingview/selected_series_layering.png",
+      "reports/tradingview/deselected_series_layering.png",
+      "reports/tradingview/detail_desktop_deselected.png",
+      "reports/tradingview/final_saved_chart.png"
+    ],
+    "chart_visual_order_caveat": "Selecting the main price series temporarily promotes its candles above the table. Escape may leave the series selected; click empty chart space to deselect. No unresolved normal-view layering defect was observed after this action.",
+    "active_plan_mobile_prices": "UNVERIFIED: no active native plan was available during the viewport checks",
+    "normal_detailed_view": "PASS_OBSERVED: detail_desktop_deselected.png; detailed/mobile modes retained identical visible M15 aggregates"
+  },
+  "PERFORMANCE": {
+    "status": "NOT_ESTABLISHED",
+    "visible_m15_comparison": "Baseline and final unified: net -144.49 USD; maximum equity drawdown 842.26 USD; 212 closed parts, 90 wins, 122 losses; profit factor 0.905; gross profit 1378.54 USD; gross loss 1523.03 USD",
+    "profitability_improvement": "NOT_CLAIMED",
+    "out_of_sample_forward": "NOT_RUN",
+    "speed_benchmark": "NOT_RUN",
+    "details": "The visible comparison supports aggregate preservation for this loaded run. The net result is negative and remains reported. No complete exported dataset, OOS result, realtime forward proof or measured acceleration supports an improvement claim.",
+    "evidence": [
+      "reports/tradingview/baseline_M15.txt",
+      "reports/tradingview/final_M15.txt",
+      "reports/runtime_summary.json"
+    ]
+  },
+  "configuration_scope": "Only the recorded close-only/default-detail execution settings. Safety or parity with tick/fill/on-close Properties overrides has not been established.",
+  "live_trading": "NONE: no broker connection, MT5 integration or executable order webhook",
+  "publication": "PENDING_NEW_BRANCH_ONLY; no main change, force push or other-branch rewrite authorized",
+  "local_test_command": [
+    "C:\\Users\\azubu\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "unified/tools/run_tests.py"
+  ],
+  "evidence_hash_manifest": "reports/EVIDENCE_SHA256.json"
+}

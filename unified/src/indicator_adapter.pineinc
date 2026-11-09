@@ -1,0 +1,12 @@
+
+// Indicator-only display adapter. No strategy.* commands occur in this file.
+Paper displayedBook = array.get(books, displayBook == "RAW" ? 3 : 4)
+Plan shownPlan = displayedBook.phase != 0 ? displayedBook.p : na
+bool shownActive = displayedBook.phase != 0
+bool shownPending = displayedBook.phase == 1
+float shownEntry = displayedBook.phase == 2 ? displayedBook.entry : shownActive ? displayedBook.p.reference : na
+float shownStop = displayedBook.phase == 2 ? displayedBook.stop : shownActive ? displayedBook.p.initialStop : na
+string shownStage = displayedBook.phase == 1 ? "ЧАКА NEXT-OPEN" : displayedBook.phase == 2 ? "ВИРТУАЛНА ПОЗИЦИЯ" : "БЕЗ АКТИВЕН ПЛАН"
+string displayExecution = "OHLC PAPER / " + displayBook
+string lastResultInfo = displayedBook.lastClosedId == "" ? "Няма затворена сделка" : displayedBook.lastClosedId + " | " + displayedBook.lastClosedReason + " | " + str.tostring(displayedBook.lastClosedNet, "#.###") + "R"
+

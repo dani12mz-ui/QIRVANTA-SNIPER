@@ -1,0 +1,212 @@
+// Independent model state: execution positions and evidence do not control candidate discovery.
+var array<Setup> retestStates = array.new<Setup>()
+var array<Setup> reversalStates = array.new<Setup>()
+var array<int> lastModelSignal = array.new<int>(3, na)
+var array<string> buyReasons = array.new<string>(3, "Няма завършена свещ")
+var array<string> sellReasons = array.new<string>(3, "Няма завършена свещ")
+var array<Plan> candidates = array.new<Plan>()
+var array<Event> events = array.new<Event>()
+var array<int> triggerAttempts = array.new<int>(6, 0)
+var array<int> confirmedCounts = array.new<int>(6, 0)
+var array<int> refusedCounts = array.new<int>(6, 0)
+var array<string> lastRefusals = array.new<string>(6, "Няма проверен trigger")
+f_recordDecision(int family, int d, bool accepted, string why) =>
+    int idx = (family - 1) * 2 + (d == 1 ? 0 : 1)
+    array.set(triggerAttempts, idx, array.get(triggerAttempts, idx) + 1)
+    if accepted
+        array.set(confirmedCounts, idx, array.get(confirmedCounts, idx) + 1)
+    else
+        array.set(refusedCounts, idx, array.get(refusedCounts, idx) + 1)
+        array.set(lastRefusals, idx, why)
+    accepted
+var int lastAnalysisClose = na
+var int localPressure = 0
+var int closedHtfBias = 0
+var string lastContext = "НЕДОСТАТЪЧНИ ДАННИ"
+var float closedEfficiency = na
+if barstate.isfirst
+    for n = 0 to 1
+        array.push(retestStates, Setup.new())
+        array.push(reversalStates, Setup.new())
+
+f_cooldown(int m, array<int> lastBars) =>
+    int last = array.get(lastBars, m - 1)
+    na(last) or bar_index - last > minCooldown
+f_capture(Plan p, array<Plan> out, array<int> lastBars, array<Event> ev) =>
+    bool accepted = f_validPlan(p)
+    if accepted
+        array.push(out, p)
+        array.set(lastBars, p.family - 1, bar_index)
+    else
+        f_planEvent(ev, p, "REJECTED", "CORE", time_close, close, "Закръгляне/SL/TP1 преграда")
+    accepted
+
+f_retest(Setup s, int d, array<Plan> out, array<int> lastBars, array<Event> ev) =>
+    bool enabled = f_enabled(1)
+    bool opposite = d == 1 ? structureDownNow : structureUpNow
+    bool invalidated = false
+    bool consumed = false
+    bool candle = d == 1 ? bullishBar : bearishBar
+    bool displacement = d == 1 ? displacementUp : displacementDn
+    bool higherBias = d == 1 ? bullHTF : bearHTF
+    bool localBias = d == 1 ? bullLocal : bearLocal
+    bool momentum = d == 1 ? bullMomentum : bearMomentum
+    bool discount = d == 1 ? inDiscount : inPremium
+    float obstacle = d == 1 ? longObstacle : shortObstacle
+    if s.phase != 0
+        bool stale = bar_index - s.bornBar > maxSetupAge
+        bool crossedAnchor = (close - s.anchor) * d < -slBufferATR * atr
+        bool late = s.phase == 2 and bar_index - s.mssBar > maxBarsAfterMSS
+        if opposite or crossedAnchor or stale or late or not enabled
+            string why = opposite ? "Противоположен структурен пробив" : crossedAnchor ? "Нарушен структурен стоп" : not enabled ? "Изключен модел" : "Изтекъл срок"
+            f_emit(ev, stale or late ? "EXPIRED" : "CANCELLED", "CORE", s.id, 1, d, time_close, close, why)
+            f_clear(s)
+            invalidated := true
+    if enabled and s.phase == 1 and bar_index > s.bornBar and (close - s.trigger) * d > 0 and displacement
+        s.phase := 2
+        s.mssBar := bar_index
+        s.fvg := d == 1 ? bullFvgNow : bearFvgNow
+        f_emit(ev, "WATCH", "CORE", s.id, 1, d, time_close, s.trigger, "Структура потвърдена; чака ретест")
+    bool retest = s.phase == 2 and bar_index > s.mssBar and (d == 1 ? low <= s.trigger + atr * nearRetestATR and low >= s.trigger - atr * pierceRetestATR : high >= s.trigger - atr * nearRetestATR and high <= s.trigger + atr * pierceRetestATR) and (close - s.trigger) * d > 0 and candle and body >= atr * 0.1
+    bool timely = retest and (close - s.trigger) * d <= atr * maxRetestCloseATR and bar_index - s.mssBar <= maxBarsAfterMSS
+    float structural = d == 1 ? math.min(s.anchor - slBufferATR * atr, close - minStopATR * atr) : math.max(s.anchor + slBufferATR * atr, close + minStopATR * atr)
+    float sl = f_stopRound(structural, d)
+    float risk = (close - sl) * d
+    bool riskOK = not na(risk) and risk >= minStopATR * atr and risk <= maxStopATR * atr and risk >= syminfo.mintick and roundTripPriceCost / risk <= maxCostRisk
+    bool room = not na(obstacle) and (obstacle - close) * d >= risk * math.max(minimumRoomR, target1R)
+    int checks = ((d == 1 ? strongBullHTF : strongBearHTF) ? 1 : 0) + (adx > minADX + 6 ? 1 : 0) + (s.fvg ? 1 : 0) + (discount ? 1 : 0) + (inSession ? 1 : 0) + (room ? 1 : 0)
+    array<bool> gates = array.from(enabled, warmup, datePass, not newsPaused, sessionPass, validATR, validTrend, acceptableBar, notExtended, timely, riskOK, higherBias, localBias, momentum, not requireFVG or s.fvg, not requirePD or discount, not requireRoom or room, checks >= minExtra, f_cooldown(1, lastBars))
+    array<string> names = array.from("Модел изключен", "Данни", "Тестов период", "Новинарска пауза", "Сесия", "ATR", "ADX", "Размер свещ", "EMA отстояние", retest ? "Закъснял ретест" : "Чака MSS/ретест", "SL/разходи", "HTF", "Локален тренд", "RSI/DI", "FVG", "Скъпа/евтина зона", "Място до TP1", "Съгласуваност", "Пауза по модел")
+    string why = f_reason(gates, names)
+    if retest
+        consumed := true
+        if why == "УСЛОВИЯТА СА ИЗПЪЛНЕНИ"
+            Plan p = f_makePlan(1, d, sl, s.bornTime, maxStopATR, obstacle, requireRoom ? math.max(minimumRoomR, target1R) : 0.0)
+            bool accepted = f_capture(p, out, lastBars, ev)
+            if not accepted
+                why := "Закръгляне/SL/TP1 преграда"
+            f_recordDecision(1, d, accepted, why)
+        else
+            f_recordDecision(1, d, false, why)
+            f_emit(ev, "REJECTED", "CORE", s.id, 1, d, time_close, close, why)
+        f_clear(s)
+    // Never rebuild the scenario on its invalidation/consumption bar.
+    if enabled and warmup and datePass and not newsPaused and s.phase == 0 and not invalidated and not consumed and not opposite
+        bool sweep = d == 1 ? sweepDown : sweepUp
+        bool bos = d == 1 ? bosUp : bosDown
+        if sweep and engineMode != "САМО ПРОДЪЛЖЕНИЕ"
+            f_start(s, 1, d, 1, d == 1 ? low : high, d == 1 ? longStruct : shortStruct, true, false)
+            f_emit(ev, "WATCH", "CORE", s.id, 1, d, time_close, s.trigger, "Ликвидност; чака MSS")
+        else if bos and higherBias and engineMode != "САМО ЛИКВИДНОСТ"
+            f_start(s, 1, d, 2, d == 1 ? localSwingLow : localSwingHigh, d == 1 ? sweepHigh : sweepLow, false, d == 1 ? bullFvgNow : bearFvgNow)
+            f_emit(ev, "WATCH", "CORE", s.id, 1, d, time_close, s.trigger, "BOS; чака ретест")
+    why
+
+f_fast(int d, array<Plan> out, array<int> lastBars, array<Event> ev) =>
+    bool enabled = f_enabled(2) and useFastBreakout
+    bool candle = d == 1 ? bullishBar : bearishBar
+    float boundary = d == 1 ? fastBreakHigh : fastBreakLow
+    bool crossed = not na(boundary) and (close - boundary) * d > 0 and (close[1] - boundary) * d <= 0
+    bool bodyOK = atr > 0 and body >= atr * fastMinBodyATR and body <= atr * fastMaxBodyATR
+    bool timely = crossed and (close - boundary) * d <= atr * fastMaxBreakDistanceATR
+    bool local = d == 1 ? close > emaFast and emaFast > emaFast[1] and bullMomentum and rsi >= 53 : close < emaFast and emaFast < emaFast[1] and bearMomentum and rsi <= 47
+    bool extension = math.abs(close - emaFast) <= atr * 1.35
+    bool htfOK = d == 1 ? bullHTF : bearHTF
+    bool contraOK = allowFastCountertrend and (d == 1 ? close > emaSlow and rsi >= 56 : close < emaSlow and rsi <= 44) and adx >= minADX + 5 and body >= atr * 0.80
+    float structural = d == 1 ? math.min(fastStopLow - slBufferATR * atr, close - minStopATR * atr) : math.max(fastStopHigh + slBufferATR * atr, close + minStopATR * atr)
+    float sl = f_stopRound(structural, d)
+    float risk = (close - sl) * d
+    float cap = math.min(maxStopATR, 2.4)
+    bool riskOK = not na(risk) and risk >= minStopATR * atr and risk >= syminfo.mintick and risk <= cap * atr and roundTripPriceCost / risk <= maxCostRisk
+    bool pd = d == 1 ? inDiscount : inPremium
+    bool gap = d == 1 ? bullFvgNow : bearFvgNow
+    float obstacle = d == 1 ? longObstacle : shortObstacle
+    bool room = not na(obstacle) and (obstacle - close) * d >= risk * math.max(minimumRoomR, target1R)
+    string why = f_reason(array.from(enabled, warmup, datePass, not newsPaused, sessionPass, validATR, validTrend, acceptableBar, notExtended, f_cooldown(2, lastBars), crossed, candle, bodyOK, timely, local, extension, htfOK or contraOK, riskOK, barRange <= atr * 1.85, not requirePD or pd, not requireRoom or room, not requireFVG or gap), array.from("Модел изключен", "Данни", "Тестов период", "Новинарска пауза", "Сесия", "ATR", "ADX", "Размер свещ", "EMA отстояние", "Пауза по модел", "Локален пробив", "Потвърждаваща свещ", "Тяло", "Закъснял пробив", "EMA/RSI/DI", "Отстояние 1.35 ATR", "HTF/контратренд", "SL/разходи", "Свещ >1.85 ATR", "Скъпа/евтина зона", "Място до TP1", "FVG"))
+    if enabled and crossed and candle
+        if why == "УСЛОВИЯТА СА ИЗПЪЛНЕНИ"
+            Plan p = f_makePlan(2, d, sl, time_close, cap, obstacle, requireRoom ? math.max(minimumRoomR, target1R) : 0.0)
+            bool accepted = f_capture(p, out, lastBars, ev)
+            if not accepted
+                why := "Закръгляне/SL/TP1 преграда"
+            f_recordDecision(2, d, accepted, why)
+        else
+            f_recordDecision(2, d, false, why)
+            f_emit(ev, "REJECTED", "CORE", f_id(2, d, time_close), 2, d, time_close, close, why)
+    why
+
+f_reversal(Setup s, int d, array<Plan> out, array<int> lastBars, array<Event> ev) =>
+    bool enabled = f_enabled(3) and useEarlyReversal and tfSeconds >= 300 and tfSeconds <= 1800
+    bool opposite = d == 1 ? structureDownNow : structureUpNow
+    bool invalidated = false
+    bool consumed = false
+    bool candle = d == 1 ? bullishBar : bearishBar
+    if s.phase != 0
+        bool expired = bar_index - s.bornBar > reversalWaitBars
+        bool breached = d == 1 ? low < s.rejectionLow - syminfo.mintick : high > s.rejectionHigh + syminfo.mintick
+        if expired or breached or opposite or not enabled
+            f_emit(ev, expired ? "EXPIRED" : "CANCELLED", "CORE", s.id, 3, d, time_close, close, opposite ? "Противоположна структура" : breached ? "Нарушен екстремум" : "Изтекъл/изключен модел")
+            f_clear(s)
+            invalidated := true
+    float trigger = d == 1 ? s.rejectionHigh : s.rejectionLow
+    bool crossed = s.phase != 0 and bar_index > s.bornBar and (close - trigger) * d > 0
+    bool timely = crossed and (close - trigger) * d <= atr * reversalMaxChaseATR
+    bool risingRsi = d == 1 ? rsi > rsi[1] and rsi >= 33 : rsi < rsi[1] and rsi <= 67
+    float structural = d == 1 ? math.min(s.rejectionLow - slBufferATR * atr, close - minStopATR * atr) : math.max(s.rejectionHigh + slBufferATR * atr, close + minStopATR * atr)
+    float sl = f_stopRound(structural, d)
+    float risk = (close - sl) * d
+    float cap = math.min(maxStopATR, 2.7)
+    bool riskOK = not na(risk) and risk >= minStopATR * atr and risk >= syminfo.mintick and risk <= cap * atr and roundTripPriceCost / risk <= maxCostRisk
+    // Select the NEAREST obstacle among BOTH moving averages and known structure.
+    float obstacle = f_nearest(emaFast, emaSlow, d == 1 ? longObstacle : shortObstacle, d, close)
+    float minimumRoom = math.max(reversalMinRoomR, target1R)
+    if requireRoom
+        minimumRoom := math.max(minimumRoom, minimumRoomR)
+    bool room = not na(obstacle) and (obstacle - close) * d >= risk * minimumRoom
+    bool pd = d == 1 ? inDiscount : inPremium
+    bool gap = d == 1 ? bullFvgNow : bearFvgNow
+    string why = f_reason(array.from(enabled, warmup, datePass, not newsPaused, sessionPass, validATR, acceptableBar, f_cooldown(3, lastBars), crossed, candle, body >= atr * 0.25, timely, risingRsi, barRange <= atr * 1.75, riskOK, room, not requirePD or pd, not requireFVG or gap), array.from("Модел/рамка изключени", "Данни", "Тестов период", "Новинарска пауза", "Сесия", "ATR", "Размер свещ", "Пауза по модел", "Чака следваща свещ над/под отхвърлянето", "Потвърждаваща свещ", "Малко тяло", "Закъсняло обръщане", "RSI не се възстановява", "Свещ >1.75 ATR", "SL/разходи", "Няма място до TP1", "Скъпа/евтина зона", "FVG"))
+    if enabled and crossed and candle
+        if why == "УСЛОВИЯТА СА ИЗПЪЛНЕНИ"
+            Plan p = f_makePlan(3, d, sl, s.bornTime, cap, obstacle, minimumRoom)
+            bool accepted = f_capture(p, out, lastBars, ev)
+            if not accepted
+                why := "Закръгляне/SL/TP1 преграда"
+            f_recordDecision(3, d, accepted, why)
+            consumed := true
+            f_clear(s)
+        else
+            // A failed FILTER check is now visible; it does not cancel a still-timely setup.
+            f_recordDecision(3, d, false, why)
+            f_emit(ev, "REJECTED", "CORE", s.id, 3, d, time_close, close, why)
+            if not timely
+                consumed := true
+                f_clear(s)
+    // An existing candidate is never silently overwritten by a different rejection.
+    if enabled and warmup and datePass and not newsPaused and s.phase == 0 and not consumed and not invalidated and not opposite
+        float wick = d == 1 ? math.min(open, close) - low : high - math.max(open, close)
+        bool excursion = d == 1 ? not na(priorRecoveryHigh) and priorRecoveryHigh - low >= atr * 1.5 : not na(priorRecoveryLow) and high - priorRecoveryLow >= atr * 1.5
+        bool rejection = d == 1 ? not na(priorReversalLow) and low < priorReversalLow and wick >= barRange * 0.24 and close - low >= barRange * 0.40 : not na(priorReversalHigh) and high > priorReversalHigh and wick >= barRange * 0.24 and high - close >= barRange * 0.40
+        bool priorRegime = d == 1 ? (emaFast < emaSlow or close < emaFast) and rsi <= 54 : (emaFast > emaSlow or close > emaFast) and rsi >= 46
+        if excursion and rejection and priorRegime and validATR
+            f_start(s, 3, d, 1, d == 1 ? low : high, d == 1 ? high : low, true, false)
+            f_emit(ev, "WATCH", "CORE", s.id, 3, d, time_close, s.trigger, "Отхвърляне; чака отделна потвърждаваща свещ")
+    why
+
+if processBar
+    array.clear(events)
+    array.clear(candidates)
+    for directionIndex = 0 to 1
+        int d = directionIndex == 0 ? 1 : -1
+        array<string> diagnostics = d == 1 ? buyReasons : sellReasons
+        array.set(diagnostics, 0, f_retest(array.get(retestStates, directionIndex), d, candidates, lastModelSignal, events))
+        array.set(diagnostics, 1, f_fast(d, candidates, lastModelSignal, events))
+        array.set(diagnostics, 2, f_reversal(array.get(reversalStates, directionIndex), d, candidates, lastModelSignal, events))
+    lastAnalysisClose := time_close
+    closedEfficiency := efficiency
+    bool bearPressure = atr > 0 and close < emaFast and (bearishBar or close < close[1]) and (emaFast < emaFast[1] or rsi < 50)
+    bool bullPressure = atr > 0 and close > emaFast and (bullishBar or close > close[1]) and (emaFast > emaFast[1] or rsi > 50)
+    localPressure := bullPressure ? 1 : bearPressure ? -1 : 0
+    closedHtfBias := bullHTF ? 1 : bearHTF ? -1 : 0
+    lastContext := localPressure == 1 ? "НАТИСК НАГОРЕ" : localPressure == -1 ? "НАТИСК НАДОЛУ" : "СМЕСЕН КОНТЕКСТ"
+

@@ -1,0 +1,35 @@
+{
+  "status": "PASS_VISIBLE_ROUNDED_SAMPLE_ONLY",
+  "scope": "FOUR_VISIBLE_NATIVE_CLOSED_TRADE_ROWS_NOT_FULL_LEDGER_OR_NATIVE_R",
+  "evidence": "tradingview/csv_blocked_and_trade_sample.txt",
+  "symbol": "OANDA:XAUUSD",
+  "timeframe": "15",
+  "price_source": "TradingView List of Trades displayed prices, rounded to 0.001",
+  "cash_source": "TradingView List of Trades displayed Net PnL, rounded to 0.01 USD",
+  "commission_assumption": "0.175 cash per contract on entry and exit; 0.35 per round-trip unit",
+  "commission_configuration_evidence": "tradingview/baseline_properties.txt",
+  "slippage_treatment": "Already included in the displayed native fill prices; not charged again",
+  "rows": [
+    {"trade": 210, "side": "LONG", "entry_time_display": "Nov 4, 2026, 16:00", "exit_time_display": "Nov 4, 2026, 17:30", "entry": 4048.972, "exit": 4070.045, "quantity": 1, "gross_cash_from_display": 21.073, "round_trip_commission": 0.35, "expected_net_rounded": 20.72, "displayed_net": 20.72},
+    {"trade": 211, "side": "LONG", "entry_time_display": "Nov 4, 2026, 16:00", "exit_time_display": "Nov 5, 2026, 00:30", "entry": 4048.972, "exit": 4091.125, "quantity": 1, "gross_cash_from_display": 42.153, "round_trip_commission": 0.35, "expected_net_rounded": 41.80, "displayed_net": 41.80},
+    {"trade": 212, "side": "LONG", "entry_time_display": "Nov 4, 2026, 16:00", "exit_time_display": "Nov 5, 2026, 01:00", "entry": 4048.972, "exit": 4112.205, "quantity": 1, "gross_cash_from_display": 63.233, "round_trip_commission": 0.35, "expected_net_rounded": 62.88, "displayed_net": 62.88},
+    {"trade": 209, "side": "SHORT", "entry_time_display": "Nov 2, 2026, 19:45", "exit_time_display": "Nov 3, 2026, 00:15", "entry": 3944.048, "exit": 3956.705, "quantity": 1, "gross_cash_from_display": -12.657, "round_trip_commission": 0.35, "expected_net_rounded": -13.01, "displayed_net": -13.01}
+  ],
+  "three_partial_sample": {
+    "rows": [210, 211, 212],
+    "shared_displayed_entry": 4048.972,
+    "shared_displayed_entry_time": "Nov 4, 2026, 16:00",
+    "total_closed_quantity": 3,
+    "sum_of_individually_rounded_displayed_net": 125.40,
+    "unrounded_total_from_displayed_prices_less_commission": 125.409,
+    "qualification": "Shared side, entry time and entry price support grouping of these three visible parts; Plan id and exit identifiers are not exposed in this captured column set"
+  },
+  "limitations": [
+    "CSV export is blocked by the Basic plan's upgrade requirement; no subscription was changed",
+    "Only four visible closed rows checked; all 212 rows were not independently reconciled",
+    "The captured columns do not expose initial structural stop, exact Plan id, exit id or OCA reservation state",
+    "Native R and initial risk denominator cannot be independently verified from these rows",
+    "Displayed values are rounded; this is not exact full-precision journal reconciliation",
+    "This sample is from the initial unified run before subsequent presentation-only changes; final compiler/runtime proof is recorded separately"
+  ]
+}
