@@ -32,6 +32,7 @@ class Journal:
                         id INTEGER PRIMARY KEY CHECK (id=1), data TEXT NOT NULL
                     );
                     CREATE INDEX IF NOT EXISTS event_time ON events (at_ms);
+                    CREATE INDEX IF NOT EXISTS event_kind_time ON events (kind, at_ms);
                     PRAGMA user_version=1;
                     COMMIT;
                 """)
@@ -91,12 +92,16 @@ class Journal:
         self.db.execute("INSERT INTO materialized_state VALUES (1,?) ON CONFLICT(id) DO UPDATE SET data=excluded.data",
                         (canonical(state),))
 
-    def events(self, *, since_ms=None):
-        if since_ms is None:
-            rows = self.db.execute("SELECT seq,kind,at_ms,data FROM events ORDER BY seq")
-        else:
-            rows = self.db.execute("SELECT seq,kind,at_ms,data FROM events WHERE at_ms>=? ORDER BY seq",
-                                   (since_ms,))
+    def events(self, *, since_ms=None, kinds=()):
+        clauses, params = [], []
+        if since_ms is not None:
+            clauses.append("at_ms>=?")
+            params.append(since_ms)
+        if kinds:
+            clauses.append("kind IN (" + ",".join("?" for _ in kinds) + ")")
+            params.extend(kinds)
+        where = " WHERE " + " AND ".join(clauses) if clauses else ""
+        rows = self.db.execute("SELECT seq,kind,at_ms,data FROM events" + where + " ORDER BY seq", params)
         return [{"sequence": seq, "kind": kind, "at_ms": at_ms, "data": json.loads(data)}
                 for seq, kind, at_ms, data in rows]
 

@@ -1,0 +1,192 @@
+{
+  "archive_sha256": "7015f6386d2627237c57ff8625d59cbe3c9b852e4742b786cbb4679db3d48c56",
+  "branch": "engineering/qirvanta-phase11-live-paper",
+  "broker_order_dispatch_enabled": false,
+  "files": {
+    "docs/PHASE11_CHAMPION_CHALLENGER.md": {
+      "bytes": 1630,
+      "git_blob": "d9ec6939e267990a32eaf931dda5b447cd3b1e28",
+      "sha256": "cc7b17d26a733cb781dbd8e997f532fdd42941bfc298ed640ec434c9f41a2344"
+    },
+    "docs/PHASE11_DATA_PIPELINE.md": {
+      "bytes": 5651,
+      "git_blob": "f1abe3cd795c10ed757342dc63afd5d7a9a1de7c",
+      "sha256": "11ef0dc817c98fa47e5922cd54e9890e18ae3869f79c072db763202f1b628929"
+    },
+    "docs/PHASE11_ENVIRONMENT_DISCOVERY.md": {
+      "bytes": 3261,
+      "git_blob": "0d4605899477c920128269edff490925a41f23aa",
+      "sha256": "5e4439dfe6bcf1606968b1b7bf934e7a06815250554c07567c59874cb8319895"
+    },
+    "docs/PHASE11_FINAL_REPORT.md": {
+      "bytes": 10537,
+      "git_blob": "f91950f19ddb91953ea2415d916b2f63a3acd8a2",
+      "sha256": "dc1dd3c97060265009e3aa8c035f616a684f5a668214a879eaa410e8d908540c"
+    },
+    "docs/PHASE11_FORWARD_PROTOCOL.md": {
+      "bytes": 2420,
+      "git_blob": "847a9946ba343eb308942e0a5068b17aa18487db",
+      "sha256": "de28b3d6f4f93885ce1df5078936a061b08f7e7b5feba97e147e2c9c3ba434ac"
+    },
+    "docs/PHASE11_LIMITATIONS.md": {
+      "bytes": 4668,
+      "git_blob": "1d2d099424fa559b019c3a32bf3e034aaa0bc940",
+      "sha256": "f50f61ac1c6eaaf74db70909126f2dbc62d26a916b8e4eb210823877864c5ba9"
+    },
+    "docs/PHASE11_MT5_CONNECTIVITY.md": {
+      "bytes": 4213,
+      "git_blob": "d2bf2a5476733d99768cfa69087b4a18fb5c8e47",
+      "sha256": "3e4a1e3ea5d4ed500003edc999a9c56b73ea460cbd0ae6e6edceb574da48f4d6"
+    },
+    "docs/PHASE11_PAPER_ENGINE.md": {
+      "bytes": 3202,
+      "git_blob": "9a897fbfaea5d97875841d901cc97455fee468d6",
+      "sha256": "b0d56d39892a7c93515c0562138d1fe67a33a4346d7d25482e4d80f5af597478"
+    },
+    "docs/PHASE11_RISK_VALIDATION.md": {
+      "bytes": 2277,
+      "git_blob": "970d2caf0a480e15c61d2ad7f5e371f58f6f7e0d",
+      "sha256": "657bf127cc8c910f1d13989465f15a97624c07dfe3df338b2e252976d712fd4e"
+    },
+    "docs/PHASE11_SECURITY.md": {
+      "bytes": 5474,
+      "git_blob": "91dfd364ba477e5cc66de7553164edafea08ef11",
+      "sha256": "473d06538bdbf878b915b1bd5eddcd3e6ffe18771515345321b382a2a97547f9"
+    },
+    "docs/PHASE11_SIGNAL_PARITY.md": {
+      "bytes": 7515,
+      "git_blob": "afb39112ca02a074a65d35b016fc538c93296e8c",
+      "sha256": "b442b5602894686eb6f086d87972c5cd5979fd506b78a7c00c4da4c8cb5f53b4"
+    },
+    "docs/PHASE11_TELEGRAM.md": {
+      "bytes": 8233,
+      "git_blob": "f189d8b3f7836afa62180268dd03d565a43548f5",
+      "sha256": "da4d9f301dfb8ec2d35fb5af631959d56931b321e981fd317ed65b7e92ac0531"
+    },
+    "docs/PHASE11_WINDOWS_DEPLOYMENT_BG.md": {
+      "bytes": 7521,
+      "git_blob": "991cceccebbef95cf6b62ac8bbed434f264e1824",
+      "sha256": "96fd16db61aec8064c038858c3b628cd12cc815bac4cf59ca79c64776c3598f8"
+    },
+    "docs/phase11_evidence/runtime.example.json": {
+      "bytes": 1503,
+      "git_blob": "2d6f546112e419f140f26c3bfdbdcb0fea7f88de",
+      "sha256": "4eb09369d5a11298b67612c4ca429a84dbf667b6e4be7cd69687a75389a78b08"
+    },
+    "docs/phase11_evidence/security_validation.json": {
+      "bytes": 371,
+      "git_blob": "d4e91f6c60d94f43d7ed82a06eeedaec75a35e8b",
+      "sha256": "ef2c9cc3f3ace140f503637a347fc1014eb09605ee12a848db7d4e557c92b67a"
+    },
+    "docs/phase11_evidence/telegram_validation.json": {
+      "bytes": 962,
+      "git_blob": "c696a2ee8d6c6e73811e89c9899a7c8bd155fd4f",
+      "sha256": "c482911fbb47853af050a39422ffda336c8c802f6fc69eff8a75cd6f65286bdd"
+    },
+    "docs/phase11_evidence/tests.txt": {
+      "bytes": 44955,
+      "git_blob": "5efdcdd28cff0ea967905c4b3322025cb8c64096",
+      "sha256": "cd90e0dc03fd6f69792278dd9c1f2425ab7ad3afb31453a3ffa207bd195d8933"
+    },
+    "docs/phase11_evidence/validation.json": {
+      "bytes": 9332,
+      "git_blob": "beb2c51d1ba5aa31432063c92f14018ad3c9302c",
+      "sha256": "f217e4e128d81edddd80d83fd8cd88b50ac9ac2192bc07a259e25509bcb5f590"
+    },
+    "qirvanta_ultimate/intelligence.py": {
+      "bytes": 15809,
+      "git_blob": "0fb646f9ab986f5ab5bcbc4058c1b370aa1bc2ac",
+      "sha256": "4866208d9c79b0fab3036bddfbe4e744269eba807d7a6519e8f10c2fda2508b9"
+    },
+    "qirvanta_ultimate/journal.py": {
+      "bytes": 6201,
+      "git_blob": "d4e2e77766fac827833410a0e3defe6d191f3a07",
+      "sha256": "3870a5c007e869f903329155008edafc0d4b101ab0e371fa7830fcccf9015d19"
+    },
+    "qirvanta_ultimate/market.py": {
+      "bytes": 24844,
+      "git_blob": "00aaab1b972de2c0d8b744920d05a2277a5fc407",
+      "sha256": "1fd6c9c51b97a301b15423794d4c69560401ac4715692d568b448c53e331fd8e"
+    },
+    "qirvanta_ultimate/market_cache.py": {
+      "bytes": 8609,
+      "git_blob": "40c259914190cbd27de85c69d07f768f8779991a",
+      "sha256": "2dda623b23a9f2b811812df7a88791e8edfdb87eae9d80628d8f9fba2807c6d2"
+    },
+    "qirvanta_ultimate/mt5.py": {
+      "bytes": 26667,
+      "git_blob": "4973bb70c2cddba843cb592ff0c4c7ce775c6b1c",
+      "sha256": "a9e06ff8826822965e8879efbff0185eb64cdfceca48aeeb3cd7785409d3f366"
+    },
+    "qirvanta_ultimate/notifications.py": {
+      "bytes": 2638,
+      "git_blob": "685e2c95ad7869825607d6f00568f237bee441ff",
+      "sha256": "edef8fab4b111c283f92cd9ffd1293f06139d2b611168cefe08475430edf82b0"
+    },
+    "qirvanta_ultimate/paper.py": {
+      "bytes": 31637,
+      "git_blob": "652f7356a13820137d5b7e508fcf9ef9a8707018",
+      "sha256": "efd432eef6b7c80551067701b65f4e4ee44cd165fa809e81a47d8316227414d1"
+    },
+    "qirvanta_ultimate/phase11.py": {
+      "bytes": 20279,
+      "git_blob": "1b6c3a4eeb2b872c11467108d7cfd8e81bf4db22",
+      "sha256": "e35376ec3bc767bfedb0cca1c9a03e3950fb08ef401c105bcaa0640a3f302bd0"
+    },
+    "qirvanta_ultimate/phase11_outbox.py": {
+      "bytes": 20450,
+      "git_blob": "1e929ca7cfc19c691d50e33798bd5f02ab594e13",
+      "sha256": "42af1183f5454188b4867b5c8731ae2955af98ad84eff5d28a22ccf7fba39dd6"
+    },
+    "qirvanta_ultimate/phase11_portfolios.py": {
+      "bytes": 21731,
+      "git_blob": "5c5849b76f071de9c318fac6b2b61c62b45afb0b",
+      "sha256": "72a4fff4de85ba473dcbdf5eceb21ffd296019053171d3b7e86d81bd130658cc"
+    },
+    "qirvanta_ultimate/phase11_signals.py": {
+      "bytes": 10305,
+      "git_blob": "798c7beb9995fd8aa9d6d3b0ba383ddfdaea1ddd",
+      "sha256": "7440c146479c527cdc2c36ea4411b3708b830e468079a2ad1a3ef080a0226b6c"
+    },
+    "qirvanta_ultimate/service.py": {
+      "bytes": 12338,
+      "git_blob": "73768f9dbc570a86130849084472d7c9617207d1",
+      "sha256": "3e51d39870450ddc3f8a6013bba3efc2a600f710b8bf6432933538e62e8e83b5"
+    },
+    "tests/test_phase11_market.py": {
+      "bytes": 13178,
+      "git_blob": "873e601a1766948230a54e0ea1931253e022d848",
+      "sha256": "4d3b4b3786685ba6d9e7334974e28f1410b414bb31315de75e02fdc97c61fd98"
+    },
+    "tests/test_phase11_outbox.py": {
+      "bytes": 12773,
+      "git_blob": "f9ee2089504f8181ecb02ad5944489a22dc79491",
+      "sha256": "4b28c9f3173203ab716d5f4613dd7899d85d7924e5d5bbbcbf88a3dd6b9f90e5"
+    },
+    "tests/test_phase11_paper.py": {
+      "bytes": 9173,
+      "git_blob": "6ce768fa5f946bf1eeb760c5d973556f2a04f5a4",
+      "sha256": "241576fb529a9b359921c1bff1327c276b02a96c1ffd5f9e93eb5dc4fe620c2e"
+    },
+    "tests/test_phase11_runtime.py": {
+      "bytes": 5464,
+      "git_blob": "7548fbf865f99a6608ea1fe2fa7c0920923dbd90",
+      "sha256": "6ca3620e20170d508dea372e47d2735281517a72276028a5fc5d09a33340f692"
+    },
+    "tests/test_phase11_signals.py": {
+      "bytes": 6271,
+      "git_blob": "207ac66e20814a3aebffd8e97d2372eb820b537d",
+      "sha256": "eb254e0e76bb3205103b13742a0b47767b71a41f9ffa94ed8acbd28c15add45f"
+    }
+  },
+  "frozen_pine_sha256": {
+    "unified/QIRVANTA_UNIFIED.pine": "92307768be68946dc87cbe4ea45a8b5e32446fd3b7a0c1a38dce40dffe358be3",
+    "unified/experimental/QIRVANTA_ULTIMATE_EXPERIMENTAL.pine": "27ec778eff8da38c001b77f88c01a89d4e94b2691abd4a0232e7eacd0533e332"
+  },
+  "includes_new_private_broker_data": false,
+  "parent_commit": "f9bcf7430ec0c50d013da93c155fb79f5684bade",
+  "parent_tree": "15e46c58a911658c1962df2cb1b6bbea856731e3",
+  "schema": "qirvanta.phase11.release_manifest.v1",
+  "scope": "Changed files excluding this self-referential manifest.",
+  "unchanged_inherited_paths": 835
+}

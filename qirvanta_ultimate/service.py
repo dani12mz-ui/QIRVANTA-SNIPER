@@ -61,6 +61,7 @@ class PaperProfile:
     slippage_ticks: int = 2
     entry_kind: str = "MARKET_NEXT_QUOTE"
     mode: str = "PAPER"
+    freeze_level_points: float = 0
 
     def __post_init__(self):
         for value in (self.source, self.symbol, self.quote_server, self.account_currency):
@@ -70,7 +71,9 @@ class PaperProfile:
                       self.max_entry_deviation, self.risk_fraction):
             finite(value, positive=True)
         finite(self.stops_level_points)
-        if (self.stops_level_points < 0 or self.max_lot < self.min_lot or not 0 < self.risk_fraction <= .01
+        finite(self.freeze_level_points)
+        if (min(self.stops_level_points, self.freeze_level_points) < 0
+                or self.max_lot < self.min_lot or not 0 < self.risk_fraction <= .01
                 or self.entry_kind not in ("MARKET_NEXT_QUOTE", "LIMIT") or self.mode != "PAPER"
                 or type(self.manual_pause) is not bool):
             raise ValueError("Invalid local paper profile")
@@ -89,7 +92,7 @@ class PaperProfile:
                           contract_size=self.contract_size, point=self.point, tick_size=self.tick_size,
                           tick_value_loss_account_ccy=self.loss_per_tick_lot, volume_min=self.min_lot,
                           volume_max=self.max_lot, volume_step=self.lot_step,
-                          stops_level_points=self.stops_level_points, freeze_level_points=0,
+                          stops_level_points=self.stops_level_points, freeze_level_points=self.freeze_level_points,
                           commission_round_trip_per_lot=2 * self.fee_per_lot_per_fill,
                           currency_conversion_verified=True)
 
@@ -162,8 +165,8 @@ def _risk_state(journal, profile, state, at_ms, *, recheck=False):
     active = state["active"]
     occupied = active is not None and not recheck
     now = datetime.fromtimestamp(at_ms / 1000, timezone.utc)
-    cash_events = (e for e in journal.events(since_ms=at_ms - 7 * 86400000)
-                   if e["kind"] in ("PAPER_FILL", "PAPER_PARTIAL") and e["at_ms"] <= at_ms)
+    cash_events = (e for e in journal.events(since_ms=at_ms - 7 * 86400000,
+                                             kinds=("PAPER_FILL", "PAPER_PARTIAL")) if e["at_ms"] <= at_ms)
     day, week = 0.0, 0.0
     for event in cash_events:
         dt = datetime.fromtimestamp(event["at_ms"] / 1000, timezone.utc)
@@ -178,11 +181,11 @@ def _risk_state(journal, profile, state, at_ms, *, recheck=False):
                      max(0., -week), int(occupied), state.get("cooldown_until_ms", 0))
 
 
-def _guardian(profile, state, plan, quote, now, *, session_open, risk):
+def _guardian(profile, state, plan, quote, now, *, session_open, risk, overrides=None):
     spec = profile.paper_specification(now)
     policy = RiskPolicy(max_spread=profile.max_spread, max_entry_deviation=profile.max_entry_deviation,
                         risk_fraction=profile.risk_fraction, slippage_ticks_each_way=profile.slippage_ticks,
-                        max_quote_age_ms=state["protocol"]["max_quote_age_ms"])
+                        max_quote_age_ms=state["protocol"]["max_quote_age_ms"], **(overrides or {}))
     proposed = TradePlan(plan["plan_id"], profile.symbol, plan["side"], plan["entry"], plan["stop"],
                          tuple(plan["targets"]), plan["issued_ms"], plan["expires_ms"])
     return assess_plan(proposed, quote, spec, risk, policy, now_ms=now,

@@ -1,0 +1,41 @@
+{
+  "evidence_class": "SYNTHETIC_TEST",
+  "contract_unittests": 15,
+  "configured_environment_presence_only": {
+    "QIRVANTA_TELEGRAM_ENABLED": false,
+    "QIRVANTA_TELEGRAM_BOT_TOKEN": false,
+    "QIRVANTA_TELEGRAM_CHAT_ID": false,
+    "QIRVANTA_TELEGRAM_AUTHORIZED_CHAT_ID": false,
+    "TELEGRAM_BOT_TOKEN": false,
+    "TELEGRAM_CHAT_ID": false
+  },
+  "telegram_connector_discovered": false,
+  "external_delivery_attempted": false,
+  "external_delivery_verified": false,
+  "external_delivery_disabled_cli_exit": 1,
+  "initial_sync": {
+    "added": 3,
+    "scanned": 4,
+    "sequence": 4
+  },
+  "duplicate_sync": {
+    "added": 0,
+    "scanned": 0,
+    "sequence": 4
+  },
+  "outbox_status": {
+    "DELIVERED": 0,
+    "FAILED": 0,
+    "IN_FLIGHT": 0,
+    "LOCAL_ONLY": 3,
+    "QUEUED": 0,
+    "RETRY": 0,
+    "UNKNOWN": 0
+  },
+  "notice_types": [
+    "candidate",
+    "pending_confirmation",
+    "entry_expiration"
+  ],
+  "bulgarian_paper_notice_check": true
+}

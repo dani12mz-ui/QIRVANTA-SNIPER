@@ -1,5 +1,6 @@
 """Quote-driven paper execution and prospective protocol enforcement."""
 from dataclasses import asdict, dataclass
+from collections import Counter
 from datetime import datetime, timezone
 from math import isclose
 from statistics import mean
@@ -9,6 +10,7 @@ from research.validation.statistics import block_bootstrap, cash_metrics, wilson
 
 from .common import digest, finite, identifier, milliseconds, sha256
 from .notifications import record_notification, record_paper_fill
+from .risk import ManagementPolicy, TradePlan, manage_quote
 
 
 @dataclass(frozen=True)
@@ -31,6 +33,10 @@ class PaperProtocol:
     max_quote_age_ms: int = 5000
     max_hold_ms: int = 43200000
     evidence_class: str = "PROSPECTIVE_DECLARED_SOURCE"
+    strategy_id: str | None = None
+    max_gap_ms: int | None = None
+    profit_lock_r: float = 0.
+    atr_trail_multiplier: float | None = None
 
     def __post_init__(self):
         for name in (self.protocol_id, self.source, self.symbol):
@@ -42,7 +48,8 @@ class PaperProtocol:
         if self.timeframe_ms not in (300000, 900000, 1800000) or not self.history_cutoff_ms < self.start_ms < self.end_ms:
             raise ValueError("Invalid prospective protocol interval")
         if (not self.families or len(set(self.families)) != len(self.families)
-                or any(family not in FAMILIES[:9] for family in self.families)):
+                or any(family not in FAMILIES[:9] + ("CHAMPION",) for family in self.families)
+                or ("CHAMPION" in self.families and self.strategy_id != "CHAMPION")):
             raise ValueError("Specify distinct experimental families")
         for value in (self.initial_cash, self.min_profit_factor, self.min_net_r, self.max_drawdown_fraction):
             finite(value, positive=True)
@@ -53,8 +60,17 @@ class PaperProtocol:
         for value in (self.max_hold_ms, self.max_quote_age_ms):
             if type(value) is not int or value <= 0:
                 raise ValueError("Invalid execution latency policy")
-        if self.evidence_class not in ("PROSPECTIVE_DECLARED_SOURCE", "SYNTHETIC_TEST"):
+        if self.evidence_class not in ("PROSPECTIVE_DECLARED_SOURCE", "SYNTHETIC_TEST",
+                                       "PROSPECTIVE_PAPER", "HISTORICAL_REPLAY"):
             raise ValueError("Unknown evidence class")
+        if self.strategy_id is not None:
+            identifier(self.strategy_id)
+        if self.max_gap_ms is not None and (type(self.max_gap_ms) is not int or self.max_gap_ms < 1000):
+            raise ValueError("Invalid feed-gap threshold")
+        if not 0 <= finite(self.profit_lock_r) < 1:
+            raise ValueError("Invalid post-TP1 profit lock")
+        if self.atr_trail_multiplier is not None and finite(self.atr_trail_multiplier, positive=True) < 1:
+            raise ValueError("ATR trail must be at least one ATR")
 
 
 def register(journal, protocol, *, now_ms):
@@ -125,11 +141,32 @@ def _submit(journal, state, decision, *, costs, now_ms, entry_kind):
                        "remaining": list(sizes), "lots": lots, "cash_paid": 0.0,
                        "trace_id": decision["trace_id"],
                        "costs": asdict(costs), "estimated_loss_cash": risk["facts"]["estimated_loss_cash"]}
-    journal.append("PAPER_PENDING", now_ms, {"plan_id": mgmt["plan_id"], "trace_id": decision["trace_id"],
-                                            "entry_kind": entry_kind, "lots": lots})
+    pos = state["active"]
+    regime = decision["specialists"].get("regime", {}).get("facts", {})
+    pos.update(campaign_id=digest([p["protocol_id"], mgmt["plan_id"]]),
+               strategy_id=p.get("strategy_id") or mgmt["family"],
+               symbol=p["symbol"], regime=regime.get("regime"), regime_direction=regime.get("direction"),
+               initial_stop=mgmt["stop"], fees=0.0, path_uncertain=False)
+    journal.append("PAPER_PENDING", now_ms, {**_identity(pos), "trace_id": decision["trace_id"],
+                                            "entry_kind": entry_kind, "lots": lots,
+                                            "reference": pos["entry"], "initial_stop": pos["stop"],
+                                            "targets": pos["targets"], "expires_ms": pos["expires_ms"],
+                                            "issued_ms": pos["issued_ms"], "remaining": pos["remaining"],
+                                            **decision.get("portfolio", {})})
 
 
-def _part(journal, state, position, i, price, reason, quote_ms):
+def _identity(position):
+    keys = ("plan_id", "campaign_id", "strategy_id", "signal_id", "source_plan_id", "side", "family",
+            "symbol", "regime", "regime_direction")
+    return {key: position[key] for key in keys if key in position}
+
+
+def _miss(journal, state, pos, at_ms, reason):
+    journal.append("PAPER_MISSED", at_ms, {**_identity(pos), "reason": reason})
+    state["active"] = None
+
+
+def _part(journal, state, position, i, price, reason, quote_ms, *, adverse_slip=0.):
     finite(price, positive=True)
     quantity = position["remaining"][i]
     if quantity <= 0:
@@ -141,23 +178,38 @@ def _part(journal, state, position, i, price, reason, quote_ms):
     cash = delta / cost["tick_size"] * multiplier * quantity - fee
     position["remaining"][i] = 0.0
     position["cash_paid"] += cash
+    position["fees"] = position.get("fees", 0.) + fee
     state["cash"] += cash
-    journal.append("PAPER_PARTIAL", quote_ms, {"plan_id": position["plan_id"], "component": i + 1,
+    journal.append("PAPER_PARTIAL", quote_ms, {**_identity(position), "component": i + 1,
                                               "quantity": quantity, "price": price, "fee": fee,
-                                              "cash_delta": cash, "reason": reason})
+                                              "cash_delta": cash, "reason": reason,
+                                              "adverse_slippage_price": adverse_slip,
+                                              "remaining": position["remaining"]})
     if reason.startswith("TP"):
         record_paper_fill(journal, position, quote_ms, reason, price, quantity)
 
 
-def _advance(journal, state, quote, *, entry_allowed, session_open):
+def _advance(journal, state, quote, *, entry_allowed, session_open, discontinuity=False, atr=None):
     last = state["last_quote_ms"]
     if last is not None and quote.at_ms <= last:
         raise ValueError("Paper quotes must advance strictly")
     state["last_quote_ms"] = quote.at_ms
     pos = state["active"]
+    max_gap = state["protocol"].get("max_gap_ms")
+    if discontinuity or (last is not None and max_gap is not None and quote.at_ms - last > max_gap):
+        state["gap_quote_ms"] = quote.at_ms
+        journal.append("PAPER_FEED_GAP", quote.at_ms, {"previous_quote_ms": last,
+                       "current_quote_ms": quote.at_ms, "position_state": pos["state"] if pos else None})
+        if pos and pos["state"] == "PENDING":
+            _miss(journal, state, pos, quote.at_ms, "OBSERVATION_GAP")
+            return
+        if pos:
+            pos["path_uncertain"] = True
     if not pos:
         return
     if pos["state"] == "OPEN" and not session_open:
+        if state["protocol"].get("strategy_id") is not None:
+            pos["path_uncertain"] = True
         return
     side = pos["side"]
     closing = quote.bid if side == 1 else quote.ask
@@ -167,32 +219,33 @@ def _advance(journal, state, quote, *, entry_allowed, session_open):
         if quote.at_ms <= pos["submitted_ms"]:
             return
         if quote.at_ms >= pos["expires_ms"] or not entry_allowed:
-            journal.append("PAPER_MISSED", quote.at_ms, {"plan_id": pos["plan_id"],
-                           "reason": "UNFILLED_LIMIT" if quote.at_ms >= pos["expires_ms"] and pos["entry_kind"] == "LIMIT"
-                           else "ENTRY_EXPIRED" if quote.at_ms >= pos["expires_ms"] else "FILL_RISK_RECHECK_BLOCKED"})
-            state["active"] = None
+            reason = ("UNFILLED_LIMIT" if quote.at_ms >= pos["expires_ms"] and pos["entry_kind"] == "LIMIT"
+                      else "ENTRY_EXPIRED" if quote.at_ms >= pos["expires_ms"] else "FILL_RISK_RECHECK_BLOCKED")
+            _miss(journal, state, pos, quote.at_ms, reason)
             return
         executable = quote.ask if side == 1 else quote.bid
         if pos["entry_kind"] == "LIMIT" and (executable - pos["entry"]) * side > 0:
             return
         fill = executable + slip if pos["entry_kind"] == "MARKET_NEXT_QUOTE" else pos["entry"]
         if (closing - pos["stop"]) * side <= 0 or (pos["targets"][0] - fill) * side <= 0:
-            journal.append("PAPER_MISSED", quote.at_ms, {"plan_id": pos["plan_id"], "reason": "GAP_INVALIDATION"})
-            state["active"] = None
+            _miss(journal, state, pos, quote.at_ms, "GAP_INVALIDATION")
             return
         fee = pos["lots"] * cost["fee_per_lot_per_fill"]
         risk_per_lot = (fill - pos["stop"] + slip) * side / cost["tick_size"] * cost["loss_per_tick_lot"]
         risk_cash = pos["lots"] * risk_per_lot + 2 * fee
         if risk_cash > pos["estimated_loss_cash"] + 1e-9:
-            journal.append("PAPER_MISSED", quote.at_ms, {"plan_id": pos["plan_id"], "reason": "GAP_RISK_CAP"})
-            state["active"] = None
+            _miss(journal, state, pos, quote.at_ms, "GAP_RISK_CAP")
             state["cooldown_until_ms"] = quote.at_ms + state["protocol"]["timeframe_ms"]
             return
         pos.update(state="OPEN", fill_price=fill, fill_ms=quote.at_ms, cash_paid=-fee,
-                   initial_cash_risk=risk_cash, excursion_min=0.0, excursion_max=0.0)
+                   initial_cash_risk=risk_cash, excursion_min=0.0, excursion_max=0.0,
+                   fees=fee, tp_hits=[], entry_slippage=abs(slip) if pos["entry_kind"] == "MARKET_NEXT_QUOTE" else 0.)
         state["cash"] -= fee
-        journal.append("PAPER_FILL", quote.at_ms, {"plan_id": pos["plan_id"], "price": fill,
-                                                  "quantity": pos["lots"], "fee": fee, "cash_delta": -fee})
+        journal.append("PAPER_FILL", quote.at_ms, {**_identity(pos), "price": fill,
+                                                  "quantity": pos["lots"], "fee": fee, "cash_delta": -fee,
+                                                  "bid": quote.bid, "ask": quote.ask,
+                                                  "entry_slippage": pos["entry_slippage"],
+                                                  "initial_cash_risk": risk_cash, "costs": cost})
         record_paper_fill(journal, pos, quote.at_ms, "ENTRY", fill, pos["lots"])
         return
     movement = (closing - pos["fill_price"]) * side
@@ -200,38 +253,86 @@ def _advance(journal, state, quote, *, entry_allowed, session_open):
     pos["excursion_max"] = max(pos["excursion_max"], movement)
     stop = (closing - pos["stop"]) * side <= 0
     time_stop = quote.at_ms - pos["fill_ms"] >= state["protocol"]["max_hold_ms"]
+    p = state["protocol"]
+    preview = None
+    if p.get("strategy_id") is not None and not stop and not time_stop:
+        plan = TradePlan(pos["plan_id"], quote.symbol, side, pos["entry"], pos["initial_stop"],
+                         pos["targets"], pos["issued_ms"], pos["expires_ms"])
+        management = ManagementPolicy(p["max_hold_ms"], profit_lock_r=p.get("profit_lock_r", 0.),
+                                      atr_trail_multiplier=p.get("atr_trail_multiplier"))
+        preview = manage_quote(plan, quote, fill_price=pos["fill_price"], fill_at_ms=pos["fill_ms"],
+                               current_stop=pos["stop"], next_target=next(i for i, n in enumerate(pos["remaining"]) if n > 0),
+                               previous_quote_at_ms=last, tick_size=cost["tick_size"], policy=management,
+                               now_ms=quote.at_ms, max_quote_age_ms=p["max_quote_age_ms"],
+                               expected_server=quote.server, atr=atr)
     if stop or time_stop:
         reason = "STOP" if stop else "TIME_STOP"
         if stop:
             state["cooldown_until_ms"] = quote.at_ms + state["protocol"]["timeframe_ms"]
         quantity = sum(pos["remaining"])
         for i in range(3):
-            _part(journal, state, pos, i, closing - slip, reason, quote.at_ms)
+            _part(journal, state, pos, i, closing - slip, reason, quote.at_ms, adverse_slip=abs(slip))
         record_paper_fill(journal, pos, quote.at_ms, reason, closing - slip, quantity)
     else:
         for i, target in enumerate(pos["targets"]):
             if (closing - target) * side >= 0 and pos["remaining"][i] > 0:
                 _part(journal, state, pos, i, target, f"TP{i + 1}", quote.at_ms)
-                if i == 0:
-                    pos["stop"] = pos["fill_price"]
+                pos.setdefault("tp_hits", []).append(i + 1)
+                if i == 0 and preview is None:
+                    old = pos["stop"]
+                    pos["stop"] = max(old, pos["fill_price"]) if side == 1 else min(old, pos["fill_price"])
+                    journal.append("PAPER_STOP_MOVED", quote.at_ms, {**_identity(pos), "previous_stop": old,
+                                   "next_stop": pos["stop"], "reason": "TP1_PRICE_BREAKEVEN"})
+        if preview is not None and preview.next_stop is not None:
+            old = pos["stop"]
+            pos["stop"] = preview.next_stop
+            journal.append("PAPER_STOP_MOVED", quote.at_ms, {**_identity(pos), "previous_stop": old,
+                           "next_stop": pos["stop"], "reason": "FROZEN_PROFIT_LOCK_OR_ATR_TRAIL"})
+        reason = "TARGETS_COMPLETE"
     if not any(pos["remaining"]):
         journal.append("PAPER_COMPLETE", quote.at_ms,
-                       {"plan_id": pos["plan_id"], "family": pos["family"], "cash_net": pos["cash_paid"],
+                       {**_identity(pos), "cash_net": pos["cash_paid"],
                         "net_r": pos["cash_paid"] / pos["initial_cash_risk"],
+                        "initial_cash_risk": pos["initial_cash_risk"], "fees": pos.get("fees"),
+                        "path_uncertain": pos.get("path_uncertain", False), "reason": reason,
+                        "tp_hits": pos.get("tp_hits", []), "fill_ms": pos["fill_ms"],
                         "duration_ms": quote.at_ms - pos["fill_ms"],
                         "observed_quote_mae": -pos["excursion_min"], "observed_quote_mfe": pos["excursion_max"]})
         state["active"] = None
 
 
+def _mark_equity(state, quote, session_open):
+    if not session_open:
+        return
+    pos = state["active"]
+    equity = state["cash"]
+    if pos and pos["state"] == "OPEN":
+        cost = pos["costs"]
+        closing = quote.bid if pos["side"] == 1 else quote.ask
+        delta = (closing - pos["fill_price"]) * pos["side"] - cost["tick_size"] * cost["slippage_ticks"]
+        rate = cost["profit_per_tick_lot"] if delta > 0 else cost["loss_per_tick_lot"]
+        equity += sum(pos["remaining"]) * (delta / cost["tick_size"] * rate - cost["fee_per_lot_per_fill"])
+    mark = state.setdefault("observed_equity", {"peak": state["protocol"]["initial_cash"],
+                            "peak_ms": state["registered_ms"], "max_drawdown": 0., "max_drawdown_ms": 0})
+    mark["cash"] = equity
+    mark["unrealized_after_exit_costs"] = equity - state["cash"]
+    mark["at_ms"] = quote.at_ms
+    if equity >= mark["peak"]:
+        mark.update(peak=equity, peak_ms=quote.at_ms)
+    else:
+        mark["max_drawdown"] = max(mark["max_drawdown"], mark["peak"] - equity)
+        mark["max_drawdown_ms"] = max(mark["max_drawdown_ms"], quote.at_ms - mark["peak_ms"])
+
+
 def paper_step(journal, request_id, quote, *, now_ms, implementation_hash, profile_hash,
                evaluate, recheck, entry_kind="MARKET_NEXT_QUOTE", input_hash=None, session_open=True,
-               clock=None):
+               clock=None, discontinuity=False, atr=None):
     """Evaluate an internal analysis callback and commit quote + fills atomically.
 
     Callback inputs are an owned snapshot of committed state and the current
     quote. The caller never supplies a serialized risk approval.
     """
-    if type(session_open) is not bool:
+    if type(session_open) is not bool or type(discontinuity) is not bool:
         raise ValueError("Unknown paper session state")
     with journal.transaction():
         if clock is not None:
@@ -243,12 +344,15 @@ def paper_step(journal, request_id, quote, *, now_ms, implementation_hash, profi
         if (implementation_hash, profile_hash) != (protocol["implementation_hash"], protocol["profile_hash"]):
             raise ValueError("Paper source or profile drift")
         wire = {"quote": asdict(quote), "input_hash": input_hash, "session_open": session_open}
+        if protocol.get("strategy_id") is not None:
+            wire["discontinuity"] = discontinuity
         if not journal.accept(request_id, wire, now_ms):
             return {"status": "DUPLICATE", "broker_orders": False}
         _quote_ok(quote, protocol, now_ms)
         active = state["active"]
         allowed = not active or active["state"] != "PENDING" or recheck(active.copy(), quote, state.copy(), now_ms) is True
-        _advance(journal, state, quote, entry_allowed=allowed and session_open, session_open=session_open)
+        _advance(journal, state, quote, entry_allowed=allowed and session_open, session_open=session_open,
+                 discontinuity=discontinuity, atr=atr)
         decision, costs = evaluate(state.copy(), quote, now_ms)
         close_ms = decision["bar_close_ms"]
         if (decision["symbol"] != protocol["symbol"] or decision["timeframe_ms"] != protocol["timeframe_ms"]
@@ -256,7 +360,39 @@ def paper_step(journal, request_id, quote, *, now_ms, implementation_hash, profi
                 or (close_ms is None and decision["state"] != "DATA_UNAVAILABLE")
                 or decision["specialists"]["audit"]["facts"].get("source") != protocol["source"]):
             raise ValueError("Decision differs from frozen point-in-time protocol")
-        journal.append("PAPER_DECISION", now_ms, decision)
+        role_statuses = [[name, detail["status"], detail["facts"].get("reason")]
+                         for name, detail in decision["specialists"].items()]
+        plan_id = decision["specialists"].get("management", {}).get("facts", {}).get("plan_id")
+        shape = [close_ms, decision["state"], decision["reason"], plan_id, role_statuses]
+        old_shape = state.get("decision_shape")
+        if protocol.get("strategy_id") is None or old_shape != shape:
+            journal.append("PAPER_DECISION", now_ms, decision)
+            state["decision_shape"] = shape
+        else:
+            journal.append("PAPER_QUOTE_DECISION", now_ms, {
+                "trace_id": decision["trace_id"], "quote_at_ms": quote.at_ms,
+                "bar_close_ms": close_ms, "state": decision["state"], "reason": decision["reason"],
+            })
+        if protocol.get("strategy_id") is not None:
+            _mark_equity(state, quote, session_open)
+            state["last_decision"] = {"state": decision["state"], "reason": decision["reason"],
+                                      "trace_id": decision["trace_id"], "at_ms": now_ms,
+                                      "bar_close_ms": decision["bar_close_ms"]}
+            health = state.setdefault("specialist_health", {})
+            for name, detail in decision["specialists"].items():
+                success = health.get(name, {}).get("last_success_ms")
+                health[name] = {"status": detail["status"], "trace_id": decision["trace_id"],
+                                "facts": detail["facts"], "at_ms": now_ms,
+                                "reason": detail["facts"].get("reason"),
+                                "latency_ms": decision.get("latency_ms", {}).get(name),
+                                "last_success_ms": now_ms if detail["status"] == "OK" else success}
+            counts = state.setdefault("decision_counts", {})
+            category = decision["state"]
+            counts[category] = counts.get(category, 0) + 1
+            bar = decision["bar_close_ms"]
+            if bar is not None and bar != state.get("last_assessed_bar_ms"):
+                state["last_assessed_bar_ms"] = bar
+                state["closed_bar_observations"] = state.get("closed_bar_observations", 0) + 1
         record_notification(journal, state, decision, costs.tick_size)
         _submit(journal, state, decision, costs=costs, now_ms=now_ms, entry_kind=entry_kind)
         journal.set_state(state, now_ms)
@@ -265,11 +401,12 @@ def paper_step(journal, request_id, quote, *, now_ms, implementation_hash, profi
 
 
 def _report(journal, at_ms):
-    events = journal.events()
     state = journal.state()
     if not state:
         return {"status": "NO_PAPER_PROTOCOL", "broker_orders": False}
     p = state["protocol"]
+    events = journal.events(kinds=("PAPER_FILL", "PAPER_PARTIAL", "PAPER_COMPLETE", "PAPER_OPERATOR_PAUSE",
+                                   "PAPER_MISSED", "PAPER_PENDING", "PAPER_FEED_GAP", "PAPER_SKIPPED"))
     fills = [e for e in events if e["kind"] == "PAPER_COMPLETE"]
     values = [e["data"]["cash_net"] for e in fills]
     returns = [e["data"]["net_r"] for e in fills]
@@ -313,7 +450,7 @@ def _report(journal, at_ms):
     ended = at_ms is not None and at_ms >= p["end_ms"]
     if ended and outstanding is not None:
         outstanding = "OPEN_RIGHT_CENSORED" if outstanding == "OPEN" else "UNFILLED_AT_WINDOW_END"
-    return {"status": verdict, "protocol_id": p["protocol_id"], "metrics": metrics,
+    result = {"status": verdict, "protocol_id": p["protocol_id"], "metrics": metrics,
             "win_rate_ci95": wilson(sum(v > 0 for v in values), len(values)),
             "net_r": confidence, "paid_cash_equity": equity, "paid_cash_drawdown": maximum_dd,
             "observed_drawdown_duration_ms": max_duration, "calendar": groups,
@@ -323,6 +460,70 @@ def _report(journal, at_ms):
             "outstanding": outstanding, "window_ended": ended,
             "operator_intervention": paused, "evidence_class": p["evidence_class"],
             "automatic_promotion": False, "broker_orders": False}
+    if p.get("strategy_id") is None:
+        return result
+    hit_rates = {f"TP{i}": (sum(i in e["data"].get("tp_hits", ()) for e in fills) / len(fills) if fills else None)
+                 for i in (1, 2, 3)}
+    gap_count = sum(e["kind"] == "PAPER_FEED_GAP" for e in events)
+    uncertain = sum(e["data"].get("path_uncertain") is True for e in fills)
+    mark = state.get("observed_equity", {})
+    position = state["active"]
+    active = None
+    if position:
+        active = {**_identity(position),
+                  **{key: position[key] for key in ("state", "entry", "initial_stop", "stop", "targets",
+                                                     "lots", "remaining", "submitted_ms", "issued_ms",
+                                                     "expires_ms", "cash_paid", "path_uncertain")},
+                  "fill_price": position.get("fill_price"), "fill_ms": position.get("fill_ms"),
+                  "open_quantity": sum(position["remaining"]) if position["state"] == "OPEN" else 0.,
+                  "initial_cash_risk": position.get("initial_cash_risk"),
+                  "reserved_loss_cash": position["estimated_loss_cash"] if position["state"] == "PENDING" else None,
+                  "unrealized_after_exit_costs": mark.get("unrealized_after_exit_costs") if position["state"] == "OPEN" else None,
+                  "mark_at_ms": mark.get("at_ms") if position["state"] == "OPEN" else None}
+    dd = max(maximum_dd, mark.get("max_drawdown", 0.))
+    evidence_failures = []
+    if p["evidence_class"] != "PROSPECTIVE_PAPER":
+        evidence_failures.append("NON_PROSPECTIVE_INPUT")
+    if not ended:
+        evidence_failures.append("WINDOW_OPEN")
+    if outstanding:
+        evidence_failures.append("RIGHT_CENSORED_POSITION")
+    if uncertain:
+        evidence_failures.append("CAMPAIGN_PATH_UNCERTAIN")
+    if paused:
+        evidence_failures.append("OPERATOR_INTERVENTION")
+    if len(fills) < p["min_campaigns"]:
+        evidence_failures.append("TOO_FEW_COMPLETE_CAMPAIGNS")
+    if confidence["ci95"][0] is None or confidence["ci95"][0] <= 0:
+        evidence_failures.append("EXPECTANCY_INTERVAL_NOT_POSITIVE")
+    result["status"] = (
+        "REJECT" if failure or dd > p["max_drawdown_fraction"] * p["initial_cash"]
+        else "INSUFFICIENT_FORWARD_EVIDENCE" if evidence_failures else "CONTINUE_PAPER_TEST")
+    result.update(strategy_id=p["strategy_id"], complete_campaigns=len(fills),
+                  entry_fills=sum(e["kind"] == "PAPER_FILL" for e in events),
+                  pending_submissions=sum(e["kind"] == "PAPER_PENDING" for e in events),
+                  paid_fill_fees=sum(e["data"]["fee"] for e in events if e["kind"] in ("PAPER_FILL", "PAPER_PARTIAL")),
+                  observed_equity=mark, observed_equity_drawdown_fraction=dd / p["initial_cash"],
+                  observed_equity_mark_age_ms=max(0, at_ms - mark["at_ms"]) if at_ms is not None and mark else None,
+                  active_campaign=active,
+                  feed_gap_observations=gap_count, completed_with_uncertain_path=uncertain,
+                  campaign_tp_hit_rates=hit_rates,
+                  stops_before_tp1=sum(e["data"].get("reason") == "STOP" and not e["data"].get("tp_hits") for e in fills),
+                  average_hold_ms=mean(e["data"]["duration_ms"] for e in fills) if fills else None,
+                  exit_reasons=dict(Counter(e["data"].get("reason", "UNSPECIFIED") for e in fills)),
+                  missed_reasons=dict(Counter(e["data"]["reason"] for e in events if e["kind"] == "PAPER_MISSED")),
+                  skipped_reasons=dict(Counter(e["data"]["reason"] for e in events if e["kind"] == "PAPER_SKIPPED")),
+                  buy_metrics=cash_metrics([e["data"]["cash_net"] for e in fills if e["data"].get("side") == 1]),
+                  sell_metrics=cash_metrics([e["data"]["cash_net"] for e in fills if e["data"].get("side") == -1]),
+                  regime_metrics={key: cash_metrics([e["data"]["cash_net"] for e in fills
+                                                    if e["data"].get("regime") == key])
+                                  for key in sorted({e["data"]["regime"] for e in fills if e["data"].get("regime")})},
+                  decision_counts=state.get("decision_counts", {}),
+                  closed_bar_observations=state.get("closed_bar_observations", 0),
+                  specialist_health=state.get("specialist_health", {}),
+                  latest_decision=state.get("last_decision"), forward_evidence_failures=evidence_failures,
+                  start_ms=p["start_ms"], end_ms=p["end_ms"], min_campaigns=p["min_campaigns"])
+    return result
 
 
 def report(journal, *, at_ms=None):

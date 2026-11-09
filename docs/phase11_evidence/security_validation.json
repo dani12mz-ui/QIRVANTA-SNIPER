@@ -1,0 +1,11 @@
+{
+  "static_source_scope": "qirvanta_ultimate/*.py",
+  "parsed_python_modules": 20,
+  "known_broker_mutation_calls_found": 0,
+  "git_visible_paths_checked": 866,
+  "known_secret_patterns_found": 0,
+  "known_private_artifact_names_found": 0,
+  "mt5_and_risk_tests_passed": 19,
+  "telegram_mock_and_local_tests_passed": 15,
+  "external_requests_made_by_security_scan": 0
+}

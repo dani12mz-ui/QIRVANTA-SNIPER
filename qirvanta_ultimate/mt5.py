@@ -14,6 +14,9 @@ from time import time_ns
 
 from qirvanta_ultimate.risk import BrokerSpec, Quote, grid_aligned, millis, number
 
+_TIMEFRAMES = {1: 'TIMEFRAME_M1', 5: 'TIMEFRAME_M5', 15: 'TIMEFRAME_M15', 30: 'TIMEFRAME_M30',
+               60: 'TIMEFRAME_H1', 240: 'TIMEFRAME_H4', 1440: 'TIMEFRAME_D1'}
+
 
 class Mode(str, Enum):
     RESEARCH = 'RESEARCH'
@@ -83,6 +86,24 @@ class AccountSnapshot:
     equity: float = field(repr=False)
     free_margin: float = field(repr=False)
     observed_at_ms: int
+    trade_allowed: bool | None = None
+    trade_expert: bool | None = None
+
+
+@dataclass(frozen=True)
+class TerminalSnapshot:
+    name: str | None
+    company: str | None
+    build: int | None
+    connected: bool
+    trade_allowed: bool | None
+    tradeapi_disabled: bool | None
+    observed_at_ms: int
+
+
+def _optional_bool(value, key):
+    flag = getattr(value, key, None)
+    return flag if type(flag) is bool else None
 
 
 @dataclass(frozen=True)
@@ -181,11 +202,12 @@ def linear_cfd_spec(symbol: SymbolSnapshot, terms: ReviewedTerms):
 
 class MT5Reader:
     """Use only through a checked, single-terminal read-only context."""
-    def __init__(self, api, account, clock):
+    def __init__(self, api, account, clock, terminal=None):
         self._api = api
         self._identity = self._account_identity(account)
         self._clock = clock
         self._closed = False
+        self._terminal_path = getattr(terminal, 'path', None)
 
     @staticmethod
     def _account_identity(account):
@@ -199,6 +221,8 @@ class MT5Reader:
             account = self._api.account_info()
             if terminal is None or terminal.connected is not True or account is None:
                 raise MT5Unavailable('MT5_DISCONNECTED')
+            if self._terminal_path is not None and getattr(terminal, 'path', None) != self._terminal_path:
+                raise MT5Unavailable('MT5_TERMINAL_CHANGED')
             if self._account_identity(account) != self._identity:
                 raise MT5Unavailable('MT5_ACCOUNT_CHANGED')
             return account
@@ -226,9 +250,18 @@ class MT5Reader:
                 raise MT5Unavailable('INVALID_MT5_ACCOUNT_SNAPSHOT')
             return AccountSnapshot('DEMO' if a.trade_mode == 0 else 'LIVE', a.server, a.company,
                                    a.currency, a.leverage, a.margin_mode, a.equity, a.margin_free,
-                                   self._clock())
+                                   self._clock(), _optional_bool(a, 'trade_allowed'),
+                                   _optional_bool(a, 'trade_expert'))
         except AttributeError:
             raise MT5Unavailable('INCOMPLETE_MT5_ACCOUNT_SNAPSHOT') from None
+
+    def terminal_status(self):
+        """Report connection and permissions without paths or account identifiers."""
+        r = self._read(self._api.terminal_info)
+        return TerminalSnapshot(getattr(r, 'name', None), getattr(r, 'company', None),
+                                getattr(r, 'build', None), r.connected is True,
+                                _optional_bool(r, 'trade_allowed'), _optional_bool(r, 'tradeapi_disabled'),
+                                self._clock())
 
     def discover_symbols(self, text_filter=''):
         """Exact names discovered from current terminal. No automatic symbol selection."""
@@ -266,14 +299,65 @@ class MT5Reader:
             raise MT5Unavailable('INVALID_BID_ASK')
         return Quote(s.symbol, r.bid, r.ask, r.time_msc, s.server)
 
+    def market_tick(self, exact_name, *, contract=None):
+        """Current quote only. The poller validates its age at actual receipt."""
+        from .market import MarketTick
+
+        s = self.symbol(exact_name) if contract is None else contract
+        if (not isinstance(s, SymbolSnapshot) or s.symbol != exact_name
+                or s.server != self._identity[1] or s.account_currency != self._identity[4]):
+            raise MT5Unavailable('MT5_QUOTE_CONTRACT_IDENTITY_MISMATCH')
+        if not s.selected or not s.visible:
+            raise MT5Unavailable('SYMBOL_NOT_SELECTED_IN_TERMINAL')
+        r = self._read(self._api.symbol_info_tick, exact_name)
+        try:
+            last = getattr(r, 'last', None)
+            return MarketTick(s.symbol, s.server, r.bid, r.ask, None if last == 0 else last,
+                              r.time_msc, s.tick_size)
+        except (AttributeError, ValueError, OverflowError, TypeError):
+            raise MT5Unavailable('INVALID_MT5_MARKET_TICK') from None
+
+    def recent_ticks(self, exact_name, start_ms, *, limit=1000):
+        """Historical broker tick retrieval. Rows remain backfill evidence only."""
+        now = self._clock()
+        if (type(limit) is not int or not 1 <= limit <= 10_000 or not millis(start_ms)
+                or not 0 < start_ms <= now or now - start_ms > 31 * 86_400_000):
+            raise MT5Unavailable('INVALID_MT5_TICK_HISTORY_WINDOW')
+        s = self.symbol(exact_name)
+        if not s.selected or not s.visible:
+            raise MT5Unavailable('SYMBOL_NOT_SELECTED_IN_TERMINAL')
+        try:
+            start_seconds = start_ms // 1000
+            raw = self._read(self._api.copy_ticks_from, exact_name,
+                             datetime.fromtimestamp(start_seconds, timezone.utc),
+                             limit, self._api.COPY_TICKS_ALL)
+            if len(raw) > limit:
+                raise MT5Unavailable('MT5_TICK_HISTORY_LIMIT_EXCEEDED')
+            previous = start_seconds * 1000
+            result = []
+            for row in raw:
+                at = int(row['time_msc'])
+                bid, ask, last = (float(row[key]) for key in ('bid', 'ask', 'last'))
+                if (at != row['time_msc'] or not previous <= at <= now
+                        or not all(number(value) and value >= 0 for value in (bid, ask, last))):
+                    raise MT5Unavailable('INVALID_MT5_TICK_HISTORY_SEQUENCE')
+                previous = at
+                if at < start_ms:
+                    continue
+                result.append({'at_ms': at, 'bid': bid or None, 'ask': ask or None, 'last': last or None,
+                               'flags': int(row['flags']), 'status': 'BACKFILLED'})
+            return tuple(result)
+        except MT5Unavailable:
+            raise
+        except (AttributeError, KeyError, IndexError, OSError, OverflowError, TypeError, ValueError):
+            raise MT5Unavailable('INVALID_MT5_TICK_HISTORY_RESPONSE') from None
+
     def bars(self, exact_name, minutes, start_ms, end_ms):
         """Return a UTC half-open interval of completed native bars. Gaps remain gaps."""
-        timeframes = {5: 'TIMEFRAME_M5', 15: 'TIMEFRAME_M15', 30: 'TIMEFRAME_M30',
-                      60: 'TIMEFRAME_H1', 240: 'TIMEFRAME_H4'}
-        if type(minutes) is not int or minutes not in timeframes:
+        if type(minutes) is not int or minutes not in _TIMEFRAMES:
             raise MT5Unavailable('UNSUPPORTED_MT5_TIMEFRAME')
         if (not millis(start_ms) or not millis(end_ms) or not start_ms < end_ms <= self._clock()
-                or end_ms-start_ms > 366*86_400_000):
+                or end_ms-start_ms > min(366*86_400_000, 100_000*minutes*60_000)):
             raise MT5Unavailable('INVALID_MT5_HISTORY_WINDOW')
         s = self.symbol(exact_name)
         if not s.selected or not s.visible:
@@ -282,20 +366,27 @@ class MT5Reader:
             start = datetime.fromtimestamp(start_ms/1000, timezone.utc)
             end = datetime.fromtimestamp(end_ms/1000, timezone.utc)
             raw = self._read(self._api.copy_rates_range, exact_name,
-                             getattr(self._api, timeframes[minutes]), start, end)
+                             getattr(self._api, _TIMEFRAMES[minutes]), start, end)
+            if len(raw) > 100_001:
+                raise MT5Unavailable('MT5_BAR_HISTORY_LIMIT_EXCEEDED')
             result = []
             for row in raw:
                 at = int(row['time'])*1000
+                if at != row['time']*1000:
+                    raise MT5Unavailable('INVALID_MT5_BAR_TIMESTAMP')
                 if not start_ms <= at or at + minutes*60_000 > end_ms:
                     continue
                 o, h, lo, c = (float(row[key]) for key in ('open', 'high', 'low', 'close'))
                 if (not all(number(x) and x > 0 for x in (o, h, lo, c)) or lo > min(o, c)
                         or h < max(o, c) or result and at <= result[-1]['at_ms']):
                     raise MT5Unavailable('INVALID_MT5_BAR_SEQUENCE')
+                volumes = [int(row[key]) for key in ('tick_volume', 'real_volume', 'spread')]
+                if any(value < 0 or value != row[key]
+                       for value, key in zip(volumes, ('tick_volume', 'real_volume', 'spread'))):
+                    raise MT5Unavailable('INVALID_MT5_BAR_VOLUME_OR_SPREAD')
                 result.append({'at_ms': at, 'open': o, 'high': h, 'low': lo, 'close': c,
-                               'tick_volume': int(row['tick_volume']),
-                               'reported_real_volume': int(row['real_volume']),
-                               'reported_spread_points': int(row['spread'])})
+                               'tick_volume': volumes[0], 'reported_real_volume': volumes[1],
+                               'reported_spread_points': volumes[2]})
             return tuple(result)
         except MT5Unavailable:
             raise
@@ -386,11 +477,14 @@ def connect_readonly(terminal_path, *, expected_server, expected_company, mode,
             account = api.account_info()
             if terminal is None or terminal.connected is not True or account is None:
                 raise MT5Unavailable('MT5_DISCONNECTED_OR_NO_ACCOUNT')
+            terminal_install = getattr(terminal, 'path', None)
+            if terminal_install is not None and Path(terminal_install).resolve() != path.parent:
+                raise MT5Unavailable('MT5_TERMINAL_PATH_MISMATCH')
             expected_kind = 0 if selected is Mode.DEMO_READ_ONLY else 2
             if (account.server != expected_server or account.company != expected_company
                     or account.trade_mode != expected_kind or not account.currency or not account.login):
                 raise MT5Unavailable('MT5_ACCOUNT_IDENTITY_OR_MODE_MISMATCH')
-            reader = MT5Reader(api, account, _clock)
+            reader = MT5Reader(api, account, _clock, terminal)
         except MT5Unavailable:
             raise
         except Exception:
@@ -434,6 +528,9 @@ def main(argv=None):
             result = {'status': 'READ_ONLY_METADATA_OBSERVED', 'mode': args.mode,
                       'account_kind': account.kind, 'account_currency': account.currency,
                       'leverage': account.leverage, 'margin_mode': account.margin_mode,
+                      'account_trade_allowed': account.trade_allowed, 'account_trade_expert': account.trade_expert,
+                      'broker_company': account.company, 'broker_server': account.server,
+                      'terminal': asdict(reader.terminal_status()),
                       'broker_orders_enabled': False}
             if args.symbol:
                 spec = reader.symbol(args.symbol)

@@ -164,11 +164,19 @@ def strategy(ctx, _):
     if not pool:
         if confirmed:
             return _ready("UNVALIDATED", experimental_ids=[d["signal_id"] for d in confirmed])
-        if any("STRUCTURAL_INVALIDATION" in d["reasons"] or "SETUP_EXPIRED" in d["reasons"] for d in candidates):
+        if any("SETUP_EXPIRED" in d["reasons"] for d in candidates):
+            return _ready("EXPIRED", reason="SETUP_EXPIRED")
+        if any("STRUCTURAL_INVALIDATION" in d["reasons"] for d in candidates):
             return _ready("INVALIDATED", candidate_count=len(candidates))
         return _ready("WATCH" if any(d["status"] == "WATCH" for d in candidates) else "NO_SETUP",
                       candidate_count=len(candidates))
     d = pool[0]
+    if d["family"] == "CHAMPION":
+        return _ready("OK", signal_id=d["signal_id"], side=d["side"], family=d["family"],
+                      status_basis="AUTHENTICATED_TRADINGVIEW_NATIVE_SUBMISSION",
+                      entry=d["reference"], stop=d["initial_stop"], issued_ms=d["confirmation_time"],
+                      targets=d["targets"], expires_ms=d["expires_ms"], source_plan_id=d["source_plan_id"],
+                      atr_at_signal=d["atr_at_signal"])
     return _ready("OK", signal_id=d["signal_id"], side=d["side"], family=d["family"],
                   status_basis="REGISTERED_EXPERIMENT" if not eligible else "MANIFEST_EVIDENCE",
                   entry=d["reference"], stop=d["initial_stop"], issued_ms=d["confirmation_time"])
@@ -191,7 +199,7 @@ def entry_execution(ctx, done):
         return _ready("UNAVAILABLE", reason="STALE_FUTURE_OR_CROSSED_QUOTE")
     side = candidate.facts["side"]
     executable = q.ask if side == 1 else q.bid
-    atr = market.features["atr"]
+    atr = candidate.facts.get("atr_at_signal", market.features["atr"])
     if not atr:
         return _ready("UNAVAILABLE", reason="ATR_UNAVAILABLE")
     deviation = abs(executable - candidate.facts["entry"]) / atr
@@ -207,14 +215,18 @@ def trade_management(ctx, done):
     risk = (d["entry"] - d["stop"]) * d["side"]
     if risk <= 0:
         return _ready("INVALIDATED", reason="INVALID_STOP_GEOMETRY")
-    targets = tuple(d["entry"] + risk * d["side"] * r for r in (1, 2, 3))
+    targets = d.get("targets", tuple(d["entry"] + risk * d["side"] * r for r in (1, 2, 3)))
     if min(targets) <= 0:
         return _ready("INVALIDATED", reason="INVALID_TARGET_GEOMETRY")
     identity = [ctx.market.source, ctx.market.symbol, ctx.market.timeframe_ms, d["signal_id"]]
-    return _ready("OK", plan_id=digest(identity), side=d["side"], family=d["family"],
-                  entry=d["entry"], stop=d["stop"], targets=targets, initial_risk=risk,
-                  issued_ms=d["issued_ms"], expires_ms=d["issued_ms"] + ctx.market.timeframe_ms,
-                  policy="ONE_TWO_THREE_R_TP1_BREAKEVEN_NEXT_OBSERVED_QUOTE")
+    facts = dict(plan_id=digest(identity), signal_id=d["signal_id"], side=d["side"], family=d["family"],
+                 entry=d["entry"], stop=d["stop"], targets=targets, initial_risk=risk,
+                 issued_ms=d["issued_ms"], expires_ms=d.get("expires_ms", d["issued_ms"] + ctx.market.timeframe_ms),
+                 policy="ONE_TWO_THREE_R_TP1_BREAKEVEN_NEXT_OBSERVED_QUOTE")
+    if d["family"] == "CHAMPION":
+        facts.update(source_plan_id=d["source_plan_id"],
+                     policy="PINE_LEVELS_LOCAL_PAPER_MANAGEMENT")
+    return _ready("OK", **facts)
 
 
 def risk_guardian(ctx, done):
@@ -327,6 +339,8 @@ def _verdict(done):
         return "WAIT_CONFIRMATION", "ANALYTICAL_DISAGREEMENT"
     if any(done[key].status == "INVALIDATED" for key in ("strategy", "management", "entry")):
         return "INVALIDATED", "INVALIDATED_SETUP_OR_EXECUTION"
+    if done["strategy"].status == "EXPIRED":
+        return "SIGNAL_EXPIRED", "SETUP_EXPIRED"
     state = done["strategy"].status
     if state == "WATCH":
         return "WAIT_CONFIRMATION", "SETUP_NOT_CONFIRMED"

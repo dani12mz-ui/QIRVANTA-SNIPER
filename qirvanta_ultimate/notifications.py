@@ -7,6 +7,7 @@ LABELS = {
     "SELL_CANDIDATE": "Кандидат за продажба",
     "NO_TRADE": "Няма допуснат сигнал",
     "WAIT_CONFIRMATION": "Изчаква потвърждение",
+    "SIGNAL_EXPIRED": "Срокът на сигнала изтече",
     "INVALIDATED": "Идеята е невалидна",
     "DATA_UNAVAILABLE": "Липсват актуални данни",
     "RISK_BLOCKED": "Риск правилото блокира плана",

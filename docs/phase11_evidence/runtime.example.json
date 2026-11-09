@@ -1,0 +1,50 @@
+{
+  "market": {
+    "source": "ILLUSTRATIVE-FEED",
+    "server": "ILLUSTRATIVE-SERVER",
+    "mode": "DEMO_READ_ONLY",
+    "cadence_s": 1.0
+  },
+  "signals": [],
+  "bars_limit": 3600,
+  "roster": {
+    "roster_id": "ILLUSTRATIVE-REPLACE-BEFORE-REGISTRATION",
+    "source_commit": "0000000000000000000000000000000000000000",
+    "evidence_class": "PROSPECTIVE_PAPER",
+    "instruments": [
+      {
+        "dataset_id": "ILLUSTRATIVE-LOCAL-BID",
+        "contract_spec_source": "ILLUSTRATIVE-NOT-BROKER-TERMS",
+        "timeframe_ms": 900000,
+        "history_cutoff_ms": 1798758000000,
+        "start_ms": 1798761600000,
+        "end_ms": 1806537600000,
+        "initial_cash": 10000,
+        "profile": {
+          "source": "ILLUSTRATIVE-FEED",
+          "symbol": "ILLUSTRATIVE-SYMBOL",
+          "quote_server": "ILLUSTRATIVE-SERVER",
+          "account_currency": "USD",
+          "contract_size": 1.0,
+          "point": 0.01,
+          "tick_size": 0.01,
+          "loss_per_tick_lot": 0.01,
+          "profit_per_tick_lot": 0.01,
+          "min_lot": 0.01,
+          "max_lot": 1.0,
+          "lot_step": 0.01,
+          "margin_per_lot": 100.0,
+          "stops_level_points": 5,
+          "freeze_level_points": 5,
+          "fee_per_lot_per_fill": 0.50,
+          "max_spread": 0.15,
+          "max_entry_deviation": 0.25,
+          "risk_fraction": 0.005,
+          "manual_pause": true,
+          "slippage_ticks": 2,
+          "entry_kind": "MARKET_NEXT_QUOTE"
+        }
+      }
+    ]
+  }
+}

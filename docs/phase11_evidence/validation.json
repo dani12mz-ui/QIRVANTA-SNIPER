@@ -1,0 +1,330 @@
+{
+  "cli_smoke": {
+    "class": "LOCAL_STARTUP_SMOKE_ILLUSTRATIVE_PROFILE",
+    "commands": [
+      "probe",
+      "register",
+      "serve --max-polls 1",
+      "status",
+      "report",
+      "replay"
+    ],
+    "live_observations": 0,
+    "outbox": {
+      "DELIVERED": 0,
+      "FAILED": 0,
+      "IN_FLIGHT": 0,
+      "LOCAL_ONLY": 1,
+      "QUEUED": 0,
+      "RETRY": 0,
+      "UNKNOWN": 0
+    },
+    "portfolio_campaign_counts": {
+      "CHAMPION": 0,
+      "S3": 0,
+      "S5": 0,
+      "S8": 0
+    },
+    "promoted_to_forward_evidence": false,
+    "registration": {
+      "broker_orders": false,
+      "evidence_class": "PROSPECTIVE_PAPER",
+      "manifest_sha256": "33b6ca82e6ae1b5ead9ce537523d3877e195cdfa4cf34fa25cffd97cb18b7a5b",
+      "roster_id": "CLI-SMOKE-ONLY",
+      "status": "REGISTERED"
+    },
+    "served": {
+      "broker_orders_enabled": false,
+      "market": {
+        "events": {
+          "MISSING_DATA": 1
+        },
+        "server": "ILLUSTRATIVE-SERVER",
+        "source": "ILLUSTRATIVE-FEED",
+        "symbols": {
+          "ILLUSTRATIVE-SYMBOL": {
+            "candles": {
+              "1": {
+                "continuity_candidate": false,
+                "latest_confirmed_close_ms": null,
+                "samples": 0,
+                "status": "MISSING_DATA",
+                "utc_end_ms": 1794253380000,
+                "utc_start_ms": 1794253320000
+              },
+              "1440": {
+                "continuity_candidate": false,
+                "latest_confirmed_close_ms": null,
+                "samples": 0,
+                "status": "MISSING_DATA",
+                "utc_end_ms": 1794268800000,
+                "utc_start_ms": 1794182400000
+              },
+              "15": {
+                "continuity_candidate": false,
+                "latest_confirmed_close_ms": null,
+                "samples": 0,
+                "status": "MISSING_DATA",
+                "utc_end_ms": 1794253500000,
+                "utc_start_ms": 1794252600000
+              },
+              "240": {
+                "continuity_candidate": false,
+                "latest_confirmed_close_ms": null,
+                "samples": 0,
+                "status": "MISSING_DATA",
+                "utc_end_ms": 1794254400000,
+                "utc_start_ms": 1794240000000
+              },
+              "30": {
+                "continuity_candidate": false,
+                "latest_confirmed_close_ms": null,
+                "samples": 0,
+                "status": "MISSING_DATA",
+                "utc_end_ms": 1794254400000,
+                "utc_start_ms": 1794252600000
+              },
+              "5": {
+                "continuity_candidate": false,
+                "latest_confirmed_close_ms": null,
+                "samples": 0,
+                "status": "MISSING_DATA",
+                "utc_end_ms": 1794253500000,
+                "utc_start_ms": 1794253200000
+              },
+              "60": {
+                "continuity_candidate": false,
+                "latest_confirmed_close_ms": null,
+                "samples": 0,
+                "status": "MISSING_DATA",
+                "utc_end_ms": 1794254400000,
+                "utc_start_ms": 1794250800000
+              }
+            },
+            "discontinuity_latched": true,
+            "last_discontinuity_ms": 1794253349194,
+            "last_successful_update_ms": null,
+            "quote_age_ms": null,
+            "reason": "METATRADER5_SDK_UNAVAILABLE",
+            "session_open_at_last_update": null,
+            "status": "MISSING_DATA"
+          }
+        }
+      },
+      "reason": "METATRADER5_SDK_UNAVAILABLE",
+      "status": "BLOCKED_EXTERNAL"
+    }
+  },
+  "historical_diagnostic": {
+    "analysis": {
+      "as_of_ms": 1794192300000,
+      "bar_close_ms": 1794192300000,
+      "broker_orders": false,
+      "inference_provider": null,
+      "reason": "NEWS_DATA_UNAVAILABLE",
+      "specialists": {
+        "audit": {
+          "facts": {
+            "available_at_ms": 1794192300000,
+            "empirical_certainty": "INSUFFICIENT_EVIDENCE",
+            "evidence": "INTERNAL_RULE_AUDIT",
+            "inference": "NONE",
+            "source": "OANDA",
+            "source_hash": "7015f6386d2627237c57ff8625d59cbe3c9b852e4742b786cbb4679db3d48c56"
+          },
+          "status": "OK"
+        },
+        "entry": {
+          "facts": {
+            "reason": "NO_UNAMBIGUOUS_CANDIDATE"
+          },
+          "status": "SKIPPED"
+        },
+        "liquidity": {
+          "facts": {
+            "evidence": "OHLC_PROXY",
+            "lower_sweep": false,
+            "upper_sweep": false
+          },
+          "status": "OK"
+        },
+        "macro": {
+          "facts": {
+            "blocked": true,
+            "event_ids": [],
+            "provider": null,
+            "status": "NEWS_DATA_UNAVAILABLE"
+          },
+          "status": "OK"
+        },
+        "management": {
+          "facts": {
+            "reason": "NO_UNAMBIGUOUS_CANDIDATE"
+          },
+          "status": "SKIPPED"
+        },
+        "momentum": {
+          "facts": {
+            "rsi": 77.53737004361842,
+            "rsi_delta": 0.4947593538777255,
+            "signed_body": 1.699999999999818
+          },
+          "status": "OK"
+        },
+        "mtf": {
+          "facts": {
+            "reason": "COMPLETED_HTF_MISSING_OR_STALE"
+          },
+          "status": "UNAVAILABLE"
+        },
+        "regime": {
+          "facts": {
+            "direction": 1,
+            "efficiency": 0.583883045106078,
+            "regime": "UPTREND"
+          },
+          "status": "OK"
+        },
+        "risk": {
+          "facts": {
+            "reason": "NO_EXECUTABLE_PLAN"
+          },
+          "status": "SKIPPED"
+        },
+        "strategy": {
+          "facts": {
+            "candidate_count": 6
+          },
+          "status": "WATCH"
+        },
+        "structure": {
+          "facts": {
+            "event": "NONE",
+            "lower": 4054.395,
+            "side": 0,
+            "upper": 4069.435
+          },
+          "status": "OK"
+        },
+        "volatility": {
+          "facts": {
+            "atr": 10.602517753517663,
+            "atr_ratio": 1.2107096381365032,
+            "shock": false
+          },
+          "status": "OK"
+        }
+      },
+      "state": "DATA_UNAVAILABLE",
+      "symbol": "XAUUSD",
+      "timeframe_ms": 900000,
+      "trace_id": "82523d72acf634c7e8bf8da7f31f1429e36f809495e387569884b75c273df111"
+    },
+    "bars": 6445,
+    "broker_quote_supplied": false,
+    "evidence_class": "HISTORICAL",
+    "first_open_ms": 1785708000000,
+    "last_close_ms": 1794192300000,
+    "paper_campaigns": 0,
+    "source": "OANDA",
+    "source_sha256": "7015f6386d2627237c57ff8625d59cbe3c9b852e4742b786cbb4679db3d48c56"
+  },
+  "probe": {
+    "attachment_attempted": false,
+    "broker_orders_enabled": false,
+    "mt5_identity_configured": false,
+    "running_terminal_path_count": 0,
+    "sdk_discoverable": false,
+    "tv_gateway_key_configured": false,
+    "windows": true
+  },
+  "prospective": {
+    "actual_complete_campaigns": 0,
+    "actual_net_result": null,
+    "actual_window": null,
+    "real_broker_orders": 0,
+    "status": "FORWARD_EVIDENCE_INSUFFICIENT"
+  },
+  "schema": "qirvanta.phase11.validation.v1",
+  "synthetic_paper": {
+    "entry": 140.1,
+    "evidence_class": "SYNTHETIC_TEST",
+    "independent_gap_case": {
+      "complete_campaigns": 1,
+      "equity_drawdown_usd": 55.5,
+      "exit": 139.55,
+      "fees_usd": 0.5,
+      "first_post_gap_bid": 139.56,
+      "first_post_gap_quote_ms": 1767963631001,
+      "gross_usd": -55,
+      "hold_ms": 30001,
+      "net_r": -1.21978021978,
+      "net_usd": -55.5,
+      "path_uncertain": true,
+      "stop_before_tp1": true
+    },
+    "initial_risk_usd": 45.5,
+    "initial_sl": 139.66,
+    "lots": 1.0,
+    "next_quote_entry_ms": 1767963601000,
+    "parts_lots": [
+      0.34,
+      0.33,
+      0.33
+    ],
+    "prospective_evidence": false,
+    "signal_close_ms": 1767963600000,
+    "signal_quote_bid_ask": [
+      140.08,
+      140.09
+    ],
+    "slippage_ticks": 1,
+    "strategy": "S5",
+    "symbol": "TEST.GOLD",
+    "targets": [
+      140.52,
+      140.95,
+      141.38
+    ],
+    "targets_case": {
+      "complete_campaigns": 1,
+      "equity_drawdown_usd": 3.5,
+      "fees_usd": 0.5,
+      "gross_usd": 84.57,
+      "hold_ms": 3000,
+      "net_r": 1.847692307692,
+      "net_usd": 84.07,
+      "parts": 3,
+      "profit_factor": null
+    },
+    "test": "tests/test_phase11_paper.py",
+    "tick_size": 0.01,
+    "timeframe_ms": 900000
+  },
+  "tests": {
+    "commands": {
+      "research": "python -X utf8 -B -m unittest discover -s research/tests -v",
+      "root": "python -X utf8 -B -m unittest discover -s tests -v",
+      "unified": "cd unified; python -X utf8 -B -m unittest discover -s tests -v"
+    },
+    "counts": {
+      "research": 119,
+      "root": 81,
+      "unified": 113
+    },
+    "exit_codes": {
+      "research": 0,
+      "root": 0,
+      "unified": 0
+    },
+    "total": 313
+  },
+  "tradingview": {
+    "fresh_webhook_verified": false,
+    "observed_session": "ENDED_OTHER_BROWSER_OR_DEVICE",
+    "previous_evidence": "docs/platform_evidence/technical_alert_blocked.txt",
+    "previous_technical_alert_limit": 0,
+    "status": "BLOCKED_EXTERNAL"
+  },
+  "verified_utc": "2026-11-09T19:42:29.931698+00:00"
+}
