@@ -1,0 +1,43 @@
+{
+  "refreshed_at_utc": "2026-11-09T03:57:24.600722+00:00",
+  "reason": "Baseline observer generator now refuses existing output paths and non-txt outputs before writes, then creates with exclusive open(x); focused16 methods pass with additional normal/-O subtests. Generated observer bytes remain unchanged.",
+  "tests_run": 16,
+  "expected_generated_observer_sha256": "430352649bbb906f6723c947a7f00f1e5213715d7eac5724ef47d883c0529aa9",
+  "old_report_sha256": "519f3c949963c9f8bbca03fe620a58b63a9e41ad61fd7f43c6601f93b6880ed3",
+  "new_report_sha256": "36149dff9ca964f44f2d23edec656c409bda485532828fc38a3ea22de3595816",
+  "old_test_metadata": {
+    "log": "diagnostics/protocol/H1_integrity_tests.log",
+    "sha256": "149058a9b6ee29057c29e64f6a1684f66605778cfa3b8cec2072f50771bf9dcf",
+    "tests": 16,
+    "scope": "Exact single FAST gate/reason change; unchanged remainder/observer contract; mandatory guards under normal and optimized Python; export integrity",
+    "portable_test_source_sha256": "bdb881efa7456930f41abdf14539cf69c1e3ff0cbde3717cd73ffe295776a61e",
+    "portability": "Tracked generators create temporary observer/candidate buffers; recorded compiled-buffer hashes are reproduced without sibling workspace artifacts."
+  },
+  "new_test_metadata": {
+    "log": "diagnostics/protocol/H1_integrity_tests.log",
+    "sha256": "426a7bc1fa96abc753970f884739183ca06d7c22fc91865ebbfd225ddd07ac33",
+    "tests": 16,
+    "scope": "Exact single FAST gate/reason change; unchanged remainder/observer contract; mandatory guards under normal and optimized Python; export integrity",
+    "portable_test_source_sha256": "d0abd0c88358c31f1868cad272fe187fd2304f83a69319b26dc5080fa4f28d1b",
+    "portability": "Tracked generators create temporary observer/candidate buffers; recorded compiled-buffer hashes are reproduced without sibling workspace artifacts.",
+    "baseline_observer_generator_sha256": "679a762cc658f53faba5e4be92e74d0c61c8c33b4a246c10a076617d22baf10d",
+    "output_creation_checks": "Normal and optimized Python: nested .txt output creates identical observer bytes; existing file/directory and production .pine are refused; creation uses exclusive open(x)."
+  },
+  "protected_claims_sha256_before": "dcdb8b40b61704f00b7a4e49c7e459a2405e81ced5aae207c408cb184a0e5e64",
+  "protected_claims_sha256_after": "dcdb8b40b61704f00b7a4e49c7e459a2405e81ced5aae207c408cb184a0e5e64",
+  "old_catalog_sha256": "4e4647d995ea80a29f95fc90a6917d4c91abe738bd2c8ea187f482f804d2569e",
+  "new_catalog_sha256": "2816d8515810a6c0528965e5a957d03c923fa9538b08d54056ce9c19f30e3f19",
+  "catalog_dependency_changes": [
+    {
+      "path": "diagnostics/protocol/H1_integrity_tests.log",
+      "old_sha256": "149058a9b6ee29057c29e64f6a1684f66605778cfa3b8cec2072f50771bf9dcf",
+      "new_sha256": "426a7bc1fa96abc753970f884739183ca06d7c22fc91865ebbfd225ddd07ac33"
+    },
+    {
+      "path": "diagnostics/protocol/H1_evidence_comparison.json",
+      "old_sha256": "519f3c949963c9f8bbca03fe620a58b63a9e41ad61fd7f43c6601f93b6880ed3",
+      "new_sha256": "36149dff9ca964f44f2d23edec656c409bda485532828fc38a3ea22de3595816"
+    }
+  ],
+  "historic_data_or_production_changed": false
+}

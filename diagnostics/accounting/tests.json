@@ -1,0 +1,21 @@
+{
+  "scope": "SYNTHETIC_ACCOUNTING_AND_INGESTION_REGRESSIONS_NOT_PINE_RUNTIME",
+  "tests_run": 38,
+  "failures": 0,
+  "errors": 0,
+  "successful": true,
+  "command": [
+    "C:\\Users\\azubu\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "diagnostics/accounting/run_tests.py"
+  ],
+  "git_head_at_test": "48e5cddab17ea831bdc277f17f0406329fdfe39c",
+  "commit_qualification": "Diagnostics may be uncommitted; executable source hashes below identify the exact tested files",
+  "tested_accounting_source_sha256": "5f512e667cbd5494df60910ef7686ab3383178a7b690a02a43061782401b5d11",
+  "files_sha256": {
+    "audit.py": "0057f839e56e97d0a154785f905484c1cf1c65e4f0752a3d21e7e0f53cc7073f",
+    "compare_runs.py": "bd9038480afef43b3386707392cf113c8ba91d16f97f9f630fea71d202e5cbee",
+    "render_breakdowns.py": "0da3406c795c2219adc0d0211eddc031f916a79bfa65ebb7e896005b99edbacd",
+    "run_tests.py": "f04c3755abeb73213de6753d77b4717c505d87aa2716d450fcaea000577958a5",
+    "test_audit.py": "37a2760780e5b85d1afc000e2398382d7d3e7f9f70aeeedf9b270dd944b42660"
+  }
+}

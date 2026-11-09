@@ -1,0 +1,137 @@
+- 'button "Logged in as dani12mz Active layout: Unnamed"'
+- toolbar:
+  - button "XAUUSD":
+    - generic: XAUUSD
+  - button "Switch data type":
+  - button "Compare symbols":
+  - separator
+  - button "15 minutes":
+    - generic: 15m
+  - separator
+  - button "Candles":
+  - separator
+  - button "Indicators, metrics, and strategies":
+  - button "Favorite indicators and indicators templates":
+  - separator
+  - button "Create alert":
+  - button "Bar replay":
+  - separator
+  - button "Undo update QIRV ONE script":
+  - button [disabled]:
+  - button "Layout setup":
+  - button "Save all charts for all symbols and intervals on your layout":
+    - generic: Unnamed
+    - generic: Save
+  - button "Manage layouts":
+  - separator
+  - button "Quick search":
+  - button "Settings":
+  - button "Fullscreen mode":
+  - button "Take a snapshot":
+  - button "Share your idea with the trade community":
+  - button "Upgrade":
+    - generic: Upgrade
+- toolbar:
+  - button "Cross":
+  - button "Cursors" [pressed]:
+  - button "Trendline":
+  - button "Trend tools":
+  - button "Fib retracement":
+  - button "Gann and Fibonacci tools":
+  - button "XABCD pattern":
+  - button "Patterns":
+  - button "Long position":
+  - button "Forecasting and measurement tools":
+  - button "Brush":
+  - button "Geometric shapes":
+  - button "Text":
+  - button "Annotation tools":
+  - button "Icon":
+  - button "Icons":
+  - button "Measure":
+  - button "Zoom in":
+  - button "Magnet mode snaps drawings placed near price bars to the closest OHLC value":
+  - button "Magnets":
+  - button "Keep drawing":
+  - button "Lock drawings and indicators":
+  - button "Lock options":
+  - button "Hide all drawings":
+  - button "Hide options":
+  - button "Remove objects":
+  - button "Remove options":
+- 'region "Chart #1"':
+  - toolbar:
+    - generic "Change symbol":
+      - generic: X
+      - button "Change symbol": Gold Spot / U.S. Dollar
+    - text: · ·
+    - button "Unflag symbol":
+    - button "More options for Gold Spot / U.S. Dollar":
+    - button "Market open · Data updates once per second":
+    - generic: C
+    - generic: 4,118.220
+    - generic: +1.330 (+0.03%)
+  - button "Hide indicator legend":
+  - toolbar:
+    - generic "QIRVANTA Обединен":
+      - generic: QIRV ONE
+    - button "Hide":
+    - button "Settings":
+    - button "Remove":
+    - button "More options for QIRV ONE":
+    - button "Active strategy":
+    - generic "EMA21 — текуща": 4,102.241
+    - generic "EMA55 — текуща": 4,083.426
+    - generic "План за покупка — заявен, не изпълнение": "0.000"
+    - generic "План за продажба — заявен, не изпълнение": "0.000"
+  - generic "Chart for OANDA:XAUUSD, 15 minutes"
+  - toolbar "Navigation":
+    - button "Reset chart view":
+- toolbar:
+  - button "Date Range":
+    - text: Date Range
+  - button "Timezone":
+    - generic: 03:37:36 UTC
+- generic: Object tree and data window
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- alert
+- alert

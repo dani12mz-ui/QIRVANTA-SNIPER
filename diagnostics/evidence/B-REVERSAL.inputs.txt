@@ -1,0 +1,902 @@
+- 'button "Logged in as dani12mz Active layout: Unnamed"'
+- toolbar:
+  - button "XAUUSD":
+    - generic: XAUUSD
+  - button "Switch data type":
+  - button "Compare symbols":
+  - separator
+  - button "15 minutes":
+    - generic: 15m
+  - separator
+  - button "Candles":
+  - separator
+  - button "Indicators, metrics, and strategies":
+    - generic: Indicators
+  - button "Favorite indicators and indicators templates":
+  - separator
+  - button "Create alert":
+    - generic: Alert
+  - button "Bar replay":
+    - generic: Replay
+  - separator
+  - button "Undo change Модел за този тест property":
+  - button [disabled]:
+  - button "Layout setup":
+  - button "Save all charts for all symbols and intervals on your layout":
+    - generic: Unnamed
+    - generic: Save
+  - button "Manage layouts":
+  - separator
+  - button "Quick search":
+  - button "Settings":
+  - button "Fullscreen mode":
+  - button "Take a snapshot":
+  - button "Share your idea with the trade community":
+  - button "Trade":
+    - generic: Trade
+  - button "Upgrade":
+    - generic: Upgrade
+- toolbar:
+  - button "Cross":
+  - button "Cursors" [pressed]:
+  - button "Trendline":
+  - button "Trend tools":
+  - button "Fib retracement":
+  - button "Gann and Fibonacci tools":
+  - button "XABCD pattern":
+  - button "Patterns":
+  - button "Long position":
+  - button "Forecasting and measurement tools":
+  - button "Brush":
+  - button "Geometric shapes":
+  - button "Text":
+  - button "Annotation tools":
+  - button "Icon":
+  - button "Icons":
+  - button "Measure":
+  - button "Zoom in":
+  - button "Magnet mode snaps drawings placed near price bars to the closest OHLC value":
+  - button "Magnets":
+  - button "Keep drawing":
+  - button "Lock drawings and indicators":
+  - button "Lock options":
+  - button "Hide all drawings":
+  - button "Hide options":
+  - button "Remove objects":
+  - button "Remove options":
+- 'region "Chart #1"':
+  - toolbar:
+    - generic "Change symbol":
+      - generic: X
+      - button "Change symbol": Gold Spot / U.S. Dollar
+    - generic "Change interval":
+      - text: ·
+      - button "Change interval": "15"
+    - text: ·
+    - generic: OANDA
+    - button "Unflag symbol":
+    - button "More options for Gold Spot / U.S. Dollar":
+    - button "Market open · Data updates once per second":
+    - generic: O
+    - generic: 4,117.940
+    - generic: H
+    - generic: 4,120.135
+    - generic: L
+    - generic: 4,115.825
+    - generic: C
+    - generic: 4,118.840
+    - generic: +0.950 (+0.02%)
+  - generic: 4,118.650
+  - generic: Sell
+  - generic "Spread": "44.0"
+  - generic: 4,119.090
+  - generic: Buy
+  - button "Hide indicator legend":
+  - toolbar:
+    - generic "QIRVANTA Обединен":
+      - generic: QIRV ONE
+    - button "Hide":
+    - button "Settings":
+    - generic "Source code":
+    - button "Remove":
+    - button "More options for QIRV ONE":
+    - button "Active strategy":
+    - generic "EMA21 — текуща": 4,100.777
+    - generic "EMA55 — текуща": 4,082.187
+    - generic "План за покупка — заявен, не изпълнение": "0.000"
+    - generic "План за продажба — заявен, не изпълнение": "0.000"
+  - generic "Chart for OANDA:XAUUSD, 15 minutes"
+  - toolbar "Navigation":
+    - button "Zoom out":
+    - button "Zoom in":
+    - button "Scroll to the left":
+    - button "Scroll to the right":
+    - button "Reset chart view":
+- toolbar:
+  - button "1 day in 1 minute intervals":
+    - generic: 1D
+  - button "5 days in 5 minutes intervals":
+    - generic: 5D
+  - button "1 month in 30 minutes intervals":
+    - generic: 1M
+  - button "3 months in 1 hour intervals":
+    - generic: 3M
+  - button "6 months in 2 hours intervals":
+    - generic: 6M
+  - button "Year to day in 1 day intervals":
+    - generic: YTD
+  - button "1 year in 1 day intervals":
+    - generic: 1Y
+  - button "5 years in 1 week intervals":
+    - generic: 5Y
+  - button "All data in 1 month intervals":
+    - generic: All
+  - separator
+  - button "Go to":
+  - button "Timezone":
+    - generic: 03:19:44 UTC
+- toolbar:
+  - button "Watchlist, details, and news":
+  - button "Alerts":
+  - button "Object tree and data window":
+  - button "AI Copilot":
+  - button "Screeners":
+  - button "Pine Editor":
+  - button "Calendars":
+  - button "Community":
+  - button "Notifications":
+  - button "Chats":
+  - button "Products":
+  - separator
+  - button "Help Center":
+- generic "QIRV ONE"
+- generic "Close":
+- generic "Disable logging":
+- generic "Search":
+- generic "Start date":
+- button:
+- text: "[2026-11-09T02:30:00.000-00:00]: QIRVANTA_DATA_BEGIN {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Бърз пробив\",\"kind\":\"run\",\"symbol\":\"OANDA:XAUUSD\",\"timeframe\":\"15\",\"source_sha256\":\"c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5\",\"account_currency\":\"USD\",\"symbol_currency\":\"USD\",\"pointvalue\":1,\"profit_semantics\":\"UNVERIFIED\",\"first_bar_time\":1785708000000,\"last_bar_open\":1794191400000,\"cutoff\":1794192300000,\"bar_count\":6445,\"checksum1\":52465161,\"checksum2\":675559027,\"mintick\":0.001}"
+- generic "Source code":
+- generic "Scroll to bar":
+- text: "[2026-11-09T02:30:00.000-00:00]: {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Бърз пробив\",\"kind\":\"submitted\",\"plan_id\":\"OANDA:XAUUSD|15|2|1|1786338000000|1786338000000\",\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786338000000|1786338000000\",\"submitted_time\":1786338000000,\"submitted_bar\":487,\"quantity\":3,\"family\":2,\"side\":1,\"htf_bias\":1,\"regime\":\"TREND\",\"countertrend\":false,\"local_aligned\":true,\"efficiency\":0.06853117,\"reference\":4339.535,\"initial_sl\":4322.269,\"atr\":7.83510631,\"tp1\":4356.801,\"tp2\":4374.067,\"tp3\":4391.333,\"maxhold\":48} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Бърз пробив\",\"kind\":\"closed\",\"trade_index\":0,\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786338000000|1786338000000\",\"entry_time\":1786338000000,\"entry_bar_index\":488,\"size\":1,\"entry_price\":4339.477,\"exit_id\":\"OANDA:XAUUSD|15|2|1|1786338000000|1786338000000|T1\",\"exit_comment\":\"TP1\",\"exit_time\":1786344300000,\"exit_bar_index\":495,\"exit_price\":4356.801,\"profit\":16.974,\"commission\":0.35,\"max_drawdown\":7.912,\"max_runup\":17.149} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Бърз пробив\",\"kind\":\"closed\",\"trade_index\":1,\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786338000000|1786338000000\",\"entry_time\":1786338000000,\"entry_bar_index\":488,\"size\":1,\"entry_price\":4339.477,\"exit_id\":\"OANDA:XAUUSD|15|2|1|1786338000000|1786338000000|T2\",\"exit_comment\":\"SL\",\"exit_time\":1786356000000,\"exit_bar_index\":508,\"exit_price\":4340.335,\"profit\":0.508,\"commission\":0.35,\"max_drawdown\":7.912,\"max_runup\":22.408} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Бърз пробив\",\"kind\":\"closed\",\"trade_index\":2,\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786338000000|1786338000000\",\"entry_time\":1786338000000,\"entry_bar_index\":488,\"size\":1,\"entry_price\":4339.477,\"exit_id\":\"OANDA:XAUUSD|15|2|1|1786338000000|1786338000000|T3\",\"exit_comment\":\"SL\",\"exit_time\":1786356000000,\"exit_bar_index\":508,\"exit_price\":4340.335,\"profit\":0.508,\"commission\":0.35,\"max_drawdown\":7.912,\"max_runup\":22.408} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Бърз пробив\",\"kind\":\"submitted\",\"plan_id\":\"OANDA:XAUUSD|15|2|1|1786446000000|1786446000000\",\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786446000000|1786446000000\",\"submitted_time\":1786446000000,\"submitted_bar\":603,\"quantity\":3,\"family\":2,\"side\":1,\"htf_bias\":1,\"regime\":\"TREND\",\"countertrend\":false,\"local_aligned\":false,\"efficiency\":0.10951498,\"reference\":4382.56,\"initial_sl\":4370.477,\"atr\":7.43529438,\"tp1\":4394.643,\"tp2\":4406.726,\"tp3\":4418.809,\"maxhold\":48} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Бърз пробив\",\"kind\":\"closed\",\"trade_index\":3,\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786446000000|1786446000000\",\"entry_time\":1786446000000,\"entry_bar_index\":604,\"size\":1,\"entry_price\":4382.487,\"exit_id\":\"OANDA:XAUUSD|15|2|1|1786446000000|1786446000000|T1\",\"exit_comment\":\"TP1\",\"exit_time\":1786449600000,\"exit_bar_index\":608,\"exit_price\":4394.643,\"profit\":11.806,\"commission\":0.35,\"max_drawdown\":2.097,\"max_runup\":11.981} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Бърз пробив\",\"kind\":\"closed\",\"trade_index\":4,\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786446000000|1786446000000\",\"entry_time\":1786446000000,\"entry_bar_index\":604,\"size\":1,\"entry_price\":4382.487,\"exit_id\":\"OANDA:XAUUSD|15|2|1|1786446000000|1786446000000|T2\",\"exit_comment\":\"SL\",\"exit_time\":1786456800000,\"exit_bar_index\":616,\"exit_price\":4383.085,\"profit\":0.248,\"commission\":0.35,\"max_drawdown\":2.097,\"max_runup\":21.628} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Бърз пробив\",\"kind\":\"closed\",\"trade_index\":5,\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786446000000|1786446000000\",\"entry_time\":1786446000000,\"entry_bar_index\":604,\"size\":1,\"entry_price\":4382.487,\"exit_id\":\"OANDA:XAUUSD|15|2|1|1786446000000|1786446000000|T3\",\"exit_comment\":\"SL\",\"exit_time\":1786456800000,\"exit_bar_index\":616,\"exit_price\":4383.085,\"profit\":0.248,\"commission\":0.35,\"max_drawdown\":2.097,\"max_runup\":21.628} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Бърз пробив\",\"kind\":\"submitted\",\"plan_id\":\"OANDA:XAUUSD|15|2|1|1786493700000|1786493700000\",\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786493700000|1786493700000\",\"submitted_time\":1786493700000,\"submitted_bar\":652,\"quantity\":3,\"family\":2,\"side\":1,\"htf_bias\":1,\"regime\":\"TREND\",\"countertrend\":false,\"local_aligned\":false,\"efficiency\":0.186335,\"reference\":4378.17,\"initial_sl\":4364.413,\"atr\":7.0946847,\"tp1\":4391.927,\"tp2\":4405.684,\"tp3\":4419.441,\"maxhold\":48} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Бърз пробив\",\"kind\":\"closed\",\"trade_index\":6,\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786493700000|1786493700000\",\"entry_time\":1786493700000,\"entry_bar_index\":653,\"size\":1,\"entry_price\":4378.107,\"exit_id\":\"OANDA:XAUUSD|15|2|1|1786493700000|1786493700000|T1\",\"exit_comment\":\"TP1\",\"exit_time\":1786497300000,\"exit_bar_index\":657,\"exit_price\":4391.927,\"profit\":13.47,\"commission\":0.35,\"max_drawdown\":4.032,\"max_runup\":13.645}"
+- generic "Source code":
+- generic "Scroll to bar":
+- text: "[2026-11-09T02:30:00.000-00:00]: {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Бърз пробив\",\"kind\":\"closed\",\"trade_index\":7,\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786493700000|1786493700000\",\"entry_time\":1786493700000,\"entry_bar_index\":653,\"size\":1,\"entry_price\":4378.107,\"exit_id\":\"OANDA:XAUUSD|15|2|1|1786493700000|1786493700000|T2\",\"exit_comment\":\"TP2\",\"exit_time\":1786501800000,\"exit_bar_index\":662,\"exit_price\":4405.684,\"profit\":27.227,\"commission\":0.35,\"max_drawdown\":4.032,\"max_runup\":27.402} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Бърз пробив\",\"kind\":\"closed\",\"trade_index\":8,\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786493700000|1786493700000\",\"entry_time\":1786493700000,\"entry_bar_index\":653,\"size\":1,\"entry_price\":4378.107,\"exit_id\":\"OANDA:XAUUSD|15|2|1|1786493700000|1786493700000|T3\",\"exit_comment\":\"TP3\",\"exit_time\":1786526100000,\"exit_bar_index\":689,\"exit_price\":4419.441,\"profit\":40.984,\"commission\":0.35,\"max_drawdown\":4.032,\"max_runup\":41.159} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Бърз пробив\",\"kind\":\"submitted\",\"plan_id\":\"OANDA:XAUUSD|15|2|1|1786617900000|1786617900000\",\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786617900000|1786617900000\",\"submitted_time\":1786617900000,\"submitted_bar\":786,\"quantity\":3,\"family\":2,\"side\":1,\"htf_bias\":1,\"regime\":\"TREND\",\"countertrend\":false,\"local_aligned\":false,\"efficiency\":0.04017729,\"reference\":4390.555,\"initial_sl\":4377.692,\"atr\":6.76769283,\"tp1\":4403.418,\"tp2\":4416.281,\"tp3\":4429.144,\"maxhold\":48} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Бърз пробив\",\"kind\":\"closed\",\"trade_index\":9,\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786617900000|1786617900000\",\"entry_time\":1786617900000,\"entry_bar_index\":787,\"size\":1,\"entry_price\":4390.587,\"exit_id\":\"OANDA:XAUUSD|15|2|1|1786617900000|1786617900000|T1\",\"exit_comment\":\"SL\",\"exit_time\":1786627800000,\"exit_bar_index\":798,\"exit_price\":4377.69,\"profit\":-13.247,\"commission\":0.35,\"max_drawdown\":13.072,\"max_runup\":11.453} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Бърз пробив\",\"kind\":\"closed\",\"trade_index\":10,\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786617900000|1786617900000\",\"entry_time\":1786617900000,\"entry_bar_index\":787,\"size\":1,\"entry_price\":4390.587,\"exit_id\":\"OANDA:XAUUSD|15|2|1|1786617900000|1786617900000|T2\",\"exit_comment\":\"SL\",\"exit_time\":1786627800000,\"exit_bar_index\":798,\"exit_price\":4377.69,\"profit\":-13.247,\"commission\":0.35,\"max_drawdown\":13.072,\"max_runup\":11.453} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Бърз пробив\",\"kind\":\"closed\",\"trade_index\":11,\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786617900000|1786617900000\",\"entry_time\":1786617900000,\"entry_bar_index\":787,\"size\":1,\"entry_price\":4390.587,\"exit_id\":\"OANDA:XAUUSD|15|2|1|1786617900000|1786617900000|T3\",\"exit_comment\":\"SL\",\"exit_time\":1786627800000,\"exit_bar_index\":798,\"exit_price\":4377.69,\"profit\":-13.247,\"commission\":0.35,\"max_drawdown\":13.072,\"max_runup\":11.453} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Бърз пробив\",\"kind\":\"submitted\",\"plan_id\":\"OANDA:XAUUSD|15|2|-1|1786684500000|1786684500000\",\"entry_id\":\"OANDA:XAUUSD|15|2|-1|1786684500000|1786684500000\",\"submitted_time\":1786684500000,\"submitted_bar\":856,\"quantity\":3,\"family\":2,\"side\":-1,\"htf_bias\":1,\"regime\":\"COUNTERTREND\",\"countertrend\":true,\"local_aligned\":true,\"efficiency\":0.39432958,\"reference\":4320.37,\"initial_sl\":4329.086,\"atr\":7.17456938,\"tp1\":4311.654,\"tp2\":4302.938,\"tp3\":4294.222,\"maxhold\":48} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Бърз пробив\",\"kind\":\"closed\",\"trade_index\":12,\"entry_id\":\"OANDA:XAUUSD|15|2|-1|1786684500000|1786684500000\",\"entry_time\":1786684500000,\"entry_bar_index\":857,\"size\":-1,\"entry_price\":4320.373,\"exit_id\":\"OANDA:XAUUSD|15|2|-1|1786684500000|1786684500000|T1\",\"exit_comment\":\"TP1\",\"exit_time\":1786685400000,\"exit_bar_index\":858,\"exit_price\":4311.654,\"profit\":8.369,\"commission\":0.35,\"max_drawdown\":4.832,\"max_runup\":8.544} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Бърз пробив\",\"kind\":\"closed\",\"trade_index\":13,\"entry_id\":\"OANDA:XAUUSD|15|2|-1|1786684500000|1786684500000\",\"entry_time\":1786684500000,\"entry_bar_index\":857,\"size\":-1,\"entry_price\":4320.373,\"exit_id\":\"OANDA:XAUUSD|15|2|-1|1786684500000|1786684500000|T2\",\"exit_comment\":\"SL\",\"exit_time\":1786686300000,\"exit_bar_index\":859,\"exit_price\":4319.94,\"profit\":0.083,\"commission\":0.35,\"max_drawdown\":4.832,\"max_runup\":9.158} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Бърз пробив\",\"kind\":\"closed\",\"trade_index\":14,\"entry_id\":\"OANDA:XAUUSD|15|2|-1|1786684500000|1786684500000\",\"entry_time\":1786684500000,\"entry_bar_index\":857,\"size\":-1,\"entry_price\":4320.373,\"exit_id\":\"OANDA:XAUUSD|15|2|-1|1786684500000|1786684500000|T3\",\"exit_comment\":\"SL\",\"exit_time\":1786686300000,\"exit_bar_index\":859,\"exit_price\":4319.94,\"profit\":0.083,\"commission\":0.35,\"max_drawdown\":4.832,\"max_runup\":9.158}"
+- generic "Source code":
+- generic "Scroll to bar":
+- button "Scroll down":
+- generic "Hide Tab":
+- toolbar:
+  - button "Collapse strategy report":
+    - generic: QIRV ONE
+  - button "Manage strategy":
+  - button "Collapse panel":
+  - button "Maximize panel":
+- tablist:
+  - tab:
+    - generic "Metrics":
+  - tab [selected]:
+- button "Aug 3, 2026 — Nov 9, 2026":
+  - generic: Aug 3, 2026 — Nov 9, 2026
+- button "100 K":
+  - generic: 100 K USD
+- button "Default detalization":
+  - generic: Default detalization
+- separator
+- button "Settings":
+- button "Add alert":
+- paragraph: List of trades
+- button "Download .csv":
+- button "Column setup":
+- table:
+  - rowgroup:
+    - row "Trade number  Type Date and time Signal Price Size Net PnL Return Commission Favorable excursion Adverse excursion Cumulative PnL Duration (bars)":
+      - columnheader "Trade number ":
+        - generic: Trade number
+        - generic: 
+      - columnheader
+      - columnheader "Type":
+        - generic: Type
+      - columnheader "Date and time":
+        - generic: Date and time
+      - columnheader "Signal":
+        - generic: Signal
+      - columnheader "Price":
+        - generic: Price
+      - columnheader "Size":
+        - generic: Size
+      - columnheader "Net PnL":
+        - generic: Net PnL
+      - columnheader "Return":
+        - generic: Return
+      - columnheader "Commission":
+        - generic: Commission
+      - columnheader "Favorable excursion":
+        - generic: Favorable excursion
+      - columnheader "Adverse excursion":
+        - generic: Adverse excursion
+      - columnheader "Cumulative PnL":
+        - generic: Cumulative PnL
+      - columnheader "Duration (bars)":
+        - generic: Duration (bars)
+  - rowgroup:
+    - row:
+      - cell
+    - row "150Long Show on chart Show on chart Exit Entry Nov 5, 2026, 01:00 Nov 4, 2026, 16:00 TP3 Пробив 4,112.205 USD 4,048.972 USD 1 4.05 KUSD +62.88 USD +1.55% 0.350 USD 63.06 USD 1.56% −10.06 USD −0.25% −243.31 USD −0.24% 32":
+      - cell "150Long":
+        - generic: 150Long
+      - cell "Show on chart Show on chart":
+        - button "Show on chart":
+        - button "Show on chart":
+      - cell "Exit Entry":
+        - generic: Exit
+        - generic: Entry
+      - cell "Nov 5, 2026, 01:00 Nov 4, 2026, 16:00":
+        - generic: Nov 5, 2026, 01:00
+        - generic: Nov 4, 2026, 16:00
+      - cell "TP3 Пробив":
+        - generic "TP3"
+        - generic "Пробив"
+      - cell "4,112.205 USD 4,048.972 USD":
+        - generic: 4,112.205
+        - generic: USD
+        - generic: 4,048.972
+        - generic: USD
+      - cell "1 4.05 KUSD":
+        - generic: "1"
+        - generic: 4.05 KUSD
+      - cell "+62.88 USD":
+        - generic: "+62.88"
+        - generic: USD
+      - cell "+1.55%":
+        - generic: +1.55%
+      - cell "0.350 USD":
+        - generic: "0.350"
+        - generic: USD
+      - cell "63.06 USD 1.56%":
+        - generic: "63.06"
+        - generic: USD
+        - generic: 1.56%
+      - cell "−10.06 USD −0.25%":
+        - generic: −10.06
+        - generic: USD
+        - generic: −0.25%
+      - cell "−243.31 USD −0.24%":
+        - generic: −243.31
+        - generic: USD
+        - generic: −0.24%
+      - cell "32":
+        - generic: "32"
+    - row "149Long Show on chart Show on chart Exit Entry Nov 5, 2026, 00:30 Nov 4, 2026, 16:00 TP2 Пробив 4,091.125 USD 4,048.972 USD 1 4.05 KUSD +41.80 USD +1.03% 0.350 USD 41.98 USD 1.04% −10.06 USD −0.25% −306.37 USD −0.31% 30":
+      - cell "149Long":
+        - generic: 149Long
+      - cell "Show on chart Show on chart":
+        - button "Show on chart":
+        - button "Show on chart":
+      - cell "Exit Entry":
+        - generic: Exit
+        - generic: Entry
+      - cell "Nov 5, 2026, 00:30 Nov 4, 2026, 16:00":
+        - generic: Nov 5, 2026, 00:30
+        - generic: Nov 4, 2026, 16:00
+      - cell "TP2 Пробив":
+        - generic "TP2"
+        - generic "Пробив"
+      - cell "4,091.125 USD 4,048.972 USD":
+        - generic: 4,091.125
+        - generic: USD
+        - generic: 4,048.972
+        - generic: USD
+      - cell "1 4.05 KUSD":
+        - generic: "1"
+        - generic: 4.05 KUSD
+      - cell "+41.80 USD":
+        - generic: "+41.80"
+        - generic: USD
+      - cell "+1.03%":
+        - generic: +1.03%
+      - cell "0.350 USD":
+        - generic: "0.350"
+        - generic: USD
+      - cell "41.98 USD 1.04%":
+        - generic: "41.98"
+        - generic: USD
+        - generic: 1.04%
+      - cell "−10.06 USD −0.25%":
+        - generic: −10.06
+        - generic: USD
+        - generic: −0.25%
+      - cell "−306.37 USD −0.31%":
+        - generic: −306.37
+        - generic: USD
+        - generic: −0.31%
+      - cell "30":
+        - generic: "30"
+    - row "148Long Show on chart Show on chart Exit Entry Nov 4, 2026, 17:30 Nov 4, 2026, 16:00 TP1 Пробив 4,070.045 USD 4,048.972 USD 1 4.05 KUSD +20.72 USD +0.51% 0.350 USD 20.90 USD 0.52% −10.06 USD −0.25% −348.35 USD −0.35% 6":
+      - cell "148Long":
+        - generic: 148Long
+      - cell "Show on chart Show on chart":
+        - button "Show on chart":
+        - button "Show on chart":
+      - cell "Exit Entry":
+        - generic: Exit
+        - generic: Entry
+      - cell "Nov 4, 2026, 17:30 Nov 4, 2026, 16:00":
+        - generic: Nov 4, 2026, 17:30
+        - generic: Nov 4, 2026, 16:00
+      - cell "TP1 Пробив":
+        - generic "TP1"
+        - generic "Пробив"
+      - cell "4,070.045 USD 4,048.972 USD":
+        - generic: 4,070.045
+        - generic: USD
+        - generic: 4,048.972
+        - generic: USD
+      - cell "1 4.05 KUSD":
+        - generic: "1"
+        - generic: 4.05 KUSD
+      - cell "+20.72 USD":
+        - generic: "+20.72"
+        - generic: USD
+      - cell "+0.51%":
+        - generic: +0.51%
+      - cell "0.350 USD":
+        - generic: "0.350"
+        - generic: USD
+      - cell "20.90 USD 0.52%":
+        - generic: "20.90"
+        - generic: USD
+        - generic: 0.52%
+      - cell "−10.06 USD −0.25%":
+        - generic: −10.06
+        - generic: USD
+        - generic: −0.25%
+      - cell "−348.35 USD −0.35%":
+        - generic: −348.35
+        - generic: USD
+        - generic: −0.35%
+      - cell "6":
+        - generic: "6"
+    - row "147Short Show on chart Show on chart Exit Entry Nov 3, 2026, 00:15 Nov 2, 2026, 19:45 SL Пробив 3,956.705 USD 3,944.048 USD 1 3.94 KUSD −13.01 USD −0.33% 0.350 USD 6.31 USD 0.16% −12.83 USD −0.33% −368.72 USD −0.37% 14":
+      - cell "147Short":
+        - generic: 147Short
+      - cell "Show on chart Show on chart":
+        - button "Show on chart":
+        - button "Show on chart":
+      - cell "Exit Entry":
+        - generic: Exit
+        - generic: Entry
+      - cell "Nov 3, 2026, 00:15 Nov 2, 2026, 19:45":
+        - generic: Nov 3, 2026, 00:15
+        - generic: Nov 2, 2026, 19:45
+      - cell "SL Пробив":
+        - generic "SL"
+        - generic "Пробив"
+      - cell "3,956.705 USD 3,944.048 USD":
+        - generic: 3,956.705
+        - generic: USD
+        - generic: 3,944.048
+        - generic: USD
+      - cell "1 3.94 KUSD":
+        - generic: "1"
+        - generic: 3.94 KUSD
+      - cell "−13.01 USD":
+        - generic: −13.01
+        - generic: USD
+      - cell "−0.33%":
+        - generic: −0.33%
+      - cell "0.350 USD":
+        - generic: "0.350"
+        - generic: USD
+      - cell "6.31 USD 0.16%":
+        - generic: "6.31"
+        - generic: USD
+        - generic: 0.16%
+      - cell "−12.83 USD −0.33%":
+        - generic: −12.83
+        - generic: USD
+        - generic: −0.33%
+      - cell "−368.72 USD −0.37%":
+        - generic: −368.72
+        - generic: USD
+        - generic: −0.37%
+      - cell "14":
+        - generic: "14"
+    - row "146Short Show on chart Show on chart Exit Entry Nov 3, 2026, 00:15 Nov 2, 2026, 19:45 SL Пробив 3,956.705 USD 3,944.048 USD 1 3.94 KUSD −13.01 USD −0.33% 0.350 USD 6.31 USD 0.16% −12.83 USD −0.33% −355.89 USD −0.36% 14":
+      - cell "146Short":
+        - generic: 146Short
+      - cell "Show on chart Show on chart":
+        - button "Show on chart":
+        - button "Show on chart":
+      - cell "Exit Entry":
+        - generic: Exit
+        - generic: Entry
+      - cell "Nov 3, 2026, 00:15 Nov 2, 2026, 19:45":
+        - generic: Nov 3, 2026, 00:15
+        - generic: Nov 2, 2026, 19:45
+      - cell "SL Пробив":
+        - generic "SL"
+        - generic "Пробив"
+      - cell "3,956.705 USD 3,944.048 USD":
+        - generic: 3,956.705
+        - generic: USD
+        - generic: 3,944.048
+        - generic: USD
+      - cell "1 3.94 KUSD":
+        - generic: "1"
+        - generic: 3.94 KUSD
+      - cell "−13.01 USD":
+        - generic: −13.01
+        - generic: USD
+      - cell "−0.33%":
+        - generic: −0.33%
+      - cell "0.350 USD":
+        - generic: "0.350"
+        - generic: USD
+      - cell "6.31 USD 0.16%":
+        - generic: "6.31"
+        - generic: USD
+        - generic: 0.16%
+      - cell "−12.83 USD −0.33%":
+        - generic: −12.83
+        - generic: USD
+        - generic: −0.33%
+      - cell "−355.89 USD −0.36%":
+        - generic: −355.89
+        - generic: USD
+        - generic: −0.36%
+      - cell "14":
+        - generic: "14"
+    - row "145Short Show on chart Show on chart Exit Entry Nov 3, 2026, 00:15 Nov 2, 2026, 19:45 SL Пробив 3,956.705 USD 3,944.048 USD 1 3.94 KUSD −13.01 USD −0.33% 0.350 USD 6.31 USD 0.16% −12.83 USD −0.33% −343.05 USD −0.34% 14":
+      - cell "145Short":
+        - generic: 145Short
+      - cell "Show on chart Show on chart":
+        - button "Show on chart":
+        - button "Show on chart":
+      - cell "Exit Entry":
+        - generic: Exit
+        - generic: Entry
+      - cell "Nov 3, 2026, 00:15 Nov 2, 2026, 19:45":
+        - generic: Nov 3, 2026, 00:15
+        - generic: Nov 2, 2026, 19:45
+      - cell "SL Пробив":
+        - generic "SL"
+        - generic "Пробив"
+      - cell "3,956.705 USD 3,944.048 USD":
+        - generic: 3,956.705
+        - generic: USD
+        - generic: 3,944.048
+        - generic: USD
+      - cell "1 3.94 KUSD":
+        - generic: "1"
+        - generic: 3.94 KUSD
+      - cell "−13.01 USD":
+        - generic: −13.01
+        - generic: USD
+      - cell "−0.33%":
+        - generic: −0.33%
+      - cell "0.350 USD":
+        - generic: "0.350"
+        - generic: USD
+      - cell "6.31 USD 0.16%":
+        - generic: "6.31"
+        - generic: USD
+        - generic: 0.16%
+      - cell "−12.83 USD −0.33%":
+        - generic: −12.83
+        - generic: USD
+        - generic: −0.33%
+      - cell "−343.05 USD −0.34%":
+        - generic: −343.05
+        - generic: USD
+        - generic: −0.34%
+      - cell "14":
+        - generic: "14"
+    - row "144Short Show on chart Show on chart Exit Entry Oct 29, 2026, 01:15 Oct 29, 2026, 00:15 SL Пробив 4,059.593 USD 4,044.663 USD 1 4.04 KUSD −15.28 USD −0.38% 0.350 USD 8.27 USD 0.20% −15.10 USD −0.37% −329.70 USD −0.33% 4":
+      - cell "144Short":
+        - generic: 144Short
+      - cell "Show on chart Show on chart":
+        - button "Show on chart":
+        - button "Show on chart":
+      - cell "Exit Entry":
+        - generic: Exit
+        - generic: Entry
+      - cell "Oct 29, 2026, 01:15 Oct 29, 2026, 00:15":
+        - generic: Oct 29, 2026, 01:15
+        - generic: Oct 29, 2026, 00:15
+      - cell "SL Пробив":
+        - generic "SL"
+        - generic "Пробив"
+      - cell "4,059.593 USD 4,044.663 USD":
+        - generic: 4,059.593
+        - generic: USD
+        - generic: 4,044.663
+        - generic: USD
+      - cell "1 4.04 KUSD":
+        - generic: "1"
+        - generic: 4.04 KUSD
+      - cell "−15.28 USD":
+        - generic: −15.28
+        - generic: USD
+      - cell "−0.38%":
+        - generic: −0.38%
+      - cell "0.350 USD":
+        - generic: "0.350"
+        - generic: USD
+      - cell "8.27 USD 0.20%":
+        - generic: "8.27"
+        - generic: USD
+        - generic: 0.20%
+      - cell "−15.10 USD −0.37%":
+        - generic: −15.10
+        - generic: USD
+        - generic: −0.37%
+      - cell "−329.70 USD −0.33%":
+        - generic: −329.70
+        - generic: USD
+        - generic: −0.33%
+      - cell "4":
+        - generic: "4"
+    - row "143Short Show on chart Show on chart Exit Entry Oct 29, 2026, 01:15 Oct 29, 2026, 00:15 SL Пробив 4,059.593 USD 4,044.663 USD 1 4.04 KUSD −15.28 USD −0.38% 0.350 USD 8.27 USD 0.20% −15.10 USD −0.37% −314.59 USD −0.31% 4":
+      - cell "143Short":
+        - generic: 143Short
+      - cell "Show on chart Show on chart":
+        - button "Show on chart":
+        - button "Show on chart":
+      - cell "Exit Entry":
+        - generic: Exit
+        - generic: Entry
+      - cell "Oct 29, 2026, 01:15 Oct 29, 2026, 00:15":
+        - generic: Oct 29, 2026, 01:15
+        - generic: Oct 29, 2026, 00:15
+      - cell "SL Пробив":
+        - generic "SL"
+        - generic "Пробив"
+      - cell "4,059.593 USD 4,044.663 USD":
+        - generic: 4,059.593
+        - generic: USD
+        - generic: 4,044.663
+        - generic: USD
+      - cell "1 4.04 KUSD":
+        - generic: "1"
+        - generic: 4.04 KUSD
+      - cell "−15.28 USD":
+        - generic: −15.28
+        - generic: USD
+      - cell "−0.38%":
+        - generic: −0.38%
+      - cell "0.350 USD":
+        - generic: "0.350"
+        - generic: USD
+      - cell "8.27 USD 0.20%":
+        - generic: "8.27"
+        - generic: USD
+        - generic: 0.20%
+      - cell "−15.10 USD −0.37%":
+        - generic: −15.10
+        - generic: USD
+        - generic: −0.37%
+      - cell "−314.59 USD −0.31%":
+        - generic: −314.59
+        - generic: USD
+        - generic: −0.31%
+      - cell "4":
+        - generic: "4"
+    - row:
+      - cell
+  - rowgroup
+- generic "Trading panel"
+- generic: Settings
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- dialog "QIRV ONE":
+  - generic: QIRV ONE
+  - button "Close menu":
+    - generic: Close menu
+  - tablist:
+    - tab "Inputs" [selected]
+    - tab "Properties"
+    - tab "Style"
+    - tab "Visibility"
+  - generic: 01 / МОДЕЛИ
+  - generic: Модел за този тест
+  - combobox [active]:
+    - generic: Ранно обръщане
+  - 'generic "За независимо сравнение стартирай отделно всеки модел със същите данни и разходи. Общият портфейл има фиксиран приоритет: ретест, пробив, обръщане."':
+  - generic: Хоризонт
+  - combobox:
+    - generic: АВТОМАТИЧЕН
+  - generic: Подмодел само за РЕТЕСТ
+  - combobox:
+    - generic: КОМБИНИРАН
+  - generic: Съгласуваност само за РЕТЕСТ
+  - combobox:
+    - generic: СНАЙПЪР
+  - generic "Брой допълнителни условия, НЕ вероятност за печалба.":
+  - checkbox "Бърз пробив — изследователски" [checked]
+  - generic: Бърз пробив — изследователски
+  - checkbox "Пробив срещу HTF — изследователски" [checked]
+  - generic: Пробив срещу HTF — изследователски
+  - checkbox "Ранно обръщане — само M5/M15/M30" [checked]
+  - generic: Ранно обръщане — само M5/M15/M30
+  - checkbox "Автоматична по-висока рамка" [checked]
+  - generic: Автоматична по-висока рамка
+  - generic: Ръчна по-висока рамка
+  - combobox:
+    - generic: 1 hour
+  - generic: 02 / СТРУКТУРА
+  - generic: Период за ликвидност
+  - textbox: "14"
+  - generic: Период за структурен пробив
+  - textbox: "6"
+  - generic: Срок на ретест модела (свещи)
+  - textbox: "18"
+  - generic: Срок след MSS/BOS (свещи)
+  - textbox: "5"
+  - generic: "Бърз пробив: предходни свещи"
+  - textbox: "4"
+  - generic: "Бърз пробив: мин. тяло / ATR"
+  - textbox: "0.5"
+  - generic: "Бърз пробив: макс. тяло / ATR"
+  - textbox: "1.65"
+  - generic: "Бърз пробив: макс. отстояние / ATR"
+  - textbox: "0.7"
+  - generic: "Обръщане: срок (свещи)"
+  - textbox: "3"
+  - generic: "Обръщане: предходни върхове/дъна"
+  - textbox: "8"
+  - generic: "Обръщане: макс. отстояние / ATR"
+  - textbox: "0.65"
+  - generic: "Обръщане: мин. място до преграда (R)"
+  - textbox: "1"
+  - generic: "Ретест: макс. отстояние / ATR"
+  - textbox: "0.55"
+  - generic: "Пивот: свещи вляво"
+  - textbox: "3"
+  - generic: "Пивот: свещи за потвърждение вдясно"
+  - textbox: "3"
+  - generic: "Структурен импулс: тяло / ATR"
+  - textbox: "0.3"
+  - generic: Близост за ретест / ATR
+  - textbox: "0.3"
+  - generic: Проникване при ретест / ATR
+  - textbox: "0.3"
+  - generic: Допуск за равни върхове/дъна / ATR
+  - textbox: "0.12"
+  - generic: "Скъпа/евтина зона: период"
+  - textbox: "80"
+  - generic: 03 / ФИЛТРИ
+  - checkbox "Изисквай FVG във всеки модел"
+  - generic: Изисквай FVG във всеки модел
+  - 'generic "Ретест: FVG при структурното потвърждение. Други модели: FVG на сигналната свещ."':
+  - checkbox "Изисквай скъпа/евтина зона"
+  - generic: Изисквай скъпа/евтина зона
+  - checkbox "Изисквай структурно място до TP1"
+  - generic: Изисквай структурно място до TP1
+  - generic "Обръщането винаги проверява и EMA прегради. Известна преграда преди TP1 може да блокира входа.":
+  - generic: Минимално място (R)
+  - textbox: "1"
+  - generic: Мин. FVG / ATR
+  - textbox: "0.04"
+  - generic: Мин. ADX за ретест и пробив
+  - textbox: "17"
+  - generic: Мин. ATR / средно ATR
+  - textbox: "0.55"
+  - generic: Макс. ATR / средно ATR
+  - textbox: "2.8"
+  - generic: Макс. сигнална свещ / ATR
+  - textbox: "2.6"
+  - generic: Макс. отстояние от EMA21 — ретест/пробив
+  - textbox: "2"
+  - checkbox "Филтър по сесия"
+  - generic: Филтър по сесия
+  - generic: Обхват на сесията
+  - combobox:
+    - generic: Само скалпинг
+  - generic: Сесия
+  - combobox: 10:00
+  - generic: —
+  - combobox: 20:00
+  - generic: Часова зона за сесия/дневен лимит
+  - textbox: Europe/Sofia
+  - generic "IANA зона. Денят се определя по времето на отваряне на свещта; DST се обработва от платформата.":
+  - checkbox "Ръчна пауза за новини — НЯМА календар"
+  - generic: Ръчна пауза за новини — НЯМА календар
+  - checkbox "Ръчно въведен новинарски прозорец"
+  - generic: Ръчно въведен новинарски прозорец
+  - generic: Проверен час на събитието
+  - textbox "YYYY-MM-DD": 2020-01-01
+  - combobox: 00:00
+  - generic: Пауза преди събитието (минути)
+  - textbox: "15"
+  - generic: Пауза след събитието (минути)
+  - textbox: "15"
+  - generic: 04 / РИСК
+  - generic: "PAPER: общ спред (ценови единици)"
+  - textbox: "0.35"
+  - generic "Допускане, НЕ получен спред от PU Prime. Не добавяй същия разход два пъти.":
+  - generic: "PAPER: приплъзване за посока (тикове)"
+  - textbox: "2"
+  - generic: "PAPER: обща комисиона (цена)"
+  - textbox: "0"
+  - generic: "PAPER: финансиране BUY / ден (цена)"
+  - textbox: "0"
+  - generic: "PAPER: финансиране SELL / ден (цена)"
+  - textbox: "0"
+  - generic: Минимален SL / ATR
+  - textbox: "0.8"
+  - generic: Максимален SL / ATR
+  - textbox: "3.5"
+  - generic: Структурен буфер SL / ATR
+  - textbox: "0.12"
+  - generic: Макс. очакван разход / риск
+  - textbox: "0.18"
+  - generic: TP1 — брутно R
+  - textbox: "1"
+  - generic: TP2 — брутно R
+  - textbox: "2"
+  - generic: TP3 — брутно R
+  - textbox: "3"
+  - generic: SL след TP1 — брутен буфер R
+  - textbox: "0.05"
+  - generic "Прилага се от следващата свещ. НЕ гарантира нетна печалба след разходи и гап.":
+  - generic: Пауза след технически модел (свещи, по family)
+  - textbox: "8"
+  - generic: Макс. скалпинг задържане (свещи)
+  - textbox: "48"
+  - generic: Макс. суинг задържане (свещи)
+  - textbox: "60"
+  - generic: "PAPER: макс. отклонение на next-open / ATR"
+  - textbox: "0.2"
+  - 'checkbox "PAPER: отменяй невалидното next-open" [checked]'
+  - generic: "PAPER: отменяй невалидното next-open"
+  - generic "Native market тестът не може да отмени вече изпълнено next-open нареждане. Разликата е описана във VALIDATION_BG.":
+  - generic: 05 / СТАТИСТИКА
+  - generic: "Филтриран PAPER: дневна поредица загуби"
+  - textbox: "3"
+  - generic: "Филтриран PAPER: дневен лимит R"
+  - textbox: "3"
+  - checkbox "Пауза на филтрирания портфейл по статистика" [checked]
+  - generic: Пауза на филтрирания портфейл по статистика
+  - generic: "Обща защита: мин. затворени сделки"
+  - textbox: "30"
+  - generic: "Обща защита: праг нетно R"
+  - textbox: "-5"
+  - generic: "По модел: мин. затворени сделки"
+  - textbox: "20"
+  - generic: "По модел: праг средно нетно R"
+  - textbox: "-0.15"
+  - generic: "Възстановяване: допълнителни raw сделки"
+  - textbox: "5"
+  - 'checkbox "Контратренд: не включвай във филтриран портфейл" [checked]'
+  - generic: "Контратренд: не включвай във филтриран портфейл"
+  - generic: "Филтриран портфейл: политика"
+  - combobox:
+    - generic: БАЗОВ
+  - generic "БАЗОВ пази предишните правила. Пробната политика иска еднакви локален/HTF тренд и минимална насоченост. Не е доказано по-печеливша; RAW и моделните книги НЕ се филтрират.":
+  - generic: "Насоченост: период (свещи)"
+  - textbox: "20"
+  - generic: "Пробна политика: мин. насоченост"
+  - textbox: "0.25"
+  - generic "abs(нетно движение) / сумата на абсолютните промени. Това НЕ е вероятност за печалба.":
+  - generic: Начало на теста
+  - textbox "YYYY-MM-DD": 2020-01-01
+  - combobox: 00:00
+  - generic: Край на новите планове
+  - textbox "YYYY-MM-DD": 2035-01-01
+  - combobox: 00:00
+  - generic: 06 / ИЗГЛЕД
+  - generic: Изглед
+  - combobox:
+    - generic: МОБИЛЕН
+  - generic: Позиция на таблото
+  - combobox:
+    - generic: Долу вляво
+  - generic: Букви в таблото (pt)
+  - textbox: "11"
+  - checkbox "Показвай таблото" [checked]
+  - generic: Показвай таблото
+  - checkbox "EMA21 / EMA55" [checked]
+  - generic: EMA21 / EMA55
+  - checkbox "Нива на текущия план" [checked]
+  - generic: Нива на текущия план
+  - checkbox "Раздалечи близките ценови надписи" [checked]
+  - generic: Раздалечи близките ценови надписи
+  - generic "Линията остава на истинската цена. При преместен надпис пунктиран водач сочи точната стойност.":
+  - generic: Размер на ценовите надписи
+  - combobox:
+    - generic: Малък
+  - generic: Архив само за наблюдения/отмени
+  - textbox: "6"
+  - generic: Отделен архив на потвърдени модели
+  - textbox: "40"
+  - 'checkbox "Диагностика: архив на подготовки и откази"'
+  - generic: "Диагностика: архив на подготовки и откази"
+  - generic: Мин. свещи между контекстни надписи
+  - textbox: "3"
+  - checkbox "Стрелки за допуснати планове (не изпълнения)" [checked]
+  - generic: Стрелки за допуснати планове (не изпълнения)
+  - checkbox "Показвай нивото за чакащото потвърждение"
+  - generic: Показвай нивото за чакащото потвърждение
+  - generic: Надписи надясно (свещи)
+  - textbox: "3"
+  - checkbox "Подробен архив на допуснатите планове"
+  - generic: Подробен архив на допуснатите планове
+  - generic: 07 / ИЗВЕСТИЯ
+  - checkbox "Общ ключ за всички известия" [checked]
+  - generic: Общ ключ за всички известия
+  - checkbox "Подготовка — без потвърден план"
+  - generic: Подготовка — без потвърден план
+  - checkbox "Допуснат план и заявена симулирана поръчка" [checked]
+  - generic: Допуснат план и заявена симулирана поръчка
+  - checkbox "Риск / отмяна / неизпълнен кандидат" [checked]
+  - generic: Риск / отмяна / неизпълнен кандидат
+  - checkbox "Действителни симулирани изпълнения" [checked]
+  - generic: Действителни симулирани изпълнения
+  - generic "Избери изпълнения в Create Alert. Известията не изпращат реални поръчки. След промяна пресъздай alert-а.":
+  - 'checkbox "Диагностика: всички технически кандидати/откази"'
+  - generic: "Диагностика: всички технически кандидати/откази"
+  - 'checkbox "Диагностика: отделни сенчести PAPER книги"'
+  - generic: "Диагностика: отделни сенчести PAPER книги"
+  - checkbox "Технически известия във формат JSON"
+  - generic: Технически известия във формат JSON
+  - generic: 08 / ВАЛИДИРАНЕ
+  - checkbox "JSONL събития в Pine Logs"
+  - generic: JSONL събития в Pine Logs
+  - generic "Логовете са за експортиране/проверка. Не е webhook за брокер. Платформата ограничава историческите записи.":
+  - generic: 09 / СИМУЛИРАНИ СДЕЛКИ
+  - generic: Симулиран портфейл
+  - combobox:
+    - generic: RAW
+  - generic: Единици във всяка от трите части
+  - textbox: "1"
+  - generic "Общ размер = 3 × тази стойност. Не са MT5 лотове. Всяка част трябва да е поне минималното количество на символа; размерът не се увеличава автоматично.":
+  - 'checkbox "Изпълнен невалиден гап: изход на следващо отваряне" [checked]'
+  - generic: "Изпълнен невалиден гап: изход на следващо отваряне"
+  - generic "Миналото изпълнение и резултатът му се запазват. Това се различава от отказа преди вход в независимите симулации.":
+  - button "Defaults":
+    - generic: Defaults
+  - button "Cancel":
+    - generic: Cancel
+  - button "Ok":
+    - generic: Ok
+- alert
+- alert

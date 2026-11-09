@@ -1,0 +1,86 @@
+Diagnostic proposals only — NOT executed, NOT production changes, no orders.
+Keep the real QIRVANTA source unchanged. Use a separate transient diagnostic
+editor buffer only if root elects to verify them. Record exact source hash,
+symbol/timeframe, bar count, properties, warnings and resulting counters.
+
+Probe A: same direct global histories, called twice in one confirmed-bar loop.
+The synthetic series gives an additional deterministic history check on every
+bar; market EMA/RSI/close check the actual dependency types present in QIRVANTA.
+Expected: zero mismatches, exactly two calls per confirmed bar. Compiler warning
+presence/absence must be recorded, not assumed. A zero result tests these global
+reads; it does not prove all candidate logic or all execution modes equivalent.
+
+BEGIN PROBE A
+//@version=6
+strategy("QIRVANTA history ownership probe A", overlay=false, calc_on_every_tick=false, calc_on_order_fills=false, process_orders_on_close=false)
+float emaFast = ta.ema(close, 21)
+float rsi = ta.rsi(close, 14)
+float synthetic = float(bar_index * 11 + 3)
+f_same(float a, float b) => (na(a) and na(b)) or (not na(a) and not na(b) and a == b)
+f_directGlobal(int d) =>
+    [close[1], emaFast[1], rsi[1], synthetic[1], d]
+float expectedClose = close[1]
+float expectedEma = emaFast[1]
+float expectedRsi = rsi[1]
+float expectedSynthetic = synthetic[1]
+var int mismatches = 0
+var int calls = 0
+var int confirmedBars = 0
+if barstate.isconfirmed
+    confirmedBars += 1
+    for directionIndex = 0 to 1
+        int d = directionIndex == 0 ? 1 : -1
+        [c, e, r, s, actualDirection] = f_directGlobal(d)
+        calls += 1
+        bool ok = f_same(c, expectedClose) and f_same(e, expectedEma) and f_same(r, expectedRsi) and f_same(s, expectedSynthetic) and actualDirection == d
+        if not ok
+            mismatches += 1
+            log.error("GLOBAL_HISTORY_MISMATCH bar=" + str.tostring(bar_index) + " direction=" + str.tostring(d))
+plot(mismatches, "Mismatch count")
+plot(calls - 2 * confirmedBars, "Call count discrepancy")
+if barstate.islastconfirmedhistory
+    log.info("PROBE_A bars=" + str.tostring(confirmedBars) + " calls=" + str.tostring(calls) + " mismatches=" + str.tostring(mismatches))
+END PROBE A
+
+Probe B: deterministic positive controls for genuinely local parameter histories.
+This deliberately differs from production. One call skips two bars out of three;
+another reads direction-dependent parameter history from the same loop callsite.
+Expected: nonzero sparse/loop mismatch counts after enough bars. Record actual
+counts and warnings. If the controls produce zero, inspect the probe/compiler
+configuration before trusting an all-zero probe A.
+
+BEGIN PROBE B
+//@version=6
+strategy("QIRVANTA history ownership probe B", overlay=false, calc_on_every_tick=false, calc_on_order_fills=false, process_orders_on_close=false)
+f_parameterHistory(float source) => source[1]
+float source = float(bar_index + 1)
+float expectedPrevious = source[1]
+var int sparseMismatches = 0
+var int loopMismatches = 0
+if barstate.isconfirmed
+    if bar_index % 3 == 0
+        float sparse = f_parameterHistory(source)
+        if bar_index >= 3 and sparse != expectedPrevious
+            sparseMismatches += 1
+    for directionIndex = 0 to 1
+        int d = directionIndex == 0 ? 1 : -1
+        float localPrevious = f_parameterHistory(d * source)
+        if bar_index >= 1 and localPrevious != d * expectedPrevious
+            loopMismatches += 1
+plot(sparseMismatches, "Sparse parameter-history mismatches")
+plot(loopMismatches, "Loop parameter-history mismatches")
+if barstate.islastconfirmedhistory
+    log.info("PROBE_B sparse=" + str.tostring(sparseMismatches) + " loop=" + str.tostring(loopMismatches))
+END PROBE B
+
+If a later change is proposed to silence CW10003, prefer extracting only the pure
+global historical values/predicates, with an exact before/after candidate ledger
+comparison, rather than moving the side-effecting f_fast/f_reversal calls. This
+is a possible follow-up design, not a change implemented in the diagnostic stage.
+
+An optional deeper probe on a disposable copy can log, at each existing model
+call, bar_index, time_close, d, source/global historical values, Setup.id/phase,
+lastModelSignal before/after, each candidate id and every reason. Execute each
+existing model call exactly once per original direction order. Never invoke it
+a second time merely to obtain a comparison: the function changes arrays/setup
+objects. Compare its log against a separately run copy on the identical dataset.

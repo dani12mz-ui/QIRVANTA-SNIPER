@@ -1,0 +1,1166 @@
+{
+  "scope": "Current original-script Inputs and Properties captured by root before diagnostic runs; not a retroactive proof of every setting in prior snapshots",
+  "observed_input_count": 108,
+  "expected_input_count": 108,
+  "time_input_normalization": "Date/time strings normalized to UTC using the chart's captured UTC display; raw values retained",
+  "all_input_defaults_match": true,
+  "inputs": [
+    {
+      "name": "runModel",
+      "title": "Модел за този тест",
+      "raw_ui_values": [
+        "Всички"
+      ],
+      "normalized_value": "Всички",
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "tradingMode",
+      "title": "Хоризонт",
+      "raw_ui_values": [
+        "АВТОМАТИЧЕН"
+      ],
+      "normalized_value": "АВТОМАТИЧЕН",
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "engineMode",
+      "title": "Подмодел само за РЕТЕСТ",
+      "raw_ui_values": [
+        "КОМБИНИРАН"
+      ],
+      "normalized_value": "КОМБИНИРАН",
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "selectivity",
+      "title": "Съгласуваност само за РЕТЕСТ",
+      "raw_ui_values": [
+        "СНАЙПЪР"
+      ],
+      "normalized_value": "СНАЙПЪР",
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "useFastBreakout",
+      "title": "Бърз пробив — изследователски",
+      "raw_ui_values": [
+        true
+      ],
+      "normalized_value": true,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "allowFastCountertrend",
+      "title": "Пробив срещу HTF — изследователски",
+      "raw_ui_values": [
+        true
+      ],
+      "normalized_value": true,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "useEarlyReversal",
+      "title": "Ранно обръщане — само M5/M15/M30",
+      "raw_ui_values": [
+        true
+      ],
+      "normalized_value": true,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "automaticHTF",
+      "title": "Автоматична по-висока рамка",
+      "raw_ui_values": [
+        true
+      ],
+      "normalized_value": true,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "customHTF",
+      "title": "Ръчна по-висока рамка",
+      "raw_ui_values": [
+        "1 hour"
+      ],
+      "normalized_value": "60",
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "liquidityBars",
+      "title": "Период за ликвидност",
+      "raw_ui_values": [
+        "14"
+      ],
+      "normalized_value": 14,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "structureBars",
+      "title": "Период за структурен пробив",
+      "raw_ui_values": [
+        "6"
+      ],
+      "normalized_value": 6,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "maxSetupAge",
+      "title": "Срок на ретест модела (свещи)",
+      "raw_ui_values": [
+        "18"
+      ],
+      "normalized_value": 18,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "maxBarsAfterMSS",
+      "title": "Срок след MSS/BOS (свещи)",
+      "raw_ui_values": [
+        "5"
+      ],
+      "normalized_value": 5,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "fastBreakLookback",
+      "title": "Бърз пробив: предходни свещи",
+      "raw_ui_values": [
+        "4"
+      ],
+      "normalized_value": 4,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "fastMinBodyATR",
+      "title": "Бърз пробив: мин. тяло / ATR",
+      "raw_ui_values": [
+        "0.5"
+      ],
+      "normalized_value": 0.5,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "fastMaxBodyATR",
+      "title": "Бърз пробив: макс. тяло / ATR",
+      "raw_ui_values": [
+        "1.65"
+      ],
+      "normalized_value": 1.65,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "fastMaxBreakDistanceATR",
+      "title": "Бърз пробив: макс. отстояние / ATR",
+      "raw_ui_values": [
+        "0.7"
+      ],
+      "normalized_value": 0.7,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "reversalWaitBars",
+      "title": "Обръщане: срок (свещи)",
+      "raw_ui_values": [
+        "3"
+      ],
+      "normalized_value": 3,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "reversalLiquidityBars",
+      "title": "Обръщане: предходни върхове/дъна",
+      "raw_ui_values": [
+        "8"
+      ],
+      "normalized_value": 8,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "reversalMaxChaseATR",
+      "title": "Обръщане: макс. отстояние / ATR",
+      "raw_ui_values": [
+        "0.65"
+      ],
+      "normalized_value": 0.65,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "reversalMinRoomR",
+      "title": "Обръщане: мин. място до преграда (R)",
+      "raw_ui_values": [
+        "1"
+      ],
+      "normalized_value": 1.0,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "maxRetestCloseATR",
+      "title": "Ретест: макс. отстояние / ATR",
+      "raw_ui_values": [
+        "0.55"
+      ],
+      "normalized_value": 0.55,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "pivotLeft",
+      "title": "Пивот: свещи вляво",
+      "raw_ui_values": [
+        "3"
+      ],
+      "normalized_value": 3,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "pivotRight",
+      "title": "Пивот: свещи за потвърждение вдясно",
+      "raw_ui_values": [
+        "3"
+      ],
+      "normalized_value": 3,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "minDisplaceATR",
+      "title": "Структурен импулс: тяло / ATR",
+      "raw_ui_values": [
+        "0.3"
+      ],
+      "normalized_value": 0.3,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "nearRetestATR",
+      "title": "Близост за ретест / ATR",
+      "raw_ui_values": [
+        "0.3"
+      ],
+      "normalized_value": 0.3,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "pierceRetestATR",
+      "title": "Проникване при ретест / ATR",
+      "raw_ui_values": [
+        "0.3"
+      ],
+      "normalized_value": 0.3,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "eqToleranceATR",
+      "title": "Допуск за равни върхове/дъна / ATR",
+      "raw_ui_values": [
+        "0.12"
+      ],
+      "normalized_value": 0.12,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "pdWindow",
+      "title": "Скъпа/евтина зона: период",
+      "raw_ui_values": [
+        "80"
+      ],
+      "normalized_value": 80,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "requireFVG",
+      "title": "Изисквай FVG във всеки модел",
+      "raw_ui_values": [
+        false
+      ],
+      "normalized_value": false,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "requirePD",
+      "title": "Изисквай скъпа/евтина зона",
+      "raw_ui_values": [
+        false
+      ],
+      "normalized_value": false,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "requireRoom",
+      "title": "Изисквай структурно място до TP1",
+      "raw_ui_values": [
+        false
+      ],
+      "normalized_value": false,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "minimumRoomR",
+      "title": "Минимално място (R)",
+      "raw_ui_values": [
+        "1"
+      ],
+      "normalized_value": 1.0,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "fvgSizeATR",
+      "title": "Мин. FVG / ATR",
+      "raw_ui_values": [
+        "0.04"
+      ],
+      "normalized_value": 0.04,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "minADX",
+      "title": "Мин. ADX за ретест и пробив",
+      "raw_ui_values": [
+        "17"
+      ],
+      "normalized_value": 17,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "minATRratio",
+      "title": "Мин. ATR / средно ATR",
+      "raw_ui_values": [
+        "0.55"
+      ],
+      "normalized_value": 0.55,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "maxATRratio",
+      "title": "Макс. ATR / средно ATR",
+      "raw_ui_values": [
+        "2.8"
+      ],
+      "normalized_value": 2.8,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "maxEntryBarATR",
+      "title": "Макс. сигнална свещ / ATR",
+      "raw_ui_values": [
+        "2.6"
+      ],
+      "normalized_value": 2.6,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "maxExtensionATR",
+      "title": "Макс. отстояние от EMA21 — ретест/пробив",
+      "raw_ui_values": [
+        "2"
+      ],
+      "normalized_value": 2.0,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "filterSession",
+      "title": "Филтър по сесия",
+      "raw_ui_values": [
+        false
+      ],
+      "normalized_value": false,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "sessionScope",
+      "title": "Обхват на сесията",
+      "raw_ui_values": [
+        "Само скалпинг"
+      ],
+      "normalized_value": "Само скалпинг",
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "scalpSession",
+      "title": "Сесия",
+      "raw_ui_values": [
+        "10:00",
+        "20:00"
+      ],
+      "normalized_value": "1000-2000",
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "riskTimezone",
+      "title": "Часова зона за сесия/дневен лимит",
+      "raw_ui_values": [
+        "Europe/Sofia"
+      ],
+      "normalized_value": "Europe/Sofia",
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "manualNewsPause",
+      "title": "Ръчна пауза за новини — НЯМА календар",
+      "raw_ui_values": [
+        false
+      ],
+      "normalized_value": false,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "useNewsWindow",
+      "title": "Ръчно въведен новинарски прозорец",
+      "raw_ui_values": [
+        false
+      ],
+      "normalized_value": false,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "newsAt",
+      "title": "Проверен час на събитието",
+      "raw_ui_values": [
+        "2020-01-01",
+        "00:00"
+      ],
+      "normalized_value": "2020-01-01T00:00:00Z",
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "newsBefore",
+      "title": "Пауза преди събитието (минути)",
+      "raw_ui_values": [
+        "15"
+      ],
+      "normalized_value": 15,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "newsAfter",
+      "title": "Пауза след събитието (минути)",
+      "raw_ui_values": [
+        "15"
+      ],
+      "normalized_value": 15,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "spreadAssumption",
+      "title": "PAPER: общ спред (ценови единици)",
+      "raw_ui_values": [
+        "0.35"
+      ],
+      "normalized_value": 0.35,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "slipTicks",
+      "title": "PAPER: приплъзване за посока (тикове)",
+      "raw_ui_values": [
+        "2"
+      ],
+      "normalized_value": 2,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "feePrice",
+      "title": "PAPER: обща комисиона (цена)",
+      "raw_ui_values": [
+        "0"
+      ],
+      "normalized_value": 0.0,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "fundingLong",
+      "title": "PAPER: финансиране BUY / ден (цена)",
+      "raw_ui_values": [
+        "0"
+      ],
+      "normalized_value": 0.0,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "fundingShort",
+      "title": "PAPER: финансиране SELL / ден (цена)",
+      "raw_ui_values": [
+        "0"
+      ],
+      "normalized_value": 0.0,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "minStopATR",
+      "title": "Минимален SL / ATR",
+      "raw_ui_values": [
+        "0.8"
+      ],
+      "normalized_value": 0.8,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "maxStopATR",
+      "title": "Максимален SL / ATR",
+      "raw_ui_values": [
+        "3.5"
+      ],
+      "normalized_value": 3.5,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "slBufferATR",
+      "title": "Структурен буфер SL / ATR",
+      "raw_ui_values": [
+        "0.12"
+      ],
+      "normalized_value": 0.12,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "maxCostRisk",
+      "title": "Макс. очакван разход / риск",
+      "raw_ui_values": [
+        "0.18"
+      ],
+      "normalized_value": 0.18,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "target1R",
+      "title": "TP1 — брутно R",
+      "raw_ui_values": [
+        "1"
+      ],
+      "normalized_value": 1.0,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "target2R",
+      "title": "TP2 — брутно R",
+      "raw_ui_values": [
+        "2"
+      ],
+      "normalized_value": 2.0,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "target3R",
+      "title": "TP3 — брутно R",
+      "raw_ui_values": [
+        "3"
+      ],
+      "normalized_value": 3.0,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "profitLockR",
+      "title": "SL след TP1 — брутен буфер R",
+      "raw_ui_values": [
+        "0.05"
+      ],
+      "normalized_value": 0.05,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "minCooldown",
+      "title": "Пауза след технически модел (свещи, по family)",
+      "raw_ui_values": [
+        "8"
+      ],
+      "normalized_value": 8,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "scalpMaxHold",
+      "title": "Макс. скалпинг задържане (свещи)",
+      "raw_ui_values": [
+        "48"
+      ],
+      "normalized_value": 48,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "swingMaxHold",
+      "title": "Макс. суинг задържане (свещи)",
+      "raw_ui_values": [
+        "60"
+      ],
+      "normalized_value": 60,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "maxOpenDeviationATR",
+      "title": "PAPER: макс. отклонение на next-open / ATR",
+      "raw_ui_values": [
+        "0.2"
+      ],
+      "normalized_value": 0.2,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "paperGapFilter",
+      "title": "PAPER: отменяй невалидното next-open",
+      "raw_ui_values": [
+        true
+      ],
+      "normalized_value": true,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "maxPaperLosingStreak",
+      "title": "Филтриран PAPER: дневна поредица загуби",
+      "raw_ui_values": [
+        "3"
+      ],
+      "normalized_value": 3,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "maxPaperDailyLossR",
+      "title": "Филтриран PAPER: дневен лимит R",
+      "raw_ui_values": [
+        "3"
+      ],
+      "normalized_value": 3.0,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "enableEvidenceShield",
+      "title": "Пауза на филтрирания портфейл по статистика",
+      "raw_ui_values": [
+        true
+      ],
+      "normalized_value": true,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "globalMinClosed",
+      "title": "Обща защита: мин. затворени сделки",
+      "raw_ui_values": [
+        "30"
+      ],
+      "normalized_value": 30,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "globalStopNetR",
+      "title": "Обща защита: праг нетно R",
+      "raw_ui_values": [
+        "-5"
+      ],
+      "normalized_value": -5.0,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "modelMinClosed",
+      "title": "По модел: мин. затворени сделки",
+      "raw_ui_values": [
+        "20"
+      ],
+      "normalized_value": 20,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "modelStopAvgR",
+      "title": "По модел: праг средно нетно R",
+      "raw_ui_values": [
+        "-0.15"
+      ],
+      "normalized_value": -0.15,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "recoveryTrades",
+      "title": "Възстановяване: допълнителни raw сделки",
+      "raw_ui_values": [
+        "5"
+      ],
+      "normalized_value": 5,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "observeCountertrendOnly",
+      "title": "Контратренд: не включвай във филтриран портфейл",
+      "raw_ui_values": [
+        true
+      ],
+      "normalized_value": true,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "contextPolicy",
+      "title": "Филтриран портфейл: политика",
+      "raw_ui_values": [
+        "БАЗОВ"
+      ],
+      "normalized_value": "БАЗОВ",
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "efficiencyLength",
+      "title": "Насоченост: период (свещи)",
+      "raw_ui_values": [
+        "20"
+      ],
+      "normalized_value": 20,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "minEfficiency",
+      "title": "Пробна политика: мин. насоченост",
+      "raw_ui_values": [
+        "0.25"
+      ],
+      "normalized_value": 0.25,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "testStart",
+      "title": "Начало на теста",
+      "raw_ui_values": [
+        "2020-01-01",
+        "00:00"
+      ],
+      "normalized_value": "2020-01-01T00:00:00Z",
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "testEnd",
+      "title": "Край на новите планове",
+      "raw_ui_values": [
+        "2035-01-01",
+        "00:00"
+      ],
+      "normalized_value": "2035-01-01T00:00:00Z",
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "uiMode",
+      "title": "Изглед",
+      "raw_ui_values": [
+        "МОБИЛЕН"
+      ],
+      "normalized_value": "МОБИЛЕН",
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "panelPosition",
+      "title": "Позиция на таблото",
+      "raw_ui_values": [
+        "Долу вляво"
+      ],
+      "normalized_value": "Долу вляво",
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "uiFontPt",
+      "title": "Букви в таблото (pt)",
+      "raw_ui_values": [
+        "11"
+      ],
+      "normalized_value": 11,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "showPanel",
+      "title": "Показвай таблото",
+      "raw_ui_values": [
+        true
+      ],
+      "normalized_value": true,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "displayEMAs",
+      "title": "EMA21 / EMA55",
+      "raw_ui_values": [
+        true
+      ],
+      "normalized_value": true,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "showLevels",
+      "title": "Нива на текущия план",
+      "raw_ui_values": [
+        true
+      ],
+      "normalized_value": true,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "separateLevelLabels",
+      "title": "Раздалечи близките ценови надписи",
+      "raw_ui_values": [
+        true
+      ],
+      "normalized_value": true,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "levelFont",
+      "title": "Размер на ценовите надписи",
+      "raw_ui_values": [
+        "Малък"
+      ],
+      "normalized_value": "Малък",
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "keepLabels",
+      "title": "Архив само за наблюдения/отмени",
+      "raw_ui_values": [
+        "6"
+      ],
+      "normalized_value": 6,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "keepSignalLabels",
+      "title": "Отделен архив на потвърдени модели",
+      "raw_ui_values": [
+        "40"
+      ],
+      "normalized_value": 40,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "showContextLabels",
+      "title": "Диагностика: архив на подготовки и откази",
+      "raw_ui_values": [
+        false
+      ],
+      "normalized_value": false,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "contextLabelSpacing",
+      "title": "Мин. свещи между контекстни надписи",
+      "raw_ui_values": [
+        "3"
+      ],
+      "normalized_value": 3,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "showSignalMarkers",
+      "title": "Стрелки за допуснати планове (не изпълнения)",
+      "raw_ui_values": [
+        true
+      ],
+      "normalized_value": true,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "showSetupLevel",
+      "title": "Показвай нивото за чакащото потвърждение",
+      "raw_ui_values": [
+        false
+      ],
+      "normalized_value": false,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "levelOffset",
+      "title": "Надписи надясно (свещи)",
+      "raw_ui_values": [
+        "3"
+      ],
+      "normalized_value": 3,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "alertsEnabled",
+      "title": "Общ ключ за всички известия",
+      "raw_ui_values": [
+        true
+      ],
+      "normalized_value": true,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "alertWatch",
+      "title": "Подготовка — без потвърден план",
+      "raw_ui_values": [
+        false
+      ],
+      "normalized_value": false,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "alertPlan",
+      "title": "Допуснат план и заявена симулирана поръчка",
+      "raw_ui_values": [
+        true
+      ],
+      "normalized_value": true,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "alertRisk",
+      "title": "Риск / отмяна / неизпълнен кандидат",
+      "raw_ui_values": [
+        true
+      ],
+      "normalized_value": true,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "alertNativeFills",
+      "title": "Действителни симулирани изпълнения",
+      "raw_ui_values": [
+        true
+      ],
+      "normalized_value": true,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "alertDiagnostics",
+      "title": "Диагностика: всички технически кандидати/откази",
+      "raw_ui_values": [
+        false
+      ],
+      "normalized_value": false,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "alertShadow",
+      "title": "Диагностика: отделни сенчести PAPER книги",
+      "raw_ui_values": [
+        false
+      ],
+      "normalized_value": false,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "alertJson",
+      "title": "Технически известия във формат JSON",
+      "raw_ui_values": [
+        false
+      ],
+      "normalized_value": false,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "exportEvents",
+      "title": "JSONL събития в Pine Logs",
+      "raw_ui_values": [
+        false
+      ],
+      "normalized_value": false,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "nativePortfolio",
+      "title": "Симулиран портфейл",
+      "raw_ui_values": [
+        "RAW"
+      ],
+      "normalized_value": "RAW",
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "nativeUnitQty",
+      "title": "Единици във всяка от трите части",
+      "raw_ui_values": [
+        "1"
+      ],
+      "normalized_value": 1.0,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "flattenInvalidNativeFill",
+      "title": "Изпълнен невалиден гап: изход на следващо отваряне",
+      "raw_ui_values": [
+        true
+      ],
+      "normalized_value": true,
+      "observed": true,
+      "matches_source_default": true
+    },
+    {
+      "name": "showConfirmedLabels",
+      "title": "Подробен архив на допуснатите планове",
+      "raw_ui_values": [
+        false
+      ],
+      "normalized_value": false,
+      "observed": true,
+      "matches_source_default": true
+    }
+  ],
+  "properties": [
+    {
+      "label": "Initial capital",
+      "raw_ui_values": [
+        "100,000",
+        "USD"
+      ]
+    },
+    {
+      "label": "Default order size",
+      "raw_ui_values": [
+        "3",
+        "Quantity"
+      ]
+    },
+    {
+      "label": "Pyramiding",
+      "raw_ui_values": [
+        "0"
+      ]
+    },
+    {
+      "label": "Bar detalization",
+      "raw_ui_values": [
+        "Default (4 ticks per bar)"
+      ]
+    },
+    {
+      "label": "Script execution",
+      "raw_ui_values": []
+    },
+    {
+      "label": "Commission",
+      "raw_ui_values": [
+        "0.175",
+        "Per contract"
+      ]
+    },
+    {
+      "label": "Long leverage",
+      "raw_ui_values": [
+        "1x"
+      ]
+    },
+    {
+      "label": "Short leverage",
+      "raw_ui_values": [
+        "1x"
+      ]
+    },
+    {
+      "label": "Slippage",
+      "raw_ui_values": [
+        "2"
+      ]
+    },
+    {
+      "label": "Limit order execution",
+      "raw_ui_values": [
+        "Requested price"
+      ]
+    },
+    {
+      "label": "Order execution delay",
+      "raw_ui_values": [
+        "One tick"
+      ]
+    }
+  ],
+  "source_files": {
+    "diagnostics/evidence/original_inputs.txt": "dd683548efe48a6eefbc09f622a217188437c754445920e4af837e1e136c0269",
+    "diagnostics/evidence/original_properties.txt": "615dff21c671596b5cc57ccd812720277b6164198f467f5b6089f0b2ef7cd79d"
+  }
+}

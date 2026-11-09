@@ -1,0 +1,40 @@
+{
+  "refreshed_at_utc": "2026-11-09T03:55:04.508405+00:00",
+  "scope": "Test-log/source metadata and catalog dependency hashes only; no data/settings/financial claims changed",
+  "reason": "Root made candidate generator write guarded manifest beside requested output and reran all16 focused tests; protocol test-log/source pins refreshed",
+  "old_H1_evidence_comparison_sha256": "71d2bcebb7adb99f0604b87213618a0dbfef68382181b9825ac19def15cacfa4",
+  "new_H1_evidence_comparison_sha256": "519f3c949963c9f8bbca03fe620a58b63a9e41ad61fd7f43c6601f93b6880ed3",
+  "old_test_metadata": {
+    "log": "diagnostics/protocol/H1_integrity_tests.log",
+    "sha256": "ddabd1d3f5a0323f57123da94d36a6a9b60070b7bd6674e330b834f7f43dfcd5",
+    "tests": 16,
+    "scope": "Exact single FAST gate/reason change; unchanged remainder/observer contract; mandatory guards under normal and optimized Python; export integrity",
+    "portable_test_source_sha256": "fcd879a282d4160dd5b296d2470e66b77511218959d24daede71b0399d32c8d0",
+    "portability": "Tracked generators create temporary observer/candidate buffers; recorded compiled-buffer hashes are reproduced without sibling workspace artifacts."
+  },
+  "new_test_metadata": {
+    "log": "diagnostics/protocol/H1_integrity_tests.log",
+    "sha256": "149058a9b6ee29057c29e64f6a1684f66605778cfa3b8cec2072f50771bf9dcf",
+    "tests": 16,
+    "scope": "Exact single FAST gate/reason change; unchanged remainder/observer contract; mandatory guards under normal and optimized Python; export integrity",
+    "portable_test_source_sha256": "bdb881efa7456930f41abdf14539cf69c1e3ff0cbde3717cd73ffe295776a61e",
+    "portability": "Tracked generators create temporary observer/candidate buffers; recorded compiled-buffer hashes are reproduced without sibling workspace artifacts."
+  },
+  "protected_claims_sha256_before": "dcdb8b40b61704f00b7a4e49c7e459a2405e81ced5aae207c408cb184a0e5e64",
+  "protected_claims_sha256_after": "dcdb8b40b61704f00b7a4e49c7e459a2405e81ced5aae207c408cb184a0e5e64",
+  "old_catalog_sha256": "6755bae581508718870cbbd5aaa48966ecc7f3cc1c719c0e2339be6fdea3745d",
+  "new_catalog_sha256": "4e4647d995ea80a29f95fc90a6917d4c91abe738bd2c8ea187f482f804d2569e",
+  "catalog_dependency_changes": [
+    {
+      "path": "diagnostics/protocol/H1_integrity_tests.log",
+      "old_sha256": "ddabd1d3f5a0323f57123da94d36a6a9b60070b7bd6674e330b834f7f43dfcd5",
+      "new_sha256": "149058a9b6ee29057c29e64f6a1684f66605778cfa3b8cec2072f50771bf9dcf"
+    },
+    {
+      "path": "diagnostics/protocol/H1_evidence_comparison.json",
+      "old_sha256": "71d2bcebb7adb99f0604b87213618a0dbfef68382181b9825ac19def15cacfa4",
+      "new_sha256": "519f3c949963c9f8bbca03fe620a58b63a9e41ad61fd7f43c6601f93b6880ed3"
+    }
+  ],
+  "generator_or_tests_modified_by_this_refresh": false
+}

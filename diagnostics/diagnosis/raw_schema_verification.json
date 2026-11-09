@@ -1,0 +1,50 @@
+{
+  "B-ALL": {
+    "raw_sha256": "4b9350dbc6e52fecf6f2ad5fd67b547d6f0b07022d7e29e9c73da0e55c96b6ea",
+    "records_by_kind": {
+      "run": 1,
+      "submitted": 72,
+      "closed": 212,
+      "snapshot": 1
+    },
+    "descriptive_input_audit_sha256": "1c4487159c804707ff5141784496cfcada16a88e9770ebdbad7ff187541e65e7",
+    "current_input_audit_sha256": "4be499ac2b3d0b73faceb0b0a5a815c8dc35c9f6afb919ff5750d94c178a2754",
+    "qualification": "Accounting owner added explicit risk_status after descriptive extraction; raw data and metrics remain unchanged."
+  },
+  "B-RETEST": {
+    "raw_sha256": "15af9572f10424c9ad3fef401e967164d4f2c2271108066b44a4763542fe04b7",
+    "records_by_kind": {
+      "run": 1,
+      "submitted": 1,
+      "closed": 3,
+      "snapshot": 1
+    },
+    "descriptive_input_audit_sha256": "96dd1dce67ae0bea9b80eed5a72940149b17ddac31ea16f08b699d68ffa12ee3",
+    "current_input_audit_sha256": "0a81b523537eeb1aff28ed4611292b6ecb4a6fcef707f4a3bbab6e45b0716417",
+    "qualification": "Accounting owner added explicit risk_status after descriptive extraction; raw data and metrics remain unchanged."
+  },
+  "B-FAST": {
+    "raw_sha256": "9b01b7ea18fe35765e26f951a010454bea39078441fa67503c48d9c580eb5a43",
+    "records_by_kind": {
+      "run": 1,
+      "submitted": 50,
+      "closed": 150,
+      "snapshot": 1
+    },
+    "descriptive_input_audit_sha256": "1331327053d0799fef3d6616b9be98650cb1d6ff927bb01a1aa08284d08a4408",
+    "current_input_audit_sha256": "c6845e39b4ff15e03226840c99a9adb3437c9f6e2d3427eeb36aa2e084752c2d",
+    "qualification": "Accounting owner added explicit risk_status after descriptive extraction; raw data and metrics remain unchanged."
+  },
+  "B-REVERSAL": {
+    "raw_sha256": "f5a8babf28de2b861ad82eea195fe2d7f3811167ef6f7e9a4dc162a485bfe0c7",
+    "records_by_kind": {
+      "run": 1,
+      "submitted": 27,
+      "closed": 77,
+      "snapshot": 1
+    },
+    "descriptive_input_audit_sha256": "be883f678efc241752a963ee0e675fc5165b9fafd327f13569b763bc39cf351c",
+    "current_input_audit_sha256": "cb759bec29c3ca4245ae148d7545d570cdabb9ec6d10088f3aab3a97eeb9ea58",
+    "qualification": "Accounting owner added explicit risk_status after descriptive extraction; raw data and metrics remain unchanged."
+  }
+}

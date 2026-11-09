@@ -1,0 +1,13 @@
+{
+  "recorded_at_utc": "2026-11-09T03:49:33.857242+00:00",
+  "reason": "Protocol test portability only: refreshed final independent evidence pin after self-contained temporary-fixture tests; no economic/source/data/preregistration change.",
+  "previous_comparison_sha256": "2de57bd10524fff7ddf3717a02109b41fa4a9ff642374eafb941cef7a117c0e7",
+  "current_comparison_sha256": "66d7810533417998b33ac6a86b17ba615353c74d7597e86173cdf0eceac8f82d",
+  "previous_evidence_sha256": "f8bf09e5a0e43445cbba69a76082841fa2ae6f8af9c079f73613dc4b2f53af37",
+  "current_evidence_sha256": "71d2bcebb7adb99f0604b87213618a0dbfef68382181b9825ac19def15cacfa4",
+  "full_paired_comparisons_recomputed": true,
+  "all_comparison_fields_exactly_equal": true,
+  "accounting_input_hashes_unchanged": true,
+  "hypothesis_registration_unchanged": true,
+  "only_changed_field": "independent_data_and_inputs_evidence.sha256"
+}

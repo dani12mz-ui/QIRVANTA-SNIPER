@@ -1,0 +1,119 @@
+led on each calculation for consistency. It is recommended to extract the call from this scope
+        - link "Learn more":
+          - /url: https://www.tradingview.com/pine-script-docs/errors/CW10003
+    - row "05:22:33 ч. Warning at 1340:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+      - cell "05:22:33 ч."
+      - cell "Warning at 1340:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+        - text: Warning at 1340:39
+        - text: Strategies without "calc_on_every_tick = true" only calculate on confirmed chart bars. In this case, "barstate.islast" may not initially return "true" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable "calc_on_every_tick" in the "strategy()" function.
+    - row "05:22:33 ч. Warning at 1405:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+      - cell "05:22:33 ч."
+      - cell "Warning at 1405:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+        - text: Warning at 1405:39
+        - text: Strategies without "calc_on_every_tick = true" only calculate on confirmed chart bars. In this case, "barstate.islast" may not initially return "true" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable "calc_on_every_tick" in the "strategy()" function.
+    - row "05:22:33 ч. \"QIRVANTA_UNIFIED\" saved.":
+      - cell "05:22:33 ч."
+      - cell "\"QIRVANTA_UNIFIED\" saved."
+    - row "05:23:59 ч. Compiling...":
+      - cell "05:23:59 ч."
+      - cell "Compiling..."
+    - row "05:24:00 ч. Warning at 755:35 The function \"f_fast\" should be called on each calculation for consistency. It is recommended to extract the call from this scope Learn more":
+      - cell "05:24:00 ч."
+      - cell "Warning at 755:35 The function \"f_fast\" should be called on each calculation for consistency. It is recommended to extract the call from this scope Learn more":
+        - text: Warning at 755:35
+        - text: The function "f_fast" should be called on each calculation for consistency. It is recommended to extract the call from this scope
+        - link "Learn more":
+          - /url: https://www.tradingview.com/pine-script-docs/errors/CW10003
+    - row "05:24:00 ч. Warning at 756:35 The function \"f_reversal\" should be called on each calculation for consistency. It is recommended to extract the call from this scope Learn more":
+      - cell "05:24:00 ч."
+      - cell "Warning at 756:35 The function \"f_reversal\" should be called on each calculation for consistency. It is recommended to extract the call from this scope Learn more":
+        - text: Warning at 756:35
+        - text: The function "f_reversal" should be called on each calculation for consistency. It is recommended to extract the call from this scope
+        - link "Learn more":
+          - /url: https://www.tradingview.com/pine-script-docs/errors/CW10003
+    - row "05:24:00 ч. Warning at 1304:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+      - cell "05:24:00 ч."
+      - cell "Warning at 1304:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+        - text: Warning at 1304:39
+        - text: Strategies without "calc_on_every_tick = true" only calculate on confirmed chart bars. In this case, "barstate.islast" may not initially return "true" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable "calc_on_every_tick" in the "strategy()" function.
+    - row "05:24:00 ч. Warning at 1369:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+      - cell "05:24:00 ч."
+      - cell "Warning at 1369:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+        - text: Warning at 1369:39
+        - text: Strategies without "calc_on_every_tick = true" only calculate on confirmed chart bars. In this case, "barstate.islast" may not initially return "true" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable "calc_on_every_tick" in the "strategy()" function.
+    - row "05:24:00 ч. \"QIRVANTA_UNIFIED\" saved.":
+      - cell "05:24:00 ч."
+      - cell "\"QIRVANTA_UNIFIED\" saved."
+    - row "05:32:29 ч. Compiling...":
+      - cell "05:32:29 ч."
+      - cell "Compiling..."
+    - row "05:33:02 ч. Warning at 755:35 The function \"f_fast\" should be called on each calculation for consistency. It is recommended to extract the call from this scope Learn more":
+      - cell "05:33:02 ч."
+      - cell "Warning at 755:35 The function \"f_fast\" should be called on each calculation for consistency. It is recommended to extract the call from this scope Learn more":
+        - text: Warning at 755:35
+        - text: The function "f_fast" should be called on each calculation for consistency. It is recommended to extract the call from this scope
+        - link "Learn more":
+          - /url: https://www.tradingview.com/pine-script-docs/errors/CW10003
+    - row "05:33:02 ч. Warning at 756:35 The function \"f_reversal\" should be called on each calculation for consistency. It is recommended to extract the call from this scope Learn more":
+      - cell "05:33:02 ч."
+      - cell "Warning at 756:35 The function \"f_reversal\" should be called on each calculation for consistency. It is recommended to extract the call from this scope Learn more":
+        - text: Warning at 756:35
+        - text: The function "f_reversal" should be called on each calculation for consistency. It is recommended to extract the call from this scope
+        - link "Learn more":
+          - /url: https://www.tradingview.com/pine-script-docs/errors/CW10003
+    - row "05:33:02 ч. Warning at 1304:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+      - cell "05:33:02 ч."
+      - cell "Warning at 1304:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+        - text: Warning at 1304:39
+        - text: Strategies without "calc_on_every_tick = true" only calculate on confirmed chart bars. In this case, "barstate.islast" may not initially return "true" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable "calc_on_every_tick" in the "strategy()" function.
+    - row "05:33:02 ч. Warning at 1369:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+      - cell "05:33:02 ч."
+      - cell "Warning at 1369:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+        - text: Warning at 1369:39
+        - text: Strategies without "calc_on_every_tick = true" only calculate on confirmed chart bars. In this case, "barstate.islast" may not initially return "true" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable "calc_on_every_tick" in the "strategy()" function.
+    - row "05:33:02 ч. \"QIRVANTA_UNIFIED\" saved.":
+      - cell "05:33:02 ч."
+      - cell "\"QIRVANTA_UNIFIED\" saved."
+    - row "05:35:47 ч. Compiling...":
+      - cell "05:35:47 ч."
+      - cell "Compiling..."
+    - row "05:35:49 ч. Warning at 755:35 The function \"f_fast\" should be called on each calculation for consistency. It is recommended to extract the call from this scope Learn more":
+      - cell "05:35:49 ч."
+      - cell "Warning at 755:35 The function \"f_fast\" should be called on each calculation for consistency. It is recommended to extract the call from this scope Learn more":
+        - text: Warning at 755:35
+        - text: The function "f_fast" should be called on each calculation for consistency. It is recommended to extract the call from this scope
+        - link "Learn more":
+          - /url: https://www.tradingview.com/pine-script-docs/errors/CW10003
+    - row "05:35:49 ч. Warning at 756:35 The function \"f_reversal\" should be called on each calculation for consistency. It is recommended to extract the call from this scope Learn more":
+      - cell "05:35:49 ч."
+      - cell "Warning at 756:35 The function \"f_reversal\" should be called on each calculation for consistency. It is recommended to extract the call from this scope Learn more":
+        - text: Warning at 756:35
+        - text: The function "f_reversal" should be called on each calculation for consistency. It is recommended to extract the call from this scope
+        - link "Learn more":
+          - /url: https://www.tradingview.com/pine-script-docs/errors/CW10003
+    - row "05:35:49 ч. Warning at 1304:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+      - cell "05:35:49 ч."
+      - cell "Warning at 1304:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+        - text: Warning at 1304:39
+        - text: Strategies without "calc_on_every_tick = true" only calculate on confirmed chart bars. In this case, "barstate.islast" may not initially return "true" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable "calc_on_every_tick" in the "strategy()" function.
+    - row "05:35:49 ч. Warning at 1369:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+      - cell "05:35:49 ч."
+      - cell "Warning at 1369:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+        - text: Warning at 1369:39
+        - text: Strategies without "calc_on_every_tick = true" only calculate on confirmed chart bars. In this case, "barstate.islast" may not initially return "true" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable "calc_on_every_tick" in the "strategy()" function.
+    - row "05:35:49 ч. \"QIRVANTA_UNIFIED\" saved.":
+      - cell "05:35:49 ч."
+      - cell "\"QIRVANTA_UNIFIED\" saved."
+- button:
+- button "9 ∙ Today, 05:35"
+- button "Line 1486, Col 1"
+- link "Pine Script® v6":
+  - /url: https://www.tradingview.com/pine-script-reference/v6
+- alert
+- alert
+- generic "Templates":
+- generic "Text color":
+- generic "Font size": "14"
+- generic "Settings":
+- generic "Remove":
+- generic "More":

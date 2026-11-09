@@ -1,0 +1,972 @@
+{
+  "status": "PASS_SCOPED_COMPARISON",
+  "scope": "Same reported data fingerprints/source/settings except intentional model selection; separate native portfolios, not additive model results",
+  "run_comparison": [
+    {
+      "run": "B-ALL",
+      "run_id": "baseline|Всички",
+      "audit_status": "PASS_OBSERVED_JOURNAL",
+      "complete_campaigns": 72,
+      "native_closed_rows": 212,
+      "winning_campaigns": 33,
+      "losing_campaigns": 39,
+      "campaign_win_rate": 0.4583333333333333,
+      "campaign_profit_factor": 0.9050957535059044,
+      "partial_row_profit_factor": 0.9051287169278124,
+      "net_cash": -144.492,
+      "average_winning_campaign_cash": 41.75790909090909,
+      "average_losing_campaign_cash": -39.03853846153846,
+      "closed_cash_event_drawdown": 812.069,
+      "campaign_close_drawdown": 812.069,
+      "native_equity_drawdown": 842.255,
+      "commission_cash": 75.6,
+      "native_net_difference": 0.0,
+      "coverage": {
+        "closed_count_reported": 212,
+        "closed_rows_observed": 212,
+        "first_closed_index": 0,
+        "missing_indices": [],
+        "full_closed_history": true,
+        "open_snapshot_complete": true,
+        "duplicates_ignored": {}
+      },
+      "data_header": {
+        "symbol": "OANDA:XAUUSD",
+        "timeframe": "15",
+        "source_sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+        "account_currency": "USD",
+        "symbol_currency": "USD",
+        "pointvalue": 1.0,
+        "mintick": 0.001,
+        "first_bar_time": 1785708000000,
+        "last_bar_open": 1794191400000,
+        "cutoff": 1794192300000,
+        "bar_count": 6445,
+        "checksum1": 52465161,
+        "checksum2": 675559027
+      },
+      "raw_export_sha256": "4b9350dbc6e52fecf6f2ad5fd67b547d6f0b07022d7e29e9c73da0e55c96b6ea",
+      "settings_evidence": {
+        "evidence": "../evidence/original_inputs.txt",
+        "raw_sha256": "dd683548efe48a6eefbc09f622a217188437c754445920e4af837e1e136c0269",
+        "selected_model": "Всички",
+        "all_other_dialog_settings_sha256": "d1f722e18660ad18119eea99ff3c40e7e32f1bf4debaa1e6ef0ec2ad33e55c6c",
+        "run_id_matches_selected_model": true
+      }
+    },
+    {
+      "run": "B-RETEST",
+      "run_id": "baseline|Ретест",
+      "audit_status": "PASS_OBSERVED_JOURNAL",
+      "complete_campaigns": 1,
+      "native_closed_rows": 3,
+      "winning_campaigns": 1,
+      "losing_campaigns": 0,
+      "campaign_win_rate": 1.0,
+      "campaign_profit_factor": null,
+      "partial_row_profit_factor": null,
+      "net_cash": 20.819,
+      "average_winning_campaign_cash": 20.819,
+      "average_losing_campaign_cash": null,
+      "closed_cash_event_drawdown": 0.0,
+      "campaign_close_drawdown": 0.0,
+      "native_equity_drawdown": 9.786,
+      "commission_cash": 1.05,
+      "native_net_difference": 0.0,
+      "coverage": {
+        "closed_count_reported": 3,
+        "closed_rows_observed": 3,
+        "first_closed_index": 0,
+        "missing_indices": [],
+        "full_closed_history": true,
+        "open_snapshot_complete": true,
+        "duplicates_ignored": {}
+      },
+      "data_header": {
+        "symbol": "OANDA:XAUUSD",
+        "timeframe": "15",
+        "source_sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+        "account_currency": "USD",
+        "symbol_currency": "USD",
+        "pointvalue": 1.0,
+        "mintick": 0.001,
+        "first_bar_time": 1785708000000,
+        "last_bar_open": 1794191400000,
+        "cutoff": 1794192300000,
+        "bar_count": 6445,
+        "checksum1": 52465161,
+        "checksum2": 675559027
+      },
+      "raw_export_sha256": "15af9572f10424c9ad3fef401e967164d4f2c2271108066b44a4763542fe04b7",
+      "settings_evidence": {
+        "evidence": "../evidence/B-RETEST.inputs.txt",
+        "raw_sha256": "2282860a24a2f961439bcb3d044d4e56a74e7ce738a91e77f4d545774e4383ec",
+        "selected_model": "Ретест",
+        "all_other_dialog_settings_sha256": "d1f722e18660ad18119eea99ff3c40e7e32f1bf4debaa1e6ef0ec2ad33e55c6c",
+        "run_id_matches_selected_model": true
+      }
+    },
+    {
+      "run": "B-FAST",
+      "run_id": "baseline|Бърз пробив",
+      "audit_status": "PASS_OBSERVED_JOURNAL",
+      "complete_campaigns": 50,
+      "native_closed_rows": 150,
+      "winning_campaigns": 21,
+      "losing_campaigns": 29,
+      "campaign_win_rate": 0.42,
+      "campaign_profit_factor": 0.8062806132523137,
+      "partial_row_profit_factor": 0.8062806132523137,
+      "net_cash": -243.31,
+      "average_winning_campaign_cash": 48.22295238095238,
+      "average_losing_campaign_cash": -43.31006896551724,
+      "closed_cash_event_drawdown": 888.927,
+      "campaign_close_drawdown": 888.927,
+      "native_equity_drawdown": 919.113,
+      "commission_cash": 52.5,
+      "native_net_difference": 0.0,
+      "coverage": {
+        "closed_count_reported": 150,
+        "closed_rows_observed": 150,
+        "first_closed_index": 0,
+        "missing_indices": [],
+        "full_closed_history": true,
+        "open_snapshot_complete": true,
+        "duplicates_ignored": {}
+      },
+      "data_header": {
+        "symbol": "OANDA:XAUUSD",
+        "timeframe": "15",
+        "source_sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+        "account_currency": "USD",
+        "symbol_currency": "USD",
+        "pointvalue": 1.0,
+        "mintick": 0.001,
+        "first_bar_time": 1785708000000,
+        "last_bar_open": 1794191400000,
+        "cutoff": 1794192300000,
+        "bar_count": 6445,
+        "checksum1": 52465161,
+        "checksum2": 675559027
+      },
+      "raw_export_sha256": "9b01b7ea18fe35765e26f951a010454bea39078441fa67503c48d9c580eb5a43",
+      "settings_evidence": {
+        "evidence": "../evidence/B-FAST.inputs.txt",
+        "raw_sha256": "d308d3756a7b6f6361c4a299e2ffe940f6dec1490a6295e9592530745357fbe9",
+        "selected_model": "Бърз пробив",
+        "all_other_dialog_settings_sha256": "d1f722e18660ad18119eea99ff3c40e7e32f1bf4debaa1e6ef0ec2ad33e55c6c",
+        "run_id_matches_selected_model": true
+      }
+    },
+    {
+      "run": "B-REVERSAL",
+      "run_id": "baseline|Ранно обръщане",
+      "audit_status": "PASS_OBSERVED_JOURNAL",
+      "complete_campaigns": 27,
+      "native_closed_rows": 77,
+      "winning_campaigns": 12,
+      "losing_campaigns": 15,
+      "campaign_win_rate": 0.4444444444444444,
+      "campaign_profit_factor": 0.8690966312185707,
+      "partial_row_profit_factor": 0.8692643166579088,
+      "net_cash": -53.989,
+      "average_winning_campaign_cash": 29.870416666666667,
+      "average_losing_campaign_cash": -27.4956,
+      "closed_cash_event_drawdown": 198.878,
+      "campaign_close_drawdown": 198.878,
+      "native_equity_drawdown": 201.164,
+      "commission_cash": 28.35,
+      "native_net_difference": 0.0,
+      "coverage": {
+        "closed_count_reported": 77,
+        "closed_rows_observed": 77,
+        "first_closed_index": 0,
+        "missing_indices": [],
+        "full_closed_history": true,
+        "open_snapshot_complete": true,
+        "duplicates_ignored": {}
+      },
+      "data_header": {
+        "symbol": "OANDA:XAUUSD",
+        "timeframe": "15",
+        "source_sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+        "account_currency": "USD",
+        "symbol_currency": "USD",
+        "pointvalue": 1.0,
+        "mintick": 0.001,
+        "first_bar_time": 1785708000000,
+        "last_bar_open": 1794191400000,
+        "cutoff": 1794192300000,
+        "bar_count": 6445,
+        "checksum1": 52465161,
+        "checksum2": 675559027
+      },
+      "raw_export_sha256": "f5a8babf28de2b861ad82eea195fe2d7f3811167ef6f7e9a4dc162a485bfe0c7",
+      "settings_evidence": {
+        "evidence": "../evidence/B-REVERSAL.inputs.txt",
+        "raw_sha256": "bc81e7740cb71b7d7a04033c30fc92fc377e62c35a01cc9f1ed214bb5504df49",
+        "selected_model": "Ранно обръщане",
+        "all_other_dialog_settings_sha256": "d1f722e18660ad18119eea99ff3c40e7e32f1bf4debaa1e6ef0ec2ad33e55c6c",
+        "run_id_matches_selected_model": true
+      }
+    }
+  ],
+  "shared_data_header": {
+    "symbol": "OANDA:XAUUSD",
+    "timeframe": "15",
+    "source_sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+    "account_currency": "USD",
+    "symbol_currency": "USD",
+    "pointvalue": 1.0,
+    "mintick": 0.001,
+    "first_bar_time": 1785708000000,
+    "last_bar_open": 1794191400000,
+    "cutoff": 1794192300000,
+    "bar_count": 6445,
+    "checksum1": 52465161,
+    "checksum2": 675559027
+  },
+  "reported_data_headers_identical": true,
+  "other_inputs_dialog_text_identical": true,
+  "settings_normalization": "Only selected runModel value and [active] UI focus annotation are removed; full dialog including all other values retained",
+  "data_completeness_limit": "All4 runs match bar count/range/cutoff/two integer checksums. Full serialized OHLC/HTF rows were exported for B-ALL-FULL only; collision-free byte equality of all4 original full-precision feeds is not claimed.",
+  "properties_evidence": "../evidence/original_properties.txt",
+  "properties_evidence_sha256": "615dff21c671596b5cc57ccd812720277b6164198f467f5b6089f0b2ef7cd79d",
+  "cost_check": "Every exported row reconciles fill-price gross minus native entry+exit commission once to API net; each run sums exactly to its native netprofit. Slippage is already in actual fills.",
+  "whole_entry_vs_partial_rows": "Rows are grouped by entry_id+entry_time+entry_bar_index and checked against submitted quantity and a complete final open snapshot. No division of total trades by3, no inferred fills from totals.",
+  "all_portfolio_attribution": {
+    "family": {
+      "1": {
+        "count": 1,
+        "wins": 1,
+        "losses": 0,
+        "breakevens": 0,
+        "net_cash": 20.819,
+        "sum_positive_net_cash": 20.819,
+        "sum_negative_net_cash_magnitude": 0.0,
+        "profit_factor": null,
+        "profit_factor_status": "NO_LOSSES",
+        "win_rate": 1.0,
+        "average_net_cash": 20.819,
+        "average_win_cash": 20.819,
+        "average_loss_cash": null,
+        "closed_cash_event_drawdown": 0.0,
+        "campaign_close_drawdown": 0.0,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "TP1": 1,
+          "TP2": 1,
+          "SL": 1
+        },
+        "exit_comment_quantities": {
+          "TP1": 1.0,
+          "TP2": 1.0,
+          "SL": 1.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "SL": 1
+        }
+      },
+      "2": {
+        "count": 49,
+        "wins": 20,
+        "losses": 29,
+        "breakevens": 0,
+        "net_cash": -257.245,
+        "sum_positive_net_cash": 998.747,
+        "sum_negative_net_cash_magnitude": 1255.992,
+        "profit_factor": 0.7951857973617666,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.40816326530612246,
+        "average_net_cash": -5.249897959183674,
+        "average_win_cash": 49.93735,
+        "average_loss_cash": -43.31006896551724,
+        "closed_cash_event_drawdown": 902.862,
+        "campaign_close_drawdown": 902.862,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "TP1": 20,
+          "SL": 109,
+          "TP2": 10,
+          "TP3": 7,
+          "ИЗТЕКЪЛ СРОК": 1
+        },
+        "exit_comment_quantities": {
+          "TP1": 20.0,
+          "SL": 109.0,
+          "TP2": 10.0,
+          "TP3": 7.0,
+          "ИЗТЕКЪЛ СРОК": 1.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "SL": 41,
+          "TP3": 7,
+          "ИЗТЕКЪЛ СРОК": 1
+        }
+      },
+      "3": {
+        "count": 22,
+        "wins": 12,
+        "losses": 10,
+        "breakevens": 0,
+        "net_cash": 91.934,
+        "sum_positive_net_cash": 358.445,
+        "sum_negative_net_cash_magnitude": 266.511,
+        "profit_factor": 1.344953866819756,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.5454545454545454,
+        "average_net_cash": 4.1788181818181815,
+        "average_win_cash": 29.870416666666667,
+        "average_loss_cash": -26.6511,
+        "closed_cash_event_drawdown": 80.678,
+        "campaign_close_drawdown": 80.678,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "TP1": 11,
+          "ИЗТЕКЪЛ СРОК": 2,
+          "SL": 40,
+          "TP2": 5,
+          "TP3": 3,
+          "ИЗХОД СЛЕД ГАП": 1
+        },
+        "exit_comment_quantities": {
+          "TP1": 11.0,
+          "ИЗТЕКЪЛ СРОК": 4.0,
+          "SL": 40.0,
+          "TP2": 5.0,
+          "TP3": 3.0,
+          "ИЗХОД СЛЕД ГАП": 3.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "ИЗТЕКЪЛ СРОК": 2,
+          "SL": 16,
+          "TP3": 3,
+          "ИЗХОД СЛЕД ГАП": 1
+        }
+      }
+    },
+    "side": {
+      "-1": {
+        "count": 46,
+        "wins": 21,
+        "losses": 25,
+        "breakevens": 0,
+        "net_cash": -175.231,
+        "sum_positive_net_cash": 873.719,
+        "sum_negative_net_cash_magnitude": 1048.95,
+        "profit_factor": 0.8329462796129463,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.45652173913043476,
+        "average_net_cash": -3.8093695652173913,
+        "average_win_cash": 41.605666666666664,
+        "average_loss_cash": -41.958,
+        "closed_cash_event_drawdown": 597.824,
+        "campaign_close_drawdown": 597.824,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "TP1": 20,
+          "ИЗТЕКЪЛ СРОК": 2,
+          "SL": 94,
+          "TP2": 10,
+          "TP3": 7,
+          "ИЗХОД СЛЕД ГАП": 1
+        },
+        "exit_comment_quantities": {
+          "TP1": 20.0,
+          "ИЗТЕКЪЛ СРОК": 4.0,
+          "SL": 94.0,
+          "TP2": 10.0,
+          "TP3": 7.0,
+          "ИЗХОД СЛЕД ГАП": 3.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "ИЗТЕКЪЛ СРОК": 2,
+          "SL": 36,
+          "TP3": 7,
+          "ИЗХОД СЛЕД ГАП": 1
+        }
+      },
+      "1": {
+        "count": 26,
+        "wins": 12,
+        "losses": 14,
+        "breakevens": 0,
+        "net_cash": 30.739,
+        "sum_positive_net_cash": 504.292,
+        "sum_negative_net_cash_magnitude": 473.553,
+        "profit_factor": 1.0649114249091443,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.46153846153846156,
+        "average_net_cash": 1.1822692307692308,
+        "average_win_cash": 42.02433333333333,
+        "average_loss_cash": -33.82521428571429,
+        "closed_cash_event_drawdown": 310.266,
+        "campaign_close_drawdown": 310.266,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "TP1": 12,
+          "SL": 56,
+          "TP2": 6,
+          "TP3": 3,
+          "ИЗТЕКЪЛ СРОК": 1
+        },
+        "exit_comment_quantities": {
+          "TP1": 12.0,
+          "SL": 56.0,
+          "TP2": 6.0,
+          "TP3": 3.0,
+          "ИЗТЕКЪЛ СРОК": 1.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "SL": 22,
+          "TP3": 3,
+          "ИЗТЕКЪЛ СРОК": 1
+        }
+      }
+    },
+    "trend_relation": {
+      "AGAINST_HTF": {
+        "count": 18,
+        "wins": 9,
+        "losses": 9,
+        "breakevens": 0,
+        "net_cash": -75.704,
+        "sum_positive_net_cash": 242.68,
+        "sum_negative_net_cash_magnitude": 318.384,
+        "profit_factor": 0.7622242323734861,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.5,
+        "average_net_cash": -4.205777777777778,
+        "average_win_cash": 26.964444444444446,
+        "average_loss_cash": -35.376,
+        "closed_cash_event_drawdown": 245.184,
+        "campaign_close_drawdown": 245.184,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "TP1": 9,
+          "ИЗТЕКЪЛ СРОК": 2,
+          "SL": 39,
+          "TP2": 1,
+          "TP3": 1
+        },
+        "exit_comment_quantities": {
+          "TP1": 9.0,
+          "ИЗТЕКЪЛ СРОК": 4.0,
+          "SL": 39.0,
+          "TP2": 1.0,
+          "TP3": 1.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "ИЗТЕКЪЛ СРОК": 2,
+          "SL": 15,
+          "TP3": 1
+        }
+      },
+      "NEUTRAL_HTF": {
+        "count": 3,
+        "wins": 1,
+        "losses": 2,
+        "breakevens": 0,
+        "net_cash": -39.704,
+        "sum_positive_net_cash": 19.21,
+        "sum_negative_net_cash_magnitude": 58.914,
+        "profit_factor": 0.3260685066367926,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.3333333333333333,
+        "average_net_cash": -13.234666666666667,
+        "average_win_cash": 19.21,
+        "average_loss_cash": -29.457,
+        "closed_cash_event_drawdown": 58.931,
+        "campaign_close_drawdown": 58.914,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "TP1": 1,
+          "TP2": 1,
+          "SL": 7
+        },
+        "exit_comment_quantities": {
+          "TP1": 1.0,
+          "TP2": 1.0,
+          "SL": 7.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "SL": 3
+        }
+      },
+      "WITH_HTF": {
+        "count": 51,
+        "wins": 23,
+        "losses": 28,
+        "breakevens": 0,
+        "net_cash": -29.084,
+        "sum_positive_net_cash": 1116.121,
+        "sum_negative_net_cash_magnitude": 1145.205,
+        "profit_factor": 0.974603673578093,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.45098039215686275,
+        "average_net_cash": -0.5702745098039216,
+        "average_win_cash": 48.527,
+        "average_loss_cash": -40.90017857142857,
+        "closed_cash_event_drawdown": 573.095,
+        "campaign_close_drawdown": 573.095,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "TP1": 22,
+          "SL": 104,
+          "TP2": 14,
+          "TP3": 9,
+          "ИЗТЕКЪЛ СРОК": 1,
+          "ИЗХОД СЛЕД ГАП": 1
+        },
+        "exit_comment_quantities": {
+          "TP1": 22.0,
+          "SL": 104.0,
+          "TP2": 14.0,
+          "TP3": 9.0,
+          "ИЗТЕКЪЛ СРОК": 1.0,
+          "ИЗХОД СЛЕД ГАП": 3.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "SL": 40,
+          "TP3": 9,
+          "ИЗТЕКЪЛ СРОК": 1,
+          "ИЗХОД СЛЕД ГАП": 1
+        }
+      }
+    },
+    "regime": {
+      "COUNTERTREND": {
+        "count": 21,
+        "wins": 10,
+        "losses": 11,
+        "breakevens": 0,
+        "net_cash": -115.408,
+        "sum_positive_net_cash": 261.89,
+        "sum_negative_net_cash_magnitude": 377.298,
+        "profit_factor": 0.6941197673987141,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.47619047619047616,
+        "average_net_cash": -5.495619047619048,
+        "average_win_cash": 26.189,
+        "average_loss_cash": -34.29981818181818,
+        "closed_cash_event_drawdown": 304.098,
+        "campaign_close_drawdown": 304.098,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "TP1": 10,
+          "ИЗТЕКЪЛ СРОК": 2,
+          "SL": 46,
+          "TP2": 2,
+          "TP3": 1
+        },
+        "exit_comment_quantities": {
+          "TP1": 10.0,
+          "ИЗТЕКЪЛ СРОК": 4.0,
+          "SL": 46.0,
+          "TP2": 2.0,
+          "TP3": 1.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "ИЗТЕКЪЛ СРОК": 2,
+          "SL": 18,
+          "TP3": 1
+        }
+      },
+      "TREND": {
+        "count": 51,
+        "wins": 23,
+        "losses": 28,
+        "breakevens": 0,
+        "net_cash": -29.084,
+        "sum_positive_net_cash": 1116.121,
+        "sum_negative_net_cash_magnitude": 1145.205,
+        "profit_factor": 0.974603673578093,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.45098039215686275,
+        "average_net_cash": -0.5702745098039216,
+        "average_win_cash": 48.527,
+        "average_loss_cash": -40.90017857142857,
+        "closed_cash_event_drawdown": 573.095,
+        "campaign_close_drawdown": 573.095,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "TP1": 22,
+          "SL": 104,
+          "TP2": 14,
+          "TP3": 9,
+          "ИЗТЕКЪЛ СРОК": 1,
+          "ИЗХОД СЛЕД ГАП": 1
+        },
+        "exit_comment_quantities": {
+          "TP1": 22.0,
+          "SL": 104.0,
+          "TP2": 14.0,
+          "TP3": 9.0,
+          "ИЗТЕКЪЛ СРОК": 1.0,
+          "ИЗХОД СЛЕД ГАП": 3.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "SL": 40,
+          "TP3": 9,
+          "ИЗТЕКЪЛ СРОК": 1,
+          "ИЗХОД СЛЕД ГАП": 1
+        }
+      }
+    },
+    "family_side_trend_regime": {
+      "M1|-1|WITH_HTF|TREND": {
+        "count": 1,
+        "wins": 1,
+        "losses": 0,
+        "breakevens": 0,
+        "net_cash": 20.819,
+        "sum_positive_net_cash": 20.819,
+        "sum_negative_net_cash_magnitude": 0.0,
+        "profit_factor": null,
+        "profit_factor_status": "NO_LOSSES",
+        "win_rate": 1.0,
+        "average_net_cash": 20.819,
+        "average_win_cash": 20.819,
+        "average_loss_cash": null,
+        "closed_cash_event_drawdown": 0.0,
+        "campaign_close_drawdown": 0.0,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "TP1": 1,
+          "TP2": 1,
+          "SL": 1
+        },
+        "exit_comment_quantities": {
+          "TP1": 1.0,
+          "TP2": 1.0,
+          "SL": 1.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "SL": 1
+        }
+      },
+      "M2|-1|AGAINST_HTF|COUNTERTREND": {
+        "count": 4,
+        "wins": 3,
+        "losses": 1,
+        "breakevens": 0,
+        "net_cash": -13.233,
+        "sum_positive_net_cash": 32.19,
+        "sum_negative_net_cash_magnitude": 45.423,
+        "profit_factor": 0.7086718182418599,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.75,
+        "average_net_cash": -3.30825,
+        "average_win_cash": 10.73,
+        "average_loss_cash": -45.423,
+        "closed_cash_event_drawdown": 45.423,
+        "campaign_close_drawdown": 45.423,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "TP1": 3,
+          "SL": 9
+        },
+        "exit_comment_quantities": {
+          "TP1": 3.0,
+          "SL": 9.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "SL": 4
+        }
+      },
+      "M2|-1|NEUTRAL_HTF|COUNTERTREND": {
+        "count": 1,
+        "wins": 0,
+        "losses": 1,
+        "breakevens": 0,
+        "net_cash": -36.843,
+        "sum_positive_net_cash": 0.0,
+        "sum_negative_net_cash_magnitude": 36.843,
+        "profit_factor": 0.0,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.0,
+        "average_net_cash": -36.843,
+        "average_win_cash": null,
+        "average_loss_cash": -36.843,
+        "closed_cash_event_drawdown": 36.843,
+        "campaign_close_drawdown": 36.843,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "SL": 3
+        },
+        "exit_comment_quantities": {
+          "SL": 3.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "SL": 1
+        }
+      },
+      "M2|-1|WITH_HTF|TREND": {
+        "count": 28,
+        "wins": 8,
+        "losses": 20,
+        "breakevens": 0,
+        "net_cash": -361.6,
+        "sum_positive_net_cash": 503.291,
+        "sum_negative_net_cash_magnitude": 864.891,
+        "profit_factor": 0.581912634077589,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.2857142857142857,
+        "average_net_cash": -12.914285714285715,
+        "average_win_cash": 62.911375,
+        "average_loss_cash": -43.24455,
+        "closed_cash_event_drawdown": 712.209,
+        "campaign_close_drawdown": 712.209,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "SL": 67,
+          "TP1": 8,
+          "TP2": 5,
+          "TP3": 4
+        },
+        "exit_comment_quantities": {
+          "SL": 67.0,
+          "TP1": 8.0,
+          "TP2": 5.0,
+          "TP3": 4.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "SL": 24,
+          "TP3": 4
+        }
+      },
+      "M2|1|AGAINST_HTF|COUNTERTREND": {
+        "count": 5,
+        "wins": 1,
+        "losses": 4,
+        "breakevens": 0,
+        "net_cash": -181.371,
+        "sum_positive_net_cash": 11.544,
+        "sum_negative_net_cash_magnitude": 192.915,
+        "profit_factor": 0.05983982583002877,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.2,
+        "average_net_cash": -36.2742,
+        "average_win_cash": 11.544,
+        "average_loss_cash": -48.22875,
+        "closed_cash_event_drawdown": 181.371,
+        "campaign_close_drawdown": 181.371,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "SL": 14,
+          "TP1": 1
+        },
+        "exit_comment_quantities": {
+          "SL": 14.0,
+          "TP1": 1.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "SL": 5
+        }
+      },
+      "M2|1|WITH_HTF|TREND": {
+        "count": 11,
+        "wins": 8,
+        "losses": 3,
+        "breakevens": 0,
+        "net_cash": 335.802,
+        "sum_positive_net_cash": 451.722,
+        "sum_negative_net_cash_magnitude": 115.92,
+        "profit_factor": 3.89684265010352,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.7272727272727273,
+        "average_net_cash": 30.527454545454546,
+        "average_win_cash": 56.46525,
+        "average_loss_cash": -38.64,
+        "closed_cash_event_drawdown": 41.193,
+        "campaign_close_drawdown": 41.193,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "TP1": 8,
+          "SL": 16,
+          "TP2": 5,
+          "TP3": 3,
+          "ИЗТЕКЪЛ СРОК": 1
+        },
+        "exit_comment_quantities": {
+          "TP1": 8.0,
+          "SL": 16.0,
+          "TP2": 5.0,
+          "TP3": 3.0,
+          "ИЗТЕКЪЛ СРОК": 1.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "SL": 7,
+          "TP3": 3,
+          "ИЗТЕКЪЛ СРОК": 1
+        }
+      },
+      "M3|-1|AGAINST_HTF|COUNTERTREND": {
+        "count": 4,
+        "wins": 3,
+        "losses": 1,
+        "breakevens": 0,
+        "net_cash": 157.264,
+        "sum_positive_net_cash": 177.13,
+        "sum_negative_net_cash_magnitude": 19.866,
+        "profit_factor": 8.91623879995973,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.75,
+        "average_net_cash": 39.316,
+        "average_win_cash": 59.04333333333334,
+        "average_loss_cash": -19.866,
+        "closed_cash_event_drawdown": 19.866,
+        "campaign_close_drawdown": 19.866,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "TP1": 3,
+          "ИЗТЕКЪЛ СРОК": 2,
+          "TP2": 1,
+          "TP3": 1,
+          "SL": 3
+        },
+        "exit_comment_quantities": {
+          "TP1": 3.0,
+          "ИЗТЕКЪЛ СРОК": 4.0,
+          "TP2": 1.0,
+          "TP3": 1.0,
+          "SL": 3.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "ИЗТЕКЪЛ СРОК": 2,
+          "TP3": 1,
+          "SL": 1
+        }
+      },
+      "M3|-1|WITH_HTF|TREND": {
+        "count": 8,
+        "wins": 6,
+        "losses": 2,
+        "breakevens": 0,
+        "net_cash": 58.362,
+        "sum_positive_net_cash": 140.289,
+        "sum_negative_net_cash_magnitude": 81.927,
+        "profit_factor": 1.712365886704017,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.75,
+        "average_net_cash": 7.29525,
+        "average_win_cash": 23.3815,
+        "average_loss_cash": -40.9635,
+        "closed_cash_event_drawdown": 46.884,
+        "campaign_close_drawdown": 46.884,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "SL": 11,
+          "TP1": 5,
+          "TP2": 3,
+          "TP3": 2,
+          "ИЗХОД СЛЕД ГАП": 1
+        },
+        "exit_comment_quantities": {
+          "SL": 11.0,
+          "TP1": 5.0,
+          "TP2": 3.0,
+          "TP3": 2.0,
+          "ИЗХОД СЛЕД ГАП": 3.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "SL": 5,
+          "TP3": 2,
+          "ИЗХОД СЛЕД ГАП": 1
+        }
+      },
+      "M3|1|AGAINST_HTF|COUNTERTREND": {
+        "count": 5,
+        "wins": 2,
+        "losses": 3,
+        "breakevens": 0,
+        "net_cash": -38.364,
+        "sum_positive_net_cash": 21.816,
+        "sum_negative_net_cash_magnitude": 60.18,
+        "profit_factor": 0.3625124626121635,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.4,
+        "average_net_cash": -7.6728,
+        "average_win_cash": 10.908,
+        "average_loss_cash": -20.06,
+        "closed_cash_event_drawdown": 43.947,
+        "campaign_close_drawdown": 43.947,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "SL": 13,
+          "TP1": 2
+        },
+        "exit_comment_quantities": {
+          "SL": 13.0,
+          "TP1": 2.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "SL": 5
+        }
+      },
+      "M3|1|NEUTRAL_HTF|COUNTERTREND": {
+        "count": 2,
+        "wins": 1,
+        "losses": 1,
+        "breakevens": 0,
+        "net_cash": -2.861,
+        "sum_positive_net_cash": 19.21,
+        "sum_negative_net_cash_magnitude": 22.071,
+        "profit_factor": 0.8703728874994336,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.5,
+        "average_net_cash": -1.4305,
+        "average_win_cash": 19.21,
+        "average_loss_cash": -22.071,
+        "closed_cash_event_drawdown": 22.088,
+        "campaign_close_drawdown": 22.071,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "TP1": 1,
+          "TP2": 1,
+          "SL": 4
+        },
+        "exit_comment_quantities": {
+          "TP1": 1.0,
+          "TP2": 1.0,
+          "SL": 4.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "SL": 2
+        }
+      },
+      "M3|1|WITH_HTF|TREND": {
+        "count": 3,
+        "wins": 0,
+        "losses": 3,
+        "breakevens": 0,
+        "net_cash": -82.467,
+        "sum_positive_net_cash": 0.0,
+        "sum_negative_net_cash_magnitude": 82.467,
+        "profit_factor": 0.0,
+        "profit_factor_status": "DEFINED",
+        "win_rate": 0.0,
+        "average_net_cash": -27.489,
+        "average_win_cash": null,
+        "average_loss_cash": -27.489,
+        "closed_cash_event_drawdown": 82.467,
+        "campaign_close_drawdown": 82.467,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "SL": 9
+        },
+        "exit_comment_quantities": {
+          "SL": 9.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "SL": 3
+        }
+      }
+    }
+  },
+  "isolated_runs_not_additive": true,
+  "probe_comparison": "probe_journal_comparison.json",
+  "parser_sha256": "0057f839e56e97d0a154785f905484c1cf1c65e4f0752a3d21e7e0f53cc7073f",
+  "comparison_tool_sha256": "bd9038480afef43b3386707392cf113c8ba91d16f97f9f630fea71d202e5cbee",
+  "performance_improvement_claim": false
+}

@@ -1,0 +1,23 @@
+test_full_stop_keeps_all_three_units (test_analyze.ExitAttribution.test_full_stop_keeps_all_three_units) ... ok
+test_gap_label_does_not_assert_true_gap_cause (test_analyze.ExitAttribution.test_gap_label_does_not_assert_true_gap_cause) ... ok
+test_later_gap_through_amended_stop_does_not_falsely_match_price (test_analyze.ExitAttribution.test_later_gap_through_amended_stop_does_not_falsely_match_price) ... ok
+test_later_locked_sl_checks_both_direction_and_fill_slippage (test_analyze.ExitAttribution.test_later_locked_sl_checks_both_direction_and_fill_slippage) ... ok
+test_quantity_mismatch_is_rejected (test_analyze.ExitAttribution.test_quantity_mismatch_is_rejected) ... ok
+test_samebar_tp_and_sl_is_not_called_locked (test_analyze.ExitAttribution.test_samebar_tp_and_sl_is_not_called_locked) ... ok
+test_time_exit_preserves_prior_tp_quantity (test_analyze.ExitAttribution.test_time_exit_preserves_prior_tp_quantity) ... ok
+test_adverse_deviation_is_positive_in_both_directions (test_analyze.MetricsAttribution.test_adverse_deviation_is_positive_in_both_directions) ... ok
+test_efficiency_boundary_is_fixed_and_missing_is_separate (test_analyze.MetricsAttribution.test_efficiency_boundary_is_fixed_and_missing_is_separate) ... ok
+test_fees_are_subtracted_once_not_added_to_already_net (test_analyze.MetricsAttribution.test_fees_are_subtracted_once_not_added_to_already_net) ... ok
+test_four_real_journals_reconcile_all_exit_classes_and_fixed_bins (test_analyze.MetricsAttribution.test_four_real_journals_reconcile_all_exit_classes_and_fixed_bins) ... ok
+test_partial_campaign_is_not_in_complete_metrics (test_analyze.MetricsAttribution.test_partial_campaign_is_not_in_complete_metrics) ... ok
+test_small_n_and_fee_flip_are_explicit (test_analyze.MetricsAttribution.test_small_n_and_fee_flip_are_explicit) ... ok
+test_unreconciled_audit_cannot_supply_performance_diagnosis (test_analyze.MetricsAttribution.test_unreconciled_audit_cannot_supply_performance_diagnosis) ... ok
+test_changed_dataset_is_rejected_before_comparing_returns (test_compare_h1.ChronologyTests.test_changed_dataset_is_rejected_before_comparing_returns) ... ok
+test_cross_boundary_position_keeps_entry_cohort_and_split_exit_cash (test_compare_h1.ChronologyTests.test_cross_boundary_position_keeps_entry_cohort_and_split_exit_cash) ... ok
+test_exact_boundary_belongs_to_observed_confirmation (test_compare_h1.ChronologyTests.test_exact_boundary_belongs_to_observed_confirmation) ... ok
+test_same_actual_run_has_zero_portfolio_delta (test_compare_h1.ChronologyTests.test_same_actual_run_has_zero_portfolio_delta) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.058s
+
+OK

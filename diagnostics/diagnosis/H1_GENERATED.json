@@ -1,0 +1,11 @@
+{
+  "hypothesis": "H1_FAST_EFFICIENCY_025",
+  "registration_sha256": "2b26022eb385d7f4a3574b8792b9ec9eb6d9d844b5953e27147fc891783f92c5",
+  "baseline_sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+  "candidate_strategy_sha256": "1b43f22c01a8bf7e42eac323e6c2f6ee954a0fa0a8e5dc660b6a8b17a57b4eeb",
+  "editor_buffer_sha256": "0a4e328ba1a29d591f2e4763adbaf4572a090215da202931e8380e21749354ba",
+  "changed_model": "FAST",
+  "added_gate": "not na(efficiency) and efficiency >= 0.25",
+  "all_other_model_and_execution_bytes_unchanged": true,
+  "production_adopted": false
+}

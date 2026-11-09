@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+# Generated editor buffers: reproduce from the preserved baseline and the generators.
+warnings/combined_observer_with_warnings*.txt
+

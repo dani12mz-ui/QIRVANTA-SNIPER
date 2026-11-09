@@ -1,0 +1,183 @@
+CW10003 / native-attribution audit — exact baseline 48e5cdd
+
+Scope: read-only review of unified source and prior committed TradingView evidence.
+Only diagnostics/warnings/ contains new files. No trading code was changed, no
+function call was hoisted, and no new TradingView run is claimed by this audit.
+
+1. Finding
+
+The two CW10003 warnings are real compiler observations. The committed snapshot
+unified/reports/tradingview/readded_final_compile.txt records f_fast at generated
+755:35 and f_reversal at 756:35 on 2026-11-09 04:41:53 Europe/Sofia. This is prior
+evidence, not a fresh execution of the diagnostic probes below.
+
+No concrete inconsistent local-history calculation was found in these two
+functions or their reachable helper functions. This is narrower than saying that
+CW10003 is harmless in general, or that the warning caused the observed losses.
+The compiler warning alone supplies neither a signal mismatch nor a P&L cause.
+
+The current source and standalone artifact are byte-identical to the exact
+48e5cddab17ea831bdc277f17f0406329fdfe39c git objects. audit.json records both hashes
+for every unified/src fragment and the standalone file.
+
+2. Historical dependencies and ownership
+
+Function       Source location                  Historical reads
+f_fast         unified/src/decision:105–136      close[1]; emaFast[1]
+f_reversal     unified/src/decision:138–194      rsi[1]
+
+close is a built-in chart series. emaFast and rsi are declared at global scope in
+features:9 and features:13 using ta.ema(close,21) and ta.rsi(close,14). Neither
+function declares a same-named local variable/parameter. Neither reads the
+history of d, s, boundary, trigger, local, risingRsi or a function return value.
+Neither contains a local var/varip declaration, ta.* call, request.* call, or
+math.sum call. The transitive scan covers capture, validity, target-room, event,
+rounding, cooldown and setup helpers, not just the immediate function bodies.
+audit.json includes the complete reachable list and each classified history read.
+
+The compiler warning is consistent with the source's history-dependent function
+being called from a conditional loop. The exact compiler reason for conservatively
+warning on these direct global references is not exposed. It is an inference,
+not an observed compiler-internals fact, that the present warning is broader than
+the actual local-history hazards in these particular functions.
+
+3. Call order and state
+
+inputs:117 defines processBar = barstate.isconfirmed. decision:196–204 clears
+events/candidates, then executes a two-iteration direction loop. Its exact order
+is retest(+1), fast(+1), reversal(+1), retest(-1), fast(-1), reversal(-1).
+Model/session/date/evidence gates do not skip these calls: they are evaluated
+inside them. Under the declared default strategy properties each confirmed bar
+receives this sequence once. The loop evaluates each written function call twice;
+it does not create separate local function-history scopes for LONG and SHORT.
+
+The source's actual setup isolation is explicit: two distinct Setup.new objects
+in reversalStates/retestStates, selected by directionIndex. Shared arrays remain
+shared intentionally. In particular f_capture updates lastModelSignal per family
+and f_recordDecision updates direction-specific counters. Reordering/duplicating
+the calls can change state even if it removes a compiler warning. A mechanical
+hoist of these side-effecting model functions is therefore not justified.
+
+4. HTF / global feature dependencies
+
+features:2 requests [close[1], EMA50[1], EMA200[1], EMA50[3]] from the configured
+htf with lookahead_on. features:3 requests prior-day high[1]/low[1] similarly.
+These calls are global, outside both model functions and the direction loop.
+The [1] offsets make the requested last completed HTF values causal; EMA50[3]
+is an intentionally older slope endpoint. This audit does not change that offset.
+Global ta.highest/lowest series supply fastBreak*, fastStop*, priorReversal* and
+priorRecovery* (features:53–60). There is no conditional request.security call
+inside f_fast/f_reversal to repair. The HTF selector and symbol/session alignment
+still need to be included in any real-data comparison manifest.
+
+5. Properties overrides are outside the default proof
+
+calc_on_every_tick=false, calc_on_order_fills=false and process_orders_on_close=false
+are declared. The default one-close execution argument is not a general rollback
+proof. Properties can override execution behavior. On-order-fill or historical-
+tick recalculation can execute historical bars repeatedly; ordinary var state
+can roll back while native order records persist. nativeLastSubmissionBar and
+nativeSeenClosed therefore do not prove safety under those overrides. Enabling
+every-tick evaluation also does not turn the close-gated decision/UI into an
+instant fill display. No unsupported property mode was claimed safe here.
+
+6. Concrete native diagnostic attribution defect
+
+native_adapter:59 and :81 reduce f_openRejection(...) to a boolean. Its actual
+reason is discarded. The following divergence messages and market-close comment
+(:61, :63, :83) label every rejected post-fill state as a GAP.
+
+However, paper_engine:61–68 can return these distinct causes:
+  - fill outside initial SL / TP1;
+  - news pause at entry time;
+  - opening displacement above the allowed threshold;
+  - initial risk / cost ratio at entry;
+  - insufficient room to the frozen first target.
+
+Deterministic witness: LONG reference=100, fill=100, initial SL=90, TP1=110,
+ATR=10; all price/risk/room gates pass, but entry occurs inside a configured news
+window. The actual price gap is zero. f_openRejection returns a news reason, yet
+the current native close comment is still "ИЗХОД СЛЕД ГАП" when flattening is on.
+The witness test proves this loss of cause information; it does not prove a fill
+occurred in real data or that such a trade lost money. No production fix is made
+in this stage. A future attribution-only change should preserve the returned
+reason string in a native event/close message while leaving the flatten decision
+and its timing untouched.
+
+7. Native execution findings relevant to a loss ledger
+
+The inspected default code retains actual entry/exit prices, partial quantities,
+native commission, and same-bar entry-plus-exit records. Its three bracket calls
+share one entry id and reserve independent equal parts with separate OCA names.
+TP1 stop movement requires a closed native T1 record with exit_comment == TP1;
+touching a target in high/low alone does not activate it. Remaining brackets are
+updated at close, so a loss before that update is not evidence of a retrospectively
+missing break-even stop. Gap flattening is likewise a next-tick market request,
+not a fill rejection and not a retroactive deletion of the trade.
+
+No new concrete order-size, fee-double-charge or same-bar omission defect was
+identified in this review. This is not a substitute for matching all native
+records against the Strategy Tester export. Margin liquidation, nondefault
+properties, truncated histories and feed-specific execution still require rows.
+
+Forensic cautions tied to the actual event schema:
+  - NATIVE_EXIT_<index> rows are partial executions; NATIVE_CLOSED is their
+    campaign aggregate. Adding both kinds counts the same realized cash twice.
+  - NATIVE_CLOSED.reason is only nativeLastExitReason, the final partial's comment.
+    It cannot establish that every part of a losing campaign stopped out.
+  - Event.stop is the initial structural stop, including exit rows. To determine
+    whether a stop loss used an amended level, join NATIVE_STOP_SCHEDULED by plan
+    id and known_time, then verify the native fill row. Do not infer it from the
+    final campaign comment or price alone.
+  - NATIVE_CLOSED R sums completed campaigns; strategy.closedtrades counts native
+    parts. Match plan ids rather than comparing those counts as if identical.
+  - Current net cash uses strategy.netprofit directly. The auxiliary closed-plan
+    cash is not a replacement for that native figure while a campaign is open.
+  - JSON quantity_fraction needs the frozen requested total quantity and symbol
+    pointvalue from the run manifest to reconstruct cash; it is not absolute qty.
+
+8. Verification and limitations
+
+Run from diagnostics/warnings:
+  python -X utf8 -m unittest discover -s . -p "test_*.py" -v
+  python -X utf8 audit.py
+
+18 tests passed. They verify baseline immutability, exact history ownership,
+transitive dependencies, call order, global requests and the attribution witness.
+Positive-control mutations insert local-history shadowing, parameter history,
+local persistent state or a transitive ta.ema; the scanner detects them. Tests
+therefore do more than assert that a warning string exists. The scanner is still
+a narrow source checker, not a Pine grammar implementation, semantic compiler or
+broker emulator. The two standalone textual probes are provided in PINE_PROBES.txt;
+neither was compiled/run by this child audit.
+
+inject_warning_probe.py is a separate optional generator for the root observer
+buffer. It compares history and pure predicates INSIDE the original f_fast and
+f_reversal calls against equivalent values computed at global scope beforehand.
+It does not call either model again. Four counters track FAST/REVERSAL × LONG/SHORT,
+and four mismatch counters are logged at the root observer's exact dgCutoff along
+with dgCount, netprofit and closed_count. Expected: all four call counts equal
+dgCount and all mismatches are zero. The full native observation appendix stays
+byte-identical; removing the four additions must reconstruct the entire input.
+The generator refuses a modified baseline or an existing output. Its .txt output
+and .manifest.json live only here. Actual Pine compilation/runtime of this
+instrumentation remains UNVERIFIED until root captures new TradingView evidence.
+
+Invocation from this directory:
+  python -X utf8 inject_warning_probe.py <root-observer.txt> combined_observer_with_warnings.txt
+
+No inference about improved profitability, winning filters, bad signal families
+or loss causes is made from aggregate results. Real attribution needs the same
+symbol, timeframe, candles, date range, native properties and individual fills.
+
+Official documentation consulted (2026-11-09):
+https://www.tradingview.com/pine-script-docs/errors/CW10003/
+  Conditional/iterative history-dependent calls can warn; local history is the
+  concern, and functions may have side effects that make forced calls incorrect.
+https://www.tradingview.com/pine-script-docs/language/execution-model/
+  Global series history represents previous bars; local/parameter history follows
+  its call scope. Rollback has exceptions for strategy orders and logs.
+https://www.tradingview.com/pine-script-docs/language/user-defined-functions/
+  One written call has one local scope; loop iterations do not create independent
+  scopes for each direction. These rules support the source analysis above;
+  they do not supply empirical results for this strategy.

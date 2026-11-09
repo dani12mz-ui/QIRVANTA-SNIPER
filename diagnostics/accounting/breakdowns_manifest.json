@@ -1,0 +1,16 @@
+{
+  "scope": "DISPLAY_ONLY_EXISTING_AUDIT_AND_CHRONOLOGY_METRICS",
+  "input_sha256": {
+    "accounting\\B-ALL.audit.json": "05e98c9831308bcbde40aaaa79b96db368dc856d06d4030a113eab00a00caa67",
+    "accounting\\B-RETEST.audit.json": "1dbdf2f5ef1ded1e63c8816e6757cd83afe85e3e8ab181d87d34d12b45049586",
+    "accounting\\B-FAST.audit.json": "bd3408bf3b775d6d5f4728d1bcc80d189fcf420daa79bbf037c2e499d63e6f66",
+    "accounting\\B-REVERSAL.audit.json": "f72c54e7306ec30fd99906b84d5f5fecf7e48612d95c774e346b5e3cc9294d16",
+    "diagnosis\\H1_COMPARISON.json": "5d0c0f9def8e4b64a1fbf7a394de184215a0788e81fbf5182576ac128da5fb70"
+  },
+  "renderer_sha256": "0da3406c795c2219adc0d0211eddc031f916a79bfa65ebb7e896005b99edbacd",
+  "output": "diagnostics/BREAKDOWNS_BG.md",
+  "output_sha256": "1f96754e7a4ca9bcc4a9886541e3378d6907768b5eebca1915b03c9d5dda2f81",
+  "all_matrix_rows": 18,
+  "all_observed_matrix_groups": 11,
+  "data_recalculated": false
+}

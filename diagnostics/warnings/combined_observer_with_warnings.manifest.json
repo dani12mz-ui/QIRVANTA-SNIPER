@@ -1,0 +1,13 @@
+{
+  "baseline_sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+  "input_sha256": "53d6beb93c76cc009cf0c39a871be72604e2dca4c0daacfaf1f9b857f82445a1",
+  "output_sha256": "61ac5d94f83e0e2f44007e5f20e6d1fdd3643ca9973830f42fa2cedb0cef8583",
+  "native_appendix_sha256": "ac79c52a9fdcf90ed6804aa5ccedf86e01243736c72b8a30a80012d07b194242",
+  "native_appendix_unchanged": true,
+  "remove_insertions_restores_input": true,
+  "original_model_and_order_calls_unchanged": true,
+  "insertions": 4,
+  "probe_run_status": "UNVERIFIED",
+  "expected_result": "Each of four call counts equals confirmed_bar_count; four mismatches are zero",
+  "scope": "History reads and pure predicates inside original calls; no full signal parity or profitability assertion"
+}

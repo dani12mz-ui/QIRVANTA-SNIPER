@@ -1,0 +1,90 @@
+{
+  "created_at_utc": "2026-11-09T03:17:49.418301+00:00",
+  "baseline_commit": "48e5cddab17ea831bdc277f17f0406329fdfe39c",
+  "scope": "Previously saved real TradingView observations, not a new runtime rerun",
+  "symbol": "OANDA:XAUUSD",
+  "timeframe": "15",
+  "chart_type": "standard Candles",
+  "original_loaded_date_label": "2026-08-03 through 2026-11-09",
+  "baseline_observation_clock_utc": "2026-11-09T02:36:12Z",
+  "unified_observation_clock_utc": "2026-11-09T02:45:23Z",
+  "clock_qualification": "Visible chart clock in the saved snapshot; not the exact loaded-data boundary",
+  "original_baseline_visible_aggregates": {
+    "net_usd": -144.49,
+    "max_equity_drawdown_usd": 842.26,
+    "closed_parts": 212,
+    "winning_parts": 90,
+    "losing_parts": 122,
+    "profit_factor": 0.905,
+    "gross_profit_usd": 1378.54,
+    "gross_loss_usd": 1523.03,
+    "entry_family_net_usd": {
+      "retest": 20.82,
+      "reversal": 91.93,
+      "fast_breakout": -257.24
+    }
+  },
+  "saved_unified_visible_aggregates": {
+    "net_usd": -144.49,
+    "max_equity_drawdown_usd": 842.26,
+    "closed_parts": 212,
+    "winning_parts": 90,
+    "losing_parts": 122,
+    "profit_factor": 0.905,
+    "gross_profit_usd": 1378.54,
+    "gross_loss_usd": 1523.03,
+    "entry_family_net_usd": {
+      "retest": 20.82,
+      "reversal": 91.93,
+      "fast_breakout": -257.24
+    }
+  },
+  "metric_units": {
+    "closed_parts": "Native Strategy Tester closed partial trades, not complete 3-part campaigns",
+    "entry_family_net_usd": "Contribution within combined strategy, not independent isolated-model runs"
+  },
+  "properties_observed_in_saved_ui": {
+    "initial_capital_usd": 100000,
+    "default_order_quantity": 3,
+    "pyramiding": 0,
+    "commission_per_contract_per_fill_usd": 0.175,
+    "slippage_ticks": 2,
+    "long_leverage": "1x",
+    "short_leverage": "1x",
+    "bar_detail": "Default (4 ticks per bar)",
+    "script_execution": "On bar close",
+    "limit_order_execution": "Requested price",
+    "order_execution_delay": "One tick"
+  },
+  "configuration_reported_by_prior_runtime_summary": {
+    "native_portfolio": "RAW",
+    "model_selection": "All",
+    "units_per_partial": 1
+  },
+  "not_established_by_prior_evidence": [
+    "Exact OHLC dataset and SHA-256",
+    "Loaded bar count and exact first loaded timestamp",
+    "Complete Inputs-tab snapshot including any saved UI overrides",
+    "Exact warmup/HTF history and initialization identical across runs",
+    "Complete candidate/event/trade export and event-by-event parity",
+    "Independent Retest/Fast/Reversal runs",
+    "Full per-campaign cash/R reconciliation",
+    "Future or untouched holdout performance",
+    "Improved profitability"
+  ],
+  "limitations": [
+    "Market was open and the unconfirmed live OHLC could change; no bit-identical dataset hash",
+    "Aggregate equality does not establish exact candidate/event/trade-by-trade parity",
+    "Full CSV export blocked by Basic-plan upgrade requirement"
+  ],
+  "performance_improvement_claim": false,
+  "evidence_sha256_at_baseline": {
+    "unified/reports/runtime_summary.json": "b8d60ab4a5b43e60a54e8cb00e21e0a33ea3913d0d9712fb3da8fe72145e2743",
+    "unified/reports/tradingview/baseline_M15.txt": "78e9c9d6ee9c472f236ac6e299406f8c698586281729521d2d5b580ca6b9cbdd",
+    "unified/reports/tradingview/final_M15.txt": "6f285ae50c36a281fed179d6045f5b47b45523a2fac8e217f8fa80cb1e2c94e2",
+    "unified/reports/tradingview/baseline_properties.txt": "d1a4e7023adb7cf48b1dec6190f51f01d8d78dd7ab997fd6e162e0a36dbb0cc8",
+    "unified/reports/tradingview/final_properties.txt": "1cf77051c359930a6ee976e274c182bdb11a2e6f3923b305fe5b9b200f8bcc7a",
+    "unified/reports/tradingview/execution_settings.png": "5f21460103d5572ea7e2b1b5dd81c94c93acada0505d122884be57921fb793d4",
+    "unified/reports/tradingview/csv_blocked_and_trade_sample.txt": "9b1c4028fabd498792c1e1af615cdb6199476b35c4ee3b9292c4b38da0c4b857"
+  }
+}

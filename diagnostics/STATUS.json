@@ -1,0 +1,62 @@
+{
+  "completed_at_utc": "2026-11-09T03:57:49.190109+00:00",
+  "baseline_commit": "48e5cddab17ea831bdc277f17f0406329fdfe39c",
+  "baseline_files_verified_unchanged": 217,
+  "production_pine_changed": false,
+  "production_candidate_adopted": false,
+  "baseline_tests": {
+    "unified": 99,
+    "refactored": 127,
+    "evidence": "protocol/baseline_tests.json"
+  },
+  "new_tests": {
+    "warnings": {
+      "count": 18,
+      "log": "warnings/verified_tests.log",
+      "sha256": "95c739945232759fcc06cc0eb95ddf4608b6e08fbc9ae960850e04221a064dba"
+    },
+    "accounting": {
+      "count": 38,
+      "log": "accounting/tests.log",
+      "sha256": "c6b60933844b0e03cdfd7f03f57161b8e23ee1ad5d14b7416f99fa5b942f3ed6"
+    },
+    "diagnosis": {
+      "count": 18,
+      "log": "diagnosis/verified_tests.log",
+      "sha256": "98a1136d93673b3fa9ba06ab64b343ee14638a11064f19f32da561a528f6a6b9"
+    },
+    "protocol": {
+      "count": 16,
+      "log": "protocol/H1_integrity_tests.log",
+      "sha256": "426a7bc1fa96abc753970f884739183ca06d7c22fc91865ebbfd225ddd07ac33"
+    }
+  },
+  "new_tests_total": 90,
+  "baseline_actual": {
+    "complete_positions": 72,
+    "closed_parts": 212,
+    "net_usd": -144.492,
+    "native_dd_usd": 842.255
+  },
+  "H1_actual": {
+    "complete_positions": 35,
+    "net_usd": 122.428,
+    "later_observed_cohort_net_usd": -65.72,
+    "net_R": -0.58593,
+    "decision": "NOT_ADOPTED_SMALL_FAST_SAMPLE_AND_UNSTABLE_LATER_PORTFOLIO"
+  },
+  "warning_scope": "4 x 6445 actual historical calls; zero direct-history/predicate mismatches; native journal unchanged; warnings retained",
+  "mobile_active_plan_sl_tp": "NOT_VERIFIED_NO_CURRENT_ACTIVE_PLAN_AND_INTRADAY_REPLAY_PLAN_LIMIT",
+  "price_notification_delivery": "PASS_WEB_TOAST_AND_LOG_2026-11-09T03:27:22Z",
+  "script_notification_delivery": "NOT_VERIFIED_BASIC_HAS_ZERO_TECHNICAL_ALERTS",
+  "physical_phone_delivery": "NOT_VERIFIED",
+  "untouched_future_holdout": "NOT_AVAILABLE_YET_NOT_RUN",
+  "real_broker_orders": false,
+  "final_tradingview_script": "QIRVANTA_UNIFIED version 9; exact baseline editor hash restored",
+  "limits": [
+    "Earlier old-run feed cannot be retroactively authenticated from summary numbers",
+    "Historical chronological split is already observed, not untouched OOS",
+    "Per-candidate Properties dialogs were not independently captured; declaration unchanged, no Properties edits, final Properties match original",
+    "No tick-level intrabar replay or live broker-fill validation"
+  ]
+}

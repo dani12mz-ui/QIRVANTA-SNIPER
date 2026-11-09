@@ -1,0 +1,478 @@
+{
+  "baseline": "48e5cddab17ea831bdc277f17f0406329fdfe39c",
+  "source_unchanged": true,
+  "manifest": [
+    {
+      "path": "unified/src/alerts.pineinc",
+      "baseline_sha256": "2193791302a52908a74d2afe078e82a7c2a8b31ca46be8f1e36160da10e67812",
+      "current_sha256": "2193791302a52908a74d2afe078e82a7c2a8b31ca46be8f1e36160da10e67812",
+      "byte_identical": true
+    },
+    {
+      "path": "unified/src/alerts_helpers.pineinc",
+      "baseline_sha256": "81358d1d4f5e4de3086b1c248deb05106128ebcc93e6172f32624eb8f77558c0",
+      "current_sha256": "81358d1d4f5e4de3086b1c248deb05106128ebcc93e6172f32624eb8f77558c0",
+      "byte_identical": true
+    },
+    {
+      "path": "unified/src/decision.pineinc",
+      "baseline_sha256": "0c07bef363335e749eb12606effe5bdc573972e6521a219459e2de7fdee05f1b",
+      "current_sha256": "0c07bef363335e749eb12606effe5bdc573972e6521a219459e2de7fdee05f1b",
+      "byte_identical": true
+    },
+    {
+      "path": "unified/src/features.pineinc",
+      "baseline_sha256": "14c82834109b0df8be4f2076b539c7cf58a73cc31b6201d47b7ceaf2b9ddd2e5",
+      "current_sha256": "14c82834109b0df8be4f2076b539c7cf58a73cc31b6201d47b7ceaf2b9ddd2e5",
+      "byte_identical": true
+    },
+    {
+      "path": "unified/src/indicator_adapter.pineinc",
+      "baseline_sha256": "c58531555f1d7f05cb5f79e6a18a54627cfd1c0cc132de1a19d67eff659ec9e3",
+      "current_sha256": "c58531555f1d7f05cb5f79e6a18a54627cfd1c0cc132de1a19d67eff659ec9e3",
+      "byte_identical": true
+    },
+    {
+      "path": "unified/src/indicator_extra.pineinc",
+      "baseline_sha256": "b64dfbca6725c349af05124611c9b15fc8378b22f34a05a807649e65d5e4f4ed",
+      "current_sha256": "b64dfbca6725c349af05124611c9b15fc8378b22f34a05a807649e65d5e4f4ed",
+      "byte_identical": true
+    },
+    {
+      "path": "unified/src/indicator_header.pineinc",
+      "baseline_sha256": "bf23666a27d5a3e39038ba6c60e3d0e1192b967e27a19d632d3e6914843e3959",
+      "current_sha256": "bf23666a27d5a3e39038ba6c60e3d0e1192b967e27a19d632d3e6914843e3959",
+      "byte_identical": true
+    },
+    {
+      "path": "unified/src/inputs.pineinc",
+      "baseline_sha256": "2e52e361f1619f22735c98182e3bd420496343e8ab3ac96802ae6794493fa2f7",
+      "current_sha256": "2e52e361f1619f22735c98182e3bd420496343e8ab3ac96802ae6794493fa2f7",
+      "byte_identical": true
+    },
+    {
+      "path": "unified/src/native_adapter.pineinc",
+      "baseline_sha256": "63889b0b793751b87b519c332f011205f8dcede28eb644a7a7a2212b02531817",
+      "current_sha256": "63889b0b793751b87b519c332f011205f8dcede28eb644a7a7a2212b02531817",
+      "byte_identical": true
+    },
+    {
+      "path": "unified/src/native_extra.pineinc",
+      "baseline_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "current_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "byte_identical": true
+    },
+    {
+      "path": "unified/src/native_header.pineinc",
+      "baseline_sha256": "6b3333bf02a85fb553ed559a7fdc1d8206d894a8989eb0e5e36294466fc02b4a",
+      "current_sha256": "6b3333bf02a85fb553ed559a7fdc1d8206d894a8989eb0e5e36294466fc02b4a",
+      "byte_identical": true
+    },
+    {
+      "path": "unified/src/paper_engine.pineinc",
+      "baseline_sha256": "759a80c06cc765844f2785dd410053a17dde3394bf02d1a94fd78f7e5c6590a4",
+      "current_sha256": "759a80c06cc765844f2785dd410053a17dde3394bf02d1a94fd78f7e5c6590a4",
+      "byte_identical": true
+    },
+    {
+      "path": "unified/src/types_helpers.pineinc",
+      "baseline_sha256": "f1b33ba27ab9de2d7a8abaf2aef380cb0b3afcb8357a05fff66d3a2d49798190",
+      "current_sha256": "f1b33ba27ab9de2d7a8abaf2aef380cb0b3afcb8357a05fff66d3a2d49798190",
+      "byte_identical": true
+    },
+    {
+      "path": "unified/src/visual_alerts.pineinc",
+      "baseline_sha256": "e6d27f266c41906fe4c219a91543729121a8cfc8c485b32b221fc1df9d1882e1",
+      "current_sha256": "e6d27f266c41906fe4c219a91543729121a8cfc8c485b32b221fc1df9d1882e1",
+      "byte_identical": true
+    },
+    {
+      "path": "unified/QIRVANTA_UNIFIED.pine",
+      "baseline_sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+      "current_sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+      "byte_identical": true
+    }
+  ],
+  "functions": [
+    {
+      "root": "f_fast",
+      "reachable": [
+        {
+          "function": "f_fast",
+          "file": "unified/src/decision.pineinc",
+          "line": 105,
+          "history": [
+            {
+              "owner": "close",
+              "offset": "1",
+              "scope": "global"
+            },
+            {
+              "owner": "emaFast",
+              "offset": "1",
+              "scope": "global"
+            },
+            {
+              "owner": "emaFast",
+              "offset": "1",
+              "scope": "global"
+            }
+          ],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": [
+            "f_capture",
+            "f_cooldown",
+            "f_emit",
+            "f_enabled",
+            "f_id",
+            "f_makePlan",
+            "f_reason",
+            "f_recordDecision",
+            "f_stopRound"
+          ]
+        },
+        {
+          "function": "f_capture",
+          "file": "unified/src/decision.pineinc",
+          "line": 35,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": [
+            "f_planEvent",
+            "f_validPlan"
+          ]
+        },
+        {
+          "function": "f_cooldown",
+          "file": "unified/src/decision.pineinc",
+          "line": 32,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": []
+        },
+        {
+          "function": "f_emit",
+          "file": "unified/src/types_helpers.pineinc",
+          "line": 153,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": []
+        },
+        {
+          "function": "f_enabled",
+          "file": "unified/src/types_helpers.pineinc",
+          "line": 129,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": []
+        },
+        {
+          "function": "f_id",
+          "file": "unified/src/types_helpers.pineinc",
+          "line": 136,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": []
+        },
+        {
+          "function": "f_makePlan",
+          "file": "unified/src/types_helpers.pineinc",
+          "line": 197,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": [
+            "f_id",
+            "f_targetRound"
+          ]
+        },
+        {
+          "function": "f_reason",
+          "file": "unified/src/types_helpers.pineinc",
+          "line": 147,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": []
+        },
+        {
+          "function": "f_recordDecision",
+          "file": "unified/src/decision.pineinc",
+          "line": 13,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": []
+        },
+        {
+          "function": "f_stopRound",
+          "file": "unified/src/types_helpers.pineinc",
+          "line": 138,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": []
+        },
+        {
+          "function": "f_planEvent",
+          "file": "unified/src/types_helpers.pineinc",
+          "line": 176,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": [
+            "f_emit"
+          ]
+        },
+        {
+          "function": "f_validPlan",
+          "file": "unified/src/types_helpers.pineinc",
+          "line": 231,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": [
+            "f_targetRoom"
+          ]
+        },
+        {
+          "function": "f_targetRound",
+          "file": "unified/src/types_helpers.pineinc",
+          "line": 139,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": []
+        },
+        {
+          "function": "f_targetRoom",
+          "file": "unified/src/types_helpers.pineinc",
+          "line": 226,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": []
+        }
+      ],
+      "hazards": [],
+      "scope": "SOURCE_DEPENDENCY_AUDIT_NOT_PINE_RUNTIME"
+    },
+    {
+      "root": "f_reversal",
+      "reachable": [
+        {
+          "function": "f_reversal",
+          "file": "unified/src/decision.pineinc",
+          "line": 138,
+          "history": [
+            {
+              "owner": "rsi",
+              "offset": "1",
+              "scope": "global"
+            },
+            {
+              "owner": "rsi",
+              "offset": "1",
+              "scope": "global"
+            }
+          ],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": [
+            "f_capture",
+            "f_clear",
+            "f_cooldown",
+            "f_emit",
+            "f_enabled",
+            "f_makePlan",
+            "f_nearest",
+            "f_reason",
+            "f_recordDecision",
+            "f_start",
+            "f_stopRound"
+          ]
+        },
+        {
+          "function": "f_capture",
+          "file": "unified/src/decision.pineinc",
+          "line": 35,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": [
+            "f_planEvent",
+            "f_validPlan"
+          ]
+        },
+        {
+          "function": "f_clear",
+          "file": "unified/src/types_helpers.pineinc",
+          "line": 233,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": []
+        },
+        {
+          "function": "f_cooldown",
+          "file": "unified/src/decision.pineinc",
+          "line": 32,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": []
+        },
+        {
+          "function": "f_emit",
+          "file": "unified/src/types_helpers.pineinc",
+          "line": 153,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": []
+        },
+        {
+          "function": "f_enabled",
+          "file": "unified/src/types_helpers.pineinc",
+          "line": 129,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": []
+        },
+        {
+          "function": "f_makePlan",
+          "file": "unified/src/types_helpers.pineinc",
+          "line": 197,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": [
+            "f_id",
+            "f_targetRound"
+          ]
+        },
+        {
+          "function": "f_nearest",
+          "file": "unified/src/types_helpers.pineinc",
+          "line": 140,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": []
+        },
+        {
+          "function": "f_reason",
+          "file": "unified/src/types_helpers.pineinc",
+          "line": 147,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": []
+        },
+        {
+          "function": "f_recordDecision",
+          "file": "unified/src/decision.pineinc",
+          "line": 13,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": []
+        },
+        {
+          "function": "f_start",
+          "file": "unified/src/types_helpers.pineinc",
+          "line": 246,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": [
+            "f_id"
+          ]
+        },
+        {
+          "function": "f_stopRound",
+          "file": "unified/src/types_helpers.pineinc",
+          "line": 138,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": []
+        },
+        {
+          "function": "f_planEvent",
+          "file": "unified/src/types_helpers.pineinc",
+          "line": 176,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": [
+            "f_emit"
+          ]
+        },
+        {
+          "function": "f_validPlan",
+          "file": "unified/src/types_helpers.pineinc",
+          "line": 231,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": [
+            "f_targetRoom"
+          ]
+        },
+        {
+          "function": "f_id",
+          "file": "unified/src/types_helpers.pineinc",
+          "line": 136,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": []
+        },
+        {
+          "function": "f_targetRound",
+          "file": "unified/src/types_helpers.pineinc",
+          "line": 139,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": []
+        },
+        {
+          "function": "f_targetRoom",
+          "file": "unified/src/types_helpers.pineinc",
+          "line": 226,
+          "history": [],
+          "persistent_locals": [],
+          "historical_builtin_calls": [],
+          "called_user_functions": []
+        }
+      ],
+      "hazards": [],
+      "scope": "SOURCE_DEPENDENCY_AUDIT_NOT_PINE_RUNTIME"
+    }
+  ],
+  "warning_observation": {
+    "kind": "PRIOR_COMMITTED_TRADINGVIEW_EVIDENCE",
+    "path": "unified/reports/tradingview/readded_final_compile.txt",
+    "generated_lines": {
+      "f_fast": 755,
+      "f_reversal": 756
+    }
+  },
+  "zero_gap_news_witness": {
+    "price_gap": 0,
+    "rejection_reason": "Новинарска пауза при отваряне",
+    "native_divergence_flag": true,
+    "native_exit_comment_if_flattened": "ИЗХОД СЛЕД ГАП"
+  },
+  "pine_probe_status": "NOT_RUN_BY_THIS_AUDIT",
+  "profitability_conclusion": "NONE"
+}

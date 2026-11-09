@@ -1,0 +1,36 @@
+eturn \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+      - cell "05:16:31 ч."
+      - cell "Warning at 1304:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+        - text: Warning at 1304:39
+        - text: Strategies without "calc_on_every_tick = true" only calculate on confirmed chart bars. In this case, "barstate.islast" may not initially return "true" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable "calc_on_every_tick" in the "strategy()" function.
+    - row "05:16:31 ч. Warning at 1369:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+      - cell "05:16:31 ч."
+      - cell "Warning at 1369:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+        - text: Warning at 1369:39
+        - text: Strategies without "calc_on_every_tick = true" only calculate on confirmed chart bars. In this case, "barstate.islast" may not initially return "true" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable "calc_on_every_tick" in the "strategy()" function.
+    - row "05:16:31 ч. \"QIRVANTA_UNIFIED\" saved.":
+      - cell "05:16:31 ч."
+      - cell "\"QIRVANTA_UNIFIED\" saved."
+    - row "05:20:48 ч. Compiling...":
+      - cell "05:20:48 ч."
+      - cell "Compiling..."
+    - row "05:20:52 ч. Error at 1556:476 Cannot call \"nz\" with argument \"source\"=\"call \"strategy.closedtrades.exit_comment\" (series string)\". An argument of \"series string\" type was used but a \"simple int\" is expected.":
+      - cell "05:20:52 ч."
+      - cell "Error at 1556:476 Cannot call \"nz\" with argument \"source\"=\"call \"strategy.closedtrades.exit_comment\" (series string)\". An argument of \"series string\" type was used but a \"simple int\" is expected.":
+        - text: Error at 1556:476
+        - text: Cannot call "nz" with argument "source"="call "strategy.closedtrades.exit_comment" (series string)". An argument of "series string" type was used but a "simple int" is expected.
+    - row "05:20:52 ч. Error at 1556:515 Cannot call \"nz\" with argument \"replacement\"=\"\". An argument of \"literal string\" type was used but a \"simple int\" is expected.":
+      - cell "05:20:52 ч."
+      - cell "Error at 1556:515 Cannot call \"nz\" with argument \"replacement\"=\"\". An argument of \"literal string\" type was used but a \"simple int\" is expected.":
+        - text: Error at 1556:515
+        - text: Cannot call "nz" with argument "replacement"="". An argument of "literal string" type was used but a "simple int" is expected.
+    - row "05:20:52 ч. \"QIRVANTA_UNIFIED\" saved.":
+      - cell "05:20:52 ч."
+      - cell "\"QIRVANTA_UNIFIED\" saved."
+- button:
+- button "5 ∙ Today, 05:20"
+- button "Line 1556, Col 476"
+- link "Pine Script® v6":
+  - /url: https://www.tradingview.com/pine-script-reference/v6
+- alert
+- alert

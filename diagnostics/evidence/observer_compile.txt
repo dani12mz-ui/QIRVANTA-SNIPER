@@ -1,0 +1,786 @@
+- 'button "Logged in as dani12mz Active layout: Unnamed"'
+- toolbar:
+  - button "XAUUSD":
+    - generic: XAUUSD
+  - button "Switch data type":
+  - button "Compare symbols":
+  - separator
+  - button "15 minutes":
+    - generic: 15m
+  - separator
+  - button "Candles":
+  - separator
+  - button "Indicators, metrics, and strategies":
+    - generic: Indicators
+  - button "Favorite indicators and indicators templates":
+  - separator
+  - button "Create alert":
+    - generic: Alert
+  - button "Bar replay":
+    - generic: Replay
+  - separator
+  - button "Undo update QIRV ONE script":
+  - button [disabled]:
+  - button "Layout setup":
+  - button "Save all charts for all symbols and intervals on your layout":
+    - generic: Unnamed
+    - generic: Save
+  - button "Manage layouts":
+  - separator
+  - button "Quick search":
+  - button "Settings":
+  - button "Fullscreen mode":
+  - button "Take a snapshot":
+  - button "Share your idea with the trade community":
+  - button "Trade":
+    - generic: Trade
+  - button "Upgrade":
+    - generic: Upgrade
+- toolbar:
+  - button "Cross":
+  - button "Cursors" [pressed]:
+  - button "Trendline":
+  - button "Trend tools":
+  - button "Fib retracement":
+  - button "Gann and Fibonacci tools":
+  - button "XABCD pattern":
+  - button "Patterns":
+  - button "Long position":
+  - button "Forecasting and measurement tools":
+  - button "Brush":
+  - button "Geometric shapes":
+  - button "Text":
+  - button "Annotation tools":
+  - button "Icon":
+  - button "Icons":
+  - button "Measure":
+  - button "Zoom in":
+  - button "Magnet mode snaps drawings placed near price bars to the closest OHLC value":
+  - button "Magnets":
+  - button "Keep drawing":
+  - button "Lock drawings and indicators":
+  - button "Lock options":
+  - button "Hide all drawings":
+  - button "Hide options":
+  - button "Remove objects":
+  - button "Remove options":
+- 'region "Chart #1"':
+  - toolbar:
+    - generic "Change symbol":
+      - generic: X
+      - button "Change symbol": Gold Spot / U.S. Dollar
+    - generic "Change interval":
+      - text: ·
+      - button "Change interval": "15"
+    - text: ·
+    - generic: OANDA
+    - button "Unflag symbol":
+    - button "More options for Gold Spot / U.S. Dollar":
+    - button "Market open · Data updates once per second":
+    - generic: O
+    - generic: 4,117.940
+    - generic: H
+    - generic: 4,118.605
+    - generic: L
+    - generic: 4,115.825
+    - generic: C
+    - generic: 4,117.090
+    - generic: −0.800 (−0.02%)
+  - generic: 4,116.820
+  - generic: Sell
+  - generic "Spread": "44.0"
+  - generic: 4,117.260
+  - generic: Buy
+  - button "Hide indicator legend":
+  - toolbar:
+    - generic "QIRVANTA Обединен":
+      - generic: QIRV ONE
+    - button "Hide":
+    - button "Settings":
+    - generic "Source code":
+    - button "Remove":
+    - button "More options for QIRV ONE":
+    - button "Active strategy · Opened in Pine Editor":
+    - generic "EMA21 — текуща": 4,100.777
+    - generic "EMA55 — текуща": 4,082.187
+    - generic "План за покупка — заявен, не изпълнение": "0.000"
+    - generic "План за продажба — заявен, не изпълнение": "0.000"
+  - generic "Chart for OANDA:XAUUSD, 15 minutes"
+  - toolbar "Navigation":
+    - button "Zoom out":
+    - button "Zoom in":
+    - button "Scroll to the left":
+    - button "Scroll to the right":
+    - button "Reset chart view":
+- toolbar:
+  - button "1 day in 1 minute intervals":
+    - generic: 1D
+  - button "5 days in 5 minutes intervals":
+    - generic: 5D
+  - button "1 month in 30 minutes intervals":
+    - generic: 1M
+  - button "3 months in 1 hour intervals":
+    - generic: 3M
+  - button "6 months in 2 hours intervals":
+    - generic: 6M
+  - button "Year to day in 1 day intervals":
+    - generic: YTD
+  - button "1 year in 1 day intervals":
+    - generic: 1Y
+  - button "5 years in 1 week intervals":
+    - generic: 5Y
+  - button "All data in 1 month intervals":
+    - generic: All
+  - separator
+  - button "Go to":
+  - button "Timezone":
+    - generic: 03:16:59 UTC
+- toolbar:
+  - button "Watchlist, details, and news":
+  - button "Alerts":
+  - button "Object tree and data window":
+  - button "AI Copilot":
+  - button "Screeners":
+  - button "Pine Editor":
+  - button "Calendars":
+  - button "Community":
+  - button "Notifications":
+  - button "Chats":
+  - button "Products":
+  - separator
+  - button "Help Center":
+- generic "QIRV ONE"
+- generic "Close":
+- generic "Disable logging":
+- generic "Search":
+- generic "Start date":
+- button "Settings" [active]:
+- text: "[2026-11-09T02:30:00.000-00:00]: QIRVANTA_DATA_BEGIN {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Всички\",\"kind\":\"run\",\"symbol\":\"OANDA:XAUUSD\",\"timeframe\":\"15\",\"source_sha256\":\"c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5\",\"account_currency\":\"USD\",\"symbol_currency\":\"USD\",\"pointvalue\":1,\"profit_semantics\":\"UNVERIFIED\",\"first_bar_time\":1785708000000,\"last_bar_open\":1794191400000,\"cutoff\":1794192300000,\"bar_count\":6445,\"checksum1\":52465161,\"checksum2\":675559027,\"mintick\":0.001}"
+- generic "Source code":
+- generic "Scroll to bar":
+- text: "[2026-11-09T02:30:00.000-00:00]: {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Всички\",\"kind\":\"submitted\",\"plan_id\":\"OANDA:XAUUSD|15|3|-1|1786107600000|1786108500000\",\"entry_id\":\"OANDA:XAUUSD|15|3|-1|1786107600000|1786108500000\",\"submitted_time\":1786108500000,\"submitted_bar\":428,\"quantity\":3,\"family\":3,\"side\":-1,\"htf_bias\":1,\"regime\":\"COUNTERTREND\",\"countertrend\":true,\"local_aligned\":false,\"efficiency\":0.31930685,\"reference\":4347.99,\"initial_sl\":4373.45,\"atr\":13.41340523,\"tp1\":4322.53,\"tp2\":4297.07,\"tp3\":4271.61,\"maxhold\":48} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Всички\",\"kind\":\"closed\",\"trade_index\":0,\"entry_id\":\"OANDA:XAUUSD|15|3|-1|1786107600000|1786108500000\",\"entry_time\":1786108500000,\"entry_bar_index\":429,\"size\":-1,\"entry_price\":4348.003,\"exit_id\":\"OANDA:XAUUSD|15|3|-1|1786107600000|1786108500000|T1\",\"exit_comment\":\"TP1\",\"exit_time\":1786323600000,\"exit_bar_index\":472,\"exit_price\":4322.53,\"profit\":25.123,\"commission\":0.35,\"max_drawdown\":20.182,\"max_runup\":25.298} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Всички\",\"kind\":\"closed\",\"trade_index\":1,\"entry_id\":\"OANDA:XAUUSD|15|3|-1|1786107600000|1786108500000\",\"entry_time\":1786108500000,\"entry_bar_index\":429,\"size\":-2,\"entry_price\":4348.003,\"exit_id\":\"Close entry(s) order OANDA:XAUUSD|15|3|-1|1786107600000|1786108500000\",\"exit_comment\":\"ИЗТЕКЪЛ СРОК\",\"exit_time\":1786329000000,\"exit_bar_index\":478,\"exit_price\":4330.932,\"profit\":33.442,\"commission\":0.7,\"max_drawdown\":40.364,\"max_runup\":68.796} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Всички\",\"kind\":\"submitted\",\"plan_id\":\"OANDA:XAUUSD|15|2|1|1786338000000|1786338000000\",\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786338000000|1786338000000\",\"submitted_time\":1786338000000,\"submitted_bar\":487,\"quantity\":3,\"family\":2,\"side\":1,\"htf_bias\":1,\"regime\":\"TREND\",\"countertrend\":false,\"local_aligned\":true,\"efficiency\":0.06853117,\"reference\":4339.535,\"initial_sl\":4322.269,\"atr\":7.83510631,\"tp1\":4356.801,\"tp2\":4374.067,\"tp3\":4391.333,\"maxhold\":48} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Всички\",\"kind\":\"closed\",\"trade_index\":2,\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786338000000|1786338000000\",\"entry_time\":1786338000000,\"entry_bar_index\":488,\"size\":1,\"entry_price\":4339.477,\"exit_id\":\"OANDA:XAUUSD|15|2|1|1786338000000|1786338000000|T1\",\"exit_comment\":\"TP1\",\"exit_time\":1786344300000,\"exit_bar_index\":495,\"exit_price\":4356.801,\"profit\":16.974,\"commission\":0.35,\"max_drawdown\":7.912,\"max_runup\":17.149} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Всички\",\"kind\":\"closed\",\"trade_index\":3,\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786338000000|1786338000000\",\"entry_time\":1786338000000,\"entry_bar_index\":488,\"size\":1,\"entry_price\":4339.477,\"exit_id\":\"OANDA:XAUUSD|15|2|1|1786338000000|1786338000000|T2\",\"exit_comment\":\"SL\",\"exit_time\":1786356000000,\"exit_bar_index\":508,\"exit_price\":4340.335,\"profit\":0.508,\"commission\":0.35,\"max_drawdown\":7.912,\"max_runup\":22.408} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Всички\",\"kind\":\"closed\",\"trade_index\":4,\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786338000000|1786338000000\",\"entry_time\":1786338000000,\"entry_bar_index\":488,\"size\":1,\"entry_price\":4339.477,\"exit_id\":\"OANDA:XAUUSD|15|2|1|1786338000000|1786338000000|T3\",\"exit_comment\":\"SL\",\"exit_time\":1786356000000,\"exit_bar_index\":508,\"exit_price\":4340.335,\"profit\":0.508,\"commission\":0.35,\"max_drawdown\":7.912,\"max_runup\":22.408} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Всички\",\"kind\":\"submitted\",\"plan_id\":\"OANDA:XAUUSD|15|2|1|1786446000000|1786446000000\",\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786446000000|1786446000000\",\"submitted_time\":1786446000000,\"submitted_bar\":603,\"quantity\":3,\"family\":2,\"side\":1,\"htf_bias\":1,\"regime\":\"TREND\",\"countertrend\":false,\"local_aligned\":false,\"efficiency\":0.10951498,\"reference\":4382.56,\"initial_sl\":4370.477,\"atr\":7.43529438,\"tp1\":4394.643,\"tp2\":4406.726,\"tp3\":4418.809,\"maxhold\":48} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Всички\",\"kind\":\"closed\",\"trade_index\":5,\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786446000000|1786446000000\",\"entry_time\":1786446000000,\"entry_bar_index\":604,\"size\":1,\"entry_price\":4382.487,\"exit_id\":\"OANDA:XAUUSD|15|2|1|1786446000000|1786446000000|T1\",\"exit_comment\":\"TP1\",\"exit_time\":1786449600000,\"exit_bar_index\":608,\"exit_price\":4394.643,\"profit\":11.806,\"commission\":0.35,\"max_drawdown\":2.097,\"max_runup\":11.981} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Всички\",\"kind\":\"closed\",\"trade_index\":6,\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786446000000|1786446000000\",\"entry_time\":1786446000000,\"entry_bar_index\":604,\"size\":1,\"entry_price\":4382.487,\"exit_id\":\"OANDA:XAUUSD|15|2|1|1786446000000|1786446000000|T2\",\"exit_comment\":\"SL\",\"exit_time\":1786456800000,\"exit_bar_index\":616,\"exit_price\":4383.085,\"profit\":0.248,\"commission\":0.35,\"max_drawdown\":2.097,\"max_runup\":21.628}"
+- generic "Source code":
+- generic "Scroll to bar":
+- text: "[2026-11-09T02:30:00.000-00:00]: {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Всички\",\"kind\":\"closed\",\"trade_index\":7,\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786446000000|1786446000000\",\"entry_time\":1786446000000,\"entry_bar_index\":604,\"size\":1,\"entry_price\":4382.487,\"exit_id\":\"OANDA:XAUUSD|15|2|1|1786446000000|1786446000000|T3\",\"exit_comment\":\"SL\",\"exit_time\":1786456800000,\"exit_bar_index\":616,\"exit_price\":4383.085,\"profit\":0.248,\"commission\":0.35,\"max_drawdown\":2.097,\"max_runup\":21.628} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Всички\",\"kind\":\"submitted\",\"plan_id\":\"OANDA:XAUUSD|15|2|1|1786493700000|1786493700000\",\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786493700000|1786493700000\",\"submitted_time\":1786493700000,\"submitted_bar\":652,\"quantity\":3,\"family\":2,\"side\":1,\"htf_bias\":1,\"regime\":\"TREND\",\"countertrend\":false,\"local_aligned\":false,\"efficiency\":0.186335,\"reference\":4378.17,\"initial_sl\":4364.413,\"atr\":7.0946847,\"tp1\":4391.927,\"tp2\":4405.684,\"tp3\":4419.441,\"maxhold\":48} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Всички\",\"kind\":\"closed\",\"trade_index\":8,\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786493700000|1786493700000\",\"entry_time\":1786493700000,\"entry_bar_index\":653,\"size\":1,\"entry_price\":4378.107,\"exit_id\":\"OANDA:XAUUSD|15|2|1|1786493700000|1786493700000|T1\",\"exit_comment\":\"TP1\",\"exit_time\":1786497300000,\"exit_bar_index\":657,\"exit_price\":4391.927,\"profit\":13.47,\"commission\":0.35,\"max_drawdown\":4.032,\"max_runup\":13.645} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Всички\",\"kind\":\"closed\",\"trade_index\":9,\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786493700000|1786493700000\",\"entry_time\":1786493700000,\"entry_bar_index\":653,\"size\":1,\"entry_price\":4378.107,\"exit_id\":\"OANDA:XAUUSD|15|2|1|1786493700000|1786493700000|T2\",\"exit_comment\":\"TP2\",\"exit_time\":1786501800000,\"exit_bar_index\":662,\"exit_price\":4405.684,\"profit\":27.227,\"commission\":0.35,\"max_drawdown\":4.032,\"max_runup\":27.402} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Всички\",\"kind\":\"closed\",\"trade_index\":10,\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786493700000|1786493700000\",\"entry_time\":1786493700000,\"entry_bar_index\":653,\"size\":1,\"entry_price\":4378.107,\"exit_id\":\"OANDA:XAUUSD|15|2|1|1786493700000|1786493700000|T3\",\"exit_comment\":\"TP3\",\"exit_time\":1786526100000,\"exit_bar_index\":689,\"exit_price\":4419.441,\"profit\":40.984,\"commission\":0.35,\"max_drawdown\":4.032,\"max_runup\":41.159} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Всички\",\"kind\":\"submitted\",\"plan_id\":\"OANDA:XAUUSD|15|2|1|1786617900000|1786617900000\",\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786617900000|1786617900000\",\"submitted_time\":1786617900000,\"submitted_bar\":786,\"quantity\":3,\"family\":2,\"side\":1,\"htf_bias\":1,\"regime\":\"TREND\",\"countertrend\":false,\"local_aligned\":false,\"efficiency\":0.04017729,\"reference\":4390.555,\"initial_sl\":4377.692,\"atr\":6.76769283,\"tp1\":4403.418,\"tp2\":4416.281,\"tp3\":4429.144,\"maxhold\":48} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Всички\",\"kind\":\"closed\",\"trade_index\":11,\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786617900000|1786617900000\",\"entry_time\":1786617900000,\"entry_bar_index\":787,\"size\":1,\"entry_price\":4390.587,\"exit_id\":\"OANDA:XAUUSD|15|2|1|1786617900000|1786617900000|T1\",\"exit_comment\":\"SL\",\"exit_time\":1786627800000,\"exit_bar_index\":798,\"exit_price\":4377.69,\"profit\":-13.247,\"commission\":0.35,\"max_drawdown\":13.072,\"max_runup\":11.453} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Всички\",\"kind\":\"closed\",\"trade_index\":12,\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786617900000|1786617900000\",\"entry_time\":1786617900000,\"entry_bar_index\":787,\"size\":1,\"entry_price\":4390.587,\"exit_id\":\"OANDA:XAUUSD|15|2|1|1786617900000|1786617900000|T2\",\"exit_comment\":\"SL\",\"exit_time\":1786627800000,\"exit_bar_index\":798,\"exit_price\":4377.69,\"profit\":-13.247,\"commission\":0.35,\"max_drawdown\":13.072,\"max_runup\":11.453} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Всички\",\"kind\":\"closed\",\"trade_index\":13,\"entry_id\":\"OANDA:XAUUSD|15|2|1|1786617900000|1786617900000\",\"entry_time\":1786617900000,\"entry_bar_index\":787,\"size\":1,\"entry_price\":4390.587,\"exit_id\":\"OANDA:XAUUSD|15|2|1|1786617900000|1786617900000|T3\",\"exit_comment\":\"SL\",\"exit_time\":1786627800000,\"exit_bar_index\":798,\"exit_price\":4377.69,\"profit\":-13.247,\"commission\":0.35,\"max_drawdown\":13.072,\"max_runup\":11.453} {\"schema\":\"qirvanta.native.v1\",\"run_id\":\"baseline|Всички\",\"kind\":\"submitted\",\"plan_id\":\"OANDA:XAUUSD|15|2|-1|1786684500000|1786684500000\",\"entry_id\":\"OANDA:XAUUSD|15|2|-1|1786684500000|1786684500000\",\"submitted_time\":1786684500000,\"submitted_bar\":856,\"quantity\":3,\"family\":2,\"side\":-1,\"htf_bias\":1,\"regime\":\"COUNTERTREND\",\"countertrend\":true,\"local_aligned\":true,\"efficiency\":0.39432958,\"reference\":4320.37,\"initial_sl\":4329.086,\"atr\":7.17456938,\"tp1\":4311.654,\"tp2\":4302.938,\"tp3\":4294.222,\"maxhold\":48}"
+- generic "Source code":
+- generic "Scroll to bar":
+- button "Scroll down":
+- generic "Hide Tab":
+- toolbar:
+  - button "Collapse strategy report":
+    - generic: QIRV ONE
+  - button "Manage strategy":
+  - button "Collapse panel":
+  - button "Maximize panel":
+- tablist:
+  - tab:
+    - generic "Metrics":
+  - tab [selected]:
+- button "Aug 3, 2026 — Nov 9, 2026":
+  - generic: Aug 3, 2026 — Nov 9, 2026
+- button "100 K":
+  - generic: 100 K USD
+- button "Default detalization":
+  - generic: Default detalization
+- separator
+- button "Settings":
+- button "Add alert":
+- paragraph: List of trades
+- button "Download .csv":
+- button "Column setup":
+- table:
+  - rowgroup:
+    - row "Trade number  Type Date and time Signal Price Size Net PnL Return Commission Favorable excursion Adverse excursion Cumulative PnL Duration (bars)":
+      - columnheader "Trade number ":
+        - generic: Trade number
+        - generic: 
+      - columnheader
+      - columnheader "Type":
+        - generic: Type
+      - columnheader "Date and time":
+        - generic: Date and time
+      - columnheader "Signal":
+        - generic: Signal
+      - columnheader "Price":
+        - generic: Price
+      - columnheader "Size":
+        - generic: Size
+      - columnheader "Net PnL":
+        - generic: Net PnL
+      - columnheader "Return":
+        - generic: Return
+      - columnheader "Commission":
+        - generic: Commission
+      - columnheader "Favorable excursion":
+        - generic: Favorable excursion
+      - columnheader "Adverse excursion":
+        - generic: Adverse excursion
+      - columnheader "Cumulative PnL":
+        - generic: Cumulative PnL
+      - columnheader "Duration (bars)":
+        - generic: Duration (bars)
+  - rowgroup:
+    - row:
+      - cell
+    - row "212Long Show on chart Show on chart Exit Entry Nov 5, 2026, 01:00 Nov 4, 2026, 16:00 TP3 Пробив 4,112.205 USD 4,048.972 USD 1 4.05 KUSD +62.88 USD +1.55% 0.350 USD 63.06 USD 1.56% −10.06 USD −0.25% −144.49 USD −0.14% 32":
+      - cell "212Long":
+        - generic: 212Long
+      - cell "Show on chart Show on chart":
+        - button "Show on chart":
+        - button "Show on chart":
+      - cell "Exit Entry":
+        - generic: Exit
+        - generic: Entry
+      - cell "Nov 5, 2026, 01:00 Nov 4, 2026, 16:00":
+        - generic: Nov 5, 2026, 01:00
+        - generic: Nov 4, 2026, 16:00
+      - cell "TP3 Пробив":
+        - generic "TP3"
+        - generic "Пробив"
+      - cell "4,112.205 USD 4,048.972 USD":
+        - generic: 4,112.205
+        - generic: USD
+        - generic: 4,048.972
+        - generic: USD
+      - cell "1 4.05 KUSD":
+        - generic: "1"
+        - generic: 4.05 KUSD
+      - cell "+62.88 USD":
+        - generic: "+62.88"
+        - generic: USD
+      - cell "+1.55%":
+        - generic: +1.55%
+      - cell "0.350 USD":
+        - generic: "0.350"
+        - generic: USD
+      - cell "63.06 USD 1.56%":
+        - generic: "63.06"
+        - generic: USD
+        - generic: 1.56%
+      - cell "−10.06 USD −0.25%":
+        - generic: −10.06
+        - generic: USD
+        - generic: −0.25%
+      - cell "−144.49 USD −0.14%":
+        - generic: −144.49
+        - generic: USD
+        - generic: −0.14%
+      - cell "32":
+        - generic: "32"
+    - row "211Long Show on chart Show on chart Exit Entry Nov 5, 2026, 00:30 Nov 4, 2026, 16:00 TP2 Пробив 4,091.125 USD 4,048.972 USD 1 4.05 KUSD +41.80 USD +1.03% 0.350 USD 41.98 USD 1.04% −10.06 USD −0.25% −207.55 USD −0.21% 30":
+      - cell "211Long":
+        - generic: 211Long
+      - cell "Show on chart Show on chart":
+        - button "Show on chart":
+        - button "Show on chart":
+      - cell "Exit Entry":
+        - generic: Exit
+        - generic: Entry
+      - cell "Nov 5, 2026, 00:30 Nov 4, 2026, 16:00":
+        - generic: Nov 5, 2026, 00:30
+        - generic: Nov 4, 2026, 16:00
+      - cell "TP2 Пробив":
+        - generic "TP2"
+        - generic "Пробив"
+      - cell "4,091.125 USD 4,048.972 USD":
+        - generic: 4,091.125
+        - generic: USD
+        - generic: 4,048.972
+        - generic: USD
+      - cell "1 4.05 KUSD":
+        - generic: "1"
+        - generic: 4.05 KUSD
+      - cell "+41.80 USD":
+        - generic: "+41.80"
+        - generic: USD
+      - cell "+1.03%":
+        - generic: +1.03%
+      - cell "0.350 USD":
+        - generic: "0.350"
+        - generic: USD
+      - cell "41.98 USD 1.04%":
+        - generic: "41.98"
+        - generic: USD
+        - generic: 1.04%
+      - cell "−10.06 USD −0.25%":
+        - generic: −10.06
+        - generic: USD
+        - generic: −0.25%
+      - cell "−207.55 USD −0.21%":
+        - generic: −207.55
+        - generic: USD
+        - generic: −0.21%
+      - cell "30":
+        - generic: "30"
+    - row "210Long Show on chart Show on chart Exit Entry Nov 4, 2026, 17:30 Nov 4, 2026, 16:00 TP1 Пробив 4,070.045 USD 4,048.972 USD 1 4.05 KUSD +20.72 USD +0.51% 0.350 USD 20.90 USD 0.52% −10.06 USD −0.25% −249.53 USD −0.25% 6":
+      - cell "210Long":
+        - generic: 210Long
+      - cell "Show on chart Show on chart":
+        - button "Show on chart":
+        - button "Show on chart":
+      - cell "Exit Entry":
+        - generic: Exit
+        - generic: Entry
+      - cell "Nov 4, 2026, 17:30 Nov 4, 2026, 16:00":
+        - generic: Nov 4, 2026, 17:30
+        - generic: Nov 4, 2026, 16:00
+      - cell "TP1 Пробив":
+        - generic "TP1"
+        - generic "Пробив"
+      - cell "4,070.045 USD 4,048.972 USD":
+        - generic: 4,070.045
+        - generic: USD
+        - generic: 4,048.972
+        - generic: USD
+      - cell "1 4.05 KUSD":
+        - generic: "1"
+        - generic: 4.05 KUSD
+      - cell "+20.72 USD":
+        - generic: "+20.72"
+        - generic: USD
+      - cell "+0.51%":
+        - generic: +0.51%
+      - cell "0.350 USD":
+        - generic: "0.350"
+        - generic: USD
+      - cell "20.90 USD 0.52%":
+        - generic: "20.90"
+        - generic: USD
+        - generic: 0.52%
+      - cell "−10.06 USD −0.25%":
+        - generic: −10.06
+        - generic: USD
+        - generic: −0.25%
+      - cell "−249.53 USD −0.25%":
+        - generic: −249.53
+        - generic: USD
+        - generic: −0.25%
+      - cell "6":
+        - generic: "6"
+    - row "209Short Show on chart Show on chart Exit Entry Nov 3, 2026, 00:15 Nov 2, 2026, 19:45 SL Пробив 3,956.705 USD 3,944.048 USD 1 3.94 KUSD −13.01 USD −0.33% 0.350 USD 6.31 USD 0.16% −12.83 USD −0.33% −269.90 USD −0.27% 14":
+      - cell "209Short":
+        - generic: 209Short
+      - cell "Show on chart Show on chart":
+        - button "Show on chart":
+        - button "Show on chart":
+      - cell "Exit Entry":
+        - generic: Exit
+        - generic: Entry
+      - cell "Nov 3, 2026, 00:15 Nov 2, 2026, 19:45":
+        - generic: Nov 3, 2026, 00:15
+        - generic: Nov 2, 2026, 19:45
+      - cell "SL Пробив":
+        - generic "SL"
+        - generic "Пробив"
+      - cell "3,956.705 USD 3,944.048 USD":
+        - generic: 3,956.705
+        - generic: USD
+        - generic: 3,944.048
+        - generic: USD
+      - cell "1 3.94 KUSD":
+        - generic: "1"
+        - generic: 3.94 KUSD
+      - cell "−13.01 USD":
+        - generic: −13.01
+        - generic: USD
+      - cell "−0.33%":
+        - generic: −0.33%
+      - cell "0.350 USD":
+        - generic: "0.350"
+        - generic: USD
+      - cell "6.31 USD 0.16%":
+        - generic: "6.31"
+        - generic: USD
+        - generic: 0.16%
+      - cell "−12.83 USD −0.33%":
+        - generic: −12.83
+        - generic: USD
+        - generic: −0.33%
+      - cell "−269.90 USD −0.27%":
+        - generic: −269.90
+        - generic: USD
+        - generic: −0.27%
+      - cell "14":
+        - generic: "14"
+    - row "208Short Show on chart Show on chart Exit Entry Nov 3, 2026, 00:15 Nov 2, 2026, 19:45 SL Пробив 3,956.705 USD 3,944.048 USD 1 3.94 KUSD −13.01 USD −0.33% 0.350 USD 6.31 USD 0.16% −12.83 USD −0.33% −257.07 USD −0.26% 14":
+      - cell "208Short":
+        - generic: 208Short
+      - cell "Show on chart Show on chart":
+        - button "Show on chart":
+        - button "Show on chart":
+      - cell "Exit Entry":
+        - generic: Exit
+        - generic: Entry
+      - cell "Nov 3, 2026, 00:15 Nov 2, 2026, 19:45":
+        - generic: Nov 3, 2026, 00:15
+        - generic: Nov 2, 2026, 19:45
+      - cell "SL Пробив":
+        - generic "SL"
+        - generic "Пробив"
+      - cell "3,956.705 USD 3,944.048 USD":
+        - generic: 3,956.705
+        - generic: USD
+        - generic: 3,944.048
+        - generic: USD
+      - cell "1 3.94 KUSD":
+        - generic: "1"
+        - generic: 3.94 KUSD
+      - cell "−13.01 USD":
+        - generic: −13.01
+        - generic: USD
+      - cell "−0.33%":
+        - generic: −0.33%
+      - cell "0.350 USD":
+        - generic: "0.350"
+        - generic: USD
+      - cell "6.31 USD 0.16%":
+        - generic: "6.31"
+        - generic: USD
+        - generic: 0.16%
+      - cell "−12.83 USD −0.33%":
+        - generic: −12.83
+        - generic: USD
+        - generic: −0.33%
+      - cell "−257.07 USD −0.26%":
+        - generic: −257.07
+        - generic: USD
+        - generic: −0.26%
+      - cell "14":
+        - generic: "14"
+    - row "207Short Show on chart Show on chart Exit Entry Nov 3, 2026, 00:15 Nov 2, 2026, 19:45 SL Пробив 3,956.705 USD 3,944.048 USD 1 3.94 KUSD −13.01 USD −0.33% 0.350 USD 6.31 USD 0.16% −12.83 USD −0.33% −244.24 USD −0.24% 14":
+      - cell "207Short":
+        - generic: 207Short
+      - cell "Show on chart Show on chart":
+        - button "Show on chart":
+        - button "Show on chart":
+      - cell "Exit Entry":
+        - generic: Exit
+        - generic: Entry
+      - cell "Nov 3, 2026, 00:15 Nov 2, 2026, 19:45":
+        - generic: Nov 3, 2026, 00:15
+        - generic: Nov 2, 2026, 19:45
+      - cell "SL Пробив":
+        - generic "SL"
+        - generic "Пробив"
+      - cell "3,956.705 USD 3,944.048 USD":
+        - generic: 3,956.705
+        - generic: USD
+        - generic: 3,944.048
+        - generic: USD
+      - cell "1 3.94 KUSD":
+        - generic: "1"
+        - generic: 3.94 KUSD
+      - cell "−13.01 USD":
+        - generic: −13.01
+        - generic: USD
+      - cell "−0.33%":
+        - generic: −0.33%
+      - cell "0.350 USD":
+        - generic: "0.350"
+        - generic: USD
+      - cell "6.31 USD 0.16%":
+        - generic: "6.31"
+        - generic: USD
+        - generic: 0.16%
+      - cell "−12.83 USD −0.33%":
+        - generic: −12.83
+        - generic: USD
+        - generic: −0.33%
+      - cell "−244.24 USD −0.24%":
+        - generic: −244.24
+        - generic: USD
+        - generic: −0.24%
+      - cell "14":
+        - generic: "14"
+    - row "206Short Show on chart Show on chart Exit Entry Oct 29, 2026, 01:15 Oct 29, 2026, 00:15 SL Пробив 4,059.593 USD 4,044.663 USD 1 4.04 KUSD −15.28 USD −0.38% 0.350 USD 8.27 USD 0.20% −15.10 USD −0.37% −230.88 USD −0.23% 4":
+      - cell "206Short":
+        - generic: 206Short
+      - cell "Show on chart Show on chart":
+        - button "Show on chart":
+        - button "Show on chart":
+      - cell "Exit Entry":
+        - generic: Exit
+        - generic: Entry
+      - cell "Oct 29, 2026, 01:15 Oct 29, 2026, 00:15":
+        - generic: Oct 29, 2026, 01:15
+        - generic: Oct 29, 2026, 00:15
+      - cell "SL Пробив":
+        - generic "SL"
+        - generic "Пробив"
+      - cell "4,059.593 USD 4,044.663 USD":
+        - generic: 4,059.593
+        - generic: USD
+        - generic: 4,044.663
+        - generic: USD
+      - cell "1 4.04 KUSD":
+        - generic: "1"
+        - generic: 4.04 KUSD
+      - cell "−15.28 USD":
+        - generic: −15.28
+        - generic: USD
+      - cell "−0.38%":
+        - generic: −0.38%
+      - cell "0.350 USD":
+        - generic: "0.350"
+        - generic: USD
+      - cell "8.27 USD 0.20%":
+        - generic: "8.27"
+        - generic: USD
+        - generic: 0.20%
+      - cell "−15.10 USD −0.37%":
+        - generic: −15.10
+        - generic: USD
+        - generic: −0.37%
+      - cell "−230.88 USD −0.23%":
+        - generic: −230.88
+        - generic: USD
+        - generic: −0.23%
+      - cell "4":
+        - generic: "4"
+    - row "205Short Show on chart Show on chart Exit Entry Oct 29, 2026, 01:15 Oct 29, 2026, 00:15 SL Пробив 4,059.593 USD 4,044.663 USD 1 4.04 KUSD −15.28 USD −0.38% 0.350 USD 8.27 USD 0.20% −15.10 USD −0.37% −215.77 USD −0.22% 4":
+      - cell "205Short":
+        - generic: 205Short
+      - cell "Show on chart Show on chart":
+        - button "Show on chart":
+        - button "Show on chart":
+      - cell "Exit Entry":
+        - generic: Exit
+        - generic: Entry
+      - cell "Oct 29, 2026, 01:15 Oct 29, 2026, 00:15":
+        - generic: Oct 29, 2026, 01:15
+        - generic: Oct 29, 2026, 00:15
+      - cell "SL Пробив":
+        - generic "SL"
+        - generic "Пробив"
+      - cell "4,059.593 USD 4,044.663 USD":
+        - generic: 4,059.593
+        - generic: USD
+        - generic: 4,044.663
+        - generic: USD
+      - cell "1 4.04 KUSD":
+        - generic: "1"
+        - generic: 4.04 KUSD
+      - cell "−15.28 USD":
+        - generic: −15.28
+        - generic: USD
+      - cell "−0.38%":
+        - generic: −0.38%
+      - cell "0.350 USD":
+        - generic: "0.350"
+        - generic: USD
+      - cell "8.27 USD 0.20%":
+        - generic: "8.27"
+        - generic: USD
+        - generic: 0.20%
+      - cell "−15.10 USD −0.37%":
+        - generic: −15.10
+        - generic: USD
+        - generic: −0.37%
+      - cell "−215.77 USD −0.22%":
+        - generic: −215.77
+        - generic: USD
+        - generic: −0.22%
+      - cell "4":
+        - generic: "4"
+    - row:
+      - cell
+  - rowgroup
+- generic "Trading panel"
+- generic: More
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- log:
+  - list
+- generic: Pine Editor
+- button "Collapse panel":
+- button "Close":
+- button "QIRVANTA_UNIFIED":
+  - heading "QIRVANTA_UNIFIED" [level=2]
+- button "Update on chart" [disabled]:
+- button "Publish script":
+  - generic: Publish script
+- button:
+- code:
+  - generic: "1519"
+  - generic: "1520"
+  - generic: "1521"
+  - generic: 
+  - generic: "1522"
+  - generic: "1523"
+  - generic: "1524"
+  - generic: 
+  - generic: "1525"
+  - generic: "1526"
+  - generic: "1527"
+  - generic: "1528"
+  - generic: 
+  - generic: "1529"
+  - generic: "1530"
+  - generic: "1531"
+  - generic: 
+  - generic: "1532"
+  - generic: 
+  - generic: "1533"
+  - generic: "1534"
+  - generic: "1535"
+  - generic: "1536"
+  - generic: "1537"
+  - generic: f_num(dgHash1) + ',"checksum2":' + f_num(dgHash2)
+  - generic: "+ ',\"mintick\":' + f_num(syminfo.mintick) + '}'"
+  - generic: log.info("QIRVANTA_DATA_BEGIN\n" + run)
+  - generic: string batch = ""
+  - generic: int batchN = 0
+  - generic: for row in dgRows
+  - generic: batch += row + "\n"
+  - generic: batchN += 1
+  - generic: if batchN == 10
+  - generic: log.info(batch)
+  - generic: batch := ""
+  - generic: batchN := 0
+  - generic: if batch != ""
+  - generic: log.info(batch)
+  - generic: string openRows = ""
+  - generic: if strategy.opentrades > 0
+  - generic: for j = 0 to strategy.opentrades - 1
+  - generic: "openRows += (openRows == \"\" ? \"\" : \",\") + '"
+  - generic: "{\"entry_id\":' + f_q(strategy.opentrades."
+  - generic: entry_id(j)) + ',"entry_time":' + f_int
+  - generic: (strategy.opentrades.entry_time(j)) + ',
+  - generic: "\"entry_bar_index\":' + f_int(strategy."
+  - generic: opentrades.entry_bar_index(j)) + ',
+  - generic: "\"size\":' + f_num(strategy.opentrades.size"
+  - generic: (j)) + ',"entry_price":' + f_num(strategy.
+  - generic: "opentrades.entry_price(j)) + '}'"
+  - generic: string snap = f_dgHead("snapshot") + ',"at_time":'
+  - generic: + f_int(time_close) + ',"at_bar":' + f_int
+  - generic: (bar_index) + ',"closed_count":' + f_int(strategy.
+  - generic: closedtrades) + ',"first_closed_index":' + f_int(nz
+  - generic: (strategy.closedtrades.first_index, 0)) + ',
+  - generic: "\"submitted_count\":' + f_int(dgSubmitted) + ',"
+  - generic: "\"open_complete\":true,\"open\":[' + openRows + '],"
+  - generic: "\"netprofit\":' + f_num(strategy.netprofit) + ',"
+  - generic: "\"max_drawdown\":' + f_num(strategy.max_drawdown) +"
+  - generic: "'}'"
+  - generic: log.info(snap + "\nQIRVANTA_DATA_END")
+  - textbox "Editor content;Press Alt+F1 for Accessibility Options.": "\"max_drawdown\":' + f_num(strategy.max_drawdown) + '}' log.info(snap + \"\\nQIRVANTA_DATA_END\")"
+- separator
+- table:
+  - rowgroup:
+    - row "04:41:16 ч. \"QIRVANTA_SNIPER_PRO\" opened":
+      - cell "04:41:16 ч."
+      - cell "\"QIRVANTA_SNIPER_PRO\" opened"
+    - row "04:41:29 ч. Compiling...":
+      - cell "04:41:29 ч."
+      - cell "Compiling..."
+    - row "04:41:53 ч. Warning at 755:35 The function \"f_fast\" should be called on each calculation for consistency. It is recommended to extract the call from this scope Learn more":
+      - cell "04:41:53 ч."
+      - cell "Warning at 755:35 The function \"f_fast\" should be called on each calculation for consistency. It is recommended to extract the call from this scope Learn more":
+        - text: Warning at 755:35
+        - text: The function "f_fast" should be called on each calculation for consistency. It is recommended to extract the call from this scope
+        - link "Learn more":
+          - /url: https://www.tradingview.com/pine-script-docs/errors/CW10003
+    - row "04:41:53 ч. Warning at 756:35 The function \"f_reversal\" should be called on each calculation for consistency. It is recommended to extract the call from this scope Learn more":
+      - cell "04:41:53 ч."
+      - cell "Warning at 756:35 The function \"f_reversal\" should be called on each calculation for consistency. It is recommended to extract the call from this scope Learn more":
+        - text: Warning at 756:35
+        - text: The function "f_reversal" should be called on each calculation for consistency. It is recommended to extract the call from this scope
+        - link "Learn more":
+          - /url: https://www.tradingview.com/pine-script-docs/errors/CW10003
+    - row "04:41:53 ч. Warning at 1304:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+      - cell "04:41:53 ч."
+      - cell "Warning at 1304:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+        - text: Warning at 1304:39
+        - text: Strategies without "calc_on_every_tick = true" only calculate on confirmed chart bars. In this case, "barstate.islast" may not initially return "true" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable "calc_on_every_tick" in the "strategy()" function.
+    - row "04:41:53 ч. Warning at 1369:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+      - cell "04:41:53 ч."
+      - cell "Warning at 1369:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+        - text: Warning at 1369:39
+        - text: Strategies without "calc_on_every_tick = true" only calculate on confirmed chart bars. In this case, "barstate.islast" may not initially return "true" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable "calc_on_every_tick" in the "strategy()" function.
+    - row "04:41:53 ч. \"QIRVANTA_SNIPER_PRO\" saved.":
+      - cell "04:41:53 ч."
+      - cell "\"QIRVANTA_SNIPER_PRO\" saved."
+    - row "04:42:08 ч. Script renamed":
+      - cell "04:42:08 ч."
+      - cell "Script renamed"
+    - row "04:42:49 ч. Compiling...":
+      - cell "04:42:49 ч."
+      - cell "Compiling..."
+    - row "04:42:50 ч. Compiled.":
+      - cell "04:42:50 ч."
+      - cell "Compiled."
+    - row "04:42:50 ч. Added to chart.":
+      - cell "04:42:50 ч."
+      - cell "Added to chart."
+    - row "05:16:06 ч. Compiling...":
+      - cell "05:16:06 ч."
+      - cell "Compiling..."
+    - row "05:16:31 ч. Warning at 755:35 The function \"f_fast\" should be called on each calculation for consistency. It is recommended to extract the call from this scope Learn more":
+      - cell "05:16:31 ч."
+      - cell "Warning at 755:35 The function \"f_fast\" should be called on each calculation for consistency. It is recommended to extract the call from this scope Learn more":
+        - text: Warning at 755:35
+        - text: The function "f_fast" should be called on each calculation for consistency. It is recommended to extract the call from this scope
+        - link "Learn more":
+          - /url: https://www.tradingview.com/pine-script-docs/errors/CW10003
+    - row "05:16:31 ч. Warning at 756:35 The function \"f_reversal\" should be called on each calculation for consistency. It is recommended to extract the call from this scope Learn more":
+      - cell "05:16:31 ч."
+      - cell "Warning at 756:35 The function \"f_reversal\" should be called on each calculation for consistency. It is recommended to extract the call from this scope Learn more":
+        - text: Warning at 756:35
+        - text: The function "f_reversal" should be called on each calculation for consistency. It is recommended to extract the call from this scope
+        - link "Learn more":
+          - /url: https://www.tradingview.com/pine-script-docs/errors/CW10003
+    - row "05:16:31 ч. Warning at 1304:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+      - cell "05:16:31 ч."
+      - cell "Warning at 1304:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+        - text: Warning at 1304:39
+        - text: Strategies without "calc_on_every_tick = true" only calculate on confirmed chart bars. In this case, "barstate.islast" may not initially return "true" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable "calc_on_every_tick" in the "strategy()" function.
+    - row "05:16:31 ч. Warning at 1369:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+      - cell "05:16:31 ч."
+      - cell "Warning at 1369:39 Strategies without \"calc_on_every_tick = true\" only calculate on confirmed chart bars. In this case, \"barstate.islast\" may not initially return \"true\" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable \"calc_on_every_tick\" in the \"strategy()\" function.":
+        - text: Warning at 1369:39
+        - text: Strategies without "calc_on_every_tick = true" only calculate on confirmed chart bars. In this case, "barstate.islast" may not initially return "true" on realtime bars, as the last bar is unconfirmed until it closes. If you need to check whether a bar is the latest before it closes, enable "calc_on_every_tick" in the "strategy()" function.
+    - row "05:16:31 ч. \"QIRVANTA_UNIFIED\" saved.":
+      - cell "05:16:31 ч."
+      - cell "\"QIRVANTA_UNIFIED\" saved."
+- button:
+- button "4 ∙ Today, 05:16"
+- button "Line 1537, Col 1"
+- link "Pine Script® v6":
+  - /url: https://www.tradingview.com/pine-script-reference/v6
+- alert
+- alert

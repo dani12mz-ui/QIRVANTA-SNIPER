@@ -1,0 +1,30 @@
+{
+  "created_at_utc": "2026-11-09T03:26:52.074685+00:00",
+  "type": "ACTUAL_CAPTURE_BOUNDARIES_AND_EXECUTION_METHOD_DISCLOSURE",
+  "original_registration_sha256": "95c287362437f4bff81862df017fcf5577c02e1dcfb82965195d4f96021d5cbd",
+  "original_protocol_sha256": "fc3c4d8b7019c50c854182c77fe2fb8793775a95d00c68184e7dd329696cf14b",
+  "registered_period_start_utc": "2026-08-03T00:00:00Z",
+  "observed_first_loaded_open_utc": "2026-08-02T22:00:00Z",
+  "observed_first_loaded_open_ms": 1785708000000,
+  "observed_last_closed_bar_close_utc": "2026-11-09T02:45:00Z",
+  "observed_bar_count": 6445,
+  "rows_before_registered_start_retained_as_original_warmup": 8,
+  "submitted_before_registered_start": {
+    "B-ALL": 0,
+    "B-RETEST": 0,
+    "B-FAST": 0,
+    "B-REVERSAL": 0,
+    "B-ALL-FULL": 0
+  },
+  "planned_ui_date_overrides_applied": false,
+  "execution_method": "Original input dates 2020-01-01 through 2035-01-01 were retained in all runs to avoid modifying baseline trading state. Observation-only appendix restricts exported bars/events/snapshot to time_close <= 2026-11-09T02:45Z. Eight original prefix bars before Aug3 00:00Z are retained; no native submission precedes the registered start.",
+  "interpretation": "New actual diagnostic rerun with matching combined PnL/journal. The old Aug3–Nov9 UI label is not an exact UTC boundary and is not proof the earlier original dataset is identical.",
+  "dataset_precision": "Pine f_num serializes prices/features to at most 8 decimal places. Decimal strings are preserved numerically; backend full precision is not claimed.",
+  "dataset_manifest": "datasets/B-ALL-FULL/dataset_manifest.json",
+  "dataset_manifest_sha256": "41b7112452b77a8bf546bb1b8ec1cd924f77ad5ca0f1954222a90ff7efbbce8d",
+  "dataset_comparison": "diagnostic_dataset_comparison.json",
+  "dataset_comparison_sha256": "a2a6f80bd2266224a34dcba775fad1751f8db74c548aaf3c8238668734f1c176",
+  "rule_changes": [],
+  "original_protocol_or_registration_overwritten": false,
+  "true_future_holdout_available": false
+}

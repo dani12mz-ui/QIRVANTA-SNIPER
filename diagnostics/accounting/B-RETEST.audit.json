@@ -1,0 +1,459 @@
+{
+  "schema": "qirvanta.native.audit.v1",
+  "run": {
+    "schema": "qirvanta.native.v1",
+    "run_id": "baseline|Ретест",
+    "kind": "run",
+    "symbol": "OANDA:XAUUSD",
+    "timeframe": "15",
+    "source_sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+    "account_currency": "USD",
+    "symbol_currency": "USD",
+    "pointvalue": 1.0,
+    "profit_semantics": "UNVERIFIED",
+    "first_bar_time": 1785708000000,
+    "last_bar_open": 1794191400000,
+    "cutoff": 1794192300000,
+    "bar_count": 6445,
+    "checksum1": 52465161,
+    "checksum2": 675559027,
+    "mintick": 0.001,
+    "origin": "REAL_TRADINGVIEW",
+    "quantity_tolerance": 1e-08,
+    "cash_tolerance": 1e-05,
+    "price_tolerance": 1e-08
+  },
+  "status": "PASS_OBSERVED_JOURNAL",
+  "scope": "EXPORTED_NATIVE_JOURNAL_ACCOUNTING_NOT_MARKET_SIGNAL_OR_FORWARD_VALIDATION",
+  "coverage": {
+    "closed_count_reported": 3,
+    "closed_rows_observed": 3,
+    "first_closed_index": 0,
+    "missing_indices": [],
+    "full_closed_history": true,
+    "open_snapshot_complete": true,
+    "duplicates_ignored": {}
+  },
+  "issues": [],
+  "campaign_state_counts": {
+    "COMPLETE": 1
+  },
+  "submitted_without_recorded_fill": [],
+  "submitted_without_recorded_fill_qualification": "No fill is manufactured; missing data or a rejected/unfilled order is not resolved from aggregate totals",
+  "complete_campaign_metrics": {
+    "count": 1,
+    "wins": 1,
+    "losses": 0,
+    "breakevens": 0,
+    "net_cash": 20.819,
+    "sum_positive_net_cash": 20.819,
+    "sum_negative_net_cash_magnitude": 0.0,
+    "profit_factor": null,
+    "profit_factor_status": "NO_LOSSES",
+    "win_rate": 1.0,
+    "average_net_cash": 20.819,
+    "average_win_cash": 20.819,
+    "average_loss_cash": null,
+    "closed_cash_event_drawdown": 0.0,
+    "campaign_close_drawdown": 0.0,
+    "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+    "exit_comment_record_counts": {
+      "TP1": 1,
+      "TP2": 1,
+      "SL": 1
+    },
+    "exit_comment_quantities": {
+      "TP1": 1.0,
+      "TP2": 1.0,
+      "SL": 1.0
+    },
+    "final_exit_comment_campaign_counts": {
+      "SL": 1
+    }
+  },
+  "complete_campaign_groups": {
+    "family": {
+      "1": {
+        "count": 1,
+        "wins": 1,
+        "losses": 0,
+        "breakevens": 0,
+        "net_cash": 20.819,
+        "sum_positive_net_cash": 20.819,
+        "sum_negative_net_cash_magnitude": 0.0,
+        "profit_factor": null,
+        "profit_factor_status": "NO_LOSSES",
+        "win_rate": 1.0,
+        "average_net_cash": 20.819,
+        "average_win_cash": 20.819,
+        "average_loss_cash": null,
+        "closed_cash_event_drawdown": 0.0,
+        "campaign_close_drawdown": 0.0,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "TP1": 1,
+          "TP2": 1,
+          "SL": 1
+        },
+        "exit_comment_quantities": {
+          "TP1": 1.0,
+          "TP2": 1.0,
+          "SL": 1.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "SL": 1
+        }
+      }
+    },
+    "side": {
+      "-1": {
+        "count": 1,
+        "wins": 1,
+        "losses": 0,
+        "breakevens": 0,
+        "net_cash": 20.819,
+        "sum_positive_net_cash": 20.819,
+        "sum_negative_net_cash_magnitude": 0.0,
+        "profit_factor": null,
+        "profit_factor_status": "NO_LOSSES",
+        "win_rate": 1.0,
+        "average_net_cash": 20.819,
+        "average_win_cash": 20.819,
+        "average_loss_cash": null,
+        "closed_cash_event_drawdown": 0.0,
+        "campaign_close_drawdown": 0.0,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "TP1": 1,
+          "TP2": 1,
+          "SL": 1
+        },
+        "exit_comment_quantities": {
+          "TP1": 1.0,
+          "TP2": 1.0,
+          "SL": 1.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "SL": 1
+        }
+      }
+    },
+    "trend_relation": {
+      "WITH_HTF": {
+        "count": 1,
+        "wins": 1,
+        "losses": 0,
+        "breakevens": 0,
+        "net_cash": 20.819,
+        "sum_positive_net_cash": 20.819,
+        "sum_negative_net_cash_magnitude": 0.0,
+        "profit_factor": null,
+        "profit_factor_status": "NO_LOSSES",
+        "win_rate": 1.0,
+        "average_net_cash": 20.819,
+        "average_win_cash": 20.819,
+        "average_loss_cash": null,
+        "closed_cash_event_drawdown": 0.0,
+        "campaign_close_drawdown": 0.0,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "TP1": 1,
+          "TP2": 1,
+          "SL": 1
+        },
+        "exit_comment_quantities": {
+          "TP1": 1.0,
+          "TP2": 1.0,
+          "SL": 1.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "SL": 1
+        }
+      }
+    },
+    "regime": {
+      "TREND": {
+        "count": 1,
+        "wins": 1,
+        "losses": 0,
+        "breakevens": 0,
+        "net_cash": 20.819,
+        "sum_positive_net_cash": 20.819,
+        "sum_negative_net_cash_magnitude": 0.0,
+        "profit_factor": null,
+        "profit_factor_status": "NO_LOSSES",
+        "win_rate": 1.0,
+        "average_net_cash": 20.819,
+        "average_win_cash": 20.819,
+        "average_loss_cash": null,
+        "closed_cash_event_drawdown": 0.0,
+        "campaign_close_drawdown": 0.0,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "TP1": 1,
+          "TP2": 1,
+          "SL": 1
+        },
+        "exit_comment_quantities": {
+          "TP1": 1.0,
+          "TP2": 1.0,
+          "SL": 1.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "SL": 1
+        }
+      }
+    },
+    "family_side_trend_regime": {
+      "M1|-1|WITH_HTF|TREND": {
+        "count": 1,
+        "wins": 1,
+        "losses": 0,
+        "breakevens": 0,
+        "net_cash": 20.819,
+        "sum_positive_net_cash": 20.819,
+        "sum_negative_net_cash_magnitude": 0.0,
+        "profit_factor": null,
+        "profit_factor_status": "NO_LOSSES",
+        "win_rate": 1.0,
+        "average_net_cash": 20.819,
+        "average_win_cash": 20.819,
+        "average_loss_cash": null,
+        "closed_cash_event_drawdown": 0.0,
+        "campaign_close_drawdown": 0.0,
+        "drawdown_scope": "REALIZED_COMPLETE_CAMPAIGN_ATTRIBUTION_SUBSEQUENCE_NOT_STANDALONE_OR_NATIVE_EQUITY_DRAWDOWN",
+        "exit_comment_record_counts": {
+          "TP1": 1,
+          "TP2": 1,
+          "SL": 1
+        },
+        "exit_comment_quantities": {
+          "TP1": 1.0,
+          "TP2": 1.0,
+          "SL": 1.0
+        },
+        "final_exit_comment_campaign_counts": {
+          "SL": 1
+        }
+      }
+    }
+  },
+  "observed_closed_row_metrics": {
+    "count": 3,
+    "wins": 3,
+    "losses": 0,
+    "breakevens": 0,
+    "net_cash": 20.819,
+    "sum_positive_net_cash": 20.819,
+    "sum_negative_net_cash_magnitude": 0.0,
+    "profit_factor": null,
+    "profit_factor_status": "NO_LOSSES",
+    "win_rate": 1.0,
+    "average_net_cash": 6.939666666666667,
+    "average_win_cash": 6.939666666666667,
+    "average_loss_cash": null
+  },
+  "cash_reconciliation": {
+    "derived_net_cash": 20.819,
+    "native_netprofit": 20.819,
+    "difference": 0.0,
+    "matches": true,
+    "commission_cash": 1.05,
+    "formula": "(exit_price-entry_price)*signed_size*pointvalue - commission, once; same currency required",
+    "api_profit_classifications": {
+      "NET": 3
+    }
+  },
+  "closed_cash_drawdown": {
+    "max_drawdown_cash": 0.0,
+    "curve": [
+      {
+        "time": 1792458000000,
+        "order": 0,
+        "cumulative_net_cash": 6.824,
+        "drawdown_cash": 0.0
+      },
+      {
+        "time": 1792458000000,
+        "order": 1,
+        "cumulative_net_cash": 20.814,
+        "drawdown_cash": 0.0
+      },
+      {
+        "time": 1792462500000,
+        "order": 2,
+        "cumulative_net_cash": 20.819,
+        "drawdown_cash": 0.0
+      }
+    ],
+    "scope": "REALIZED_EXPORTED_EXIT_EVENTS_ONLY_NOT_NATIVE_INTRABAR_EQUITY_DRAWDOWN"
+  },
+  "complete_campaign_close_drawdown": {
+    "max_drawdown_cash": 0.0,
+    "curve": [
+      {
+        "time": 1792462500000,
+        "order": 0,
+        "cumulative_net_cash": 20.819,
+        "drawdown_cash": 0.0
+      }
+    ],
+    "scope": "REALIZED_EXPORTED_EXIT_EVENTS_ONLY_NOT_NATIVE_INTRABAR_EQUITY_DRAWDOWN"
+  },
+  "native_equity_max_drawdown": {
+    "value": 9.786,
+    "source": "snapshot.strategy.max_drawdown",
+    "scope": "NATIVE_EQUITY_INTRABAR_METRIC_NOT_RECONSTRUCTED_FROM_CLOSED_ROWS"
+  },
+  "campaigns": [
+    {
+      "entry_id": "OANDA:XAUUSD|15|1|-1|1792449900000|1792450800000",
+      "plan_id": "OANDA:XAUUSD|15|1|-1|1792449900000|1792450800000",
+      "entry_time": 1792450800000,
+      "entry_bar_index": 5146,
+      "actual_entry": 4136.378,
+      "family": 1,
+      "side": -1,
+      "htf_bias": -1,
+      "trend_relation": "WITH_HTF",
+      "regime": "TREND",
+      "submitted_metadata": {
+        "schema": "qirvanta.native.v1",
+        "run_id": "baseline|Ретест",
+        "kind": "submitted",
+        "plan_id": "OANDA:XAUUSD|15|1|-1|1792449900000|1792450800000",
+        "entry_id": "OANDA:XAUUSD|15|1|-1|1792449900000|1792450800000",
+        "submitted_time": 1792450800000,
+        "submitted_bar": 5145,
+        "quantity": 3.0,
+        "family": 1,
+        "side": -1,
+        "htf_bias": -1,
+        "regime": "TREND",
+        "countertrend": false,
+        "local_aligned": true,
+        "efficiency": 0.16486533,
+        "reference": 4136.37,
+        "initial_sl": 4143.536,
+        "atr": 3.75040507,
+        "tp1": 4129.204,
+        "tp2": 4122.038,
+        "tp3": 4114.872,
+        "maxhold": 48
+      },
+      "state": "COMPLETE",
+      "incomplete_reasons": [],
+      "submitted_quantity": 3.0,
+      "closed_quantity": 3.0,
+      "open_quantity": 0.0,
+      "closed_record_count": 3,
+      "closed_indices": [
+        0,
+        1,
+        2
+      ],
+      "realized_gross_cash": 21.869,
+      "realized_commission_cash": 1.05,
+      "realized_net_cash": 20.819,
+      "net_r": 0.969497997578467,
+      "initial_risk_cash": 21.474,
+      "risk_status": "VALID_ACTUAL_INITIAL_DISTANCE",
+      "last_exit_time": 1792462500000,
+      "holding_bars": 14,
+      "campaign_max_drawdown": null,
+      "campaign_max_runup": null,
+      "excursion_limitation": "Per-part excursions retained below; never summed or maxed into whole-entry MAE/MFE without a position path",
+      "exit_rows": [
+        {
+          "schema": "qirvanta.native.v1",
+          "run_id": "baseline|Ретест",
+          "kind": "closed",
+          "trade_index": 0,
+          "entry_id": "OANDA:XAUUSD|15|1|-1|1792449900000|1792450800000",
+          "entry_time": 1792450800000,
+          "entry_bar_index": 5146,
+          "size": -1.0,
+          "entry_price": 4136.378,
+          "exit_id": "OANDA:XAUUSD|15|1|-1|1792449900000|1792450800000|T1",
+          "exit_comment": "TP1",
+          "exit_time": 1792458000000,
+          "exit_bar_index": 5154,
+          "exit_price": 4129.204,
+          "profit": 6.824,
+          "commission": 0.35,
+          "max_drawdown": 3.262,
+          "max_runup": 6.999,
+          "gross_cash_from_prices": 7.174,
+          "net_cash": 6.824,
+          "api_profit_classification": "NET"
+        },
+        {
+          "schema": "qirvanta.native.v1",
+          "run_id": "baseline|Ретест",
+          "kind": "closed",
+          "trade_index": 1,
+          "entry_id": "OANDA:XAUUSD|15|1|-1|1792449900000|1792450800000",
+          "entry_time": 1792450800000,
+          "entry_bar_index": 5146,
+          "size": -1.0,
+          "entry_price": 4136.378,
+          "exit_id": "OANDA:XAUUSD|15|1|-1|1792449900000|1792450800000|T2",
+          "exit_comment": "TP2",
+          "exit_time": 1792458000000,
+          "exit_bar_index": 5154,
+          "exit_price": 4122.038,
+          "profit": 13.99,
+          "commission": 0.35,
+          "max_drawdown": 3.262,
+          "max_runup": 14.165,
+          "gross_cash_from_prices": 14.34,
+          "net_cash": 13.99,
+          "api_profit_classification": "NET"
+        },
+        {
+          "schema": "qirvanta.native.v1",
+          "run_id": "baseline|Ретест",
+          "kind": "closed",
+          "trade_index": 2,
+          "entry_id": "OANDA:XAUUSD|15|1|-1|1792449900000|1792450800000",
+          "entry_time": 1792450800000,
+          "entry_bar_index": 5146,
+          "size": -1.0,
+          "entry_price": 4136.378,
+          "exit_id": "OANDA:XAUUSD|15|1|-1|1792449900000|1792450800000|T3",
+          "exit_comment": "SL",
+          "exit_time": 1792462500000,
+          "exit_bar_index": 5159,
+          "exit_price": 4136.023,
+          "profit": 0.005,
+          "commission": 0.35,
+          "max_drawdown": 3.262,
+          "max_runup": 20.628,
+          "gross_cash_from_prices": 0.355,
+          "net_cash": 0.005,
+          "api_profit_classification": "NET"
+        }
+      ]
+    }
+  ],
+  "ingestion": {
+    "input_sha256": "15af9572f10424c9ad3fef401e967164d4f2c2271108066b44a4763542fe04b7",
+    "format": "PINE_LOGS_CSV",
+    "csv_log_rows": 3,
+    "records_read": 6,
+    "removed_log_prefixes": [],
+    "markers": [
+      "QIRVANTA_DATA_BEGIN",
+      "QIRVANTA_DATA_END"
+    ],
+    "header_supplements": [
+      {
+        "field": "origin",
+        "value": "REAL_TRADINGVIEW",
+        "source": "explicit CLI declaration; absent in raw export"
+      }
+    ],
+    "separate_observed_bars": null,
+    "separate_warning_probes": []
+  }
+}

@@ -1,0 +1,23 @@
+test_control_zero_gap_without_news_does_not_reject (test_audit.AttributionAudit.test_control_zero_gap_without_news_does_not_reject) ... ok
+test_partial_exit_and_campaign_rows_are_different_record_levels (test_audit.AttributionAudit.test_partial_exit_and_campaign_rows_are_different_record_levels) ... ok
+test_witness_is_tied_to_actual_source_not_only_python_fixture (test_audit.AttributionAudit.test_witness_is_tied_to_actual_source_not_only_python_fixture) ... ok
+test_zero_gap_news_rejection_has_inaccurate_gap_label (test_audit.AttributionAudit.test_zero_gap_news_rejection_has_inaccurate_gap_label) ... ok
+test_all_protected_source_and_standalone_bytes_match_exact_baseline (test_audit.ScopeAudit.test_all_protected_source_and_standalone_bytes_match_exact_baseline) ... ok
+test_comments_and_strings_do_not_invent_dependencies (test_audit.ScopeAudit.test_comments_and_strings_do_not_invent_dependencies) ... ok
+test_exact_default_close_guard_and_direction_call_sequence (test_audit.ScopeAudit.test_exact_default_close_guard_and_direction_call_sequence) ... ok
+test_fast_histories_are_only_builtin_close_and_global_ema (test_audit.ScopeAudit.test_fast_histories_are_only_builtin_close_and_global_ema) ... ok
+test_feature_computations_and_security_calls_remain_global (test_audit.ScopeAudit.test_feature_computations_and_security_calls_remain_global) ... ok
+test_mutated_local_history_is_not_misclassified_as_global (test_audit.ScopeAudit.test_mutated_local_history_is_not_misclassified_as_global) ... ok
+test_mutated_transitive_stateful_builtin_is_detected (test_audit.ScopeAudit.test_mutated_transitive_stateful_builtin_is_detected) ... ok
+test_parameter_history_and_persistent_loop_state_positive_control (test_audit.ScopeAudit.test_parameter_history_and_persistent_loop_state_positive_control) ... ok
+test_reversal_direction_state_is_two_objects_not_two_function_scopes (test_audit.ScopeAudit.test_reversal_direction_state_is_two_objects_not_two_function_scopes) ... ok
+test_reversal_history_is_global_rsi_only (test_audit.ScopeAudit.test_reversal_history_is_global_rsi_only) ... ok
+test_transitive_helpers_are_covered_not_just_root_text (test_audit.ScopeAudit.test_transitive_helpers_are_covered_not_just_root_text) ... ok
+test_injection_is_not_silently_repeatable (test_audit.WarningInjection.test_injection_is_not_silently_repeatable) ... ok
+test_injection_keeps_native_observer_and_protected_calls (test_audit.WarningInjection.test_injection_keeps_native_observer_and_protected_calls) ... ok
+test_injection_rejects_any_changed_baseline (test_audit.WarningInjection.test_injection_rejects_any_changed_baseline) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.756s
+
+OK

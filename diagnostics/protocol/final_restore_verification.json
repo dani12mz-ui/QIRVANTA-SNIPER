@@ -1,0 +1,203 @@
+{
+  "verified_at_utc": "2026-11-09T03:39:38.363408+00:00",
+  "status": "PASS",
+  "checks": {
+    "all_108_inputs_observed": true,
+    "all_inputs_match_original": true,
+    "all_11_property_groups_observed": true,
+    "all_properties_match_original": true,
+    "recorded_editor_readback_hash_matches_baseline": true,
+    "production_pine_bytes_match_baseline": true,
+    "visible_rounded_aggregates_match_original": true,
+    "all_217_baseline_files_unchanged": true
+  },
+  "input_changes": [],
+  "property_changes": [],
+  "actual_restored_inputs": {
+    "runModel": "Всички",
+    "tradingMode": "АВТОМАТИЧЕН",
+    "engineMode": "КОМБИНИРАН",
+    "selectivity": "СНАЙПЪР",
+    "useFastBreakout": true,
+    "allowFastCountertrend": true,
+    "useEarlyReversal": true,
+    "automaticHTF": true,
+    "customHTF": "60",
+    "liquidityBars": 14,
+    "structureBars": 6,
+    "maxSetupAge": 18,
+    "maxBarsAfterMSS": 5,
+    "fastBreakLookback": 4,
+    "fastMinBodyATR": 0.5,
+    "fastMaxBodyATR": 1.65,
+    "fastMaxBreakDistanceATR": 0.7,
+    "reversalWaitBars": 3,
+    "reversalLiquidityBars": 8,
+    "reversalMaxChaseATR": 0.65,
+    "reversalMinRoomR": 1.0,
+    "maxRetestCloseATR": 0.55,
+    "pivotLeft": 3,
+    "pivotRight": 3,
+    "minDisplaceATR": 0.3,
+    "nearRetestATR": 0.3,
+    "pierceRetestATR": 0.3,
+    "eqToleranceATR": 0.12,
+    "pdWindow": 80,
+    "requireFVG": false,
+    "requirePD": false,
+    "requireRoom": false,
+    "minimumRoomR": 1.0,
+    "fvgSizeATR": 0.04,
+    "minADX": 17,
+    "minATRratio": 0.55,
+    "maxATRratio": 2.8,
+    "maxEntryBarATR": 2.6,
+    "maxExtensionATR": 2.0,
+    "filterSession": false,
+    "sessionScope": "Само скалпинг",
+    "scalpSession": "1000-2000",
+    "riskTimezone": "Europe/Sofia",
+    "manualNewsPause": false,
+    "useNewsWindow": false,
+    "newsAt": "2020-01-01T00:00:00Z",
+    "newsBefore": 15,
+    "newsAfter": 15,
+    "spreadAssumption": 0.35,
+    "slipTicks": 2,
+    "feePrice": 0.0,
+    "fundingLong": 0.0,
+    "fundingShort": 0.0,
+    "minStopATR": 0.8,
+    "maxStopATR": 3.5,
+    "slBufferATR": 0.12,
+    "maxCostRisk": 0.18,
+    "target1R": 1.0,
+    "target2R": 2.0,
+    "target3R": 3.0,
+    "profitLockR": 0.05,
+    "minCooldown": 8,
+    "scalpMaxHold": 48,
+    "swingMaxHold": 60,
+    "maxOpenDeviationATR": 0.2,
+    "paperGapFilter": true,
+    "maxPaperLosingStreak": 3,
+    "maxPaperDailyLossR": 3.0,
+    "enableEvidenceShield": true,
+    "globalMinClosed": 30,
+    "globalStopNetR": -5.0,
+    "modelMinClosed": 20,
+    "modelStopAvgR": -0.15,
+    "recoveryTrades": 5,
+    "observeCountertrendOnly": true,
+    "contextPolicy": "БАЗОВ",
+    "efficiencyLength": 20,
+    "minEfficiency": 0.25,
+    "testStart": "2020-01-01T00:00:00Z",
+    "testEnd": "2035-01-01T00:00:00Z",
+    "uiMode": "МОБИЛЕН",
+    "panelPosition": "Долу вляво",
+    "uiFontPt": 11,
+    "showPanel": true,
+    "displayEMAs": true,
+    "showLevels": true,
+    "separateLevelLabels": true,
+    "levelFont": "Малък",
+    "keepLabels": 6,
+    "keepSignalLabels": 40,
+    "showContextLabels": false,
+    "contextLabelSpacing": 3,
+    "showSignalMarkers": true,
+    "showSetupLevel": false,
+    "levelOffset": 3,
+    "alertsEnabled": true,
+    "alertWatch": false,
+    "alertPlan": true,
+    "alertRisk": true,
+    "alertNativeFills": true,
+    "alertDiagnostics": false,
+    "alertShadow": false,
+    "alertJson": false,
+    "exportEvents": false,
+    "nativePortfolio": "RAW",
+    "nativeUnitQty": 1.0,
+    "flattenInvalidNativeFill": true,
+    "showConfirmedLabels": false
+  },
+  "actual_restored_properties": {
+    "Initial capital": [
+      "100,000",
+      "USD"
+    ],
+    "Default order size": [
+      "3",
+      "Quantity"
+    ],
+    "Pyramiding": [
+      "0"
+    ],
+    "Bar detalization": [
+      "Default (4 ticks per bar)"
+    ],
+    "Script execution": [
+      "On bar close"
+    ],
+    "Commission": [
+      "0.175",
+      "Per contract"
+    ],
+    "Long leverage": [
+      "1x"
+    ],
+    "Short leverage": [
+      "1x"
+    ],
+    "Slippage": [
+      "2"
+    ],
+    "Limit order execution": [
+      "Requested price"
+    ],
+    "Order execution delay": [
+      "One tick"
+    ]
+  },
+  "editor_readback_record": {
+    "captured_at": "2026-11-09T03:36:24.989Z",
+    "sha256_lf": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+    "length_lf": 109255,
+    "expected_sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+    "matches_baseline": true
+  },
+  "editor_verification_scope": "Root captured the clipboard readback and LF-normalized hash. This independent validator checks that record against the committed/current baseline artifact; it does not claim an additional UI readback.",
+  "actual_visible_metrics": {
+    "net_pnl_display": "−144.49USD",
+    "profit_factor_display": "0.905",
+    "drawdown_display": "842.26USD",
+    "closed_parts_display": "212"
+  },
+  "expected_visible_metrics": {
+    "net_pnl_display": "−144.49USD",
+    "profit_factor_display": "0.905",
+    "drawdown_display": "842.26USD",
+    "closed_parts_display": "212"
+  },
+  "metric_scope": "Current restored chart's rounded visible aggregates; not a new full-dataset or event-journal equivalence claim.",
+  "baseline_integrity": {
+    "checked_at_utc": "2026-11-09T03:39:38.363408+00:00",
+    "baseline_commit": "48e5cddab17ea831bdc277f17f0406329fdfe39c",
+    "checked_files": 217,
+    "changed_tracked_files_since_freeze": [],
+    "missing_tracked_files": [],
+    "all_baseline_working_tree_bytes_unchanged": true
+  },
+  "evidence_sha256": {
+    "diagnostics/evidence/original_inputs.txt": "dd683548efe48a6eefbc09f622a217188437c754445920e4af837e1e136c0269",
+    "diagnostics/evidence/original_properties.txt": "615dff21c671596b5cc57ccd812720277b6164198f467f5b6089f0b2ef7cd79d",
+    "diagnostics/evidence/final_inputs_restored.txt": "7991753be1fbf820bbbe87eea559bbdd3b8880ddb3ca5cf136b029c14d8c1119",
+    "diagnostics/evidence/final_properties_restored.txt": "f7e821e8230d437e5323e297527de435563f91556d41642d9de1af1a1978717e",
+    "diagnostics/evidence/final_restored_editor.json": "29864b6b6e735c42c9355a500379632c452fdce4b7fe55e68e99edc64616ddc6",
+    "diagnostics/evidence/final_baseline_chart.txt": "9d222d200044965c79fc170d75ff9a2dc98e02f80329a1e4c0d807ef43ee0418",
+    "diagnostics/evidence/final_baseline_chart.png": "a44f2cb932323182c73de737eadf7c47dc5ec211b438264fa624496a1c519308"
+  },
+  "candidate_in_production": false
+}

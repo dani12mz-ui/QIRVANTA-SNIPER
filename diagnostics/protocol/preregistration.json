@@ -1,0 +1,19 @@
+{
+  "registered_at_utc": "2026-11-09T03:17:49.418301+00:00",
+  "baseline_commit": "48e5cddab17ea831bdc277f17f0406329fdfe39c",
+  "baseline_tree": "acfdae17c3414ee7479f1a779c23511fe99d5680",
+  "branch": "research/qirvanta-signal-diagnostics",
+  "protocol_version": 1,
+  "scope": "Frozen diagnostic protocol before rule edits by this agent; historical aggregate results were already observed",
+  "genuine_future_holdout_available": false,
+  "rule_changes_in_this_protocol": [],
+  "hash_algorithm": "SHA-256",
+  "files": {
+    "EVALUATION_PROTOCOL_BG.md": "fc3c4d8b7019c50c854182c77fe2fb8793775a95d00c68184e7dd329696cf14b",
+    "baseline_manifest.json": "8a073c2cc83275d882b7d320c8456bb5681f0a47569fbfdb6077e7149eebb91c",
+    "baseline_evidence.json": "a63a34ba4a1c945339d11bde3959d8f8893e56fa3d9207c2c3bc9df04fe7e542",
+    "source_default_profile.json": "47c50eb4a1df380a208dcd98b60e8310f3b1ce835974e7b2cbf5bd0369aae9f7",
+    "current_ui_settings.json": "2e947909136a8c32bc9a2e0d9692bd29f731418c3a72644b91d89696a421f96e"
+  },
+  "amendment_policy": "Do not overwrite this registration or protocol after reviewing new diagnostic results; add a dated amendment stating the reason and prior knowledge"
+}

@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "original_native_records": 286,
+  "instrumented_native_records": 286,
+  "native_records_exactly_equal_after_same_origin_supplement": true,
+  "native_canonical_sha256": "8253dfeb420e92ab1768cefeda1b155b1d0c297fd27212a5c87d0cf79c96b494",
+  "instrumented_native_canonical_sha256": "8253dfeb420e92ab1768cefeda1b155b1d0c297fd27212a5c87d0cf79c96b494",
+  "separate_bars": {
+    "rows": 6445,
+    "metadata": {
+      "columns": [
+        "time",
+        "time_close",
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume",
+        "htfClose",
+        "htfEMA50",
+        "htfEMA200",
+        "htfEMA50prev",
+        "priorDayHigh",
+        "priorDayLow"
+      ],
+      "price_serialization": "8 decimal places",
+      "source": "Pine observed OANDA:XAUUSD M15"
+    },
+    "canonical_section_sha256": "18cd54fe200a43019633cbdf1d162b20bb6c8a14407a57309488505618846b81",
+    "scope": "EXPLICITLY_SEPARATE_CONTEXT_SECTION_NOT_USED_TO_INFER_FILLS"
+  },
+  "separate_warning_probes": [
+    {
+      "schema": "qirvanta.warnings.v1",
+      "kind": "history_scope",
+      "baseline_sha256": "c6bfe1af0604c447eddaed1db5195bfe2c07d3826e7fafc70113235e9f25f1a5",
+      "symbol": "OANDA:XAUUSD",
+      "timeframe": "15",
+      "cutoff": 1794192300000,
+      "confirmed_bar_count": 6445,
+      "fast_long_calls": 6445,
+      "fast_short_calls": 6445,
+      "reversal_long_calls": 6445,
+      "reversal_short_calls": 6445,
+      "fast_long_mismatches": 0,
+      "fast_short_mismatches": 0,
+      "reversal_long_mismatches": 0,
+      "reversal_short_mismatches": 0,
+      "netprofit": -144.492,
+      "closed_count": 212,
+      "scope": "DIRECT_GLOBAL_HISTORY_AND_PREDICATES_NOT_FULL_SIGNAL_PARITY"
+    }
+  ],
+  "warning_call_counts_and_history_predicates_match": true,
+  "input_sha256": {
+    "original": "4b9350dbc6e52fecf6f2ad5fd67b547d6f0b07022d7e29e9c73da0e55c96b6ea",
+    "instrumented": "4f809aa8c26bd393a2a6562e1a4d54c2b56aede2cc14bab22fbec58b63f869ae"
+  },
+  "scope": "Exact exported native records + tested history reads/predicates; not full signal/realtime/rollback proof"
+}

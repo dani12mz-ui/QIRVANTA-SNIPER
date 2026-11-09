@@ -1,0 +1,69 @@
+{
+  "baseline_commit": "48e5cddab17ea831bdc277f17f0406329fdfe39c",
+  "scope": "Existing Python reference and static-source tests only; not new Pine compilation or proof of profitability",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "legacy_run_tests_py_not_used": "Those runners overwrite existing reports; unittest discovery writes only new diagnostics logs",
+  "before": {
+    "checked_at_utc": "2026-11-09T03:14:56.610563+00:00",
+    "baseline_commit": "48e5cddab17ea831bdc277f17f0406329fdfe39c",
+    "checked_files": 217,
+    "changed_tracked_files_since_freeze": [],
+    "missing_tracked_files": [],
+    "all_baseline_working_tree_bytes_unchanged": true
+  },
+  "suites": [
+    {
+      "suite": "unified",
+      "started_at_utc": "2026-11-09T03:14:56.611562+00:00",
+      "duration_seconds": 0.641,
+      "command": [
+        "C:\\Users\\azubu\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "cwd": "unified",
+      "returncode": 0,
+      "expected_test_count": 99,
+      "observed_test_count": 99,
+      "status": "PASS",
+      "output_path": "diagnostics/protocol/unified_baseline_tests.log",
+      "output_sha256": "33c0222baae9fe47a1737954ba6822b3524b942c75dbf78a2b7f02aacaa217b9"
+    },
+    {
+      "suite": "refactored",
+      "started_at_utc": "2026-11-09T03:14:57.255662+00:00",
+      "duration_seconds": 1.109,
+      "command": [
+        "C:\\Users\\azubu\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "cwd": "refactored",
+      "returncode": 0,
+      "expected_test_count": 127,
+      "observed_test_count": 127,
+      "status": "PASS",
+      "output_path": "diagnostics/protocol/refactored_baseline_tests.log",
+      "output_sha256": "9c729ec26a79b736d9b457d988c6e387f20f6611c829679dc9628c9e79a8fc81"
+    }
+  ],
+  "after": {
+    "checked_at_utc": "2026-11-09T03:14:58.424735+00:00",
+    "baseline_commit": "48e5cddab17ea831bdc277f17f0406329fdfe39c",
+    "checked_files": 217,
+    "changed_tracked_files_since_freeze": [],
+    "missing_tracked_files": [],
+    "all_baseline_working_tree_bytes_unchanged": true
+  }
+}

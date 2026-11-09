@@ -1,0 +1,22 @@
+{
+  "created_at_utc": "2026-11-09T03:18:45.059099+00:00",
+  "type": "EVIDENCE_EXTRACTION_CORRECTION_ONLY",
+  "reason": "The first parser found the chart toolbar's Script execution label instead of its Properties-dialog label. The saved evidence itself already contains On bar close.",
+  "original_registration_sha256": "95c287362437f4bff81862df017fcf5577c02e1dcfb82965195d4f96021d5cbd",
+  "superseded_extraction_sha256": "2e947909136a8c32bc9a2e0d9692bd29f731418c3a72644b91d89696a421f96e",
+  "corrected_extraction": "current_ui_settings_v2.json",
+  "corrected_extraction_sha256": "469f9fad9b1cd6e21429c4b4be0318c4685e2038f69796198c4b90e54f8d83ce",
+  "changed_properties": [
+    {
+      "label": "Script execution",
+      "old_values": [],
+      "corrected_values": [
+        "On bar close"
+      ]
+    }
+  ],
+  "input_values_changed": false,
+  "source_evidence_changed": false,
+  "protocol_or_rule_changes": [],
+  "new_diagnostic_outcomes_reviewed_for_this_correction": false
+}

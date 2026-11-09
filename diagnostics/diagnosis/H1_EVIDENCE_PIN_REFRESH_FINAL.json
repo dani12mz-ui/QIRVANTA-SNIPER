@@ -1,0 +1,13 @@
+{
+  "recorded_at_utc": "2026-11-09T03:57:47.428019+00:00",
+  "reason": "Final generator overwrite guards and independent test evidence metadata; no production, economic, dataset or preregistration changes.",
+  "previous_comparison_sha256": "66d7810533417998b33ac6a86b17ba615353c74d7597e86173cdf0eceac8f82d",
+  "current_comparison_sha256": "5d0c0f9def8e4b64a1fbf7a394de184215a0788e81fbf5182576ac128da5fb70",
+  "previous_evidence_sha256": "71d2bcebb7adb99f0604b87213618a0dbfef68382181b9825ac19def15cacfa4",
+  "current_evidence_sha256": "36149dff9ca964f44f2d23edec656c409bda485532828fc38a3ea22de3595816",
+  "full_paired_comparisons_recomputed": true,
+  "all_comparison_fields_exactly_equal": true,
+  "accounting_input_hashes_unchanged": true,
+  "hypothesis_registration_unchanged": true,
+  "only_changed_field": "independent_data_and_inputs_evidence.sha256"
+}

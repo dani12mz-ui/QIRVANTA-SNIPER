@@ -1,0 +1,36 @@
+{
+  "registered_at_utc": "2026-11-09T03:22:25.437309+00:00",
+  "baseline_commit": "48e5cddab17ea831bdc277f17f0406329fdfe39c",
+  "chronology": "Registered before this agent calculates the descriptive bins. Existing B-ALL aggregate and prior visible contributions were already known. These historical datasets are not unseen holdout data.",
+  "known_before_registration": {
+    "B-ALL": {
+      "complete_campaigns": 72,
+      "closed_parts": 212,
+      "net_cash": -144.492
+    }
+  },
+  "inputs_sha256": {
+    "diagnostics/evidence/B-ALL.pine-logs.csv": "4b9350dbc6e52fecf6f2ad5fd67b547d6f0b07022d7e29e9c73da0e55c96b6ea",
+    "diagnostics/evidence/B-FAST.pine-logs.csv": "9b01b7ea18fe35765e26f951a010454bea39078441fa67503c48d9c580eb5a43",
+    "diagnostics/evidence/B-RETEST.pine-logs.csv": "15af9572f10424c9ad3fef401e967164d4f2c2271108066b44a4763542fe04b7",
+    "diagnostics/evidence/B-REVERSAL.pine-logs.csv": "f5a8babf28de2b861ad82eea195fe2d7f3811167ef6f7e9a4dc162a485bfe0c7"
+  },
+  "population": "COMPLETE reconciled native campaigns only; isolated runs separately; combined contributions not added to isolated outcomes",
+  "predeclared_descriptive_dimensions": [
+    "exit path with quantity/gross/fees/net; SL_FULL, TP1_THEN_LOCKED_SL_CONSISTENT, TP_THEN_SAMEBAR_INITIAL_SL, TP_THEN_OTHER_SL, ALL_TARGETS, TIME, GAP_LABEL, MIXED_OTHER",
+    "efficiency <0.25 versus >=0.25 (threshold supplied by parent before analysis); null separate",
+    "original local_aligned flag true/false/null",
+    "original countertrend flag and independently preserved WITH_HTF/AGAINST_HTF/NEUTRAL_HTF relation",
+    "signed entry-reference deviation divided by frozen signal ATR and initial planned R; baseline absolute ATR threshold <=0.20 versus >0.20",
+    "predeclared signed planned-R bins <=0, (0,0.10], >0.10; descriptive only"
+  ],
+  "cost_definition": "Gross cash from actual native entry/exit/qty/pointvalue; subtract observed native commission exactly once. Slippage is already in prices; do not subtract it again. Gross-before-slippage counterfactual unavailable.",
+  "lock_consistency_definition": "Requires TP1 on an earlier bar, subsequent SL, and SL price matching rounded entry + side*actual_initial_risk*0.05 minus side*2 ticks. Other TP/SL sequences kept separately; matching is source-policy consistency, not a claim to reconstruct intrabar path.",
+  "small_sample_rule": "Every cell prints N. N<20 flagged SMALL_N; even larger cells remain exploratory and correlated.",
+  "candidate_limit": 1,
+  "candidate_rule": "At most one testable mechanism hypothesis after description, only with coherent evidence in independent isolated-model records plus combined contribution. No optimizing thresholds, disabling losing families wholesale, or treating a filtered retrospective subset as a strategy rerun.",
+  "candidate_preference_if_evidence_exists": "Fast-entry confirmation/context quality (original local alignment or fixed efficiency 0.25), not looser filters or blanket removal of the losing model.",
+  "change_authorization": "No production changes in this stage. A separate frozen hypothesis/test plan must precede any future edit or rerun.",
+  "causality_and_performance_claim": false,
+  "genuine_unseen_holdout": false
+}

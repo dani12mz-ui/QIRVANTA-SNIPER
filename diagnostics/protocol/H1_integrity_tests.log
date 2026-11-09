@@ -1,0 +1,21 @@
+test_active_and_unfocused_controls_extract_the_same_value (test_extract_bars.ExportIntegrity.test_active_and_unfocused_controls_extract_the_same_value) ... ok
+test_candidate_requires_its_explicit_expected_source_hash (test_extract_bars.ExportIntegrity.test_candidate_requires_its_explicit_expected_source_hash) ... ok
+test_count_disagreement_is_not_passed_as_complete (test_extract_bars.ExportIntegrity.test_count_disagreement_is_not_passed_as_complete) ... ok
+test_duplicates_are_reported_and_never_dropped (test_extract_bars.ExportIntegrity.test_duplicates_are_reported_and_never_dropped) ... ok
+test_existing_archive_cannot_be_overwritten (test_extract_bars.ExportIntegrity.test_existing_archive_cannot_be_overwritten) ... ok
+test_invalid_ohlc_is_rejected_before_archiving (test_extract_bars.ExportIntegrity.test_invalid_ohlc_is_rejected_before_archiving) ... ok
+test_multiline_csv_preserves_decimal_and_causal_columns (test_extract_bars.ExportIntegrity.test_multiline_csv_preserves_decimal_and_causal_columns) ... ok
+test_observed_gap_remains_gap_not_imputed_bars (test_extract_bars.ExportIntegrity.test_observed_gap_remains_gap_not_imputed_bars) ... ok
+test_truncated_export_is_rejected (test_extract_bars.ExportIntegrity.test_truncated_export_is_rejected) ... ok
+test_actual_artifacts_preserve_exact_baseline_except_registered_fast_gate (test_h1_integrity.H1SingleChangeIntegrity.test_actual_artifacts_preserve_exact_baseline_except_registered_fast_gate) ... ok
+test_actual_manifest_hashes_and_registration_chronology_match_bytes (test_h1_integrity.H1SingleChangeIntegrity.test_actual_manifest_hashes_and_registration_chronology_match_bytes) ... ok
+test_baseline_observer_rejects_corrupt_git_source_under_optimization (test_h1_integrity.H1SingleChangeIntegrity.test_baseline_observer_rejects_corrupt_git_source_under_optimization) ... ok
+test_changed_observer_appendix_rejected_even_when_prefix_is_unchanged (test_h1_integrity.H1SingleChangeIntegrity.test_changed_observer_appendix_rejected_even_when_prefix_is_unchanged) ... ok
+test_changed_registration_rejected_even_when_python_assertions_are_disabled (test_h1_integrity.H1SingleChangeIntegrity.test_changed_registration_rejected_even_when_python_assertions_are_disabled) ... ok
+test_missing_registration_never_generates_candidate (test_h1_integrity.H1SingleChangeIntegrity.test_missing_registration_never_generates_candidate) ... ok
+test_successful_generator_reproduces_candidate_with_normal_and_optimized_python (test_h1_integrity.H1SingleChangeIntegrity.test_successful_generator_reproduces_candidate_with_normal_and_optimized_python) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 4.579s
+
+OK
