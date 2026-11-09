@@ -103,15 +103,34 @@
     "old_chart_instances_removed_to_respect_limit": true,
     "layout_saved_and_reloaded": true,
     "reload_observation": "M15 layout retained final PRO visible and final QIRV TEST hidden",
-    "validation_access": "Use the eye/Show control next to QIRV TEST to display validation and its Strategy Report"
+    "validation_access": "Use the eye/Show control next to QIRV TEST to display validation and its Strategy Report",
+    "saved_pro_reopened_exact_match": true,
+    "saved_pro_reopen_verification": {
+      "timestamp_local": "2026-11-08T23:24:53+02:00",
+      "timezone": "Europe/Sofia",
+      "saved_name": "QIRVANTA_SNIPER_PRO",
+      "saved_version": 2,
+      "displayed_save_time": "Today 23:14",
+      "procedure": "After chart reload, reopened private PRO through Recently used; selected and copied complete Pine Editor text, then compared after LF normalization",
+      "normalized_character_count": 85655,
+      "normalized_sha256": "0d8823a74d57f98dbe27575f2fc0e0abe4ae8db710ec81419265c31390232043",
+      "exact_match_to_final_local_pro": true,
+      "evidence": "reports/tradingview_evidence/tradingview_integrated_pro.png",
+      "evidence_sha256": "f4d41cb8ec01e58db42434370b2d0a6cf441b9ac74e0677f4f2479a00bf47f12"
+    }
   },
   "profitability_demonstrated": false,
   "profitability_improvement_demonstrated": false,
   "production_ready": false,
-  "publication_status": "PENDING_GITHUB_PUBLICATION",
+  "publication_status": "PUBLISHED",
   "github_pushed": false,
   "main_modified": false,
   "broker_connected": false,
   "orders_submitted": false,
-  "historical_acceptance": "reports/history_before_authenticated_tradingview/ACCEPTANCE.json"
+  "historical_acceptance": "reports/history_before_authenticated_tradingview/ACCEPTANCE.json",
+  "publication_method": "GITHUB_GIT_DATA_API",
+  "github_published": true,
+  "verified_delivery_commit": "3495660fe88200b6d8c8ebd5c0a7f179da0d8eed",
+  "verified_delivery_tree": "69a241d300952945c620c44167f911a4bda4701e",
+  "publication_evidence": "reports/publication.json"
 }

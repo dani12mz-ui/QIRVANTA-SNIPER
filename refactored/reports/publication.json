@@ -1,0 +1,29 @@
+{
+  "status": "PUBLISHED",
+  "verification_date_local": "2026-11-09",
+  "timezone": "Europe/Sofia",
+  "method": "GITHUB_GIT_DATA_API",
+  "github_published": true,
+  "github_pushed": false,
+  "git_push_note": "Local git push failed in the credential helper; publication succeeded using the authorized GitHub connector Git Data API.",
+  "repository": "https://github.com/dani12mz-ui/QIRVANTA-SNIPER",
+  "branch": "fix/audited-validation-integrity",
+  "branch_url": "https://github.com/dani12mz-ui/QIRVANTA-SNIPER/tree/fix/audited-validation-integrity",
+  "verified_delivery_commit": "3495660fe88200b6d8c8ebd5c0a7f179da0d8eed",
+  "verified_delivery_commit_url": "https://github.com/dani12mz-ui/QIRVANTA-SNIPER/commit/3495660fe88200b6d8c8ebd5c0a7f179da0d8eed",
+  "verified_delivery_tree": "69a241d300952945c620c44167f911a4bda4701e",
+  "equivalent_local_delivery_commit": "bb4517896fd5dd64da61ce70cc4f990fbd90379c",
+  "remote_tree_matches_local_delivery_tree": true,
+  "tested_code_commit": "51e0aa20a5604b9d79e7214f6e2aca59ac01048a",
+  "tested_source_sha256": "c7946faaa06cfc85ae1a757a5a9804fdffeb6552be9112dec20a9dc5ae674cb3",
+  "verified_pine_git_blobs": {
+    "audited/QIRVANTA_SNIPER_PRO.pine": "f68060b85729ef804914b60a613e1ceba1ca8f88",
+    "audited/QIRVANTA_SNIPER_VALIDATION.pine": "b1bc0b6c84e94c51e8af55f7d7e8f0b5209417cf"
+  },
+  "pine_blobs_match_local_code": true,
+  "main_unchanged_at": "7fe6534f72fa23da18aa9282ee8f5ac11dcc9df6",
+  "baseline_branch_unchanged_at": "103bc30788b18234f5938ed0f5346e142097a6fe",
+  "verification_provenance": "Root agent verified the GitHub branch ref, commit tree and both audited Pine blob IDs using the GitHub connector.",
+  "report_scope": "This record identifies the already verified code publication. A subsequent documentation/evidence commit follows it; no self-referential final branch-head claim is made here.",
+  "source_changes_after_tested_code_commit": false
+}

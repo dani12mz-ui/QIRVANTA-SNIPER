@@ -337,5 +337,19 @@
     ],
     "possible_workaround": "Move the table to bottom-right through display input; not independently verified in these captures",
     "code_changed_for_mobile": false
+  },
+  "saved_pro_reopened_exact_match": true,
+  "saved_pro_reopen_verification": {
+    "timestamp_local": "2026-11-08T23:24:53+02:00",
+    "timezone": "Europe/Sofia",
+    "saved_name": "QIRVANTA_SNIPER_PRO",
+    "saved_version": 2,
+    "displayed_save_time": "Today 23:14",
+    "procedure": "After chart reload, reopened private PRO through Recently used; selected and copied complete Pine Editor text, then compared after LF normalization",
+    "normalized_character_count": 85655,
+    "normalized_sha256": "0d8823a74d57f98dbe27575f2fc0e0abe4ae8db710ec81419265c31390232043",
+    "exact_match_to_final_local_pro": true,
+    "evidence": "reports/tradingview_evidence/tradingview_integrated_pro.png",
+    "evidence_sha256": "f4d41cb8ec01e58db42434370b2d0a6cf441b9ac74e0677f4f2479a00bf47f12"
   }
 }

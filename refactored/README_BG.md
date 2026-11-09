@@ -1,6 +1,6 @@
 # QIRVANTA — доставка от audited baseline
 
-Начало: commit `103bc30788b18234f5938ed0f5346e142097a6fe`, клон `qirvanta-refactored-delivery`. Поправките са подготвени в `fix/audited-validation-integrity` за поисканата GitHub публикация; текущ статус PENDING. Main не е променен; [публикационни данни](PUBLICATION_BG.md).
+Начало: commit `103bc30788b18234f5938ed0f5346e142097a6fe`, клон `qirvanta-refactored-delivery`. Поправките са публикувани в отделния [клон `fix/audited-validation-integrity`](https://github.com/dani12mz-ui/QIRVANTA-SNIPER/tree/fix/audited-validation-integrity); [потвърден delivery commit](https://github.com/dani12mz-ui/QIRVANTA-SNIPER/commit/3495660fe88200b6d8c8ebd5c0a7f179da0d8eed) `3495660fe88200b6d8c8ebd5c0a7f179da0d8eed`. Main и началният baseline не са променени; [публикационни данни](PUBLICATION_BG.md).
 
 **Причината за наблюдавания отказ на VALIDATION е възпроизведена:** началният файл включва High detalization (`use_bar_magnifier=true`), а TradingView го отказва с изискване за Premium. На OANDA:XAUUSD H1, стандартни свещи, същият код заработи след превключване към Default detalization. Затова текущият native header използва `use_bar_magnifier=false`. Първият опит преди вход в профила беше блокиран от Log in; това е историческо ограничение, вече преодоляно. Точният обхват на проверката на окончателните файлове е в [проверки](VALIDATION_BG.md) и `reports/ACCEPTANCE.json`.
 

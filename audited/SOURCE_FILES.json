@@ -20,6 +20,11 @@
   "runtime": "PASS_SMOKE_M5_M15_M30_H1_H4",
   "live_evidence": "../refactored/reports/tradingview_attempt.json",
   "profitability": "NOT_DEMONSTRATED",
-  "publication_status": "PENDING_GITHUB_PUBLICATION",
-  "github_pushed": false
+  "publication_status": "PUBLISHED",
+  "github_pushed": false,
+  "publication_method": "GITHUB_GIT_DATA_API",
+  "github_published": true,
+  "verified_delivery_commit": "3495660fe88200b6d8c8ebd5c0a7f179da0d8eed",
+  "verified_delivery_tree": "69a241d300952945c620c44167f911a4bda4701e",
+  "publication_evidence": "reports/publication.json"
 }
