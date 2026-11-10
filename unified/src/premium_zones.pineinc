@@ -203,7 +203,8 @@ if barstate.islastconfirmedhistory or barstate.islast
     if showLevels and not na(p) and (not f_premiumDone(p) or (uiMode == "PREMIUM" and premiumHistory and premiumKeepPlans > 0))
         array<float> prices = f_premiumPrices(p)
         array<bool> visible = f_premiumVisible(p)
-        array<string> names = array.from(na(p.filledEntry) ? "ENTRY PLAN" : "ENTRY SIM.", "INITIAL SL", "CURRENT SL", "TP1", "TP2", "TP3")
+        string entryLabel = p.closed ? "ENTRY · CLOSED" : p.unfilled ? "ENTRY · NO FILL" : na(p.filledEntry) ? "ENTRY · PLAN" : "ENTRY · FILL"
+        array<string> names = array.from(entryLabel, "INITIAL SL", "CURRENT SL", "TP1", "TP2", "TP3")
         array<bool> hits = array.from(false, p.stopHit and p.currentSL == p.initialSL, p.stopHit, p.tp1Done, p.tp2Done, p.tp3Done)
         float lastY = na
         int edge = math.max(nz(p.entryAt, p.submittedAt), f_premiumEnd(p))

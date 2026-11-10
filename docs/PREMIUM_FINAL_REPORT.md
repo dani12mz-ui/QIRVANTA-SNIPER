@@ -1,5 +1,7 @@
 # QIRVANTA SNIPER PREMIUM · отчет A–P
 
+Последващата работа по затворения план и повторният опит за изолирана графика са в [Premium Native QA](PREMIUM_NATIVE_QA_CONTINUATION.md).
+
 **`PARTIALLY_COMPLETE` · `NO_VALIDATED_PROFITABILITY_IMPROVEMENT`**. Предаден е отделен Pine v6 кандидат за Premium визуализация. Нова native компилация, паритет върху работещата Premium графика и запис в профила остават непотвърдени.
 
 | Обхват | Резултат |

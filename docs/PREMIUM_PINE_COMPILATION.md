@@ -1,5 +1,7 @@
 # Premium · Pine v6 компилация
 
+Този отчет описва първоначалния Premium commit `d13b46f`. В [последващата QA проверка](PREMIUM_NATIVE_QA_CONTINUATION.md) са записани точният SHA-256 и размерът на актуалната визуална корекция; пълната нативна компилация остава неизпълнена.
+
 **`FULL_PREMIUM_NATIVE_COMPILATION_NOT_RUN`**. `unified/experimental/QIRVANTA_SNIPER_PREMIUM.pine` е самостоятелен Pine v6 файл с едно `strategy()` и без imports. Визуалните фрагменти и Python инструментите са само за разработка и проверка; в TradingView се поставя единствено пълният `.pine`.
 
 Базовият Pine SHA-256 `bc7bf16cd988fa23832f75ff22ee421b198cafb95614c9445622ce7bc4cfe1c3` е [компилиран в TradingView](tradingview_only_evidence/platform_compile.txt). Документираният резултат **101 088** срещу лимит **100 256** е за *предишния пълен рендерер плюс диагностичен журнал*, а не размер на голия базов Pine или на Premium. Premium е **169 597 байта, 2 320 реда**, SHA-256 `da9d0a43e4eaa7c06ff1b298795c1b082341790ffe9cc665121f824eafa69dec` ([машинен отчет](premium_evidence/baseline_parity.json)). [TradingView](https://www.tradingview.com/pine-script-docs/writing/limitations/) брои токени след компилация, а успешно компилиран скрипт не показва броя им. Локално сравнение на размера на текста не доказва токенен резерв или приемане от платформата.

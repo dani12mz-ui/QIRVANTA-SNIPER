@@ -2184,7 +2184,8 @@ if barstate.islastconfirmedhistory or barstate.islast
     if showLevels and not na(p) and (not f_premiumDone(p) or (uiMode == "PREMIUM" and premiumHistory and premiumKeepPlans > 0))
         array<float> prices = f_premiumPrices(p)
         array<bool> visible = f_premiumVisible(p)
-        array<string> names = array.from(na(p.filledEntry) ? "ENTRY PLAN" : "ENTRY SIM.", "INITIAL SL", "CURRENT SL", "TP1", "TP2", "TP3")
+        string entryLabel = p.closed ? "ENTRY · CLOSED" : p.unfilled ? "ENTRY · NO FILL" : na(p.filledEntry) ? "ENTRY · PLAN" : "ENTRY · FILL"
+        array<string> names = array.from(entryLabel, "INITIAL SL", "CURRENT SL", "TP1", "TP2", "TP3")
         array<bool> hits = array.from(false, p.stopHit and p.currentSL == p.initialSL, p.stopHit, p.tp1Done, p.tp2Done, p.tp3Done)
         float lastY = na
         int edge = math.max(nz(p.entryAt, p.submittedAt), f_premiumEnd(p))
@@ -2214,9 +2215,9 @@ color premiumPanelFrame = color.rgb(62, 74, 89)
 string premiumAnchor = panelPosition == "Горе вляво" ? position.top_left : panelPosition == "Горе вдясно" ? position.top_right : panelPosition == "Долу вдясно" ? position.bottom_right : position.bottom_left
 var table premiumBoard = table.new(premiumAnchor, 2, 15, frame_color=premiumPanelFrame, frame_width=1)
 
-f_premiumCell(int row, string left, string right, color accent, string tip) =>
+f_premiumCell(int row, string left, string right, color accent, string tip, color leftAccent = na) =>
     color bg = color.new(row <= 2 ? color.rgb(19, 27, 37) : row % 2 == 0 ? color.rgb(13, 19, 27) : color.rgb(10, 15, 22), 8)
-    table.cell(premiumBoard, 0, row, left, bgcolor=bg, text_color=row == 0 ? premiumPanelText : premiumPanelDim, text_size=uiFontPt, text_halign=text.align_left, tooltip=tip)
+    table.cell(premiumBoard, 0, row, left, bgcolor=bg, text_color=row == 0 ? premiumPanelText : na(leftAccent) ? premiumPanelDim : leftAccent, text_size=uiFontPt, text_halign=text.align_left, tooltip=tip)
     table.cell(premiumBoard, 1, row, right, bgcolor=bg, text_color=accent, text_size=uiFontPt, text_halign=text.align_right, tooltip=tip)
 
 f_premiumQty(float qty) => na(qty) ? "—" : str.tostring(qty, "#.########")
@@ -2228,6 +2229,9 @@ if barstate.islastconfirmedhistory or barstate.islast
         bool recent = not na(snap)
         bool active = recent and not snap.closed and not snap.unfilled
         bool confirmedCandidate = not active and not na(selectedNativePlan)
+        bool premium = uiMode == "PREMIUM"
+        bool closedCard = premium and recent and snap.closed and not confirmedCandidate
+        string planSide = recent ? (snap.side == 1 ? "BUY" : "SELL") : "WAIT"
         string idleHint = ""
         if not active and array.size(events) > 0
             for ev in events
@@ -2237,9 +2241,9 @@ if barstate.islastconfirmedhistory or barstate.islast
                     idleHint := "SETUP"
                 else if idleHint == "" and ev.book == "CORE" and ev.kind == "REJECTED"
                     idleHint := "REJECTED"
-        string state = active ? snap.status : confirmedCandidate ? "CANDIDATE" : "NO ACTIVE PLAN"
-        string direction = active ? (snap.side == 1 ? "BUY" : "SELL") : "WAIT"
-        color sideColor = active ? (snap.side == 1 ? premiumBuy : premiumSell) : premiumPanelDim
+        string state = active ? snap.status : closedCard ? "CLOSED" : confirmedCandidate ? "CANDIDATE" : "NO ACTIVE PLAN"
+        string direction = active ? planSide : closedCard ? "LAST " + planSide : "WAIT"
+        color sideColor = active or closedCard ? (snap.side == 1 ? premiumBuy : premiumSell) : premiumPanelDim
         string frame = timeframe.isminutes ? "M" + str.tostring(timeframe.multiplier) : timeframe.period
         string h1 = tfSeconds > 3600 or na(uiH1ClosedAt) ? "—" : f_biasSymbol(uiH1Bias)
         string h4 = tfSeconds > 14400 or na(uiH4ClosedAt) ? "—" : f_biasSymbol(uiH4Bias)
@@ -2249,20 +2253,19 @@ if barstate.islastconfirmedhistory or barstate.islast
         string stateTip = "TradingView Strategy Tester · само симулация."
         if recent
             stateTip += "\n" + snap.id + " · " + snap.family + "\nЗаявка " + f_clockUtc(snap.submittedAt)
-        bool premium = uiMode == "PREMIUM"
         bool detailed = uiMode == "PRO" or uiMode == "DEBUG"
         f_premiumCell(0, "QIRVANTA SNIPER", uiMode, premiumAqua, stateTip)
         f_premiumCell(1, syminfo.ticker + " · " + frame, model + " · SIM", premiumPanelText, stateTip)
-        f_premiumCell(2, direction, state, sideColor, stateTip)
+        f_premiumCell(2, direction, state, closedCard ? premiumAqua : sideColor, stateTip, sideColor)
         if premium and recent
             bool filled = not na(snap.filledEntry)
             float entry = filled ? snap.filledEntry : snap.plannedEntry
             string geometry = filled ? "FILL" : "PLAN"
             string pricesTip = "Планов ориентир " + f_price(snap.plannedEntry) + " · изпълнение " + f_price(snap.filledEntry) + "\n" + f_tvTargets(snap.basis) + " · " + stateTip
-            string lastSide = snap.side == 1 ? "BUY" : "SELL"
-            f_premiumCell(3, active ? "ENTRY · " + geometry : "LAST " + lastSide + " · " + snap.status, f_price(entry), premiumWhite, pricesTip)
+            f_premiumCell(3, active or closedCard ? "ENTRY · " + geometry : "LAST " + planSide + " · " + snap.status, f_price(entry), premiumWhite, pricesTip)
             f_premiumCell(4, "INITIAL SL", f_price(snap.initialSL), premiumSell, pricesTip)
-            f_premiumCell(5, "CURRENT SL", f_price(snap.currentSL) + (snap.stopHit ? " · SL HIT" : ""), premiumSell, pricesTip)
+            string frozenProtection = snap.closed and snap.protection != "INITIAL SL" ? (snap.protection == "BE PRICE" ? " · BE" : snap.protection == "PROFIT LOCK" ? " · LOCK" : " · MOVED") : ""
+            f_premiumCell(5, "CURRENT SL" + frozenProtection, f_price(snap.currentSL) + (snap.stopHit ? " · SL HIT" : ""), premiumSell, pricesTip)
             for idx = 1 to 3
                 float tp = idx == 1 ? snap.tp1 : idx == 2 ? snap.tp2 : snap.tp3
                 bool filledTP = idx == 1 ? snap.tp1Done : idx == 2 ? snap.tp2Done : snap.tp3Done
@@ -2281,7 +2284,11 @@ if barstate.islastconfirmedhistory or barstate.islast
             if active and snap.protection != "INITIAL SL"
                 timeTitle := snap.protection
             f_premiumCell(12, timeTitle, eventTime, premiumPanelDim, stateTip)
-            if not na(snap.netR)
+            if closedCard
+                string realized = na(snap.netR) ? "—" : "NET " + str.tostring(snap.netR, "#.##") + "R"
+                color realizedColor = na(snap.netR) ? premiumPanelDim : snap.netR >= 0 ? premiumBuy : premiumSell
+                f_premiumCell(13, "NO ACTIVE PLAN", realized, realizedColor, stateTip)
+            else if not na(snap.netR)
                 f_premiumCell(13, "REALIZED NET", str.tostring(snap.netR, "#.##") + "R", snap.netR >= 0 ? premiumBuy : premiumSell, pricesTip)
             else if showExplanatoryText and idleHint != ""
                 f_premiumCell(13, "DECISION", idleHint, premiumPanelDim, nativeLastStatus)
