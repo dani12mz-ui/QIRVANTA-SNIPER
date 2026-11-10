@@ -1,0 +1,123 @@
+// Confirmed context shared by research candidates and the dashboard.
+bool tvEntryFrame = chart.is_standard and (tfSeconds == 300 or tfSeconds == 900 or tfSeconds == 1800)
+bool tvContextReady = not na(uiH1ClosedAt) and not na(uiH4ClosedAt) and not na(uiH1EarlierEMA) and not na(uiH4EarlierEMA)
+int tvH1Bias = uiH1Bias
+int tvH4Bias = uiH4Bias
+float tvAtrPercentile = ta.percentrank(atr, 100)
+float tvBodyATR = atr > 0 ? body / atr : na
+float tvWickBody = (barRange - body) / math.max(body, syminfo.mintick)
+float tvEmaSlope = atr > 0 ? (emaFast - emaFast[5]) / atr : na
+float tvPullbackDepth = atr > 0 ? math.abs(close - emaFast) / atr : na
+bool tvShock = not na(atrMean) and (atr > 1.9 * atrMean or barRange > 3.0 * atr)
+bool tvCompression = not na(tvAtrPercentile) and tvAtrPercentile <= 20 and atr < 0.85 * atrMean
+bool tvExpansion = not na(tvAtrPercentile) and tvAtrPercentile >= 80 and atr > 1.25 * atrMean
+int tvObservedRegime = not warmup or not tvContextReady or na(efficiency) or na(tvAtrPercentile) ? 0 : tvExpansion ? 4 : tvCompression ? 3 : bullLocal and tvEmaSlope > 0.10 and efficiency >= 0.30 and adx >= minADX ? 1 : bearLocal and tvEmaSlope < -0.10 and efficiency >= 0.30 and adx >= minADX ? -1 : adx < minADX or efficiency < 0.20 ? 2 : 0
+var int tvRegime = 0
+var int tvRegimeStreak = 0
+var int tvRegimeCandidate = 0
+var int tvTrendAge = 0
+var int tvStructure = 0
+bool tvBullChange = false
+bool tvBearChange = false
+if processBar
+    if tvObservedRegime == tvRegimeCandidate
+        tvRegimeStreak := math.min(3, tvRegimeStreak + 1)
+    else
+        tvRegimeCandidate := tvObservedRegime
+        tvRegimeStreak := 1
+    if not warmup or not tvContextReady
+        tvRegime := 0
+    else if tvRegimeStreak >= 3
+        tvRegime := tvRegimeCandidate
+    tvTrendAge := math.abs(tvRegime) == 1 ? (tvRegime == tvRegime[1] ? math.min(500, tvTrendAge + 1) : 1) : 0
+    if structureUpNow
+        tvBullChange := tvStructure == -1
+        tvStructure := 1
+    else if structureDownNow
+        tvBearChange := tvStructure == 1
+        tvStructure := -1
+bool tvExhaustion = tvTrendAge >= 12 and tvPullbackDepth > 1.2 and (tvWickBody > 1.0 or efficiency < efficiency[3])
+
+// London and New York opening ranges require the entire first hour on this chart.
+// IANA time zones follow local daylight saving. Gaps make the current range unavailable.
+type TvOpeningRange
+    float buildingHigh = na
+    float buildingLow = na
+    float frozenHigh = na
+    float frozenLow = na
+    int nextOpen = na
+    int localDay = na
+    int bars = 0
+    bool complete = false
+
+f_tvOpeningRange(TvOpeningRange boxState, bool inRange, bool inSession, bool firstRangeBar, int localDay) =>
+    if processBar
+        if na(boxState.localDay) or boxState.localDay != localDay
+            boxState.localDay := localDay
+            boxState.complete := false
+            boxState.frozenHigh := na
+            boxState.frozenLow := na
+        if firstRangeBar
+            boxState.buildingHigh := high
+            boxState.buildingLow := low
+            boxState.frozenHigh := na
+            boxState.frozenLow := na
+            boxState.nextOpen := time_close
+            boxState.bars := 1
+            boxState.complete := true
+        else if inRange
+            boxState.complete := boxState.complete and time == boxState.nextOpen
+            boxState.buildingHigh := math.max(boxState.buildingHigh, high)
+            boxState.buildingLow := math.min(boxState.buildingLow, low)
+            boxState.nextOpen := time_close
+            boxState.bars += 1
+        else if not inSession
+            boxState.complete := false
+            boxState.frozenHigh := na
+            boxState.frozenLow := na
+        else if boxState.complete and na(boxState.frozenHigh) and time == boxState.nextOpen and boxState.bars * tfSeconds == 3600
+            boxState.frozenHigh := boxState.buildingHigh
+            boxState.frozenLow := boxState.buildingLow
+    boxState
+
+bool tvLondonActive = tvEntryFrame and not na(time(timeframe.period, "0800-1630:23456", "Europe/London"))
+bool tvNewYorkActive = tvEntryFrame and not na(time(timeframe.period, "0930-1600:23456", "America/New_York"))
+bool tvLondonORActive = tvLondonActive and not na(time(timeframe.period, "0800-0900:23456", "Europe/London"))
+bool tvNewYorkORActive = tvNewYorkActive and not na(time(timeframe.period, "0930-1030:23456", "America/New_York"))
+var TvOpeningRange tvLondon = TvOpeningRange.new()
+var TvOpeningRange tvNewYork = TvOpeningRange.new()
+f_tvLocalDay(string zone) => year(time, zone) * 10000 + month(time, zone) * 100 + dayofmonth(time, zone)
+f_tvOpeningRange(tvLondon, tvLondonORActive, tvLondonActive, tvLondonORActive and hour(time, "Europe/London") == 8 and minute(time, "Europe/London") == 0, f_tvLocalDay("Europe/London"))
+f_tvOpeningRange(tvNewYork, tvNewYorkORActive, tvNewYorkActive, tvNewYorkORActive and hour(time, "America/New_York") == 9 and minute(time, "America/New_York") == 30, f_tvLocalDay("America/New_York"))
+float tvLondonORHigh = tvLondon.frozenHigh
+float tvLondonORLow = tvLondon.frozenLow
+float tvNewYorkORHigh = tvNewYork.frozenHigh
+float tvNewYorkORLow = tvNewYork.frozenLow
+
+// Provider-day weighted HLC3. A complete, contiguous set of positive-volume
+// bars since the actual day boundary is required. Tick activity is not exchange volume.
+bool tvVolumeBasis = tvAllowVolume and (syminfo.volumetype == "tick" or syminfo.volumetype == "base" or syminfo.volumetype == "quote")
+int tvVolumeDay = time("D")
+bool tvVolumeReset = not na(tvVolumeDay) and (na(tvVolumeDay[1]) or tvVolumeDay != tvVolumeDay[1])
+var bool tvVolumeComplete = false
+var float tvVolumeSum = 0.0
+var float tvVwapMean = 0.0
+var float tvVwapM2 = 0.0
+if processBar
+    if tvVolumeReset
+        tvVolumeSum := 0.0
+        tvVwapMean := 0.0
+        tvVwapM2 := 0.0
+        tvVolumeComplete := time == tvVolumeDay
+    else
+        tvVolumeComplete := tvVolumeComplete and time == time_close[1]
+    tvVolumeComplete := tvVolumeComplete and tvVolumeBasis and not na(volume) and volume > 0
+    if tvVolumeComplete
+        float tvNewWeight = tvVolumeSum + volume
+        float tvDelta = hlc3 - tvVwapMean
+        tvVwapMean += tvDelta * volume / tvNewWeight
+        tvVwapM2 += volume * tvDelta * (hlc3 - tvVwapMean)
+        tvVolumeSum := tvNewWeight
+bool tvVolumeValid = tvVolumeComplete and tvVolumeSum > 0
+float tvVWAP = tvVolumeValid ? tvVwapMean : na
+float tvVWAPSd = tvVolumeValid ? math.sqrt(math.max(0.0, tvVwapM2 / tvVolumeSum)) : na

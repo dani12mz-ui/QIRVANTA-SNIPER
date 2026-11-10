@@ -1,0 +1,62 @@
+{
+  "schema": "qirvanta.tradingview_only.platform.v1",
+  "source_sha256": "bc7bf16cd988fa23832f75ff22ee421b198cafb95614c9445622ce7bc4cfe1c3",
+  "diagnostic_sha256": "0a35b97db91bdfcdf105087e47846d06ab5acb3926a3ff8c5c79a653a7dec9ee",
+  "exact_source_compilation": "PLATFORM_VERIFIED",
+  "native_runs": 62,
+  "observed_test_counts": {
+    "unified": 126,
+    "research": 119,
+    "root": 89
+  },
+  "total_local_tests": 334,
+  "technical_alert_limit": 0,
+  "strategy_alert_created": false,
+  "physical_iphone_verified": false,
+  "historical_visual_only_sha256": "7563d8732331b290c90b28ef914204b72a2e2571c78f65fa5a977366c2608fbe",
+  "historical_active_plan_checked": true,
+  "saved_layout_restored": true,
+  "new_prospective_evidence": false,
+  "screen_captures": {
+    "standard-desktop.jpg": {
+      "width": 1254,
+      "height": 884,
+      "sha256": "041b2d0a0c569417b5c324c488ebfa15ccdee161f00a5e45f5e1cafda57a64b5"
+    },
+    "minimal-desktop.jpg": {
+      "width": 1254,
+      "height": 884,
+      "sha256": "41d2175312680a2714a505c893e3d1e594b3e893198bd2ad4223d4a516ad806d"
+    },
+    "pro-desktop.jpg": {
+      "width": 1254,
+      "height": 884,
+      "sha256": "f4746d01f2fb55af889e31322e94f197d874d276bd6b95b28e11fed3df87076d"
+    },
+    "debug-desktop.jpg": {
+      "width": 1254,
+      "height": 884,
+      "sha256": "418c25b73628de5fa29715acd94b28168b3369345cf68af90577b8791fb18193"
+    },
+    "standard-mobile-390.jpg": {
+      "width": 390,
+      "height": 844,
+      "sha256": "2b2ab3f939b5168ec89a1f430cd074f2de892d9db9f76ebf75895c3be7836b92"
+    },
+    "alert-basic-blocked.jpg": {
+      "width": 1254,
+      "height": 884,
+      "sha256": "bdd4b550dc1d1195d0d60bd2a93b9de129330b3125744690012ff4e4ec4eb5d6"
+    },
+    "active-history-mobile-390.jpg": {
+      "width": 390,
+      "height": 844,
+      "sha256": "6f76007b7c5db3836d0143b7102071fb3440a7ca8d1722b6ffeb58a6d3f4cd88"
+    },
+    "layout-restored.jpg": {
+      "width": 1254,
+      "height": 884,
+      "sha256": "1dc37b811cad066db360a7e8dabf1a58a2aa6039227f87a9be27a7c8e643e896"
+    }
+  }
+}

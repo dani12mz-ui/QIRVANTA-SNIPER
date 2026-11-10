@@ -1,0 +1,9 @@
+TradingView Pine Editor · 10.11.2026 Europe/Sofia (UTC+02)
+Exact release editor readback SHA-256 bc7bf16cd988fa23832f75ff22ee421b198cafb95614c9445622ce7bc4cfe1c3
+Readback normalized CRLF to LF. All other bytes equal.
+05:30:20 Compiling release
+05:31:25 Compiled
+05:31:25 Updated on chart
+Diagnostic attempt with the full presentation tail: Compiled code contains too many tokens: 101088. The limit is 100256.
+TradingView compiled and ran the lean diagnostic buffer, SHA-256 0a35b97db91bdfcdf105087e47846d06ab5acb3926a3ff8c5c79a653a7dec9ee.
+The lean buffer omits the final presentation and alert() dispatch tail. No order call changes.

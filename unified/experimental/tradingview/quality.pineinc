@@ -1,0 +1,25 @@
+// Advisory rules. Quality neither selects a candidate nor changes an order.
+f_tvFamily(string strategyKey, int family) => strategyKey == "S0" ? (tvEnglish ? (family == 1 ? "RETEST" : family == 2 ? "FAST" : family == 3 ? "REVERSAL" : "S0") : f_model(family)) : strategyKey
+f_tvText(string bg, string en) => tvEnglish ? en : bg
+f_tvQualityLabel(string grade) => grade == "STRONG" ? f_tvText("СИЛЕН", "STRONG") : grade == "MODERATE" ? f_tvText("УМЕРЕН", "MODERATE") : grade == "WEAK" ? f_tvText("СЛАБ", "WEAK") : f_tvText("НЕПРОВЕРЕН", "UNVERIFIED")
+f_tvTargets(string basis) => basis == "STRUCTURE" ? f_tvText("Структурни цели", "Structural targets") : f_tvText("R проекции", "R projections")
+f_tvRegimeLabel(int state) =>
+    state == 1 ? f_tvText("Тренд нагоре", "Uptrend") : state == -1 ? f_tvText("Тренд надолу", "Downtrend") : state == 2 ? f_tvText("Диапазон", "Range") : state == 3 ? f_tvText("Свиване", "Compression") : state == 4 ? f_tvText("Разширяване", "Expansion") : f_tvText("Неясен режим", "Uncertain")
+f_tvR(float entry, float stop, float target, int side) =>
+    float risk = (entry - stop) * side
+    float reward = (target - entry) * side
+    risk > 0 and reward > 0 ? str.tostring(reward / risk, "0.00") + "R" : "—"
+f_tvProtection(Plan plan, float entry, float currentStop, bool pending) =>
+    pending ? f_tvText("Чака вход", "Pending") : currentStop == plan.initialStop ? f_tvText("Начален SL", "Initial SL") : (currentStop - entry) * plan.side > syminfo.mintick * 0.5 ? f_tvText("Защитена печалба", "Profit lock") : math.abs(currentStop - entry) <= syminfo.mintick * 0.5 ? f_tvText("BE по цена", "Price BE") : f_tvText("Преместен SL", "Protective stop")
+f_tvGrade(Plan p) =>
+    bool available = tvEntryFrame and tvContextReady and not na(efficiency) and not na(tvAtrPercentile) and not na(p.obstacle)
+    bool trend = tvH1Bias == p.side and tvH4Bias == p.side
+    bool momentum = (p.side == 1 ? bullMomentum : bearMomentum) and efficiency >= 0.30
+    bool volatility = validATR and not tvShock and not tvExhaustion
+    bool room = (p.obstacle - p.tp1) * p.side >= -syminfo.mintick * 0.000001
+    int checks = (trend ? 1 : 0) + (momentum ? 1 : 0) + (volatility ? 1 : 0) + (room ? 1 : 0)
+    p.quality := not available ? "UNVERIFIED" : checks == 4 ? "STRONG" : checks >= 2 ? "MODERATE" : "WEAK"
+    p.qualityNote := not available ? f_tvText("Липсва контекст или преграда", "Missing context or reference") : f_reason(array.from(trend, momentum, volatility, room), array.from("H1/H4", f_tvText("Импулс", "Momentum"), f_tvText("Волатилност", "Volatility"), f_tvText("Място до TP1", "Room to TP1")))
+    if available and checks == 4
+        p.qualityNote := f_tvText("Четири съгласувани условия", "Four aligned conditions")
+    p

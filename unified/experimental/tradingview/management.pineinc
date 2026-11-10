@@ -1,0 +1,140 @@
+// Opt-in native research only. The baseline signal and independent shadow books keep their own geometry.
+bool tvManagement = input.bool(false, "Изследване на вход и изход", group="12 / ВХОД И ИЗХОД", display=display.none)
+string tvEntryMode = input.string("Следващ тик", "Вход", options=["Следващ тик", "Структурен лимит"], group="12 / ВХОД И ИЗХОД", display=display.none)
+int tvLimitBars = input.int(3, "Лимит: срок в свещи", minval=1, maxval=12, group="12 / ВХОД И ИЗХОД", display=display.none)
+int tvMaxSetupAge = input.int(0, "Макс. възраст в интервали (0 = изкл.)", minval=0, maxval=300, group="12 / ВХОД И ИЗХОД", tooltip="Интервали с дължината на свещта, включително изминалите часове през пауза.", display=display.none)
+float tvDeviationATR = input.float(0.0, "По-строг лимит на отклонение / ATR (0 = базов)", minval=0.0, maxval=1.0, step=0.05, group="12 / ВХОД И ИЗХОД", display=display.none)
+float tvExtraStopATR = input.float(0.0, "Допълнителен буфер към началния SL / ATR", minval=0.0, maxval=0.5, step=0.05, group="12 / ВХОД И ИЗХОД", display=display.none)
+string tvTargetMode = input.string("R", "Цели", options=["R", "Структура"], group="12 / ВХОД И ИЗХОД", display=display.none)
+string tvAllocation = input.string("Равни", "Части", options=["Равни", "50/30/20"], group="12 / ВХОД И ИЗХОД", tooltip="Общият размер е същият. Несъвместима стъпка на количеството отказва плана.", display=display.none)
+string tvBreakEven = input.string("Буфер след TP1", "Защитен стоп", options=["Буфер след TP1", "BE след TP1", "BE след TP2", "Структурен след TP1", "Без преместване"], group="12 / ВХОД И ИЗХОД", display=display.none)
+float tvTrailATR = input.float(0.0, "ATR трейлинг (0 = изкл.)", minval=0.0, maxval=6.0, step=0.25, group="12 / ВХОД И ИЗХОД", display=display.none)
+int tvHoldOverride = input.int(0, "Макс. задържане (0 = базово)", minval=0, maxval=300, group="12 / ВХОД И ИЗХОД", display=display.none)
+string tvEarlyExit = input.string("Само срок", "Допълнителен изход", options=["Само срок", "Структурна инвалидация", "Слаб моментум"], group="12 / ВХОД И ИЗХОД", display=display.none)
+bool tvLimitEntry = tvManagement and tvEntryMode == "Структурен лимит"
+bool tvStructuralTargets = tvManagement and tvTargetMode == "Структура"
+bool tvUsesBaselineLock = not tvManagement or tvBreakEven == "Буфер след TP1"
+float tvPriorClose = close[1]
+bool tvContiguousClose = time == time_close[1]
+
+f_tvManagementQty(float unit) =>
+    bool weighted = tvManagement and tvAllocation == "50/30/20"
+    float total = 3.0 * unit
+    [weighted ? total * 0.5 : unit, weighted ? total * 0.3 : unit, weighted ? total * 0.2 : unit]
+
+f_tvQtyOnGrid(float amount) =>
+    float stepSize = syminfo.mincontract
+    not na(stepSize) and stepSize > 0 and amount + stepSize * 1e-8 >= stepSize and math.abs(amount / stepSize - math.round(amount / stepSize)) <= 1e-7
+
+f_tvProtectionBoundary(Plan p) =>
+    int side = p.side
+    float best = na
+    for rawLevel in array.from(side == 1 ? fastBreakHigh : fastBreakLow, side == 1 ? longStruct : shortStruct, side == 1 ? lastPivotLow : lastPivotHigh, side == 1 ? prevPivotLow : prevPivotHigh)
+        if not na(rawLevel)
+            float px = f_stopRound(rawLevel, side)
+            bool between = (px - p.initialStop) * side >= syminfo.mintick * 0.5 and (p.reference - px) * side >= syminfo.mintick * 0.5
+            if between and (na(best) or (px - best) * side > 0)
+                best := px
+    best
+
+f_tvNextStructure(array<float> levels, float fromPrice, int side) =>
+    float chosen = na
+    if not na(fromPrice)
+        for rawLevel in levels
+            if not na(rawLevel)
+                // Inward tick rounding keeps a limit at or inside the observed level.
+                float px = f_stopRound(rawLevel, side)
+                if (px - fromPrice) * side >= syminfo.mintick * 0.5 and (na(chosen) or (px - chosen) * side < 0)
+                    chosen := px
+    chosen
+
+f_tvManagePlan(Plan original, float unit) =>
+    Plan p = original
+    string reason = ""
+    float limitPrice = na
+    float boundary = na
+    if tvManagement and not na(original)
+        p := original.copy()
+        if tvExtraStopATR > 0
+            p.initialStop := f_stopRound(p.initialStop - p.side * p.atrValue * tvExtraStopATR, p.side)
+        boundary := f_tvProtectionBoundary(p)
+        if tvLimitEntry and not na(boundary)
+            limitPrice := boundary
+            p.reference := limitPrice
+            p.expiresAfterBar := bar_index + tvLimitBars
+            p.cancellationReason := "Лимитът изтече"
+        p.risk := (p.reference - p.initialStop) * p.side
+        if tvStructuralTargets
+            int side = p.side
+            array<float> levels = array.from(p.obstacle, side == 1 ? lastPivotHigh : lastPivotLow, side == 1 ? prevPivotHigh : prevPivotLow, side == 1 ? priorDayHigh : priorDayLow, side == 1 ? lastAsianH : lastAsianL, side == 1 ? priorRecoveryHigh : priorRecoveryLow)
+            p.tp1 := f_tvNextStructure(levels, p.reference, side)
+            p.tp2 := f_tvNextStructure(levels, p.tp1, side)
+            p.tp3 := f_tvNextStructure(levels, p.tp2, side)
+            p.targetBasis := "STRUCTURE"
+        else if tvLimitEntry or tvExtraStopATR > 0
+            p.tp1 := f_targetRound(p.reference + p.side * p.risk * target1R, p.side)
+            p.tp2 := f_targetRound(p.reference + p.side * p.risk * target2R, p.side)
+            p.tp3 := f_targetRound(p.reference + p.side * p.risk * target3R, p.side)
+            p.targetBasis := "R"
+        if tvDeviationATR > 0
+            p.maxDeviationATRFrozen := math.min(p.maxDeviationATRFrozen, tvDeviationATR)
+        if tvHoldOverride > 0
+            p.maxHoldBarsFrozen := tvHoldOverride
+        [part1, part2, part3] = f_tvManagementQty(unit)
+        bool weightedInvalid = tvAllocation == "50/30/20" and not (f_tvQtyOnGrid(part1) and f_tvQtyOnGrid(part2) and f_tvQtyOnGrid(part3))
+        bool oldSetup = tvMaxSetupAge > 0 and (na(p.createdTime) or p.createdTime > time_close or time_close - p.createdTime > tvMaxSetupAge * tfSeconds * 1000)
+        bool missingLevels = tvStructuralTargets and (na(p.tp1) or na(p.tp2) or na(p.tp3))
+        if oldSetup
+            reason := "Изтекла подготовка"
+        else if tvLimitEntry and na(limitPrice)
+            reason := "Няма структурен лимит между цена и SL"
+        else if weightedInvalid
+            reason := "Частите 50/30/20 не са на стъпката на символа"
+        else if missingLevels
+            reason := "Липсват три отделни структурни цели"
+        else if not f_validPlan(p)
+            reason := "Невалидни вход, SL, цели или разход"
+    [p, reason, limitPrice, boundary]
+
+f_tvNativeOpenRejection(Plan p, float fill, int fillTime) =>
+    string original = f_openRejection(p, fill, fillTime)
+    tvManagement and tvDeviationATR > 0 and original == "" and math.abs(fill - p.reference) > p.atrValue * p.maxDeviationATRFrozen ? "Отстояние от замразен вход" : original
+
+f_tvPendingReason(Plan p) =>
+    string reason = ""
+    if tvLimitEntry and not na(p)
+        reason := bar_index >= p.expiresAfterBar ? "Лимитът изтече" : newsPaused ? "Лимитът е отменен при пауза" : time_close >= testEnd ? "Лимитът е отменен в края на теста" : (close - p.initialStop) * p.side <= 0 ? "Лимитът е отменен при инвалидация" : ""
+    reason
+
+f_tvTighten(float oldStop, float proposed, int side) =>
+    float result = oldStop
+    if not na(proposed)
+        float nextStop = f_stopRound(proposed, side)
+        if (nextStop - oldStop) * side >= syminfo.mintick * 0.5 and (close - nextStop) * side >= syminfo.mintick * 0.5
+            result := nextStop
+    result
+
+f_tvManagedStop(Plan p, float entry, float initialRisk, float oldStop, float boundary, bool tp1Filled, bool tp2Filled) =>
+    float result = oldStop
+    string reason = ""
+    if tvManagement and not na(initialRisk) and initialRisk > 0
+        bool entryLock = (tvBreakEven == "BE след TP1" and tp1Filled) or (tvBreakEven == "BE след TP2" and tp2Filled)
+        float protect = entryLock ? entry : tvBreakEven == "Структурен след TP1" and tp1Filled ? boundary : na
+        result := f_tvTighten(result, protect, p.side)
+        if result != oldStop
+            reason := tvBreakEven
+        if tvTrailATR > 0 and not na(atr) and atr > 0
+            float trailed = f_tvTighten(result, close - p.side * atr * tvTrailATR, p.side)
+            if trailed != result
+                result := trailed
+                reason := "ATR трейлинг"
+    [result, reason]
+
+f_tvManagementCloseReason(Plan p, float boundary, int fillBar) =>
+    string reason = ""
+    if tvManagement and not na(fillBar)
+        if tvEarlyExit == "Структурна инвалидация" and not na(boundary) and (close - boundary) * p.side <= 0
+            reason := "СТРУКТУРНА ИНВАЛИДАЦИЯ"
+        else if tvEarlyExit == "Слаб моментум" and bar_index - fillBar >= 1 and tvContiguousClose and (close - p.reference) * p.side < 0 and (tvPriorClose - p.reference) * p.side < 0 and (rsi - 50) * p.side < 0
+            reason := "СЛАБ МОМЕНТУМ"
+    reason

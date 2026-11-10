@@ -1,0 +1,9 @@
+TradingView Create Alert · QIRV TV · OANDA:XAUUSD · M5
+pop up button (collapsed) Order fills and alert() function calls, ID: :r8sc:, Secondary Actions: Expand
+Order fills and alert() function calls
+link Description: Multi-condition alerts don't support strategies and scripts with alert() function, Value: tradingview.com/support/solutions/43000761492/
+App, Toasts
+Create
+
+Close Pause Get as many personalized alerts as you need Upgrade your plan to supplement your analysis and get notified when your indicators, strategies, and even drawings meet the criteria you've set. Right now, you have a limit of 0 technical alerts in your plan. Current plan Basic Recommended Essential 20 Upgrade now
+Technical strategy alert creation was rejected.

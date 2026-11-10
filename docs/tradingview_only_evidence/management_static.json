@@ -1,0 +1,45 @@
+{
+  "schema": "qirvanta.tradingview_only.management_static.v1",
+  "observed_at_utc": "2026-11-10T03:29:16.169773+00:00",
+  "command": [
+    "python",
+    "-X",
+    "utf8",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "unified/tests",
+    "-p",
+    "test_tradingview_management.py",
+    "-v"
+  ],
+  "runtime": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "local_tests": 8,
+  "status": "PASS",
+  "scope": "Static integration anchors and independent arithmetic fixtures.",
+  "pine_compilation_checked_by_this_run": false,
+  "platform_execution_checked_by_this_run": false,
+  "stdout_and_stderr": [
+    "test_directional_tightening_fixture (test_tradingview_management.ManagementArithmeticFixtures.test_directional_tightening_fixture) ... ok",
+    "test_equal_vs_weighted_size_examples (test_tradingview_management.ManagementArithmeticFixtures.test_equal_vs_weighted_size_examples) ... ok",
+    "test_champion_hash_and_shadow_prefix_preserved (test_tradingview_management.ManagementContractTests.test_champion_hash_and_shadow_prefix_preserved) ... ok",
+    "test_experimental_pending_expiration_does_not_erase_observed_fill (test_tradingview_management.ManagementContractTests.test_experimental_pending_expiration_does_not_erase_observed_fill) ... ok",
+    "test_mutated_immutable_anchor_fails_loudly (test_tradingview_management.ManagementContractTests.test_mutated_immutable_anchor_fails_loudly) ... ok",
+    "test_order_identity_reservations_and_native_size_remain_consistent (test_tradingview_management.ManagementContractTests.test_order_identity_reservations_and_native_size_remain_consistent) ... ok",
+    "test_protection_uses_observed_fills_and_stop_tightens_in_both_directions (test_tradingview_management.ManagementContractTests.test_protection_uses_observed_fills_and_stop_tightens_in_both_directions) ... ok",
+    "test_structural_targets_are_unique_forward_levels_and_missing_levels_veto (test_tradingview_management.ManagementContractTests.test_structural_targets_are_unique_forward_levels_and_missing_levels_veto) ... ok",
+    "",
+    "----------------------------------------------------------------------",
+    "Ran 8 tests in 0.004s",
+    "",
+    "OK"
+  ],
+  "source_hashes": {
+    "unified/QIRVANTA_UNIFIED.pine": "92307768be68946dc87cbe4ea45a8b5e32446fd3b7a0c1a38dce40dffe358be3",
+    "unified/experimental/tradingview/management.pineinc": "7032657b0e6d7a60b60102ce4556f02bd9902498ce5d7c9d1ece39a7ce9b049e",
+    "unified/tools/tradingview_management.py": "c652e5a2e3d4c1fbb86db70bbe4f38713fed95aa622de9b1a3dea61f4e251449",
+    "unified/tests/test_tradingview_management.py": "ce36d75d5301eaebfacd57bc7360f9253a0b6a19e0a248eb60410764d5bbcf92"
+  }
+}

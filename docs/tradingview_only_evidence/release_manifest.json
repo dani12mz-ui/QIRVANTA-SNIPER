@@ -1,0 +1,256 @@
+{
+  "branch": "feature/qirvanta-tradingview-only-final",
+  "candidate_generated_exactly_from_current_components": true,
+  "candidate_sha256": "bc7bf16cd988fa23832f75ff22ee421b198cafb95614c9445622ce7bc4cfe1c3",
+  "champion_sha256": "92307768be68946dc87cbe4ea45a8b5e32446fd3b7a0c1a38dce40dffe358be3",
+  "files": {
+    "docs/TRADINGVIEW_ONLY_ALERTS.md": {
+      "bytes": 3823,
+      "git_blob": "3591a23be775021fd8cff3ef2b0c51f215145846",
+      "sha256": "fb35af669c26b0bbe10d2c9aa5ada1f53d6338eda04991d1a26c174e5d8740f7"
+    },
+    "docs/TRADINGVIEW_ONLY_ANTI_REPAINT.md": {
+      "bytes": 11705,
+      "git_blob": "5bfefeba173e871fcd3100c382b805cecde25d5b",
+      "sha256": "c0a736a18e459f28eb0611f7400b00a397c8e71eb6e82f96c37cea45870f4639"
+    },
+    "docs/TRADINGVIEW_ONLY_DEPLOYMENT_BG.md": {
+      "bytes": 3304,
+      "git_blob": "17e6c03d2d8fba3a39cdc73aee52df86289318cd",
+      "sha256": "645508e4efc3b7dfb72508da4ccb2708eedf75a146025964f7bbc97b09bc0209"
+    },
+    "docs/TRADINGVIEW_ONLY_EXIT_MANAGEMENT.md": {
+      "bytes": 10138,
+      "git_blob": "a25156413f4e2919d46f5aefae384ef014c51b72",
+      "sha256": "4bdfc1c20d215e7d393ccba4a331d5c41db3135bb6d441faf8ccc0d301033aa3"
+    },
+    "docs/TRADINGVIEW_ONLY_FAST_DIAGNOSIS.md": {
+      "bytes": 14508,
+      "git_blob": "2b2c30b064ef85d2413b4ddfbf1f192e3410c928",
+      "sha256": "03d87a46aaf74775038544d6128bf029de7747b8a2683babd40d3f0e5e8b34f8"
+    },
+    "docs/TRADINGVIEW_ONLY_KN_SMART_COMPARISON.md": {
+      "bytes": 9522,
+      "git_blob": "d9a30963bf893552e3ae6e21c9f1b04ef4b1aa26",
+      "sha256": "0f19973d42a1c9e7b4894a01f5aaf0fba3f3a406fb96cb7157326e3f27c66575"
+    },
+    "docs/TRADINGVIEW_ONLY_LIMITATIONS.md": {
+      "bytes": 3420,
+      "git_blob": "0e190228631e3682bfdf24e8f6ac0b795d69a8b7",
+      "sha256": "3e4afe1c7ee53771ec6811a985bf2480f832c12881f45f0e70caff7934ebb370"
+    },
+    "docs/TRADINGVIEW_ONLY_MASTER_REPORT.md": {
+      "bytes": 10381,
+      "git_blob": "29f5d8b5dbf55b6490ccf2672c465233eac1a73d",
+      "sha256": "29581dbd594787d86f7a2f77a957ab6479f323c7205006c4124d095fe282cc14"
+    },
+    "docs/TRADINGVIEW_ONLY_NATIVE_COMPARISON.md": {
+      "bytes": 15813,
+      "git_blob": "ac9f53c2a6db6f291b892cab786477a9dd56e18c",
+      "sha256": "19cdb89391616116c28aed2509517221abaa2bfac078a40e6898d693cac7e0a1"
+    },
+    "docs/TRADINGVIEW_ONLY_SIGNAL_QUALITY.md": {
+      "bytes": 9881,
+      "git_blob": "69c07f606c4b0ae4153f890d41c0637ce4e5ee18",
+      "sha256": "b5f9f3b918dd58adbb72be72f03db2654740a3baa1d953277b9d92c927e97474"
+    },
+    "docs/TRADINGVIEW_ONLY_STRATEGY_INVENTORY.md": {
+      "bytes": 16382,
+      "git_blob": "c84c29e2cea4d84314f3e1bb55c91edfd5e2bfd5",
+      "sha256": "59d1b5e40f72563e0995baca41cb162840379421ee810bbc85edba8af0273f17"
+    },
+    "docs/TRADINGVIEW_ONLY_UI_ACCEPTANCE.md": {
+      "bytes": 4594,
+      "git_blob": "36e4feb509aaaa93be07c463e05238a2cadb2eff",
+      "sha256": "8ef566c3694902fa472682d25e0ebb336f9b5c64b3713418c1e946fd63a4100d"
+    },
+    "docs/tradingview_only_evidence/active-history-mobile-390.jpg": {
+      "bytes": 51555,
+      "git_blob": "2714fc7a37d725116f6fd7ce9f7f71afe5aa757f",
+      "sha256": "6f76007b7c5db3836d0143b7102071fb3440a7ca8d1722b6ffeb58a6d3f4cd88"
+    },
+    "docs/tradingview_only_evidence/alert-basic-blocked.jpg": {
+      "bytes": 112223,
+      "git_blob": "cc040dcf1f78111635327fe837f2b3140f41887a",
+      "sha256": "bdd4b550dc1d1195d0d60bd2a93b9de129330b3125744690012ff4e4ec4eb5d6"
+    },
+    "docs/tradingview_only_evidence/archived_comparison.json": {
+      "bytes": 517822,
+      "git_blob": "d42795093735c16fd7721bd2dde6d1bb41b43f25",
+      "sha256": "eb603367293acf17170aaeac9e0c62c7ad6d077814eec7564b9d6d540159a53d"
+    },
+    "docs/tradingview_only_evidence/debug-desktop.jpg": {
+      "bytes": 147964,
+      "git_blob": "412467f142d719068f3b36c546490385a6372043",
+      "sha256": "418c25b73628de5fa29715acd94b28168b3369345cf68af90577b8791fb18193"
+    },
+    "docs/tradingview_only_evidence/fast_archive_registration.json": {
+      "bytes": 3168,
+      "git_blob": "13897f9068c9088a45d6d43e8ca7152b10ad6122",
+      "sha256": "652b6c2b17a9389319f042c330786a5622bb5101b4f4a6dd273e2e2e9c975919"
+    },
+    "docs/tradingview_only_evidence/kn_benchmark.json": {
+      "bytes": 508405,
+      "git_blob": "9021d19f4571464ae6676e8508f10cfd0ac4d97a",
+      "sha256": "e01d01d31650811ac81c43c6a74d4617f3f16fcf1168c3d51e1f2ead5d92cf8b"
+    },
+    "docs/tradingview_only_evidence/kn_benchmark_registration.json": {
+      "bytes": 2375,
+      "git_blob": "068f6941bb8dc185c9fb15c531a95d5c408d3ac2",
+      "sha256": "c21bed447a31a9f6cf8c859facbe15c246435d5df00fd263efc8fd4edd952c3a"
+    },
+    "docs/tradingview_only_evidence/layout-restored.jpg": {
+      "bytes": 146545,
+      "git_blob": "a3a6657f0f548927857dc93b6acf32edc4908ce1",
+      "sha256": "1dc37b811cad066db360a7e8dabf1a58a2aa6039227f87a9be27a7c8e643e896"
+    },
+    "docs/tradingview_only_evidence/management_static.json": {
+      "bytes": 2712,
+      "git_blob": "516857dda685f9915d531ebe3622c054e1859e0c",
+      "sha256": "172b603b05306fa5ecd64c2933aec4cd885e0f8246a89b4cca2c096a2b8f6640"
+    },
+    "docs/tradingview_only_evidence/minimal-desktop.jpg": {
+      "bytes": 128824,
+      "git_blob": "7cefa42417cff8ec89f66851965baf455787f89d",
+      "sha256": "41d2175312680a2714a505c893e3d1e594b3e893198bd2ad4223d4a516ad806d"
+    },
+    "docs/tradingview_only_evidence/native_campaigns.jsonl.gz": {
+      "bytes": 654412,
+      "git_blob": "ee6e042cee8113b4a13a2d62c280b5121d53025c",
+      "sha256": "f0bd8eed1b1675e947257620a7ec6aef77ef6165ccb6add29021d435ab387a5d"
+    },
+    "docs/tradingview_only_evidence/native_matrix.json": {
+      "bytes": 1092232,
+      "git_blob": "115c9e201c23bd11db1d6281d61dd9e83f8ea360",
+      "sha256": "7a21ecb6eb40d75e30cb0fbe94b7108f0ed438da906de390d9c96874f8d5019b"
+    },
+    "docs/tradingview_only_evidence/platform_alerts.txt": {
+      "bytes": 745,
+      "git_blob": "fa94e140298bcac994108eb161e9f728e9cb1525",
+      "sha256": "f66a2a4ac81a062bb92154edda36199d3ccba69ef9f4fbca4e4697360204bc1f"
+    },
+    "docs/tradingview_only_evidence/platform_compile.txt": {
+      "bytes": 636,
+      "git_blob": "bd986cf870b73d3a888ca381889bb223c84590db",
+      "sha256": "2fb251d1cf9fb4ffa2fb9059356a16c6465732c5e31b56876fbcaa515ddc284e"
+    },
+    "docs/tradingview_only_evidence/platform_layout_restored.txt": {
+      "bytes": 273,
+      "git_blob": "878a09ccbaed1b99e5dab166157fa4a3860b3c1c",
+      "sha256": "15994b38327a810448143e720a95a3b5db501d65901b8c550d84b9b0d2c3e7b1"
+    },
+    "docs/tradingview_only_evidence/platform_properties.txt": {
+      "bytes": 1585,
+      "git_blob": "14781cab1203ea7c01b37e6cea9b0e5b3f748812",
+      "sha256": "e71439fb580acea811babb3486745e386ac227965ff28b09f0190b163d051e2c"
+    },
+    "docs/tradingview_only_evidence/platform_validation.json": {
+      "bytes": 2066,
+      "git_blob": "c8cb674bce7c1a08159b3cd5d4814b3c370a15e5",
+      "sha256": "88920368fec52cdb59b42487dda42958b3b245fc9fa2a0e1d49bd78a5daa9cdc"
+    },
+    "docs/tradingview_only_evidence/pro-desktop.jpg": {
+      "bytes": 136333,
+      "git_blob": "534c8dfb1f72414f12fa572dd6d1e354a41a9bb7",
+      "sha256": "f4746d01f2fb55af889e31322e94f197d874d276bd6b95b28e11fed3df87076d"
+    },
+    "docs/tradingview_only_evidence/standard-desktop.jpg": {
+      "bytes": 130841,
+      "git_blob": "3a2c165a1d4fb0f23a103a2abe374190342e05a0",
+      "sha256": "041b2d0a0c569417b5c324c488ebfa15ccdee161f00a5e45f5e1cafda57a64b5"
+    },
+    "docs/tradingview_only_evidence/standard-mobile-390.jpg": {
+      "bytes": 50110,
+      "git_blob": "f12ba43011a50a790d4b8354eb36a3de5d183a36",
+      "sha256": "2b2ab3f939b5168ec89a1f430cd074f2de892d9db9f76ebf75895c3be7836b92"
+    },
+    "docs/tradingview_only_evidence/tests.txt": {
+      "bytes": 48385,
+      "git_blob": "81e8847f3566ed28552513c7544b07326e2381e8",
+      "sha256": "a2cc9e3f1cf5c3c5591edb35b18fd06082af0aa0f976d50855de6c935d940e22"
+    },
+    "tests/test_tv_candidate_predicates.py": {
+      "bytes": 4584,
+      "git_blob": "eca0fa49d565826c867eed1a6ce49c6172a86a06",
+      "sha256": "62805090eba2c6ff76870da41e8ff5f237a32ba117cc3108c0a8e05c50dbced0"
+    },
+    "unified/experimental/QIRVANTA_TRADINGVIEW_FINAL.pine": {
+      "bytes": 172256,
+      "git_blob": "c60d5515f03961ab0a787d1694b2dbe2612de435",
+      "sha256": "bc7bf16cd988fa23832f75ff22ee421b198cafb95614c9445622ce7bc4cfe1c3"
+    },
+    "unified/experimental/tradingview/candidates.pineinc": {
+      "bytes": 20544,
+      "git_blob": "bec4c8d5d951b7825588ba4fc6572b21c595e696",
+      "sha256": "69bee171f3bfeb09b0803496e5cba994df9237c46c3780f759bda45ea63c1bbd"
+    },
+    "unified/experimental/tradingview/context.pineinc": {
+      "bytes": 6470,
+      "git_blob": "28f9718e2fdce4a609eb5e570f3f46a994a279d4",
+      "sha256": "7481b5278c58fd7bcd4c95b03306105c71d213e6525655fef6d92ad58e6792c7"
+    },
+    "unified/experimental/tradingview/management.pineinc": {
+      "bytes": 9985,
+      "git_blob": "88e0ae2c92c7ccdd0d65b992d749d99c049ca14a",
+      "sha256": "7032657b0e6d7a60b60102ce4556f02bd9902498ce5d7c9d1ece39a7ce9b049e"
+    },
+    "unified/experimental/tradingview/quality.pineinc": {
+      "bytes": 2972,
+      "git_blob": "f5cf219cef763d73ca65f21af728b141e727e1d8",
+      "sha256": "1e09155da0badf1e7c42fa721ffef52e984c522c284a8b2ae7cfcb4878bd2730"
+    },
+    "unified/tests/test_tradingview_final.py": {
+      "bytes": 3192,
+      "git_blob": "38394f48c524f8ce86dbe5f88085f7f02f4ff314",
+      "sha256": "3ea3d8d1e6b7a86915a47281c424d2e193249d343e0bd2fa4af6fc7e71cc0f74"
+    },
+    "unified/tests/test_tradingview_management.py": {
+      "bytes": 6045,
+      "git_blob": "40a6a26e61de4376f048f344a17908da5b04ef43",
+      "sha256": "ae3fc97513dbb7686cb545814f060b0432bb6feb898bfe8d8e7df2263f154b10"
+    },
+    "unified/tools/audit_tradingview_only.py": {
+      "bytes": 11435,
+      "git_blob": "04bbd099627ab67283aad31fb8d033492e35e2d6",
+      "sha256": "5fe3bff3bbd5f106ba3dbd7d1c8121f565e0a5d320e4bdc3b392f0ad38ff8555"
+    },
+    "unified/tools/audit_tv_observations.py": {
+      "bytes": 20558,
+      "git_blob": "3151ab39477a3a71df9558e2c9f64c423f85c7f4",
+      "sha256": "893cea8b9715cda2222dde903797c3e5d05ac841d990db79b0a6eb62b258d1b2"
+    },
+    "unified/tools/benchmark_kn_archive.py": {
+      "bytes": 8843,
+      "git_blob": "27c2bfedfdfcf48bf1779ef3071f6571eaf0de06",
+      "sha256": "fb3af6174245838c8edf4ed9bff15d49f3bda04a7ad2395065111350e156eb30"
+    },
+    "unified/tools/build_tradingview_final.py": {
+      "bytes": 12474,
+      "git_blob": "06914a126ae527665310a7a9ed84a150cbea9ab7",
+      "sha256": "2da268dcf42b66e05946794ccc83896d34005a6d20dffd616556a376df75046d"
+    },
+    "unified/tools/observe_tradingview_final.py": {
+      "bytes": 3203,
+      "git_blob": "e50113ec0b0a5e03771205d03eebd7d0ec614171",
+      "sha256": "9938e85b6f130ba82d1baaedb275f3add3202ff506f766e7ae8f510db1991307"
+    },
+    "unified/tools/tradingview_management.py": {
+      "bytes": 6899,
+      "git_blob": "44933638aaa60fdf57621e75eb94a7e0ec5e0952",
+      "sha256": "c652e5a2e3d4c1fbb86db70bbe4f38713fed95aa622de9b1a3dea61f4e251449"
+    }
+  },
+  "inherited_paths_modified": 0,
+  "inherited_paths_verified_unchanged": 871,
+  "local_documentation_links_verified": true,
+  "parent_commit": "f3acc7ef70c0236273338b1ba45205af1615145e",
+  "parent_tree": "e19e12bd23053615a86711ac2ad0bab872f659e1",
+  "publication_performed_by_this_tool": false,
+  "schema": "qirvanta.tradingview_only.release_manifest.v1",
+  "scope": "Strictly additive new mission files; this self-referential manifest is excluded from its file map.",
+  "third_party_kn_original": {
+    "published": false,
+    "sha256": "e1be76b3a6d2c625160d8ea6e79062d914680ff95b794755cf613dcf21e55c53",
+    "storage": "Local scratch outside repository"
+  }
+}

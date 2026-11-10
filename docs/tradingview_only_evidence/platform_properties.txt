@@ -1,0 +1,49 @@
+TradingView Properties · OANDA:XAUUSD · QIRV TV, M15
+tab group indicator-properties-dialog-tabs
+tab (selectable, settable, boolean) Inputs, Value: 0, ID: inputs
+tab (selected, settable, boolean) Properties, Value: 1, ID: properties
+tab (selectable, settable, boolean) Style, Value: 0, ID: style
+tab (selectable, settable, boolean) Visibility, Value: 0, ID: visibilities
+container
+GENERAL
+Click here to learn more
+Initial capital
+field (settable) 100,000
+combo box (collapsed) Value: USD, ID: :r7i:, Secondary Actions: Expand
+USD
+Default order size
+field (settable) 3
+combo box (collapsed) Value: Quantity, ID: :r7m:, Secondary Actions: Expand
+Quantity
+Pyramiding
+field (settable) 0
+DETALIZATION AND EXECUTION
+Click here to learn more
+Bar detalization
+combo box (collapsed) Value: Default (4 ticks per bar), ID: :r7q:, Secondary Actions: Expand
+Default (4 ticks per bar)
+Script execution
+combo box (collapsed) Value: On bar close, ID: :r7u:, Secondary Actions: Expand
+On bar close
+BROKER EMULATOR
+Click here to learn more
+Commission
+field (settable) 0.175
+combo box (collapsed) Value: Per contract, ID: :r82:, Secondary Actions: Expand
+Per contract
+Long leverage
+field (settable) 1x
+Short leverage
+field (settable) 1x
+Slippage
+field (settable) 2
+ticks Limit order execution
+combo box (collapsed) Value: Requested price, ID: :r86:, Secondary Actions: Expand
+Requested price
+Order execution delay
+combo box (collapsed) Value: One tick, ID: :r8a:, Secondary Actions: Expand
+One tick
+pop up button (collapsed) Defaults, ID: property-actions, Secondary Actions: Expand
+container
+Cancel
+Ok

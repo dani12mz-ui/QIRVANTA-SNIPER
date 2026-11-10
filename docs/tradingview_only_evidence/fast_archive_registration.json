@@ -1,0 +1,28 @@
+{
+  "schema": "qirvanta.tradingview-only.fast-archive-registration.v1",
+  "registered_utc": "2026-11-10T03:23:38Z",
+  "anchor_commit": "f3acc7ef70c0236273338b1ba45205af1615145e",
+  "market": "OANDA:XAUUSD M15",
+  "first_open_utc": "2026-08-02T22:00:00Z",
+  "last_close_utc": "2026-11-09T02:45:00Z",
+  "bar_sha256": "7015f6386d2627237c57ff8625d59cbe3c9b852e4742b786cbb4679db3d48c56",
+  "standalone_native_fast_sha256": "bd3408bf3b775d6d5f4728d1bcc80d189fcf420daa79bbf037c2e499d63e6f66",
+  "scope": "Already observed, 50 original standalone native FAST submissions. Each variant is separate. Cohort gates retain original fills; anchored replay uses only original archived proposals. No Pine native equivalence claim.",
+  "hypotheses": {
+    "F0": "All original FAST proposals; anchored control",
+    "F1": "Signed body/full signal range >=0.55, zero range rejects. Rejected for adoption in separate observed native Champion A/B.",
+    "F2": "Following contiguous close signed >=0.10 original signal ATR beyond frozen four-bar boundary; cancel close back through boundary, original stop touch or gap; compute new reference from that close",
+    "F3": "Both completed H1/H4 proxy directional stacks agree; long close>EMA20>EMA50, short inverse. Offline HTF proxy can differ from final Pine context formula and history.",
+    "F4": "First next 1–4 contiguous closes beyond boundary with adverse extreme within 0.15 original signal ATR; cancel close back through boundary, original stop touch or gap",
+    "F5": "Closest forward obstacle proxy from prior confirmed swing, preceding UTC day/week extreme or prior 20-bar extreme is at or beyond archived rounded TP1 and at least one planned R.",
+    "F6": "Two successive base-timeframe research regime labels are directional in the signal side, no gap on current bar. Proxy for Pine regime and transition state.",
+    "F7": "Four-bar breakout extension <=0.25 signal ATR",
+    "F8": "Directional RSI at least 5 points away from 50 and directional two-bar close change >=0.25 signal ATR",
+    "F9": "Decision within London 08:00–16:30 or New York 09:30–16:00 local weekdays via IANA DST; proxy if Pine session hours differ",
+    "F10": "F3 and F7 only, fixed intersection, excludes F1"
+  },
+  "entry_policy": "F2/F4 reanchor at new close and keep old stop. Require 0.8–2.4 current ATR risk and round-trip price-cost/risk <=0.2 (the replay research screen, not a Pine equivalence claim). Existing OHLC replay handles next open, tick rounding, three equal parts, locked 0.05R after TP1, 48 holding-bar timeout and stop-first. Keep filled invalid gaps and censored plans.",
+  "cost_assumptions": {"fee_per_unit_per_fill": 0.175, "market_stop_slippage_ticks": 2, "tick": 0.001, "point_value": 1, "quantity": 3},
+  "sensitivity": {"F7_extension_atr": [0.20, 0.30], "fee_multiplier": 1.5, "extra_adverse_market_stop_ticks": 1, "cost_trials": ["F0", "F7", "F9"]},
+  "evaluation": {"chronological": "UTC calendar month of original decision; unchanged gate for every month, historical descriptive slices", "holm": "16 trial family; one-sided net-R sign-flip 1000 repetitions, descriptive due dependence", "promotion": false}
+}
