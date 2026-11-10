@@ -1,5 +1,7 @@
 # QIRVANTA SNIPER PREMIUM · отчет A–P
 
+Актуалните резултати от реалната компилация, визуалните корекции, шестте нативни сравнения и записания тестов layout са в [нативната проверка](PREMIUM_NATIVE_VERIFICATION.md). Статусите по-долу са исторически.
+
 Последващата работа по затворения план и повторният опит за изолирана графика са в [Premium Native QA](PREMIUM_NATIVE_QA_CONTINUATION.md).
 
 **`PARTIALLY_COMPLETE` · `NO_VALIDATED_PROFITABILITY_IMPROVEMENT`**. Предаден е отделен Pine v6 кандидат за Premium визуализация. Нова native компилация, паритет върху работещата Premium графика и запис в профила остават непотвърдени.

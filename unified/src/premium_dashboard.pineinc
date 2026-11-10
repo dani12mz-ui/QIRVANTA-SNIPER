@@ -7,7 +7,7 @@ var table premiumBoard = table.new(premiumAnchor, 2, 15, frame_color=premiumPane
 
 f_premiumCell(int row, string left, string right, color accent, string tip, color leftAccent = na) =>
     color bg = color.new(row <= 2 ? color.rgb(19, 27, 37) : row % 2 == 0 ? color.rgb(13, 19, 27) : color.rgb(10, 15, 22), 8)
-    table.cell(premiumBoard, 0, row, left, bgcolor=bg, text_color=row == 0 ? premiumPanelText : na(leftAccent) ? premiumPanelDim : leftAccent, text_size=uiFontPt, text_halign=text.align_left, tooltip=tip)
+    table.cell(premiumBoard, 0, row, left, bgcolor=bg, text_color=row == 0 ? premiumPanelText : na(leftAccent) ? premiumPanelDim : leftAccent, text_size=row == 0 and uiMode == "PREMIUM" ? uiFontPt + 2 : uiFontPt, text_halign=text.align_left, tooltip=tip)
     table.cell(premiumBoard, 1, row, right, bgcolor=bg, text_color=accent, text_size=uiFontPt, text_halign=text.align_right, tooltip=tip)
 
 f_premiumQty(float qty) => na(qty) ? "—" : str.tostring(qty, "#.########")

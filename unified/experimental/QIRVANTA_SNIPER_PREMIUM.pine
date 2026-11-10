@@ -2114,14 +2114,14 @@ if processBar and array.size(events) > 0
                 p.tp2 := e.tp2
                 p.tp3 := e.tp3
                 p.qtyInitial := nativeCampaignQty
-                p.labelGap := math.max(nz(atr) * 0.18, syminfo.mintick * 5)
+                p.labelGap := math.max(nz(atr) * 0.55, syminfo.mintick * 5)
                 p.expiresAt := e.knownTime + math.max(0, nativePlan.expiresAfterBar - bar_index) * tfSeconds * 1000
                 p.levels := array.new<line>(6, na)
                 array.push(premiumRecords, p)
                 premiumVisual := p
                 premiumSubmitted := e
                 if showHistoricalLabels and keepSignalLabels > 0 and (e.side == 1 ? showBuySignals : showSellSignals)
-                    label mark = label.new(bar_index, e.side == 1 ? low - nz(atr) * 0.35 : high + nz(atr) * 0.35, p.strategyKey == "S0" ? p.family : p.strategyKey, style=label.style_label_center, color=e.side == 1 ? premiumBuy : premiumSell, textcolor=premiumInk, size=size.small, tooltip=p.id + "\n" + p.family + "\nPLAN SUBMITTED; not an executed entry")
+                    label mark = label.new(bar_index, e.side == 1 ? low - nz(atr) * 0.35 : high + nz(atr) * 0.35, (e.side == 1 ? "BUY" : "SELL") + " · " + (p.strategyKey == "S0" ? p.family : p.strategyKey), style=label.style_label_center, color=e.side == 1 ? premiumBuy : premiumSell, textcolor=premiumInk, size=size.small, tooltip=p.id + "\n" + p.family + "\nPLAN SUBMITTED; not an executed entry")
                     array.push(premiumSignalLabels, mark)
                     if array.size(premiumSignalLabels) > keepSignalLabels
                         label.delete(array.shift(premiumSignalLabels))
@@ -2202,11 +2202,11 @@ if barstate.islastconfirmedhistory or barstate.islast
                 label.set_textcolor(pill, tone)
                 label.set_size(pill, levelFont == "Голям" ? size.large : levelFont == "Среден" ? size.normal : size.small)
                 label.set_tooltip(pill, p.id + "\n" + p.status + " · " + p.basis + "\nInitial-risk R before costs; actual targets require native fills.")
-                if y != price
-                    line leader = array.get(premiumLeaders, i)
-                    line.set_xy1(leader, edge, price)
-                    line.set_xy2(leader, edge + 2 * tfSeconds * 1000, y)
-                    line.set_color(leader, color.new(tone, 55))
+                // A dotted label guide starts at the frozen level end; it never extends position duration.
+                line leader = array.get(premiumLeaders, i)
+                line.set_xy1(leader, edge, price)
+                line.set_xy2(leader, edge + 2 * tfSeconds * 1000, y)
+                line.set_color(leader, color.new(tone, 55))
 
 // Display only: read the observed plan snapshot; never write to engine state.
 color premiumPanelText = color.rgb(225, 231, 239)
@@ -2217,7 +2217,7 @@ var table premiumBoard = table.new(premiumAnchor, 2, 15, frame_color=premiumPane
 
 f_premiumCell(int row, string left, string right, color accent, string tip, color leftAccent = na) =>
     color bg = color.new(row <= 2 ? color.rgb(19, 27, 37) : row % 2 == 0 ? color.rgb(13, 19, 27) : color.rgb(10, 15, 22), 8)
-    table.cell(premiumBoard, 0, row, left, bgcolor=bg, text_color=row == 0 ? premiumPanelText : na(leftAccent) ? premiumPanelDim : leftAccent, text_size=uiFontPt, text_halign=text.align_left, tooltip=tip)
+    table.cell(premiumBoard, 0, row, left, bgcolor=bg, text_color=row == 0 ? premiumPanelText : na(leftAccent) ? premiumPanelDim : leftAccent, text_size=row == 0 and uiMode == "PREMIUM" ? uiFontPt + 2 : uiFontPt, text_halign=text.align_left, tooltip=tip)
     table.cell(premiumBoard, 1, row, right, bgcolor=bg, text_color=accent, text_size=uiFontPt, text_halign=text.align_right, tooltip=tip)
 
 f_premiumQty(float qty) => na(qty) ? "—" : str.tostring(qty, "#.########")

@@ -1,0 +1,467 @@
+{
+  "schema": "qirvanta.premium.native_pair.v1",
+  "status": "MATCHED_OBSERVER_JOURNALS",
+  "manifest_sha256": "29501ceeecabf04912b169a8616a46538cee461832c5620d291887033064858e",
+  "registration": {
+    "schema": "qirvanta.premium.native_pair.v1",
+    "cutoff_utc": "2026-11-10T12:00:00Z",
+    "cutoff_ms": 1794312000000,
+    "timeframes": [
+      "5",
+      "15",
+      "30"
+    ],
+    "symbol": "OANDA:XAUUSD",
+    "arms": {
+      "baseline": {
+        "observer_file": "baseline-observer.txt",
+        "observer_sha256": "5e72e47cf2616e46b0dab235215263ee733fd0db687a45c777da34e05bbc0ebd",
+        "source_sha256": "bc7bf16cd988fa23832f75ff22ee421b198cafb95614c9445622ce7bc4cfe1c3"
+      },
+      "premium": {
+        "observer_file": "premium-observer.txt",
+        "observer_sha256": "072dfef3651e852d396bf8b7da36798508a5e1363f11c68b82dc318b55e41b02",
+        "source_sha256": "4624d103a92f6017f476e2992fd3d1c881017558d15b3e8682c377787e9ab659"
+      }
+    },
+    "required_manual_record": "Matching chart type, loaded history, Inputs and Properties. Capture each raw export and identify the compiled observer by SHA-256.",
+    "scope": "Observer strips visualization. Compilation of the full Pine is separate."
+  },
+  "complete_registered_grid": true,
+  "missing_registered_cells": [],
+  "observed_rows_present": true,
+  "intra_timeframe_fingerprints_match": {
+    "5": true,
+    "15": true,
+    "30": true
+  },
+  "cells": [
+    {
+      "mode": "S0",
+      "timeframe": "5",
+      "baseline": {
+        "log_sha256": "f2af75a9ddb0e497b60d9c768e947869d01df8ad9374096407ae455d7737a00b",
+        "data": {
+          "symbol": "OANDA:XAUUSD",
+          "timeframe": "5",
+          "bar_count": 5952,
+          "first_bar_time": 1791756000000,
+          "last_bar_open": 1794311700000,
+          "cutoff": 1794312000000,
+          "checksum1": 1919228,
+          "checksum2": 476443480,
+          "pointvalue": 1.0,
+          "mintick": 0.001,
+          "account_currency": "USD",
+          "symbol_currency": "USD"
+        },
+        "campaigns": 52,
+        "wins": 27,
+        "losses": 25,
+        "net_usd": -27.593,
+        "win_rate": 0.5192307692307693,
+        "pf": 0.9529848559199585,
+        "mean_net_r": -0.0854591277954849,
+        "native_equity_dd_usd": 223.79,
+        "parts": 152,
+        "fees_usd": 54.6,
+        "tp_campaign_counts": {
+          "TP1": 27,
+          "TP2": 10,
+          "TP3": 5
+        },
+        "sl_before_tp1": 24
+      },
+      "premium": {
+        "log_sha256": "b6f706cec07ac993fe5e1b3594528723146aedfcbd5ce7fa4969b9aeef46f65f",
+        "data": {
+          "symbol": "OANDA:XAUUSD",
+          "timeframe": "5",
+          "bar_count": 5952,
+          "first_bar_time": 1791756000000,
+          "last_bar_open": 1794311700000,
+          "cutoff": 1794312000000,
+          "checksum1": 1919228,
+          "checksum2": 476443480,
+          "pointvalue": 1.0,
+          "mintick": 0.001,
+          "account_currency": "USD",
+          "symbol_currency": "USD"
+        },
+        "campaigns": 52,
+        "wins": 27,
+        "losses": 25,
+        "net_usd": -27.593,
+        "win_rate": 0.5192307692307693,
+        "pf": 0.9529848559199585,
+        "mean_net_r": -0.0854591277954849,
+        "native_equity_dd_usd": 223.79,
+        "parts": 152,
+        "fees_usd": 54.6,
+        "tp_campaign_counts": {
+          "TP1": 27,
+          "TP2": 10,
+          "TP3": 5
+        },
+        "sl_before_tp1": 24
+      },
+      "differences": []
+    },
+    {
+      "mode": "S5",
+      "timeframe": "5",
+      "baseline": {
+        "log_sha256": "ad2bdd14ce528140a62bbee8d09443d5b2d9eff4bd81d3a2319081297e45203a",
+        "data": {
+          "symbol": "OANDA:XAUUSD",
+          "timeframe": "5",
+          "bar_count": 5952,
+          "first_bar_time": 1791756000000,
+          "last_bar_open": 1794311700000,
+          "cutoff": 1794312000000,
+          "checksum1": 1919228,
+          "checksum2": 476443480,
+          "pointvalue": 1.0,
+          "mintick": 0.001,
+          "account_currency": "USD",
+          "symbol_currency": "USD"
+        },
+        "campaigns": 103,
+        "wins": 61,
+        "losses": 42,
+        "net_usd": 186.857,
+        "win_rate": 0.5922330097087378,
+        "pf": 1.263753558810535,
+        "mean_net_r": 0.1096538369523985,
+        "native_equity_dd_usd": 141.58,
+        "parts": 291,
+        "fees_usd": 108.15,
+        "tp_campaign_counts": {
+          "TP1": 59,
+          "TP2": 29,
+          "TP3": 14
+        },
+        "sl_before_tp1": 37
+      },
+      "premium": {
+        "log_sha256": "ed971054da91c384d0cab1163fce39cf5bec14b4d0b91378e9236f1e41a0e7fc",
+        "data": {
+          "symbol": "OANDA:XAUUSD",
+          "timeframe": "5",
+          "bar_count": 5952,
+          "first_bar_time": 1791756000000,
+          "last_bar_open": 1794311700000,
+          "cutoff": 1794312000000,
+          "checksum1": 1919228,
+          "checksum2": 476443480,
+          "pointvalue": 1.0,
+          "mintick": 0.001,
+          "account_currency": "USD",
+          "symbol_currency": "USD"
+        },
+        "campaigns": 103,
+        "wins": 61,
+        "losses": 42,
+        "net_usd": 186.857,
+        "win_rate": 0.5922330097087378,
+        "pf": 1.263753558810535,
+        "mean_net_r": 0.1096538369523985,
+        "native_equity_dd_usd": 141.58,
+        "parts": 291,
+        "fees_usd": 108.15,
+        "tp_campaign_counts": {
+          "TP1": 59,
+          "TP2": 29,
+          "TP3": 14
+        },
+        "sl_before_tp1": 37
+      },
+      "differences": []
+    },
+    {
+      "mode": "S0",
+      "timeframe": "15",
+      "baseline": {
+        "log_sha256": "ac7a9a60ccc5f72e4df99e56e7416f3ffa53b3f30f3c3463d7962744f1a911d1",
+        "data": {
+          "symbol": "OANDA:XAUUSD",
+          "timeframe": "15",
+          "bar_count": 6574,
+          "first_bar_time": 1785708000000,
+          "last_bar_open": 1794311100000,
+          "cutoff": 1794312000000,
+          "checksum1": 137513271,
+          "checksum2": 20776129,
+          "pointvalue": 1.0,
+          "mintick": 0.001,
+          "account_currency": "USD",
+          "symbol_currency": "USD"
+        },
+        "campaigns": 74,
+        "wins": 34,
+        "losses": 40,
+        "net_usd": -170.24,
+        "win_rate": 0.4594594594594595,
+        "pf": 0.8923807410582265,
+        "mean_net_r": -0.09975361891287657,
+        "native_equity_dd_usd": 842.255,
+        "parts": 218,
+        "fees_usd": 77.7,
+        "tp_campaign_counts": {
+          "TP1": 33,
+          "TP2": 17,
+          "TP3": 10
+        },
+        "sl_before_tp1": 40
+      },
+      "premium": {
+        "log_sha256": "47d0370233d72d37151d54ef8cbe7b63dddbe0806a95fe0c50573ac7a93fb0b2",
+        "data": {
+          "symbol": "OANDA:XAUUSD",
+          "timeframe": "15",
+          "bar_count": 6574,
+          "first_bar_time": 1785708000000,
+          "last_bar_open": 1794311100000,
+          "cutoff": 1794312000000,
+          "checksum1": 137513271,
+          "checksum2": 20776129,
+          "pointvalue": 1.0,
+          "mintick": 0.001,
+          "account_currency": "USD",
+          "symbol_currency": "USD"
+        },
+        "campaigns": 74,
+        "wins": 34,
+        "losses": 40,
+        "net_usd": -170.24,
+        "win_rate": 0.4594594594594595,
+        "pf": 0.8923807410582265,
+        "mean_net_r": -0.09975361891287657,
+        "native_equity_dd_usd": 842.255,
+        "parts": 218,
+        "fees_usd": 77.7,
+        "tp_campaign_counts": {
+          "TP1": 33,
+          "TP2": 17,
+          "TP3": 10
+        },
+        "sl_before_tp1": 40
+      },
+      "differences": []
+    },
+    {
+      "mode": "S5",
+      "timeframe": "15",
+      "baseline": {
+        "log_sha256": "1897f1f4aed757cfa3c297dc71b141d6ef5c7ee8358db347fd969438dc970a9d",
+        "data": {
+          "symbol": "OANDA:XAUUSD",
+          "timeframe": "15",
+          "bar_count": 6574,
+          "first_bar_time": 1785708000000,
+          "last_bar_open": 1794311100000,
+          "cutoff": 1794312000000,
+          "checksum1": 137513271,
+          "checksum2": 20776129,
+          "pointvalue": 1.0,
+          "mintick": 0.001,
+          "account_currency": "USD",
+          "symbol_currency": "USD"
+        },
+        "campaigns": 134,
+        "wins": 66,
+        "losses": 68,
+        "net_usd": 452.155,
+        "win_rate": 0.4925373134328358,
+        "pf": 1.2170572517874683,
+        "mean_net_r": 0.006717708921906793,
+        "native_equity_dd_usd": 301.366,
+        "parts": 382,
+        "fees_usd": 140.7,
+        "tp_campaign_counts": {
+          "TP1": 66,
+          "TP2": 34,
+          "TP3": 19
+        },
+        "sl_before_tp1": 60
+      },
+      "premium": {
+        "log_sha256": "414edf5938b6063e3a6b198fa91a5ac8502d7941fa685a4a27e8e751ad59d7fe",
+        "data": {
+          "symbol": "OANDA:XAUUSD",
+          "timeframe": "15",
+          "bar_count": 6574,
+          "first_bar_time": 1785708000000,
+          "last_bar_open": 1794311100000,
+          "cutoff": 1794312000000,
+          "checksum1": 137513271,
+          "checksum2": 20776129,
+          "pointvalue": 1.0,
+          "mintick": 0.001,
+          "account_currency": "USD",
+          "symbol_currency": "USD"
+        },
+        "campaigns": 134,
+        "wins": 66,
+        "losses": 68,
+        "net_usd": 452.155,
+        "win_rate": 0.4925373134328358,
+        "pf": 1.2170572517874683,
+        "mean_net_r": 0.006717708921906793,
+        "native_equity_dd_usd": 301.366,
+        "parts": 382,
+        "fees_usd": 140.7,
+        "tp_campaign_counts": {
+          "TP1": 66,
+          "TP2": 34,
+          "TP3": 19
+        },
+        "sl_before_tp1": 60
+      },
+      "differences": []
+    },
+    {
+      "mode": "S0",
+      "timeframe": "30",
+      "baseline": {
+        "log_sha256": "6839db091f4f3a417e76cdda955ab5726f318cb90540279b637c751fa489c790",
+        "data": {
+          "symbol": "OANDA:XAUUSD",
+          "timeframe": "30",
+          "bar_count": 10156,
+          "first_bar_time": 1767308400000,
+          "last_bar_open": 1794310200000,
+          "cutoff": 1794312000000,
+          "checksum1": 29512498,
+          "checksum2": 317534025,
+          "pointvalue": 1.0,
+          "mintick": 0.001,
+          "account_currency": "USD",
+          "symbol_currency": "USD"
+        },
+        "campaigns": 98,
+        "wins": 44,
+        "losses": 54,
+        "net_usd": -311.115,
+        "win_rate": 0.4489795918367347,
+        "pf": 0.9203753719667768,
+        "mean_net_r": -0.08056670536076792,
+        "native_equity_dd_usd": 1595.163,
+        "parts": 286,
+        "fees_usd": 102.9,
+        "tp_campaign_counts": {
+          "TP1": 43,
+          "TP2": 24,
+          "TP3": 12
+        },
+        "sl_before_tp1": 51
+      },
+      "premium": {
+        "log_sha256": "2e62756501a6ef94252b72f196f09f3ba7976244fc28954daf3ca83623a9b534",
+        "data": {
+          "symbol": "OANDA:XAUUSD",
+          "timeframe": "30",
+          "bar_count": 10156,
+          "first_bar_time": 1767308400000,
+          "last_bar_open": 1794310200000,
+          "cutoff": 1794312000000,
+          "checksum1": 29512498,
+          "checksum2": 317534025,
+          "pointvalue": 1.0,
+          "mintick": 0.001,
+          "account_currency": "USD",
+          "symbol_currency": "USD"
+        },
+        "campaigns": 98,
+        "wins": 44,
+        "losses": 54,
+        "net_usd": -311.115,
+        "win_rate": 0.4489795918367347,
+        "pf": 0.9203753719667768,
+        "mean_net_r": -0.08056670536076792,
+        "native_equity_dd_usd": 1595.163,
+        "parts": 286,
+        "fees_usd": 102.9,
+        "tp_campaign_counts": {
+          "TP1": 43,
+          "TP2": 24,
+          "TP3": 12
+        },
+        "sl_before_tp1": 51
+      },
+      "differences": []
+    },
+    {
+      "mode": "S5",
+      "timeframe": "30",
+      "baseline": {
+        "log_sha256": "fe6d249f8c349536c9b8a96710a0befdc41393cbf9e9196fc4080b8443e935bb",
+        "data": {
+          "symbol": "OANDA:XAUUSD",
+          "timeframe": "30",
+          "bar_count": 10156,
+          "first_bar_time": 1767308400000,
+          "last_bar_open": 1794310200000,
+          "cutoff": 1794312000000,
+          "checksum1": 29512498,
+          "checksum2": 317534025,
+          "pointvalue": 1.0,
+          "mintick": 0.001,
+          "account_currency": "USD",
+          "symbol_currency": "USD"
+        },
+        "campaigns": 165,
+        "wins": 89,
+        "losses": 76,
+        "net_usd": -855.364,
+        "win_rate": 0.5393939393939394,
+        "pf": 0.8440975668791991,
+        "mean_net_r": 0.024349459315748393,
+        "native_equity_dd_usd": 2059.376,
+        "parts": 463,
+        "fees_usd": 173.25,
+        "tp_campaign_counts": {
+          "TP1": 84,
+          "TP2": 32,
+          "TP3": 21
+        },
+        "sl_before_tp1": 69
+      },
+      "premium": {
+        "log_sha256": "294ec6b3d2b6c218495c3a3df1f8947665dbe869b60d4570fe5d44ef5c2ee433",
+        "data": {
+          "symbol": "OANDA:XAUUSD",
+          "timeframe": "30",
+          "bar_count": 10156,
+          "first_bar_time": 1767308400000,
+          "last_bar_open": 1794310200000,
+          "cutoff": 1794312000000,
+          "checksum1": 29512498,
+          "checksum2": 317534025,
+          "pointvalue": 1.0,
+          "mintick": 0.001,
+          "account_currency": "USD",
+          "symbol_currency": "USD"
+        },
+        "campaigns": 165,
+        "wins": 89,
+        "losses": 76,
+        "net_usd": -855.364,
+        "win_rate": 0.5393939393939394,
+        "pf": 0.8440975668791991,
+        "mean_net_r": 0.024349459315748393,
+        "native_equity_dd_usd": 2059.376,
+        "parts": 463,
+        "fees_usd": 173.25,
+        "tp_campaign_counts": {
+          "TP1": 84,
+          "TP2": 32,
+          "TP3": 21
+        },
+        "sl_before_tp1": 69
+      },
+      "differences": []
+    }
+  ],
+  "qualification": "Observer-only parity of supplied logs. Full-source runtime, visualization, provenance and matching GUI settings require separate evidence."
+}

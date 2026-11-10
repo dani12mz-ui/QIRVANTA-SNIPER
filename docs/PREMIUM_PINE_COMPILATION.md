@@ -1,5 +1,7 @@
 # Premium · Pine v6 компилация
 
+Пълният коригиран Premium вече е компилиран и приложен в TradingView. Виж [нативната проверка](PREMIUM_NATIVE_VERIFICATION.md) за точния SHA-256 и доказателството. Текстът по-долу е история на първата доставка.
+
 Този отчет описва първоначалния Premium commit `d13b46f`. В [последващата QA проверка](PREMIUM_NATIVE_QA_CONTINUATION.md) са записани точният SHA-256 и размерът на актуалната визуална корекция; пълната нативна компилация остава неизпълнена.
 
 **`FULL_PREMIUM_NATIVE_COMPILATION_NOT_RUN`**. `unified/experimental/QIRVANTA_SNIPER_PREMIUM.pine` е самостоятелен Pine v6 файл с едно `strategy()` и без imports. Визуалните фрагменти и Python инструментите са само за разработка и проверка; в TradingView се поставя единствено пълният `.pine`.
