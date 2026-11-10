@@ -1,0 +1,313 @@
+//@version=6
+indicator("QIRVANTA SNIPER V2 · Experimental Intelligence", shorttitle="QIRV V2", overlay=true, max_labels_count=120, max_bars_back=500)
+// Independent observational hypotheses. No orders, fills, broker execution or calibrated probabilities.
+// Pivots are disclosed on their confirmation bar, never at a negative plot offset.
+// Breaks/sweeps use levels already known before this bar. A sweep-to-shift requires a later bar.
+// Grade: 3+ enabled supports HIGH, 2 MODERATE, 0–1 LOW; any hard gate REJECTED.
+// Supports: displacement; EMA/ADX trend; both completed H1/H4 trends; structural room >= 1R.
+// LOW is retained as an accepted research observation, never an instruction to trade.
+
+int pivotBars = input.int(3, "Pivot left/right bars", minval=2, maxval=10, group="01 / STRUCTURE", display=display.none)
+float equalATR = input.float(0.10, "Equal-level tolerance / prior ATR", minval=0.0, maxval=0.5, step=0.05, group="01 / STRUCTURE", display=display.none)
+float breakATR = input.float(0.05, "Break/sweep buffer / prior ATR", minval=0.0, maxval=0.5, step=0.05, group="01 / STRUCTURE", display=display.none)
+int setupTTL = input.int(6, "Sweep / flip / failure validity bars", minval=1, maxval=30, group="01 / STRUCTURE", tooltip="Counts observed chart bars, not elapsed time. A setup can span a session or weekend gap; its extreme is still checked on each subsequent bar.", display=display.none)
+float displacementATR = input.float(0.80, "Displacement body / prior ATR", minval=0.3, maxval=2.5, step=0.1, group="02 / FEATURES", display=display.none)
+float adxFloor = input.float(20.0, "ADX trend threshold", minval=5.0, maxval=50.0, group="02 / FEATURES", display=display.none)
+bool scoreDisplacement = input.bool(true, "Count displacement support", group="02 / FEATURES", display=display.none)
+bool scoreTrend = input.bool(true, "Count EMA + ADX support", group="02 / FEATURES", display=display.none)
+bool scoreHTF = input.bool(true, "Count H1 + H4 agreement", group="02 / FEATURES", display=display.none)
+bool scoreRoom = input.bool(true, "Count known structural room >= 1R", group="02 / FEATURES", display=display.none)
+float maxRiskATR = input.float(4.0, "Maximum structural distance / prior ATR", minval=0.5, maxval=12.0, step=0.5, group="03 / REJECTION GATES", display=display.none)
+float maxExtensionATR = input.float(3.0, "Maximum distance from EMA21 / prior ATR", minval=0.5, maxval=10.0, step=0.5, group="03 / REJECTION GATES", display=display.none)
+bool requireHTF = input.bool(false, "Require H1 + H4 agreement", group="03 / REJECTION GATES", display=display.none)
+bool requireRoom = input.bool(false, "Require known structural room >= 1R", group="03 / REJECTION GATES", display=display.none)
+bool earlyWarnings = input.bool(true, "Show bar-close observational warnings", group="04 / DISPLAY", display=display.none)
+bool showPanel = input.bool(true, "Show research panel", group="04 / DISPLAY", display=display.none)
+string density = input.string("Compact", "Panel detail", options=["Compact", "Extended"], group="04 / DISPLAY", display=display.none)
+string panelAnchor = input.string("Bottom left", "Panel position", options=["Top left", "Top right", "Bottom left", "Bottom right"], group="04 / DISPLAY", display=display.none)
+int panelFont = input.int(11, "Panel text size", minval=9, maxval=18, group="04 / DISPLAY", display=display.none)
+bool showAccepted = input.bool(true, "Mark accepted observations", group="04 / DISPLAY", display=display.none)
+bool showRejected = input.bool(false, "Mark rejected observations", group="04 / DISPLAY", display=display.none)
+bool showPivots = input.bool(false, "Mark confirmed HH / HL / LH / LL / equals", group="04 / DISPLAY", display=display.none)
+int keepLabels = input.int(40, "Retained observation labels", minval=0, maxval=100, group="04 / DISPLAY", display=display.none)
+bool writeLogs = input.bool(false, "Pine Logs: candidates and warning transitions", group="05 / AUDIT", tooltip="Records both accepted and rejected candidates. Pine Logs retain up to 10,000 historical entries; use the time window. No alerts are sent.", display=display.none)
+int logFrom = input.time(0, "Log from", group="05 / AUDIT", display=display.none)
+int logUntil = input.time(4102444800000, "Log until", group="05 / AUDIT", display=display.none)
+
+color aqua = color.rgb(19, 220, 203)
+color red = color.rgb(245, 59, 79)
+color amber = color.rgb(235, 184, 77)
+color muted = color.rgb(159, 174, 190)
+color ink = color.rgb(13, 19, 27)
+var array<label> marks = array.new<label>()
+f_price(float value) => na(value) ? "—" : str.tostring(value, format.mintick)
+f_number(float value) => na(value) ? "—" : str.tostring(value, "#.##")
+f_side(int side) => side == 1 ? "LONG" : side == -1 ? "SHORT" : "NEUTRAL"
+f_reason(string previous, bool condition, string reason) => condition ? (previous == "" ? reason : previous + "; " + reason) : previous
+f_mark(float price, string caption, color tone, string detail) =>
+    if keepLabels > 0
+        label item = label.new(bar_index, price, caption, style=label.style_label_center, color=color.new(ink, 5), textcolor=tone, size=size.small, tooltip=detail)
+        array.push(marks, item)
+        if array.size(marks) > keepLabels
+            label.delete(array.shift(marks))
+f_nearest(float current, float next, float reference, int side) =>
+    not na(next) and (next - reference) * side > syminfo.mintick and (na(current) or math.abs(next - reference) < math.abs(current - reference)) ? next : current
+f_htf() =>
+    float ph = ta.pivothigh(high, pivotBars, pivotBars)
+    float pl = ta.pivotlow(low, pivotBars, pivotBars)
+    float lastHigh = ta.valuewhen(not na(ph), ph, 0)
+    float lastLow = ta.valuewhen(not na(pl), pl, 0)
+    float fast = ta.ema(close, 21)
+    float slow = ta.ema(close, 55)
+    float warmup = ta.sma(close, 55)
+    [close[1], fast[1], na(warmup[1]) ? na : slow[1], lastHigh[1], lastLow[1], time_close[1]]
+
+// Every requested tuple item is offset. Invalid/equal/lower context frames are masked below.
+[h1CloseRaw, h1FastRaw, h1SlowRaw, h1HighRaw, h1LowRaw, h1TimeRaw] = request.security(syminfo.tickerid, "60", f_htf(), lookahead=barmerge.lookahead_on)
+[h4CloseRaw, h4FastRaw, h4SlowRaw, h4HighRaw, h4LowRaw, h4TimeRaw] = request.security(syminfo.tickerid, "240", f_htf(), lookahead=barmerge.lookahead_on)
+int tfSeconds = timeframe.in_seconds()
+bool h1Ready = tfSeconds < 3600 and not na(h1SlowRaw) and not na(h1TimeRaw) and h1TimeRaw <= time
+bool h4Ready = tfSeconds < 14400 and not na(h4SlowRaw) and not na(h4TimeRaw) and h4TimeRaw <= time
+int h1Bias = not h1Ready ? 0 : h1CloseRaw > h1FastRaw and h1FastRaw > h1SlowRaw ? 1 : h1CloseRaw < h1FastRaw and h1FastRaw < h1SlowRaw ? -1 : 0
+int h4Bias = not h4Ready ? 0 : h4CloseRaw > h4FastRaw and h4FastRaw > h4SlowRaw ? 1 : h4CloseRaw < h4FastRaw and h4FastRaw < h4SlowRaw ? -1 : 0
+float atr = ta.atr(14)
+float priorATR = atr[1]
+float atrBaseline = ta.sma(atr, 50)[1]
+float atrRatio = priorATR / atrBaseline
+float ema21 = ta.ema(close, 21)
+float ema55 = ta.ema(close, 55)
+float slope = (ema21 - ema21[3]) / priorATR
+[diPlus, diMinus, adx] = ta.dmi(14, 14)
+float body = math.abs(close - open)
+float span = math.max(high - low, syminfo.mintick)
+float closeLocation = (close - low) / span
+float upperWick = high - math.max(open, close)
+float lowerWick = math.min(open, close) - low
+bool displacementUp = close > open and body >= priorATR * displacementATR and closeLocation >= 0.75
+bool displacementDown = close < open and body >= priorATR * displacementATR and closeLocation <= 0.25
+bool rejectionUp = lowerWick / span >= 0.45 and closeLocation >= 0.65
+bool rejectionDown = upperWick / span >= 0.45 and closeLocation <= 0.35
+bool compression = atrRatio <= 0.80
+bool expansion = atrRatio >= 1.20
+float momentum = (close - close[3]) / priorATR
+float acceleration = momentum - momentum[1]
+bool exhaustion = body < body[1] and (rejectionUp or rejectionDown) and math.abs(close - ema21) / priorATR > 1.5
+float ph = ta.pivothigh(high, pivotBars, pivotBars)
+float pl = ta.pivotlow(low, pivotBars, pivotBars)
+bool ready = not na(atrBaseline) and priorATR > syminfo.mintick and not na(adx) and not na(ema55[3])
+bool supported = chart.is_standard and (tfSeconds == 300 or tfSeconds == 900 or tfSeconds == 1800)
+float buffer = math.max(syminfo.mintick, nz(priorATR) * breakATR)
+float tolerance = math.max(syminfo.mintick, nz(priorATR) * equalATR)
+
+var float swingHigh = na
+var float swingLow = na
+var string highClass = "—"
+var string lowClass = "—"
+var bool highBroken = false
+var bool lowBroken = false
+var bool highSwept = false
+var bool lowSwept = false
+var int structure = 0
+var int breakSide = 0
+var float breakLevel = na
+var int breakBar = na
+var bool breakFailed = false
+var bool flipSeen = false
+var int pendingSide = 0
+var int pendingBar = na
+var float pendingInvalidation = na
+var string warning = "WAITING FOR CONFIRMED STRUCTURE"
+var string lastStructure = "UNDEFINED"
+var string lastContext = "H1 — / H4 —"
+var string lastRegime = "WARMUP"
+var string lastMomentum = "—"
+var string lastEvent = "NO CANDIDATE"
+var string lastGrade = "—"
+var string lastReasons = "No structural candidate has been observed."
+var string lastFeatures = "—"
+var int lastTime = na
+var int snapshotTime = na
+var float lastReference = na
+var float lastInvalidation = na
+var float lastTarget = na
+var float lastRisk = na
+var int acceptedCount = 0
+var int rejectedCount = 0
+var bool loggedConfig = false
+float candidateGrade = na
+float candidateReference = na
+float candidateInvalidation = na
+float candidateTarget = na
+float candidateSide = na
+
+if barstate.isconfirmed
+    string priorWarning = warning
+    string warningEvents = ""
+    bool logWindow = writeLogs and time_close >= logFrom and time_close <= logUntil
+    if logWindow and not loggedConfig
+        log.info("V2_CONFIG|version=1|symbol=" + syminfo.tickerid + "|tf=" + timeframe.period + "|pivot=" + str.tostring(pivotBars) + "|equal_ATR=" + str.tostring(equalATR) + "|break_ATR=" + str.tostring(breakATR) + "|TTL=" + str.tostring(setupTTL) + "|displacement_ATR=" + str.tostring(displacementATR) + "|ADX_floor=" + str.tostring(adxFloor) + "|score_D=" + str.tostring(scoreDisplacement) + "|score_T=" + str.tostring(scoreTrend) + "|score_H=" + str.tostring(scoreHTF) + "|score_R=" + str.tostring(scoreRoom) + "|max_risk_ATR=" + str.tostring(maxRiskATR) + "|max_extension_ATR=" + str.tostring(maxExtensionATR) + "|require_HTF=" + str.tostring(requireHTF) + "|require_room=" + str.tostring(requireRoom) + "|not_strategy=true")
+        loggedConfig := true
+    bool breakUp = ready and not na(swingHigh) and not highBroken and close > swingHigh + buffer
+    bool breakDown = ready and not na(swingLow) and not lowBroken and close < swingLow - buffer
+    bool sweepHigh = ready and not na(swingHigh) and not highBroken and not highSwept and high > swingHigh + buffer and close <= swingHigh
+    bool sweepLow = ready and not na(swingLow) and not lowBroken and not lowSwept and low < swingLow - buffer and close >= swingLow
+    bool inBreakWindow = not na(breakBar) and bar_index > breakBar and bar_index - breakBar <= setupTTL
+    bool failedUp = inBreakWindow and breakSide == 1 and not breakFailed and close < breakLevel - buffer
+    bool failedDown = inBreakWindow and breakSide == -1 and not breakFailed and close > breakLevel + buffer
+    bool flipUp = inBreakWindow and breakSide == 1 and not breakFailed and not flipSeen and low <= breakLevel + tolerance and close > breakLevel + buffer and close > open
+    bool flipDown = inBreakWindow and breakSide == -1 and not breakFailed and not flipSeen and high >= breakLevel - tolerance and close < breakLevel - buffer and close < open
+    bool pendingExpired = pendingSide != 0 and bar_index - pendingBar > setupTTL
+    bool pendingInvalid = pendingSide != 0 and bar_index > pendingBar and (pendingSide == 1 ? low <= pendingInvalidation : high >= pendingInvalidation)
+    bool sweepShiftUp = pendingSide == 1 and bar_index > pendingBar and not pendingExpired and not pendingInvalid and breakUp
+    bool sweepShiftDown = pendingSide == -1 and bar_index > pendingBar and not pendingExpired and not pendingInvalid and breakDown
+    bool up = breakUp or failedDown or flipUp
+    bool down = breakDown or failedUp or flipDown
+    bool hasCandidate = up or down
+    int side = up and not down ? 1 : down and not up ? -1 : 0
+    bool isShift = side != 0 and structure == -side and (breakUp or breakDown)
+    string kind = sweepShiftUp or sweepShiftDown ? (isShift ? "SWEEP → MSS" : "SWEEP → BREAK") : isShift ? "MSS / CHoCH" : breakUp or breakDown ? (structure == side ? "BOS" : "INITIAL BREAK") : failedUp or failedDown ? "FAILED BREAK" : "S/R FLIP"
+
+    if pendingExpired or pendingInvalid
+        warning := pendingExpired ? "SETUP EXPIRED · NO CONFIRMATION" : "SETUP INVALIDATED · EXTREME REVISITED"
+        warningEvents := f_reason(warningEvents, true, warning)
+        pendingSide := 0
+    else if pendingSide != 0
+        warning := "WATCH " + f_side(pendingSide) + " · CONFIRMATION PENDING"
+    else
+        warning := compression ? "COMPRESSION · BREAKOUT UNDER EVALUATION" : "NO PENDING SETUP"
+
+    if hasCandidate
+        float invalidation = side == 1 ? swingLow : side == -1 ? swingHigh : na
+        // A completed failed-break candle contributes an observed extreme; no future pivot is used.
+        if failedUp and side == -1
+            invalidation := na(invalidation) ? high : math.max(invalidation, high)
+        if failedDown and side == 1
+            invalidation := na(invalidation) ? low : math.min(invalidation, low)
+        if sweepShiftUp or sweepShiftDown
+            invalidation := pendingInvalidation
+        float risk = (close - invalidation) * side
+        float target = f_nearest(na, side == 1 ? swingHigh : swingLow, close, side)
+        target := f_nearest(target, h1Ready ? (side == 1 ? h1HighRaw : h1LowRaw) : na, close, side)
+        target := f_nearest(target, h4Ready ? (side == 1 ? h4HighRaw : h4LowRaw) : na, close, side)
+        float roomR = risk > syminfo.mintick ? (target - close) * side / risk : na
+        bool agreesHTF = side != 0 and h1Ready and h4Ready and h1Bias == side and h4Bias == side
+        bool hasRoom = not na(roomR) and roomR >= 1.0
+        bool impulse = side == 1 ? displacementUp : side == -1 and displacementDown
+        bool trend = side != 0 and adx >= adxFloor and (side == 1 ? ema21 > ema55 and slope > 0 and diPlus > diMinus : ema21 < ema55 and slope < 0 and diMinus > diPlus)
+        int supports = (scoreDisplacement and impulse ? 1 : 0) + (scoreTrend and trend ? 1 : 0) + (scoreHTF and agreesHTF ? 1 : 0) + (scoreRoom and hasRoom ? 1 : 0)
+        string rejection = ""
+        rejection := f_reason(rejection, not supported, "UNSUPPORTED: standard M5/M15/M30 required")
+        rejection := f_reason(rejection, not ready, "WARMUP")
+        rejection := f_reason(rejection, side == 0, "CONFLICTING DIRECTIONS")
+        rejection := f_reason(rejection, na(risk) or risk <= syminfo.mintick, "NO VALID STRUCTURAL INVALIDATION")
+        rejection := f_reason(rejection, not na(risk) and risk / priorATR > maxRiskATR, "STRUCTURAL DISTANCE TOO LARGE")
+        rejection := f_reason(rejection, math.abs(close - ema21) / priorATR > maxExtensionATR, "OVEREXTENDED FROM EMA21")
+        rejection := f_reason(rejection, requireHTF and not agreesHTF, "H1/H4 AGREEMENT REQUIRED")
+        rejection := f_reason(rejection, requireRoom and not hasRoom, "KNOWN STRUCTURAL ROOM >= 1R REQUIRED")
+        bool accepted = rejection == ""
+        string grade = not accepted ? "REJECTED" : supports >= 3 ? "HIGH CONFLUENCE" : supports == 2 ? "MODERATE CONFLUENCE" : "LOW CONFLUENCE"
+        string evidence = "D=" + (scoreDisplacement ? (impulse ? "1" : "0") : "OFF") + " T=" + (scoreTrend ? (trend ? "1" : "0") : "OFF") + " H=" + (scoreHTF ? (agreesHTF ? "1" : "0") : "OFF") + " R=" + (scoreRoom ? (hasRoom ? "1" : "0") : "OFF")
+        lastEvent := kind + " · " + f_side(side)
+        lastGrade := grade
+        lastReasons := accepted ? "Hard gates passed; supports " + str.tostring(supports) + "/4. " + evidence : rejection
+        lastFeatures := evidence
+        lastTime := time_close
+        lastReference := close
+        lastInvalidation := invalidation
+        lastTarget := target
+        lastRisk := risk
+        candidateGrade := accepted ? (supports >= 3 ? 3 : supports == 2 ? 2 : 1) : 0
+        candidateReference := close
+        candidateInvalidation := invalidation
+        candidateTarget := target
+        candidateSide := side
+        acceptedCount += accepted ? 1 : 0
+        rejectedCount += accepted ? 0 : 1
+        if (accepted and showAccepted) or (not accepted and showRejected)
+            string shortGrade = accepted ? (supports >= 3 ? "HIGH" : supports == 2 ? "MOD" : "LOW") : "REJECTED"
+            f_mark(side == -1 ? high + priorATR * 0.35 : low - priorATR * 0.35, "EXP " + f_side(side) + " · " + shortGrade, accepted ? aqua : red, "RESEARCH OBSERVATION; NO ORDER\n" + lastEvent + "\n" + grade + "\n" + lastReasons + "\nReference close " + f_price(close) + "; invalidation " + f_price(invalidation) + "; structural target " + f_price(target))
+        if logWindow
+            log.info("V2_CANDIDATE|known_close=" + str.tostring(time_close) + "|symbol=" + syminfo.tickerid + "|tf=" + timeframe.period + "|event=" + lastEvent + "|grade=" + grade + "|accepted=" + str.tostring(accepted) + "|reasons=" + lastReasons + "|features=" + evidence + "|reference=" + f_price(close) + "|invalidation=" + f_price(invalidation) + "|structural_target=" + f_price(target) + "|room_R=" + f_number(roomR) + "|ATR=" + f_number(priorATR) + "|ADX=" + f_number(adx) + "|compression=" + str.tostring(compression) + "|expansion=" + str.tostring(expansion) + "|acceleration=" + f_number(acceleration) + "|exhaustion=" + str.tostring(exhaustion) + "|rejection_wick=" + str.tostring(side == 1 ? rejectionUp : rejectionDown) + "|H1_closed=" + str.tostring(h1TimeRaw) + "|H4_closed=" + str.tostring(h4TimeRaw))
+        if sweepShiftUp or sweepShiftDown
+            warning := accepted ? "STRUCTURE CONFIRMED · RESEARCH ONLY" : "CONFIRMED STRUCTURE · CANDIDATE REJECTED"
+            warningEvents := f_reason(warningEvents, true, warning)
+            pendingSide := 0
+
+    if failedUp or failedDown
+        breakFailed := true
+    if flipUp or flipDown
+        flipSeen := true
+    if breakUp or breakDown
+        breakSide := breakUp and not breakDown ? 1 : breakDown and not breakUp ? -1 : 0
+        breakLevel := breakSide == 1 ? swingHigh : swingLow
+        breakBar := bar_index
+        breakFailed := false
+        flipSeen := false
+        structure := breakSide
+        highBroken := highBroken or breakUp
+        lowBroken := lowBroken or breakDown
+    if sweepHigh or sweepLow
+        highSwept := highSwept or sweepHigh
+        lowSwept := lowSwept or sweepLow
+        pendingSide := sweepLow and not sweepHigh ? 1 : sweepHigh and not sweepLow ? -1 : 0
+        pendingBar := bar_index
+        pendingInvalidation := pendingSide == 1 ? low : high
+        warning := pendingSide == 0 ? "TWO-SIDED SWEEP · ORDER UNKNOWN" : "SWEEP DETECTED · WATCH " + f_side(pendingSide)
+        warningEvents := f_reason(warningEvents, true, warning)
+
+    // Install new confirmed pivots only after evaluating this bar against prior-known levels.
+    if not na(ph)
+        highClass := na(swingHigh) ? "SH" : math.abs(ph - swingHigh) <= tolerance ? "EQH" : ph > swingHigh ? "HH" : "LH"
+        swingHigh := ph
+        highBroken := false
+        highSwept := false
+        if showPivots
+            f_mark(ph, highClass + " · CONF", muted, "Pivot origin " + str.format_time(time[pivotBars], "yyyy-MM-dd HH:mm", "UTC") + " UTC\nFirst available at this bar close after " + str.tostring(pivotBars) + " right bars. Not backdated.")
+    if not na(pl)
+        lowClass := na(swingLow) ? "SL" : math.abs(pl - swingLow) <= tolerance ? "EQL" : pl > swingLow ? "HL" : "LL"
+        swingLow := pl
+        lowBroken := false
+        lowSwept := false
+        if showPivots
+            f_mark(pl, lowClass + " · CONF", muted, "Pivot origin " + str.format_time(time[pivotBars], "yyyy-MM-dd HH:mm", "UTC") + " UTC\nFirst available at this bar close after " + str.tostring(pivotBars) + " right bars. Not backdated.")
+    lastStructure := highClass + " / " + lowClass + " · " + (structure == 1 ? "BULL BREAK" : structure == -1 ? "BEAR BREAK" : "UNDEFINED")
+    lastContext := "H1 " + (h1Ready ? f_side(h1Bias) : "—") + " / H4 " + (h4Ready ? f_side(h4Bias) : "—")
+    lastRegime := not ready ? "WARMUP" : compression ? "COMPRESSION" : expansion ? "EXPANSION" : adx < adxFloor ? "RANGE / LOW ADX" : "DIRECTIONAL"
+    lastMomentum := "ADX " + f_number(adx) + " · ATR ratio " + f_number(atrRatio) + " · accel " + f_number(acceleration) + (exhaustion ? " · EXHAUSTION WATCH" : "")
+    snapshotTime := time_close
+    if not supported
+        warning := "UNSUPPORTED · STANDARD M5 / M15 / M30"
+    if logWindow and (warning != priorWarning or warningEvents != "")
+        log.info("V2_OBSERVATION|known_close=" + str.tostring(time_close) + "|symbol=" + syminfo.tickerid + "|tf=" + timeframe.period + "|transitions=" + (warningEvents == "" ? warning : warningEvents) + "|final_state=" + warning + "|not_order=true")
+
+string anchor = panelAnchor == "Top right" ? position.top_right : panelAnchor == "Bottom left" ? position.bottom_left : panelAnchor == "Bottom right" ? position.bottom_right : position.top_left
+var table board = table.new(anchor, 2, 13, frame_color=color.rgb(62, 74, 89), frame_width=1)
+f_cell(int row, string left, string right, color tone, string tip) =>
+    table.cell(board, 0, row, left, bgcolor=color.new(ink, 6), text_color=muted, text_size=panelFont, text_halign=text.align_left, tooltip=tip)
+    table.cell(board, 1, row, right, bgcolor=color.new(ink, 6), text_color=tone, text_size=panelFont, text_halign=text.align_right, tooltip=tip)
+if barstate.islast
+    table.clear(board, 0, 0, 1, 12)
+    if showPanel
+        color gradeColor = lastGrade == "REJECTED" ? red : lastGrade == "HIGH CONFLUENCE" ? aqua : amber
+        f_cell(0, "V2 INTELLIGENCE", "RESEARCH ONLY", aqua, "Independent indicator. No orders, fills, outcome estimates or calibrated probabilities.")
+        f_cell(1, syminfo.ticker + " · " + timeframe.period, lastStructure, muted, "HH/HL/LH/LL compare confirmed pivots; break direction is separate. Pivot labels appear on confirmation bars.")
+        f_cell(2, "COMPLETED HTF", lastContext, muted, "Previous completed H1/H4 close and EMA21/55. Pivot support/resistance also use completed HTF values.")
+        f_cell(3, lastRegime, earlyWarnings ? warning : "WARNINGS HIDDEN", amber, lastMomentum + "\nObservations use bar closes only; no provisional intrabar signal is plotted.")
+        f_cell(4, "LAST CANDIDATE", lastEvent, muted, na(lastTime) ? "None" : str.format_time(lastTime, "yyyy-MM-dd HH:mm", "UTC") + " UTC; frozen candidate snapshot")
+        f_cell(5, lastGrade, lastFeatures, gradeColor, lastReasons + "\nD displacement; T EMA/ADX; H both HTFs; R known room >= 1R. 3+ HIGH, 2 MODERATE, 0–1 LOW. Any hard rejection overrides supports.")
+        f_cell(6, "ACCEPTED / REJECTED", str.tostring(acceptedCount) + " / " + str.tostring(rejectedCount), muted, "Research observations in the loaded chart dataset, not trades or wins. LOW observations are included. Logs can be enabled in Inputs.")
+        f_cell(7, "AS OF BAR CLOSE", na(snapshotTime) ? "—" : str.format_time(snapshotTime, "dd MMM HH:mm", "UTC") + " UTC", muted, "Current structure/context snapshot. The LAST CANDIDATE rows may refer to an older bar.")
+        if density == "Extended"
+            f_cell(8, "REFERENCE CLOSE", f_price(lastReference), muted, "Candidate close, not an entry order or a fill.")
+            f_cell(9, "INVALIDATION", f_price(lastInvalidation), red, "Previously known swing or observed sweep/failed-break extreme. No executable stop is submitted.")
+            f_cell(10, "STRUCTURAL TARGET", f_price(lastTarget), aqua, "Nearest favorable known local/H1/H4 confirmed swing; — means none known. No target-hit or fill inference.")
+            string projections = not na(lastRisk) and lastRisk > syminfo.mintick ? f_price(lastReference + (lastReference - lastInvalidation)) + " / " + f_price(lastReference + 2 * (lastReference - lastInvalidation)) + " / " + f_price(lastReference + 3 * (lastReference - lastInvalidation)) : "—"
+            f_cell(11, "1R / 2R / 3R PROJECTIONS", projections, muted, "Arithmetic projections from the frozen reference/invalidation distance; not structural targets, fills or profit forecasts. Before costs.")
+            f_cell(12, "CAUSAL FEATURES", "HYPOTHESES · UNVALIDATED", amber, lastMomentum + "\nNo predictive-value or profitability claim. Feature switches permit independent ablation experiments.")
+
+// Bar-close pulses for Data Window/export. Blank outside candidate bars; these are not trade records.
+plot(candidateGrade, "Research grade: 0 rejected / 1 low / 2 moderate / 3 high", display=display.data_window)
+plot(candidateSide, "Research direction: 1 long / -1 short / 0 conflict", display=display.data_window)
+plot(candidateReference, "Candidate reference close (not fill)", display=display.data_window)
+plot(candidateInvalidation, "Candidate structural invalidation", display=display.data_window)
+plot(candidateTarget, "Candidate known structural target (not R projection)", display=display.data_window)

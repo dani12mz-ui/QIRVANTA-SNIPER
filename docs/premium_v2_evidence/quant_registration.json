@@ -1,0 +1,62 @@
+{
+  "schema": "qirvanta.premium-v2.quant.registration.v1",
+  "registered_utc": "2026-11-10T14:09:09.282Z",
+  "reference_commit": "c63db3152ae26b1af4001a4aa35f1eab963d53d8",
+  "raw_control_source_commit": "6221eb63be02c70db1d6acae6d03745db9a45c94",
+  "original_input_registration": "docs/premium_evidence/s5_screen_registration.json",
+  "original_input_registration_sha256": "9ef45b538670332e797e5bcbb0660b912f910c54fdf94fab3eb899f5165e6d97",
+  "original_baseline_and_scope_check": "docs/premium_evidence/s5_screen_results.json",
+  "original_baseline_and_scope_check_sha256": "210b24ec65639ffecff61242abce91b183b2632b059f0ce1f16ba79f26870701",
+  "evidence_class": "ALREADY_OBSERVED_ARCHIVE_FIXED_FILLS",
+  "control": "Original S5 complete campaign ledger on OANDA:XAUUSD; M5 primary, M15/M30 descriptive sensitivity; all archived dates were already seen",
+  "market_data": "Original local OHLC/HTF and Pine logs from prior pinned S5 registration; verify SHA-256, both Pine fingerprints, submission mapping, complete campaign economics, recorded fee and original contract point value",
+  "chronological_cutoff_policy": "Same common dates and original campaign boundary policy as prior S5 registration; full history, chronological cohorts, and UTC entry months are descriptive and inherit original S5 occupancy",
+  "scope_exclusions": "Q07 discovery is kept separate and not rerun or counted as independent evidence. All screens take place at original closed signal bar and reuse its known fills. No position replacement, alternative exit, price-feed inference or native optimization parity.",
+  "signal_screens": {
+    "VQ01": {
+      "hypothesis": "A fresh confirmed swing break can distinguish a reclaim with structural follow-through",
+      "test": "Strict 2-left/2-right pivot on highs for BUY and lows for SELL. Latest pivot must be confirmed by the previous signal bar. Current close beyond pivot and prior close on or inside the same level, mirror by side."
+    },
+    "VQ02": {
+      "hypothesis": "Sweeping clustered confirmed equal levels before a reclaim may improve liquidity selection",
+      "test": "Take the two latest strict 2-left/2-right lows for BUY and highs for SELL confirmed before the seed bar. Difference at most 0.10 logged signal ATR. Seed extreme strictly sweeps both, signal close reclaims both. Missing a level rejects."
+    },
+    "VQ03": {
+      "hypothesis": "Lower directional trend strength favors failed-breakout reversals",
+      "test": "Causal chart ADX(14) <= 25 using the existing independently seeded Wilder feature adapter; native ADX parity not assumed."
+    },
+    "VQ04": {
+      "hypothesis": "Directional EMA slope may filter price-only reclaims with insufficient follow-through",
+      "test": "Side times EMA20(close) change over three completed chart bars >= 0.10 logged signal ATR; EMA seeded with first archived close."
+    },
+    "VQ05": {
+      "hypothesis": "Tighter planned risk envelope may remove overly wide structural stops without moving them",
+      "test": "Side times (signal reference minus original initial stop) divided by logged signal ATR <= 2.0. Original stop is unchanged."
+    }
+  },
+  "cost_scenarios": {
+    "C0": {"label": "Original native net cash"},
+    "C1": {"label": "Incremental spread only", "extra_round_trip_spread_price": "0.10"},
+    "C2": {"label": "Larger spread only", "extra_round_trip_spread_price": "0.30"},
+    "C3": {"label": "Incremental adverse slippage only", "extra_slippage_price_per_fill": "0.10"},
+    "C4": {"label": "Commission only", "incremental_commission_fraction": "0.50"},
+    "C5": {"label": "Illustrative carry only", "carry_cash_per_unit_event": "0.10"},
+    "C6": {"label": "Volatile signal-bar range proxy only", "extra_round_trip_spread_price": "0.30", "extra_slippage_price_per_fill": "0.05", "apply_only_if_signal_range_atr_at_least": 1.5},
+    "C7": {"label": "Combined conservative costs", "extra_round_trip_spread_price": "0.30", "extra_slippage_price_per_fill": "0.10", "incremental_commission_fraction": "0.50", "carry_cash_per_unit_event": "0.10"}
+  },
+  "cost_formula": "Native net = gross using observed fills less observed native commissions once. Extra spread = one incremental round-trip price spread times submitted units times native pointvalue. Extra slip = incremental adverse price drift times entry-plus-exit units times native pointvalue. Extra fee = actual fee times increment. Carry = illustrative cash times unit-event exposure. Add only these deltas. C7 omits C6 to avoid overlapping price shocks. Prices/costs are sensitivities in native archive units, not a broker quote.",
+  "carry_basis": "Only quantities with original entry < assumed New York 17:00 business-day close < original partial exit. Wednesday has weight 3 and all other weekdays 1. NY timezone is a public U.S.-close convention, exact MT5 offset/rates and observed financing are unknown.",
+  "delayed_fill_diagnostic": "Signed change from original fill bar open to following contiguous bar open, only if following bar index strictly precedes first observed exit bar. No strategy rerun or change to native net. Report unfavorable/favorable/flat, absolute gaps and exit exclusions.",
+  "primary_screen_gates": {
+    "min_retained_fraction": 0.7,
+    "min_retained_each_side": 15,
+    "min_mean_net_r_gain": 0.03,
+    "min_profit_factor": 1.1,
+    "max_campaign_cash_drawdown_multiple": 1,
+    "min_combined_stress_net_usd": 0,
+    "win_rate_must_not_decrease": true
+  },
+  "uncertainty": "M5 Holm across five one-sided sign-flip diagnostics of fixed admission incremental net R (excluded negative of original R, kept zero). No independent observations assumed. Mean R uses descriptive circular block-bootstrap with length 5, 2000 samples, seed 20261109; use the same original risk denominator under cost stress. Conditional subsets do not identify effects on new admissions.",
+  "risk_measurement": "Initial planned vs simulated fill risk, observed concurrent bar spans, losing streak, UTC-day realized part P&L and timed exposure. Do not infer mark-to-market or broker/account risk controls from sparse native export.",
+  "promotion": "None. A single challenger requires matched independent native data, predeclared costs/risk and adequate campaigns in the proposed future holdout. No combination search."
+}

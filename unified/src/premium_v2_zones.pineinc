@@ -1,0 +1,241 @@
+// Presentation snapshots only. Never mutate Plan, Event, candidates or native state.
+string premiumPreset = input.string("Desktop", "Layout preset", options=["Desktop", "Auto", "Compact", "Mobile"], group="PREMIUM / VISUALS", tooltip="Mobile is an explicit preset. Auto adapts density to timeframe, not screen width.", display=display.none)
+bool premiumMobile = premiumPreset == "Mobile"
+bool premiumCompact = premiumMobile or premiumPreset == "Compact" or (premiumPreset == "Auto" and tfSeconds <= 300)
+bool premiumZones = input.bool(true, "Risk / Reward zones", group="PREMIUM / VISUALS", display=display.none)
+int premiumRiskOpacity = input.int(91, "Risk transparency", minval=75, maxval=100, group="PREMIUM / VISUALS", display=display.none)
+int premiumRewardOpacity = input.int(94, "Reward transparency", minval=75, maxval=100, group="PREMIUM / VISUALS", display=display.none)
+string premiumExtension = input.string("Closure", "Extend zones", options=["Closure", "Expiry", "Fixed"], group="PREMIUM / VISUALS", tooltip="Closure follows observed fills. Expiry projects the frozen pending-order TTL. Fixed projects chart-time intervals; neither predicts future bars.", display=display.none)
+int premiumFixedBars = input.int(20, "Fixed chart-time intervals", minval=1, maxval=100, group="PREMIUM / VISUALS", display=display.none)
+bool premiumInitialSL = input.bool(true, "Show original SL", group="PREMIUM / VISUALS", display=display.none)
+bool premiumCurrentSL = input.bool(true, "Show current SL", group="PREMIUM / VISUALS", display=display.none)
+bool premiumTargetMarks = input.bool(true, "Show actual target completion", group="PREMIUM / VISUALS", display=display.none)
+bool premiumHistory = input.bool(true, "Show historical trade zones", group="PREMIUM / VISUALS", display=display.none)
+int premiumKeepPlans = input.int(1, "Retained historical visual plans", minval=0, maxval=12, group="PREMIUM / VISUALS", display=display.none)
+int premiumLineWidth = input.int(1, "Price line width", minval=1, maxval=3, group="PREMIUM / VISUALS", display=display.none)
+color premiumBuy = color.rgb(36, 213, 173)
+color premiumSell = color.rgb(245, 59, 79)
+color premiumAqua = color.rgb(19, 220, 203)
+color premiumWhite = color.rgb(225, 231, 235)
+color premiumInk = color.rgb(12, 17, 23)
+
+type PremiumVisualPlan
+    string id = ""
+    string family = ""
+    string strategyKey = ""
+    string basis = "R"
+    string status = "PLAN SUBMITTED"
+    string protection = "INITIAL SL"
+    int side = 0
+    int submittedAt = na
+    int entryAt = na
+    int closedAt = na
+    int knownAt = na
+    int expiresAt = na
+    int stopAt = na
+    int stopScheduledBar = na
+    float plannedEntry = na
+    float filledEntry = na
+    float initialSL = na
+    float currentSL = na
+    float tp1 = na
+    float tp2 = na
+    float tp3 = na
+    float qtyInitial = na
+    float qtyRemaining = 0.0
+    float netR = na
+    float netCash = na
+    string exitReason = ""
+    float labelGap = na
+    bool tp1Done = false
+    bool tp2Done = false
+    bool tp3Done = false
+    bool stopHit = false
+    bool closed = false
+    bool partiallyClosed = false
+    bool unfilled = false
+    array<line> levels = na
+    box riskBox = na
+    box rewardBox = na
+
+var PremiumVisualPlan premiumVisual = na
+var int premiumConfirmAt = na
+var int premiumConfirmSide = 0
+var string premiumConfirmModel = ""
+var array<PremiumVisualPlan> premiumRecords = array.new<PremiumVisualPlan>()
+var array<label> premiumSignalLabels = array.new<label>()
+var array<label> premiumPriceLabels = array.new<label>()
+var array<line> premiumLeaders = array.new<line>()
+f_premiumEntry(PremiumVisualPlan p) => na(p.filledEntry) ? p.plannedEntry : p.filledEntry
+f_premiumDone(PremiumVisualPlan p) => p.closed or p.unfilled
+f_premiumPrices(PremiumVisualPlan p) => array.from(f_premiumEntry(p), p.initialSL, p.currentSL, p.tp1, p.tp2, p.tp3)
+f_premiumVisible(PremiumVisualPlan p) => array.from(showEntryLevel, showStopLevel and premiumInitialSL, showStopLevel and premiumCurrentSL and (not premiumInitialSL or p.currentSL != p.initialSL), showTP1Level, showTP2Level, showTP3Level)
+f_premiumEnd(PremiumVisualPlan p) =>
+    f_premiumDone(p) ? nz(p.closedAt, p.knownAt) : time_close + levelOffset * tfSeconds * 1000
+f_premiumZoneEnd(PremiumVisualPlan p) =>
+    int projected = premiumExtension == "Expiry" ? p.expiresAt : premiumExtension == "Fixed" ? p.submittedAt + premiumFixedBars * tfSeconds * 1000 : f_premiumEnd(p)
+    f_premiumDone(p) ? math.min(nz(p.closedAt, p.knownAt), projected) : projected
+f_premiumDelete(PremiumVisualPlan p) =>
+    for l in p.levels
+        line.delete(l)
+    box.delete(p.riskBox)
+    box.delete(p.rewardBox)
+    p
+f_premiumDraw(PremiumVisualPlan p) =>
+    int origin = nz(p.entryAt, p.submittedAt)
+    int right = math.max(origin, f_premiumEnd(p))
+    array<float> prices = f_premiumPrices(p)
+    array<bool> visible = f_premiumVisible(p)
+    for i = 0 to 5
+        line l = array.get(p.levels, i)
+        if showLevels and array.get(visible, i)
+            float price = array.get(prices, i)
+            int left = i == 2 ? nz(p.stopAt, origin) : origin
+            if na(l)
+                l := line.new(left, price, math.max(left, right), price, xloc=xloc.bar_time)
+                array.set(p.levels, i, l)
+            line.set_xy1(l, left, price)
+            line.set_xy2(l, math.max(left, right), price)
+            line.set_color(l, i == 0 ? premiumWhite : i < 3 ? premiumSell : premiumAqua)
+            line.set_style(l, i == 1 ? line.style_dotted : line.style_solid)
+            line.set_width(l, premiumLineWidth)
+    float entry = f_premiumEntry(p)
+    bool zoneValid = (entry - p.initialSL) * p.side > 0 and (p.tp3 - entry) * p.side > 0
+    if uiMode == "PREMIUM" and premiumZones and not p.unfilled and zoneValid
+        int zoneRight = math.max(origin, f_premiumZoneEnd(p))
+        if na(p.riskBox)
+            p.riskBox := box.new(origin, math.max(entry, p.initialSL), zoneRight, math.min(entry, p.initialSL), xloc=xloc.bar_time, border_color=na, bgcolor=color.new(premiumSell, premiumRiskOpacity))
+            p.rewardBox := box.new(origin, math.max(entry, p.tp3), zoneRight, math.min(entry, p.tp3), xloc=xloc.bar_time, border_color=na, bgcolor=color.new(premiumBuy, premiumRewardOpacity))
+        box.set_lefttop(p.riskBox, origin, math.max(entry, p.initialSL))
+        box.set_rightbottom(p.riskBox, zoneRight, math.min(entry, p.initialSL))
+        box.set_lefttop(p.rewardBox, origin, math.max(entry, p.tp3))
+        box.set_rightbottom(p.rewardBox, zoneRight, math.min(entry, p.tp3))
+    else
+        box.delete(p.riskBox)
+        box.delete(p.rewardBox)
+        p.riskBox := na
+        p.rewardBox := na
+    p
+
+Event premiumSubmitted = na
+if processBar and array.size(events) > 0
+    for e in events
+        if e.kind == "CONFIRMED" and e.book == "CORE"
+            premiumConfirmAt := e.knownTime
+            premiumConfirmSide := e.side
+            premiumConfirmModel := f_tvFamily(e.strategyKey, e.family)
+        if e.book == "NATIVE"
+            PremiumVisualPlan p = not na(premiumVisual) and premiumVisual.id == e.planId ? premiumVisual : na
+            if e.kind == "NATIVE_SUBMITTED" and na(p)
+                p := PremiumVisualPlan.new()
+                p.id := e.planId
+                p.family := f_tvFamily(e.strategyKey, e.family)
+                p.strategyKey := e.strategyKey
+                p.basis := e.targetBasis
+                p.side := e.side
+                p.submittedAt := e.knownTime
+                p.stopAt := e.knownTime
+                p.plannedEntry := e.reference
+                p.initialSL := e.stop
+                p.currentSL := e.stop
+                p.tp1 := e.tp1
+                p.tp2 := e.tp2
+                p.tp3 := e.tp3
+                p.qtyInitial := nativeCampaignQty
+                p.labelGap := math.max(nz(atr) * 0.55, syminfo.mintick * 5)
+                p.expiresAt := e.knownTime + math.max(0, nativePlan.expiresAfterBar - bar_index) * tfSeconds * 1000
+                p.levels := array.new<line>(6, na)
+                array.push(premiumRecords, p)
+                premiumVisual := p
+                premiumSubmitted := e
+                if showSignalMarkers and showHistoricalLabels and keepSignalLabels > 0 and (e.side == 1 ? showBuySignals : showSellSignals)
+                    label mark = label.new(bar_index, e.side == 1 ? low - nz(atr) * 0.70 : high + nz(atr) * 0.70, (e.side == 1 ? "BUY" : "SELL") + (premiumCompact ? " · " : "\n") + p.strategyKey, style=e.side == 1 ? label.style_label_up : label.style_label_down, color=e.side == 1 ? premiumBuy : premiumSell, textcolor=e.side == 1 ? premiumInk : color.white, size=premiumCompact ? size.tiny : size.small, tooltip=p.id + "\n" + p.family + "\nPLAN SUBMITTED; not an executed entry")
+                    array.push(premiumSignalLabels, mark)
+                    if array.size(premiumSignalLabels) > keepSignalLabels
+                        label.delete(array.shift(premiumSignalLabels))
+            if not na(p)
+                p.knownAt := e.knownTime
+                if e.kind == "NATIVE_ENTRY"
+                    // Filled geometry starts at this actual fill time, never at submission.
+                    p.filledEntry := e.price
+                    p.entryAt := e.effectiveTime
+                    p.qtyRemaining := p.qtyInitial
+                    p.status := "STRATEGY POSITION"
+                if str.startswith(e.kind, "NATIVE_EXIT_") and not na(e.quantityFraction)
+                    p.tp1Done := p.tp1Done or e.reason == "TP1"
+                    p.tp2Done := p.tp2Done or e.reason == "TP2"
+                    p.tp3Done := p.tp3Done or e.reason == "TP3"
+                    p.stopHit := p.stopHit or e.reason == "SL"
+                    p.qtyRemaining := math.max(0.0, p.qtyRemaining - e.quantityFraction * p.qtyInitial)
+                    p.partiallyClosed := p.qtyRemaining > 0
+                    p.status := p.partiallyClosed ? "PARTIALLY CLOSED" : p.status
+                if e.kind == "NATIVE_STOP_SCHEDULED"
+                    p.currentSL := e.price
+                    p.stopAt := e.knownTime
+                    p.stopScheduledBar := bar_index
+                if e.kind == "NATIVE_CLOSED" or e.kind == "NATIVE_NOT_FILLED"
+                    p.closed := e.kind == "NATIVE_CLOSED"
+                    p.unfilled := not p.closed
+                    p.closedAt := nz(e.effectiveTime, e.knownTime)
+                    p.qtyRemaining := 0.0
+                    p.partiallyClosed := false
+                    p.netR := e.netR
+                    p.netCash := e.riskBasis == "INCOMPLETE_TRADE_LOG" ? na : e.cashPnl
+                    p.exitReason := e.reason
+                    p.status := p.closed ? "CLOSED" : "NOT FILLED"
+                    p.protection := str.replace_all(str.replace_all(str.replace_all(p.protection, " · NEXT TICK", ""), "BE SCHEDULED", "BE PRICE"), "BE ACTIVE", "BE PRICE")
+if processBar and not na(premiumVisual)
+    if not f_premiumDone(premiumVisual)
+        if not na(premiumVisual.filledEntry) and premiumVisual.currentSL != premiumVisual.initialSL
+            float lock = (premiumVisual.currentSL - premiumVisual.filledEntry) * premiumVisual.side
+            premiumVisual.protection := (lock > syminfo.mintick * 0.5 ? "PROFIT LOCK" : math.abs(lock) <= syminfo.mintick * 0.5 ? (premiumVisual.stopScheduledBar == bar_index ? "BE SCHEDULED" : "BE ACTIVE") : "PROTECTIVE SL") + (premiumVisual.stopScheduledBar == bar_index ? " · NEXT TICK" : "")
+    int retained = uiMode == "PREMIUM" and premiumHistory ? premiumKeepPlans : 0
+    int capacity = retained + (f_premiumDone(premiumVisual) ? 0 : 1)
+    while array.size(premiumRecords) > capacity
+        f_premiumDelete(array.shift(premiumRecords))
+bool premiumBuyMarker = not na(premiumSubmitted) and premiumSubmitted.side == 1
+bool premiumSellMarker = not na(premiumSubmitted) and premiumSubmitted.side == -1
+plotshape(showSignalMarkers and showBuySignals and premiumBuyMarker, "План за покупка — заявен, не изпълнение", style=shape.triangleup, location=location.belowbar, color=premiumBuy, size=size.tiny)
+plotshape(showSignalMarkers and showSellSignals and premiumSellMarker, "План за продажба — заявен, не изпълнение", style=shape.triangledown, location=location.abovebar, color=premiumSell, size=size.tiny)
+plot(displayEMAs ? emaFast : na, "EMA21 — текуща", color=premiumAqua, linewidth=1)
+plot(displayEMAs ? emaSlow : na, "EMA55 — текуща", color=color.rgb(242, 187, 81), linewidth=1)
+if barstate.isfirst
+    for i = 0 to 5
+        array.push(premiumPriceLabels, label.new(time, na, "", xloc=xloc.bar_time, style=label.style_label_left))
+        array.push(premiumLeaders, line.new(time, na, time, na, xloc=xloc.bar_time, style=line.style_dotted))
+if barstate.islastconfirmedhistory or barstate.islast
+    // Materialize only the final bounded set. Never recreate geometry on every history bar.
+    for record in premiumRecords
+        f_premiumDraw(record)
+    for i = 0 to 5
+        label.set_y(array.get(premiumPriceLabels, i), na)
+        line.set_y1(array.get(premiumLeaders, i), na)
+        line.set_y2(array.get(premiumLeaders, i), na)
+    PremiumVisualPlan p = premiumVisual
+    if showLevels and not na(p) and (not f_premiumDone(p) or (uiMode == "PREMIUM" and premiumHistory and premiumKeepPlans > 0))
+        array<float> prices = f_premiumPrices(p)
+        array<bool> visible = f_premiumVisible(p)
+        string entryLabel = p.unfilled or na(p.filledEntry) ? "Plan" : "Fill"
+        array<string> names = array.from(entryLabel, premiumCompact ? "SL₀" : "Initial SL", premiumCompact ? "SL" : "Current SL", "TP1", "TP2", "TP3")
+        array<bool> hits = array.from(false, p.stopHit and p.currentSL == p.initialSL, p.stopHit, p.tp1Done, p.tp2Done, p.tp3Done)
+        float lastY = na
+        int edge = math.max(nz(p.entryAt, p.submittedAt), f_premiumEnd(p))
+        for i in array.sort_indices(prices, order.ascending)
+            if array.get(visible, i)
+                float price = array.get(prices, i)
+                float y = separateLevelLabels and not na(lastY) ? math.max(price, lastY + p.labelGap) : price
+                lastY := y
+                color tone = i == 0 ? premiumWhite : i < 3 ? premiumSell : premiumAqua
+                label pill = array.get(premiumPriceLabels, i)
+                int guideEdge = edge + (premiumCompact ? 1 : 2) * tfSeconds * 1000
+                label.set_xy(pill, guideEdge, y)
+                label.set_text(pill, array.get(names, i) + "  " + f_price(price) + (premiumTargetMarks and array.get(hits, i) ? (i < 3 ? " · HIT" : " ✓") : ""))
+                label.set_color(pill, color.new(premiumInk, 6))
+                label.set_textcolor(pill, tone)
+                label.set_size(pill, premiumMobile ? size.tiny : levelFont == "Голям" ? size.large : levelFont == "Среден" ? size.normal : size.small)
+                label.set_tooltip(pill, p.id + "\n" + p.status + " · " + p.basis + "\nInitial-risk R before costs; actual targets require native fills.")
+                // A dotted label guide starts at the frozen level end; it never extends position duration.
+                line leader = array.get(premiumLeaders, i)
+                line.set_xy1(leader, edge, price)
+                line.set_xy2(leader, guideEdge, y)
+                line.set_color(leader, color.new(tone, 55))

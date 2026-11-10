@@ -1,0 +1,211 @@
+{
+  "status": "MATCHED_NATIVE_EXPLORATORY_CONTROLS",
+  "scope": "S5 M5, previously observed data. Inputs are corroborated by GUI captures, not encoded in Pine Logs. No independent performance improvement test.",
+  "cutoff_utc": "2026-11-10T14:30:00Z",
+  "common_market_data": true,
+  "M00_M01_differences": [],
+  "runs": {
+    "M00": {
+      "file": "v2_S5_M5.csv",
+      "management_master": false,
+      "protection": "Буфер след TP1",
+      "additional_exit": "Само срок",
+      "native": {
+        "log_sha256": "bbcc85a0b3a35355f7f632de7dd4330a42b7f47794aa648323aefba40e97a3db",
+        "data": {
+          "symbol": "OANDA:XAUUSD",
+          "timeframe": "5",
+          "bar_count": 1198,
+          "first_bar_time": 1793774400000,
+          "last_bar_open": 1794320700000,
+          "cutoff": 1794321000000,
+          "checksum1": 375274673,
+          "checksum2": 337323372,
+          "pointvalue": 1.0,
+          "mintick": 0.001,
+          "account_currency": "USD",
+          "symbol_currency": "USD"
+        },
+        "campaigns": 7,
+        "wins": 5,
+        "losses": 2,
+        "net_usd": 72.808,
+        "win_rate": 0.7142857142857143,
+        "pf": 3.3578483759189095,
+        "mean_net_r": 0.4405449280858399,
+        "native_equity_dd_usd": 32.927,
+        "parts": 21,
+        "fees_usd": 7.35,
+        "tp_campaign_counts": {
+          "TP1": 5,
+          "TP2": 3,
+          "TP3": 2
+        },
+        "sl_before_tp1": 2
+      },
+      "exit_part_counts": {
+        "SL": 11,
+        "TP1": 5,
+        "TP2": 3,
+        "TP3": 2
+      },
+      "net_cash_delta_from_M00": 0.0,
+      "differences_from_M00": []
+    },
+    "M01": {
+      "file": "v2M01_S5_M5.csv",
+      "management_master": true,
+      "protection": "Буфер след TP1",
+      "additional_exit": "Само срок",
+      "native": {
+        "log_sha256": "bbcc85a0b3a35355f7f632de7dd4330a42b7f47794aa648323aefba40e97a3db",
+        "data": {
+          "symbol": "OANDA:XAUUSD",
+          "timeframe": "5",
+          "bar_count": 1198,
+          "first_bar_time": 1793774400000,
+          "last_bar_open": 1794320700000,
+          "cutoff": 1794321000000,
+          "checksum1": 375274673,
+          "checksum2": 337323372,
+          "pointvalue": 1.0,
+          "mintick": 0.001,
+          "account_currency": "USD",
+          "symbol_currency": "USD"
+        },
+        "campaigns": 7,
+        "wins": 5,
+        "losses": 2,
+        "net_usd": 72.808,
+        "win_rate": 0.7142857142857143,
+        "pf": 3.3578483759189095,
+        "mean_net_r": 0.4405449280858399,
+        "native_equity_dd_usd": 32.927,
+        "parts": 21,
+        "fees_usd": 7.35,
+        "tp_campaign_counts": {
+          "TP1": 5,
+          "TP2": 3,
+          "TP3": 2
+        },
+        "sl_before_tp1": 2
+      },
+      "exit_part_counts": {
+        "SL": 11,
+        "TP1": 5,
+        "TP2": 3,
+        "TP3": 2
+      },
+      "net_cash_delta_from_M00": 0.0,
+      "differences_from_M00": []
+    },
+    "M02": {
+      "file": "v2M02_S5_M5.csv",
+      "management_master": true,
+      "protection": "BE след TP1",
+      "additional_exit": "Само срок",
+      "native": {
+        "log_sha256": "c8ce9068d47d7cb098e4c0a630f6aa845dd9e982745d92e7dc2378c3b7ee0b9a",
+        "data": {
+          "symbol": "OANDA:XAUUSD",
+          "timeframe": "5",
+          "bar_count": 1198,
+          "first_bar_time": 1793774400000,
+          "last_bar_open": 1794320700000,
+          "cutoff": 1794321000000,
+          "checksum1": 375274673,
+          "checksum2": 337323372,
+          "pointvalue": 1.0,
+          "mintick": 0.001,
+          "account_currency": "USD",
+          "symbol_currency": "USD"
+        },
+        "campaigns": 7,
+        "wins": 5,
+        "losses": 2,
+        "net_usd": 102.836,
+        "win_rate": 0.7142857142857143,
+        "pf": 4.3302891933028915,
+        "mean_net_r": 0.6385637985264283,
+        "native_equity_dd_usd": 35.326,
+        "parts": 21,
+        "fees_usd": 7.35,
+        "tp_campaign_counts": {
+          "TP1": 5,
+          "TP2": 4,
+          "TP3": 3
+        },
+        "sl_before_tp1": 2
+      },
+      "exit_part_counts": {
+        "SL": 9,
+        "TP1": 5,
+        "TP2": 4,
+        "TP3": 3
+      },
+      "net_cash_delta_from_M00": 30.028,
+      "differences_from_M00": [
+        "campaigns",
+        "complete_campaign_metrics",
+        "observed_closed_row_metrics",
+        "cash_reconciliation",
+        "native_equity_max_drawdown"
+      ]
+    },
+    "M04": {
+      "file": "v2M04_S5_M5.csv",
+      "management_master": true,
+      "protection": "Буфер след TP1",
+      "additional_exit": "Слаб моментум",
+      "native": {
+        "log_sha256": "2c746d8bc7d77f6e825a24fbcdfe41de2e4f79fcc4c418011fe09b3d2f170648",
+        "data": {
+          "symbol": "OANDA:XAUUSD",
+          "timeframe": "5",
+          "bar_count": 1198,
+          "first_bar_time": 1793774400000,
+          "last_bar_open": 1794320700000,
+          "cutoff": 1794321000000,
+          "checksum1": 375274673,
+          "checksum2": 337323372,
+          "pointvalue": 1.0,
+          "mintick": 0.001,
+          "account_currency": "USD",
+          "symbol_currency": "USD"
+        },
+        "campaigns": 9,
+        "wins": 3,
+        "losses": 6,
+        "net_usd": -19.991,
+        "win_rate": 0.3333333333333333,
+        "pf": 0.67492723222271,
+        "mean_net_r": -0.16646265879213523,
+        "native_equity_dd_usd": 40.595,
+        "parts": 21,
+        "fees_usd": 9.45,
+        "tp_campaign_counts": {
+          "TP1": 3,
+          "TP2": 2,
+          "TP3": 1
+        },
+        "sl_before_tp1": 3
+      },
+      "exit_part_counts": {
+        "SL": 12,
+        "TP1": 3,
+        "TP2": 2,
+        "TP3": 1,
+        "СЛАБ МОМЕНТУМ": 3
+      },
+      "net_cash_delta_from_M00": -92.799,
+      "differences_from_M00": [
+        "campaigns",
+        "campaign_state_counts",
+        "complete_campaign_metrics",
+        "observed_closed_row_metrics",
+        "cash_reconciliation",
+        "native_equity_max_drawdown"
+      ]
+    }
+  }
+}

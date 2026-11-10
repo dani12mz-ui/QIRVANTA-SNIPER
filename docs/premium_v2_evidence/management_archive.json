@@ -1,0 +1,449 @@
+{
+  "schema": "qirvanta.premium_v2.management_audit.v1",
+  "classification": "ARCHIVED_NATIVE_PLUS_OFFLINE_SENSITIVITY",
+  "variant_native_runs": 0,
+  "quantity_grid_verified": false,
+  "native_archive_sha256": "c0e765c254dfbd9fdc4981c08b5a37bd08682e5991986e25ee5b810b81fdc54a",
+  "frames": {
+    "5": {
+      "newer_native": {
+        "cutoff": 1794312000000,
+        "log_sha256": "ad2bdd14ce528140a62bbee8d09443d5b2d9eff4bd81d3a2319081297e45203a",
+        "campaign_states": {
+          "COMPLETE": 103
+        },
+        "equity_max_drawdown": {
+          "value": 141.58,
+          "source": "snapshot.strategy.max_drawdown",
+          "scope": "NATIVE_EQUITY_INTRABAR_METRIC_NOT_RECONSTRUCTED_FROM_CLOSED_ROWS"
+        },
+        "observed_protection": {
+          "counts": {
+            "tp1_campaigns": 59,
+            "remainder_beyond_tp1_bar_campaigns": 59,
+            "campaigns_with_post_tp1_sl": 39,
+            "post_tp1_sl_rows": 65,
+            "sl_rows_exact_nominal_lock_after_slippage": 60,
+            "sl_rows_more_adverse_than_nominal_lock": 5,
+            "sl_rows_price_favorable_but_cash_negative": 44,
+            "sl_rows_cash_negative": 47
+          },
+          "observed_post_tp1_sl_net_cash_usd": -9.274,
+          "scope": "Actual SL rows strictly after the native TP1 bar; nominal model comparison, not a stop-movement log."
+        },
+        "fixed_tape_allocation_sensitivity": {
+          "equal": {
+            "quantities": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "count": 103,
+            "wins": 61,
+            "losses": 42,
+            "breakevens": 0,
+            "net_cash": 186.857,
+            "sum_positive_net_cash": 895.31,
+            "sum_negative_net_cash_magnitude": 708.453,
+            "profit_factor": 1.263753558810535,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.5922330097087378,
+            "average_net_cash": 1.8141456310679611,
+            "average_win_cash": 14.677213114754098,
+            "average_loss_cash": -16.86792857142857,
+            "mean_net_r": 0.1096538369523985,
+            "scored_campaigns": 103,
+            "total_round_trip_commission_usd": 108.15
+          },
+          "50/30/20": {
+            "quantities": [
+              1.5,
+              0.9,
+              0.6
+            ],
+            "count": 103,
+            "wins": 61,
+            "losses": 42,
+            "breakevens": 0,
+            "net_cash": 203.8014,
+            "sum_positive_net_cash": 912.2544,
+            "sum_negative_net_cash_magnitude": 708.453,
+            "profit_factor": 1.2876710240481726,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.5922330097087378,
+            "average_net_cash": 1.9786543689320388,
+            "average_win_cash": 14.954990163934426,
+            "average_loss_cash": -16.86792857142857,
+            "mean_net_r": 0.11878514393426699,
+            "scored_campaigns": 103,
+            "total_round_trip_commission_usd": 108.15
+          },
+          "33/33/34": {
+            "quantities": [
+              0.99,
+              0.99,
+              1.02
+            ],
+            "count": 103,
+            "wins": 61,
+            "losses": 42,
+            "breakevens": 0,
+            "net_cash": 185.55684,
+            "sum_positive_net_cash": 894.00984,
+            "sum_negative_net_cash_magnitude": 708.453,
+            "profit_factor": 1.2619183488530643,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.5922330097087378,
+            "average_net_cash": 1.8015227184466018,
+            "average_win_cash": 14.655899016393443,
+            "average_loss_cash": -16.86792857142857,
+            "mean_net_r": 0.10891953627326269,
+            "scored_campaigns": 103,
+            "total_round_trip_commission_usd": 108.15
+          }
+        }
+      },
+      "older_native_plus_ohlc": {
+        "cutoff": 1794192300000,
+        "ohlc_sha256": "44971f52b0008fefc4b61dda51c71043f08e4a2e3bc6d08121380e95232ace1d",
+        "complete_campaigns": 98,
+        "threshold_observations": {
+          "counts": {
+            "initial_sl": {
+              "post_tp1_cohort": 55,
+              "eligible_at_known_tp1_close": 55,
+              "first_touch_by_observed_close": 2,
+              "first_touch_opens_at_or_beyond_level": 0,
+              "touch_before_observed_next_tp": 0,
+              "touch_on_observed_next_tp_bar_order_unknown": 0
+            },
+            "gross_be": {
+              "post_tp1_cohort": 55,
+              "eligible_at_known_tp1_close": 53,
+              "first_touch_by_observed_close": 30,
+              "first_touch_opens_at_or_beyond_level": 0,
+              "touch_before_observed_next_tp": 0,
+              "touch_on_observed_next_tp_bar_order_unknown": 1,
+              "not_protective_at_known_tp1_close": 2
+            },
+            "native_005R_lock": {
+              "post_tp1_cohort": 55,
+              "eligible_at_known_tp1_close": 53,
+              "first_touch_by_observed_close": 36,
+              "first_touch_opens_at_or_beyond_level": 1,
+              "touch_before_observed_next_tp": 0,
+              "touch_on_observed_next_tp_bar_order_unknown": 1,
+              "not_protective_at_known_tp1_close": 2
+            },
+            "cost_be": {
+              "post_tp1_cohort": 55,
+              "eligible_at_known_tp1_close": 52,
+              "first_touch_by_observed_close": 35,
+              "first_touch_opens_at_or_beyond_level": 0,
+              "touch_before_observed_next_tp": 0,
+              "touch_on_observed_next_tp_bar_order_unknown": 1,
+              "not_protective_at_known_tp1_close": 3
+            }
+          },
+          "examples": [
+            {
+              "entry_id": "S5|OANDA:XAUUSD|5|2|-1|1792596600000|1792596900000",
+              "threshold": 4137.081,
+              "touch_bar_open": 1792600500000,
+              "observed_next_tp_bar_open": 1792600500000
+            }
+          ],
+          "scope": "Only from the bar after known TP1 through observed campaign closure. Threshold touches do not simulate an order, resolve intrabar ordering, or project survival after closure."
+        }
+      }
+    },
+    "15": {
+      "newer_native": {
+        "cutoff": 1794312000000,
+        "log_sha256": "1897f1f4aed757cfa3c297dc71b141d6ef5c7ee8358db347fd969438dc970a9d",
+        "campaign_states": {
+          "COMPLETE": 134
+        },
+        "equity_max_drawdown": {
+          "value": 301.366,
+          "source": "snapshot.strategy.max_drawdown",
+          "scope": "NATIVE_EQUITY_INTRABAR_METRIC_NOT_RECONSTRUCTED_FROM_CLOSED_ROWS"
+        },
+        "observed_protection": {
+          "counts": {
+            "tp1_campaigns": 66,
+            "remainder_beyond_tp1_bar_campaigns": 63,
+            "campaigns_with_post_tp1_sl": 36,
+            "post_tp1_sl_rows": 62,
+            "sl_rows_exact_nominal_lock_after_slippage": 58,
+            "sl_rows_more_adverse_than_nominal_lock": 4,
+            "sl_rows_price_favorable_but_cash_negative": 11,
+            "sl_rows_cash_negative": 13
+          },
+          "observed_post_tp1_sl_net_cash_usd": 9.965,
+          "scope": "Actual SL rows strictly after the native TP1 bar; nominal model comparison, not a stop-movement log."
+        },
+        "fixed_tape_allocation_sensitivity": {
+          "equal": {
+            "quantities": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "count": 134,
+            "wins": 66,
+            "losses": 68,
+            "breakevens": 0,
+            "net_cash": 452.155,
+            "sum_positive_net_cash": 2535.269,
+            "sum_negative_net_cash_magnitude": 2083.114,
+            "profit_factor": 1.2170572517874683,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.4925373134328358,
+            "average_net_cash": 3.374291044776119,
+            "average_win_cash": 38.41316666666667,
+            "average_loss_cash": -30.634029411764708,
+            "mean_net_r": 0.006717708921906793,
+            "scored_campaigns": 134,
+            "total_round_trip_commission_usd": 140.7
+          },
+          "50/30/20": {
+            "quantities": [
+              1.5,
+              0.9,
+              0.6
+            ],
+            "count": 134,
+            "wins": 66,
+            "losses": 68,
+            "breakevens": 0,
+            "net_cash": 422.3712,
+            "sum_positive_net_cash": 2487.8862,
+            "sum_negative_net_cash_magnitude": 2065.515,
+            "profit_factor": 1.204487113383345,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.4925373134328358,
+            "average_net_cash": 3.152023880597015,
+            "average_win_cash": 37.69524545454546,
+            "average_loss_cash": -30.375220588235294,
+            "mean_net_r": 0.00513431374322644,
+            "scored_campaigns": 134,
+            "total_round_trip_commission_usd": 140.7
+          },
+          "33/33/34": {
+            "quantities": [
+              0.99,
+              0.99,
+              1.02
+            ],
+            "count": 134,
+            "wins": 66,
+            "losses": 68,
+            "breakevens": 0,
+            "net_cash": 451.8432,
+            "sum_positive_net_cash": 2535.30918,
+            "sum_negative_net_cash_magnitude": 2083.46598,
+            "profit_factor": 1.2168709277412824,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.4925373134328358,
+            "average_net_cash": 3.3719641791044777,
+            "average_win_cash": 38.41377545454545,
+            "average_loss_cash": -30.639205588235296,
+            "mean_net_r": 0.006641654375747709,
+            "scored_campaigns": 134,
+            "total_round_trip_commission_usd": 140.7
+          }
+        }
+      },
+      "older_native_plus_ohlc": {
+        "cutoff": 1794192300000,
+        "ohlc_sha256": "6c89015105a406c2a0c1567f0e9a5e445cb31ee7604a985d727f26892d8ba4b7",
+        "complete_campaigns": 133,
+        "threshold_observations": {
+          "counts": {
+            "initial_sl": {
+              "post_tp1_cohort": 62,
+              "eligible_at_known_tp1_close": 62,
+              "first_touch_by_observed_close": 6,
+              "first_touch_opens_at_or_beyond_level": 0,
+              "touch_before_observed_next_tp": 0,
+              "touch_on_observed_next_tp_bar_order_unknown": 0
+            },
+            "gross_be": {
+              "post_tp1_cohort": 62,
+              "eligible_at_known_tp1_close": 61,
+              "first_touch_by_observed_close": 30,
+              "first_touch_opens_at_or_beyond_level": 0,
+              "touch_before_observed_next_tp": 0,
+              "touch_on_observed_next_tp_bar_order_unknown": 0,
+              "not_protective_at_known_tp1_close": 1
+            },
+            "native_005R_lock": {
+              "post_tp1_cohort": 62,
+              "eligible_at_known_tp1_close": 60,
+              "first_touch_by_observed_close": 33,
+              "first_touch_opens_at_or_beyond_level": 0,
+              "touch_before_observed_next_tp": 0,
+              "touch_on_observed_next_tp_bar_order_unknown": 0,
+              "not_protective_at_known_tp1_close": 2
+            },
+            "cost_be": {
+              "post_tp1_cohort": 62,
+              "eligible_at_known_tp1_close": 60,
+              "first_touch_by_observed_close": 32,
+              "first_touch_opens_at_or_beyond_level": 0,
+              "touch_before_observed_next_tp": 0,
+              "touch_on_observed_next_tp_bar_order_unknown": 0,
+              "not_protective_at_known_tp1_close": 2
+            }
+          },
+          "examples": [],
+          "scope": "Only from the bar after known TP1 through observed campaign closure. Threshold touches do not simulate an order, resolve intrabar ordering, or project survival after closure."
+        }
+      }
+    },
+    "30": {
+      "newer_native": {
+        "cutoff": 1794312000000,
+        "log_sha256": "fe6d249f8c349536c9b8a96710a0befdc41393cbf9e9196fc4080b8443e935bb",
+        "campaign_states": {
+          "COMPLETE": 165
+        },
+        "equity_max_drawdown": {
+          "value": 2059.376,
+          "source": "snapshot.strategy.max_drawdown",
+          "scope": "NATIVE_EQUITY_INTRABAR_METRIC_NOT_RECONSTRUCTED_FROM_CLOSED_ROWS"
+        },
+        "observed_protection": {
+          "counts": {
+            "tp1_campaigns": 84,
+            "remainder_beyond_tp1_bar_campaigns": 82,
+            "campaigns_with_post_tp1_sl": 54,
+            "post_tp1_sl_rows": 98,
+            "sl_rows_exact_nominal_lock_after_slippage": 90,
+            "sl_rows_more_adverse_than_nominal_lock": 8,
+            "sl_rows_price_favorable_but_cash_negative": 0,
+            "sl_rows_cash_negative": 8
+          },
+          "observed_post_tp1_sl_net_cash_usd": -14.541,
+          "scope": "Actual SL rows strictly after the native TP1 bar; nominal model comparison, not a stop-movement log."
+        },
+        "fixed_tape_allocation_sensitivity": {
+          "equal": {
+            "quantities": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "count": 165,
+            "wins": 89,
+            "losses": 76,
+            "breakevens": 0,
+            "net_cash": -855.364,
+            "sum_positive_net_cash": 4631.17,
+            "sum_negative_net_cash_magnitude": 5486.534,
+            "profit_factor": 0.8440975668791991,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.5393939393939394,
+            "average_net_cash": -5.184024242424242,
+            "average_win_cash": 52.03561797752809,
+            "average_loss_cash": -72.19123684210527,
+            "mean_net_r": 0.024349459315748393,
+            "scored_campaigns": 165,
+            "total_round_trip_commission_usd": 173.25
+          },
+          "50/30/20": {
+            "quantities": [
+              1.5,
+              0.9,
+              0.6
+            ],
+            "count": 165,
+            "wins": 91,
+            "losses": 74,
+            "breakevens": 0,
+            "net_cash": -573.9978,
+            "sum_positive_net_cash": 4883.2122,
+            "sum_negative_net_cash_magnitude": 5457.21,
+            "profit_factor": 0.8948184511865953,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.5515151515151515,
+            "average_net_cash": -3.4787745454545456,
+            "average_win_cash": 53.661672527472525,
+            "average_loss_cash": -73.74608108108109,
+            "mean_net_r": 0.03914765041916975,
+            "scored_campaigns": 165,
+            "total_round_trip_commission_usd": 173.25
+          },
+          "33/33/34": {
+            "quantities": [
+              0.99,
+              0.99,
+              1.02
+            ],
+            "count": 165,
+            "wins": 89,
+            "losses": 76,
+            "breakevens": 0,
+            "net_cash": -861.93648,
+            "sum_positive_net_cash": 4625.62827,
+            "sum_negative_net_cash_magnitude": 5487.56475,
+            "profit_factor": 0.8429291463030117,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.5393939393939394,
+            "average_net_cash": -5.223857454545454,
+            "average_win_cash": 51.97335134831461,
+            "average_loss_cash": -72.20479934210526,
+            "mean_net_r": 0.02406310946148106,
+            "scored_campaigns": 165,
+            "total_round_trip_commission_usd": 173.25
+          }
+        }
+      },
+      "older_native_plus_ohlc": {
+        "cutoff": 1794191400000,
+        "ohlc_sha256": "1b31dc5dad532b9362c5340511211fbc13a33c64983d4a49485c7442a269c5d5",
+        "complete_campaigns": 165,
+        "threshold_observations": {
+          "counts": {
+            "initial_sl": {
+              "post_tp1_cohort": 82,
+              "eligible_at_known_tp1_close": 82,
+              "first_touch_by_observed_close": 4,
+              "first_touch_opens_at_or_beyond_level": 1
+            },
+            "gross_be": {
+              "post_tp1_cohort": 82,
+              "eligible_at_known_tp1_close": 79,
+              "first_touch_by_observed_close": 46,
+              "first_touch_opens_at_or_beyond_level": 2,
+              "not_protective_at_known_tp1_close": 3,
+              "touch_before_observed_next_tp": 0,
+              "touch_on_observed_next_tp_bar_order_unknown": 0
+            },
+            "native_005R_lock": {
+              "post_tp1_cohort": 82,
+              "eligible_at_known_tp1_close": 79,
+              "first_touch_by_observed_close": 55,
+              "first_touch_opens_at_or_beyond_level": 2,
+              "not_protective_at_known_tp1_close": 3,
+              "touch_before_observed_next_tp": 0,
+              "touch_on_observed_next_tp_bar_order_unknown": 0
+            },
+            "cost_be": {
+              "post_tp1_cohort": 82,
+              "eligible_at_known_tp1_close": 79,
+              "first_touch_by_observed_close": 49,
+              "first_touch_opens_at_or_beyond_level": 2,
+              "not_protective_at_known_tp1_close": 3,
+              "touch_before_observed_next_tp": 0,
+              "touch_on_observed_next_tp_bar_order_unknown": 0
+            }
+          },
+          "examples": [],
+          "scope": "Only from the bar after known TP1 through observed campaign closure. Threshold touches do not simulate an order, resolve intrabar ordering, or project survival after closure."
+        }
+      }
+    }
+  }
+}

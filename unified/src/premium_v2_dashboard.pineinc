@@ -1,0 +1,81 @@
+// Render only on the dataset edge. Costs below are declaration defaults, not broker quotes.
+color premiumPanelText = color.rgb(237, 240, 246)
+color premiumPanelDim = color.rgb(168, 183, 199)
+color premiumPanelFrame = color.rgb(71, 82, 96)
+string premiumAnchor = premiumMobile ? position.bottom_right : panelPosition == "Горе вляво" ? position.top_left : panelPosition == "Горе вдясно" ? position.top_right : panelPosition == "Долу вдясно" ? position.bottom_right : position.bottom_left
+int premiumFont = premiumMobile ? math.min(uiFontPt, 10) : premiumCompact ? math.min(uiFontPt, 11) : uiFontPt
+var table premiumBoard = table.new(premiumAnchor, 2, 18, frame_color=premiumPanelFrame, frame_width=1)
+
+f_premiumCell(int row, string left, string right, color accent, string tip, color leftAccent = na) =>
+    color bg = row <= 1 ? color.rgb(18, 25, 35) : row == 2 ? color.rgb(24, 31, 42) : row % 2 == 0 ? color.rgb(14, 20, 28) : color.rgb(10, 15, 22)
+    table.cell(premiumBoard, 0, row, "  " + left, bgcolor=bg, text_color=row == 0 ? premiumPanelText : na(leftAccent) ? premiumPanelDim : leftAccent, text_size=row == 0 and not premiumCompact ? premiumFont + 2 : premiumFont, text_halign=text.align_left, tooltip=tip)
+    table.cell(premiumBoard, 1, row, right + "  ", bgcolor=bg, text_color=accent, text_size=premiumFont, text_halign=text.align_right, tooltip=tip)
+
+f_premiumSide(int side) => side == 1 ? "BUY" : side == -1 ? "SELL" : "—"
+f_premiumShortTime(int stamp) => na(stamp) ? "—" : str.format_time(stamp, "MM-dd HH:mm", "UTC")
+f_premiumResult(float value, string unit) => na(value) ? "—" : (value > 0 ? "+" : "") + str.tostring(value, "0.00") + unit
+
+if barstate.islastconfirmedhistory or barstate.islast
+    table.clear(premiumBoard, 0, 0, 1, 17)
+    if showPanel
+        PremiumVisualPlan p = premiumVisual
+        bool recent = not na(p)
+        bool active = recent and not f_premiumDone(p)
+        bool filled = recent and not na(p.filledEntry)
+        bool detail = recent and uiMode != "MINIMAL"
+        bool candidate = not active and not na(selectedNativePlan)
+        bool closed = recent and p.closed
+        string state = active ? p.status : closed ? "CLOSED" : recent and p.unfilled ? "NO FILL" : candidate ? "CANDIDATE" : "NO ACTIVE PLAN"
+        if premiumCompact and active
+            state := p.status == "PARTIALLY CLOSED" ? "PARTIAL" : filled ? "POSITION" : "PLAN SUBMITTED"
+        string side = recent ? (active ? "" : "LAST ") + f_premiumSide(p.side) : "WAIT"
+        color sideTone = recent ? (p.side == 1 ? premiumBuy : premiumSell) : premiumPanelDim
+        string frame = timeframe.isminutes ? "M" + str.tostring(timeframe.multiplier) : timeframe.period
+        string info = recent ? "TradingView simulation · " + p.id + "\n" + p.family + "\nPlan " + f_clockUtc(p.submittedAt) + "\nFill " + f_clockUtc(p.entryAt) : "TradingView simulation. No submitted plan in the visible calculation history."
+        string h1 = tfSeconds > 3600 or na(uiH1ClosedAt) ? "—" : f_biasSymbol(uiH1Bias)
+        string h4 = tfSeconds > 14400 or na(uiH4ClosedAt) ? "—" : f_biasSymbol(uiH4Bias)
+        string regime = tvRegime == 1 ? "Uptrend" : tvRegime == -1 ? "Downtrend" : tvRegime == 2 ? "Range" : "Mixed"
+        string structure = localPressure == 1 ? "↑" : localPressure == -1 ? "↓" : "·"
+        string assumptions = "Declaration defaults: 0.175 USD per contract/fill, 2 ticks of applicable slippage, no separate spread. Verify active strategy Properties; overrides and PU Prime costs are not inferred."
+        f_premiumCell(0, premiumCompact ? "QIRVANTA" : "QIRVANTA SNIPER", "PREMIUM V2", premiumAqua, info)
+        f_premiumCell(1, syminfo.ticker + " · " + frame, tvStrategyMode + " · SIM", premiumPanelText, info)
+        f_premiumCell(2, side, state, closed ? premiumAqua : premiumPanelText, info, sideTone)
+        int row = 3
+        if detail
+            float entry = f_premiumEntry(p)
+            string pricesTip = f_tvTargets(p.basis) + " · Checks mean observed native exits, not price touches.\n" + info
+            string stopFlag = p.currentSL == p.initialSL ? "" : " · " + (str.contains(p.protection, "BE") ? "BE" : str.contains(p.protection, "PROFIT LOCK") ? "LOCK" : "MOVED")
+            bool pendingStop = active and p.stopScheduledBar == bar_index
+            string trail = tvManagement and tvTrailATR > 0 ? " · ATR trail enabled" : ""
+            string stopTip = p.protection + trail + "\nScheduled stop updates apply from the next tick. A stop at fill price does not guarantee net break even."
+            f_premiumCell(row, "Plan entry", f_price(p.plannedEntry), premiumWhite, pricesTip)
+            f_premiumCell(row + 1, "Native fill", f_price(p.filledEntry), premiumWhite, pricesTip)
+            f_premiumCell(row + 2, "Initial SL", f_price(p.initialSL), premiumSell, pricesTip)
+            f_premiumCell(row + 3, "Current SL", f_price(p.currentSL) + stopFlag + (pendingStop ? " ⧖" : ""), stopFlag == "" ? premiumSell : premiumAqua, stopTip)
+            for idx = 1 to 3
+                float tp = idx == 1 ? p.tp1 : idx == 2 ? p.tp2 : p.tp3
+                bool done = idx == 1 ? p.tp1Done : idx == 2 ? p.tp2Done : p.tp3Done
+                f_premiumCell(row + 3 + idx, "TP" + str.tostring(idx), f_price(tp) + (premiumTargetMarks and done ? " ✓" : ""), premiumAqua, pricesTip)
+            f_premiumCell(row + 7, "R:R to TP3", f_tvR(entry, p.initialSL, p.tp3, p.side), premiumAqua, "Gross initial-risk multiple to TP3. It is not campaign profit.\n" + pricesTip)
+            row += 8
+            if closed
+                color outcome = na(p.netCash) ? premiumPanelDim : p.netCash < 0 ? premiumSell : premiumBuy
+                f_premiumCell(row, "Net R / P&L", f_premiumResult(p.netR, "R") + " / " + f_premiumResult(p.netCash, " " + strategy.account_currency), outcome, "Campaign net of native reported fees. Missing campaign rows suppress cash and R.")
+                f_premiumCell(row + 1, "Exit · " + (p.exitReason == "" ? "—" : p.exitReason), f_premiumShortTime(p.closedAt) + " UTC", premiumPanelDim, "Last observed exit part · " + f_clockUtc(p.closedAt))
+                row += 2
+            else if not premiumCompact
+                f_premiumCell(row, filled ? "Position qty" : "Plan qty", str.tostring(filled ? p.qtyRemaining : p.qtyInitial, "#.########"), premiumPanelText, info)
+                row += 1
+        if showMTFContext
+            f_premiumCell(row, "Structure", regime + " " + structure, premiumPanelText, "Confirmed local engine regime and pressure; these are context, not orders.")
+            f_premiumCell(row + 1, "Closed HTF", "H1 " + h1 + " · H4 " + h4, premiumPanelText, f_clockUtc(uiH1ClosedAt) + " / " + f_clockUtc(uiH4ClosedAt))
+            row += 2
+        if not premiumMobile or not detail
+            f_premiumCell(row, "Last confirmed", f_premiumSide(premiumConfirmSide) + " " + f_premiumShortTime(premiumConfirmAt), premiumPanelDim, "Last confirmed technical candidate, not a fill. " + premiumConfirmModel + " · " + f_clockUtc(premiumConfirmAt))
+            row += 1
+        if not premiumCompact or not detail
+            f_premiumCell(row, "Cost defaults", "0.175 / fill · 2t", premiumPanelDim, assumptions)
+            row += 1
+        if premiumMobile or str.contains(panelPosition, "Долу")
+            table.cell(premiumBoard, 0, row, "", height=3, bgcolor=color.new(premiumInk, 100))
+            table.cell(premiumBoard, 1, row, "", height=3, bgcolor=color.new(premiumInk, 100))
