@@ -1,0 +1,54 @@
+{
+  "schema": "qirvanta.v21.directional-event-registration.v1",
+  "reference_commit": "3d5f3c1e050b32686155b10e9ea8cf48ad589ab6",
+  "data_registration": "docs/premium_evidence/s5_screen_registration.json",
+  "symbol": "OANDA:XAUUSD",
+  "primary_frame_minutes": 5,
+  "frames_minutes": [5, 15, 30],
+  "sample": "Published S5 archival Pine Logs and corresponding original chart OHLC. Verify the registered SHA-256, bar count, bounds and both native fingerprints. These dates were already available to the project. November 10's screenshot event is evaluated separately when timestamped data is available.",
+  "event": {
+    "bucket": "Fixed, non-overlapping UTC clock hours with every scheduled chart bar observed. The event starts at the first open and ends at the final close. Exclude an event bucket if its first bar index is below 250 or it lacks 24 earlier complete hourly buckets.",
+    "scale": "Median high-low range of the 24 previous complete UTC hourly buckets. Never include the current hour in its scale.",
+    "minimum_absolute_open_to_close_multiple": 1.5,
+    "minimum_absolute_open_to_close_over_hour_range": 0.6,
+    "direction": "BUY for rising final close, SELL for falling final close. The retrospective outcome label becomes known at the final close and is unavailable to entry or portfolio logic.",
+    "match": "Same side. A new WATCH, CONFIRMED, independently risk-valid intent, admitted decision or actual filled order matches only if its own timestamp is in [start, end). Positions carried into the bucket are tallied separately. Opposite-side and outside-event fills remain in the outcome metrics.",
+    "capture": "For the first same-side fill in the bucket, measure directional excursion using its entry price, later highs/lows strictly before an exit and the observed or modelled exit price when its bar ends within the event. Exclude unobservable exit-bar extrema and event-end data beyond the observed feed. Divide favorable excursion by the directional movement from event open to favorable hourly extreme. Report uncapped fraction and adverse excursion in quote units.",
+    "latency": "Minutes from event start to earliest new WATCH, confirmation, risk-valid intent and fill. For S5, observed admitted plan and native fill are identifiable. Unlogged watch, rejected and occupancy decisions remain unknown."
+  },
+  "impulse_model": {
+    "warmup_bars": 250,
+    "range_lookback": 20,
+    "atr": "Wilder ATR(14), previous completed bar",
+    "trend": "EMA21, EMA55 and 3-bar EMA21 slope",
+    "watch_ttl_bars": 8,
+    "body_atr": 0.8,
+    "body_range_fraction": 0.55,
+    "close_favorable_range_fraction": 0.25,
+    "three_bar_momentum_atr": 0.8,
+    "pivot_left_and_right_bars": 2,
+    "retest_tolerance_atr": 0.25,
+    "maximum_extension_atr": 2.5,
+    "stop_buffer_atr": 0.1,
+    "minimum_stop_atr": 0.25,
+    "maximum_stop_atr": 2.5,
+    "target_planned_r": 2.0,
+    "maximum_hold_bars": 24,
+    "policy": "Parameter set frozen with the Pine implementation before candidate results. Causal breakout WATCH, later trend and momentum plus continuation or lower-high/higher-low retest CONFIRM, followed by separate risk and occupancy checks. Existing watch consumes on confirmation or invalidation. Full decision and strategy emulation semantics are in source."
+  },
+  "execution": {
+    "position_units": 3,
+    "commission_usd_per_unit_per_fill": 0.175,
+    "market_or_stop_adverse_slippage_ticks": 2,
+    "stress_incremental_round_trip_spread_price": 0.3,
+    "stress_incremental_adverse_slip_price_per_fill": 0.1,
+    "stress_incremental_commission_fraction": 0.5,
+    "policy": "Native S5 actual prices, sizes and net realized fills stay fixed. Impulse sends a market order on the confirmed close and assumes next available chart open plus adverse slippage, with frozen stop/limit target. Gap crosses fill at open with applicable slippage, both levels touched on the same chart bar resolve stop first in the offline model, and timeout sends a market order to the following open. Price-only event excursion cannot identify achievable liquidity. End-censored positions remain occupied and are excluded from closed P&L. Stress is incremental and keeps admissions and fills frozen.",
+    "combined_primary": "Two tapes, single slot. Admit requests in order of decision close, S5 first at equal timestamp. Keep pending orders and positions occupied until the confirmed close of their last exit bar. A rejected impulse intent is counted, never deferred. Report reverse tie priority as sensitivity. Suppressed and rejected S5 orders absent from the native tape cannot be regenerated. This is a fixed-admitted-S5 counterfactual, not a native combined backtest."
+  },
+  "evaluation": {
+    "splits": "Full frame sample and fixed chronological 60/40 split by chart-bar index. Assign whole events by start, discard split-crossing events from split comparisons, and show closed campaign cohorts by entry and exit. Both sections are archival and the evaluation performs no tuning.",
+    "outside_event": "Report all fills, losses and net cash outside same-side directional buckets, opposite-side fills within an event, and event misses. An outside-event trade can have positive expectancy, so report it separately from the loss count.",
+    "promotion": "M5 is the primary research frame. M15/M30 are descriptive and may cover different dates. Meaningful incremental value requires positive combined minus S5 net expectancy under registered costs, no worse drawdown, event capture without excess losses, and a genuinely untouched forward matched test. This archival run cannot satisfy the last requirement."
+  }
+}

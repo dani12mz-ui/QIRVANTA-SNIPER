@@ -1,0 +1,104 @@
+{
+  "status": "PASS",
+  "cells": [
+    {
+      "symbol": "OANDA:XAUUSD",
+      "timeframe": "5",
+      "input_log_sha256": "0d05b07be2dba311b703dba6235c87c3fe704e46a64bcc3a968563a7e61ba2ee",
+      "last_close_ms": 1794322800000,
+      "ohlc_bars": 1198,
+      "prefix_lengths": [
+        251,
+        399,
+        599,
+        798,
+        1197
+      ],
+      "prefix_mismatches": [],
+      "native_observations": 134,
+      "native_plan_decisions": 34,
+      "missing_native_observations": [],
+      "extra_native_observations": [],
+      "plan_differences": [],
+      "execution": {
+        "status": "MATCHED",
+        "native_submissions": 8,
+        "native_fills": 8,
+        "native_closures": 8,
+        "modeled_occupancy_rejections": 2,
+        "modeled_net_usd": "-84.429",
+        "native_net_usd": "-84.429",
+        "missing_native_submissions": [],
+        "extra_native_submissions": [],
+        "differences": []
+      },
+      "status": "MATCHED_NATIVE_AND_PREFIX"
+    },
+    {
+      "symbol": "OANDA:XAUUSD",
+      "timeframe": "15",
+      "input_log_sha256": "5aa48a4e6c3bb219c7c6c600e10c695fa891ae07074bc87f2fed46406c9e9f12",
+      "last_close_ms": 1794322800000,
+      "ohlc_bars": 1199,
+      "prefix_lengths": [
+        251,
+        399,
+        599,
+        799,
+        1198
+      ],
+      "prefix_mismatches": [],
+      "native_observations": 150,
+      "native_plan_decisions": 41,
+      "missing_native_observations": [],
+      "extra_native_observations": [],
+      "plan_differences": [],
+      "execution": {
+        "status": "MATCHED",
+        "native_submissions": 10,
+        "native_fills": 10,
+        "native_closures": 10,
+        "modeled_occupancy_rejections": 1,
+        "modeled_net_usd": "-172.251",
+        "native_net_usd": "-172.251",
+        "missing_native_submissions": [],
+        "extra_native_submissions": [],
+        "differences": []
+      },
+      "status": "MATCHED_NATIVE_AND_PREFIX"
+    },
+    {
+      "symbol": "OANDA:XAUUSD",
+      "timeframe": "30",
+      "input_log_sha256": "c6a080f208d24c61a158851ac152a65814109762612e7a18c13b852392eae323",
+      "last_close_ms": 1794322800000,
+      "ohlc_bars": 1199,
+      "prefix_lengths": [
+        251,
+        399,
+        599,
+        799,
+        1198
+      ],
+      "prefix_mismatches": [],
+      "native_observations": 134,
+      "native_plan_decisions": 34,
+      "missing_native_observations": [],
+      "extra_native_observations": [],
+      "plan_differences": [],
+      "execution": {
+        "status": "MATCHED",
+        "native_submissions": 9,
+        "native_fills": 9,
+        "native_closures": 9,
+        "modeled_occupancy_rejections": 3,
+        "modeled_net_usd": "-248.910",
+        "native_net_usd": "-248.91",
+        "missing_native_submissions": [],
+        "extra_native_submissions": [],
+        "differences": []
+      },
+      "status": "MATCHED_NATIVE_AND_PREFIX"
+    }
+  ]
+}

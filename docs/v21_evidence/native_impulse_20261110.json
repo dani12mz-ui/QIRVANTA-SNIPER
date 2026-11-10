@@ -1,0 +1,1475 @@
+{
+  "status": "NATIVE_IMPULSE_ROWS_RECONCILED",
+  "source_sha256": "31413eb4a936137d9a443143d1b46578a6adc71e69b173dd067d7d8e659831e4",
+  "scope": "TradingView simulated fills; no separate spread or broker execution.",
+  "cells": [
+    {
+      "symbol": "OANDA:XAUUSD",
+      "frame": "5",
+      "input_log_sha256": "0d05b07be2dba311b703dba6235c87c3fe704e46a64bcc3a968563a7e61ba2ee",
+      "first_bar_open_ms": 1793776200000,
+      "last_bar_close_ms": 1794322800000,
+      "requested_cutoff_ms": 1794322800000,
+      "bars": 1198,
+      "data_fingerprints": [
+        426043893,
+        448057592
+      ],
+      "counts": {
+        "BAR": 1198,
+        "WATCH": 67,
+        "EXPIRED": 33,
+        "CONFIRMED": 34,
+        "ENTRY_REJECTED": 26,
+        "EXHAUSTION": 15,
+        "ENTRY_VALID": 8,
+        "FILL": 8,
+        "CLOSED": 8,
+        "TIME_ORDER": 4,
+        "SNAPSHOT": 1
+      },
+      "native_net_usd": -84.429,
+      "native_max_drawdown_usd": 95.346,
+      "position_at_cutoff": 0.0,
+      "order_window_ms": [
+        1577836800000,
+        2051222400000
+      ],
+      "closed_by_side": {
+        "SELL": 6,
+        "BUY": 2
+      },
+      "close_reasons": {
+        "SL": 4,
+        "TIME": 4
+      },
+      "entry_reasons": {
+        "RISK TOO WIDE": 3,
+        "OVEREXTENDED, RISK TOO WIDE": 9,
+        "OCCUPIED": 2,
+        "OVEREXTENDED": 11,
+        "OCCUPIED, OVEREXTENDED": 1
+      },
+      "win_count": 2,
+      "profit_factor": 0.25161547666533707,
+      "native_fees_usd": 8.4,
+      "closed": [
+        {
+          "id": "IMP-SELL-1793882700000",
+          "known_plan": 1793882700000,
+          "fill": 1793882700000,
+          "exit": 1793886600000,
+          "entry_price": 4119.793,
+          "exit_price": 4126.806,
+          "signed_qty": -3.0,
+          "net_usd": -22.089,
+          "fee": 1.05,
+          "reason": "SL",
+          "plan_close": 4119.785,
+          "initial_stop": 4126.804,
+          "target": 4105.747,
+          "fill_risk_price": 7.011,
+          "fill_vs_plan_adverse_price": -0.008
+        },
+        {
+          "id": "IMP-SELL-1793934900000",
+          "known_plan": 1793934900000,
+          "fill": 1793934900000,
+          "exit": 1793942100000,
+          "entry_price": 4052.368,
+          "exit_price": 4045.192,
+          "signed_qty": -3.0,
+          "net_usd": 20.478,
+          "fee": 1.05,
+          "reason": "TIME",
+          "plan_close": 4052.375,
+          "initial_stop": 4067.185,
+          "target": 4022.755,
+          "fill_risk_price": 14.817,
+          "fill_vs_plan_adverse_price": 0.007
+        },
+        {
+          "id": "IMP-SELL-1793970900000",
+          "known_plan": 1793970900000,
+          "fill": 1793970900000,
+          "exit": 1793971200000,
+          "entry_price": 4057.978,
+          "exit_price": 4067.209,
+          "signed_qty": -3.0,
+          "net_usd": -28.743,
+          "fee": 1.05,
+          "reason": "SL",
+          "plan_close": 4058.005,
+          "initial_stop": 4067.207,
+          "target": 4039.601,
+          "fill_risk_price": 9.229,
+          "fill_vs_plan_adverse_price": 0.027
+        },
+        {
+          "id": "IMP-SELL-1793972700000",
+          "known_plan": 1793972700000,
+          "fill": 1793972700000,
+          "exit": 1793979900000,
+          "entry_price": 4047.978,
+          "exit_price": 4050.562,
+          "signed_qty": -3.0,
+          "net_usd": -8.802,
+          "fee": 1.05,
+          "reason": "TIME",
+          "plan_close": 4047.88,
+          "initial_stop": 4062.18,
+          "target": 4019.28,
+          "fill_risk_price": 14.202,
+          "fill_vs_plan_adverse_price": -0.098
+        },
+        {
+          "id": "IMP-BUY-1793991000000",
+          "known_plan": 1793991000000,
+          "fill": 1793991000000,
+          "exit": 1793993100000,
+          "entry_price": 4070.892,
+          "exit_price": 4066.305,
+          "signed_qty": 3.0,
+          "net_usd": -14.811,
+          "fee": 1.05,
+          "reason": "SL",
+          "plan_close": 4070.88,
+          "initial_stop": 4066.307,
+          "target": 4080.026,
+          "fill_risk_price": 4.585,
+          "fill_vs_plan_adverse_price": 0.012
+        },
+        {
+          "id": "IMP-BUY-1794230700000",
+          "known_plan": 1794230700000,
+          "fill": 1794230700000,
+          "exit": 1794234900000,
+          "entry_price": 4128.507,
+          "exit_price": 4117.471,
+          "signed_qty": 3.0,
+          "net_usd": -34.158,
+          "fee": 1.05,
+          "reason": "SL",
+          "plan_close": 4128.5,
+          "initial_stop": 4117.473,
+          "target": 4150.554,
+          "fill_risk_price": 11.034,
+          "fill_vs_plan_adverse_price": 0.007
+        },
+        {
+          "id": "IMP-SELL-1794244500000",
+          "known_plan": 1794244500000,
+          "fill": 1794244500000,
+          "exit": 1794251700000,
+          "entry_price": 4106.088,
+          "exit_price": 4103.102,
+          "signed_qty": -3.0,
+          "net_usd": 7.908,
+          "fee": 1.05,
+          "reason": "TIME",
+          "plan_close": 4105.935,
+          "initial_stop": 4113.565,
+          "target": 4090.675,
+          "fill_risk_price": 7.477,
+          "fill_vs_plan_adverse_price": -0.153
+        },
+        {
+          "id": "IMP-SELL-1794278400000",
+          "known_plan": 1794278400000,
+          "fill": 1794278400000,
+          "exit": 1794285600000,
+          "entry_price": 4114.978,
+          "exit_price": 4116.032,
+          "signed_qty": -3.0,
+          "net_usd": -4.212,
+          "fee": 1.05,
+          "reason": "TIME",
+          "plan_close": 4114.99,
+          "initial_stop": 4128.544,
+          "target": 4087.882,
+          "fill_risk_price": 13.566,
+          "fill_vs_plan_adverse_price": 0.012
+        }
+      ],
+      "case_nov10_decisions": [
+        {
+          "known_close_ms": 1794270000000,
+          "event": "WATCH",
+          "values": [
+            "SELL",
+            "4133.55",
+            "4128.565",
+            "3.74205226",
+            "OTHER"
+          ]
+        },
+        {
+          "known_close_ms": 1794272400000,
+          "event": "CONFIRMED",
+          "values": [
+            "SELL",
+            "CONTINUATION",
+            "8",
+            "4133.55",
+            "4128.565",
+            "4123.285",
+            "3.98110252",
+            "0",
+            "1",
+            "0",
+            "0",
+            "OTHER"
+          ]
+        },
+        {
+          "known_close_ms": 1794272400000,
+          "event": "ENTRY_REJECTED",
+          "values": [
+            "SELL",
+            "CONTINUATION",
+            "8",
+            "4133.55",
+            "4128.565",
+            "4123.285",
+            "3.98110252",
+            "0",
+            "1",
+            "0",
+            "0",
+            "OTHER",
+            "4133.949",
+            "4101.957",
+            "2.67865496",
+            "1.93121364",
+            "RISK TOO WIDE"
+          ]
+        },
+        {
+          "known_close_ms": 1794278100000,
+          "event": "WATCH",
+          "values": [
+            "SELL",
+            "4120.55",
+            "4116.7",
+            "5.15226215",
+            "OTHER"
+          ]
+        },
+        {
+          "known_close_ms": 1794278400000,
+          "event": "CONFIRMED",
+          "values": [
+            "SELL",
+            "CONTINUATION",
+            "1",
+            "4120.55",
+            "4116.7",
+            "4114.99",
+            "5.68424343",
+            "0",
+            "1",
+            "0",
+            "0",
+            "OTHER"
+          ]
+        },
+        {
+          "known_close_ms": 1794278400000,
+          "event": "ENTRY_VALID",
+          "values": [
+            "SELL",
+            "CONTINUATION",
+            "1",
+            "4120.55",
+            "4116.7",
+            "4114.99",
+            "5.68424343",
+            "0",
+            "1",
+            "0",
+            "0",
+            "OTHER",
+            "4128.544",
+            "4087.882",
+            "2.3844862",
+            "1.97762463",
+            "IMP-SELL-1794278400000"
+          ]
+        },
+        {
+          "known_close_ms": 1794279000000,
+          "event": "WATCH",
+          "values": [
+            "SELL",
+            "4113.385",
+            "4110.635",
+            "5.38738336",
+            "OTHER"
+          ]
+        },
+        {
+          "known_close_ms": 1794280800000,
+          "event": "EXPIRED",
+          "values": [
+            "SELL",
+            "LEVEL RECLAIMED",
+            "6",
+            "4113.385"
+          ]
+        },
+        {
+          "known_close_ms": 1794282300000,
+          "event": "WATCH",
+          "values": [
+            "SELL",
+            "4110.09",
+            "4109.445",
+            "4.27569121",
+            "OTHER"
+          ]
+        },
+        {
+          "known_close_ms": 1794282600000,
+          "event": "CONFIRMED",
+          "values": [
+            "SELL",
+            "CONTINUATION",
+            "1",
+            "4110.09",
+            "4109.445",
+            "4108.395",
+            "4.36885612",
+            "0",
+            "1",
+            "0",
+            "1",
+            "OTHER"
+          ]
+        },
+        {
+          "known_close_ms": 1794282600000,
+          "event": "ENTRY_REJECTED",
+          "values": [
+            "SELL",
+            "CONTINUATION",
+            "1",
+            "4110.09",
+            "4109.445",
+            "4108.395",
+            "4.36885612",
+            "0",
+            "1",
+            "0",
+            "1",
+            "OTHER",
+            "4115.002",
+            "4095.181",
+            "1.51229517",
+            "1.75906935",
+            "OCCUPIED"
+          ]
+        },
+        {
+          "known_close_ms": 1794288300000,
+          "event": "WATCH",
+          "values": [
+            "BUY",
+            "4117.785",
+            "4121.12",
+            "3.51799325",
+            "OTHER"
+          ]
+        },
+        {
+          "known_close_ms": 1794288900000,
+          "event": "EXPIRED",
+          "values": [
+            "BUY",
+            "LEVEL RECLAIMED",
+            "2",
+            "4117.785"
+          ]
+        },
+        {
+          "known_close_ms": 1794289500000,
+          "event": "WATCH",
+          "values": [
+            "BUY",
+            "4124.12",
+            "4125.925",
+            "4.06086358",
+            "OTHER"
+          ]
+        },
+        {
+          "known_close_ms": 1794289800000,
+          "event": "EXPIRED",
+          "values": [
+            "BUY",
+            "LEVEL RECLAIMED",
+            "1",
+            "4124.12"
+          ]
+        },
+        {
+          "known_close_ms": 1794296100000,
+          "event": "WATCH",
+          "values": [
+            "SELL",
+            "4116.13",
+            "4114.86",
+            "3.81984296",
+            "OTHER"
+          ]
+        },
+        {
+          "known_close_ms": 1794296400000,
+          "event": "EXPIRED",
+          "values": [
+            "SELL",
+            "LEVEL RECLAIMED",
+            "1",
+            "4116.13"
+          ]
+        },
+        {
+          "known_close_ms": 1794301500000,
+          "event": "WATCH",
+          "values": [
+            "SELL",
+            "4112.3",
+            "4099.385",
+            "3.53812552",
+            "LONDON"
+          ]
+        },
+        {
+          "known_close_ms": 1794301800000,
+          "event": "CONFIRMED",
+          "values": [
+            "SELL",
+            "CONTINUATION",
+            "1",
+            "4112.3",
+            "4099.385",
+            "4095.415",
+            "5.03754512",
+            "0",
+            "1",
+            "1",
+            "0",
+            "LONDON"
+          ]
+        },
+        {
+          "known_close_ms": 1794301800000,
+          "event": "ENTRY_REJECTED",
+          "values": [
+            "SELL",
+            "CONTINUATION",
+            "1",
+            "4112.3",
+            "4099.385",
+            "4095.415",
+            "5.03754512",
+            "0",
+            "1",
+            "1",
+            "0",
+            "LONDON",
+            "4115.734",
+            "4054.777",
+            "4.03351226",
+            "3.59061671",
+            "OVEREXTENDED, RISK TOO WIDE"
+          ]
+        },
+        {
+          "known_close_ms": 1794303300000,
+          "event": "WATCH",
+          "values": [
+            "SELL",
+            "4088.405",
+            "4087.935",
+            "5.58099391",
+            "LONDON"
+          ]
+        },
+        {
+          "known_close_ms": 1794303600000,
+          "event": "CONFIRMED",
+          "values": [
+            "SELL",
+            "CONTINUATION",
+            "1",
+            "4088.405",
+            "4087.935",
+            "4083.615",
+            "5.48949435",
+            "0",
+            "1",
+            "0",
+            "1",
+            "LONDON"
+          ]
+        },
+        {
+          "known_close_ms": 1794303600000,
+          "event": "ENTRY_REJECTED",
+          "values": [
+            "SELL",
+            "CONTINUATION",
+            "1",
+            "4088.405",
+            "4087.935",
+            "4083.615",
+            "5.48949435",
+            "0",
+            "1",
+            "0",
+            "1",
+            "LONDON",
+            "4095.929",
+            "4058.987",
+            "2.24319386",
+            "3.6198812",
+            "OVEREXTENDED"
+          ]
+        },
+        {
+          "known_close_ms": 1794306300000,
+          "event": "WATCH",
+          "values": [
+            "SELL",
+            "4080.22",
+            "4078.475",
+            "4.96274471",
+            "LONDON"
+          ]
+        },
+        {
+          "known_close_ms": 1794306600000,
+          "event": "CONFIRMED",
+          "values": [
+            "SELL",
+            "CONTINUATION",
+            "1",
+            "4080.22",
+            "4078.475",
+            "4077.19",
+            "4.85862008",
+            "0",
+            "1",
+            "0",
+            "0",
+            "LONDON"
+          ]
+        },
+        {
+          "known_close_ms": 1794306600000,
+          "event": "ENTRY_REJECTED",
+          "values": [
+            "SELL",
+            "CONTINUATION",
+            "1",
+            "4080.22",
+            "4078.475",
+            "4077.19",
+            "4.85862008",
+            "0",
+            "1",
+            "0",
+            "0",
+            "LONDON",
+            "4084.461",
+            "4062.648",
+            "1.49651545",
+            "2.66354503",
+            "OVEREXTENDED"
+          ]
+        },
+        {
+          "known_close_ms": 1794306900000,
+          "event": "WATCH",
+          "values": [
+            "SELL",
+            "4075.38",
+            "4075.17",
+            "4.76229008",
+            "LONDON"
+          ]
+        },
+        {
+          "known_close_ms": 1794307200000,
+          "event": "EXPIRED",
+          "values": [
+            "SELL",
+            "LEVEL RECLAIMED",
+            "1",
+            "4075.38"
+          ]
+        },
+        {
+          "known_close_ms": 1794309000000,
+          "event": "WATCH",
+          "values": [
+            "SELL",
+            "4072.255",
+            "4070.54",
+            "4.24984875",
+            "LONDON"
+          ]
+        },
+        {
+          "known_close_ms": 1794309300000,
+          "event": "EXPIRED",
+          "values": [
+            "SELL",
+            "LEVEL RECLAIMED",
+            "1",
+            "4072.255"
+          ]
+        },
+        {
+          "known_close_ms": 1794317700000,
+          "event": "WATCH",
+          "values": [
+            "SELL",
+            "4068.095",
+            "4044.05",
+            "4.59951101",
+            "LONDON"
+          ]
+        },
+        {
+          "known_close_ms": 1794320400000,
+          "event": "EXPIRED",
+          "values": [
+            "SELL",
+            "AGE",
+            "9",
+            "4068.095"
+          ]
+        }
+      ]
+    },
+    {
+      "symbol": "OANDA:XAUUSD",
+      "frame": "15",
+      "input_log_sha256": "5aa48a4e6c3bb219c7c6c600e10c695fa891ae07074bc87f2fed46406c9e9f12",
+      "first_bar_open_ms": 1792674900000,
+      "last_bar_close_ms": 1794322800000,
+      "requested_cutoff_ms": 1794322800000,
+      "bars": 1199,
+      "data_fingerprints": [
+        994690148,
+        207047923
+      ],
+      "counts": {
+        "BAR": 1199,
+        "WATCH": 75,
+        "CONFIRMED": 41,
+        "ENTRY_VALID": 10,
+        "FILL": 9,
+        "CLOSED": 10,
+        "EXHAUSTION": 16,
+        "ENTRY_REJECTED": 31,
+        "EXPIRED": 34,
+        "SNAPSHOT": 1
+      },
+      "native_net_usd": -172.251,
+      "native_max_drawdown_usd": 206.478,
+      "position_at_cutoff": 0.0,
+      "order_window_ms": [
+        1577836800000,
+        2051222400000
+      ],
+      "closed_by_side": {
+        "SELL": 7,
+        "BUY": 3
+      },
+      "close_reasons": {
+        "SL": 8,
+        "TP": 2
+      },
+      "entry_reasons": {
+        "OCCUPIED, OVEREXTENDED, RISK TOO WIDE": 1,
+        "OVEREXTENDED": 11,
+        "RISK TOO WIDE": 4,
+        "OVEREXTENDED, RISK TOO WIDE": 13,
+        "OCCUPIED, OVEREXTENDED": 1,
+        "OCCUPIED": 1
+      },
+      "win_count": 2,
+      "profit_factor": 0.41026694466983704,
+      "native_fees_usd": 10.5,
+      "closed": [
+        {
+          "id": "IMP-SELL-1793090700000",
+          "known_plan": 1793090700000,
+          "fill": 1793090700000,
+          "exit": 1793094300000,
+          "entry_price": 3992.493,
+          "exit_price": 4002.954,
+          "signed_qty": -3.0,
+          "net_usd": -32.433,
+          "fee": 1.05,
+          "reason": "SL",
+          "plan_close": 3992.59,
+          "initial_stop": 4002.952,
+          "target": 3971.866,
+          "fill_risk_price": 10.459,
+          "fill_vs_plan_adverse_price": 0.097
+        },
+        {
+          "id": "IMP-BUY-1793106000000",
+          "known_plan": 1793106000000,
+          "fill": 1793106000000,
+          "exit": 1793111400000,
+          "entry_price": 4023.197,
+          "exit_price": 4045.767,
+          "signed_qty": 3.0,
+          "net_usd": 66.66,
+          "fee": 1.05,
+          "reason": "TP",
+          "plan_close": 4023.205,
+          "initial_stop": 4011.924,
+          "target": 4045.767,
+          "fill_risk_price": 11.273,
+          "fill_vs_plan_adverse_price": -0.008
+        },
+        {
+          "id": "IMP-SELL-1793164500000",
+          "known_plan": 1793164500000,
+          "fill": 1793164500000,
+          "exit": 1793173500000,
+          "entry_price": 4036.838,
+          "exit_price": 4043.484,
+          "signed_qty": -3.0,
+          "net_usd": -20.988,
+          "fee": 1.05,
+          "reason": "SL",
+          "plan_close": 4036.94,
+          "initial_stop": 4043.482,
+          "target": 4023.856,
+          "fill_risk_price": 6.644,
+          "fill_vs_plan_adverse_price": 0.102
+        },
+        {
+          "id": "IMP-BUY-1793181600000",
+          "known_plan": 1793181600000,
+          "fill": 1793181600000,
+          "exit": 1793181600000,
+          "entry_price": 4055.557,
+          "exit_price": 4048.389,
+          "signed_qty": 3.0,
+          "net_usd": -22.554,
+          "fee": 1.05,
+          "reason": "SL",
+          "plan_close": 4055.595,
+          "initial_stop": 4048.391,
+          "target": 4070.003,
+          "fill_risk_price": 7.166,
+          "fill_vs_plan_adverse_price": -0.038
+        },
+        {
+          "id": "IMP-SELL-1793291400000",
+          "known_plan": 1793291400000,
+          "fill": 1793291400000,
+          "exit": 1793304000000,
+          "entry_price": 4014.178,
+          "exit_price": 4026.498,
+          "signed_qty": -3.0,
+          "net_usd": -38.01,
+          "fee": 1.05,
+          "reason": "SL",
+          "plan_close": 4014.08,
+          "initial_stop": 4026.496,
+          "target": 3989.248,
+          "fill_risk_price": 12.318,
+          "fill_vs_plan_adverse_price": -0.098
+        },
+        {
+          "id": "IMP-SELL-1793344500000",
+          "known_plan": 1793344500000,
+          "fill": 1793344500000,
+          "exit": 1793346300000,
+          "entry_price": 3985.748,
+          "exit_price": 3967.674,
+          "signed_qty": -3.0,
+          "net_usd": 53.172,
+          "fee": 1.05,
+          "reason": "TP",
+          "plan_close": 3985.83,
+          "initial_stop": 3994.908,
+          "target": 3967.674,
+          "fill_risk_price": 9.16,
+          "fill_vs_plan_adverse_price": 0.082
+        },
+        {
+          "id": "IMP-SELL-1793690100000",
+          "known_plan": 1793690100000,
+          "fill": 1793690100000,
+          "exit": 1793709900000,
+          "entry_price": 3910.353,
+          "exit_price": 3927.787,
+          "signed_qty": -3.0,
+          "net_usd": -53.352,
+          "fee": 1.05,
+          "reason": "SL",
+          "plan_close": 3910.385,
+          "initial_stop": 3927.785,
+          "target": 3875.585,
+          "fill_risk_price": 17.432,
+          "fill_vs_plan_adverse_price": 0.032
+        },
+        {
+          "id": "IMP-SELL-1793736900000",
+          "known_plan": 1793736900000,
+          "fill": 1793736900000,
+          "exit": 1793740500000,
+          "entry_price": 3918.608,
+          "exit_price": 3926.107,
+          "signed_qty": -3.0,
+          "net_usd": -23.547,
+          "fee": 1.05,
+          "reason": "SL",
+          "plan_close": 3918.59,
+          "initial_stop": 3926.105,
+          "target": 3903.56,
+          "fill_risk_price": 7.497,
+          "fill_vs_plan_adverse_price": -0.018
+        },
+        {
+          "id": "IMP-SELL-1793935800000",
+          "known_plan": 1793935800000,
+          "fill": 1793935800000,
+          "exit": 1793953800000,
+          "entry_price": 4049.423,
+          "exit_price": 4070.44,
+          "signed_qty": -3.0,
+          "net_usd": -64.101,
+          "fee": 1.05,
+          "reason": "SL",
+          "plan_close": 4049.42,
+          "initial_stop": 4070.438,
+          "target": 4007.384,
+          "fill_risk_price": 21.015,
+          "fill_vs_plan_adverse_price": -0.003
+        },
+        {
+          "id": "IMP-BUY-1794228300000",
+          "known_plan": 1794228300000,
+          "fill": 1794228300000,
+          "exit": 1794242700000,
+          "entry_price": 4117.727,
+          "exit_price": 4105.711,
+          "signed_qty": 3.0,
+          "net_usd": -37.098,
+          "fee": 1.05,
+          "reason": "SL",
+          "plan_close": 4117.645,
+          "initial_stop": 4105.713,
+          "target": 4141.509,
+          "fill_risk_price": 12.014,
+          "fill_vs_plan_adverse_price": 0.082
+        }
+      ],
+      "case_nov10_decisions": [
+        {
+          "known_close_ms": 1794278700000,
+          "event": "WATCH",
+          "values": [
+            "SELL",
+            "4120.55",
+            "4116.225",
+            "8.87940317",
+            "OTHER"
+          ]
+        },
+        {
+          "known_close_ms": 1794286800000,
+          "event": "EXPIRED",
+          "values": [
+            "SELL",
+            "AGE",
+            "9",
+            "4120.55"
+          ]
+        },
+        {
+          "known_close_ms": 1794302100000,
+          "event": "WATCH",
+          "values": [
+            "SELL",
+            "4108.42",
+            "4095.76",
+            "6.48667032",
+            "LONDON"
+          ]
+        },
+        {
+          "known_close_ms": 1794303000000,
+          "event": "CONFIRMED",
+          "values": [
+            "SELL",
+            "CONTINUATION",
+            "1",
+            "4108.42",
+            "4095.76",
+            "4090.425",
+            "7.80655101",
+            "0",
+            "1",
+            "0",
+            "0",
+            "LONDON"
+          ]
+        },
+        {
+          "known_close_ms": 1794303000000,
+          "event": "ENTRY_REJECTED",
+          "values": [
+            "SELL",
+            "CONTINUATION",
+            "1",
+            "4108.42",
+            "4095.76",
+            "4090.425",
+            "7.80655101",
+            "0",
+            "1",
+            "0",
+            "0",
+            "LONDON",
+            "4119.511",
+            "4032.253",
+            "3.72584512",
+            "3.02413309",
+            "OVEREXTENDED, RISK TOO WIDE"
+          ]
+        },
+        {
+          "known_close_ms": 1794303900000,
+          "event": "WATCH",
+          "values": [
+            "SELL",
+            "4088.405",
+            "4084.15",
+            "7.87822594",
+            "LONDON"
+          ]
+        },
+        {
+          "known_close_ms": 1794305700000,
+          "event": "CONFIRMED",
+          "values": [
+            "SELL",
+            "CONTINUATION",
+            "2",
+            "4088.405",
+            "4084.15",
+            "4083.515",
+            "7.92898053",
+            "0",
+            "1",
+            "0",
+            "1",
+            "LONDON"
+          ]
+        },
+        {
+          "known_close_ms": 1794305700000,
+          "event": "ENTRY_REJECTED",
+          "values": [
+            "SELL",
+            "CONTINUATION",
+            "2",
+            "4088.405",
+            "4084.15",
+            "4083.515",
+            "7.92898053",
+            "0",
+            "1",
+            "0",
+            "1",
+            "LONDON",
+            "4091.768",
+            "4067.009",
+            "1.04086521",
+            "2.93956776",
+            "OVEREXTENDED"
+          ]
+        },
+        {
+          "known_close_ms": 1794306600000,
+          "event": "WATCH",
+          "values": [
+            "SELL",
+            "4080.645",
+            "4077.19",
+            "7.93905335",
+            "LONDON"
+          ]
+        },
+        {
+          "known_close_ms": 1794308400000,
+          "event": "CONFIRMED",
+          "values": [
+            "SELL",
+            "CONTINUATION",
+            "2",
+            "4080.645",
+            "4077.19",
+            "4075.095",
+            "7.80227049",
+            "0",
+            "1",
+            "0",
+            "0",
+            "LONDON"
+          ]
+        },
+        {
+          "known_close_ms": 1794308400000,
+          "event": "ENTRY_REJECTED",
+          "values": [
+            "SELL",
+            "CONTINUATION",
+            "2",
+            "4080.645",
+            "4077.19",
+            "4075.095",
+            "7.80227049",
+            "0",
+            "1",
+            "0",
+            "0",
+            "LONDON",
+            "4084.756",
+            "4055.773",
+            "1.23822931",
+            "3.09995448",
+            "OVEREXTENDED"
+          ]
+        },
+        {
+          "known_close_ms": 1794318300000,
+          "event": "WATCH",
+          "values": [
+            "SELL",
+            "4068.095",
+            "4056.745",
+            "6.77197605",
+            "LONDON"
+          ]
+        },
+        {
+          "known_close_ms": 1794319200000,
+          "event": "CONFIRMED",
+          "values": [
+            "SELL",
+            "CONTINUATION",
+            "1",
+            "4068.095",
+            "4056.745",
+            "4052.13",
+            "9.23719205",
+            "0",
+            "1",
+            "1",
+            "0",
+            "LONDON"
+          ]
+        },
+        {
+          "known_close_ms": 1794319200000,
+          "event": "ENTRY_REJECTED",
+          "values": [
+            "SELL",
+            "CONTINUATION",
+            "1",
+            "4068.095",
+            "4056.745",
+            "4052.13",
+            "9.23719205",
+            "0",
+            "1",
+            "1",
+            "0",
+            "LONDON",
+            "4081.929",
+            "3992.532",
+            "3.22598035",
+            "2.96685587",
+            "OVEREXTENDED, RISK TOO WIDE"
+          ]
+        }
+      ]
+    },
+    {
+      "symbol": "OANDA:XAUUSD",
+      "frame": "30",
+      "input_log_sha256": "c6a080f208d24c61a158851ac152a65814109762612e7a18c13b852392eae323",
+      "first_bar_open_ms": 1791203400000,
+      "last_bar_close_ms": 1794322800000,
+      "requested_cutoff_ms": 1794322800000,
+      "bars": 1199,
+      "data_fingerprints": [
+        414381385,
+        267852603
+      ],
+      "counts": {
+        "BAR": 1199,
+        "WATCH": 67,
+        "CONFIRMED": 34,
+        "ENTRY_VALID": 9,
+        "FILL": 9,
+        "CLOSED": 9,
+        "EXHAUSTION": 14,
+        "ENTRY_REJECTED": 25,
+        "EXPIRED": 33,
+        "TIME_ORDER": 2,
+        "SNAPSHOT": 1
+      },
+      "native_net_usd": -248.91,
+      "native_max_drawdown_usd": 252.105,
+      "position_at_cutoff": 0.0,
+      "order_window_ms": [
+        1577836800000,
+        2051222400000
+      ],
+      "closed_by_side": {
+        "SELL": 8,
+        "BUY": 1
+      },
+      "close_reasons": {
+        "SL": 6,
+        "TIME": 2,
+        "TP": 1
+      },
+      "entry_reasons": {
+        "OCCUPIED": 3,
+        "OVEREXTENDED, RISK TOO WIDE": 14,
+        "RISK TOO WIDE": 2,
+        "OVEREXTENDED": 6
+      },
+      "win_count": 2,
+      "profit_factor": 0.31618507590617634,
+      "native_fees_usd": 9.45,
+      "closed": [
+        {
+          "id": "IMP-SELL-1791855000000",
+          "known_plan": 1791855000000,
+          "fill": 1791855000000,
+          "exit": 1791856800000,
+          "entry_price": 4156.978,
+          "exit_price": 4172.509,
+          "signed_qty": -3.0,
+          "net_usd": -47.643,
+          "fee": 1.05,
+          "reason": "SL",
+          "plan_close": 4156.965,
+          "initial_stop": 4172.507,
+          "target": 4125.881,
+          "fill_risk_price": 15.529,
+          "fill_vs_plan_adverse_price": -0.013
+        },
+        {
+          "id": "IMP-BUY-1791867600000",
+          "known_plan": 1791867600000,
+          "fill": 1791867600000,
+          "exit": 1791896400000,
+          "entry_price": 4195.667,
+          "exit_price": 4175.013,
+          "signed_qty": 3.0,
+          "net_usd": -63.012,
+          "fee": 1.05,
+          "reason": "SL",
+          "plan_close": 4195.57,
+          "initial_stop": 4175.015,
+          "target": 4236.68,
+          "fill_risk_price": 20.652,
+          "fill_vs_plan_adverse_price": 0.097
+        },
+        {
+          "id": "IMP-SELL-1791905400000",
+          "known_plan": 1791905400000,
+          "fill": 1791905400000,
+          "exit": 1791952200000,
+          "entry_price": 4161.348,
+          "exit_price": 4161.412,
+          "signed_qty": -3.0,
+          "net_usd": -1.242,
+          "fee": 1.05,
+          "reason": "TIME",
+          "plan_close": 4161.32,
+          "initial_stop": 4174.142,
+          "target": 4135.676,
+          "fill_risk_price": 12.794,
+          "fill_vs_plan_adverse_price": -0.028
+        },
+        {
+          "id": "IMP-SELL-1791970200000",
+          "known_plan": 1791970200000,
+          "fill": 1791970200000,
+          "exit": 1791981000000,
+          "entry_price": 4141.818,
+          "exit_price": 4107.81,
+          "signed_qty": -3.0,
+          "net_usd": 100.974,
+          "fee": 1.05,
+          "reason": "TP",
+          "plan_close": 4141.81,
+          "initial_stop": 4158.81,
+          "target": 4107.81,
+          "fill_risk_price": 16.992,
+          "fill_vs_plan_adverse_price": -0.008
+        },
+        {
+          "id": "IMP-SELL-1792420200000",
+          "known_plan": 1792420200000,
+          "fill": 1792420200000,
+          "exit": 1792467000000,
+          "entry_price": 4146.578,
+          "exit_price": 4141.522,
+          "signed_qty": -3.0,
+          "net_usd": 14.118,
+          "fee": 1.05,
+          "reason": "TIME",
+          "plan_close": 4146.59,
+          "initial_stop": 4168.292,
+          "target": 4103.186,
+          "fill_risk_price": 21.714,
+          "fill_vs_plan_adverse_price": 0.012
+        },
+        {
+          "id": "IMP-SELL-1793091600000",
+          "known_plan": 1793091600000,
+          "fill": 1793091600000,
+          "exit": 1793097000000,
+          "entry_price": 3994.908,
+          "exit_price": 4007.783,
+          "signed_qty": -3.0,
+          "net_usd": -39.675,
+          "fee": 1.05,
+          "reason": "SL",
+          "plan_close": 3994.93,
+          "initial_stop": 4007.781,
+          "target": 3969.228,
+          "fill_risk_price": 12.873,
+          "fill_vs_plan_adverse_price": 0.022
+        },
+        {
+          "id": "IMP-SELL-1793298600000",
+          "known_plan": 1793298600000,
+          "fill": 1793298600000,
+          "exit": 1793304000000,
+          "entry_price": 4006.643,
+          "exit_price": 4026.749,
+          "signed_qty": -3.0,
+          "net_usd": -61.368,
+          "fee": 1.05,
+          "reason": "SL",
+          "plan_close": 4006.58,
+          "initial_stop": 4026.747,
+          "target": 3966.246,
+          "fill_risk_price": 20.104,
+          "fill_vs_plan_adverse_price": -0.063
+        },
+        {
+          "id": "IMP-SELL-1793347200000",
+          "known_plan": 1793347200000,
+          "fill": 1793347200000,
+          "exit": 1793349000000,
+          "entry_price": 3975.088,
+          "exit_price": 3995.208,
+          "signed_qty": -3.0,
+          "net_usd": -61.41,
+          "fee": 1.05,
+          "reason": "SL",
+          "plan_close": 3975.15,
+          "initial_stop": 3995.206,
+          "target": 3935.038,
+          "fill_risk_price": 20.118,
+          "fill_vs_plan_adverse_price": 0.062
+        },
+        {
+          "id": "IMP-SELL-1793937600000",
+          "known_plan": 1793937600000,
+          "fill": 1793937600000,
+          "exit": 1793953800000,
+          "entry_price": 4044.598,
+          "exit_price": 4074.132,
+          "signed_qty": -3.0,
+          "net_usd": -89.652,
+          "fee": 1.05,
+          "reason": "SL",
+          "plan_close": 4044.815,
+          "initial_stop": 4074.13,
+          "target": 3986.185,
+          "fill_risk_price": 29.532,
+          "fill_vs_plan_adverse_price": 0.217
+        }
+      ],
+      "case_nov10_decisions": [
+        {
+          "known_close_ms": 1794303000000,
+          "event": "WATCH",
+          "values": [
+            "SELL",
+            "4108.215",
+            "4090.425",
+            "9.98715493",
+            "LONDON"
+          ]
+        },
+        {
+          "known_close_ms": 1794306600000,
+          "event": "CONFIRMED",
+          "values": [
+            "SELL",
+            "CONTINUATION",
+            "2",
+            "4108.215",
+            "4090.425",
+            "4077.19",
+            "10.95828665",
+            "1",
+            "1",
+            "0",
+            "0",
+            "LONDON"
+          ]
+        },
+        {
+          "known_close_ms": 1794306600000,
+          "event": "ENTRY_REJECTED",
+          "values": [
+            "SELL",
+            "CONTINUATION",
+            "2",
+            "4108.215",
+            "4090.425",
+            "4077.19",
+            "10.95828665",
+            "1",
+            "1",
+            "0",
+            "0",
+            "LONDON",
+            "4114.441",
+            "4002.688",
+            "3.39934528",
+            "3.09363397",
+            "OVEREXTENDED, RISK TOO WIDE"
+          ]
+        },
+        {
+          "known_close_ms": 1794308400000,
+          "event": "WATCH",
+          "values": [
+            "SELL",
+            "4075.38",
+            "4075.095",
+            "11.12805189",
+            "LONDON"
+          ]
+        },
+        {
+          "known_close_ms": 1794310200000,
+          "event": "CONFIRMED",
+          "values": [
+            "SELL",
+            "CONTINUATION",
+            "1",
+            "4075.38",
+            "4075.095",
+            "4073.04",
+            "10.78354818",
+            "0",
+            "1",
+            "0",
+            "1",
+            "LONDON"
+          ]
+        },
+        {
+          "known_close_ms": 1794310200000,
+          "event": "ENTRY_REJECTED",
+          "values": [
+            "SELL",
+            "CONTINUATION",
+            "1",
+            "4075.38",
+            "4075.095",
+            "4073.04",
+            "10.78354818",
+            "0",
+            "1",
+            "0",
+            "1",
+            "LONDON",
+            "4089.794",
+            "4039.532",
+            "1.55366302",
+            "2.93195542",
+            "OVEREXTENDED"
+          ]
+        },
+        {
+          "known_close_ms": 1794319200000,
+          "event": "WATCH",
+          "values": [
+            "SELL",
+            "4068.095",
+            "4052.13",
+            "9.75148787",
+            "LONDON"
+          ]
+        },
+        {
+          "known_close_ms": 1794322800000,
+          "event": "CONFIRMED",
+          "values": [
+            "SELL",
+            "CONTINUATION",
+            "2",
+            "4068.095",
+            "4052.13",
+            "4039.21",
+            "12.05467577",
+            "0",
+            "1",
+            "1",
+            "0",
+            "LONDON_NY"
+          ]
+        },
+        {
+          "known_close_ms": 1794322800000,
+          "event": "ENTRY_REJECTED",
+          "values": [
+            "SELL",
+            "CONTINUATION",
+            "2",
+            "4068.095",
+            "4052.13",
+            "4039.21",
+            "12.05467577",
+            "0",
+            "1",
+            "1",
+            "0",
+            "LONDON_NY",
+            "4082.211",
+            "3953.208",
+            "3.56716355",
+            "3.66856541",
+            "OVEREXTENDED, RISK TOO WIDE"
+          ]
+        }
+      ]
+    }
+  ]
+}

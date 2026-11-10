@@ -1,0 +1,323 @@
+//@version=6
+strategy("QIRVANTA V2.1 · Impulse Research", shorttitle="QIRV V2.1", overlay=true,
+  initial_capital=100000, currency=currency.USD, default_qty_type=strategy.fixed, default_qty_value=3,
+  pyramiding=0, commission_type=strategy.commission.cash_per_contract, commission_value=0.175,
+  slippage=2, margin_long=100, margin_short=100, calc_on_every_tick=false,
+  calc_on_order_fills=false, process_orders_on_close=false, use_bar_magnifier=false,
+  backtest_fill_limits_assumption=0, calc_bars_count=1200)
+
+// Experimental. Signals and plans are computed on the confirmed chart close.
+// Orders are broker-emulator orders, with fill alerts disabled. The market order
+// and absolute bracket are submitted together. Next-tick gaps can alter risk.
+const int WARMUP = 250
+const int BREAK_LOOKBACK = 20
+const int WATCH_TTL = 8
+const int MAX_HOLD = 24
+const float DISPLACEMENT_ATR = 0.80
+const float MOMENTUM_ATR = 0.80
+const float RETEST_ATR = 0.25
+const float STOP_BUFFER_ATR = 0.10
+const float MIN_RISK_ATR = 0.25
+const float MAX_RISK_ATR = 2.50
+const float MAX_EXTENSION_ATR = 2.50
+const float REWARD_R = 2.0
+
+int ordersFrom = input.time(1577836800000, "Orders from · UTC", group="Research window", display=display.none)
+int ordersUntil = input.time(2051222400000, "Orders through · UTC", group="Research window", display=display.none)
+bool showPanel = input.bool(true, "Show panel", group="Display", display=display.none)
+string panelCorner = input.string("Bottom right", "Panel position", options=["Top right", "Bottom right", "Top left", "Bottom left"], group="Display", display=display.none)
+bool showWatch = input.bool(true, "Show watches", group="Display", display=display.none)
+bool showLifecycle = input.bool(true, "Show confirmations / plan decisions", group="Display", display=display.none)
+bool showLevels = input.bool(true, "Show active bracket prices", group="Display", display=display.none)
+bool auditEnabled = input.bool(false, "Emit decision and execution records to Pine Logs", group="Audit", display=display.none)
+int auditFrom = input.time(1577836800000, "Log events from · UTC", group="Audit", display=display.none)
+int auditUntil = input.time(2051222400000, "Audit cutoff · UTC, align to a chart close", group="Audit", display=display.none)
+bool auditBars = input.bool(false, "Also log OHLC bars in audit window", group="Audit", display=display.none)
+
+f_side(int side) => side > 0 ? "BUY" : side < 0 ? "SELL" : "—"
+f_num(float value) => na(value) ? "-" : str.tostring(value, "#.########")
+f_price(float value) => na(value) ? "—" : str.tostring(value, format.mintick)
+f_floor(float value) => math.floor(value / syminfo.mintick + 1e-8) * syminfo.mintick
+f_ceil(float value) => math.ceil(value / syminfo.mintick - 1e-8) * syminfo.mintick
+f_bit(bool value) => value ? "1" : "0"
+f_reason(string current, bool rejected, string detail) =>
+    not rejected ? current : current == "" ? detail : current + ", " + detail
+
+bool london = not na(time(timeframe.period, "0800-1630:23456", "Europe/London"))
+bool newYork = not na(time(timeframe.period, "0930-1600:23456", "America/New_York"))
+string sessionName = london and newYork ? "LONDON_NY" : london ? "LONDON" : newYork ? "NY" : "OTHER"
+bool canAudit = auditEnabled and barstate.isconfirmed and time_close >= auditFrom and time_close <= auditUntil
+
+f_log(string event, string payload) =>
+    if canAudit
+        log.info("V21|" + event + "|" + str.tostring(time_close) + "|" + payload)
+
+float priorATR = ta.atr(14)[1]
+float ema21 = ta.ema(close, 21)
+float ema55 = ta.ema(close, 55)
+float priorHigh = ta.highest(high, BREAK_LOOKBACK)[1]
+float priorLow = ta.lowest(low, BREAK_LOOKBACK)[1]
+float threeHigh = ta.highest(high, 3)
+float threeLow = ta.lowest(low, 3)
+float candleRange = high - low
+float signedBody = close - open
+float changeThree = close - close[3]
+bool supported = chart.is_standard and syminfo.tickerid == "OANDA:XAUUSD" and timeframe.isminutes and
+  (timeframe.multiplier == 5 or timeframe.multiplier == 15 or timeframe.multiplier == 30)
+bool ready = supported and bar_index >= WARMUP and not na(priorATR) and priorATR > 0
+
+// A strict pivot at index [2] becomes known on the current bar. Ties are excluded.
+bool highPivot = high[2] > high[4] and high[2] > high[3] and high[2] > high[1] and high[2] > high
+bool lowPivot = low[2] < low[4] and low[2] < low[3] and low[2] < low[1] and low[2] < low
+var float previousHighPivot = na
+var float previousLowPivot = na
+bool lowerHigh = highPivot and not na(previousHighPivot) and high[2] < previousHighPivot
+bool higherLow = lowPivot and not na(previousLowPivot) and low[2] > previousLowPivot
+
+bool bullBreak = ready and close > priorHigh
+bool bearBreak = ready and close < priorLow
+bool substantialBody = candleRange > 0 and math.abs(signedBody) >= 0.55 * candleRange
+bool bullDisplacement = substantialBody and signedBody >= DISPLACEMENT_ATR * priorATR and high - close <= 0.25 * candleRange
+bool bearDisplacement = substantialBody and -signedBody >= DISPLACEMENT_ATR * priorATR and close - low <= 0.25 * candleRange
+bool bullMomentum = changeThree >= MOMENTUM_ATR * priorATR
+bool bearMomentum = -changeThree >= MOMENTUM_ATR * priorATR
+bool bullTrend = close > ema21 and ema21 > ema55 and ema21 > ema21[3]
+bool bearTrend = close < ema21 and ema21 < ema55 and ema21 < ema21[3]
+bool volatilityExpansion = candleRange >= 1.25 * priorATR
+float extensionATR = ready ? math.abs(close - ema21) / priorATR : na
+bool overextended = ready and extensionATR > MAX_EXTENSION_ATR
+float upperWick = high - math.max(open, close)
+float lowerWick = math.min(open, close) - low
+// Exhaustion is a context observation after a prior impulse. It does not change admission.
+bool bullExhaustion = ready and candleRange > 0 and bullMomentum[1] and high - ema21 >= MAX_EXTENSION_ATR * priorATR and
+  upperWick >= 0.50 * candleRange and changeThree < changeThree[1]
+bool bearExhaustion = ready and candleRange > 0 and bearMomentum[1] and ema21 - low >= MAX_EXTENSION_ATR * priorATR and
+  lowerWick >= 0.50 * candleRange and changeThree > changeThree[1]
+
+var int watchSide = 0
+var int watchBar = na
+var float watchLevel = na
+var float watchClose = na
+var string orderId = ""
+var int orderBar = na
+var float plannedClose = na
+var float plannedStop = na
+var float plannedTarget = na
+var float lastFill = na
+var float lastExit = na
+var string nativeState = "FLAT"
+var string lastDecision = "WARMUP"
+var string lastReason = ""
+var int watchCount = 0
+var int confirmCount = 0
+var int validCount = 0
+var int rejectCount = 0
+var int expireCount = 0
+var int unfilledCount = 0
+int watchPulse = 0
+int confirmPulse = 0
+int validPulse = 0
+int rejectPulse = 0
+int expirePulse = 0
+int rejectionPulse = 0
+
+// Read native results before testing occupancy for a new plan. A fill and exit on
+// one candle is represented by a single CLOSED record with both native prices.
+if barstate.isconfirmed
+    if strategy.closedtrades > nz(strategy.closedtrades[1])
+        int n = strategy.closedtrades - 1
+        lastFill := strategy.closedtrades.entry_price(n)
+        lastExit := strategy.closedtrades.exit_price(n)
+        string closedId = strategy.closedtrades.entry_id(n)
+        f_log("CLOSED", closedId + "|" + str.tostring(strategy.closedtrades.entry_time(n)) + "|" +
+          str.tostring(strategy.closedtrades.exit_time(n)) + "|" + f_num(lastFill) + "|" + f_num(lastExit) +
+          "|" + f_num(strategy.closedtrades.size(n)) + "|" + f_num(strategy.closedtrades.profit(n)) +
+          "|" + f_num(strategy.closedtrades.commission(n)) + "|" + strategy.closedtrades.exit_comment(n))
+        if closedId == orderId
+            orderId := ""
+            nativeState := "CLOSED"
+            lastDecision := "NATIVE CLOSED"
+            lastReason := strategy.closedtrades.exit_comment(n)
+    if strategy.opentrades > 0
+        int fillBar = strategy.opentrades.entry_bar_index(0)
+        if fillBar == bar_index
+            lastFill := strategy.opentrades.entry_price(0)
+            nativeState := "OPEN"
+            lastDecision := "NATIVE FILL"
+            lastReason := strategy.position_size > 0 ? "LONG" : "SHORT"
+            f_log("FILL", orderId + "|" + str.tostring(strategy.opentrades.entry_time(0)) + "|" + f_num(lastFill) + "|" + f_num(strategy.position_size))
+        if bar_index - fillBar + 1 == MAX_HOLD and orderId != ""
+            strategy.cancel(orderId + "-BRK")
+            strategy.close(orderId, comment="TIME", disable_alert=true)
+            nativeState := "TIME CLOSE PENDING"
+            f_log("TIME_ORDER", orderId)
+    else if orderId != "" and bar_index > orderBar
+        // A next-tick market order which has neither an open nor closed fill.
+        strategy.cancel(orderId)
+        strategy.cancel(orderId + "-BRK")
+        f_log("NATIVE_UNFILLED", orderId)
+        orderId := ""
+        nativeState := "UNFILLED"
+        unfilledCount += 1
+        lastDecision := "NATIVE UNFILLED"
+        lastReason := "EMULATOR"
+
+    if ready
+        if bullExhaustion or bearExhaustion
+            f_log("EXHAUSTION", f_side(bullExhaustion ? 1 : -1) + "|" + f_num(close) + "|" + f_num(priorATR) + "|" + sessionName)
+        if watchSide != 0
+            int age = bar_index - watchBar
+            float breakDistance = watchSide * (close - watchLevel)
+            if age > WATCH_TTL or breakDistance < 0
+                expirePulse := watchSide
+                expireCount += 1
+                lastDecision := "SETUP EXPIRED"
+                lastReason := age > WATCH_TTL ? "AGE" : "LEVEL RECLAIMED"
+                f_log("EXPIRED", f_side(watchSide) + "|" + lastReason + "|" + str.tostring(age) + "|" + f_num(watchLevel))
+                watchSide := 0
+            else if age > 0
+                bool directionalTrend = watchSide > 0 ? bullTrend : bearTrend
+                bool displacement = watchSide > 0 ? bullDisplacement : bearDisplacement
+                bool momentum = watchSide > 0 ? bullMomentum : bearMomentum
+                bool continuation = watchSide * (close - watchClose) > 0
+                float disclosedPivot = watchSide > 0 ? low[2] : high[2]
+                bool improvingPivot = watchSide > 0 ? higherLow : lowerHigh
+                bool retest = improvingPivot and bar_index - 2 >= watchBar and breakDistance > 0 and
+                  math.abs(disclosedPivot - watchLevel) <= RETEST_ATR * priorATR
+                bool levelRejection = watchSide > 0 ? low <= watchLevel and close > watchLevel : high >= watchLevel and close < watchLevel
+                rejectionPulse := levelRejection ? watchSide : 0
+                if directionalTrend and (displacement or momentum) and (continuation or retest)
+                    int side = watchSide
+                    confirmPulse := side
+                    confirmCount += 1
+                    string route = retest ? "PIVOT RETEST" : "CONTINUATION"
+                    string context = f_side(side) + "|" + route + "|" + str.tostring(age) + "|" +
+                      f_num(watchLevel) + "|" + f_num(watchClose) + "|" + f_num(close) + "|" + f_num(priorATR) +
+                      "|" + f_bit(displacement) + "|" + f_bit(momentum) + "|" + f_bit(volatilityExpansion) +
+                      "|" + f_bit(levelRejection) + "|" + sessionName
+                    f_log("CONFIRMED", context)
+                    float stop = side > 0 ? f_floor(math.min(watchLevel, threeLow) - STOP_BUFFER_ATR * priorATR) :
+                      f_ceil(math.max(watchLevel, threeHigh) + STOP_BUFFER_ATR * priorATR)
+                    float risk = side * (close - stop)
+                    float riskATR = risk / priorATR
+                    float target = side > 0 ? f_ceil(close + REWARD_R * risk) : f_floor(close - REWARD_R * risk)
+                    string reason = f_reason("", time_close < ordersFrom or time_close > ordersUntil, "OUTSIDE ORDER WINDOW")
+                    reason := f_reason(reason, orderId != "" or strategy.position_size != 0, "OCCUPIED")
+                    reason := f_reason(reason, overextended, "OVEREXTENDED")
+                    reason := f_reason(reason, riskATR < MIN_RISK_ATR, "RISK TOO NARROW")
+                    reason := f_reason(reason, riskATR > MAX_RISK_ATR, "RISK TOO WIDE")
+                    string geometry = context + "|" + f_num(stop) + "|" + f_num(target) + "|" + f_num(riskATR) + "|" + f_num(extensionATR)
+                    if reason == ""
+                        orderId := "IMP-" + f_side(side) + "-" + str.tostring(time_close)
+                        orderBar := bar_index
+                        plannedClose := close
+                        plannedStop := stop
+                        plannedTarget := target
+                        lastFill := na
+                        lastExit := na
+                        nativeState := "SUBMITTED"
+                        validCount += 1
+                        validPulse := side
+                        lastDecision := "ENTRY VALID"
+                        lastReason := route
+                        strategy.entry(orderId, side > 0 ? strategy.long : strategy.short, qty=3, disable_alert=true)
+                        strategy.exit(orderId + "-BRK", from_entry=orderId, stop=stop, limit=target,
+                          comment_profit="TP", comment_loss="SL", disable_alert=true)
+                        f_log("ENTRY_VALID", geometry + "|" + orderId)
+                    else
+                        rejectCount += 1
+                        rejectPulse := side
+                        lastDecision := "ENTRY REJECTED"
+                        lastReason := reason
+                        f_log("ENTRY_REJECTED", geometry + "|" + reason)
+                    watchSide := 0
+        if watchSide == 0 and confirmPulse == 0 and (bullBreak or bearBreak)
+            watchSide := bullBreak ? 1 : -1
+            watchBar := bar_index
+            watchLevel := watchSide > 0 ? priorHigh : priorLow
+            watchClose := close
+            watchCount += 1
+            watchPulse := watchSide
+            lastDecision := f_side(watchSide) + " WATCH"
+            lastReason := "PRIOR 20-BAR BREAK"
+            f_log("WATCH", f_side(watchSide) + "|" + f_num(watchLevel) + "|" + f_num(watchClose) +
+              "|" + f_num(priorATR) + "|" + sessionName)
+    if highPivot
+        previousHighPivot := high[2]
+    if lowPivot
+        previousLowPivot := low[2]
+
+// Audit fingerprint includes warmup. TradingView's strategy properties and
+// timestamped OHLC must match before results are paired with other runs.
+var int firstOpen = na
+var int auditedBars = 0
+var int digest1 = 0
+var int digest2 = 0
+var bool auditSnapshot = false
+if auditEnabled and barstate.isconfirmed and time_close <= auditUntil
+    firstOpen := na(firstOpen) ? time : firstOpen
+    auditedBars += 1
+    int o = int(math.round(open / syminfo.mintick))
+    int h = int(math.round(high / syminfo.mintick))
+    int l = int(math.round(low / syminfo.mintick))
+    int c = int(math.round(close / syminfo.mintick))
+    int stamp = int(time / 1000)
+    digest1 := (digest1 * 31 + stamp + 3 * o + 5 * h + 7 * l + 11 * c) % 1000000007
+    digest2 := (digest2 * 131 + stamp + 13 * o + 17 * h + 19 * l + 23 * c) % 1000000009
+    if auditBars
+        f_log("BAR", str.tostring(time) + "|" + f_num(open) + "|" + f_num(high) + "|" + f_num(low) + "|" + f_num(close))
+    if not auditSnapshot and time_close >= auditFrom and (time_close == auditUntil or barstate.islastconfirmedhistory)
+        auditSnapshot := true
+        f_log("SNAPSHOT", syminfo.tickerid + "|" + timeframe.period + "|" + str.tostring(firstOpen) +
+          "|" + str.tostring(time) + "|" + str.tostring(auditedBars) + "|" + str.tostring(digest1) + "|" + str.tostring(digest2) +
+          "|" + str.tostring(watchCount) + "|" + str.tostring(confirmCount) + "|" + str.tostring(validCount) +
+          "|" + str.tostring(rejectCount) + "|" + str.tostring(expireCount) + "|" + str.tostring(unfilledCount) +
+          "|" + str.tostring(strategy.closedtrades) + "|" + f_num(strategy.netprofit) + "|" + f_num(strategy.max_drawdown) +
+          "|" + f_num(strategy.position_size) + "|" + f_num(syminfo.mintick) + "|" + f_num(syminfo.pointvalue) +
+          "|" + str.tostring(ordersFrom) + "|" + str.tostring(ordersUntil) + "|" + str.tostring(auditUntil))
+
+plotshape(showWatch and watchPulse == 1, "BUY WATCH", shape.circle, location.belowbar, color.new(color.teal, 35), size=size.tiny)
+plotshape(showWatch and watchPulse == -1, "SELL WATCH", shape.circle, location.abovebar, color.new(color.red, 35), size=size.tiny)
+plotshape(showLifecycle and confirmPulse == 1, "BUY CONFIRMED", shape.triangleup, location.belowbar, color.teal, size=size.tiny)
+plotshape(showLifecycle and confirmPulse == -1, "SELL CONFIRMED", shape.triangledown, location.abovebar, color.red, size=size.tiny)
+plotshape(showLifecycle and validPulse != 0, "ENTRY VALID · plan", shape.diamond, location.bottom, color.aqua, size=size.tiny)
+plotshape(showLifecycle and rejectPulse != 0, "ENTRY REJECTED", shape.xcross, location.bottom, color.orange, size=size.tiny)
+plotshape(showLifecycle and expirePulse != 0, "SETUP EXPIRED", shape.xcross, location.bottom, color.gray, size=size.tiny)
+plot(showLevels and orderId != "" ? plannedStop : na, "Frozen structural stop", color.red, style=plot.style_linebr)
+plot(showLevels and orderId != "" ? plannedTarget : na, "Frozen 2R target", color.teal, style=plot.style_linebr)
+plot(bullDisplacement ? 1 : bearDisplacement ? -1 : 0, "Displacement side", display=display.data_window)
+plot(bullMomentum ? 1 : bearMomentum ? -1 : 0, "Momentum side", display=display.data_window)
+plot(bullTrend ? 1 : bearTrend ? -1 : 0, "EMA trend side", display=display.data_window)
+plot(lowerHigh ? -1 : higherLow ? 1 : 0, "Newly disclosed LH/HL side", display=display.data_window)
+plot(bullBreak ? 1 : bearBreak ? -1 : 0, "Prior range break side", display=display.data_window)
+plot(rejectionPulse, "Frozen level rejection side", display=display.data_window)
+plot(volatilityExpansion ? 1 : 0, "Volatility expansion", display=display.data_window)
+plot(overextended ? 1 : 0, "Overextension", display=display.data_window)
+plot(bullExhaustion ? 1 : bearExhaustion ? -1 : 0, "Exhausted impulse side", display=display.data_window)
+
+color panelBg = color.rgb(14, 21, 30)
+color panelMuted = color.rgb(166, 184, 199)
+string panelPosition = switch panelCorner
+    "Top right" => position.top_right
+    "Top left" => position.top_left
+    "Bottom left" => position.bottom_left
+    => position.bottom_right
+var table panel = table.new(panelPosition, 2, 11, bgcolor=panelBg, frame_color=color.rgb(62, 77, 93), frame_width=1)
+f_row(int row, string caption, string value, color ink) =>
+    table.cell(panel, 0, row, caption, text_color=panelMuted, text_size=size.small, text_halign=text.align_left)
+    table.cell(panel, 1, row, value, text_color=ink, text_size=size.small, text_halign=text.align_right)
+
+if showPanel and (barstate.islastconfirmedhistory or barstate.islast)
+    f_row(0, "QIRVANTA V2.1", "IMPULSE · EXPERIMENTAL", color.aqua)
+    f_row(1, "Chart", supported ? syminfo.ticker + " · M" + timeframe.period : "OANDA:XAUUSD M5/M15/M30", color.white)
+    f_row(2, "Current watch", watchSide == 0 ? "—" : f_side(watchSide) + " WATCH · " + f_price(watchLevel), color.white)
+    f_row(3, "Last decision", ready ? lastDecision : supported ? "WARMUP" : "UNSUPPORTED", color.white)
+    f_row(4, "Reason", lastReason == "" ? "—" : lastReason, color.orange)
+    f_row(5, "Last plan close / SL / TP", f_price(plannedClose) + " / " + f_price(plannedStop) + " / " + f_price(plannedTarget), color.white)
+    f_row(6, "Plan native fill / exit", f_price(lastFill) + " / " + f_price(lastExit), color.white)
+    f_row(7, "Session · news", sessionName + " · UNKNOWN", color.white)
+    f_row(8, "Watch / confirm / valid / rejected", str.tostring(watchCount) + " / " + str.tostring(confirmCount) +
+      " / " + str.tostring(validCount) + " / " + str.tostring(rejectCount), color.aqua)
+    f_row(9, "Emulator", nativeState, color.white)
+    f_row(10, "Range · exhaustion", (volatilityExpansion ? "EXPANDED" : "NORMAL") + " · " +
+      (bullExhaustion ? "UP" : bearExhaustion ? "DOWN" : "—"), color.white)

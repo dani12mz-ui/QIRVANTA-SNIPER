@@ -1,0 +1,5045 @@
+{
+  "schema": "qirvanta.v21.event-evaluation.v1",
+  "status": "EXPERIMENTAL_ARCHIVAL_OHLC_AND_NATIVE_S5_TAPE",
+  "registration_sha256": "dc023d3c15e75327924bb3852cdcb620a079eee99a16edee7472fcdf9e8f04a7",
+  "tapes_sha256": "ce7e7b262348051db858e655edbed17fadb7b591982d9840f47c5c783e69a958",
+  "frames": {
+    "5": {
+      "provenance": {
+        "market_sha256": "44971f52b0008fefc4b61dda51c71043f08e4a2e3bc6d08121380e95232ace1d",
+        "s5_log_sha256": "b629dc4c3b1b624b5fc4632016ed1d568fbd65a83d26a17a8ee5aa909a7f0ef4",
+        "native_source_sha256": "bc7bf16cd988fa23832f75ff22ee421b198cafb95614c9445622ce7bc4cfe1c3",
+        "bars": 5565,
+        "from_utc": "2026-10-11T22:00:00+00:00",
+        "through_utc": "2026-11-09T02:45:00+00:00",
+        "native_market_fingerprints": [
+          482866632,
+          934054441
+        ]
+      },
+      "calendar": {
+        "complete_hours": 463,
+        "partial_observed_hours": 1,
+        "eligible_hours": 439
+      },
+      "trade_metrics": {
+        "S5": {
+          "closed_campaigns": {
+            "count": 98,
+            "wins": 57,
+            "losses": 41,
+            "breakevens": 0,
+            "net_cash": 104.531,
+            "sum_positive_net_cash": 799.892,
+            "sum_negative_net_cash_magnitude": 695.361,
+            "profit_factor": 1.1503262334240776,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.5816326530612245,
+            "average_net_cash": 1.0666428571428572,
+            "average_win_cash": 14.033192982456141,
+            "average_loss_cash": -16.960024390243902
+          },
+          "stressed_campaigns": {
+            "count": 98,
+            "wins": 52,
+            "losses": 46,
+            "breakevens": 0,
+            "net_cash": -93.919,
+            "sum_positive_net_cash": 686.179,
+            "sum_negative_net_cash_magnitude": 780.098,
+            "profit_factor": 0.8796061520475632,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.5306122448979592,
+            "average_net_cash": -0.9583571428571429,
+            "average_win_cash": 13.19575,
+            "average_loss_cash": -16.958652173913045
+          },
+          "campaign_close_drawdown_usd": 136.309,
+          "stressed_campaign_close_drawdown_usd": 154.534,
+          "net_expectancy_r": 0.08087571107730933,
+          "net_expectancy_r_block_ci": {
+            "n": 98,
+            "mean": 0.08087571107730933,
+            "ci95": [
+              -0.11209966124738338,
+              0.274021779360422
+            ],
+            "block": 5,
+            "repetitions": 2000,
+            "seed": 20261109,
+            "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+          },
+          "undefined_actual_risk_count": 0,
+          "filled_open_or_entry_pending_at_cutoff": 0,
+          "fee_usd": 102.9,
+          "exit_part_reasons": {
+            "SL": 169,
+            "TP1": 55,
+            "TP2": 27,
+            "TP3": 12,
+            "ИЗТЕКЪЛ СРОК": 6,
+            "ИЗХОД СЛЕД ГАП": 7
+          },
+          "same_side_event_fills": 2,
+          "outside_same_side_event": {
+            "count": 96,
+            "wins": 55,
+            "losses": 41,
+            "breakevens": 0,
+            "net_cash": 19.093,
+            "sum_positive_net_cash": 714.454,
+            "sum_negative_net_cash_magnitude": 695.361,
+            "profit_factor": 1.027457680255292,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.5729166666666666,
+            "average_net_cash": 0.19888541666666668,
+            "average_win_cash": 12.990072727272727,
+            "average_loss_cash": -16.960024390243902
+          },
+          "by_side": {
+            "BUY": {
+              "count": 55,
+              "wins": 34,
+              "losses": 21,
+              "breakevens": 0,
+              "net_cash": 149.139,
+              "sum_positive_net_cash": 471.75,
+              "sum_negative_net_cash_magnitude": 322.611,
+              "profit_factor": 1.4622873987557772,
+              "profit_factor_status": "DEFINED",
+              "win_rate": 0.6181818181818182,
+              "average_net_cash": 2.711618181818182,
+              "average_win_cash": 13.875,
+              "average_loss_cash": -15.362428571428572
+            },
+            "SELL": {
+              "count": 43,
+              "wins": 23,
+              "losses": 20,
+              "breakevens": 0,
+              "net_cash": -44.608,
+              "sum_positive_net_cash": 328.142,
+              "sum_negative_net_cash_magnitude": 372.75,
+              "profit_factor": 0.8803272971160295,
+              "profit_factor_status": "DEFINED",
+              "win_rate": 0.5348837209302325,
+              "average_net_cash": -1.0373953488372094,
+              "average_win_cash": 14.26704347826087,
+              "average_loss_cash": -18.6375
+            }
+          }
+        },
+        "IMPULSE": {
+          "closed_campaigns": {
+            "count": 66,
+            "wins": 29,
+            "losses": 37,
+            "breakevens": 0,
+            "net_cash": -26.181,
+            "sum_positive_net_cash": 736.944,
+            "sum_negative_net_cash_magnitude": 763.125,
+            "profit_factor": 0.9656923832923833,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.4393939393939394,
+            "average_net_cash": -0.3966818181818182,
+            "average_win_cash": 25.41186206896552,
+            "average_loss_cash": -20.625
+          },
+          "stressed_campaigns": {
+            "count": 66,
+            "wins": 29,
+            "losses": 37,
+            "breakevens": 0,
+            "net_cash": -159.831,
+            "sum_positive_net_cash": 678.219,
+            "sum_negative_net_cash_magnitude": 838.05,
+            "profit_factor": 0.8092822623948451,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.4393939393939394,
+            "average_net_cash": -2.4216818181818183,
+            "average_win_cash": 23.386862068965517,
+            "average_loss_cash": -22.65
+          },
+          "campaign_close_drawdown_usd": 168.291,
+          "stressed_campaign_close_drawdown_usd": 234.231,
+          "net_expectancy_r": 0.02134723502048174,
+          "net_expectancy_r_block_ci": {
+            "n": 66,
+            "mean": 0.02134723502048174,
+            "ci95": [
+              -0.24943990500480143,
+              0.29136346442403954
+            ],
+            "block": 5,
+            "repetitions": 2000,
+            "seed": 20261109,
+            "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+          },
+          "undefined_actual_risk_count": 0,
+          "filled_open_or_entry_pending_at_cutoff": 0,
+          "fee_usd": 69.3,
+          "exit_part_reasons": {
+            "STOP": 35,
+            "TARGET": 14,
+            "TIME": 17
+          },
+          "same_side_event_fills": 3,
+          "outside_same_side_event": {
+            "count": 63,
+            "wins": 27,
+            "losses": 36,
+            "breakevens": 0,
+            "net_cash": -60.393,
+            "sum_positive_net_cash": 671.61,
+            "sum_negative_net_cash_magnitude": 732.003,
+            "profit_factor": 0.9174962397695091,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.42857142857142855,
+            "average_net_cash": -0.9586190476190476,
+            "average_win_cash": 24.874444444444446,
+            "average_loss_cash": -20.33341666666667
+          },
+          "by_side": {
+            "BUY": {
+              "count": 22,
+              "wins": 10,
+              "losses": 12,
+              "breakevens": 0,
+              "net_cash": 23.256,
+              "sum_positive_net_cash": 254.754,
+              "sum_negative_net_cash_magnitude": 231.498,
+              "profit_factor": 1.1004587512635098,
+              "profit_factor_status": "DEFINED",
+              "win_rate": 0.45454545454545453,
+              "average_net_cash": 1.057090909090909,
+              "average_win_cash": 25.4754,
+              "average_loss_cash": -19.2915
+            },
+            "SELL": {
+              "count": 44,
+              "wins": 19,
+              "losses": 25,
+              "breakevens": 0,
+              "net_cash": -49.437,
+              "sum_positive_net_cash": 482.19,
+              "sum_negative_net_cash_magnitude": 531.627,
+              "profit_factor": 0.9070081090689525,
+              "profit_factor_status": "DEFINED",
+              "win_rate": 0.4318181818181818,
+              "average_net_cash": -1.1235681818181817,
+              "average_win_cash": 25.37842105263158,
+              "average_loss_cash": -21.26508
+            }
+          }
+        },
+        "COMBINED": {
+          "closed_campaigns": {
+            "count": 139,
+            "wins": 75,
+            "losses": 64,
+            "breakevens": 0,
+            "net_cash": 139.406,
+            "sum_positive_net_cash": 1352.669,
+            "sum_negative_net_cash_magnitude": 1213.263,
+            "profit_factor": 1.1149017154565828,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.539568345323741,
+            "average_net_cash": 1.0029208633093525,
+            "average_win_cash": 18.035586666666667,
+            "average_loss_cash": -18.957234375
+          },
+          "stressed_campaigns": {
+            "count": 139,
+            "wins": 71,
+            "losses": 68,
+            "breakevens": 0,
+            "net_cash": -142.069,
+            "sum_positive_net_cash": 1202.258,
+            "sum_negative_net_cash_magnitude": 1344.327,
+            "profit_factor": 0.8943196112255426,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.5107913669064749,
+            "average_net_cash": -1.0220791366906474,
+            "average_win_cash": 16.933211267605635,
+            "average_loss_cash": -19.769514705882354
+          },
+          "campaign_close_drawdown_usd": 229.134,
+          "stressed_campaign_close_drawdown_usd": 259.509,
+          "net_expectancy_r": 0.08042204378274222,
+          "net_expectancy_r_block_ci": {
+            "n": 139,
+            "mean": 0.08042204378274222,
+            "ci95": [
+              -0.11025907805123114,
+              0.28428225563097154
+            ],
+            "block": 5,
+            "repetitions": 2000,
+            "seed": 20261109,
+            "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+          },
+          "undefined_actual_risk_count": 0,
+          "filled_open_or_entry_pending_at_cutoff": 0,
+          "fee_usd": 145.95,
+          "exit_part_reasons": {
+            "SL": 136,
+            "STOP": 31,
+            "TARGET": 13,
+            "TIME": 15,
+            "TP1": 47,
+            "TP2": 21,
+            "TP3": 9,
+            "ИЗТЕКЪЛ СРОК": 5,
+            "ИЗХОД СЛЕД ГАП": 6
+          },
+          "same_side_event_fills": 4,
+          "outside_same_side_event": {
+            "count": 135,
+            "wins": 72,
+            "losses": 63,
+            "breakevens": 0,
+            "net_cash": 48.205,
+            "sum_positive_net_cash": 1230.346,
+            "sum_negative_net_cash_magnitude": 1182.141,
+            "profit_factor": 1.040777707566187,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.5333333333333333,
+            "average_net_cash": 0.3570740740740741,
+            "average_win_cash": 17.08813888888889,
+            "average_loss_cash": -18.764142857142858
+          },
+          "by_side": {
+            "BUY": {
+              "count": 61,
+              "wins": 35,
+              "losses": 26,
+              "breakevens": 0,
+              "net_cash": 113.606,
+              "sum_positive_net_cash": 552.734,
+              "sum_negative_net_cash_magnitude": 439.128,
+              "profit_factor": 1.258708167094788,
+              "profit_factor_status": "DEFINED",
+              "win_rate": 0.5737704918032787,
+              "average_net_cash": 1.862393442622951,
+              "average_win_cash": 15.7924,
+              "average_loss_cash": -16.88953846153846
+            },
+            "SELL": {
+              "count": 78,
+              "wins": 40,
+              "losses": 38,
+              "breakevens": 0,
+              "net_cash": 25.8,
+              "sum_positive_net_cash": 799.935,
+              "sum_negative_net_cash_magnitude": 774.135,
+              "profit_factor": 1.0333275203937298,
+              "profit_factor_status": "DEFINED",
+              "win_rate": 0.5128205128205128,
+              "average_net_cash": 0.33076923076923076,
+              "average_win_cash": 19.998375,
+              "average_loss_cash": -20.371973684210527
+            }
+          }
+        },
+        "REVERSE_TIE": {
+          "closed_campaigns": {
+            "count": 139,
+            "wins": 75,
+            "losses": 64,
+            "breakevens": 0,
+            "net_cash": 139.406,
+            "sum_positive_net_cash": 1352.669,
+            "sum_negative_net_cash_magnitude": 1213.263,
+            "profit_factor": 1.1149017154565828,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.539568345323741,
+            "average_net_cash": 1.0029208633093525,
+            "average_win_cash": 18.035586666666667,
+            "average_loss_cash": -18.957234375
+          },
+          "stressed_campaigns": {
+            "count": 139,
+            "wins": 71,
+            "losses": 68,
+            "breakevens": 0,
+            "net_cash": -142.069,
+            "sum_positive_net_cash": 1202.258,
+            "sum_negative_net_cash_magnitude": 1344.327,
+            "profit_factor": 0.8943196112255426,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.5107913669064749,
+            "average_net_cash": -1.0220791366906474,
+            "average_win_cash": 16.933211267605635,
+            "average_loss_cash": -19.769514705882354
+          },
+          "campaign_close_drawdown_usd": 229.134,
+          "stressed_campaign_close_drawdown_usd": 259.509,
+          "net_expectancy_r": 0.08042204378274222,
+          "net_expectancy_r_block_ci": {
+            "n": 139,
+            "mean": 0.08042204378274222,
+            "ci95": [
+              -0.11025907805123114,
+              0.28428225563097154
+            ],
+            "block": 5,
+            "repetitions": 2000,
+            "seed": 20261109,
+            "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+          },
+          "undefined_actual_risk_count": 0,
+          "filled_open_or_entry_pending_at_cutoff": 0,
+          "fee_usd": 145.95,
+          "exit_part_reasons": {
+            "SL": 136,
+            "STOP": 31,
+            "TARGET": 13,
+            "TIME": 15,
+            "TP1": 47,
+            "TP2": 21,
+            "TP3": 9,
+            "ИЗТЕКЪЛ СРОК": 5,
+            "ИЗХОД СЛЕД ГАП": 6
+          },
+          "same_side_event_fills": 4,
+          "outside_same_side_event": {
+            "count": 135,
+            "wins": 72,
+            "losses": 63,
+            "breakevens": 0,
+            "net_cash": 48.205,
+            "sum_positive_net_cash": 1230.346,
+            "sum_negative_net_cash_magnitude": 1182.141,
+            "profit_factor": 1.040777707566187,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.5333333333333333,
+            "average_net_cash": 0.3570740740740741,
+            "average_win_cash": 17.08813888888889,
+            "average_loss_cash": -18.764142857142858
+          },
+          "by_side": {
+            "BUY": {
+              "count": 61,
+              "wins": 35,
+              "losses": 26,
+              "breakevens": 0,
+              "net_cash": 113.606,
+              "sum_positive_net_cash": 552.734,
+              "sum_negative_net_cash_magnitude": 439.128,
+              "profit_factor": 1.258708167094788,
+              "profit_factor_status": "DEFINED",
+              "win_rate": 0.5737704918032787,
+              "average_net_cash": 1.862393442622951,
+              "average_win_cash": 15.7924,
+              "average_loss_cash": -16.88953846153846
+            },
+            "SELL": {
+              "count": 78,
+              "wins": 40,
+              "losses": 38,
+              "breakevens": 0,
+              "net_cash": 25.8,
+              "sum_positive_net_cash": 799.935,
+              "sum_negative_net_cash_magnitude": 774.135,
+              "profit_factor": 1.0333275203937298,
+              "profit_factor_status": "DEFINED",
+              "win_rate": 0.5128205128205128,
+              "average_net_cash": 0.33076923076923076,
+              "average_win_cash": 19.998375,
+              "average_loss_cash": -20.371973684210527
+            }
+          }
+        }
+      },
+      "portfolio_delta": {
+        "S5": 104.531,
+        "delta_combined_net_usd": 34.875,
+        "delta_stressed_combined_net_usd": -48.15,
+        "delta_combined_campaign_close_drawdown_usd": 92.825
+      },
+      "events_by_side": {
+        "BUY": {
+          "S5": {
+            "events": 21,
+            "known_new_watch": null,
+            "known_confirmation": 2,
+            "risk_valid": null,
+            "admitted": 2,
+            "filled": 2,
+            "carry_in": 0,
+            "opposite_side_fills": 6,
+            "median_latency_minutes": {
+              "watch": null,
+              "confirmation": 7.5,
+              "geometry_valid": null,
+              "admission": 7.5,
+              "fill": 7.5
+            },
+            "median_capture_fraction": 0.8072567128636674,
+            "median_favorable_price_excursion": 24.060500000000047,
+            "median_adverse_price_excursion": 0.9395000000001801,
+            "misses": {
+              "NO_OBSERVED_ADMISSION": 19
+            }
+          },
+          "IMPULSE": {
+            "events": 21,
+            "known_new_watch": 18,
+            "known_confirmation": 10,
+            "risk_valid": 0,
+            "admitted": 0,
+            "filled": 0,
+            "carry_in": 0,
+            "opposite_side_fills": 1,
+            "median_latency_minutes": {
+              "watch": 27.5,
+              "confirmation": 37.5,
+              "geometry_valid": null,
+              "admission": null,
+              "fill": null
+            },
+            "median_capture_fraction": null,
+            "median_favorable_price_excursion": null,
+            "median_adverse_price_excursion": null,
+            "misses": {
+              "WATCH_WITHOUT_CONFIRMATION": 8,
+              "NO_NEW_WATCH_OR_CONFIRMATION": 3,
+              "RISK_REJECTED": 10
+            }
+          },
+          "COMBINED": {
+            "events": 21,
+            "known_new_watch": 18,
+            "known_confirmation": 10,
+            "risk_valid": 0,
+            "admitted": 1,
+            "filled": 1,
+            "carry_in": 0,
+            "opposite_side_fills": 7,
+            "median_latency_minutes": {
+              "watch": 27.5,
+              "confirmation": 37.5,
+              "geometry_valid": null,
+              "admission": 10.0,
+              "fill": 10.0
+            },
+            "median_capture_fraction": 0.8048016462787291,
+            "median_favorable_price_excursion": 35.19800000000032,
+            "median_adverse_price_excursion": 1.58199999999988,
+            "misses": {
+              "WATCH_WITHOUT_CONFIRMATION": 7,
+              "NO_NEW_WATCH_OR_CONFIRMATION": 3,
+              "RISK_REJECTED": 10
+            }
+          }
+        },
+        "SELL": {
+          "S5": {
+            "events": 12,
+            "known_new_watch": null,
+            "known_confirmation": 0,
+            "risk_valid": null,
+            "admitted": 0,
+            "filled": 0,
+            "carry_in": 0,
+            "opposite_side_fills": 1,
+            "median_latency_minutes": {
+              "watch": null,
+              "confirmation": null,
+              "geometry_valid": null,
+              "admission": null,
+              "fill": null
+            },
+            "median_capture_fraction": null,
+            "median_favorable_price_excursion": null,
+            "median_adverse_price_excursion": null,
+            "misses": {
+              "NO_OBSERVED_ADMISSION": 12
+            }
+          },
+          "IMPULSE": {
+            "events": 12,
+            "known_new_watch": 11,
+            "known_confirmation": 8,
+            "risk_valid": 3,
+            "admitted": 3,
+            "filled": 3,
+            "carry_in": 0,
+            "opposite_side_fills": 0,
+            "median_latency_minutes": {
+              "watch": 15.0,
+              "confirmation": 27.5,
+              "geometry_valid": 45.0,
+              "admission": 45.0,
+              "fill": 45.0
+            },
+            "median_capture_fraction": 0.1617866004962704,
+            "median_favorable_price_excursion": 3.587999999999738,
+            "median_adverse_price_excursion": 1.1770000000005894,
+            "misses": {
+              "WATCH_WITHOUT_CONFIRMATION": 3,
+              "RISK_REJECTED": 5,
+              "NO_NEW_WATCH_OR_CONFIRMATION": 1
+            }
+          },
+          "COMBINED": {
+            "events": 12,
+            "known_new_watch": 11,
+            "known_confirmation": 8,
+            "risk_valid": 3,
+            "admitted": 3,
+            "filled": 3,
+            "carry_in": 0,
+            "opposite_side_fills": 1,
+            "median_latency_minutes": {
+              "watch": 15.0,
+              "confirmation": 27.5,
+              "geometry_valid": 45.0,
+              "admission": 45.0,
+              "fill": 45.0
+            },
+            "median_capture_fraction": 0.1617866004962704,
+            "median_favorable_price_excursion": 3.587999999999738,
+            "median_adverse_price_excursion": 1.1770000000005894,
+            "misses": {
+              "WATCH_WITHOUT_CONFIRMATION": 3,
+              "RISK_REJECTED": 5,
+              "NO_NEW_WATCH_OR_CONFIRMATION": 1
+            }
+          }
+        }
+      },
+      "decision_counts": {
+        "BUY": {
+          "WATCH": 189,
+          "EXPIRED": 105,
+          "CONFIRMED": 84,
+          "REJECTED": 59,
+          "RISK_VALID": 25
+        },
+        "SELL": {
+          "WATCH": 229,
+          "EXPIRED": 118,
+          "CONFIRMED": 111,
+          "REJECTED": 52,
+          "RISK_VALID": 59
+        }
+      },
+      "reasons": {
+        "CONFIRMED": {
+          "CONTINUATION": 194,
+          "RETEST": 1
+        },
+        "REJECTED": {
+          "OVEREXTENSION+STOP_TOO_WIDE": 64,
+          "OVEREXTENSION": 29,
+          "STOP_TOO_WIDE": 18
+        },
+        "EXPIRED": {
+          "LOST_BREAK_LEVEL": 207,
+          "TTL": 16
+        }
+      },
+      "occupancy": {
+        "IMPULSE": {
+          "IMPULSE_blocked_by_IMPULSE": 18
+        },
+        "COMBINED": {
+          "S5_blocked_by_IMPULSE": 18,
+          "IMPULSE_blocked_by_IMPULSE": 16,
+          "IMPULSE_blocked_by_S5": 9
+        },
+        "REVERSE_TIE": {
+          "S5_blocked_by_IMPULSE": 18,
+          "IMPULSE_blocked_by_IMPULSE": 16,
+          "IMPULSE_blocked_by_S5": 9
+        }
+      },
+      "chronology": {
+        "split_utc": "2026-10-28T00:15:00+00:00",
+        "events_straddling_split": 0,
+        "crossing_or_censored_trade_campaigns": {
+          "S5": 0,
+          "IMPULSE": 0,
+          "COMBINED": 0,
+          "REVERSE_TIE": 0
+        },
+        "earlier": {
+          "events": {
+            "S5": {
+              "events": 17,
+              "known_new_watch": null,
+              "known_confirmation": 1,
+              "risk_valid": null,
+              "admitted": 1,
+              "filled": 1,
+              "carry_in": 0,
+              "opposite_side_fills": 3,
+              "median_latency_minutes": {
+                "watch": null,
+                "confirmation": 5.0,
+                "geometry_valid": null,
+                "admission": 5.0,
+                "fill": 5.0
+              },
+              "median_capture_fraction": 0.8097117794486056,
+              "median_favorable_price_excursion": 12.922999999999774,
+              "median_adverse_price_excursion": 0.2970000000004802,
+              "misses": {
+                "NO_OBSERVED_ADMISSION": 16
+              }
+            },
+            "IMPULSE": {
+              "events": 17,
+              "known_new_watch": 14,
+              "known_confirmation": 8,
+              "risk_valid": 2,
+              "admitted": 2,
+              "filled": 2,
+              "carry_in": 0,
+              "opposite_side_fills": 1,
+              "median_latency_minutes": {
+                "watch": 27.5,
+                "confirmation": 30.0,
+                "geometry_valid": 50.0,
+                "admission": 50.0,
+                "fill": 50.0
+              },
+              "median_capture_fraction": 0.18173647056853276,
+              "median_favorable_price_excursion": 3.9129999999997835,
+              "median_adverse_price_excursion": 0.9595000000003893,
+              "misses": {
+                "WATCH_WITHOUT_CONFIRMATION": 6,
+                "NO_NEW_WATCH_OR_CONFIRMATION": 3,
+                "RISK_REJECTED": 6
+              }
+            },
+            "COMBINED": {
+              "events": 17,
+              "known_new_watch": 14,
+              "known_confirmation": 8,
+              "risk_valid": 2,
+              "admitted": 2,
+              "filled": 2,
+              "carry_in": 0,
+              "opposite_side_fills": 4,
+              "median_latency_minutes": {
+                "watch": 27.5,
+                "confirmation": 30.0,
+                "geometry_valid": 50.0,
+                "admission": 50.0,
+                "fill": 50.0
+              },
+              "median_capture_fraction": 0.18173647056853276,
+              "median_favorable_price_excursion": 3.9129999999997835,
+              "median_adverse_price_excursion": 0.9595000000003893,
+              "misses": {
+                "WATCH_WITHOUT_CONFIRMATION": 6,
+                "NO_NEW_WATCH_OR_CONFIRMATION": 3,
+                "RISK_REJECTED": 6
+              }
+            }
+          },
+          "economics": {
+            "S5": {
+              "closed_campaigns": {
+                "count": 64,
+                "wins": 37,
+                "losses": 27,
+                "breakevens": 0,
+                "net_cash": 92.031,
+                "sum_positive_net_cash": 483.183,
+                "sum_negative_net_cash_magnitude": 391.152,
+                "profit_factor": 1.2352819364339183,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.578125,
+                "average_net_cash": 1.437984375,
+                "average_win_cash": 13.059,
+                "average_loss_cash": -14.487111111111112
+              },
+              "stressed_campaigns": {
+                "count": 64,
+                "wins": 33,
+                "losses": 31,
+                "breakevens": 0,
+                "net_cash": -37.569,
+                "sum_positive_net_cash": 409.927,
+                "sum_negative_net_cash_magnitude": 447.496,
+                "profit_factor": 0.9160461769490676,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.515625,
+                "average_net_cash": -0.587015625,
+                "average_win_cash": 12.422030303030303,
+                "average_loss_cash": -14.435354838709678
+              },
+              "campaign_close_drawdown_usd": 97.248,
+              "stressed_campaign_close_drawdown_usd": 128.321,
+              "net_expectancy_r": 0.07421883141984185,
+              "net_expectancy_r_block_ci": {
+                "n": 64,
+                "mean": 0.07421883141984185,
+                "ci95": [
+                  -0.18645821371806512,
+                  0.3433435619290698
+                ],
+                "block": 5,
+                "repetitions": 2000,
+                "seed": 20261109,
+                "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+              },
+              "undefined_actual_risk_count": 0,
+              "filled_open_or_entry_pending_at_cutoff": 0,
+              "fee_usd": 67.2,
+              "exit_part_reasons": {
+                "SL": 107,
+                "TP1": 35,
+                "TP2": 17,
+                "TP3": 8,
+                "ИЗТЕКЪЛ СРОК": 5,
+                "ИЗХОД СЛЕД ГАП": 5
+              },
+              "same_side_event_fills": 1,
+              "outside_same_side_event": {
+                "count": 63,
+                "wins": 36,
+                "losses": 27,
+                "breakevens": 0,
+                "net_cash": 63.582,
+                "sum_positive_net_cash": 454.734,
+                "sum_negative_net_cash_magnitude": 391.152,
+                "profit_factor": 1.1625506197079396,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5714285714285714,
+                "average_net_cash": 1.0092380952380953,
+                "average_win_cash": 12.6315,
+                "average_loss_cash": -14.487111111111112
+              },
+              "by_side": {
+                "BUY": {
+                  "count": 39,
+                  "wins": 25,
+                  "losses": 14,
+                  "breakevens": 0,
+                  "net_cash": 150.311,
+                  "sum_positive_net_cash": 348.224,
+                  "sum_negative_net_cash_magnitude": 197.913,
+                  "profit_factor": 1.7594801756327274,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.6410256410256411,
+                  "average_net_cash": 3.8541282051282053,
+                  "average_win_cash": 13.92896,
+                  "average_loss_cash": -14.136642857142856
+                },
+                "SELL": {
+                  "count": 25,
+                  "wins": 12,
+                  "losses": 13,
+                  "breakevens": 0,
+                  "net_cash": -58.28,
+                  "sum_positive_net_cash": 134.959,
+                  "sum_negative_net_cash_magnitude": 193.239,
+                  "profit_factor": 0.6984045663660027,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.48,
+                  "average_net_cash": -2.3312,
+                  "average_win_cash": 11.246583333333334,
+                  "average_loss_cash": -14.864538461538462
+                }
+              }
+            },
+            "IMPULSE": {
+              "closed_campaigns": {
+                "count": 40,
+                "wins": 17,
+                "losses": 23,
+                "breakevens": 0,
+                "net_cash": -22.203,
+                "sum_positive_net_cash": 437.763,
+                "sum_negative_net_cash_magnitude": 459.966,
+                "profit_factor": 0.9517290408421492,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.425,
+                "average_net_cash": -0.555075,
+                "average_win_cash": 25.750764705882354,
+                "average_loss_cash": -19.998521739130435
+              },
+              "stressed_campaigns": {
+                "count": 40,
+                "wins": 17,
+                "losses": 23,
+                "breakevens": 0,
+                "net_cash": -103.203,
+                "sum_positive_net_cash": 403.338,
+                "sum_negative_net_cash_magnitude": 506.541,
+                "profit_factor": 0.7962593353746291,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.425,
+                "average_net_cash": -2.580075,
+                "average_win_cash": 23.72576470588235,
+                "average_loss_cash": -22.023521739130434
+              },
+              "campaign_close_drawdown_usd": 133.611,
+              "stressed_campaign_close_drawdown_usd": 173.226,
+              "net_expectancy_r": 0.0375607223860355,
+              "net_expectancy_r_block_ci": {
+                "n": 40,
+                "mean": 0.0375607223860355,
+                "ci95": [
+                  -0.30258237564742657,
+                  0.4243627747146162
+                ],
+                "block": 5,
+                "repetitions": 2000,
+                "seed": 20261109,
+                "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+              },
+              "undefined_actual_risk_count": 0,
+              "filled_open_or_entry_pending_at_cutoff": 0,
+              "fee_usd": 42.0,
+              "exit_part_reasons": {
+                "STOP": 22,
+                "TARGET": 10,
+                "TIME": 8
+              },
+              "same_side_event_fills": 2,
+              "outside_same_side_event": {
+                "count": 38,
+                "wins": 15,
+                "losses": 23,
+                "breakevens": 0,
+                "net_cash": -87.537,
+                "sum_positive_net_cash": 372.429,
+                "sum_negative_net_cash_magnitude": 459.966,
+                "profit_factor": 0.8096881073818499,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.39473684210526316,
+                "average_net_cash": -2.3036052631578947,
+                "average_win_cash": 24.8286,
+                "average_loss_cash": -19.998521739130435
+              },
+              "by_side": {
+                "BUY": {
+                  "count": 17,
+                  "wins": 9,
+                  "losses": 8,
+                  "breakevens": 0,
+                  "net_cash": 65.595,
+                  "sum_positive_net_cash": 221.496,
+                  "sum_negative_net_cash_magnitude": 155.901,
+                  "profit_factor": 1.4207477822464256,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.5294117647058824,
+                  "average_net_cash": 3.8585294117647058,
+                  "average_win_cash": 24.610666666666667,
+                  "average_loss_cash": -19.487625
+                },
+                "SELL": {
+                  "count": 23,
+                  "wins": 8,
+                  "losses": 15,
+                  "breakevens": 0,
+                  "net_cash": -87.798,
+                  "sum_positive_net_cash": 216.267,
+                  "sum_negative_net_cash_magnitude": 304.065,
+                  "profit_factor": 0.7112525282423167,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.34782608695652173,
+                  "average_net_cash": -3.817304347826087,
+                  "average_win_cash": 27.033375,
+                  "average_loss_cash": -20.271
+                }
+              }
+            },
+            "COMBINED": {
+              "closed_campaigns": {
+                "count": 86,
+                "wins": 45,
+                "losses": 41,
+                "breakevens": 0,
+                "net_cash": 66.404,
+                "sum_positive_net_cash": 753.668,
+                "sum_negative_net_cash_magnitude": 687.264,
+                "profit_factor": 1.0966208036504168,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5232558139534884,
+                "average_net_cash": 0.7721395348837209,
+                "average_win_cash": 16.748177777777776,
+                "average_loss_cash": -16.762536585365854
+              },
+              "stressed_campaigns": {
+                "count": 86,
+                "wins": 42,
+                "losses": 44,
+                "breakevens": 0,
+                "net_cash": -107.746,
+                "sum_positive_net_cash": 663.964,
+                "sum_negative_net_cash_magnitude": 771.71,
+                "profit_factor": 0.8603801946326988,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.4883720930232558,
+                "average_net_cash": -1.2528604651162791,
+                "average_win_cash": 15.808666666666667,
+                "average_loss_cash": -17.538863636363637
+              },
+              "campaign_close_drawdown_usd": 229.134,
+              "stressed_campaign_close_drawdown_usd": 259.509,
+              "net_expectancy_r": 0.054331205918860315,
+              "net_expectancy_r_block_ci": {
+                "n": 86,
+                "mean": 0.054331205918860315,
+                "ci95": [
+                  -0.19330629831933097,
+                  0.3116918130706177
+                ],
+                "block": 5,
+                "repetitions": 2000,
+                "seed": 20261109,
+                "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+              },
+              "undefined_actual_risk_count": 0,
+              "filled_open_or_entry_pending_at_cutoff": 0,
+              "fee_usd": 90.3,
+              "exit_part_reasons": {
+                "SL": 83,
+                "STOP": 20,
+                "TARGET": 9,
+                "TIME": 6,
+                "TP1": 29,
+                "TP2": 12,
+                "TP3": 5,
+                "ИЗТЕКЪЛ СРОК": 4,
+                "ИЗХОД СЛЕД ГАП": 5
+              },
+              "same_side_event_fills": 2,
+              "outside_same_side_event": {
+                "count": 84,
+                "wins": 43,
+                "losses": 41,
+                "breakevens": 0,
+                "net_cash": 1.07,
+                "sum_positive_net_cash": 688.334,
+                "sum_negative_net_cash_magnitude": 687.264,
+                "profit_factor": 1.0015568980770126,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5119047619047619,
+                "average_net_cash": 0.012738095238095238,
+                "average_win_cash": 16.007767441860466,
+                "average_loss_cash": -16.762536585365854
+              },
+              "by_side": {
+                "BUY": {
+                  "count": 44,
+                  "wins": 26,
+                  "losses": 18,
+                  "breakevens": 0,
+                  "net_cash": 131.972,
+                  "sum_positive_net_cash": 404.219,
+                  "sum_negative_net_cash_magnitude": 272.247,
+                  "profit_factor": 1.4847509798087766,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.5909090909090909,
+                  "average_net_cash": 2.9993636363636362,
+                  "average_win_cash": 15.546884615384615,
+                  "average_loss_cash": -15.124833333333333
+                },
+                "SELL": {
+                  "count": 42,
+                  "wins": 19,
+                  "losses": 23,
+                  "breakevens": 0,
+                  "net_cash": -65.568,
+                  "sum_positive_net_cash": 349.449,
+                  "sum_negative_net_cash_magnitude": 415.017,
+                  "profit_factor": 0.842011291103738,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.4523809523809524,
+                  "average_net_cash": -1.5611428571428572,
+                  "average_win_cash": 18.39205263157895,
+                  "average_loss_cash": -18.044217391304347
+                }
+              }
+            },
+            "REVERSE_TIE": {
+              "closed_campaigns": {
+                "count": 86,
+                "wins": 45,
+                "losses": 41,
+                "breakevens": 0,
+                "net_cash": 66.404,
+                "sum_positive_net_cash": 753.668,
+                "sum_negative_net_cash_magnitude": 687.264,
+                "profit_factor": 1.0966208036504168,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5232558139534884,
+                "average_net_cash": 0.7721395348837209,
+                "average_win_cash": 16.748177777777776,
+                "average_loss_cash": -16.762536585365854
+              },
+              "stressed_campaigns": {
+                "count": 86,
+                "wins": 42,
+                "losses": 44,
+                "breakevens": 0,
+                "net_cash": -107.746,
+                "sum_positive_net_cash": 663.964,
+                "sum_negative_net_cash_magnitude": 771.71,
+                "profit_factor": 0.8603801946326988,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.4883720930232558,
+                "average_net_cash": -1.2528604651162791,
+                "average_win_cash": 15.808666666666667,
+                "average_loss_cash": -17.538863636363637
+              },
+              "campaign_close_drawdown_usd": 229.134,
+              "stressed_campaign_close_drawdown_usd": 259.509,
+              "net_expectancy_r": 0.054331205918860315,
+              "net_expectancy_r_block_ci": {
+                "n": 86,
+                "mean": 0.054331205918860315,
+                "ci95": [
+                  -0.19330629831933097,
+                  0.3116918130706177
+                ],
+                "block": 5,
+                "repetitions": 2000,
+                "seed": 20261109,
+                "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+              },
+              "undefined_actual_risk_count": 0,
+              "filled_open_or_entry_pending_at_cutoff": 0,
+              "fee_usd": 90.3,
+              "exit_part_reasons": {
+                "SL": 83,
+                "STOP": 20,
+                "TARGET": 9,
+                "TIME": 6,
+                "TP1": 29,
+                "TP2": 12,
+                "TP3": 5,
+                "ИЗТЕКЪЛ СРОК": 4,
+                "ИЗХОД СЛЕД ГАП": 5
+              },
+              "same_side_event_fills": 2,
+              "outside_same_side_event": {
+                "count": 84,
+                "wins": 43,
+                "losses": 41,
+                "breakevens": 0,
+                "net_cash": 1.07,
+                "sum_positive_net_cash": 688.334,
+                "sum_negative_net_cash_magnitude": 687.264,
+                "profit_factor": 1.0015568980770126,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5119047619047619,
+                "average_net_cash": 0.012738095238095238,
+                "average_win_cash": 16.007767441860466,
+                "average_loss_cash": -16.762536585365854
+              },
+              "by_side": {
+                "BUY": {
+                  "count": 44,
+                  "wins": 26,
+                  "losses": 18,
+                  "breakevens": 0,
+                  "net_cash": 131.972,
+                  "sum_positive_net_cash": 404.219,
+                  "sum_negative_net_cash_magnitude": 272.247,
+                  "profit_factor": 1.4847509798087766,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.5909090909090909,
+                  "average_net_cash": 2.9993636363636362,
+                  "average_win_cash": 15.546884615384615,
+                  "average_loss_cash": -15.124833333333333
+                },
+                "SELL": {
+                  "count": 42,
+                  "wins": 19,
+                  "losses": 23,
+                  "breakevens": 0,
+                  "net_cash": -65.568,
+                  "sum_positive_net_cash": 349.449,
+                  "sum_negative_net_cash_magnitude": 415.017,
+                  "profit_factor": 0.842011291103738,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.4523809523809524,
+                  "average_net_cash": -1.5611428571428572,
+                  "average_win_cash": 18.39205263157895,
+                  "average_loss_cash": -18.044217391304347
+                }
+              }
+            }
+          }
+        },
+        "later": {
+          "events": {
+            "S5": {
+              "events": 16,
+              "known_new_watch": null,
+              "known_confirmation": 1,
+              "risk_valid": null,
+              "admitted": 1,
+              "filled": 1,
+              "carry_in": 0,
+              "opposite_side_fills": 4,
+              "median_latency_minutes": {
+                "watch": null,
+                "confirmation": 10.0,
+                "geometry_valid": null,
+                "admission": 10.0,
+                "fill": 10.0
+              },
+              "median_capture_fraction": 0.8048016462787291,
+              "median_favorable_price_excursion": 35.19800000000032,
+              "median_adverse_price_excursion": 1.58199999999988,
+              "misses": {
+                "NO_OBSERVED_ADMISSION": 15
+              }
+            },
+            "IMPULSE": {
+              "events": 16,
+              "known_new_watch": 15,
+              "known_confirmation": 10,
+              "risk_valid": 1,
+              "admitted": 1,
+              "filled": 1,
+              "carry_in": 0,
+              "opposite_side_fills": 0,
+              "median_latency_minutes": {
+                "watch": 25.0,
+                "confirmation": 35.0,
+                "geometry_valid": 40.0,
+                "admission": 40.0,
+                "fill": 40.0
+              },
+              "median_capture_fraction": 0.10171555063640109,
+              "median_favorable_price_excursion": 1.837999999999738,
+              "median_adverse_price_excursion": 2.5720000000001164,
+              "misses": {
+                "WATCH_WITHOUT_CONFIRMATION": 5,
+                "NO_NEW_WATCH_OR_CONFIRMATION": 1,
+                "RISK_REJECTED": 9
+              }
+            },
+            "COMBINED": {
+              "events": 16,
+              "known_new_watch": 15,
+              "known_confirmation": 10,
+              "risk_valid": 1,
+              "admitted": 2,
+              "filled": 2,
+              "carry_in": 0,
+              "opposite_side_fills": 4,
+              "median_latency_minutes": {
+                "watch": 25.0,
+                "confirmation": 35.0,
+                "geometry_valid": 40.0,
+                "admission": 25.0,
+                "fill": 25.0
+              },
+              "median_capture_fraction": 0.4532585984575651,
+              "median_favorable_price_excursion": 18.51800000000003,
+              "median_adverse_price_excursion": 2.076999999999998,
+              "misses": {
+                "WATCH_WITHOUT_CONFIRMATION": 4,
+                "NO_NEW_WATCH_OR_CONFIRMATION": 1,
+                "RISK_REJECTED": 9
+              }
+            }
+          },
+          "economics": {
+            "S5": {
+              "closed_campaigns": {
+                "count": 34,
+                "wins": 20,
+                "losses": 14,
+                "breakevens": 0,
+                "net_cash": 12.5,
+                "sum_positive_net_cash": 316.709,
+                "sum_negative_net_cash_magnitude": 304.209,
+                "profit_factor": 1.0410901715596843,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5882352941176471,
+                "average_net_cash": 0.36764705882352944,
+                "average_win_cash": 15.83545,
+                "average_loss_cash": -21.729214285714285
+              },
+              "stressed_campaigns": {
+                "count": 34,
+                "wins": 19,
+                "losses": 15,
+                "breakevens": 0,
+                "net_cash": -56.35,
+                "sum_positive_net_cash": 276.252,
+                "sum_negative_net_cash_magnitude": 332.602,
+                "profit_factor": 0.8305782887655516,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5588235294117647,
+                "average_net_cash": -1.6573529411764707,
+                "average_win_cash": 14.53957894736842,
+                "average_loss_cash": -22.173466666666666
+              },
+              "campaign_close_drawdown_usd": 136.309,
+              "stressed_campaign_close_drawdown_usd": 154.534,
+              "net_expectancy_r": 0.09340630807960101,
+              "net_expectancy_r_block_ci": {
+                "n": 34,
+                "mean": 0.09340630807960101,
+                "ci95": [
+                  -0.1927164029609957,
+                  0.38095302908682777
+                ],
+                "block": 5,
+                "repetitions": 2000,
+                "seed": 20261109,
+                "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+              },
+              "undefined_actual_risk_count": 0,
+              "filled_open_or_entry_pending_at_cutoff": 0,
+              "fee_usd": 35.7,
+              "exit_part_reasons": {
+                "SL": 62,
+                "TP1": 20,
+                "TP2": 10,
+                "TP3": 4,
+                "ИЗТЕКЪЛ СРОК": 1,
+                "ИЗХОД СЛЕД ГАП": 2
+              },
+              "same_side_event_fills": 1,
+              "outside_same_side_event": {
+                "count": 33,
+                "wins": 19,
+                "losses": 14,
+                "breakevens": 0,
+                "net_cash": -44.489,
+                "sum_positive_net_cash": 259.72,
+                "sum_negative_net_cash_magnitude": 304.209,
+                "profit_factor": 0.8537551485984964,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5757575757575758,
+                "average_net_cash": -1.348151515151515,
+                "average_win_cash": 13.669473684210526,
+                "average_loss_cash": -21.729214285714285
+              },
+              "by_side": {
+                "BUY": {
+                  "count": 16,
+                  "wins": 9,
+                  "losses": 7,
+                  "breakevens": 0,
+                  "net_cash": -1.172,
+                  "sum_positive_net_cash": 123.526,
+                  "sum_negative_net_cash_magnitude": 124.698,
+                  "profit_factor": 0.9906012927232193,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.5625,
+                  "average_net_cash": -0.07325,
+                  "average_win_cash": 13.725111111111111,
+                  "average_loss_cash": -17.814
+                },
+                "SELL": {
+                  "count": 18,
+                  "wins": 11,
+                  "losses": 7,
+                  "breakevens": 0,
+                  "net_cash": 13.672,
+                  "sum_positive_net_cash": 193.183,
+                  "sum_negative_net_cash_magnitude": 179.511,
+                  "profit_factor": 1.076162463581619,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.6111111111111112,
+                  "average_net_cash": 0.7595555555555555,
+                  "average_win_cash": 17.56209090909091,
+                  "average_loss_cash": -25.64442857142857
+                }
+              }
+            },
+            "IMPULSE": {
+              "closed_campaigns": {
+                "count": 26,
+                "wins": 12,
+                "losses": 14,
+                "breakevens": 0,
+                "net_cash": -3.978,
+                "sum_positive_net_cash": 299.181,
+                "sum_negative_net_cash_magnitude": 303.159,
+                "profit_factor": 0.9868781728399949,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.46153846153846156,
+                "average_net_cash": -0.153,
+                "average_win_cash": 24.93175,
+                "average_loss_cash": -21.654214285714286
+              },
+              "stressed_campaigns": {
+                "count": 26,
+                "wins": 12,
+                "losses": 14,
+                "breakevens": 0,
+                "net_cash": -56.628,
+                "sum_positive_net_cash": 274.881,
+                "sum_negative_net_cash_magnitude": 331.509,
+                "profit_factor": 0.8291811082052071,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.46153846153846156,
+                "average_net_cash": -2.178,
+                "average_win_cash": 22.90675,
+                "average_loss_cash": -23.679214285714284
+              },
+              "campaign_close_drawdown_usd": 120.939,
+              "stressed_campaign_close_drawdown_usd": 135.114,
+              "net_expectancy_r": -0.0035965916957548206,
+              "net_expectancy_r_block_ci": {
+                "n": 26,
+                "mean": -0.0035965916957548206,
+                "ci95": [
+                  -0.3953247938552971,
+                  0.3967188252550712
+                ],
+                "block": 5,
+                "repetitions": 2000,
+                "seed": 20261109,
+                "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+              },
+              "undefined_actual_risk_count": 0,
+              "filled_open_or_entry_pending_at_cutoff": 0,
+              "fee_usd": 27.3,
+              "exit_part_reasons": {
+                "STOP": 13,
+                "TARGET": 4,
+                "TIME": 9
+              },
+              "same_side_event_fills": 1,
+              "outside_same_side_event": {
+                "count": 25,
+                "wins": 12,
+                "losses": 13,
+                "breakevens": 0,
+                "net_cash": 27.144,
+                "sum_positive_net_cash": 299.181,
+                "sum_negative_net_cash_magnitude": 272.037,
+                "profit_factor": 1.099780544558277,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.48,
+                "average_net_cash": 1.08576,
+                "average_win_cash": 24.93175,
+                "average_loss_cash": -20.925923076923077
+              },
+              "by_side": {
+                "BUY": {
+                  "count": 5,
+                  "wins": 1,
+                  "losses": 4,
+                  "breakevens": 0,
+                  "net_cash": -42.339,
+                  "sum_positive_net_cash": 33.258,
+                  "sum_negative_net_cash_magnitude": 75.597,
+                  "profit_factor": 0.43993809278145957,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.2,
+                  "average_net_cash": -8.4678,
+                  "average_win_cash": 33.258,
+                  "average_loss_cash": -18.89925
+                },
+                "SELL": {
+                  "count": 21,
+                  "wins": 11,
+                  "losses": 10,
+                  "breakevens": 0,
+                  "net_cash": 38.361,
+                  "sum_positive_net_cash": 265.923,
+                  "sum_negative_net_cash_magnitude": 227.562,
+                  "profit_factor": 1.168573839217444,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.5238095238095238,
+                  "average_net_cash": 1.8267142857142857,
+                  "average_win_cash": 24.174818181818182,
+                  "average_loss_cash": -22.7562
+                }
+              }
+            },
+            "COMBINED": {
+              "closed_campaigns": {
+                "count": 53,
+                "wins": 30,
+                "losses": 23,
+                "breakevens": 0,
+                "net_cash": 73.002,
+                "sum_positive_net_cash": 599.001,
+                "sum_negative_net_cash_magnitude": 525.999,
+                "profit_factor": 1.138787336097597,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5660377358490566,
+                "average_net_cash": 1.3773962264150943,
+                "average_win_cash": 19.9667,
+                "average_loss_cash": -22.869521739130434
+              },
+              "stressed_campaigns": {
+                "count": 53,
+                "wins": 29,
+                "losses": 24,
+                "breakevens": 0,
+                "net_cash": -34.323,
+                "sum_positive_net_cash": 538.294,
+                "sum_negative_net_cash_magnitude": 572.617,
+                "profit_factor": 0.9400594114390596,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5471698113207547,
+                "average_net_cash": -0.6476037735849056,
+                "average_win_cash": 18.561862068965517,
+                "average_loss_cash": -23.859041666666666
+              },
+              "campaign_close_drawdown_usd": 153.604,
+              "stressed_campaign_close_drawdown_usd": 186.004,
+              "net_expectancy_r": 0.12275812031658834,
+              "net_expectancy_r_block_ci": {
+                "n": 53,
+                "mean": 0.12275812031658834,
+                "ci95": [
+                  -0.14704413927676221,
+                  0.41440728508265595
+                ],
+                "block": 5,
+                "repetitions": 2000,
+                "seed": 20261109,
+                "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+              },
+              "undefined_actual_risk_count": 0,
+              "filled_open_or_entry_pending_at_cutoff": 0,
+              "fee_usd": 55.65,
+              "exit_part_reasons": {
+                "SL": 53,
+                "STOP": 11,
+                "TARGET": 4,
+                "TIME": 9,
+                "TP1": 18,
+                "TP2": 9,
+                "TP3": 4,
+                "ИЗТЕКЪЛ СРОК": 1,
+                "ИЗХОД СЛЕД ГАП": 1
+              },
+              "same_side_event_fills": 2,
+              "outside_same_side_event": {
+                "count": 51,
+                "wins": 29,
+                "losses": 22,
+                "breakevens": 0,
+                "net_cash": 47.135,
+                "sum_positive_net_cash": 542.012,
+                "sum_negative_net_cash_magnitude": 494.877,
+                "profit_factor": 1.0952458893826142,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5686274509803921,
+                "average_net_cash": 0.9242156862745098,
+                "average_win_cash": 18.69006896551724,
+                "average_loss_cash": -22.49440909090909
+              },
+              "by_side": {
+                "BUY": {
+                  "count": 17,
+                  "wins": 9,
+                  "losses": 8,
+                  "breakevens": 0,
+                  "net_cash": -18.366,
+                  "sum_positive_net_cash": 148.515,
+                  "sum_negative_net_cash_magnitude": 166.881,
+                  "profit_factor": 0.8899455300483579,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.5294117647058824,
+                  "average_net_cash": -1.0803529411764705,
+                  "average_win_cash": 16.501666666666665,
+                  "average_loss_cash": -20.860125
+                },
+                "SELL": {
+                  "count": 36,
+                  "wins": 21,
+                  "losses": 15,
+                  "breakevens": 0,
+                  "net_cash": 91.368,
+                  "sum_positive_net_cash": 450.486,
+                  "sum_negative_net_cash_magnitude": 359.118,
+                  "profit_factor": 1.2544233371760813,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.5833333333333334,
+                  "average_net_cash": 2.538,
+                  "average_win_cash": 21.451714285714285,
+                  "average_loss_cash": -23.9412
+                }
+              }
+            },
+            "REVERSE_TIE": {
+              "closed_campaigns": {
+                "count": 53,
+                "wins": 30,
+                "losses": 23,
+                "breakevens": 0,
+                "net_cash": 73.002,
+                "sum_positive_net_cash": 599.001,
+                "sum_negative_net_cash_magnitude": 525.999,
+                "profit_factor": 1.138787336097597,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5660377358490566,
+                "average_net_cash": 1.3773962264150943,
+                "average_win_cash": 19.9667,
+                "average_loss_cash": -22.869521739130434
+              },
+              "stressed_campaigns": {
+                "count": 53,
+                "wins": 29,
+                "losses": 24,
+                "breakevens": 0,
+                "net_cash": -34.323,
+                "sum_positive_net_cash": 538.294,
+                "sum_negative_net_cash_magnitude": 572.617,
+                "profit_factor": 0.9400594114390596,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5471698113207547,
+                "average_net_cash": -0.6476037735849056,
+                "average_win_cash": 18.561862068965517,
+                "average_loss_cash": -23.859041666666666
+              },
+              "campaign_close_drawdown_usd": 153.604,
+              "stressed_campaign_close_drawdown_usd": 186.004,
+              "net_expectancy_r": 0.12275812031658834,
+              "net_expectancy_r_block_ci": {
+                "n": 53,
+                "mean": 0.12275812031658834,
+                "ci95": [
+                  -0.14704413927676221,
+                  0.41440728508265595
+                ],
+                "block": 5,
+                "repetitions": 2000,
+                "seed": 20261109,
+                "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+              },
+              "undefined_actual_risk_count": 0,
+              "filled_open_or_entry_pending_at_cutoff": 0,
+              "fee_usd": 55.65,
+              "exit_part_reasons": {
+                "SL": 53,
+                "STOP": 11,
+                "TARGET": 4,
+                "TIME": 9,
+                "TP1": 18,
+                "TP2": 9,
+                "TP3": 4,
+                "ИЗТЕКЪЛ СРОК": 1,
+                "ИЗХОД СЛЕД ГАП": 1
+              },
+              "same_side_event_fills": 2,
+              "outside_same_side_event": {
+                "count": 51,
+                "wins": 29,
+                "losses": 22,
+                "breakevens": 0,
+                "net_cash": 47.135,
+                "sum_positive_net_cash": 542.012,
+                "sum_negative_net_cash_magnitude": 494.877,
+                "profit_factor": 1.0952458893826142,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5686274509803921,
+                "average_net_cash": 0.9242156862745098,
+                "average_win_cash": 18.69006896551724,
+                "average_loss_cash": -22.49440909090909
+              },
+              "by_side": {
+                "BUY": {
+                  "count": 17,
+                  "wins": 9,
+                  "losses": 8,
+                  "breakevens": 0,
+                  "net_cash": -18.366,
+                  "sum_positive_net_cash": 148.515,
+                  "sum_negative_net_cash_magnitude": 166.881,
+                  "profit_factor": 0.8899455300483579,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.5294117647058824,
+                  "average_net_cash": -1.0803529411764705,
+                  "average_win_cash": 16.501666666666665,
+                  "average_loss_cash": -20.860125
+                },
+                "SELL": {
+                  "count": 36,
+                  "wins": 21,
+                  "losses": 15,
+                  "breakevens": 0,
+                  "net_cash": 91.368,
+                  "sum_positive_net_cash": 450.486,
+                  "sum_negative_net_cash_magnitude": 359.118,
+                  "profit_factor": 1.2544233371760813,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.5833333333333334,
+                  "average_net_cash": 2.538,
+                  "average_win_cash": 21.451714285714285,
+                  "average_loss_cash": -23.9412
+                }
+              }
+            }
+          }
+        }
+      },
+      "prefix_replays": [
+        3339,
+        5535
+      ]
+    },
+    "15": {
+      "provenance": {
+        "market_sha256": "6c89015105a406c2a0c1567f0e9a5e445cb31ee7604a985d727f26892d8ba4b7",
+        "s5_log_sha256": "2bfc7e3a0f4c47a98f8c66f1a96309fe648618c4948c8113942f84f9fb7dfdd3",
+        "native_source_sha256": "bc7bf16cd988fa23832f75ff22ee421b198cafb95614c9445622ce7bc4cfe1c3",
+        "bars": 6445,
+        "from_utc": "2026-08-02T22:00:00+00:00",
+        "through_utc": "2026-11-09T02:45:00+00:00",
+        "native_market_fingerprints": [
+          528240904,
+          379786049
+        ]
+      },
+      "calendar": {
+        "complete_hours": 1610,
+        "partial_observed_hours": 2,
+        "eligible_hours": 1547
+      },
+      "trade_metrics": {
+        "S5": {
+          "closed_campaigns": {
+            "count": 133,
+            "wins": 65,
+            "losses": 68,
+            "breakevens": 0,
+            "net_cash": 406.467,
+            "sum_positive_net_cash": 2489.581,
+            "sum_negative_net_cash_magnitude": 2083.114,
+            "profit_factor": 1.1951247027287033,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.48872180451127817,
+            "average_net_cash": 3.056142857142857,
+            "average_win_cash": 38.30124615384615,
+            "average_loss_cash": -30.634029411764708
+          },
+          "stressed_campaigns": {
+            "count": 133,
+            "wins": 64,
+            "losses": 69,
+            "breakevens": 0,
+            "net_cash": 137.142,
+            "sum_positive_net_cash": 2359.236,
+            "sum_negative_net_cash_magnitude": 2222.094,
+            "profit_factor": 1.0617174610975053,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.48120300751879697,
+            "average_net_cash": 1.0311428571428571,
+            "average_win_cash": 36.8630625,
+            "average_loss_cash": -32.20426086956522
+          },
+          "campaign_close_drawdown_usd": 278.155,
+          "stressed_campaign_close_drawdown_usd": 369.269,
+          "net_expectancy_r": -0.000662428689568394,
+          "net_expectancy_r_block_ci": {
+            "n": 133,
+            "mean": -0.000662428689568394,
+            "ci95": [
+              -0.16033956649398792,
+              0.15718611029748764
+            ],
+            "block": 5,
+            "repetitions": 2000,
+            "seed": 20261109,
+            "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+          },
+          "undefined_actual_risk_count": 0,
+          "filled_open_or_entry_pending_at_cutoff": 0,
+          "fee_usd": 139.65,
+          "exit_part_reasons": {
+            "SL": 245,
+            "TP1": 65,
+            "TP2": 33,
+            "TP3": 19,
+            "ИЗТЕКЪЛ СРОК": 6,
+            "ИЗХОД СЛЕД ГАП": 11
+          },
+          "same_side_event_fills": 10,
+          "outside_same_side_event": {
+            "count": 123,
+            "wins": 55,
+            "losses": 68,
+            "breakevens": 0,
+            "net_cash": -160.278,
+            "sum_positive_net_cash": 1922.836,
+            "sum_negative_net_cash_magnitude": 2083.114,
+            "profit_factor": 0.9230584595946261,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.44715447154471544,
+            "average_net_cash": -1.3030731707317074,
+            "average_win_cash": 34.960654545454545,
+            "average_loss_cash": -30.634029411764708
+          },
+          "by_side": {
+            "BUY": {
+              "count": 68,
+              "wins": 31,
+              "losses": 37,
+              "breakevens": 0,
+              "net_cash": -171.937,
+              "sum_positive_net_cash": 1039.575,
+              "sum_negative_net_cash_magnitude": 1211.512,
+              "profit_factor": 0.8580806463328469,
+              "profit_factor_status": "DEFINED",
+              "win_rate": 0.45588235294117646,
+              "average_net_cash": -2.528485294117647,
+              "average_win_cash": 33.534677419354836,
+              "average_loss_cash": -32.74356756756757
+            },
+            "SELL": {
+              "count": 65,
+              "wins": 34,
+              "losses": 31,
+              "breakevens": 0,
+              "net_cash": 578.404,
+              "sum_positive_net_cash": 1450.006,
+              "sum_negative_net_cash_magnitude": 871.602,
+              "profit_factor": 1.6636102257681833,
+              "profit_factor_status": "DEFINED",
+              "win_rate": 0.5230769230769231,
+              "average_net_cash": 8.898523076923077,
+              "average_win_cash": 42.64723529411765,
+              "average_loss_cash": -28.1161935483871
+            }
+          }
+        },
+        "IMPULSE": {
+          "closed_campaigns": {
+            "count": 76,
+            "wins": 23,
+            "losses": 53,
+            "breakevens": 0,
+            "net_cash": -984.954,
+            "sum_positive_net_cash": 1129.518,
+            "sum_negative_net_cash_magnitude": 2114.472,
+            "profit_factor": 0.5341844205078147,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.3026315789473684,
+            "average_net_cash": -12.959921052631579,
+            "average_win_cash": 49.109478260869565,
+            "average_loss_cash": -39.895698113207544
+          },
+          "stressed_campaigns": {
+            "count": 76,
+            "wins": 22,
+            "losses": 54,
+            "breakevens": 0,
+            "net_cash": -1138.854,
+            "sum_positive_net_cash": 1083.765,
+            "sum_negative_net_cash_magnitude": 2222.619,
+            "profit_factor": 0.48760718773662964,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.2894736842105263,
+            "average_net_cash": -14.984921052631579,
+            "average_win_cash": 49.26204545454546,
+            "average_loss_cash": -41.15961111111111
+          },
+          "campaign_close_drawdown_usd": 1045.065,
+          "stressed_campaign_close_drawdown_usd": 1179.795,
+          "net_expectancy_r": -0.21809460295033606,
+          "net_expectancy_r_block_ci": {
+            "n": 76,
+            "mean": -0.21809460295033606,
+            "ci95": [
+              -0.4624450126938177,
+              0.03944811635679203
+            ],
+            "block": 5,
+            "repetitions": 2000,
+            "seed": 20261109,
+            "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+          },
+          "undefined_actual_risk_count": 0,
+          "filled_open_or_entry_pending_at_cutoff": 0,
+          "fee_usd": 79.8,
+          "exit_part_reasons": {
+            "STOP": 48,
+            "TARGET": 16,
+            "TIME": 12
+          },
+          "same_side_event_fills": 2,
+          "outside_same_side_event": {
+            "count": 74,
+            "wins": 21,
+            "losses": 53,
+            "breakevens": 0,
+            "net_cash": -1051.677,
+            "sum_positive_net_cash": 1062.795,
+            "sum_negative_net_cash_magnitude": 2114.472,
+            "profit_factor": 0.5026290251183274,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.28378378378378377,
+            "average_net_cash": -14.211851351351351,
+            "average_win_cash": 50.60928571428571,
+            "average_loss_cash": -39.895698113207544
+          },
+          "by_side": {
+            "BUY": {
+              "count": 40,
+              "wins": 11,
+              "losses": 29,
+              "breakevens": 0,
+              "net_cash": -543.603,
+              "sum_positive_net_cash": 636.024,
+              "sum_negative_net_cash_magnitude": 1179.627,
+              "profit_factor": 0.5391738235899992,
+              "profit_factor_status": "DEFINED",
+              "win_rate": 0.275,
+              "average_net_cash": -13.590075,
+              "average_win_cash": 57.82036363636364,
+              "average_loss_cash": -40.676793103448276
+            },
+            "SELL": {
+              "count": 36,
+              "wins": 12,
+              "losses": 24,
+              "breakevens": 0,
+              "net_cash": -441.351,
+              "sum_positive_net_cash": 493.494,
+              "sum_negative_net_cash_magnitude": 934.845,
+              "profit_factor": 0.5278885804598623,
+              "profit_factor_status": "DEFINED",
+              "win_rate": 0.3333333333333333,
+              "average_net_cash": -12.25975,
+              "average_win_cash": 41.1245,
+              "average_loss_cash": -38.951875
+            }
+          }
+        },
+        "COMBINED": {
+          "closed_campaigns": {
+            "count": 173,
+            "wins": 71,
+            "losses": 102,
+            "breakevens": 0,
+            "net_cash": -874.934,
+            "sum_positive_net_cash": 2890.211,
+            "sum_negative_net_cash_magnitude": 3765.145,
+            "profit_factor": 0.7676227608764071,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.41040462427745666,
+            "average_net_cash": -5.057421965317919,
+            "average_win_cash": 40.70719718309859,
+            "average_loss_cash": -36.913186274509805
+          },
+          "stressed_campaigns": {
+            "count": 173,
+            "wins": 70,
+            "losses": 103,
+            "breakevens": 0,
+            "net_cash": -1225.259,
+            "sum_positive_net_cash": 2747.716,
+            "sum_negative_net_cash_magnitude": 3972.975,
+            "profit_factor": 0.6916016335365816,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.4046242774566474,
+            "average_net_cash": -7.082421965317919,
+            "average_win_cash": 39.25308571428572,
+            "average_loss_cash": -38.57257281553398
+          },
+          "campaign_close_drawdown_usd": 1180.048,
+          "stressed_campaign_close_drawdown_usd": 1340.023,
+          "net_expectancy_r": -0.10832863731735587,
+          "net_expectancy_r_block_ci": {
+            "n": 173,
+            "mean": -0.10832863731735587,
+            "ci95": [
+              -0.2545129317351056,
+              0.030743108730488626
+            ],
+            "block": 5,
+            "repetitions": 2000,
+            "seed": 20261109,
+            "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+          },
+          "undefined_actual_risk_count": 0,
+          "filled_open_or_entry_pending_at_cutoff": 0,
+          "fee_usd": 181.65,
+          "exit_part_reasons": {
+            "SL": 196,
+            "STOP": 44,
+            "TARGET": 13,
+            "TIME": 10,
+            "TP1": 54,
+            "TP2": 24,
+            "TP3": 13,
+            "ИЗТЕКЪЛ СРОК": 6,
+            "ИЗХОД СЛЕД ГАП": 9
+          },
+          "same_side_event_fills": 11,
+          "outside_same_side_event": {
+            "count": 162,
+            "wins": 60,
+            "losses": 102,
+            "breakevens": 0,
+            "net_cash": -1506.044,
+            "sum_positive_net_cash": 2259.101,
+            "sum_negative_net_cash_magnitude": 3765.145,
+            "profit_factor": 0.6000037183162933,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.37037037037037035,
+            "average_net_cash": -9.296567901234567,
+            "average_win_cash": 37.65168333333333,
+            "average_loss_cash": -36.913186274509805
+          },
+          "by_side": {
+            "BUY": {
+              "count": 91,
+              "wins": 36,
+              "losses": 55,
+              "breakevens": 0,
+              "net_cash": -773.473,
+              "sum_positive_net_cash": 1381.926,
+              "sum_negative_net_cash_magnitude": 2155.399,
+              "profit_factor": 0.6411462564471822,
+              "profit_factor_status": "DEFINED",
+              "win_rate": 0.3956043956043956,
+              "average_net_cash": -8.499703296703297,
+              "average_win_cash": 38.386833333333335,
+              "average_loss_cash": -39.18907272727273
+            },
+            "SELL": {
+              "count": 82,
+              "wins": 35,
+              "losses": 47,
+              "breakevens": 0,
+              "net_cash": -101.461,
+              "sum_positive_net_cash": 1508.285,
+              "sum_negative_net_cash_magnitude": 1609.746,
+              "profit_factor": 0.9369708016047252,
+              "profit_factor_status": "DEFINED",
+              "win_rate": 0.4268292682926829,
+              "average_net_cash": -1.2373292682926829,
+              "average_win_cash": 43.09385714285714,
+              "average_loss_cash": -34.249914893617024
+            }
+          }
+        },
+        "REVERSE_TIE": {
+          "closed_campaigns": {
+            "count": 173,
+            "wins": 71,
+            "losses": 102,
+            "breakevens": 0,
+            "net_cash": -874.934,
+            "sum_positive_net_cash": 2890.211,
+            "sum_negative_net_cash_magnitude": 3765.145,
+            "profit_factor": 0.7676227608764071,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.41040462427745666,
+            "average_net_cash": -5.057421965317919,
+            "average_win_cash": 40.70719718309859,
+            "average_loss_cash": -36.913186274509805
+          },
+          "stressed_campaigns": {
+            "count": 173,
+            "wins": 70,
+            "losses": 103,
+            "breakevens": 0,
+            "net_cash": -1225.259,
+            "sum_positive_net_cash": 2747.716,
+            "sum_negative_net_cash_magnitude": 3972.975,
+            "profit_factor": 0.6916016335365816,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.4046242774566474,
+            "average_net_cash": -7.082421965317919,
+            "average_win_cash": 39.25308571428572,
+            "average_loss_cash": -38.57257281553398
+          },
+          "campaign_close_drawdown_usd": 1180.048,
+          "stressed_campaign_close_drawdown_usd": 1340.023,
+          "net_expectancy_r": -0.10832863731735587,
+          "net_expectancy_r_block_ci": {
+            "n": 173,
+            "mean": -0.10832863731735587,
+            "ci95": [
+              -0.2545129317351056,
+              0.030743108730488626
+            ],
+            "block": 5,
+            "repetitions": 2000,
+            "seed": 20261109,
+            "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+          },
+          "undefined_actual_risk_count": 0,
+          "filled_open_or_entry_pending_at_cutoff": 0,
+          "fee_usd": 181.65,
+          "exit_part_reasons": {
+            "SL": 196,
+            "STOP": 44,
+            "TARGET": 13,
+            "TIME": 10,
+            "TP1": 54,
+            "TP2": 24,
+            "TP3": 13,
+            "ИЗТЕКЪЛ СРОК": 6,
+            "ИЗХОД СЛЕД ГАП": 9
+          },
+          "same_side_event_fills": 11,
+          "outside_same_side_event": {
+            "count": 162,
+            "wins": 60,
+            "losses": 102,
+            "breakevens": 0,
+            "net_cash": -1506.044,
+            "sum_positive_net_cash": 2259.101,
+            "sum_negative_net_cash_magnitude": 3765.145,
+            "profit_factor": 0.6000037183162933,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.37037037037037035,
+            "average_net_cash": -9.296567901234567,
+            "average_win_cash": 37.65168333333333,
+            "average_loss_cash": -36.913186274509805
+          },
+          "by_side": {
+            "BUY": {
+              "count": 91,
+              "wins": 36,
+              "losses": 55,
+              "breakevens": 0,
+              "net_cash": -773.473,
+              "sum_positive_net_cash": 1381.926,
+              "sum_negative_net_cash_magnitude": 2155.399,
+              "profit_factor": 0.6411462564471822,
+              "profit_factor_status": "DEFINED",
+              "win_rate": 0.3956043956043956,
+              "average_net_cash": -8.499703296703297,
+              "average_win_cash": 38.386833333333335,
+              "average_loss_cash": -39.18907272727273
+            },
+            "SELL": {
+              "count": 82,
+              "wins": 35,
+              "losses": 47,
+              "breakevens": 0,
+              "net_cash": -101.461,
+              "sum_positive_net_cash": 1508.285,
+              "sum_negative_net_cash_magnitude": 1609.746,
+              "profit_factor": 0.9369708016047252,
+              "profit_factor_status": "DEFINED",
+              "win_rate": 0.4268292682926829,
+              "average_net_cash": -1.2373292682926829,
+              "average_win_cash": 43.09385714285714,
+              "average_loss_cash": -34.249914893617024
+            }
+          }
+        }
+      },
+      "portfolio_delta": {
+        "S5": 406.467,
+        "delta_combined_net_usd": -1281.401,
+        "delta_stressed_combined_net_usd": -1362.401,
+        "delta_combined_campaign_close_drawdown_usd": 901.893
+      },
+      "events_by_side": {
+        "BUY": {
+          "S5": {
+            "events": 44,
+            "known_new_watch": null,
+            "known_confirmation": 6,
+            "risk_valid": null,
+            "admitted": 6,
+            "filled": 6,
+            "carry_in": 4,
+            "opposite_side_fills": 0,
+            "median_latency_minutes": {
+              "watch": null,
+              "confirmation": 15.0,
+              "geometry_valid": null,
+              "admission": 15.0,
+              "fill": 15.0
+            },
+            "median_capture_fraction": 0.6792833336272671,
+            "median_favorable_price_excursion": 22.467999999999847,
+            "median_adverse_price_excursion": 0.9069999999999254,
+            "misses": {
+              "NO_OBSERVED_ADMISSION": 38
+            }
+          },
+          "IMPULSE": {
+            "events": 44,
+            "known_new_watch": 25,
+            "known_confirmation": 10,
+            "risk_valid": 1,
+            "admitted": 1,
+            "filled": 1,
+            "carry_in": 4,
+            "opposite_side_fills": 0,
+            "median_latency_minutes": {
+              "watch": 30.0,
+              "confirmation": 30.0,
+              "geometry_valid": 30.0,
+              "admission": 30.0,
+              "fill": 30.0
+            },
+            "median_capture_fraction": 0.42771675166732986,
+            "median_favorable_price_excursion": 21.80500000000029,
+            "median_adverse_price_excursion": 0.0,
+            "misses": {
+              "WATCH_WITHOUT_CONFIRMATION": 15,
+              "RISK_REJECTED": 9,
+              "NO_NEW_WATCH_OR_CONFIRMATION": 19
+            }
+          },
+          "COMBINED": {
+            "events": 44,
+            "known_new_watch": 25,
+            "known_confirmation": 10,
+            "risk_valid": 1,
+            "admitted": 7,
+            "filled": 7,
+            "carry_in": 8,
+            "opposite_side_fills": 0,
+            "median_latency_minutes": {
+              "watch": 30.0,
+              "confirmation": 30.0,
+              "geometry_valid": 30.0,
+              "admission": 15.0,
+              "fill": 15.0
+            },
+            "median_capture_fraction": 0.6421381774866036,
+            "median_favorable_price_excursion": 21.83299999999963,
+            "median_adverse_price_excursion": 0.5419999999999163,
+            "misses": {
+              "WATCH_WITHOUT_CONFIRMATION": 14,
+              "NO_NEW_WATCH_OR_CONFIRMATION": 15,
+              "RISK_REJECTED": 8
+            }
+          }
+        },
+        "SELL": {
+          "S5": {
+            "events": 38,
+            "known_new_watch": null,
+            "known_confirmation": 4,
+            "risk_valid": null,
+            "admitted": 4,
+            "filled": 4,
+            "carry_in": 7,
+            "opposite_side_fills": 1,
+            "median_latency_minutes": {
+              "watch": null,
+              "confirmation": 30.0,
+              "geometry_valid": null,
+              "admission": 30.0,
+              "fill": 30.0
+            },
+            "median_capture_fraction": 0.5150983211808635,
+            "median_favorable_price_excursion": 14.322999999999865,
+            "median_adverse_price_excursion": 2.181999999999789,
+            "misses": {
+              "NO_OBSERVED_ADMISSION": 34
+            }
+          },
+          "IMPULSE": {
+            "events": 38,
+            "known_new_watch": 18,
+            "known_confirmation": 9,
+            "risk_valid": 1,
+            "admitted": 1,
+            "filled": 1,
+            "carry_in": 0,
+            "opposite_side_fills": 0,
+            "median_latency_minutes": {
+              "watch": 30.0,
+              "confirmation": 30.0,
+              "geometry_valid": 30.0,
+              "admission": 30.0,
+              "fill": 30.0
+            },
+            "median_capture_fraction": 0.5073070123747937,
+            "median_favorable_price_excursion": 17.218000000000757,
+            "median_adverse_price_excursion": 5.256999999999607,
+            "misses": {
+              "NO_NEW_WATCH_OR_CONFIRMATION": 19,
+              "WATCH_WITHOUT_CONFIRMATION": 10,
+              "RISK_REJECTED": 8
+            }
+          },
+          "COMBINED": {
+            "events": 38,
+            "known_new_watch": 18,
+            "known_confirmation": 9,
+            "risk_valid": 1,
+            "admitted": 4,
+            "filled": 4,
+            "carry_in": 6,
+            "opposite_side_fills": 1,
+            "median_latency_minutes": {
+              "watch": 30.0,
+              "confirmation": 30.0,
+              "geometry_valid": 30.0,
+              "admission": 30.0,
+              "fill": 30.0
+            },
+            "median_capture_fraction": 0.5150983211808635,
+            "median_favorable_price_excursion": 14.322999999999865,
+            "median_adverse_price_excursion": 2.181999999999789,
+            "misses": {
+              "NO_NEW_WATCH_OR_CONFIRMATION": 15,
+              "WATCH_WITHOUT_CONFIRMATION": 10,
+              "RISK_REJECTED": 8,
+              "OCCUPIED": 1
+            }
+          }
+        }
+      },
+      "decision_counts": {
+        "BUY": {
+          "WATCH": 239,
+          "CONFIRMED": 124,
+          "REJECTED": 78,
+          "EXPIRED": 114,
+          "RISK_VALID": 46
+        },
+        "SELL": {
+          "WATCH": 241,
+          "EXPIRED": 142,
+          "CONFIRMED": 99,
+          "RISK_VALID": 41,
+          "REJECTED": 58
+        }
+      },
+      "reasons": {
+        "CONFIRMED": {
+          "CONTINUATION": 223
+        },
+        "REJECTED": {
+          "OVEREXTENSION": 44,
+          "OVEREXTENSION+STOP_TOO_WIDE": 70,
+          "STOP_TOO_WIDE": 22
+        },
+        "EXPIRED": {
+          "LOST_BREAK_LEVEL": 232,
+          "TTL": 24
+        }
+      },
+      "occupancy": {
+        "IMPULSE": {
+          "IMPULSE_blocked_by_IMPULSE": 11
+        },
+        "COMBINED": {
+          "IMPULSE_blocked_by_IMPULSE": 10,
+          "S5_blocked_by_IMPULSE": 27,
+          "IMPULSE_blocked_by_S5": 10
+        },
+        "REVERSE_TIE": {
+          "IMPULSE_blocked_by_IMPULSE": 10,
+          "S5_blocked_by_IMPULSE": 27,
+          "IMPULSE_blocked_by_S5": 10
+        }
+      },
+      "chronology": {
+        "split_utc": "2026-09-30T01:15:00+00:00",
+        "events_straddling_split": 0,
+        "crossing_or_censored_trade_campaigns": {
+          "S5": 0,
+          "IMPULSE": 0,
+          "COMBINED": 0,
+          "REVERSE_TIE": 0
+        },
+        "earlier": {
+          "events": {
+            "S5": {
+              "events": 38,
+              "known_new_watch": null,
+              "known_confirmation": 5,
+              "risk_valid": null,
+              "admitted": 5,
+              "filled": 5,
+              "carry_in": 3,
+              "opposite_side_fills": 0,
+              "median_latency_minutes": {
+                "watch": null,
+                "confirmation": 15.0,
+                "geometry_valid": null,
+                "admission": 15.0,
+                "fill": 15.0
+              },
+              "median_capture_fraction": 0.6410158543746146,
+              "median_favorable_price_excursion": 21.83299999999963,
+              "median_adverse_price_excursion": 1.2719999999999345,
+              "misses": {
+                "NO_OBSERVED_ADMISSION": 33
+              }
+            },
+            "IMPULSE": {
+              "events": 38,
+              "known_new_watch": 23,
+              "known_confirmation": 9,
+              "risk_valid": 1,
+              "admitted": 1,
+              "filled": 1,
+              "carry_in": 2,
+              "opposite_side_fills": 0,
+              "median_latency_minutes": {
+                "watch": 45.0,
+                "confirmation": 30.0,
+                "geometry_valid": 30.0,
+                "admission": 30.0,
+                "fill": 30.0
+              },
+              "median_capture_fraction": 0.42771675166732986,
+              "median_favorable_price_excursion": 21.80500000000029,
+              "median_adverse_price_excursion": 0.0,
+              "misses": {
+                "WATCH_WITHOUT_CONFIRMATION": 15,
+                "NO_NEW_WATCH_OR_CONFIRMATION": 14,
+                "RISK_REJECTED": 8
+              }
+            },
+            "COMBINED": {
+              "events": 38,
+              "known_new_watch": 23,
+              "known_confirmation": 9,
+              "risk_valid": 1,
+              "admitted": 6,
+              "filled": 6,
+              "carry_in": 5,
+              "opposite_side_fills": 0,
+              "median_latency_minutes": {
+                "watch": 45.0,
+                "confirmation": 30.0,
+                "geometry_valid": 30.0,
+                "admission": 15.0,
+                "fill": 15.0
+              },
+              "median_capture_fraction": 0.6090898342777715,
+              "median_favorable_price_excursion": 21.81899999999996,
+              "median_adverse_price_excursion": 0.9719999999997526,
+              "misses": {
+                "WATCH_WITHOUT_CONFIRMATION": 14,
+                "NO_NEW_WATCH_OR_CONFIRMATION": 11,
+                "RISK_REJECTED": 7
+              }
+            }
+          },
+          "economics": {
+            "S5": {
+              "closed_campaigns": {
+                "count": 72,
+                "wins": 36,
+                "losses": 36,
+                "breakevens": 0,
+                "net_cash": 231.003,
+                "sum_positive_net_cash": 1493.788,
+                "sum_negative_net_cash_magnitude": 1262.785,
+                "profit_factor": 1.1829313778671746,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5,
+                "average_net_cash": 3.208375,
+                "average_win_cash": 41.49411111111111,
+                "average_loss_cash": -35.07736111111111
+              },
+              "stressed_campaigns": {
+                "count": 72,
+                "wins": 36,
+                "losses": 36,
+                "breakevens": 0,
+                "net_cash": 85.203,
+                "sum_positive_net_cash": 1420.888,
+                "sum_negative_net_cash_magnitude": 1335.685,
+                "profit_factor": 1.0637897408445853,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5,
+                "average_net_cash": 1.183375,
+                "average_win_cash": 39.46911111111111,
+                "average_loss_cash": -37.10236111111111
+              },
+              "campaign_close_drawdown_usd": 278.155,
+              "stressed_campaign_close_drawdown_usd": 334.855,
+              "net_expectancy_r": 0.06109123718177218,
+              "net_expectancy_r_block_ci": {
+                "n": 72,
+                "mean": 0.06109123718177218,
+                "ci95": [
+                  -0.15618933615662578,
+                  0.26837266804414256
+                ],
+                "block": 5,
+                "repetitions": 2000,
+                "seed": 20261109,
+                "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+              },
+              "undefined_actual_risk_count": 0,
+              "filled_open_or_entry_pending_at_cutoff": 0,
+              "fee_usd": 75.6,
+              "exit_part_reasons": {
+                "SL": 131,
+                "TP1": 36,
+                "TP2": 20,
+                "TP3": 12,
+                "ИЗТЕКЪЛ СРОК": 2,
+                "ИЗХОД СЛЕД ГАП": 5
+              },
+              "same_side_event_fills": 5,
+              "outside_same_side_event": {
+                "count": 67,
+                "wins": 31,
+                "losses": 36,
+                "breakevens": 0,
+                "net_cash": -120.152,
+                "sum_positive_net_cash": 1142.633,
+                "sum_negative_net_cash_magnitude": 1262.785,
+                "profit_factor": 0.9048515780596064,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.4626865671641791,
+                "average_net_cash": -1.793313432835821,
+                "average_win_cash": 36.85912903225807,
+                "average_loss_cash": -35.07736111111111
+              },
+              "by_side": {
+                "BUY": {
+                  "count": 35,
+                  "wins": 18,
+                  "losses": 17,
+                  "breakevens": 0,
+                  "net_cash": 29.141,
+                  "sum_positive_net_cash": 728.172,
+                  "sum_negative_net_cash_magnitude": 699.031,
+                  "profit_factor": 1.041687707698228,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.5142857142857142,
+                  "average_net_cash": 0.8326,
+                  "average_win_cash": 40.454,
+                  "average_loss_cash": -41.119470588235295
+                },
+                "SELL": {
+                  "count": 37,
+                  "wins": 18,
+                  "losses": 19,
+                  "breakevens": 0,
+                  "net_cash": 201.862,
+                  "sum_positive_net_cash": 765.616,
+                  "sum_negative_net_cash_magnitude": 563.754,
+                  "profit_factor": 1.3580675259066899,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.4864864864864865,
+                  "average_net_cash": 5.45572972972973,
+                  "average_win_cash": 42.53422222222222,
+                  "average_loss_cash": -29.671263157894735
+                }
+              }
+            },
+            "IMPULSE": {
+              "closed_campaigns": {
+                "count": 46,
+                "wins": 11,
+                "losses": 35,
+                "breakevens": 0,
+                "net_cash": -824.841,
+                "sum_positive_net_cash": 662.421,
+                "sum_negative_net_cash_magnitude": 1487.262,
+                "profit_factor": 0.4453963054256748,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.2391304347826087,
+                "average_net_cash": -17.93132608695652,
+                "average_win_cash": 60.22009090909091,
+                "average_loss_cash": -42.4932
+              },
+              "stressed_campaigns": {
+                "count": 46,
+                "wins": 11,
+                "losses": 35,
+                "breakevens": 0,
+                "net_cash": -917.991,
+                "sum_positive_net_cash": 640.146,
+                "sum_negative_net_cash_magnitude": 1558.137,
+                "profit_factor": 0.4108406385317851,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.2391304347826087,
+                "average_net_cash": -19.956326086956523,
+                "average_win_cash": 58.19509090909091,
+                "average_loss_cash": -44.5182
+              },
+              "campaign_close_drawdown_usd": 873.882,
+              "stressed_campaign_close_drawdown_usd": 958.932,
+              "net_expectancy_r": -0.36641643241255994,
+              "net_expectancy_r_block_ci": {
+                "n": 46,
+                "mean": -0.36641643241255994,
+                "ci95": [
+                  -0.6280726246905731,
+                  -0.09647529730880801
+                ],
+                "block": 5,
+                "repetitions": 2000,
+                "seed": 20261109,
+                "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+              },
+              "undefined_actual_risk_count": 0,
+              "filled_open_or_entry_pending_at_cutoff": 0,
+              "fee_usd": 48.3,
+              "exit_part_reasons": {
+                "STOP": 32,
+                "TARGET": 8,
+                "TIME": 6
+              },
+              "same_side_event_fills": 1,
+              "outside_same_side_event": {
+                "count": 45,
+                "wins": 10,
+                "losses": 35,
+                "breakevens": 0,
+                "net_cash": -889.206,
+                "sum_positive_net_cash": 598.056,
+                "sum_negative_net_cash_magnitude": 1487.262,
+                "profit_factor": 0.40211879278835877,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.2222222222222222,
+                "average_net_cash": -19.760133333333332,
+                "average_win_cash": 59.8056,
+                "average_loss_cash": -42.4932
+              },
+              "by_side": {
+                "BUY": {
+                  "count": 28,
+                  "wins": 8,
+                  "losses": 20,
+                  "breakevens": 0,
+                  "net_cash": -356.616,
+                  "sum_positive_net_cash": 487.473,
+                  "sum_negative_net_cash_magnitude": 844.089,
+                  "profit_factor": 0.5775137455884392,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.2857142857142857,
+                  "average_net_cash": -12.736285714285714,
+                  "average_win_cash": 60.934125,
+                  "average_loss_cash": -42.20445
+                },
+                "SELL": {
+                  "count": 18,
+                  "wins": 3,
+                  "losses": 15,
+                  "breakevens": 0,
+                  "net_cash": -468.225,
+                  "sum_positive_net_cash": 174.948,
+                  "sum_negative_net_cash_magnitude": 643.173,
+                  "profit_factor": 0.27200768688984145,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.16666666666666666,
+                  "average_net_cash": -26.0125,
+                  "average_win_cash": 58.316,
+                  "average_loss_cash": -42.8782
+                }
+              }
+            },
+            "COMBINED": {
+              "closed_campaigns": {
+                "count": 100,
+                "wins": 35,
+                "losses": 65,
+                "breakevens": 0,
+                "net_cash": -1044.89,
+                "sum_positive_net_cash": 1540.124,
+                "sum_negative_net_cash_magnitude": 2585.014,
+                "profit_factor": 0.5957894231907448,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.35,
+                "average_net_cash": -10.4489,
+                "average_win_cash": 44.003542857142854,
+                "average_loss_cash": -39.769446153846154
+              },
+              "stressed_campaigns": {
+                "count": 100,
+                "wins": 35,
+                "losses": 65,
+                "breakevens": 0,
+                "net_cash": -1247.39,
+                "sum_positive_net_cash": 1469.249,
+                "sum_negative_net_cash_magnitude": 2716.639,
+                "profit_factor": 0.5408333606342248,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.35,
+                "average_net_cash": -12.4739,
+                "average_win_cash": 41.978542857142855,
+                "average_loss_cash": -41.79444615384615
+              },
+              "campaign_close_drawdown_usd": 1129.684,
+              "stressed_campaign_close_drawdown_usd": 1287.634,
+              "net_expectancy_r": -0.23075891886214206,
+              "net_expectancy_r_block_ci": {
+                "n": 100,
+                "mean": -0.23075891886214206,
+                "ci95": [
+                  -0.4155790157261403,
+                  -0.03709527733806696
+                ],
+                "block": 5,
+                "repetitions": 2000,
+                "seed": 20261109,
+                "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+              },
+              "undefined_actual_risk_count": 0,
+              "filled_open_or_entry_pending_at_cutoff": 0,
+              "fee_usd": 105.0,
+              "exit_part_reasons": {
+                "SL": 110,
+                "STOP": 31,
+                "TARGET": 6,
+                "TIME": 6,
+                "TP1": 27,
+                "TP2": 13,
+                "TP3": 7,
+                "ИЗТЕКЪЛ СРОК": 2,
+                "ИЗХОД СЛЕД ГАП": 4
+              },
+              "same_side_event_fills": 6,
+              "outside_same_side_event": {
+                "count": 94,
+                "wins": 29,
+                "losses": 65,
+                "breakevens": 0,
+                "net_cash": -1460.41,
+                "sum_positive_net_cash": 1124.604,
+                "sum_negative_net_cash_magnitude": 2585.014,
+                "profit_factor": 0.4350475471312728,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.30851063829787234,
+                "average_net_cash": -15.536276595744681,
+                "average_win_cash": 38.779448275862066,
+                "average_loss_cash": -39.769446153846154
+              },
+              "by_side": {
+                "BUY": {
+                  "count": 56,
+                  "wins": 20,
+                  "losses": 36,
+                  "breakevens": 0,
+                  "net_cash": -587.77,
+                  "sum_positive_net_cash": 921.972,
+                  "sum_negative_net_cash_magnitude": 1509.742,
+                  "profit_factor": 0.6106818251065413,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.35714285714285715,
+                  "average_net_cash": -10.495892857142858,
+                  "average_win_cash": 46.0986,
+                  "average_loss_cash": -41.93727777777778
+                },
+                "SELL": {
+                  "count": 44,
+                  "wins": 15,
+                  "losses": 29,
+                  "breakevens": 0,
+                  "net_cash": -457.12,
+                  "sum_positive_net_cash": 618.152,
+                  "sum_negative_net_cash_magnitude": 1075.272,
+                  "profit_factor": 0.5748796583562112,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.3409090909090909,
+                  "average_net_cash": -10.389090909090909,
+                  "average_win_cash": 41.21013333333333,
+                  "average_loss_cash": -37.07834482758621
+                }
+              }
+            },
+            "REVERSE_TIE": {
+              "closed_campaigns": {
+                "count": 100,
+                "wins": 35,
+                "losses": 65,
+                "breakevens": 0,
+                "net_cash": -1044.89,
+                "sum_positive_net_cash": 1540.124,
+                "sum_negative_net_cash_magnitude": 2585.014,
+                "profit_factor": 0.5957894231907448,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.35,
+                "average_net_cash": -10.4489,
+                "average_win_cash": 44.003542857142854,
+                "average_loss_cash": -39.769446153846154
+              },
+              "stressed_campaigns": {
+                "count": 100,
+                "wins": 35,
+                "losses": 65,
+                "breakevens": 0,
+                "net_cash": -1247.39,
+                "sum_positive_net_cash": 1469.249,
+                "sum_negative_net_cash_magnitude": 2716.639,
+                "profit_factor": 0.5408333606342248,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.35,
+                "average_net_cash": -12.4739,
+                "average_win_cash": 41.978542857142855,
+                "average_loss_cash": -41.79444615384615
+              },
+              "campaign_close_drawdown_usd": 1129.684,
+              "stressed_campaign_close_drawdown_usd": 1287.634,
+              "net_expectancy_r": -0.23075891886214206,
+              "net_expectancy_r_block_ci": {
+                "n": 100,
+                "mean": -0.23075891886214206,
+                "ci95": [
+                  -0.4155790157261403,
+                  -0.03709527733806696
+                ],
+                "block": 5,
+                "repetitions": 2000,
+                "seed": 20261109,
+                "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+              },
+              "undefined_actual_risk_count": 0,
+              "filled_open_or_entry_pending_at_cutoff": 0,
+              "fee_usd": 105.0,
+              "exit_part_reasons": {
+                "SL": 110,
+                "STOP": 31,
+                "TARGET": 6,
+                "TIME": 6,
+                "TP1": 27,
+                "TP2": 13,
+                "TP3": 7,
+                "ИЗТЕКЪЛ СРОК": 2,
+                "ИЗХОД СЛЕД ГАП": 4
+              },
+              "same_side_event_fills": 6,
+              "outside_same_side_event": {
+                "count": 94,
+                "wins": 29,
+                "losses": 65,
+                "breakevens": 0,
+                "net_cash": -1460.41,
+                "sum_positive_net_cash": 1124.604,
+                "sum_negative_net_cash_magnitude": 2585.014,
+                "profit_factor": 0.4350475471312728,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.30851063829787234,
+                "average_net_cash": -15.536276595744681,
+                "average_win_cash": 38.779448275862066,
+                "average_loss_cash": -39.769446153846154
+              },
+              "by_side": {
+                "BUY": {
+                  "count": 56,
+                  "wins": 20,
+                  "losses": 36,
+                  "breakevens": 0,
+                  "net_cash": -587.77,
+                  "sum_positive_net_cash": 921.972,
+                  "sum_negative_net_cash_magnitude": 1509.742,
+                  "profit_factor": 0.6106818251065413,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.35714285714285715,
+                  "average_net_cash": -10.495892857142858,
+                  "average_win_cash": 46.0986,
+                  "average_loss_cash": -41.93727777777778
+                },
+                "SELL": {
+                  "count": 44,
+                  "wins": 15,
+                  "losses": 29,
+                  "breakevens": 0,
+                  "net_cash": -457.12,
+                  "sum_positive_net_cash": 618.152,
+                  "sum_negative_net_cash_magnitude": 1075.272,
+                  "profit_factor": 0.5748796583562112,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.3409090909090909,
+                  "average_net_cash": -10.389090909090909,
+                  "average_win_cash": 41.21013333333333,
+                  "average_loss_cash": -37.07834482758621
+                }
+              }
+            }
+          }
+        },
+        "later": {
+          "events": {
+            "S5": {
+              "events": 44,
+              "known_new_watch": null,
+              "known_confirmation": 5,
+              "risk_valid": null,
+              "admitted": 5,
+              "filled": 5,
+              "carry_in": 8,
+              "opposite_side_fills": 1,
+              "median_latency_minutes": {
+                "watch": null,
+                "confirmation": 15.0,
+                "geometry_valid": null,
+                "admission": 15.0,
+                "fill": 15.0
+              },
+              "median_capture_fraction": 0.5280765010189715,
+              "median_favorable_price_excursion": 16.842999999999847,
+              "median_adverse_price_excursion": 1.7969999999995707,
+              "misses": {
+                "NO_OBSERVED_ADMISSION": 39
+              }
+            },
+            "IMPULSE": {
+              "events": 44,
+              "known_new_watch": 20,
+              "known_confirmation": 10,
+              "risk_valid": 1,
+              "admitted": 1,
+              "filled": 1,
+              "carry_in": 2,
+              "opposite_side_fills": 0,
+              "median_latency_minutes": {
+                "watch": 30.0,
+                "confirmation": 30.0,
+                "geometry_valid": 30.0,
+                "admission": 30.0,
+                "fill": 30.0
+              },
+              "median_capture_fraction": 0.5073070123747937,
+              "median_favorable_price_excursion": 17.218000000000757,
+              "median_adverse_price_excursion": 5.256999999999607,
+              "misses": {
+                "NO_NEW_WATCH_OR_CONFIRMATION": 24,
+                "WATCH_WITHOUT_CONFIRMATION": 10,
+                "RISK_REJECTED": 9
+              }
+            },
+            "COMBINED": {
+              "events": 44,
+              "known_new_watch": 20,
+              "known_confirmation": 10,
+              "risk_valid": 1,
+              "admitted": 5,
+              "filled": 5,
+              "carry_in": 9,
+              "opposite_side_fills": 1,
+              "median_latency_minutes": {
+                "watch": 30.0,
+                "confirmation": 30.0,
+                "geometry_valid": 30.0,
+                "admission": 15.0,
+                "fill": 15.0
+              },
+              "median_capture_fraction": 0.5280765010189715,
+              "median_favorable_price_excursion": 16.842999999999847,
+              "median_adverse_price_excursion": 1.7969999999995707,
+              "misses": {
+                "NO_NEW_WATCH_OR_CONFIRMATION": 19,
+                "WATCH_WITHOUT_CONFIRMATION": 10,
+                "OCCUPIED": 1,
+                "RISK_REJECTED": 9
+              }
+            }
+          },
+          "economics": {
+            "S5": {
+              "closed_campaigns": {
+                "count": 61,
+                "wins": 29,
+                "losses": 32,
+                "breakevens": 0,
+                "net_cash": 175.464,
+                "sum_positive_net_cash": 995.793,
+                "sum_negative_net_cash_magnitude": 820.329,
+                "profit_factor": 1.2138946690900845,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.47540983606557374,
+                "average_net_cash": 2.8764590163934427,
+                "average_win_cash": 34.33768965517241,
+                "average_loss_cash": -25.63528125
+              },
+              "stressed_campaigns": {
+                "count": 61,
+                "wins": 28,
+                "losses": 33,
+                "breakevens": 0,
+                "net_cash": 51.939,
+                "sum_positive_net_cash": 938.348,
+                "sum_negative_net_cash_magnitude": 886.409,
+                "profit_factor": 1.05859484729961,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.45901639344262296,
+                "average_net_cash": 0.8514590163934426,
+                "average_win_cash": 33.51242857142857,
+                "average_loss_cash": -26.86087878787879
+              },
+              "campaign_close_drawdown_usd": 272.069,
+              "stressed_campaign_close_drawdown_usd": 369.269,
+              "net_expectancy_r": -0.07355200152131465,
+              "net_expectancy_r_block_ci": {
+                "n": 61,
+                "mean": -0.07355200152131465,
+                "ci95": [
+                  -0.30201880526919594,
+                  0.1528897170900338
+                ],
+                "block": 5,
+                "repetitions": 2000,
+                "seed": 20261109,
+                "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+              },
+              "undefined_actual_risk_count": 0,
+              "filled_open_or_entry_pending_at_cutoff": 0,
+              "fee_usd": 64.05,
+              "exit_part_reasons": {
+                "SL": 114,
+                "TP1": 29,
+                "TP2": 13,
+                "TP3": 7,
+                "ИЗТЕКЪЛ СРОК": 4,
+                "ИЗХОД СЛЕД ГАП": 6
+              },
+              "same_side_event_fills": 5,
+              "outside_same_side_event": {
+                "count": 56,
+                "wins": 24,
+                "losses": 32,
+                "breakevens": 0,
+                "net_cash": -40.126,
+                "sum_positive_net_cash": 780.203,
+                "sum_negative_net_cash_magnitude": 820.329,
+                "profit_factor": 0.9510854791187439,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.42857142857142855,
+                "average_net_cash": -0.7165357142857143,
+                "average_win_cash": 32.50845833333333,
+                "average_loss_cash": -25.63528125
+              },
+              "by_side": {
+                "BUY": {
+                  "count": 33,
+                  "wins": 13,
+                  "losses": 20,
+                  "breakevens": 0,
+                  "net_cash": -201.078,
+                  "sum_positive_net_cash": 311.403,
+                  "sum_negative_net_cash_magnitude": 512.481,
+                  "profit_factor": 0.6076381368284873,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.3939393939393939,
+                  "average_net_cash": -6.093272727272727,
+                  "average_win_cash": 23.954076923076922,
+                  "average_loss_cash": -25.62405
+                },
+                "SELL": {
+                  "count": 28,
+                  "wins": 16,
+                  "losses": 12,
+                  "breakevens": 0,
+                  "net_cash": 376.542,
+                  "sum_positive_net_cash": 684.39,
+                  "sum_negative_net_cash_magnitude": 307.848,
+                  "profit_factor": 2.223142589849536,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.5714285714285714,
+                  "average_net_cash": 13.447928571428571,
+                  "average_win_cash": 42.774375,
+                  "average_loss_cash": -25.654
+                }
+              }
+            },
+            "IMPULSE": {
+              "closed_campaigns": {
+                "count": 30,
+                "wins": 12,
+                "losses": 18,
+                "breakevens": 0,
+                "net_cash": -160.113,
+                "sum_positive_net_cash": 467.097,
+                "sum_negative_net_cash_magnitude": 627.21,
+                "profit_factor": 0.7447218634906969,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.4,
+                "average_net_cash": -5.3371,
+                "average_win_cash": 38.92475,
+                "average_loss_cash": -34.845
+              },
+              "stressed_campaigns": {
+                "count": 30,
+                "wins": 11,
+                "losses": 19,
+                "breakevens": 0,
+                "net_cash": -220.863,
+                "sum_positive_net_cash": 443.619,
+                "sum_negative_net_cash_magnitude": 664.482,
+                "profit_factor": 0.6676162785447913,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.36666666666666664,
+                "average_net_cash": -7.3621,
+                "average_win_cash": 40.329,
+                "average_loss_cash": -34.97273684210526
+              },
+              "campaign_close_drawdown_usd": 193.686,
+              "stressed_campaign_close_drawdown_usd": 220.863,
+              "net_expectancy_r": 0.009332202225073891,
+              "net_expectancy_r_block_ci": {
+                "n": 30,
+                "mean": 0.009332202225073891,
+                "ci95": [
+                  -0.4090604081854862,
+                  0.4558375042469419
+                ],
+                "block": 5,
+                "repetitions": 2000,
+                "seed": 20261109,
+                "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+              },
+              "undefined_actual_risk_count": 0,
+              "filled_open_or_entry_pending_at_cutoff": 0,
+              "fee_usd": 31.5,
+              "exit_part_reasons": {
+                "STOP": 16,
+                "TARGET": 8,
+                "TIME": 6
+              },
+              "same_side_event_fills": 1,
+              "outside_same_side_event": {
+                "count": 29,
+                "wins": 11,
+                "losses": 18,
+                "breakevens": 0,
+                "net_cash": -162.471,
+                "sum_positive_net_cash": 464.739,
+                "sum_negative_net_cash_magnitude": 627.21,
+                "profit_factor": 0.7409623571052757,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.3793103448275862,
+                "average_net_cash": -5.602448275862069,
+                "average_win_cash": 42.249,
+                "average_loss_cash": -34.845
+              },
+              "by_side": {
+                "BUY": {
+                  "count": 12,
+                  "wins": 3,
+                  "losses": 9,
+                  "breakevens": 0,
+                  "net_cash": -186.987,
+                  "sum_positive_net_cash": 148.551,
+                  "sum_negative_net_cash_magnitude": 335.538,
+                  "profit_factor": 0.44272481805339486,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.25,
+                  "average_net_cash": -15.58225,
+                  "average_win_cash": 49.517,
+                  "average_loss_cash": -37.282
+                },
+                "SELL": {
+                  "count": 18,
+                  "wins": 9,
+                  "losses": 9,
+                  "breakevens": 0,
+                  "net_cash": 26.874,
+                  "sum_positive_net_cash": 318.546,
+                  "sum_negative_net_cash_magnitude": 291.672,
+                  "profit_factor": 1.092137743766971,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.5,
+                  "average_net_cash": 1.493,
+                  "average_win_cash": 35.394,
+                  "average_loss_cash": -32.408
+                }
+              }
+            },
+            "COMBINED": {
+              "closed_campaigns": {
+                "count": 73,
+                "wins": 36,
+                "losses": 37,
+                "breakevens": 0,
+                "net_cash": 169.956,
+                "sum_positive_net_cash": 1350.087,
+                "sum_negative_net_cash_magnitude": 1180.131,
+                "profit_factor": 1.1440145204218855,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.4931506849315068,
+                "average_net_cash": 2.328164383561644,
+                "average_win_cash": 37.50241666666667,
+                "average_loss_cash": -31.895432432432433
+              },
+              "stressed_campaigns": {
+                "count": 73,
+                "wins": 35,
+                "losses": 38,
+                "breakevens": 0,
+                "net_cash": 22.131,
+                "sum_positive_net_cash": 1278.467,
+                "sum_negative_net_cash_magnitude": 1256.336,
+                "profit_factor": 1.0176155105003757,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.4794520547945205,
+                "average_net_cash": 0.3031643835616438,
+                "average_win_cash": 36.52762857142857,
+                "average_loss_cash": -33.061473684210526
+              },
+              "campaign_close_drawdown_usd": 292.473,
+              "stressed_campaign_close_drawdown_usd": 332.973,
+              "net_expectancy_r": 0.05938407712755671,
+              "net_expectancy_r_block_ci": {
+                "n": 73,
+                "mean": 0.05938407712755671,
+                "ci95": [
+                  -0.14270528254127685,
+                  0.2514868548541551
+                ],
+                "block": 5,
+                "repetitions": 2000,
+                "seed": 20261109,
+                "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+              },
+              "undefined_actual_risk_count": 0,
+              "filled_open_or_entry_pending_at_cutoff": 0,
+              "fee_usd": 76.65,
+              "exit_part_reasons": {
+                "SL": 86,
+                "STOP": 13,
+                "TARGET": 7,
+                "TIME": 4,
+                "TP1": 27,
+                "TP2": 11,
+                "TP3": 6,
+                "ИЗТЕКЪЛ СРОК": 4,
+                "ИЗХОД СЛЕД ГАП": 5
+              },
+              "same_side_event_fills": 5,
+              "outside_same_side_event": {
+                "count": 68,
+                "wins": 31,
+                "losses": 37,
+                "breakevens": 0,
+                "net_cash": -45.634,
+                "sum_positive_net_cash": 1134.497,
+                "sum_negative_net_cash_magnitude": 1180.131,
+                "profit_factor": 0.9613314115127897,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.45588235294117646,
+                "average_net_cash": -0.6710882352941177,
+                "average_win_cash": 36.59667741935484,
+                "average_loss_cash": -31.895432432432433
+              },
+              "by_side": {
+                "BUY": {
+                  "count": 35,
+                  "wins": 16,
+                  "losses": 19,
+                  "breakevens": 0,
+                  "net_cash": -185.703,
+                  "sum_positive_net_cash": 459.954,
+                  "sum_negative_net_cash_magnitude": 645.657,
+                  "profit_factor": 0.712381341796031,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.45714285714285713,
+                  "average_net_cash": -5.3058,
+                  "average_win_cash": 28.747125,
+                  "average_loss_cash": -33.981947368421054
+                },
+                "SELL": {
+                  "count": 38,
+                  "wins": 20,
+                  "losses": 18,
+                  "breakevens": 0,
+                  "net_cash": 355.659,
+                  "sum_positive_net_cash": 890.133,
+                  "sum_negative_net_cash_magnitude": 534.474,
+                  "profit_factor": 1.6654374207164426,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.5263157894736842,
+                  "average_net_cash": 9.359447368421053,
+                  "average_win_cash": 44.50665,
+                  "average_loss_cash": -29.693
+                }
+              }
+            },
+            "REVERSE_TIE": {
+              "closed_campaigns": {
+                "count": 73,
+                "wins": 36,
+                "losses": 37,
+                "breakevens": 0,
+                "net_cash": 169.956,
+                "sum_positive_net_cash": 1350.087,
+                "sum_negative_net_cash_magnitude": 1180.131,
+                "profit_factor": 1.1440145204218855,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.4931506849315068,
+                "average_net_cash": 2.328164383561644,
+                "average_win_cash": 37.50241666666667,
+                "average_loss_cash": -31.895432432432433
+              },
+              "stressed_campaigns": {
+                "count": 73,
+                "wins": 35,
+                "losses": 38,
+                "breakevens": 0,
+                "net_cash": 22.131,
+                "sum_positive_net_cash": 1278.467,
+                "sum_negative_net_cash_magnitude": 1256.336,
+                "profit_factor": 1.0176155105003757,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.4794520547945205,
+                "average_net_cash": 0.3031643835616438,
+                "average_win_cash": 36.52762857142857,
+                "average_loss_cash": -33.061473684210526
+              },
+              "campaign_close_drawdown_usd": 292.473,
+              "stressed_campaign_close_drawdown_usd": 332.973,
+              "net_expectancy_r": 0.05938407712755671,
+              "net_expectancy_r_block_ci": {
+                "n": 73,
+                "mean": 0.05938407712755671,
+                "ci95": [
+                  -0.14270528254127685,
+                  0.2514868548541551
+                ],
+                "block": 5,
+                "repetitions": 2000,
+                "seed": 20261109,
+                "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+              },
+              "undefined_actual_risk_count": 0,
+              "filled_open_or_entry_pending_at_cutoff": 0,
+              "fee_usd": 76.65,
+              "exit_part_reasons": {
+                "SL": 86,
+                "STOP": 13,
+                "TARGET": 7,
+                "TIME": 4,
+                "TP1": 27,
+                "TP2": 11,
+                "TP3": 6,
+                "ИЗТЕКЪЛ СРОК": 4,
+                "ИЗХОД СЛЕД ГАП": 5
+              },
+              "same_side_event_fills": 5,
+              "outside_same_side_event": {
+                "count": 68,
+                "wins": 31,
+                "losses": 37,
+                "breakevens": 0,
+                "net_cash": -45.634,
+                "sum_positive_net_cash": 1134.497,
+                "sum_negative_net_cash_magnitude": 1180.131,
+                "profit_factor": 0.9613314115127897,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.45588235294117646,
+                "average_net_cash": -0.6710882352941177,
+                "average_win_cash": 36.59667741935484,
+                "average_loss_cash": -31.895432432432433
+              },
+              "by_side": {
+                "BUY": {
+                  "count": 35,
+                  "wins": 16,
+                  "losses": 19,
+                  "breakevens": 0,
+                  "net_cash": -185.703,
+                  "sum_positive_net_cash": 459.954,
+                  "sum_negative_net_cash_magnitude": 645.657,
+                  "profit_factor": 0.712381341796031,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.45714285714285713,
+                  "average_net_cash": -5.3058,
+                  "average_win_cash": 28.747125,
+                  "average_loss_cash": -33.981947368421054
+                },
+                "SELL": {
+                  "count": 38,
+                  "wins": 20,
+                  "losses": 18,
+                  "breakevens": 0,
+                  "net_cash": 355.659,
+                  "sum_positive_net_cash": 890.133,
+                  "sum_negative_net_cash_magnitude": 534.474,
+                  "profit_factor": 1.6654374207164426,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.5263157894736842,
+                  "average_net_cash": 9.359447368421053,
+                  "average_win_cash": 44.50665,
+                  "average_loss_cash": -29.693
+                }
+              }
+            }
+          }
+        }
+      },
+      "prefix_replays": [
+        3867,
+        6415
+      ]
+    },
+    "30": {
+      "provenance": {
+        "market_sha256": "1b31dc5dad532b9362c5340511211fbc13a33c64983d4a49485c7442a269c5d5",
+        "s5_log_sha256": "912d96a18af3448b38b4f003e8de3f57429466567ab0e1bfad6e4e27c3de26b0",
+        "native_source_sha256": "bc7bf16cd988fa23832f75ff22ee421b198cafb95614c9445622ce7bc4cfe1c3",
+        "bars": 10091,
+        "from_utc": "2026-01-01T23:00:00+00:00",
+        "through_utc": "2026-11-09T02:30:00+00:00",
+        "native_market_fingerprints": [
+          215334016,
+          807336621
+        ]
+      },
+      "calendar": {
+        "complete_hours": 5043,
+        "partial_observed_hours": 5,
+        "eligible_hours": 4918
+      },
+      "trade_metrics": {
+        "S5": {
+          "closed_campaigns": {
+            "count": 165,
+            "wins": 89,
+            "losses": 76,
+            "breakevens": 0,
+            "net_cash": -855.364,
+            "sum_positive_net_cash": 4631.17,
+            "sum_negative_net_cash_magnitude": 5486.534,
+            "profit_factor": 0.8440975668791991,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.5393939393939394,
+            "average_net_cash": -5.184024242424242,
+            "average_win_cash": 52.03561797752809,
+            "average_loss_cash": -72.19123684210527
+          },
+          "stressed_campaigns": {
+            "count": 165,
+            "wins": 89,
+            "losses": 76,
+            "breakevens": 0,
+            "net_cash": -1189.489,
+            "sum_positive_net_cash": 4450.945,
+            "sum_negative_net_cash_magnitude": 5640.434,
+            "profit_factor": 0.7891139227938843,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.5393939393939394,
+            "average_net_cash": -7.209024242424243,
+            "average_win_cash": 50.01061797752809,
+            "average_loss_cash": -74.21623684210526
+          },
+          "campaign_close_drawdown_usd": 1968.256,
+          "stressed_campaign_close_drawdown_usd": 2099.363,
+          "net_expectancy_r": 0.024349459315748393,
+          "net_expectancy_r_block_ci": {
+            "n": 165,
+            "mean": 0.024349459315748393,
+            "ci95": [
+              -0.11319143329071604,
+              0.16481677819676296
+            ],
+            "block": 5,
+            "repetitions": 2000,
+            "seed": 20261109,
+            "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+          },
+          "undefined_actual_risk_count": 0,
+          "filled_open_or_entry_pending_at_cutoff": 0,
+          "fee_usd": 173.25,
+          "exit_part_reasons": {
+            "SL": 305,
+            "TP1": 84,
+            "TP2": 32,
+            "TP3": 21,
+            "ИЗТЕКЪЛ СРОК": 6,
+            "ИЗХОД СЛЕД ГАП": 15
+          },
+          "same_side_event_fills": 15,
+          "outside_same_side_event": {
+            "count": 150,
+            "wins": 75,
+            "losses": 75,
+            "breakevens": 0,
+            "net_cash": -1423.9,
+            "sum_positive_net_cash": 3937.696,
+            "sum_negative_net_cash_magnitude": 5361.596,
+            "profit_factor": 0.7344260925291648,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.5,
+            "average_net_cash": -9.492666666666667,
+            "average_win_cash": 52.502613333333336,
+            "average_loss_cash": -71.48794666666667
+          },
+          "by_side": {
+            "BUY": {
+              "count": 93,
+              "wins": 49,
+              "losses": 44,
+              "breakevens": 0,
+              "net_cash": -655.208,
+              "sum_positive_net_cash": 2806.6,
+              "sum_negative_net_cash_magnitude": 3461.808,
+              "profit_factor": 0.8107324265239435,
+              "profit_factor_status": "DEFINED",
+              "win_rate": 0.5268817204301075,
+              "average_net_cash": -7.045247311827957,
+              "average_win_cash": 57.27755102040816,
+              "average_loss_cash": -78.67745454545455
+            },
+            "SELL": {
+              "count": 72,
+              "wins": 40,
+              "losses": 32,
+              "breakevens": 0,
+              "net_cash": -200.156,
+              "sum_positive_net_cash": 1824.57,
+              "sum_negative_net_cash_magnitude": 2024.726,
+              "profit_factor": 0.9011441548140341,
+              "profit_factor_status": "DEFINED",
+              "win_rate": 0.5555555555555556,
+              "average_net_cash": -2.7799444444444443,
+              "average_win_cash": 45.61425,
+              "average_loss_cash": -63.2726875
+            }
+          }
+        },
+        "IMPULSE": {
+          "closed_campaigns": {
+            "count": 99,
+            "wins": 41,
+            "losses": 58,
+            "breakevens": 0,
+            "net_cash": 380.58,
+            "sum_positive_net_cash": 4824.285,
+            "sum_negative_net_cash_magnitude": 4443.705,
+            "profit_factor": 1.085644749145139,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.41414141414141414,
+            "average_net_cash": 3.8442424242424242,
+            "average_win_cash": 117.66548780487805,
+            "average_loss_cash": -76.61560344827586
+          },
+          "stressed_campaigns": {
+            "count": 99,
+            "wins": 41,
+            "losses": 58,
+            "breakevens": 0,
+            "net_cash": 180.105,
+            "sum_positive_net_cash": 4741.26,
+            "sum_negative_net_cash_magnitude": 4561.155,
+            "profit_factor": 1.0394867089585862,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.41414141414141414,
+            "average_net_cash": 1.8192424242424243,
+            "average_win_cash": 115.64048780487805,
+            "average_loss_cash": -78.64060344827587
+          },
+          "campaign_close_drawdown_usd": 678.876,
+          "stressed_campaign_close_drawdown_usd": 741.651,
+          "net_expectancy_r": 0.0743207040671932,
+          "net_expectancy_r_block_ci": {
+            "n": 99,
+            "mean": 0.0743207040671932,
+            "ci95": [
+              -0.12891859046451992,
+              0.30980619369803175
+            ],
+            "block": 5,
+            "repetitions": 2000,
+            "seed": 20261109,
+            "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+          },
+          "undefined_actual_risk_count": 0,
+          "filled_open_or_entry_pending_at_cutoff": 0,
+          "fee_usd": 103.95,
+          "exit_part_reasons": {
+            "STOP": 54,
+            "TARGET": 28,
+            "TIME": 17
+          },
+          "same_side_event_fills": 2,
+          "outside_same_side_event": {
+            "count": 97,
+            "wins": 39,
+            "losses": 58,
+            "breakevens": 0,
+            "net_cash": 117.03,
+            "sum_positive_net_cash": 4560.735,
+            "sum_negative_net_cash_magnitude": 4443.705,
+            "profit_factor": 1.0263361316739072,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.4020618556701031,
+            "average_net_cash": 1.2064948453608249,
+            "average_win_cash": 116.94192307692308,
+            "average_loss_cash": -76.61560344827586
+          },
+          "by_side": {
+            "BUY": {
+              "count": 47,
+              "wins": 16,
+              "losses": 31,
+              "breakevens": 0,
+              "net_cash": -264.144,
+              "sum_positive_net_cash": 2210.427,
+              "sum_negative_net_cash_magnitude": 2474.571,
+              "profit_factor": 0.8932566493343694,
+              "profit_factor_status": "DEFINED",
+              "win_rate": 0.3404255319148936,
+              "average_net_cash": -5.620085106382978,
+              "average_win_cash": 138.1516875,
+              "average_loss_cash": -79.82487096774193
+            },
+            "SELL": {
+              "count": 52,
+              "wins": 25,
+              "losses": 27,
+              "breakevens": 0,
+              "net_cash": 644.724,
+              "sum_positive_net_cash": 2613.858,
+              "sum_negative_net_cash_magnitude": 1969.134,
+              "profit_factor": 1.3274149956275194,
+              "profit_factor_status": "DEFINED",
+              "win_rate": 0.4807692307692308,
+              "average_net_cash": 12.398538461538461,
+              "average_win_cash": 104.55432,
+              "average_loss_cash": -72.93088888888889
+            }
+          }
+        },
+        "COMBINED": {
+          "closed_campaigns": {
+            "count": 228,
+            "wins": 116,
+            "losses": 112,
+            "breakevens": 0,
+            "net_cash": -126.704,
+            "sum_positive_net_cash": 8596.476,
+            "sum_negative_net_cash_magnitude": 8723.18,
+            "profit_factor": 0.9854750217237291,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.5087719298245614,
+            "average_net_cash": -0.5557192982456141,
+            "average_win_cash": 74.10755172413793,
+            "average_loss_cash": -77.88553571428571
+          },
+          "stressed_campaigns": {
+            "count": 228,
+            "wins": 116,
+            "losses": 112,
+            "breakevens": 0,
+            "net_cash": -588.404,
+            "sum_positive_net_cash": 8361.576,
+            "sum_negative_net_cash_magnitude": 8949.98,
+            "profit_factor": 0.9342563893997529,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.5087719298245614,
+            "average_net_cash": -2.580719298245614,
+            "average_win_cash": 72.08255172413793,
+            "average_loss_cash": -79.91053571428571
+          },
+          "campaign_close_drawdown_usd": 2026.172,
+          "stressed_campaign_close_drawdown_usd": 2137.547,
+          "net_expectancy_r": 0.07915601673877884,
+          "net_expectancy_r_block_ci": {
+            "n": 228,
+            "mean": 0.07915601673877884,
+            "ci95": [
+              -0.061127420126777215,
+              0.2283138166782407
+            ],
+            "block": 5,
+            "repetitions": 2000,
+            "seed": 20261109,
+            "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+          },
+          "undefined_actual_risk_count": 0,
+          "filled_open_or_entry_pending_at_cutoff": 0,
+          "fee_usd": 239.4,
+          "exit_part_reasons": {
+            "SL": 245,
+            "STOP": 50,
+            "TARGET": 24,
+            "TIME": 15,
+            "TP1": 76,
+            "TP2": 30,
+            "TP3": 19,
+            "ИЗТЕКЪЛ СРОК": 6,
+            "ИЗХОД СЛЕД ГАП": 13
+          },
+          "same_side_event_fills": 15,
+          "outside_same_side_event": {
+            "count": 213,
+            "wins": 102,
+            "losses": 111,
+            "breakevens": 0,
+            "net_cash": -802.229,
+            "sum_positive_net_cash": 7796.013,
+            "sum_negative_net_cash_magnitude": 8598.242,
+            "profit_factor": 0.9066984855741441,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.4788732394366197,
+            "average_net_cash": -3.7663333333333333,
+            "average_win_cash": 76.4315,
+            "average_loss_cash": -77.46163963963964
+          },
+          "by_side": {
+            "BUY": {
+              "count": 117,
+              "wins": 56,
+              "losses": 61,
+              "breakevens": 0,
+              "net_cash": -655.182,
+              "sum_positive_net_cash": 4535.472,
+              "sum_negative_net_cash_magnitude": 5190.654,
+              "profit_factor": 0.8737765992493431,
+              "profit_factor_status": "DEFINED",
+              "win_rate": 0.47863247863247865,
+              "average_net_cash": -5.599846153846154,
+              "average_win_cash": 80.99057142857143,
+              "average_loss_cash": -85.09268852459016
+            },
+            "SELL": {
+              "count": 111,
+              "wins": 60,
+              "losses": 51,
+              "breakevens": 0,
+              "net_cash": 528.478,
+              "sum_positive_net_cash": 4061.004,
+              "sum_negative_net_cash_magnitude": 3532.526,
+              "profit_factor": 1.149603428255022,
+              "profit_factor_status": "DEFINED",
+              "win_rate": 0.5405405405405406,
+              "average_net_cash": 4.761063063063063,
+              "average_win_cash": 67.6834,
+              "average_loss_cash": -69.26521568627452
+            }
+          }
+        },
+        "REVERSE_TIE": {
+          "closed_campaigns": {
+            "count": 228,
+            "wins": 116,
+            "losses": 112,
+            "breakevens": 0,
+            "net_cash": -126.704,
+            "sum_positive_net_cash": 8596.476,
+            "sum_negative_net_cash_magnitude": 8723.18,
+            "profit_factor": 0.9854750217237291,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.5087719298245614,
+            "average_net_cash": -0.5557192982456141,
+            "average_win_cash": 74.10755172413793,
+            "average_loss_cash": -77.88553571428571
+          },
+          "stressed_campaigns": {
+            "count": 228,
+            "wins": 116,
+            "losses": 112,
+            "breakevens": 0,
+            "net_cash": -588.404,
+            "sum_positive_net_cash": 8361.576,
+            "sum_negative_net_cash_magnitude": 8949.98,
+            "profit_factor": 0.9342563893997529,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.5087719298245614,
+            "average_net_cash": -2.580719298245614,
+            "average_win_cash": 72.08255172413793,
+            "average_loss_cash": -79.91053571428571
+          },
+          "campaign_close_drawdown_usd": 2026.172,
+          "stressed_campaign_close_drawdown_usd": 2137.547,
+          "net_expectancy_r": 0.07915601673877884,
+          "net_expectancy_r_block_ci": {
+            "n": 228,
+            "mean": 0.07915601673877884,
+            "ci95": [
+              -0.061127420126777215,
+              0.2283138166782407
+            ],
+            "block": 5,
+            "repetitions": 2000,
+            "seed": 20261109,
+            "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+          },
+          "undefined_actual_risk_count": 0,
+          "filled_open_or_entry_pending_at_cutoff": 0,
+          "fee_usd": 239.4,
+          "exit_part_reasons": {
+            "SL": 245,
+            "STOP": 50,
+            "TARGET": 24,
+            "TIME": 15,
+            "TP1": 76,
+            "TP2": 30,
+            "TP3": 19,
+            "ИЗТЕКЪЛ СРОК": 6,
+            "ИЗХОД СЛЕД ГАП": 13
+          },
+          "same_side_event_fills": 15,
+          "outside_same_side_event": {
+            "count": 213,
+            "wins": 102,
+            "losses": 111,
+            "breakevens": 0,
+            "net_cash": -802.229,
+            "sum_positive_net_cash": 7796.013,
+            "sum_negative_net_cash_magnitude": 8598.242,
+            "profit_factor": 0.9066984855741441,
+            "profit_factor_status": "DEFINED",
+            "win_rate": 0.4788732394366197,
+            "average_net_cash": -3.7663333333333333,
+            "average_win_cash": 76.4315,
+            "average_loss_cash": -77.46163963963964
+          },
+          "by_side": {
+            "BUY": {
+              "count": 117,
+              "wins": 56,
+              "losses": 61,
+              "breakevens": 0,
+              "net_cash": -655.182,
+              "sum_positive_net_cash": 4535.472,
+              "sum_negative_net_cash_magnitude": 5190.654,
+              "profit_factor": 0.8737765992493431,
+              "profit_factor_status": "DEFINED",
+              "win_rate": 0.47863247863247865,
+              "average_net_cash": -5.599846153846154,
+              "average_win_cash": 80.99057142857143,
+              "average_loss_cash": -85.09268852459016
+            },
+            "SELL": {
+              "count": 111,
+              "wins": 60,
+              "losses": 51,
+              "breakevens": 0,
+              "net_cash": 528.478,
+              "sum_positive_net_cash": 4061.004,
+              "sum_negative_net_cash_magnitude": 3532.526,
+              "profit_factor": 1.149603428255022,
+              "profit_factor_status": "DEFINED",
+              "win_rate": 0.5405405405405406,
+              "average_net_cash": 4.761063063063063,
+              "average_win_cash": 67.6834,
+              "average_loss_cash": -69.26521568627452
+            }
+          }
+        }
+      },
+      "portfolio_delta": {
+        "S5": -855.364,
+        "delta_combined_net_usd": 728.66,
+        "delta_stressed_combined_net_usd": 601.085,
+        "delta_combined_campaign_close_drawdown_usd": 57.916
+      },
+      "events_by_side": {
+        "BUY": {
+          "S5": {
+            "events": 134,
+            "known_new_watch": null,
+            "known_confirmation": 10,
+            "risk_valid": null,
+            "admitted": 10,
+            "filled": 10,
+            "carry_in": 11,
+            "opposite_side_fills": 0,
+            "median_latency_minutes": {
+              "watch": null,
+              "confirmation": 30.0,
+              "geometry_valid": null,
+              "admission": 30.0,
+              "fill": 30.0
+            },
+            "median_capture_fraction": 0.45675748161026664,
+            "median_favorable_price_excursion": 14.26050000000032,
+            "median_adverse_price_excursion": 2.339500000000271,
+            "misses": {
+              "NO_OBSERVED_ADMISSION": 124
+            }
+          },
+          "IMPULSE": {
+            "events": 134,
+            "known_new_watch": 34,
+            "known_confirmation": 10,
+            "risk_valid": 1,
+            "admitted": 1,
+            "filled": 1,
+            "carry_in": 5,
+            "opposite_side_fills": 0,
+            "median_latency_minutes": {
+              "watch": 30.0,
+              "confirmation": 30.0,
+              "geometry_valid": 30.0,
+              "admission": 30.0,
+              "fill": 30.0
+            },
+            "median_capture_fraction": 0.8953511180855221,
+            "median_favorable_price_excursion": 45.64499999999953,
+            "median_adverse_price_excursion": 0.0,
+            "misses": {
+              "WATCH_WITHOUT_CONFIRMATION": 27,
+              "RISK_REJECTED": 9,
+              "NO_NEW_WATCH_OR_CONFIRMATION": 97
+            }
+          },
+          "COMBINED": {
+            "events": 134,
+            "known_new_watch": 34,
+            "known_confirmation": 10,
+            "risk_valid": 1,
+            "admitted": 11,
+            "filled": 11,
+            "carry_in": 15,
+            "opposite_side_fills": 0,
+            "median_latency_minutes": {
+              "watch": 30.0,
+              "confirmation": 30.0,
+              "geometry_valid": 30.0,
+              "admission": 30.0,
+              "fill": 30.0
+            },
+            "median_capture_fraction": 0.4606593406593307,
+            "median_favorable_price_excursion": 15.908000000000357,
+            "median_adverse_price_excursion": 2.2620000000006257,
+            "misses": {
+              "WATCH_WITHOUT_CONFIRMATION": 27,
+              "RISK_REJECTED": 9,
+              "NO_NEW_WATCH_OR_CONFIRMATION": 87
+            }
+          }
+        },
+        "SELL": {
+          "S5": {
+            "events": 130,
+            "known_new_watch": null,
+            "known_confirmation": 5,
+            "risk_valid": null,
+            "admitted": 5,
+            "filled": 5,
+            "carry_in": 6,
+            "opposite_side_fills": 3,
+            "median_latency_minutes": {
+              "watch": null,
+              "confirmation": 30.0,
+              "geometry_valid": null,
+              "admission": 30.0,
+              "fill": 30.0
+            },
+            "median_capture_fraction": 0.5280765010189715,
+            "median_favorable_price_excursion": 16.842999999999847,
+            "median_adverse_price_excursion": 2.186999999999898,
+            "misses": {
+              "NO_OBSERVED_ADMISSION": 125
+            }
+          },
+          "IMPULSE": {
+            "events": 130,
+            "known_new_watch": 31,
+            "known_confirmation": 19,
+            "risk_valid": 1,
+            "admitted": 1,
+            "filled": 1,
+            "carry_in": 11,
+            "opposite_side_fills": 1,
+            "median_latency_minutes": {
+              "watch": 30.0,
+              "confirmation": 30.0,
+              "geometry_valid": 0.0,
+              "admission": 0.0,
+              "fill": 0.0
+            },
+            "median_capture_fraction": 0.8513741442603462,
+            "median_favorable_price_excursion": 42.904999999999745,
+            "median_adverse_price_excursion": 3.492000000000189,
+            "misses": {
+              "NO_NEW_WATCH_OR_CONFIRMATION": 93,
+              "WATCH_WITHOUT_CONFIRMATION": 18,
+              "RISK_REJECTED": 18
+            }
+          },
+          "COMBINED": {
+            "events": 130,
+            "known_new_watch": 31,
+            "known_confirmation": 19,
+            "risk_valid": 1,
+            "admitted": 4,
+            "filled": 4,
+            "carry_in": 16,
+            "opposite_side_fills": 4,
+            "median_latency_minutes": {
+              "watch": 30.0,
+              "confirmation": 30.0,
+              "geometry_valid": 0.0,
+              "admission": 30.0,
+              "fill": 30.0
+            },
+            "median_capture_fraction": 0.45170349314764024,
+            "median_favorable_price_excursion": 15.725500000000011,
+            "median_adverse_price_excursion": 2.0895000000000437,
+            "misses": {
+              "NO_NEW_WATCH_OR_CONFIRMATION": 89,
+              "WATCH_WITHOUT_CONFIRMATION": 18,
+              "RISK_REJECTED": 18,
+              "OCCUPIED": 1
+            }
+          }
+        }
+      },
+      "decision_counts": {
+        "BUY": {
+          "WATCH": 352,
+          "CONFIRMED": 170,
+          "REJECTED": 119,
+          "EXPIRED": 182,
+          "RISK_VALID": 51
+        },
+        "SELL": {
+          "WATCH": 337,
+          "EXPIRED": 180,
+          "CONFIRMED": 157,
+          "REJECTED": 92,
+          "RISK_VALID": 65
+        }
+      },
+      "reasons": {
+        "CONFIRMED": {
+          "CONTINUATION": 323,
+          "RETEST": 4
+        },
+        "REJECTED": {
+          "STOP_TOO_WIDE": 17,
+          "OVEREXTENSION+STOP_TOO_WIDE": 127,
+          "OVEREXTENSION": 67
+        },
+        "EXPIRED": {
+          "LOST_BREAK_LEVEL": 329,
+          "TTL": 33
+        }
+      },
+      "occupancy": {
+        "IMPULSE": {
+          "IMPULSE_blocked_by_IMPULSE": 17
+        },
+        "COMBINED": {
+          "IMPULSE_blocked_by_IMPULSE": 16,
+          "IMPULSE_blocked_by_S5": 11,
+          "S5_blocked_by_IMPULSE": 26
+        },
+        "REVERSE_TIE": {
+          "IMPULSE_blocked_by_IMPULSE": 16,
+          "IMPULSE_blocked_by_S5": 11,
+          "S5_blocked_by_IMPULSE": 26
+        }
+      },
+      "chronology": {
+        "split_utc": "2026-07-08T04:30:00+00:00",
+        "events_straddling_split": 0,
+        "crossing_or_censored_trade_campaigns": {
+          "S5": 0,
+          "IMPULSE": 0,
+          "COMBINED": 0,
+          "REVERSE_TIE": 0
+        },
+        "earlier": {
+          "events": {
+            "S5": {
+              "events": 151,
+              "known_new_watch": null,
+              "known_confirmation": 6,
+              "risk_valid": null,
+              "admitted": 6,
+              "filled": 6,
+              "carry_in": 5,
+              "opposite_side_fills": 1,
+              "median_latency_minutes": {
+                "watch": null,
+                "confirmation": 30.0,
+                "geometry_valid": null,
+                "admission": 30.0,
+                "fill": 30.0
+              },
+              "median_capture_fraction": 0.45170349314764024,
+              "median_favorable_price_excursion": 25.498000000000047,
+              "median_adverse_price_excursion": 1.9994999999998981,
+              "misses": {
+                "NO_OBSERVED_ADMISSION": 145
+              }
+            },
+            "IMPULSE": {
+              "events": 151,
+              "known_new_watch": 39,
+              "known_confirmation": 19,
+              "risk_valid": 0,
+              "admitted": 0,
+              "filled": 0,
+              "carry_in": 11,
+              "opposite_side_fills": 0,
+              "median_latency_minutes": {
+                "watch": 30.0,
+                "confirmation": 30.0,
+                "geometry_valid": null,
+                "admission": null,
+                "fill": null
+              },
+              "median_capture_fraction": null,
+              "median_favorable_price_excursion": null,
+              "median_adverse_price_excursion": null,
+              "misses": {
+                "NO_NEW_WATCH_OR_CONFIRMATION": 105,
+                "WATCH_WITHOUT_CONFIRMATION": 27,
+                "RISK_REJECTED": 19
+              }
+            },
+            "COMBINED": {
+              "events": 151,
+              "known_new_watch": 39,
+              "known_confirmation": 19,
+              "risk_valid": 0,
+              "admitted": 6,
+              "filled": 6,
+              "carry_in": 15,
+              "opposite_side_fills": 1,
+              "median_latency_minutes": {
+                "watch": 30.0,
+                "confirmation": 30.0,
+                "geometry_valid": null,
+                "admission": 30.0,
+                "fill": 30.0
+              },
+              "median_capture_fraction": 0.45170349314764024,
+              "median_favorable_price_excursion": 25.498000000000047,
+              "median_adverse_price_excursion": 1.9994999999998981,
+              "misses": {
+                "NO_NEW_WATCH_OR_CONFIRMATION": 99,
+                "WATCH_WITHOUT_CONFIRMATION": 27,
+                "RISK_REJECTED": 19
+              }
+            }
+          },
+          "economics": {
+            "S5": {
+              "closed_campaigns": {
+                "count": 93,
+                "wins": 48,
+                "losses": 45,
+                "breakevens": 0,
+                "net_cash": -1160.689,
+                "sum_positive_net_cash": 2785.413,
+                "sum_negative_net_cash_magnitude": 3946.102,
+                "profit_factor": 0.7058644201290286,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5161290322580645,
+                "average_net_cash": -12.48052688172043,
+                "average_win_cash": 58.0294375,
+                "average_loss_cash": -87.69115555555555
+              },
+              "stressed_campaigns": {
+                "count": 93,
+                "wins": 48,
+                "losses": 45,
+                "breakevens": 0,
+                "net_cash": -1349.014,
+                "sum_positive_net_cash": 2688.213,
+                "sum_negative_net_cash_magnitude": 4037.227,
+                "profit_factor": 0.6658562919548492,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5161290322580645,
+                "average_net_cash": -14.50552688172043,
+                "average_win_cash": 56.0044375,
+                "average_loss_cash": -89.71615555555556
+              },
+              "campaign_close_drawdown_usd": 1968.256,
+              "stressed_campaign_close_drawdown_usd": 2099.363,
+              "net_expectancy_r": -0.05631283255931204,
+              "net_expectancy_r_block_ci": {
+                "n": 93,
+                "mean": -0.05631283255931204,
+                "ci95": [
+                  -0.24310833300565463,
+                  0.13372671988771748
+                ],
+                "block": 5,
+                "repetitions": 2000,
+                "seed": 20261109,
+                "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+              },
+              "undefined_actual_risk_count": 0,
+              "filled_open_or_entry_pending_at_cutoff": 0,
+              "fee_usd": 97.65,
+              "exit_part_reasons": {
+                "SL": 182,
+                "TP1": 47,
+                "TP2": 14,
+                "TP3": 9,
+                "ИЗТЕКЪЛ СРОК": 3,
+                "ИЗХОД СЛЕД ГАП": 8
+              },
+              "same_side_event_fills": 6,
+              "outside_same_side_event": {
+                "count": 87,
+                "wins": 42,
+                "losses": 45,
+                "breakevens": 0,
+                "net_cash": -1518.218,
+                "sum_positive_net_cash": 2427.884,
+                "sum_negative_net_cash_magnitude": 3946.102,
+                "profit_factor": 0.6152613389111584,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.4827586206896552,
+                "average_net_cash": -17.450781609195403,
+                "average_win_cash": 57.806761904761906,
+                "average_loss_cash": -87.69115555555555
+              },
+              "by_side": {
+                "BUY": {
+                  "count": 52,
+                  "wins": 26,
+                  "losses": 26,
+                  "breakevens": 0,
+                  "net_cash": -800.227,
+                  "sum_positive_net_cash": 1767.929,
+                  "sum_negative_net_cash_magnitude": 2568.156,
+                  "profit_factor": 0.6884040533363238,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.5,
+                  "average_net_cash": -15.38898076923077,
+                  "average_win_cash": 67.99726923076923,
+                  "average_loss_cash": -98.77523076923077
+                },
+                "SELL": {
+                  "count": 41,
+                  "wins": 22,
+                  "losses": 19,
+                  "breakevens": 0,
+                  "net_cash": -360.462,
+                  "sum_positive_net_cash": 1017.484,
+                  "sum_negative_net_cash_magnitude": 1377.946,
+                  "profit_factor": 0.73840629458629,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.5365853658536586,
+                  "average_net_cash": -8.791756097560976,
+                  "average_win_cash": 46.249272727272725,
+                  "average_loss_cash": -72.52347368421053
+                }
+              }
+            },
+            "IMPULSE": {
+              "closed_campaigns": {
+                "count": 52,
+                "wins": 26,
+                "losses": 26,
+                "breakevens": 0,
+                "net_cash": 886.872,
+                "sum_positive_net_cash": 3348.648,
+                "sum_negative_net_cash_magnitude": 2461.776,
+                "profit_factor": 1.360256985200928,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5,
+                "average_net_cash": 17.055230769230768,
+                "average_win_cash": 128.79415384615385,
+                "average_loss_cash": -94.68369230769231
+              },
+              "stressed_campaigns": {
+                "count": 52,
+                "wins": 26,
+                "losses": 26,
+                "breakevens": 0,
+                "net_cash": 781.572,
+                "sum_positive_net_cash": 3295.998,
+                "sum_negative_net_cash_magnitude": 2514.426,
+                "profit_factor": 1.310835156811137,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5,
+                "average_net_cash": 15.03023076923077,
+                "average_win_cash": 126.76915384615384,
+                "average_loss_cash": -96.7086923076923
+              },
+              "campaign_close_drawdown_usd": 585.186,
+              "stressed_campaign_close_drawdown_usd": 620.688,
+              "net_expectancy_r": 0.26050470641493106,
+              "net_expectancy_r_block_ci": {
+                "n": 52,
+                "mean": 0.26050470641493106,
+                "ci95": [
+                  -0.05475505477706959,
+                  0.5943379451649342
+                ],
+                "block": 5,
+                "repetitions": 2000,
+                "seed": 20261109,
+                "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+              },
+              "undefined_actual_risk_count": 0,
+              "filled_open_or_entry_pending_at_cutoff": 0,
+              "fee_usd": 54.6,
+              "exit_part_reasons": {
+                "STOP": 24,
+                "TARGET": 16,
+                "TIME": 12
+              },
+              "same_side_event_fills": 0,
+              "outside_same_side_event": {
+                "count": 52,
+                "wins": 26,
+                "losses": 26,
+                "breakevens": 0,
+                "net_cash": 886.872,
+                "sum_positive_net_cash": 3348.648,
+                "sum_negative_net_cash_magnitude": 2461.776,
+                "profit_factor": 1.360256985200928,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5,
+                "average_net_cash": 17.055230769230768,
+                "average_win_cash": 128.79415384615385,
+                "average_loss_cash": -94.68369230769231
+              },
+              "by_side": {
+                "BUY": {
+                  "count": 30,
+                  "wins": 12,
+                  "losses": 18,
+                  "breakevens": 0,
+                  "net_cash": 39.561,
+                  "sum_positive_net_cash": 1665.369,
+                  "sum_negative_net_cash_magnitude": 1625.808,
+                  "profit_factor": 1.0243331315874937,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.4,
+                  "average_net_cash": 1.3187,
+                  "average_win_cash": 138.78075,
+                  "average_loss_cash": -90.32266666666666
+                },
+                "SELL": {
+                  "count": 22,
+                  "wins": 14,
+                  "losses": 8,
+                  "breakevens": 0,
+                  "net_cash": 847.311,
+                  "sum_positive_net_cash": 1683.279,
+                  "sum_negative_net_cash_magnitude": 835.968,
+                  "profit_factor": 2.013568701194304,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.6363636363636364,
+                  "average_net_cash": 38.51413636363636,
+                  "average_win_cash": 120.23421428571429,
+                  "average_loss_cash": -104.496
+                }
+              }
+            },
+            "COMBINED": {
+              "closed_campaigns": {
+                "count": 126,
+                "wins": 66,
+                "losses": 60,
+                "breakevens": 0,
+                "net_cash": -20.607,
+                "sum_positive_net_cash": 5648.83,
+                "sum_negative_net_cash_magnitude": 5669.437,
+                "profit_factor": 0.9963652475545631,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5238095238095238,
+                "average_net_cash": -0.16354761904761905,
+                "average_win_cash": 85.58833333333334,
+                "average_loss_cash": -94.49061666666667
+              },
+              "stressed_campaigns": {
+                "count": 126,
+                "wins": 66,
+                "losses": 60,
+                "breakevens": 0,
+                "net_cash": -275.757,
+                "sum_positive_net_cash": 5515.18,
+                "sum_negative_net_cash_magnitude": 5790.937,
+                "profit_factor": 0.952381281302145,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5238095238095238,
+                "average_net_cash": -2.188547619047619,
+                "average_win_cash": 83.56333333333333,
+                "average_loss_cash": -96.51561666666667
+              },
+              "campaign_close_drawdown_usd": 2026.172,
+              "stressed_campaign_close_drawdown_usd": 2137.547,
+              "net_expectancy_r": 0.0930104037118369,
+              "net_expectancy_r_block_ci": {
+                "n": 126,
+                "mean": 0.0930104037118369,
+                "ci95": [
+                  -0.10759575058089352,
+                  0.29726092971287815
+                ],
+                "block": 5,
+                "repetitions": 2000,
+                "seed": 20261109,
+                "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+              },
+              "undefined_actual_risk_count": 0,
+              "filled_open_or_entry_pending_at_cutoff": 0,
+              "fee_usd": 132.3,
+              "exit_part_reasons": {
+                "SL": 144,
+                "STOP": 23,
+                "TARGET": 14,
+                "TIME": 11,
+                "TP1": 42,
+                "TP2": 13,
+                "TP3": 8,
+                "ИЗТЕКЪЛ СРОК": 3,
+                "ИЗХОД СЛЕД ГАП": 8
+              },
+              "same_side_event_fills": 6,
+              "outside_same_side_event": {
+                "count": 120,
+                "wins": 60,
+                "losses": 60,
+                "breakevens": 0,
+                "net_cash": -378.136,
+                "sum_positive_net_cash": 5291.301,
+                "sum_negative_net_cash_magnitude": 5669.437,
+                "profit_factor": 0.9333027247679091,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5,
+                "average_net_cash": -3.151133333333333,
+                "average_win_cash": 88.18835,
+                "average_loss_cash": -94.49061666666667
+              },
+              "by_side": {
+                "BUY": {
+                  "count": 72,
+                  "wins": 33,
+                  "losses": 39,
+                  "breakevens": 0,
+                  "net_cash": -660.993,
+                  "sum_positive_net_cash": 3168.93,
+                  "sum_negative_net_cash_magnitude": 3829.923,
+                  "profit_factor": 0.8274135015247043,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.4583333333333333,
+                  "average_net_cash": -9.180458333333334,
+                  "average_win_cash": 96.02818181818182,
+                  "average_loss_cash": -98.20315384615385
+                },
+                "SELL": {
+                  "count": 54,
+                  "wins": 33,
+                  "losses": 21,
+                  "breakevens": 0,
+                  "net_cash": 640.386,
+                  "sum_positive_net_cash": 2479.9,
+                  "sum_negative_net_cash_magnitude": 1839.514,
+                  "profit_factor": 1.3481278207178635,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.6111111111111112,
+                  "average_net_cash": 11.859,
+                  "average_win_cash": 75.14848484848486,
+                  "average_loss_cash": -87.59590476190476
+                }
+              }
+            },
+            "REVERSE_TIE": {
+              "closed_campaigns": {
+                "count": 126,
+                "wins": 66,
+                "losses": 60,
+                "breakevens": 0,
+                "net_cash": -20.607,
+                "sum_positive_net_cash": 5648.83,
+                "sum_negative_net_cash_magnitude": 5669.437,
+                "profit_factor": 0.9963652475545631,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5238095238095238,
+                "average_net_cash": -0.16354761904761905,
+                "average_win_cash": 85.58833333333334,
+                "average_loss_cash": -94.49061666666667
+              },
+              "stressed_campaigns": {
+                "count": 126,
+                "wins": 66,
+                "losses": 60,
+                "breakevens": 0,
+                "net_cash": -275.757,
+                "sum_positive_net_cash": 5515.18,
+                "sum_negative_net_cash_magnitude": 5790.937,
+                "profit_factor": 0.952381281302145,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5238095238095238,
+                "average_net_cash": -2.188547619047619,
+                "average_win_cash": 83.56333333333333,
+                "average_loss_cash": -96.51561666666667
+              },
+              "campaign_close_drawdown_usd": 2026.172,
+              "stressed_campaign_close_drawdown_usd": 2137.547,
+              "net_expectancy_r": 0.0930104037118369,
+              "net_expectancy_r_block_ci": {
+                "n": 126,
+                "mean": 0.0930104037118369,
+                "ci95": [
+                  -0.10759575058089352,
+                  0.29726092971287815
+                ],
+                "block": 5,
+                "repetitions": 2000,
+                "seed": 20261109,
+                "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+              },
+              "undefined_actual_risk_count": 0,
+              "filled_open_or_entry_pending_at_cutoff": 0,
+              "fee_usd": 132.3,
+              "exit_part_reasons": {
+                "SL": 144,
+                "STOP": 23,
+                "TARGET": 14,
+                "TIME": 11,
+                "TP1": 42,
+                "TP2": 13,
+                "TP3": 8,
+                "ИЗТЕКЪЛ СРОК": 3,
+                "ИЗХОД СЛЕД ГАП": 8
+              },
+              "same_side_event_fills": 6,
+              "outside_same_side_event": {
+                "count": 120,
+                "wins": 60,
+                "losses": 60,
+                "breakevens": 0,
+                "net_cash": -378.136,
+                "sum_positive_net_cash": 5291.301,
+                "sum_negative_net_cash_magnitude": 5669.437,
+                "profit_factor": 0.9333027247679091,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5,
+                "average_net_cash": -3.151133333333333,
+                "average_win_cash": 88.18835,
+                "average_loss_cash": -94.49061666666667
+              },
+              "by_side": {
+                "BUY": {
+                  "count": 72,
+                  "wins": 33,
+                  "losses": 39,
+                  "breakevens": 0,
+                  "net_cash": -660.993,
+                  "sum_positive_net_cash": 3168.93,
+                  "sum_negative_net_cash_magnitude": 3829.923,
+                  "profit_factor": 0.8274135015247043,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.4583333333333333,
+                  "average_net_cash": -9.180458333333334,
+                  "average_win_cash": 96.02818181818182,
+                  "average_loss_cash": -98.20315384615385
+                },
+                "SELL": {
+                  "count": 54,
+                  "wins": 33,
+                  "losses": 21,
+                  "breakevens": 0,
+                  "net_cash": 640.386,
+                  "sum_positive_net_cash": 2479.9,
+                  "sum_negative_net_cash_magnitude": 1839.514,
+                  "profit_factor": 1.3481278207178635,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.6111111111111112,
+                  "average_net_cash": 11.859,
+                  "average_win_cash": 75.14848484848486,
+                  "average_loss_cash": -87.59590476190476
+                }
+              }
+            }
+          }
+        },
+        "later": {
+          "events": {
+            "S5": {
+              "events": 113,
+              "known_new_watch": null,
+              "known_confirmation": 9,
+              "risk_valid": null,
+              "admitted": 9,
+              "filled": 9,
+              "carry_in": 12,
+              "opposite_side_fills": 2,
+              "median_latency_minutes": {
+                "watch": null,
+                "confirmation": 30.0,
+                "geometry_valid": null,
+                "admission": 30.0,
+                "fill": 30.0
+              },
+              "median_capture_fraction": 0.4606593406593307,
+              "median_favorable_price_excursion": 12.613000000000284,
+              "median_adverse_price_excursion": 2.2620000000006257,
+              "misses": {
+                "NO_OBSERVED_ADMISSION": 104
+              }
+            },
+            "IMPULSE": {
+              "events": 113,
+              "known_new_watch": 26,
+              "known_confirmation": 10,
+              "risk_valid": 2,
+              "admitted": 2,
+              "filled": 2,
+              "carry_in": 5,
+              "opposite_side_fills": 1,
+              "median_latency_minutes": {
+                "watch": 30.0,
+                "confirmation": 30.0,
+                "geometry_valid": 15.0,
+                "admission": 15.0,
+                "fill": 15.0
+              },
+              "median_capture_fraction": 0.8733626311729341,
+              "median_favorable_price_excursion": 44.274999999999636,
+              "median_adverse_price_excursion": 1.7460000000000946,
+              "misses": {
+                "WATCH_WITHOUT_CONFIRMATION": 18,
+                "NO_NEW_WATCH_OR_CONFIRMATION": 85,
+                "RISK_REJECTED": 8
+              }
+            },
+            "COMBINED": {
+              "events": 113,
+              "known_new_watch": 26,
+              "known_confirmation": 10,
+              "risk_valid": 2,
+              "admitted": 9,
+              "filled": 9,
+              "carry_in": 16,
+              "opposite_side_fills": 3,
+              "median_latency_minutes": {
+                "watch": 30.0,
+                "confirmation": 30.0,
+                "geometry_valid": 15.0,
+                "admission": 30.0,
+                "fill": 30.0
+              },
+              "median_capture_fraction": 0.4606593406593307,
+              "median_favorable_price_excursion": 12.613000000000284,
+              "median_adverse_price_excursion": 2.2620000000006257,
+              "misses": {
+                "WATCH_WITHOUT_CONFIRMATION": 18,
+                "NO_NEW_WATCH_OR_CONFIRMATION": 77,
+                "RISK_REJECTED": 8,
+                "OCCUPIED": 1
+              }
+            }
+          },
+          "economics": {
+            "S5": {
+              "closed_campaigns": {
+                "count": 72,
+                "wins": 41,
+                "losses": 31,
+                "breakevens": 0,
+                "net_cash": 305.325,
+                "sum_positive_net_cash": 1845.757,
+                "sum_negative_net_cash_magnitude": 1540.432,
+                "profit_factor": 1.1982073859800368,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5694444444444444,
+                "average_net_cash": 4.240625,
+                "average_win_cash": 45.01846341463415,
+                "average_loss_cash": -49.69135483870968
+              },
+              "stressed_campaigns": {
+                "count": 72,
+                "wins": 41,
+                "losses": 31,
+                "breakevens": 0,
+                "net_cash": 159.525,
+                "sum_positive_net_cash": 1762.732,
+                "sum_negative_net_cash_magnitude": 1603.207,
+                "profit_factor": 1.0995036823067763,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5694444444444444,
+                "average_net_cash": 2.215625,
+                "average_win_cash": 42.99346341463415,
+                "average_loss_cash": -51.71635483870968
+              },
+              "campaign_close_drawdown_usd": 342.71,
+              "stressed_campaign_close_drawdown_usd": 391.31,
+              "net_expectancy_r": 0.12853825298770147,
+              "net_expectancy_r_block_ci": {
+                "n": 72,
+                "mean": 0.12853825298770147,
+                "ci95": [
+                  -0.08435020830737701,
+                  0.34393852184316315
+                ],
+                "block": 5,
+                "repetitions": 2000,
+                "seed": 20261109,
+                "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+              },
+              "undefined_actual_risk_count": 0,
+              "filled_open_or_entry_pending_at_cutoff": 0,
+              "fee_usd": 75.6,
+              "exit_part_reasons": {
+                "SL": 123,
+                "TP1": 37,
+                "TP2": 18,
+                "TP3": 12,
+                "ИЗТЕКЪЛ СРОК": 3,
+                "ИЗХОД СЛЕД ГАП": 7
+              },
+              "same_side_event_fills": 9,
+              "outside_same_side_event": {
+                "count": 63,
+                "wins": 33,
+                "losses": 30,
+                "breakevens": 0,
+                "net_cash": 94.318,
+                "sum_positive_net_cash": 1509.812,
+                "sum_negative_net_cash_magnitude": 1415.494,
+                "profit_factor": 1.0666325678526367,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5238095238095238,
+                "average_net_cash": 1.497111111111111,
+                "average_win_cash": 45.75187878787879,
+                "average_loss_cash": -47.18313333333333
+              },
+              "by_side": {
+                "BUY": {
+                  "count": 41,
+                  "wins": 23,
+                  "losses": 18,
+                  "breakevens": 0,
+                  "net_cash": 145.019,
+                  "sum_positive_net_cash": 1038.671,
+                  "sum_negative_net_cash_magnitude": 893.652,
+                  "profit_factor": 1.1622768146884916,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.5609756097560976,
+                  "average_net_cash": 3.537048780487805,
+                  "average_win_cash": 45.159608695652175,
+                  "average_loss_cash": -49.647333333333336
+                },
+                "SELL": {
+                  "count": 31,
+                  "wins": 18,
+                  "losses": 13,
+                  "breakevens": 0,
+                  "net_cash": 160.306,
+                  "sum_positive_net_cash": 807.086,
+                  "sum_negative_net_cash_magnitude": 646.78,
+                  "profit_factor": 1.2478524382324747,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.5806451612903226,
+                  "average_net_cash": 5.171161290322581,
+                  "average_win_cash": 44.83811111111111,
+                  "average_loss_cash": -49.752307692307696
+                }
+              }
+            },
+            "IMPULSE": {
+              "closed_campaigns": {
+                "count": 47,
+                "wins": 15,
+                "losses": 32,
+                "breakevens": 0,
+                "net_cash": -506.292,
+                "sum_positive_net_cash": 1475.637,
+                "sum_negative_net_cash_magnitude": 1981.929,
+                "profit_factor": 0.74454584397322,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.3191489361702128,
+                "average_net_cash": -10.772170212765957,
+                "average_win_cash": 98.3758,
+                "average_loss_cash": -61.93528125
+              },
+              "stressed_campaigns": {
+                "count": 47,
+                "wins": 15,
+                "losses": 32,
+                "breakevens": 0,
+                "net_cash": -601.467,
+                "sum_positive_net_cash": 1445.262,
+                "sum_negative_net_cash_magnitude": 2046.729,
+                "profit_factor": 0.706132565669417,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.3191489361702128,
+                "average_net_cash": -12.797170212765957,
+                "average_win_cash": 96.3508,
+                "average_loss_cash": -63.96028125
+              },
+              "campaign_close_drawdown_usd": 678.876,
+              "stressed_campaign_close_drawdown_usd": 741.651,
+              "net_expectancy_r": -0.1316701070409423,
+              "net_expectancy_r_block_ci": {
+                "n": 47,
+                "mean": -0.1316701070409423,
+                "ci95": [
+                  -0.40934117656167385,
+                  0.1554377882662741
+                ],
+                "block": 5,
+                "repetitions": 2000,
+                "seed": 20261109,
+                "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+              },
+              "undefined_actual_risk_count": 0,
+              "filled_open_or_entry_pending_at_cutoff": 0,
+              "fee_usd": 49.35,
+              "exit_part_reasons": {
+                "STOP": 30,
+                "TARGET": 12,
+                "TIME": 5
+              },
+              "same_side_event_fills": 2,
+              "outside_same_side_event": {
+                "count": 45,
+                "wins": 13,
+                "losses": 32,
+                "breakevens": 0,
+                "net_cash": -769.842,
+                "sum_positive_net_cash": 1212.087,
+                "sum_negative_net_cash_magnitude": 1981.929,
+                "profit_factor": 0.6115693347238977,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.28888888888888886,
+                "average_net_cash": -17.1076,
+                "average_win_cash": 93.23746153846155,
+                "average_loss_cash": -61.93528125
+              },
+              "by_side": {
+                "BUY": {
+                  "count": 17,
+                  "wins": 4,
+                  "losses": 13,
+                  "breakevens": 0,
+                  "net_cash": -303.705,
+                  "sum_positive_net_cash": 545.058,
+                  "sum_negative_net_cash_magnitude": 848.763,
+                  "profit_factor": 0.642179265590041,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.23529411764705882,
+                  "average_net_cash": -17.865,
+                  "average_win_cash": 136.2645,
+                  "average_loss_cash": -65.28946153846154
+                },
+                "SELL": {
+                  "count": 30,
+                  "wins": 11,
+                  "losses": 19,
+                  "breakevens": 0,
+                  "net_cash": -202.587,
+                  "sum_positive_net_cash": 930.579,
+                  "sum_negative_net_cash_magnitude": 1133.166,
+                  "profit_factor": 0.8212203684191018,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.36666666666666664,
+                  "average_net_cash": -6.7529,
+                  "average_win_cash": 84.59809090909091,
+                  "average_loss_cash": -59.64031578947368
+                }
+              }
+            },
+            "COMBINED": {
+              "closed_campaigns": {
+                "count": 102,
+                "wins": 50,
+                "losses": 52,
+                "breakevens": 0,
+                "net_cash": -106.097,
+                "sum_positive_net_cash": 2947.646,
+                "sum_negative_net_cash_magnitude": 3053.743,
+                "profit_factor": 0.9652567357501924,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.49019607843137253,
+                "average_net_cash": -1.0401666666666667,
+                "average_win_cash": 58.95292,
+                "average_loss_cash": -58.72582692307692
+              },
+              "stressed_campaigns": {
+                "count": 102,
+                "wins": 50,
+                "losses": 52,
+                "breakevens": 0,
+                "net_cash": -312.647,
+                "sum_positive_net_cash": 2846.396,
+                "sum_negative_net_cash_magnitude": 3159.043,
+                "profit_factor": 0.9010311034069495,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.49019607843137253,
+                "average_net_cash": -3.065166666666667,
+                "average_win_cash": 56.92792,
+                "average_loss_cash": -60.75082692307692
+              },
+              "campaign_close_drawdown_usd": 519.148,
+              "stressed_campaign_close_drawdown_usd": 628.841,
+              "net_expectancy_r": 0.06204177400735419,
+              "net_expectancy_r_block_ci": {
+                "n": 102,
+                "mean": 0.06204177400735419,
+                "ci95": [
+                  -0.14232906968270348,
+                  0.251575225491111
+                ],
+                "block": 5,
+                "repetitions": 2000,
+                "seed": 20261109,
+                "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+              },
+              "undefined_actual_risk_count": 0,
+              "filled_open_or_entry_pending_at_cutoff": 0,
+              "fee_usd": 107.1,
+              "exit_part_reasons": {
+                "SL": 101,
+                "STOP": 27,
+                "TARGET": 10,
+                "TIME": 4,
+                "TP1": 34,
+                "TP2": 17,
+                "TP3": 11,
+                "ИЗТЕКЪЛ СРОК": 3,
+                "ИЗХОД СЛЕД ГАП": 5
+              },
+              "same_side_event_fills": 9,
+              "outside_same_side_event": {
+                "count": 93,
+                "wins": 42,
+                "losses": 51,
+                "breakevens": 0,
+                "net_cash": -424.093,
+                "sum_positive_net_cash": 2504.712,
+                "sum_negative_net_cash_magnitude": 2928.805,
+                "profit_factor": 0.8551993048359314,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.45161290322580644,
+                "average_net_cash": -4.560139784946236,
+                "average_win_cash": 59.636,
+                "average_loss_cash": -57.427549019607845
+              },
+              "by_side": {
+                "BUY": {
+                  "count": 45,
+                  "wins": 23,
+                  "losses": 22,
+                  "breakevens": 0,
+                  "net_cash": 5.811,
+                  "sum_positive_net_cash": 1366.542,
+                  "sum_negative_net_cash_magnitude": 1360.731,
+                  "profit_factor": 1.0042704987245825,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.5111111111111111,
+                  "average_net_cash": 0.12913333333333332,
+                  "average_win_cash": 59.414869565217394,
+                  "average_loss_cash": -61.851409090909094
+                },
+                "SELL": {
+                  "count": 57,
+                  "wins": 27,
+                  "losses": 30,
+                  "breakevens": 0,
+                  "net_cash": -111.908,
+                  "sum_positive_net_cash": 1581.104,
+                  "sum_negative_net_cash_magnitude": 1693.012,
+                  "profit_factor": 0.9339000550498165,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.47368421052631576,
+                  "average_net_cash": -1.963298245614035,
+                  "average_win_cash": 58.559407407407406,
+                  "average_loss_cash": -56.433733333333336
+                }
+              }
+            },
+            "REVERSE_TIE": {
+              "closed_campaigns": {
+                "count": 102,
+                "wins": 50,
+                "losses": 52,
+                "breakevens": 0,
+                "net_cash": -106.097,
+                "sum_positive_net_cash": 2947.646,
+                "sum_negative_net_cash_magnitude": 3053.743,
+                "profit_factor": 0.9652567357501924,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.49019607843137253,
+                "average_net_cash": -1.0401666666666667,
+                "average_win_cash": 58.95292,
+                "average_loss_cash": -58.72582692307692
+              },
+              "stressed_campaigns": {
+                "count": 102,
+                "wins": 50,
+                "losses": 52,
+                "breakevens": 0,
+                "net_cash": -312.647,
+                "sum_positive_net_cash": 2846.396,
+                "sum_negative_net_cash_magnitude": 3159.043,
+                "profit_factor": 0.9010311034069495,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.49019607843137253,
+                "average_net_cash": -3.065166666666667,
+                "average_win_cash": 56.92792,
+                "average_loss_cash": -60.75082692307692
+              },
+              "campaign_close_drawdown_usd": 519.148,
+              "stressed_campaign_close_drawdown_usd": 628.841,
+              "net_expectancy_r": 0.06204177400735419,
+              "net_expectancy_r_block_ci": {
+                "n": 102,
+                "mean": 0.06204177400735419,
+                "ci95": [
+                  -0.14232906968270348,
+                  0.251575225491111
+                ],
+                "block": 5,
+                "repetitions": 2000,
+                "seed": 20261109,
+                "assumption": "approximately stationary ordered campaign blocks; small sample and regime changes remain limitations"
+              },
+              "undefined_actual_risk_count": 0,
+              "filled_open_or_entry_pending_at_cutoff": 0,
+              "fee_usd": 107.1,
+              "exit_part_reasons": {
+                "SL": 101,
+                "STOP": 27,
+                "TARGET": 10,
+                "TIME": 4,
+                "TP1": 34,
+                "TP2": 17,
+                "TP3": 11,
+                "ИЗТЕКЪЛ СРОК": 3,
+                "ИЗХОД СЛЕД ГАП": 5
+              },
+              "same_side_event_fills": 9,
+              "outside_same_side_event": {
+                "count": 93,
+                "wins": 42,
+                "losses": 51,
+                "breakevens": 0,
+                "net_cash": -424.093,
+                "sum_positive_net_cash": 2504.712,
+                "sum_negative_net_cash_magnitude": 2928.805,
+                "profit_factor": 0.8551993048359314,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.45161290322580644,
+                "average_net_cash": -4.560139784946236,
+                "average_win_cash": 59.636,
+                "average_loss_cash": -57.427549019607845
+              },
+              "by_side": {
+                "BUY": {
+                  "count": 45,
+                  "wins": 23,
+                  "losses": 22,
+                  "breakevens": 0,
+                  "net_cash": 5.811,
+                  "sum_positive_net_cash": 1366.542,
+                  "sum_negative_net_cash_magnitude": 1360.731,
+                  "profit_factor": 1.0042704987245825,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.5111111111111111,
+                  "average_net_cash": 0.12913333333333332,
+                  "average_win_cash": 59.414869565217394,
+                  "average_loss_cash": -61.851409090909094
+                },
+                "SELL": {
+                  "count": 57,
+                  "wins": 27,
+                  "losses": 30,
+                  "breakevens": 0,
+                  "net_cash": -111.908,
+                  "sum_positive_net_cash": 1581.104,
+                  "sum_negative_net_cash_magnitude": 1693.012,
+                  "profit_factor": 0.9339000550498165,
+                  "profit_factor_status": "DEFINED",
+                  "win_rate": 0.47368421052631576,
+                  "average_net_cash": -1.963298245614035,
+                  "average_win_cash": 58.559407407407406,
+                  "average_loss_cash": -56.433733333333336
+                }
+              }
+            }
+          }
+        }
+      },
+      "prefix_replays": [
+        6054,
+        10061
+      ]
+    }
+  }
+}
