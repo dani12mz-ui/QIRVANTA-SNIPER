@@ -1,0 +1,98 @@
+// Display only: read the observed plan snapshot; never write to engine state.
+color premiumPanelText = color.rgb(225, 231, 239)
+color premiumPanelDim = color.rgb(158, 173, 192)
+color premiumPanelFrame = color.rgb(62, 74, 89)
+string premiumAnchor = panelPosition == "Горе вляво" ? position.top_left : panelPosition == "Горе вдясно" ? position.top_right : panelPosition == "Долу вдясно" ? position.bottom_right : position.bottom_left
+var table premiumBoard = table.new(premiumAnchor, 2, 15, frame_color=premiumPanelFrame, frame_width=1)
+
+f_premiumCell(int row, string left, string right, color accent, string tip) =>
+    color bg = color.new(row <= 2 ? color.rgb(19, 27, 37) : row % 2 == 0 ? color.rgb(13, 19, 27) : color.rgb(10, 15, 22), 8)
+    table.cell(premiumBoard, 0, row, left, bgcolor=bg, text_color=row == 0 ? premiumPanelText : premiumPanelDim, text_size=uiFontPt, text_halign=text.align_left, tooltip=tip)
+    table.cell(premiumBoard, 1, row, right, bgcolor=bg, text_color=accent, text_size=uiFontPt, text_halign=text.align_right, tooltip=tip)
+
+f_premiumQty(float qty) => na(qty) ? "—" : str.tostring(qty, "#.########")
+
+if barstate.islastconfirmedhistory or barstate.islast
+    table.clear(premiumBoard, 0, 0, 1, 14)
+    if showPanel
+        PremiumVisualPlan snap = premiumVisual
+        bool recent = not na(snap)
+        bool active = recent and not snap.closed and not snap.unfilled
+        bool confirmedCandidate = not active and not na(selectedNativePlan)
+        string idleHint = ""
+        if not active and array.size(events) > 0
+            for ev in events
+                if ev.book == "NATIVE" and (ev.kind == "NATIVE_BLOCKED" or ev.kind == "NATIVE_NOT_FILLED")
+                    idleHint := ev.kind == "NATIVE_BLOCKED" ? "REJECTED" : "NOT FILLED"
+                else if idleHint == "" and ev.book == "CORE" and ev.kind == "WATCH"
+                    idleHint := "SETUP"
+                else if idleHint == "" and ev.book == "CORE" and ev.kind == "REJECTED"
+                    idleHint := "REJECTED"
+        string state = active ? snap.status : confirmedCandidate ? "CANDIDATE" : "NO ACTIVE PLAN"
+        string direction = active ? (snap.side == 1 ? "BUY" : "SELL") : "WAIT"
+        color sideColor = active ? (snap.side == 1 ? premiumBuy : premiumSell) : premiumPanelDim
+        string frame = timeframe.isminutes ? "M" + str.tostring(timeframe.multiplier) : timeframe.period
+        string h1 = tfSeconds > 3600 or na(uiH1ClosedAt) ? "—" : f_biasSymbol(uiH1Bias)
+        string h4 = tfSeconds > 14400 or na(uiH4ClosedAt) ? "—" : f_biasSymbol(uiH4Bias)
+        string htfView = "H1 " + h1 + " · H4 " + h4
+        string contextTip = "Последни затворени свещи · H1 " + f_clockUtc(uiH1ClosedAt) + " · H4 " + f_clockUtc(uiH4ClosedAt)
+        string model = tvStrategyMode
+        string stateTip = "TradingView Strategy Tester · само симулация."
+        if recent
+            stateTip += "\n" + snap.id + " · " + snap.family + "\nЗаявка " + f_clockUtc(snap.submittedAt)
+        bool premium = uiMode == "PREMIUM"
+        bool detailed = uiMode == "PRO" or uiMode == "DEBUG"
+        f_premiumCell(0, "QIRVANTA SNIPER", uiMode, premiumAqua, stateTip)
+        f_premiumCell(1, syminfo.ticker + " · " + frame, model + " · SIM", premiumPanelText, stateTip)
+        f_premiumCell(2, direction, state, sideColor, stateTip)
+        if premium and recent
+            bool filled = not na(snap.filledEntry)
+            float entry = filled ? snap.filledEntry : snap.plannedEntry
+            string geometry = filled ? "FILL" : "PLAN"
+            string pricesTip = "Планов ориентир " + f_price(snap.plannedEntry) + " · изпълнение " + f_price(snap.filledEntry) + "\n" + f_tvTargets(snap.basis) + " · " + stateTip
+            string lastSide = snap.side == 1 ? "BUY" : "SELL"
+            f_premiumCell(3, active ? "ENTRY · " + geometry : "LAST " + lastSide + " · " + snap.status, f_price(entry), premiumWhite, pricesTip)
+            f_premiumCell(4, "INITIAL SL", f_price(snap.initialSL), premiumSell, pricesTip)
+            f_premiumCell(5, "CURRENT SL", f_price(snap.currentSL) + (snap.stopHit ? " · SL HIT" : ""), premiumSell, pricesTip)
+            for idx = 1 to 3
+                float tp = idx == 1 ? snap.tp1 : idx == 2 ? snap.tp2 : snap.tp3
+                bool filledTP = idx == 1 ? snap.tp1Done : idx == 2 ? snap.tp2Done : snap.tp3Done
+                string mark = premiumTargetMarks and filledTP ? " ✓" : ""
+                f_premiumCell(5 + idx, "TP" + str.tostring(idx) + mark, f_price(tp) + " · " + f_tvR(entry, snap.initialSL, tp, snap.side), premiumAqua, pricesTip)
+            float riskDistance = (entry - snap.initialSL) * snap.side
+            string risk = not na(riskDistance) and riskDistance >= syminfo.mintick ? f_price(riskDistance) : "—"
+            string qty = filled ? "Qty " + f_premiumQty(snap.qtyRemaining) : "Plan qty " + f_premiumQty(snap.qtyInitial)
+            f_premiumCell(9, "RISK · " + geometry, risk + " · " + qty, premiumPanelText, "Първоначална дистанция на риск, в ценови единици. Qty е оставащият симулиран размер.")
+            string rr = f_tvR(entry, snap.initialSL, snap.tp3, snap.side)
+            f_premiumCell(10, "R:R TO TP3", rr, premiumAqua, pricesTip)
+            if showMTFContext
+                f_premiumCell(11, "CONTEXT", htfView, premiumPanelText, contextTip)
+            string eventTime = snap.closed ? f_clockUtc(snap.closedAt) : f_clockUtc(snap.submittedAt)
+            string timeTitle = snap.closed ? "CLOSED UTC" : "PLAN TIME"
+            if active and snap.protection != "INITIAL SL"
+                timeTitle := snap.protection
+            f_premiumCell(12, timeTitle, eventTime, premiumPanelDim, stateTip)
+            if not na(snap.netR)
+                f_premiumCell(13, "REALIZED NET", str.tostring(snap.netR, "#.##") + "R", snap.netR >= 0 ? premiumBuy : premiumSell, pricesTip)
+            else if showExplanatoryText and idleHint != ""
+                f_premiumCell(13, "DECISION", idleHint, premiumPanelDim, nativeLastStatus)
+        else if uiMode == "MINIMAL"
+            f_premiumCell(3, "ENTRY / SL", active ? f_price(shownEntry) + " / " + f_price(shownStop) : "—", premiumPanelText, stateTip)
+        else
+            if showMTFContext
+                f_premiumCell(3, "CONTEXT", htfView, premiumPanelText, contextTip)
+            if active
+                f_premiumCell(4, "ENTRY / SL", f_price(shownEntry) + " / " + f_price(shownStop), premiumPanelText, stateTip)
+                f_premiumCell(5, "TP1 · TP2 · TP3", f_price(snap.tp1) + " · " + f_price(snap.tp2) + " · " + f_price(snap.tp3), premiumAqua, stateTip)
+            else if showExplanatoryText
+                string hint = idleHint == "" ? f_humanReason(nativeLastStatus, 32) : idleHint
+                f_premiumCell(4, "DECISION", hint == "" ? "WAIT" : hint, premiumPanelDim, nativeLastStatus)
+            if detailed
+                f_premiumCell(6, "TESTER", str.tostring(strategy.netprofit, "#.##") + " " + strategy.account_currency, premiumPanelText, lastResultInfo)
+                f_premiumCell(7, "CAMPAIGNS / PARTS", str.tostring(nativeClosedCampaigns) + " / " + str.tostring(strategy.closedtrades), premiumPanelText, lastResultInfo)
+                if uiMode == "DEBUG"
+                    string counts = str.tostring(tvRawAttempts) + " / " + str.tostring(tvAcceptedAttempts) + " / " + str.tostring(tvRejectedAttempts)
+                    f_premiumCell(8, "RAW / PASS / REJECT", counts, premiumPanelDim, "Броячи на изследователските кандидати, не на fills.")
+        if str.contains(panelPosition, "Долу")
+            table.cell(premiumBoard, 0, 14, "", height=4, bgcolor=color.new(premiumInk, 100))
+            table.cell(premiumBoard, 1, 14, "", height=4, bgcolor=color.new(premiumInk, 100))

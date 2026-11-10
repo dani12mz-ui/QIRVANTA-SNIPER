@@ -1,0 +1,94 @@
+{
+  "schema": "qirvanta.premium.s5-screen.registration.v1",
+  "registered_utc": "2026-11-10T11:03:04.049Z",
+  "source_audit_amendment_before_candidate_evaluation_utc": "2026-11-10T11:04:01.098Z",
+  "baseline_commit": "6221eb63be02c70db1d6acae6d03745db9a45c94",
+  "source_sha256": "bc7bf16cd988fa23832f75ff22ee421b198cafb95614c9445622ce7bc4cfe1c3",
+  "native_matrix_sha256": "7a21ecb6eb40d75e30cb0fbe94b7108f0ed438da906de390d9c96874f8d5019b",
+  "symbol": "OANDA:XAUUSD",
+  "classification": "ALREADY_OBSERVED_S5_ADMITTED_CAMPAIGN_SCREEN",
+  "scope": "No new admissions or order replay. Native realized outcomes and first risk stay fixed. Campaign-close drawdown of a subset is not native equity drawdown.",
+  "frames": {
+    "5": {
+      "log_sha256": "b629dc4c3b1b624b5fc4632016ed1d568fbd65a83d26a17a8ee5aa909a7f0ef4",
+      "bars_sha256": "44971f52b0008fefc4b61dda51c71043f08e4a2e3bc6d08121380e95232ace1d",
+      "log_name": "tv-S5-M5.csv",
+      "local_bars": "../mission/M5_dataset/bars.csv"
+    },
+    "15": {
+      "log_sha256": "2bfc7e3a0f4c47a98f8c66f1a96309fe648618c4948c8113942f84f9fb7dfdd3",
+      "bars_sha256": "6c89015105a406c2a0c1567f0e9a5e445cb31ee7604a985d727f26892d8ba4b7",
+      "log_name": "tv-S5-M15.csv",
+      "local_bars": "../mission/ui_dataset/bars.csv"
+    },
+    "30": {
+      "log_sha256": "912d96a18af3448b38b4f003e8de3f57429466567ab0e1bfad6e4e27c3de26b0",
+      "bars_sha256": "1b31dc5dad532b9362c5340511211fbc13a33c64983d4a49485c7442a269c5d5",
+      "log_name": "tv-S5-M30.csv",
+      "local_bars": "../mission/M30_dataset/bars.csv"
+    }
+  },
+  "economic_control": {
+    "position": 3,
+    "mintick": 0.001,
+    "commission_usd_per_unit_per_fill": 0.175,
+    "slippage_ticks": 2,
+    "fixed_fill_stress": "1.5x actual round-trip commission and +1 adverse tick on every observed entry and exit unit"
+  },
+  "chronology": {
+    "primary_frame": "5",
+    "development_last_exit_before_utc": "2026-10-23T20:00:00Z",
+    "validation_entry_start_utc": "2026-10-23T20:00:00Z",
+    "validation_last_exit_before_utc": "2026-11-09T02:30:00Z",
+    "boundary_policy": "Exclude straddling or end-censored campaigns from development/validation summaries, keep them in full history. Fixed candidates evaluated week by week by entry week; no re-fitting or in-sample best-rule selection.",
+    "labels": "All historical subperiods were previously inspected. No genuinely untouched out-of-sample result."
+  },
+  "factor_definitions": {
+    "B0": {"test": "Keep all original complete S5 campaigns", "hypothesis": "Frozen native control"},
+    "Q01": {"feature": "signed_body_atr", "op": "ge", "threshold": 0.4, "hypothesis": "A stronger confirmation candle may reject weak recoveries"},
+    "Q02": {"feature": "seed_penetration_atr", "op": "ge", "threshold": 0.1, "hypothesis": "Meaningful original penetration beyond the frozen D20 may identify liquidity events"},
+    "Q03": {"feature": "native_h1_matches", "op": "eq", "threshold": 1, "hypothesis": "H1 agreement may reduce fades against persistent trends"},
+    "Q04": {"feature": "rejection_wick_range", "op": "ge", "threshold": 0.25, "hypothesis": "The confirmation bar rejects prices against the candidate direction"},
+    "Q05": {"feature": "seed_age_bars", "op": "le", "threshold": 1, "hypothesis": "Faster recovery can avoid stale reversals"},
+    "Q06": {"feature": "reclaim_extension_atr", "op": "le", "threshold": 0.5, "hypothesis": "Limiting late extension after reclaim may preserve payoff"},
+    "Q07": {"feature": "efficiency", "op": "le", "threshold": 0.3, "hypothesis": "Lower local directional efficiency may suit a false-breakout reversal"},
+    "Q08": {"feature": "known_obstacle_room_r_proxy", "op": "ge", "threshold": 1, "hypothesis": "Known price obstacles before 1R may impede the initial exit"},
+    "Q09": {"feature": "atr_vs_sma40_proxy", "op": "between", "threshold": [0.85, 1.25], "hypothesis": "Moderate volatility may reduce noisy range reversals and extension shock"},
+    "Q10": {"feature": "in_london_or_ny", "op": "eq", "threshold": 1, "hypothesis": "Liquid session hours may improve reclaim quality"},
+    "Q11": {"feature": "signed_3bar_close_change_atr", "op": "ge", "threshold": 0.25, "hypothesis": "Directional follow-through into confirmation may reject exhausted moves"},
+    "Q12": {"feature": "directional_close_location", "op": "ge", "threshold": 0.7, "hypothesis": "A reclaim closing near its favorable extreme may reject weak false reversals"}
+  },
+  "feature_basis": {
+    "seed": "Time encoded in original plan ID; resolve seed and submitted time to observed bar closes. D20 is min low for BUY, max high for SELL, over 20 completed bars preceding seed. Fail if the original seed or reclaim cannot be verified.",
+    "signed_body_atr": "side * (signal close - signal open) / logged signal ATR",
+    "seed_penetration_atr": "side * (frozen D20 - seed close) / logged signal ATR",
+    "native_h1_matches": "M5 only: 1 when logged core HTF bias equals campaign side. The preserved automatic map uses H1 on M5 with the same confirmed formula as S5's optional H1 gate. The observer logs core HTF (H4 on M15 and D on M30), so Q03 is not evaluated on M15/M30.",
+    "rejection_wick_range": "BUY min(open,close)-low, SELL high-max(open,close), divided by signal high-low",
+    "seed_age_bars": "signal chart index minus seed chart index",
+    "reclaim_extension_atr": "side * (signal close - frozen D20) / logged signal ATR",
+    "efficiency": "Original logged native efficiency at submission",
+    "known_obstacle_room_r_proxy": "Nearest strictly forward level among preceding-20-bar high/low and confirmed previous-day high/low, divided by planned reference-to-SL distance; no forward level is a rejected missing value. This is a price proxy, not the Pine pivot/Asia obstacle set.",
+    "atr_vs_sma40_proxy": "Logged native ATR14 / SMA40 of independently Wilder-seeded OHLC ATR14; no prior loaded context presumed, audit denominator agreement proxy with observed native ATR.",
+    "in_london_or_ny": "Confirmed signal UTC time in IANA Europe/London 08:00–16:30 weekdays or America/New_York 09:30–16:00 weekdays. Half-open sessions and source of attribution differ from custom Pine hours.",
+    "signed_3bar_close_change_atr": "side * (signal close - close three preceding bars earlier) / logged signal ATR",
+    "directional_close_location": "BUY (close-low)/(high-low), SELL (high-close)/(high-low)",
+    "missing_values": "Explicitly reject and count, with no imputation"
+  },
+  "historical_screen_gates_primary_m5": {
+    "min_retained_fraction": 0.7,
+    "min_retained_per_side": 15,
+    "min_retained_per_development_and_validation": 20,
+    "min_win_rate_improvement": 0.02,
+    "min_mean_net_r_improvement": 0.03,
+    "min_profit_factor": 1.1,
+    "min_avg_winner_fraction": 0.8,
+    "max_avg_loss_magnitude_fraction": 1.1,
+    "qualitative": "Full net cash, stressed net cash and campaign-close cash DD must improve or tie B0; both chronological cohorts must have positive mean net R and improve on their corresponding B0. Any passing result is follow-up research only."
+  },
+  "multiple_testing": "Holm across 12 M5 screens only. One-sided sign-flip on baseline campaign-ordered incremental net R (-R of excluded campaigns, 0 if retained), diagnostic under exchangeability. Cross-timeframe sensitivity is descriptive. Separate circular block-bootstrap interval of each retained mean Net R, block 5, 2000 repetitions, seed 20261109.",
+  "blocked": [
+    "Exact H1+H4 alignment and precise stateful regime require data absent from exported S5 submission fields. H1 alone and logged efficiency are tested separately.",
+    "Exact Pine obstacle, structural target placement, confirmed-bar/retest/limit entry, and stop/BE/trailing/allocation require matched native runs; subset returns cannot estimate alternative fills.",
+    "No combinations or threshold resweeps in this registration."
+  ]
+}

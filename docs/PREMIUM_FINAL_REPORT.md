@@ -1,0 +1,16 @@
+# QIRVANTA SNIPER PREMIUM · отчет A–P
+
+**`PARTIALLY_COMPLETE` · `NO_VALIDATED_PROFITABILITY_IMPROVEMENT`**. Предаден е отделен Pine v6 кандидат за Premium визуализация. Нова native компилация, паритет върху работещата Premium графика и запис в профила остават непотвърдени.
+
+| Обхват | Резултат |
+|---|---|
+| A. Дизайн | Тъмен двуколонен панел, тънки линии, отделни нива, прозрачни зони, native състояния и исторически архив. [Спецификация](PREMIUM_DESIGN_SPEC.md). |
+| B. Снимки | Има реална „преди“ снимка на стария M5 и на ограничението на профила. Няма реална „след“ снимка на Premium. [Приемане](PREMIUM_VISUAL_ACCEPTANCE.md). |
+| C–D. Компилация и размер | [Компилация](PREMIUM_PINE_COMPILATION.md) · [SHA, байтове и редове](premium_evidence/baseline_parity.json). Пълният Premium не е компилиран в TradingView. |
+| E. Паритет | Статичен guard на engine и alert кода. Шест архивни контролни клетки сверени. [Нативен паритет на Premium предстои](PREMIUM_STRATEGY_PARITY.md). |
+| F–J. Baseline и кандидат | M5 S5 98 кампании, 58,16%, +104,531 USD, PF 1,1503, +0,08088 R, DD 141,58 USD. Q07 е архивен екран върху същите изпълнения, 72 кампании, 66,67%, +273,177 USD, PF 1,6509, +0,25885 R; Holm p=0,2039. Няма съпоставим native equity DD за Q07 и няма промяна на S5. [Нативен отчет](PREMIUM_NATIVE_COMPARISON.md). |
+| K. Вход/SL/TP/BE | [Фиксирани варианти, счетоводни правила и условия за тест](PREMIUM_ENTRY_EXIT_RESEARCH.md). Няма ново нативно сравнение. |
+| L. Desktop/mobile | Настройките и обектите са в кода. Действителният Premium desktop/mobile изглед остава непроверен. |
+| M–N. Профил и ограничения | Basic допуска един layout; оригиналът е със включен Autosave. [Точна причина и стъпки](PREMIUM_PROFILE_SAVE.md). |
+| O. Доставка | `feature/qirvanta-sniper-premium` върху `6221eb63be02c70db1d6acae6d03745db9a45c94`. `main`, Champion и старият TradingView Pine остават непроменени. |
+| P. Препоръка | Първо компилация и визуално приемане на отделен layout, после точно нативно сравнение. Запази оригиналния S5 за наблюдение; Q07 е единствено кандидат за бъдещ A/B. |
