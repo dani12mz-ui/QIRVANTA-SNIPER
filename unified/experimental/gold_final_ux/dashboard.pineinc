@@ -1,0 +1,186 @@
+string prPreset = input.string("PROFESSIONAL", "Dashboard preset",
+  options=["PROFESSIONAL", "FULL AUDIT", "MINIMAL", "MOBILE"], group="Final display", display=display.none)
+string prCorner = input.string("Auto", "Panel corner",
+  options=["Auto", "Bottom right", "Bottom left", "Top right", "Top left"], group="Final display", display=display.none)
+bool prShowDashboard = input.bool(true, "Show dashboard", group="Final display", display=display.none)
+bool prShowLevels = input.bool(true, "Plan price levels", group="Final display", display=display.none)
+bool prShowZones = input.bool(true, "Risk and reward zones", group="Final display", display=display.none)
+bool prShowTags = input.bool(true, "Price tags", group="Final display", display=display.none)
+bool prShowClosed = input.bool(false, "Latest closed campaign levels", group="Final display", display=display.none)
+int prClosedAge = input.int(60, "Closed campaign maximum age (bars)", minval=5, maxval=3000,
+  group="Final display", display=display.none)
+string prDensity = input.string("Preset", "Historical marker density", options=["Preset", "Off", "Low", "Medium", "High"],
+  group="Final display", display=display.none)
+bool prShowWatches = input.bool(true, "Watch markers", group="Final display", display=display.none)
+bool prShowDecisions = input.bool(true, "Rejected and expired markers in FULL AUDIT",
+  group="Final display", display=display.none)
+bool prShowFills = input.bool(false, "Extra Pine fill badges in FULL AUDIT", group="Final display", display=display.none,
+  tooltip="Native TradingView strategy fills stay visible. This setting adds a custom badge with a SIM prefix.")
+bool prShowStructure = input.bool(false, "Structure and BOS / MSS", group="Final audit overlays", display=display.none)
+bool prShowSessions = input.bool(false, "Session and prior day levels", group="Final audit overlays", display=display.none)
+bool prShowLiquidity = input.bool(false, "Estimated liquidity and FVG", group="Final audit overlays", display=display.none)
+
+color prInk = #EDF2F7
+color prSlate = #A8B5C5
+color prGraphite = #101722
+color prSurface = #151F2B
+color prHeader = #1A2635
+color prDivider = #293544
+color prEmerald = #42D8B6
+color prCoral = #FF8090
+color prCyan = #62CAE2
+color prAmber = #EFC174
+bool prLightChart = 0.2126 * color.r(chart.bg_color) + 0.7152 * color.g(chart.bg_color) +
+  0.0722 * color.b(chart.bg_color) > 145
+color prChartBuy = prLightChart ? #087766 : prEmerald
+color prChartSell = prLightChart ? #A5243D : prCoral
+color prChartTarget = prLightChart ? #08697C : prCyan
+color prChartWarning = prLightChart ? #855207 : prAmber
+color prChartNeutral = prLightChart ? #394D62 : #B0BFD0
+bool prMobile = prPreset == "MOBILE"
+bool prMinimal = prPreset == "MINIMAL"
+bool prFull = prPreset == "FULL AUDIT"
+int prBodySize = prMobile ? 9 : 11
+int prHeroSize = prMobile ? 11 : 13
+string prPositionSetting = switch prCorner
+    "Bottom left" => position.bottom_left
+    "Top right" => position.top_right
+    "Top left" => position.top_left
+    "Auto" => prNativeActive and not prMobile ? position.bottom_left : position.bottom_right
+    => position.bottom_right
+var table prPanel = table.new(position.bottom_right, 2, 36, bgcolor=prGraphite, frame_color=prDivider, frame_width=1)
+
+f_prPrice(float value) =>
+    na(value) ? "—" : str.tostring(value, format.mintick)
+
+f_prNumber(float value) =>
+    na(value) ? "—" : str.tostring(value, "#.00")
+
+f_prPair(float left, float right) =>
+    f_prPrice(left) + " / " + f_prPrice(right)
+
+f_prShort(string value, int length) =>
+    str.length(value) > length ? str.substring(value, 0, length - 1) + "…" : value
+
+f_prSide(int side) =>
+    na(side) ? "?" : side > 0 ? "BUY" : side < 0 ? "SELL" : "NEUTRAL"
+
+f_prDirectionColor(int side) =>
+    na(side) ? prAmber : side > 0 ? prEmerald : side < 0 ? prCoral : prSlate
+
+f_prReadable(string value) =>
+    value == "" ? "—" : str.replace_all(value, "_", " ")
+
+f_prRow(int row, string caption, string value, color ink, string help = "") =>
+    color bg = row % 2 == 0 ? prGraphite : prSurface
+    table.cell(prPanel, 0, row, " " + caption, bgcolor=bg, text_color=prSlate, text_size=prBodySize,
+      text_halign=text.align_left, tooltip=help)
+    table.cell(prPanel, 1, row, value + " ", bgcolor=bg, text_color=ink, text_size=prBodySize,
+      text_halign=text.align_right, tooltip=help)
+    row + 1
+
+f_prSection(int row, string caption, string value, color ink, string help = "") =>
+    table.cell(prPanel, 0, row, " " + caption, bgcolor=prHeader, text_color=prInk, text_size=prBodySize,
+      text_halign=text.align_left, text_formatting=text.format_bold, tooltip=help)
+    table.cell(prPanel, 1, row, value + " ", bgcolor=prHeader, text_color=ink, text_size=prBodySize,
+      text_halign=text.align_right, text_formatting=text.format_bold, tooltip=help)
+    row + 1
+
+f_prTarget(float price, bool filled) =>
+    f_prPrice(price) + (filled ? " ✓" : "")
+
+bool prHasPlan = not na(prViewPlan)
+bool prCurrentPlan = prHasPlan and (prNativeActive or prPlanAvailable)
+bool prClosedInScope = prNativeClosed and prHasPlan and not na(prViewClosedAt) and bar_index - prViewClosedAt <= prClosedAge
+bool prShowPlan = prCurrentPlan or prClosedInScope and (prShowClosed or prFull)
+int prPlanSide = prShowPlan ? prViewPlan.side : 0
+color prSideInk = f_prDirectionColor(prPlanSide)
+bool prSimMode = gpPresentationMode == "SIMULATION"
+bool prNewDecision = not na(gpLastPlan) and gpLastPlan.knownAt == time_close
+bool prConflictNow = prNewDecision and gpLastConflict or gpOpportunityAt == time_close and gpOpportunityText == "CONFLICT"
+bool prRiskRejected = prNewDecision and gpLastState == "ENTRY_REJECTED" or prConflictNow
+bool prEligiblePlan = prHasPlan and prPlanAvailable and gpSupported and gpContextReady and gpContract and not gpLastConflict
+bool prActionable = prEligiblePlan and not prNativeActive and not prSimMode
+bool prInSimulationLane = prHasPlan and (gpTiming == "FAST" ? prViewPlan.model == "Q" : prViewPlan.model == gpStudyModel)
+bool prDraw = barstate.islastconfirmedhistory or (barstate.islast and barstate.isconfirmed)
+
+if prDraw and prShowDashboard
+    table.set_position(prPanel, prPositionSetting)
+    string opportunity = gpOpportunityText == "OPPORTUNITY EXPIRED" ? "EXPIRED" :
+      gpOpportunityText == "CONFLICT" and not prConflictNow ? "WAIT" :
+      gpOpportunityText == "ENTRY AVAILABLE" and not prPlanAvailable ? "WAIT" : gpOpportunityText
+    string why = not gpSupported or not gpContract ? "UNSUPPORTED CHART" : not gpContextReady ? "CONTEXT UNAVAILABLE" :
+      prNativeActive ? (na(prViewFill) ? "ORDER PENDING" : "POSITION OPEN") :
+      prEligiblePlan and prSimMode ? (not prInSimulationLane ? "MODEL OUT OF LANE" :
+      gpExecutionRisk == "RISK MONITORING" ? "SIM NOT SUBMITTED" : gpExecutionRisk) :
+      prRiskRejected ? (prConflictNow ? "CONFLICT" : "RISK REJECTED") : opportunity == "EXPIRED" ? "EXPIRED" : "WAIT"
+    string mobileWhy = switch why
+        "UNSUPPORTED CHART" => "CHECK CHART"
+        "CONTEXT UNAVAILABLE" => "NEED CONTEXT"
+        "SIM NOT SUBMITTED" => "SIM BLOCKED"
+        "MODEL OUT OF LANE" => "MODEL FILTER"
+        "NEWS SOURCE REQUIRED" => "NEED NEWS"
+        => why
+    string action = prActionable ? "YES · " + f_prSide(prViewPlan.side) + " PLAN" : "NO · " + (prMobile ? mobileWhy : why)
+    color actionInk = prActionable ? prSideInk : prRiskRejected or not gpContextReady ? prAmber : prInk
+    color actionBg = prActionable ? (prViewPlan.side > 0 ? #16342E : #3A2533) : prHeader
+    string actionHelp = prActionable ? "A current research plan cleared the original filters. Check the plan levels below." :
+      "No new actionable setup. " + why + (gpLastReason == "" ? "" : " · " + f_prReadable(gpLastReason))
+    table.cell(prPanel, 0, 0, " QIRVANTA GOLD PRO", bgcolor=prGraphite, text_color=prSlate, text_size=prBodySize,
+      text_halign=text.align_left)
+    table.cell(prPanel, 1, 0, syminfo.ticker + " · M" + timeframe.period + " ", bgcolor=prGraphite, text_color=prSlate,
+      text_size=prBodySize, text_halign=text.align_right)
+    table.cell(prPanel, 0, 1, " ACTIONABLE SETUP", bgcolor=actionBg, text_color=prInk, text_size=prHeroSize,
+      text_halign=text.align_left, text_formatting=text.format_bold, tooltip=actionHelp)
+    table.cell(prPanel, 1, 1, f_prShort(action, prMobile ? 19 : 31) + " ", bgcolor=actionBg, text_color=actionInk,
+      text_size=prHeroSize, text_halign=text.align_right, text_formatting=text.format_bold, tooltip=actionHelp)
+    int row = f_prSection(2, "MARKET BIAS", f_prSide(v22Trend), f_prDirectionColor(v22Trend), "Directional market context")
+    string regime = gpSupported ? gpRegime : "UNSUPPORTED CHART"
+    string context = f_prSide(gpH1Side) + " / " + f_prSide(gpH4Side)
+    if not prMinimal
+        row := f_prRow(row, "H1 / H4", context, gpContextReady ? prInk : prAmber, regime + " · Confirmed higher timeframe")
+    string detail = f_prReadable(gpLastState) + (gpLastReason == "" ? "" : " · " + f_prReadable(gpLastReason))
+    row := f_prSection(row, "OPPORTUNITY STATE", f_prShort(opportunity, prMobile ? 17 : 25),
+      prRiskRejected ? prAmber : prCyan, detail)
+    string tradeStatus = prNativeActive ? (na(prViewFill) ? "SIM ORDER PENDING" : "SIM POSITION OPEN") :
+      prSimMode ? "FLAT · SIMULATION" : "OBSERVATION"
+    row := f_prSection(row, "TRADE STATUS", tradeStatus, prNativeActive ? prSideInk : prSlate, gpExecutionRisk)
+    if prShowPlan
+        row := f_prRow(row, prClosedInScope and not prCurrentPlan ? "Closed entry" : "Entry / Sim fill",
+          na(prViewFill) ? f_prPrice(prViewPlan.entry) : f_prPair(prViewPlan.entry, prViewFill), prCyan,
+          "Planned entry / recorded TradingView emulator fill")
+        bool stopMoved = not na(prViewStop) and math.abs(prViewStop - prViewPlan.stop) >= gpTick * 0.5
+        row := f_prRow(row, stopMoved ? "Initial / Current SL" : "Stop loss",
+          stopMoved ? f_prPair(prViewPlan.stop, prViewStop) : f_prPrice(prViewStop), prCoral, prProtection)
+        row := f_prRow(row, "TP1 / TP2", f_prTarget(prViewPlan.tp1, prHitOne) + " / " + f_prTarget(prViewPlan.tp2, prHitTwo),
+          prCyan, "A checkmark denotes a recorded matching target fill")
+        row := f_prRow(row, "TP3 / Net est. R:R", f_prTarget(prViewPlan.tp3, prHitThree) + " / " + f_prNumber(prViewPlan.netRR),
+          prCyan, "Estimated reward/risk includes the model's assumed costs")
+    string last = gpLastClosedText
+    row := f_prSection(row, "LAST CLOSED RESULT", f_prShort(last, prMobile ? 24 : 36), prSlate, last)
+    if prFull
+        row := f_prRow(row, "Regime / Session", f_prShort(regime + " · " + gpSession, 39), prSlate)
+        row := f_prRow(row, "Structure", f_prShort(v22Structure, 30), prInk)
+        row := f_prRow(row, "Momentum / ATR", f_prNumber(v22Momentum) + " / " + f_prNumber(v22ATR),
+          v22Spike ? prAmber : prInk, "Three-bar momentum in ATR units / previous confirmed ATR")
+        string liquidity = gpEqualHighs and gpEqualLows ? "BOTH SIDES" : gpEqualHighs ? "EQUAL HIGHS" :
+          gpEqualLows ? "EQUAL LOWS" : gpBullFVG or gpBearFVG ? "FVG OBSERVED" : "—"
+        row := f_prRow(row, "Liquidity", liquidity, prSlate)
+        row := f_prRow(row, "D1 / Volatility", f_prSide(gpD1Side) + " / " + (v22Spike ? "SHOCK" :
+          v22Expansion ? "EXPANSION" : v22Compression ? "COMPRESSION" : "NORMAL"), v22Spike ? prAmber : prInk)
+        row := f_prRow(row, "Watch / Confirmed", gpLastWatch + " / " + gpLastConfirmation, prInk)
+        row := f_prRow(row, "Quality / Conflict", gpLastQuality + (prConflictNow ? " · YES" : " · NO"),
+          prConflictNow ? prAmber : prSlate, "Last recorded quality and conflict on the latest confirmed bar")
+        row := f_prRow(row, "Decision / Reason", f_prShort(detail, 38), prRiskRejected ? prAmber : prInk, detail)
+        row := f_prRow(row, "Simulation gate", gpExecutionRisk, prSlate)
+        if prShowPlan
+            row := f_prRow(row, "Model / Direction", f_gpModel(prViewPlan.model) + " · " + f_prSide(prPlanSide), prSideInk)
+            row := f_prRow(row, "Extension / Cost", f_prNumber(prViewPlan.extension) + " ATR / $" +
+              f_prNumber(prViewPlan.costCash), prSlate)
+            row := f_prRow(row, "Risk / Units", "$" + f_prNumber(prViewPlan.riskCash) + " / " +
+              f_prNumber(prViewPlan.qty), prSlate)
+            row := f_prRow(row, "Confirmed UTC", str.format_time(prViewPlan.knownAt, "dd MMM HH:mm", "UTC"), prSlate)
+        row := f_prRow(row, "Fill markers", "TRADINGVIEW" + (prShowFills ? " + SIM BADGES" : ""), prSlate)
+        row := f_prRow(row, "News", GP_NEWS_STATE, prAmber)
+    if row <= 35
+        table.clear(prPanel, 0, row, 1, 35)

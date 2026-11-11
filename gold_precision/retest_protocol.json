@@ -1,0 +1,41 @@
+{
+  "schema": "qirvanta.gold-precision.retest-recovery.v1",
+  "registered_utc": "2026-11-11T10:00:24Z",
+  "source_commit": "2583ab8298778b5d404ef82bbaf5a34620cd472c",
+  "symbol": "OANDA:XAUUSD",
+  "timeframe_minutes": 5,
+  "archive_sha256": "41db20178030940d5ecd5dce89b42b6fbf69f2d131c4c52b3f37c360478100a7",
+  "precision_protocol_sha256": "6869df120bf276cdfb24adf7eb95ed598fe8a0ce8c5b170f0512558070ea45cf",
+  "precision_evidence_sha256": "ef6b7adaf4ddd2c6b923445032b6de3a72877e0498a9a5e7f2cf3cb06d2c5e15",
+  "forward_seal_sha256": "09181ecaf9e30cde62c5203b524cb458d808a07c24029e961e32bb25c474afd1",
+  "split": {
+    "bar_fraction": 0.6,
+    "embargo_minutes": 60,
+    "weekly_start_utc": "2026-10-12T00:00:00Z",
+    "weekly_buckets": 4,
+    "rule": "Use the existing precision split and prespecified UTC Monday-to-Monday buckets. Allocate only closed campaigns contained within each window. Report results by BUY and SELL from the actual mixed-direction book."
+  },
+  "cost_cases": {"nominal": 0, "stress": 1, "stress_x2": 2},
+  "cost_rule": "Replay at pinned nominal mechanics. On those fills deduct zero, one or two times the original incremental stress charge. Cost sensitivity holds fills, sizes, initial risk and occupancy fixed.",
+  "controls": ["S5", "FAST", "S5_PLUS_FAST"],
+  "observed_attribution": ["FAST_FILLED_RETEST", "FAST_FILLED_RECOVERY", "FAST_FILLED_ORIGINAL_SECOND_CHANCE"],
+  "replayed_lanes": [
+    "RETEST_ONLY", "FAST_NO_RETEST", "RECOVERY_ONLY", "FAST_NO_RECOVERY",
+    "S5_PLUS_RETEST_ONLY", "S5_PLUS_FAST_NO_RETEST", "S5_PLUS_RECOVERY_ONLY", "S5_PLUS_FAST_NO_RECOVERY"
+  ],
+  "recovery_rule": "Reuse the already registered Precision recovery classifier with prior events from the reconstructed FAST control. Keep the prior events and candidate eligibility fixed across alternative books.",
+  "occupancy_rule": "Chronological one-slot replay at nominal costs. S5 keeps its native archived fills and same-close priority. Preserve valid offers rejected by occupancy or another portfolio reason, including their separate frozen fill potential.",
+  "primary_inference": {
+    "contrasts": {
+      "RETEST_WITHIN_FAST": ["FAST", "FAST_NO_RETEST"],
+      "RETEST_ALONGSIDE_S5": ["S5_PLUS_RETEST_ONLY", "S5"],
+      "RECOVERY_WITHIN_FAST": ["FAST", "FAST_NO_RECOVERY"],
+      "RECOVERY_ALONGSIDE_S5": ["S5_PLUS_RECOVERY_ONLY", "S5"]
+    },
+    "rule": "Use the pre-existing later-archive paired five-day stressed net-R statistic with Holm correction across the four fixed contrasts. Interpret descriptively given repeated access to the archive. Full S5-plus-FAST ablations and weekly and directional summaries are descriptive.",
+    "block_days": 5,
+    "repetitions": 2000,
+    "seed": 20261111
+  },
+  "decision": "Keep S5, original GOLD PRO and forward seal intact. A positive archive cell identifies a hypothesis for independent testing."
+}

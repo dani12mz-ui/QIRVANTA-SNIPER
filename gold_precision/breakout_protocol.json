@@ -1,0 +1,59 @@
+{
+  "schema": "qirvanta.final-breakout-archive.v1",
+  "registered_utc": "2026-11-11T10:01:24Z",
+  "parent_commit": "2583ab8298778b5d404ef82bbaf5a34620cd472c",
+  "market": "OANDA:XAUUSD",
+  "minutes": 5,
+  "report_sha256": "68ae12d3bc8e3bc35cbd0376fdc2c4e4e0808e2ba92631390bb5f76d43636e1c",
+  "tape_sha256": "41db20178030940d5ecd5dce89b42b6fbf69f2d131c4c52b3f37c360478100a7",
+  "diagnostic_sha256": "22bc72e05c254f26a63db5fee964969aa1672c9f7dda63094b84483c8134c840",
+  "expected_baseline_breakout": {"campaigns": 81, "winners": 25, "losers": 56},
+  "scope": "Already observed archive. Register each axis before executing this BREAKOUT-only evaluation. No threshold search, combined filters, or changes to GOLD PRO or its sealed forward test.",
+  "diagnostic_thresholds": {
+    "weak_anchor_clearance_atr": 0.20,
+    "extension_atr": 1.25,
+    "signal_age_bars": 4,
+    "fill_deviation_atr": 0.25,
+    "true_range_atr": 1.75,
+    "wide_stop_atr": 1.60,
+    "friction_to_price_risk": 0.25,
+    "net_room_r": 0.75,
+    "opposite_bos_lookback_including_signal": 4
+  },
+  "arms": [
+    {
+      "id": "ANCHOR_ACCEPTANCE_020",
+      "rule": "Keep the BREAKOUT when its signal close clears the original causal swing or prior-three-bar breakout level by at least 0.20 prior ATR in the direction of the trade.",
+      "hypothesis": "A close with enough acceptance beyond the trigger filters some marginal breaks."
+    },
+    {
+      "id": "NO_NEARBY_FAILED_BREAK",
+      "lookback_bars": 6,
+      "reclaim_atr": 0.10,
+      "anchor_proximity_atr": 0.25,
+      "rule": "Exclude a BREAKOUT when a prior same-side confirmed BREAKOUT in the preceding six completed bars had a close behind its original anchor by at least 0.10 of its own prior ATR before the new signal, and that anchor is within 0.25 current prior ATR of the new anchor. The failed break may have been risk-rejected.",
+      "hypothesis": "A nearby prior structural rejection lowers the quality of a fresh attempt."
+    },
+    {
+      "id": "VOLATILITY_175",
+      "rule": "Keep the BREAKOUT when the signal-bar true range is at most 1.75 prior ATR.",
+      "hypothesis": "Large signal candles can consume room or create adverse stop geometry."
+    },
+    {
+      "id": "NO_OPPOSITE_BOS_4",
+      "rule": "Keep the BREAKOUT only if no opposite confirmed BOS is present on the signal bar or in the three preceding completed bars.",
+      "hypothesis": "A known opposite structure break makes continuation less reliable."
+    }
+  ],
+  "replay": "Each rule applies only to originally eligible FAST BREAKOUT offers. All other FAST models keep their original eligibility. Freeze per-offer outcomes and rebook at original close times under original single-position and S5 tie-priority rules. Keep independent all-FAST and S5+FAST runs. Risk-denied and filtered offers are never added as fills.",
+  "comparison": "First account for gate exclusions in the 81 already observed BREAKOUT campaigns, preserving their frozen net R. Then measure full portfolio occupancy effects, missing and newly executed campaign IDs, net and stressed R, drawdown and directional event fills. All R units use initial risk in the frozen archive.",
+  "chronology": {
+    "split": "Use the existing 60% M5 bar cut and one-hour embargo. Score only campaigns completed within each slice.",
+    "primary_metric": "Paired UTC-day stressed net R sum in the later archive, five calendar days per non-overlapping block with flat days included.",
+    "seed": 20261111,
+    "repetitions": 2000,
+    "block_days": 5,
+    "adjustment": "Holm across all four independently tested arms.",
+    "acceptance": "No promotion from this archive. Later-period improvement in stressed net R and preserved drawdown and event fills are necessary for continued experimental review."
+  }
+}

@@ -1,0 +1,84 @@
+// Keep one marker per confirmed bar. TradingView supplies the strategy's fill arrows.
+int prRequestedMarkers = switch prDensity
+    "Off" => 0
+    "Low" => 8
+    "Medium" => 20
+    "High" => 48
+    => prFull ? 30 : prMobile ? 4 : prMinimal ? 3 : 8
+int prMarkerLimit = math.min(prRequestedMarkers, prMobile ? 6 : prMinimal ? 3 : 48)
+var array<label> prHistory = array.new<label>()
+var int prHistoryHead = 0
+bool prNewOpportunity = gpOpportunityAt == time_close
+bool prNewPlan = not na(gpLastPlan) and gpLastPlan.knownAt == time_close
+bool prSignalConflict = gpBuyConfirmed and gpSellConfirmed
+bool prBuyWatching = gpBuyWatch or prNewOpportunity and gpOpportunityText == "BUY WATCH"
+bool prSellWatching = gpSellWatch or prNewOpportunity and gpOpportunityText == "SELL WATCH"
+bool prWait = prNewOpportunity and gpOpportunityText == "WAIT FOR PULLBACK"
+bool prExpired = gpExpiryMark or prNewOpportunity and gpOpportunityText == "OPPORTUNITY EXPIRED"
+int prMarkerSide = prNewPlan ? gpLastPlan.side : gpBuyConfirmed ? 1 : gpSellConfirmed ? -1 :
+  prBuyWatching and not prSellWatching ? 1 : prSellWatching and not prBuyWatching ? -1 : 0
+
+if gpClosedBar and prMarkerLimit > 0
+    string glyph = ""
+    string detail = ""
+    bool badge = false
+    int side = prMarkerSide
+    color accent = side > 0 ? prChartBuy : side < 0 ? prChartSell : prChartNeutral
+    if prNativeFillMark
+        if prFull and prShowFills
+            side := prNativeFillSide
+            glyph := side > 0 ? "SIM B" : "SIM S"
+            detail := "Pine badge for a recorded TradingView emulator fill"
+            accent := prChartTarget
+    else if prSignalConflict and prFull
+        glyph := "!"
+        detail := "Conflicting confirmed BUY and SELL signals"
+        side := 0
+        accent := prChartWarning
+    else if prNewPlan and gpLastState == "ENTRY_VALID" and not prSignalConflict
+        glyph := gpLastPlan.model == "R" ? (side > 0 ? "B²" : "S²") : side > 0 ? "B" : "S"
+        detail := (gpLastPlan.model == "R" ? "SECOND CHANCE" : "ENTRY VALID") + " · " + f_prSide(side)
+        badge := true
+    else if (gpBuyConfirmed or gpSellConfirmed) and not prSignalConflict
+        side := gpBuyConfirmed ? 1 : -1
+        accent := side > 0 ? prChartBuy : prChartSell
+        glyph := side > 0 ? "B" : "S"
+        detail := f_prSide(side) + " CONFIRMED"
+        badge := true
+    else if prFull and prShowDecisions and prNewPlan and gpLastState == "ENTRY_REJECTED"
+        glyph := "!"
+        detail := "ENTRY REJECTED · " + f_prReadable(gpLastReason)
+        accent := prChartWarning
+    else if prFull and prShowDecisions and prExpired
+        glyph := "×"
+        detail := "EXPIRED · " + f_prReadable(gpLastReason)
+        accent := prChartNeutral
+    else if prFull and prShowWatches and prWait
+        glyph := "…"
+        detail := "WAIT FOR PULLBACK · " + f_prReadable(gpLastReason)
+        accent := prChartWarning
+    else if prShowWatches and (prBuyWatching or prSellWatching) and not prMinimal
+        side := prBuyWatching and not prSellWatching ? 1 : prSellWatching and not prBuyWatching ? -1 : 0
+        accent := side > 0 ? prChartBuy : side < 0 ? prChartSell : prChartNeutral
+        glyph := "·"
+        detail := prBuyWatching and prSellWatching ? "BUY and SELL WATCH" : f_prSide(side) + " WATCH"
+    if glyph != ""
+        bool buy = side > 0
+        float padding = math.max(nz(v22ATR, gpTick) * 0.12, gpTick * 3)
+        float markerPrice = buy ? low - padding : high + padding
+        string badgeStyle = not badge ? label.style_none : buy ? label.style_label_up : label.style_label_down
+        color background = badge ? color.new(accent, 8) : color.new(accent, 100)
+        color textInk = badge ? (prLightChart ? #FFFFFF : prGraphite) : accent
+        label marker = na
+        if prHistory.size() < prMarkerLimit
+            marker := label.new(bar_index, markerPrice, yloc=yloc.price, size=9)
+            prHistory.push(marker)
+        else
+            marker := prHistory.get(prHistoryHead)
+            prHistoryHead := (prHistoryHead + 1) % prMarkerLimit
+        label.set_xy(marker, bar_index, markerPrice)
+        label.set_style(marker, badgeStyle)
+        label.set_text(marker, glyph)
+        label.set_color(marker, background)
+        label.set_textcolor(marker, textInk)
+        label.set_tooltip(marker, detail + "\n" + str.format_time(time_close, "dd MMM HH:mm", "UTC") + " UTC")
