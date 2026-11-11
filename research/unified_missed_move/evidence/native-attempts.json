@@ -1,0 +1,78 @@
+{
+  "symbol": "OANDA:XAUUSD",
+  "candles": "standard",
+  "timezone": "UTC",
+  "baseline_commit": "48b25393246634d86da4738839a8d16111036283",
+  "baseline_sha256": "03150c89a587cc81559d8712118f8c0179eaf66496e61e0ec8689dba79c2c588",
+  "final_candidate_sha256": "8fa408b2cf17294057647b8575a9b337c3891491a24cf13549ce67f6d92a44fc",
+  "forward_seal_sha256": "09181ecaf9e30cde62c5203b524cb458d808a07c24029e961e32bb25c474afd1",
+  "candidate_native_status": "BLOCKED_COMPILATION_TIMEOUT",
+  "candidate_runtime_frames_verified": [],
+  "candidate_native_parity": "UNVERIFIED",
+  "candidate_live_alert_delivery": "UNVERIFIED",
+  "attempts": [
+    {
+      "chart": "M30",
+      "source_sha256": "d2dd2dacb62c31fa1a620a5dc5e33ee6c29955d47840bb264c09acb8ecbc3e8f",
+      "message": "Pine compilation was timed out",
+      "attempts_before_blocking_shown": 4,
+      "screenshot": "screenshots/M30-initial-compiler-timeout.jpg",
+      "scope": "Initial integrated observation adapter"
+    },
+    {
+      "chart": "M30",
+      "source_sha256": "83cb1e7476b22cc8b319d4dcd5cccd6ca35948350e69059bd12b9f73e214f7fb",
+      "message": "Pine compilation was timed out",
+      "attempts_before_blocking_shown": 2,
+      "screenshot": "screenshots/M30-second-compiler-timeout.jpg",
+      "scope": "Normalized the observations after the repeated emitter"
+    },
+    {
+      "chart": "M15",
+      "source_sha256": "8fa408b2cf17294057647b8575a9b337c3891491a24cf13549ce67f6d92a44fc",
+      "message": "Pine compilation was timed out",
+      "attempts_before_blocking_shown": 1,
+      "screenshot": "screenshots/M15-final-candidate-compiler-timeout.jpg",
+      "scope": "Reuses DvSignal, original renderer and the original selected Shadow witness"
+    }
+  ],
+  "native_control_exports": [
+    {
+      "file": "baseline-M15.csv",
+      "sha256": "a02f8867de9a475b05bd83377505e0c396c9fdb74774afb153f40ae8149632ad",
+      "bytes": 695492,
+      "origin": "TradingView Pine Logs / Download logs"
+    },
+    {
+      "file": "baseline-M30.csv",
+      "sha256": "5bdea06ce08b958f50b64cb2c8cd08d1ebeb133b19eaa60d11dcea6bcb323073",
+      "bytes": 546129,
+      "origin": "TradingView Pine Logs / Download logs"
+    },
+    {
+      "file": "baseline-M5.csv",
+      "sha256": "76891e77662e48ad032daf40f06a1ee78d621e4ac27c915f9babec436597d6c9",
+      "bytes": 1054881,
+      "origin": "TradingView Pine Logs / Download logs"
+    },
+    {
+      "file": "early-M15.csv",
+      "sha256": "d2b694559f08c93106dbc460c1dc64bb7bb7f7ec8c30f15fdd0df3e008c15860",
+      "bytes": 699318,
+      "origin": "TradingView Pine Logs / Download logs"
+    },
+    {
+      "file": "early-M30.csv",
+      "sha256": "6070b4ad0912f5269fe639e17a50f24c8d93cbd18ee464d8ae465e59b6d1562b",
+      "bytes": 549349,
+      "origin": "TradingView Pine Logs / Download logs"
+    },
+    {
+      "file": "early-M5.csv",
+      "sha256": "0803ceb364859bf2640472b13479429582372fc80b99dbd32bfd4a12f7e3ad8f",
+      "bytes": 1065723,
+      "origin": "TradingView Pine Logs / Download logs"
+    }
+  ],
+  "scope": "Control screenshots and Pine Logs are original UNIFIED, not the uncompiled candidate."
+}

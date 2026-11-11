@@ -1,0 +1,4088 @@
+{
+  "status": "RETROSPECTIVE_REPRODUCED_RESEARCH_ONLY",
+  "matched_complete_records": {
+    "direct_trend": {
+      "commit": "bcda58bedf20d6dd626e49849b48c613746167f1",
+      "sha256": "732a893c5d525b467b206965127415c6f941ad9cb1ecfd1dae34842de7fd5f76"
+    },
+    "precision_entry": {
+      "commit": "a0666824a8cc6ad9b0055c47ca74292d3b8d3d90",
+      "sha256": "4d24e8a5d13f72d4c9dc33bbcee730c4094e39b885861917e165f4753845ba49"
+    },
+    "precision_summary": {
+      "commit": "a0666824a8cc6ad9b0055c47ca74292d3b8d3d90",
+      "sha256": "da0b43a0207bdfb5c1a5fac08dbe5e728d80d4d5d817354bdd39eebcbfee4df0"
+    },
+    "shadow_loss_diagnostic": {
+      "commit": "a0666824a8cc6ad9b0055c47ca74292d3b8d3d90",
+      "sha256": "99a77a816183a67a4b1608f47da1f259ea98f624061b0fd9af35ac29e944737b"
+    }
+  },
+  "historical_registration": {
+    "archive": "releases/gold-pro-rc2/evidence/native-logs.zip",
+    "archive_sha256": "a058bd9789bf9f5d258a08316217f3bebc8b9951460ee0c499aae848c761813a",
+    "minimum_warmup_bars": 250,
+    "development_start_utc": "2026-11-06T03:00:00Z",
+    "readout_start_utc": "2026-11-09T00:00:00Z",
+    "end_utc": "2026-11-11T06:00:00Z",
+    "exposure": "Both chronological scoring intervals are already-observed history. The first full UTC hour after the common 250-bar warmup begins the comparison. The intervening Monday UTC week boundary fixes the readout split. Later sell-visibility case work is excluded.",
+    "same_tape": "Fixed and parity native CORE/READY must match for each frame. Both frames share UTC boundaries. Compare native M15 OHLC to three M5 bars where complete and disclose discrepancies without altering official bars.",
+    "sampling": "Scan each native tape from its own first loaded bar. Admit entries only from the common start. Report cohorts by fill open and censor closes after cohort end. Preserve occupancy across the historical split."
+  },
+  "simulation": {
+    "baseline": {
+      "spread": 0.35,
+      "adverse_ticks": 2,
+      "commission_per_unit_each_way": 0.175
+    },
+    "stress": {
+      "spread": 0.7,
+      "adverse_ticks": 5,
+      "commission_per_unit_each_way": 0.2625
+    },
+    "execution": "Reuse Direct Trend Breakout next-open OHLC simulator. Frozen stops and three equal target parts; evaluate quote-side gaps at open, then SL before ambiguous TP. No fill across a provider session gap. Retain S5 RAW lock at +0.05R from the next bar following TP1.",
+    "portfolio": "One position or reservation. On the same confirmation bar give existing S5/RC2 first priority, then fresh retest, structural and consolidation. Within priority use plan ID. Keep S5-only and RC2-only, original RC2 plus shadow, each independent precision hypothesis, and pooled research scenarios with/without baseline.",
+    "counterfactual": "Replay rejected geometry in isolation with the same next-open constraints and costs. Attribute a rejected winner or avoided loser only if a complete realized closed campaign is available. Separate single-gate from overlapping reasons. Compare baseline fills by identical plan ID for displaced campaigns.",
+    "regimes": "Use frozen v2.1 clock-hour opportunity rules, existing sideways/reversal labels, and a separate volatile overlay at 1.5x the median range of the previous 24 complete clock hours. Outcome labels and examples are retrospective and do not enter selection."
+  },
+  "prospective_registration": {
+    "status": "REGISTERED_DATA_UNAVAILABLE",
+    "start_utc": "2027-01-12T00:00:00Z",
+    "end_utc": "2027-03-01T00:00:00Z",
+    "sealed_original_sha256": "09181ecaf9e30cde62c5203b524cb458d808a07c24029e961e32bb25c474afd1",
+    "intake": "Before data access, independently timestamp the final frozen code and manifests. Collect provider-specific ordinary OANDA XAUUSD M5 and M15 bars and corresponding unchanged S5 RAW and RC2 offer journals. Hash the raw exports and verify common UTC coverage, interval provenance and known-at times. Do not substitute an already examined tape or include any of the original sealed GOLD PRO period.",
+    "decision": "Promotion is gated on an actually unopened, matched dataset and the separate preregistered acceptance rules. Current archived comparisons have no promotion authority."
+  },
+  "cross_frame": {
+    "m15_bars_with_complete_m5_children": 288,
+    "incomplete_m5_windows": 0,
+    "ohlc_differences": []
+  },
+  "matched_precision_results": {
+    "M5": {
+      "independent_hours": {
+        "complete_hours": 93,
+        "partial_observed_hours": 0,
+        "eligible_hours": 69,
+        "eligible_regimes": {
+          "OTHER": 37,
+          "SIDEWAYS": 27,
+          "REVERSAL": 1,
+          "DIRECTIONAL_BUY": 2,
+          "DIRECTIONAL_SELL": 2
+        },
+        "registered_eligible_regimes": {
+          "OTHER": 37,
+          "SIDEWAYS": 27,
+          "REVERSAL": 1,
+          "DIRECTIONAL_BUY": 2,
+          "DIRECTIONAL_SELL": 2
+        },
+        "registered_volatile": 12
+      },
+      "cost_scenarios": {
+        "baseline": {
+          "costs": {
+            "tick": 0.001,
+            "pointvalue": 1.0,
+            "commission": 0.175,
+            "ticks": 2,
+            "spread": 0.35,
+            "extra_spread": 0.3,
+            "extra_slip": 0.1,
+            "extra_commission": 0.5
+          },
+          "origin_retest_pairs": {
+            "matched_isolated_closed_pairs": 11,
+            "mean_delta_r": -0.10632609261649033,
+            "median_delta_r": -1.8207657603852567e-14,
+            "better_retests": 4,
+            "worse_retests": 4,
+            "tied_retests": 3
+          },
+          "displacement": {
+            "RC2": {
+              "closed_campaigns_displaced": 1,
+              "wins_displaced": 1,
+              "losses_displaced": 0,
+              "original_net_usd": 38.646000000002644,
+              "rows": [
+                {
+                  "plan_id": "S5|OANDA:XAUUSD|5|2|-1|1794289500000|1794289800000",
+                  "decision_utc": "2026-11-10T05:50:00Z",
+                  "original_net_usd": 38.646000000002644,
+                  "original_net_r": 1.7939005709515403,
+                  "combined_state": "POSITION_OCCUPIED",
+                  "blocked_by": "DT|CONSOLIDATION_BREAK|-1|1794278100000"
+                }
+              ]
+            },
+            "S5_RAW": {
+              "closed_campaigns_displaced": 1,
+              "wins_displaced": 1,
+              "losses_displaced": 0,
+              "original_net_usd": 6.173000000000866,
+              "rows": [
+                {
+                  "plan_id": "S5|OANDA:XAUUSD|5|2|-1|1794289500000|1794289800000",
+                  "decision_utc": "2026-11-10T05:50:00Z",
+                  "original_net_usd": 6.173000000000866,
+                  "original_net_r": 0.2865431926844862,
+                  "combined_state": "POSITION_OCCUPIED",
+                  "blocked_by": "DT|CONSOLIDATION_BREAK|-1|1794278100000"
+                }
+              ]
+            },
+            "RC2_BY_ORIGINAL_SHADOW": {
+              "closed_campaigns_displaced": 3,
+              "wins_displaced": 2,
+              "losses_displaced": 1,
+              "original_net_usd": 42.384000000003745,
+              "rows": [
+                {
+                  "plan_id": "S5|OANDA:XAUUSD|5|2|-1|1794289500000|1794289800000",
+                  "decision_utc": "2026-11-10T05:50:00Z",
+                  "original_net_usd": 38.646000000002644,
+                  "original_net_r": 1.7939005709515403,
+                  "combined_state": "POSITION_OCCUPIED",
+                  "blocked_by": "DT|CONSOLIDATION_BREAK|-1|1794278100000"
+                },
+                {
+                  "plan_id": "S5|OANDA:XAUUSD|5|2|1|1794306900000|1794307200000",
+                  "decision_utc": "2026-11-10T10:40:00Z",
+                  "original_net_usd": -13.616999999999551,
+                  "original_net_r": -0.9999999999999897,
+                  "combined_state": "POSITION_OCCUPIED",
+                  "blocked_by": "DT|STRUCTURAL_BREAK|-1|1794306000000"
+                },
+                {
+                  "plan_id": "S5|OANDA:XAUUSD|5|2|-1|1794356100000|1794356700000",
+                  "decision_utc": "2026-11-11T00:25:00Z",
+                  "original_net_usd": 17.355000000000654,
+                  "original_net_r": 1.6792452830190059,
+                  "combined_state": "POSITION_OCCUPIED",
+                  "blocked_by": "DT|STRUCTURAL_BREAK|1|1794355200000"
+                }
+              ]
+            }
+          },
+          "models": {
+            "RC2": {
+              "metrics": {
+                "all": {
+                  "filled": 9,
+                  "closed": 8,
+                  "censored_or_straddles": 1,
+                  "wins": 4,
+                  "losses": 4,
+                  "win_rate": 0.5,
+                  "net_usd": 46.15800000000455,
+                  "net_r": 2.1960100697909435,
+                  "expectancy_r": 0.27450125872386794,
+                  "profit_factor": 2.0196832129367075,
+                  "marked_bar_close_drawdown_usd": 37.92300000000113,
+                  "median_entry_repricing_atr": -0.0029257502973171674,
+                  "mean_loss_usd": -11.31674999999966,
+                  "mean_loss_r": -0.8517727466894234,
+                  "mean_win_usd": 22.856250000000795,
+                  "mean_win_r": 1.4007752641371594
+                },
+                "BUY": {
+                  "filled": 2,
+                  "closed": 2,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 1,
+                  "win_rate": 0.5,
+                  "net_usd": 18.26400000000003,
+                  "net_r": 0.7319100391132588,
+                  "expectancy_r": 0.3659550195566294,
+                  "profit_factor": 2.3412645957259772,
+                  "marked_bar_close_drawdown_usd": 13.616999999999551,
+                  "median_entry_repricing_atr": -0.0024521627443966055,
+                  "mean_loss_usd": -13.616999999999551,
+                  "mean_loss_r": -0.9999999999999897,
+                  "mean_win_usd": 31.880999999999585,
+                  "mean_win_r": 1.7319100391132485
+                },
+                "SELL": {
+                  "filled": 7,
+                  "closed": 6,
+                  "censored_or_straddles": 1,
+                  "wins": 3,
+                  "losses": 3,
+                  "win_rate": 0.5,
+                  "net_usd": 27.894000000004514,
+                  "net_r": 1.4641000306776846,
+                  "expectancy_r": 0.2440166717796141,
+                  "profit_factor": 1.8813270142181773,
+                  "marked_bar_close_drawdown_usd": 35.077999999998426,
+                  "median_entry_repricing_atr": -0.0029257502973171674,
+                  "mean_loss_usd": -10.549999999999695,
+                  "mean_loss_r": -0.802363662252568,
+                  "mean_win_usd": 19.8480000000012,
+                  "mean_win_r": 1.2903970058117962
+                }
+              },
+              "states": {
+                "CLOSED": 8,
+                "POSITION_OCCUPIED": 1,
+                "CENSORED_OPEN": 1
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 9,
+                "closed_losses": 4,
+                "closed_net_usd": 46.15800000000455,
+                "opposite_directional_fills": 0
+              }
+            },
+            "S5_RAW": {
+              "metrics": {
+                "all": {
+                  "filled": 9,
+                  "closed": 8,
+                  "censored_or_straddles": 1,
+                  "wins": 5,
+                  "losses": 3,
+                  "win_rate": 0.625,
+                  "net_usd": 25.52200000000139,
+                  "net_r": 1.6443467299045547,
+                  "expectancy_r": 0.20554334123806933,
+                  "profit_factor": 1.6453260512276133,
+                  "marked_bar_close_drawdown_usd": 52.30200000000286,
+                  "median_entry_repricing_atr": -0.0029257502973171674,
+                  "mean_loss_usd": -13.183000000000265,
+                  "mean_loss_r": -0.9999999999999886,
+                  "mean_win_usd": 13.014200000000438,
+                  "mean_win_r": 0.9288693459809041
+                },
+                "BUY": {
+                  "filled": 2,
+                  "closed": 2,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 1,
+                  "win_rate": 0.5,
+                  "net_usd": 18.26400000000003,
+                  "net_r": 0.7319100391132588,
+                  "expectancy_r": 0.3659550195566294,
+                  "profit_factor": 2.3412645957259772,
+                  "marked_bar_close_drawdown_usd": 13.616999999999551,
+                  "median_entry_repricing_atr": -0.0024521627443966055,
+                  "mean_loss_usd": -13.616999999999551,
+                  "mean_loss_r": -0.9999999999999897,
+                  "mean_win_usd": 31.880999999999585,
+                  "mean_win_r": 1.7319100391132485
+                },
+                "SELL": {
+                  "filled": 7,
+                  "closed": 6,
+                  "censored_or_straddles": 1,
+                  "wins": 4,
+                  "losses": 2,
+                  "win_rate": 0.6666666666666666,
+                  "net_usd": 7.258000000001359,
+                  "net_r": 0.9124366907912957,
+                  "expectancy_r": 0.1520727817985493,
+                  "profit_factor": 1.2798858553139367,
+                  "marked_bar_close_drawdown_usd": 38.68500000000331,
+                  "median_entry_repricing_atr": -0.0029257502973171674,
+                  "mean_loss_usd": -12.966000000000621,
+                  "mean_loss_r": -0.999999999999988,
+                  "mean_win_usd": 8.29750000000065,
+                  "mean_win_r": 0.7281091726978179
+                }
+              },
+              "states": {
+                "CLOSED": 8,
+                "POSITION_OCCUPIED": 1,
+                "CENSORED_OPEN": 1
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 9,
+                "closed_losses": 3,
+                "closed_net_usd": 25.52200000000139,
+                "opposite_directional_fills": 0
+              }
+            },
+            "RC2_PLUS_ORIGINAL_SHADOW": {
+              "metrics": {
+                "all": {
+                  "filled": 17,
+                  "closed": 16,
+                  "censored_or_straddles": 1,
+                  "wins": 6,
+                  "losses": 10,
+                  "win_rate": 0.375,
+                  "net_usd": -11.114000000001653,
+                  "net_r": -1.4943113849205416,
+                  "expectancy_r": -0.09339446155753385,
+                  "profit_factor": 0.9378223848365754,
+                  "marked_bar_close_drawdown_usd": 97.66299999999836,
+                  "median_entry_repricing_atr": 0.0009704475144212485,
+                  "mean_loss_usd": -17.87460000000028,
+                  "mean_loss_r": -0.8628993046180089,
+                  "mean_win_usd": 27.938666666666858,
+                  "mean_win_r": 1.1891136102099247
+                },
+                "BUY": {
+                  "filled": 6,
+                  "closed": 6,
+                  "censored_or_straddles": 0,
+                  "wins": 2,
+                  "losses": 4,
+                  "win_rate": 0.3333333333333333,
+                  "net_usd": 18.385000000001767,
+                  "net_r": -0.5699365017903715,
+                  "expectancy_r": -0.0949894169650619,
+                  "profit_factor": 1.2869472928470271,
+                  "marked_bar_close_drawdown_usd": 55.8770000000014,
+                  "median_entry_repricing_atr": 0.005533675872733177,
+                  "mean_loss_usd": -16.017749999999907,
+                  "mean_loss_r": -0.8461651700279927,
+                  "mean_win_usd": 41.2280000000007,
+                  "mean_win_r": 1.4073620891607996
+                },
+                "SELL": {
+                  "filled": 11,
+                  "closed": 10,
+                  "censored_or_straddles": 1,
+                  "wins": 4,
+                  "losses": 6,
+                  "win_rate": 0.4,
+                  "net_usd": -29.499000000003416,
+                  "net_r": -0.9243748831301701,
+                  "expectancy_r": -0.09243748831301701,
+                  "profit_factor": 0.742759973839088,
+                  "marked_bar_close_drawdown_usd": 84.29500000000279,
+                  "median_entry_repricing_atr": -0.0012660993205454057,
+                  "mean_loss_usd": -19.11250000000053,
+                  "mean_loss_r": -0.8740553943446864,
+                  "mean_win_usd": 21.29399999999994,
+                  "mean_win_r": 1.0799893707344872
+                }
+              },
+              "states": {
+                "CLOSED": 16,
+                "POSITION_OCCUPIED": 8,
+                "CENSORED_OPEN": 1
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 17,
+                "closed_losses": 10,
+                "closed_net_usd": -11.11400000000165,
+                "opposite_directional_fills": 0
+              }
+            },
+            "RETEST_CONTINUATION": {
+              "metrics": {
+                "all": {
+                  "filled": 1,
+                  "closed": 1,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 0,
+                  "win_rate": 1.0,
+                  "net_usd": 51.02700000000204,
+                  "net_r": 1.844393840815537,
+                  "expectancy_r": 1.844393840815537,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 12.899999999997817,
+                  "median_entry_repricing_atr": -0.00655461889410526,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": 51.02700000000204,
+                  "mean_win_r": 1.844393840815537
+                },
+                "BUY": {
+                  "filled": 1,
+                  "closed": 1,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 0,
+                  "win_rate": 1.0,
+                  "net_usd": 51.02700000000204,
+                  "net_r": 1.844393840815537,
+                  "expectancy_r": 1.844393840815537,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 12.899999999997817,
+                  "median_entry_repricing_atr": -0.00655461889410526,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": 51.02700000000204,
+                  "mean_win_r": 1.844393840815537
+                },
+                "SELL": {
+                  "filled": 0,
+                  "closed": 0,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 0,
+                  "win_rate": null,
+                  "net_usd": 0,
+                  "net_r": 0,
+                  "expectancy_r": null,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 0.0,
+                  "median_entry_repricing_atr": null,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                }
+              },
+              "states": {
+                "CLOSED": 1
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 1,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 1,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 1,
+                "closed_losses": 0,
+                "closed_net_usd": 51.02700000000204,
+                "opposite_directional_fills": 0
+              }
+            },
+            "STRUCTURAL_BREAK": {
+              "metrics": {
+                "all": {
+                  "filled": 4,
+                  "closed": 4,
+                  "censored_or_straddles": 0,
+                  "wins": 2,
+                  "losses": 2,
+                  "win_rate": 0.5,
+                  "net_usd": 20.086000000000972,
+                  "net_r": -0.40107856870381475,
+                  "expectancy_r": -0.10026964217595369,
+                  "profit_factor": 1.3756990816078574,
+                  "marked_bar_close_drawdown_usd": 45.93399999999801,
+                  "median_entry_repricing_atr": -0.006039120697521845,
+                  "mean_loss_usd": -26.73150000000014,
+                  "mean_loss_r": -1.00000000000002,
+                  "mean_win_usd": 36.77450000000063,
+                  "mean_win_r": 0.7994607156481126
+                },
+                "BUY": {
+                  "filled": 1,
+                  "closed": 1,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 0,
+                  "win_rate": 1.0,
+                  "net_usd": 50.575000000001815,
+                  "net_r": 1.082814139208351,
+                  "expectancy_r": 1.082814139208351,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 30.36999999999898,
+                  "median_entry_repricing_atr": 0.029587177575284767,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": 50.575000000001815,
+                  "mean_win_r": 1.082814139208351
+                },
+                "SELL": {
+                  "filled": 3,
+                  "closed": 3,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 2,
+                  "win_rate": 0.3333333333333333,
+                  "net_usd": -30.489000000000843,
+                  "net_r": -1.4838927079121658,
+                  "expectancy_r": -0.49463090263738857,
+                  "profit_factor": 0.4297177487234034,
+                  "marked_bar_close_drawdown_usd": 72.58300000000017,
+                  "median_entry_repricing_atr": -0.006419355296530962,
+                  "mean_loss_usd": -26.73150000000014,
+                  "mean_loss_r": -1.00000000000002,
+                  "mean_win_usd": 22.973999999999435,
+                  "mean_win_r": 0.5161072920878741
+                }
+              },
+              "states": {
+                "CLOSED": 4
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 4,
+                "closed_losses": 2,
+                "closed_net_usd": 20.086000000000972,
+                "opposite_directional_fills": 0
+              }
+            },
+            "CONSOLIDATION_BREAK": {
+              "metrics": {
+                "all": {
+                  "filled": 3,
+                  "closed": 3,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 2,
+                  "win_rate": 0.3333333333333333,
+                  "net_usd": -41.0610000000046,
+                  "net_r": -1.5794293223717397,
+                  "expectancy_r": -0.52647644079058,
+                  "profit_factor": 0.24932814128225833,
+                  "marked_bar_close_drawdown_usd": 83.37900000000363,
+                  "median_entry_repricing_atr": -0.0035295373751354133,
+                  "mean_loss_usd": -27.349500000001896,
+                  "mean_loss_r": -0.9186206896552098,
+                  "mean_win_usd": 13.637999999999193,
+                  "mean_win_r": 0.25781205693868
+                },
+                "BUY": {
+                  "filled": 0,
+                  "closed": 0,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 0,
+                  "win_rate": null,
+                  "net_usd": 0,
+                  "net_r": 0,
+                  "expectancy_r": null,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 0.0,
+                  "median_entry_repricing_atr": null,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "SELL": {
+                  "filled": 3,
+                  "closed": 3,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 2,
+                  "win_rate": 0.3333333333333333,
+                  "net_usd": -41.0610000000046,
+                  "net_r": -1.5794293223717397,
+                  "expectancy_r": -0.52647644079058,
+                  "profit_factor": 0.24932814128225833,
+                  "marked_bar_close_drawdown_usd": 83.37900000000363,
+                  "median_entry_repricing_atr": -0.0035295373751354133,
+                  "mean_loss_usd": -27.349500000001896,
+                  "mean_loss_r": -0.9186206896552098,
+                  "mean_win_usd": 13.637999999999193,
+                  "mean_win_r": 0.25781205693868
+                }
+              },
+              "states": {
+                "CLOSED": 3,
+                "POSITION_OCCUPIED": 1
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 3,
+                "closed_losses": 2,
+                "closed_net_usd": -41.0610000000046,
+                "opposite_directional_fills": 0
+              }
+            },
+            "PRECISION_POOL": {
+              "metrics": {
+                "all": {
+                  "filled": 5,
+                  "closed": 5,
+                  "censored_or_straddles": 0,
+                  "wins": 2,
+                  "losses": 3,
+                  "win_rate": 0.4,
+                  "net_usd": -7.772000000003565,
+                  "net_r": -1.238319948014189,
+                  "expectancy_r": -0.24766398960283784,
+                  "profit_factor": 0.9044281304951599,
+                  "marked_bar_close_drawdown_usd": 77.48700000000355,
+                  "median_entry_repricing_atr": -0.0035295373751354133,
+                  "mean_loss_usd": -27.107000000001605,
+                  "mean_loss_r": -0.9457471264368048,
+                  "mean_win_usd": 36.77450000000063,
+                  "mean_win_r": 0.7994607156481126
+                },
+                "BUY": {
+                  "filled": 1,
+                  "closed": 1,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 0,
+                  "win_rate": 1.0,
+                  "net_usd": 50.575000000001815,
+                  "net_r": 1.082814139208351,
+                  "expectancy_r": 1.082814139208351,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 30.36999999999898,
+                  "median_entry_repricing_atr": 0.029587177575284767,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": 50.575000000001815,
+                  "mean_win_r": 1.082814139208351
+                },
+                "SELL": {
+                  "filled": 4,
+                  "closed": 4,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 3,
+                  "win_rate": 0.25,
+                  "net_usd": -58.34700000000538,
+                  "net_r": -2.32113408722254,
+                  "expectancy_r": -0.580283521805635,
+                  "profit_factor": 0.2825100527538775,
+                  "marked_bar_close_drawdown_usd": 100.4410000000047,
+                  "median_entry_repricing_atr": -0.004594211736824071,
+                  "mean_loss_usd": -27.107000000001605,
+                  "mean_loss_r": -0.9457471264368048,
+                  "mean_win_usd": 22.973999999999435,
+                  "mean_win_r": 0.5161072920878741
+                }
+              },
+              "states": {
+                "CLOSED": 5,
+                "POSITION_OCCUPIED": 4
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 5,
+                "closed_losses": 3,
+                "closed_net_usd": -7.772000000003565,
+                "opposite_directional_fills": 0
+              }
+            },
+            "RC2_PLUS_PRECISION": {
+              "metrics": {
+                "all": {
+                  "filled": 14,
+                  "closed": 13,
+                  "censored_or_straddles": 1,
+                  "wins": 5,
+                  "losses": 8,
+                  "win_rate": 0.38461538461538464,
+                  "net_usd": -11.91800000000184,
+                  "net_r": -1.836210449174891,
+                  "expectancy_r": -0.14124695762883777,
+                  "profit_factor": 0.9137913574352855,
+                  "marked_bar_close_drawdown_usd": 127.06800000000484,
+                  "median_entry_repricing_atr": -0.002558351381987112,
+                  "mean_loss_usd": -17.280750000000452,
+                  "mean_loss_r": -0.9055415457585266,
+                  "mean_win_usd": 25.265600000000358,
+                  "mean_win_r": 1.0816243833786643
+                },
+                "BUY": {
+                  "filled": 4,
+                  "closed": 4,
+                  "censored_or_straddles": 0,
+                  "wins": 2,
+                  "losses": 2,
+                  "win_rate": 0.5,
+                  "net_usd": 57.181000000001674,
+                  "net_r": 0.8147241783215048,
+                  "expectancy_r": 0.2036810445803762,
+                  "profit_factor": 3.262354104846777,
+                  "marked_bar_close_drawdown_usd": 38.895000000000536,
+                  "median_entry_repricing_atr": 0.005533675872733177,
+                  "mean_loss_usd": -12.637499999999864,
+                  "mean_loss_r": -1.0000000000000473,
+                  "mean_win_usd": 41.2280000000007,
+                  "mean_win_r": 1.4073620891607996
+                },
+                "SELL": {
+                  "filled": 10,
+                  "closed": 9,
+                  "censored_or_straddles": 1,
+                  "wins": 3,
+                  "losses": 6,
+                  "win_rate": 0.3333333333333333,
+                  "net_usd": -69.09900000000351,
+                  "net_r": -2.6509346274963956,
+                  "expectancy_r": -0.29454829194404397,
+                  "profit_factor": 0.38834745200094606,
+                  "marked_bar_close_drawdown_usd": 130.46500000000412,
+                  "median_entry_repricing_atr": -0.00322764383622629,
+                  "mean_loss_usd": -18.828500000000652,
+                  "mean_loss_r": -0.8740553943446864,
+                  "mean_win_usd": 14.62400000000013,
+                  "mean_win_r": 0.8644659128572408
+                }
+              },
+              "states": {
+                "CLOSED": 13,
+                "POSITION_OCCUPIED": 5,
+                "CENSORED_OPEN": 1
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 14,
+                "closed_losses": 8,
+                "closed_net_usd": -11.918000000001829,
+                "opposite_directional_fills": 0
+              }
+            }
+          }
+        },
+        "stress": {
+          "costs": {
+            "tick": 0.001,
+            "pointvalue": 1.0,
+            "commission": 0.2625,
+            "ticks": 5,
+            "spread": 0.7,
+            "extra_spread": 0.3,
+            "extra_slip": 0.1,
+            "extra_commission": 0.5
+          },
+          "origin_retest_pairs": {
+            "matched_isolated_closed_pairs": 11,
+            "mean_delta_r": -0.14015641963915398,
+            "median_delta_r": -4.440892098500626e-15,
+            "better_retests": 4,
+            "worse_retests": 4,
+            "tied_retests": 3
+          },
+          "displacement": {
+            "RC2": {
+              "closed_campaigns_displaced": 0,
+              "wins_displaced": 0,
+              "losses_displaced": 0,
+              "original_net_usd": 0,
+              "rows": []
+            },
+            "S5_RAW": {
+              "closed_campaigns_displaced": 0,
+              "wins_displaced": 0,
+              "losses_displaced": 0,
+              "original_net_usd": 0,
+              "rows": []
+            },
+            "RC2_BY_ORIGINAL_SHADOW": {
+              "closed_campaigns_displaced": 3,
+              "wins_displaced": 2,
+              "losses_displaced": 1,
+              "original_net_usd": 39.19800000000432,
+              "rows": [
+                {
+                  "plan_id": "S5|OANDA:XAUUSD|5|2|-1|1794289500000|1794289800000",
+                  "decision_utc": "2026-11-10T05:50:00Z",
+                  "original_net_usd": 37.58700000000299,
+                  "original_net_r": 1.6623324930347831,
+                  "combined_state": "POSITION_OCCUPIED",
+                  "blocked_by": "DT|CONSOLIDATION_BREAK|-1|1794278100000"
+                },
+                {
+                  "plan_id": "S5|OANDA:XAUUSD|5|2|1|1794306900000|1794307200000",
+                  "decision_utc": "2026-11-10T10:40:00Z",
+                  "original_net_usd": -14.684999999999674,
+                  "original_net_r": -1.0000000000000224,
+                  "combined_state": "POSITION_OCCUPIED",
+                  "blocked_by": "DT|STRUCTURAL_BREAK|-1|1794306000000"
+                },
+                {
+                  "plan_id": "S5|OANDA:XAUUSD|5|2|-1|1794356100000|1794356700000",
+                  "decision_utc": "2026-11-11T00:25:00Z",
+                  "original_net_usd": 16.296000000001005,
+                  "original_net_r": 1.4290976058933753,
+                  "combined_state": "POSITION_OCCUPIED",
+                  "blocked_by": "DT|STRUCTURAL_BREAK|1|1794355200000"
+                }
+              ]
+            }
+          },
+          "models": {
+            "RC2": {
+              "metrics": {
+                "all": {
+                  "filled": 9,
+                  "closed": 8,
+                  "censored_or_straddles": 1,
+                  "wins": 4,
+                  "losses": 4,
+                  "win_rate": 0.5,
+                  "net_usd": 37.65000000000636,
+                  "net_r": 1.4740755531708545,
+                  "expectancy_r": 0.1842594441463568,
+                  "profit_factor": 1.7600532945738014,
+                  "marked_bar_close_drawdown_usd": 43.78200000000061,
+                  "median_entry_repricing_atr": -0.0029257502973171674,
+                  "mean_loss_usd": -12.383999999999515,
+                  "mean_loss_r": -0.8621973005160692,
+                  "mean_win_usd": 21.796500000001103,
+                  "mean_win_r": 1.230716188808783
+                },
+                "BUY": {
+                  "filled": 2,
+                  "closed": 2,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 1,
+                  "win_rate": 0.5,
+                  "net_usd": 16.137000000000256,
+                  "net_r": 0.5825631546517451,
+                  "expectancy_r": 0.29128157732587256,
+                  "profit_factor": 2.098876404494424,
+                  "marked_bar_close_drawdown_usd": 14.684999999999674,
+                  "median_entry_repricing_atr": -0.0024521627443966055,
+                  "mean_loss_usd": -14.684999999999674,
+                  "mean_loss_r": -1.0000000000000224,
+                  "mean_win_usd": 30.82199999999993,
+                  "mean_win_r": 1.5825631546517676
+                },
+                "SELL": {
+                  "filled": 7,
+                  "closed": 6,
+                  "censored_or_straddles": 1,
+                  "wins": 3,
+                  "losses": 3,
+                  "win_rate": 0.5,
+                  "net_usd": 21.513000000006098,
+                  "net_r": 0.8915123985191094,
+                  "expectancy_r": 0.14858539975318488,
+                  "profit_factor": 1.617285013342719,
+                  "marked_bar_close_drawdown_usd": 36.32099999999737,
+                  "median_entry_repricing_atr": -0.0029257502973171674,
+                  "mean_loss_usd": -11.616999999999463,
+                  "mean_loss_r": -0.8162630673547515,
+                  "mean_win_usd": 18.788000000001496,
+                  "mean_win_r": 1.1134338668611214
+                }
+              },
+              "states": {
+                "CLOSED": 8,
+                "POSITION_OCCUPIED": 1,
+                "CENSORED_OPEN": 1
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 9,
+                "closed_losses": 4,
+                "closed_net_usd": 37.65000000000636,
+                "opposite_directional_fills": 0
+              }
+            },
+            "S5_RAW": {
+              "metrics": {
+                "all": {
+                  "filled": 9,
+                  "closed": 8,
+                  "censored_or_straddles": 1,
+                  "wins": 5,
+                  "losses": 3,
+                  "win_rate": 0.625,
+                  "net_usd": 17.943000000006936,
+                  "net_r": 0.9746099078669928,
+                  "expectancy_r": 0.1218262384833741,
+                  "profit_factor": 1.4196898463267245,
+                  "marked_bar_close_drawdown_usd": 57.250000000000455,
+                  "median_entry_repricing_atr": -0.0029257502973171674,
+                  "mean_loss_usd": -14.251000000000387,
+                  "mean_loss_r": -1.0000000000000244,
+                  "mean_win_usd": 12.139200000001619,
+                  "mean_win_r": 0.7949219815734132
+                },
+                "BUY": {
+                  "filled": 2,
+                  "closed": 2,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 1,
+                  "win_rate": 0.5,
+                  "net_usd": 16.137000000000256,
+                  "net_r": 0.5825631546517451,
+                  "expectancy_r": 0.29128157732587256,
+                  "profit_factor": 2.098876404494424,
+                  "marked_bar_close_drawdown_usd": 14.684999999999674,
+                  "median_entry_repricing_atr": -0.0024521627443966055,
+                  "mean_loss_usd": -14.684999999999674,
+                  "mean_loss_r": -1.0000000000000224,
+                  "mean_win_usd": 30.82199999999993,
+                  "mean_win_r": 1.5825631546517676
+                },
+                "SELL": {
+                  "filled": 7,
+                  "closed": 6,
+                  "censored_or_straddles": 1,
+                  "wins": 4,
+                  "losses": 2,
+                  "win_rate": 0.6666666666666666,
+                  "net_usd": 1.8060000000066774,
+                  "net_r": 0.39204675321524757,
+                  "expectancy_r": 0.0653411255358746,
+                  "profit_factor": 1.064343736639824,
+                  "marked_bar_close_drawdown_usd": 42.56500000000078,
+                  "median_entry_repricing_atr": -0.0029257502973171674,
+                  "mean_loss_usd": -14.034000000000743,
+                  "mean_loss_r": -1.0000000000000253,
+                  "mean_win_usd": 7.468500000002041,
+                  "mean_win_r": 0.5980116883038246
+                }
+              },
+              "states": {
+                "CLOSED": 8,
+                "POSITION_OCCUPIED": 1,
+                "CENSORED_OPEN": 1
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 9,
+                "closed_losses": 3,
+                "closed_net_usd": 17.943000000006936,
+                "opposite_directional_fills": 0
+              }
+            },
+            "RC2_PLUS_ORIGINAL_SHADOW": {
+              "metrics": {
+                "all": {
+                  "filled": 17,
+                  "closed": 16,
+                  "censored_or_straddles": 1,
+                  "wins": 6,
+                  "losses": 10,
+                  "win_rate": 0.375,
+                  "net_usd": -29.381999999996175,
+                  "net_r": -2.301152019510856,
+                  "expectancy_r": -0.1438220012194285,
+                  "profit_factor": 0.8453131169549278,
+                  "marked_bar_close_drawdown_usd": 102.45999999999805,
+                  "median_entry_repricing_atr": 0.0009704475144212485,
+                  "mean_loss_usd": -18.994499999999974,
+                  "mean_loss_r": -0.8719562918168398,
+                  "mean_win_usd": 26.760500000000594,
+                  "mean_win_r": 1.0697351497762568
+                },
+                "BUY": {
+                  "filled": 6,
+                  "closed": 6,
+                  "censored_or_straddles": 0,
+                  "wins": 2,
+                  "losses": 4,
+                  "win_rate": 0.3333333333333333,
+                  "net_usd": 11.64200000000464,
+                  "net_r": -0.8036097476411789,
+                  "expectancy_r": -0.13393495794019647,
+                  "profit_factor": 1.1703541117940448,
+                  "marked_bar_close_drawdown_usd": 57.662999999999926,
+                  "median_entry_repricing_atr": 0.005533675872733177,
+                  "mean_loss_usd": -17.084999999999425,
+                  "mean_loss_r": -0.8537907399636357,
+                  "mean_win_usd": 39.991000000001165,
+                  "mean_win_r": 1.305776606106682
+                },
+                "SELL": {
+                  "filled": 11,
+                  "closed": 10,
+                  "censored_or_straddles": 1,
+                  "wins": 4,
+                  "losses": 6,
+                  "win_rate": 0.4,
+                  "net_usd": -41.02400000000081,
+                  "net_r": -1.4975422718696771,
+                  "expectancy_r": -0.1497542271869677,
+                  "profit_factor": 0.6626454504337803,
+                  "marked_bar_close_drawdown_usd": 95.99800000000008,
+                  "median_entry_repricing_atr": -0.0012660993205454057,
+                  "mean_loss_usd": -20.26750000000034,
+                  "mean_loss_r": -0.8840666597189757,
+                  "mean_win_usd": 20.145250000000303,
+                  "mean_win_r": 0.9517144216110442
+                }
+              },
+              "states": {
+                "CLOSED": 16,
+                "POSITION_OCCUPIED": 8,
+                "CENSORED_OPEN": 1
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 17,
+                "closed_losses": 10,
+                "closed_net_usd": -29.381999999996175,
+                "opposite_directional_fills": 0
+              }
+            },
+            "RETEST_CONTINUATION": {
+              "metrics": {
+                "all": {
+                  "filled": 0,
+                  "closed": 0,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 0,
+                  "win_rate": null,
+                  "net_usd": 0,
+                  "net_r": 0,
+                  "expectancy_r": null,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 0.0,
+                  "median_entry_repricing_atr": null,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "BUY": {
+                  "filled": 0,
+                  "closed": 0,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 0,
+                  "win_rate": null,
+                  "net_usd": 0,
+                  "net_r": 0,
+                  "expectancy_r": null,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 0.0,
+                  "median_entry_repricing_atr": null,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "SELL": {
+                  "filled": 0,
+                  "closed": 0,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 0,
+                  "win_rate": null,
+                  "net_usd": 0,
+                  "net_r": 0,
+                  "expectancy_r": null,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 0.0,
+                  "median_entry_repricing_atr": null,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                }
+              },
+              "states": {},
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 1,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 1,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 0,
+                "closed_losses": 0,
+                "closed_net_usd": 0,
+                "opposite_directional_fills": 0
+              }
+            },
+            "STRUCTURAL_BREAK": {
+              "metrics": {
+                "all": {
+                  "filled": 2,
+                  "closed": 2,
+                  "censored_or_straddles": 0,
+                  "wins": 2,
+                  "losses": 0,
+                  "win_rate": 1.0,
+                  "net_usd": 70.71900000000241,
+                  "net_r": 1.5019618446705507,
+                  "expectancy_r": 0.7509809223352754,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 30.36999999999898,
+                  "median_entry_repricing_atr": 0.01196414573838602,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": 35.359500000001205,
+                  "mean_win_r": 0.7509809223352754
+                },
+                "BUY": {
+                  "filled": 1,
+                  "closed": 1,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 0,
+                  "win_rate": 1.0,
+                  "net_usd": 49.160000000002405,
+                  "net_r": 1.0289900575615964,
+                  "expectancy_r": 1.0289900575615964,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 30.36999999999899,
+                  "median_entry_repricing_atr": 0.029587177575284767,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": 49.160000000002405,
+                  "mean_win_r": 1.0289900575615964
+                },
+                "SELL": {
+                  "filled": 1,
+                  "closed": 1,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 0,
+                  "win_rate": 1.0,
+                  "net_usd": 21.55900000000001,
+                  "net_r": 0.4729717871089542,
+                  "expectancy_r": 0.4729717871089542,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 27.84600000000046,
+                  "median_entry_repricing_atr": -0.0056588860985127285,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": 21.55900000000001,
+                  "mean_win_r": 0.4729717871089542
+                }
+              },
+              "states": {
+                "CLOSED": 2
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 2,
+                "closed_losses": 0,
+                "closed_net_usd": 70.71900000000241,
+                "opposite_directional_fills": 0
+              }
+            },
+            "CONSOLIDATION_BREAK": {
+              "metrics": {
+                "all": {
+                  "filled": 1,
+                  "closed": 1,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 0,
+                  "win_rate": 1.0,
+                  "net_usd": 12.04499999999989,
+                  "net_r": 0.22319195063650016,
+                  "expectancy_r": 0.22319195063650016,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 41.95500000000038,
+                  "median_entry_repricing_atr": -0.0056588860985127285,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": 12.04499999999989,
+                  "mean_win_r": 0.22319195063650016
+                },
+                "BUY": {
+                  "filled": 0,
+                  "closed": 0,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 0,
+                  "win_rate": null,
+                  "net_usd": 0,
+                  "net_r": 0,
+                  "expectancy_r": null,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 0.0,
+                  "median_entry_repricing_atr": null,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "SELL": {
+                  "filled": 1,
+                  "closed": 1,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 0,
+                  "win_rate": 1.0,
+                  "net_usd": 12.04499999999989,
+                  "net_r": 0.22319195063650016,
+                  "expectancy_r": 0.22319195063650016,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 41.95500000000038,
+                  "median_entry_repricing_atr": -0.0056588860985127285,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": 12.04499999999989,
+                  "mean_win_r": 0.22319195063650016
+                }
+              },
+              "states": {
+                "CLOSED": 1
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 1,
+                "closed_losses": 0,
+                "closed_net_usd": 12.04499999999989,
+                "opposite_directional_fills": 0
+              }
+            },
+            "PRECISION_POOL": {
+              "metrics": {
+                "all": {
+                  "filled": 2,
+                  "closed": 2,
+                  "censored_or_straddles": 0,
+                  "wins": 2,
+                  "losses": 0,
+                  "win_rate": 1.0,
+                  "net_usd": 70.71900000000241,
+                  "net_r": 1.5019618446705507,
+                  "expectancy_r": 0.7509809223352754,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 30.36999999999898,
+                  "median_entry_repricing_atr": 0.01196414573838602,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": 35.359500000001205,
+                  "mean_win_r": 0.7509809223352754
+                },
+                "BUY": {
+                  "filled": 1,
+                  "closed": 1,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 0,
+                  "win_rate": 1.0,
+                  "net_usd": 49.160000000002405,
+                  "net_r": 1.0289900575615964,
+                  "expectancy_r": 1.0289900575615964,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 30.36999999999899,
+                  "median_entry_repricing_atr": 0.029587177575284767,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": 49.160000000002405,
+                  "mean_win_r": 1.0289900575615964
+                },
+                "SELL": {
+                  "filled": 1,
+                  "closed": 1,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 0,
+                  "win_rate": 1.0,
+                  "net_usd": 21.55900000000001,
+                  "net_r": 0.4729717871089542,
+                  "expectancy_r": 0.4729717871089542,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 27.84600000000046,
+                  "median_entry_repricing_atr": -0.0056588860985127285,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": 21.55900000000001,
+                  "mean_win_r": 0.4729717871089542
+                }
+              },
+              "states": {
+                "CLOSED": 2,
+                "POSITION_OCCUPIED": 1
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 2,
+                "closed_losses": 0,
+                "closed_net_usd": 70.71900000000241,
+                "opposite_directional_fills": 0
+              }
+            },
+            "RC2_PLUS_PRECISION": {
+              "metrics": {
+                "all": {
+                  "filled": 11,
+                  "closed": 10,
+                  "censored_or_straddles": 1,
+                  "wins": 6,
+                  "losses": 4,
+                  "win_rate": 0.6,
+                  "net_usd": 108.36900000000877,
+                  "net_r": 2.976037397841405,
+                  "expectancy_r": 0.2976037397841405,
+                  "profit_factor": 3.187681686046774,
+                  "marked_bar_close_drawdown_usd": 43.78200000000062,
+                  "median_entry_repricing_atr": -0.0029257502973171674,
+                  "mean_loss_usd": -12.383999999999515,
+                  "mean_loss_r": -0.8621973005160692,
+                  "mean_win_usd": 26.31750000000114,
+                  "mean_win_r": 1.0708044333176137
+                },
+                "BUY": {
+                  "filled": 3,
+                  "closed": 3,
+                  "censored_or_straddles": 0,
+                  "wins": 2,
+                  "losses": 1,
+                  "win_rate": 0.6666666666666666,
+                  "net_usd": 65.29700000000267,
+                  "net_r": 1.6115532122133416,
+                  "expectancy_r": 0.5371844040711139,
+                  "profit_factor": 5.446510044263133,
+                  "marked_bar_close_drawdown_usd": 30.36999999999899,
+                  "median_entry_repricing_atr": 0.004834353044222281,
+                  "mean_loss_usd": -14.684999999999674,
+                  "mean_loss_r": -1.0000000000000224,
+                  "mean_win_usd": 39.991000000001165,
+                  "mean_win_r": 1.305776606106682
+                },
+                "SELL": {
+                  "filled": 8,
+                  "closed": 7,
+                  "censored_or_straddles": 1,
+                  "wins": 4,
+                  "losses": 3,
+                  "win_rate": 0.5714285714285714,
+                  "net_usd": 43.07200000000611,
+                  "net_r": 1.3644841856280636,
+                  "expectancy_r": 0.1949263122325805,
+                  "profit_factor": 2.235889931422573,
+                  "marked_bar_close_drawdown_usd": 42.53799999999265,
+                  "median_entry_repricing_atr": -0.004292318197914948,
+                  "mean_loss_usd": -11.616999999999463,
+                  "mean_loss_r": -0.8162630673547515,
+                  "mean_win_usd": 19.480750000001123,
+                  "mean_win_r": 0.9533183469230796
+                }
+              },
+              "states": {
+                "CLOSED": 10,
+                "POSITION_OCCUPIED": 2,
+                "CENSORED_OPEN": 1
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 11,
+                "closed_losses": 4,
+                "closed_net_usd": 108.36900000000875,
+                "opposite_directional_fills": 0
+              }
+            },
+            "RC2_PLUS_PRECISION_FIXED_BASE_OFFERS": {
+              "metrics": {
+                "all": {
+                  "filled": 14,
+                  "closed": 13,
+                  "censored_or_straddles": 1,
+                  "wins": 5,
+                  "losses": 8,
+                  "win_rate": 0.38461538461538464,
+                  "net_usd": -26.99399999999752,
+                  "net_r": -2.5419058514430044,
+                  "expectancy_r": -0.19553121934176956,
+                  "profit_factor": 0.8167562724014522,
+                  "marked_bar_close_drawdown_usd": 135.0630000000032,
+                  "median_entry_repricing_atr": -0.002558351381987112,
+                  "mean_loss_usd": -18.414000000000172,
+                  "mean_loss_r": -0.913049994789238,
+                  "mean_win_usd": 24.06360000000077,
+                  "mean_win_r": 0.9524988213741798
+                },
+                "BUY": {
+                  "filled": 4,
+                  "closed": 4,
+                  "censored_or_straddles": 0,
+                  "wins": 2,
+                  "losses": 2,
+                  "win_rate": 0.5,
+                  "net_usd": 52.571000000003735,
+                  "net_r": 0.6115532122133158,
+                  "expectancy_r": 0.15288830305332896,
+                  "profit_factor": 2.9178796833390392,
+                  "marked_bar_close_drawdown_usd": 41.03099999999941,
+                  "median_entry_repricing_atr": 0.005533675872733177,
+                  "mean_loss_usd": -13.705499999999303,
+                  "mean_loss_r": -1.000000000000024,
+                  "mean_win_usd": 39.991000000001165,
+                  "mean_win_r": 1.305776606106682
+                },
+                "SELL": {
+                  "filled": 10,
+                  "closed": 9,
+                  "censored_or_straddles": 1,
+                  "wins": 3,
+                  "losses": 6,
+                  "win_rate": 0.3333333333333333,
+                  "net_usd": -79.56500000000125,
+                  "net_r": -3.15345906365632,
+                  "expectancy_r": -0.3503843404062578,
+                  "profit_factor": 0.33641087230298816,
+                  "marked_bar_close_drawdown_usd": 140.05000000000211,
+                  "median_entry_repricing_atr": -0.00322764383622629,
+                  "mean_loss_usd": -19.98350000000046,
+                  "mean_loss_r": -0.8840666597189759,
+                  "mean_win_usd": 13.445333333333837,
+                  "mean_win_r": 0.7169802982191784
+                }
+              },
+              "states": {
+                "CLOSED": 13,
+                "POSITION_OCCUPIED": 5,
+                "CENSORED_OPEN": 1
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 14,
+                "closed_losses": 8,
+                "closed_net_usd": -26.993999999997527,
+                "opposite_directional_fills": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "M15": {
+      "independent_hours": {
+        "complete_hours": 293,
+        "partial_observed_hours": 0,
+        "eligible_hours": 230,
+        "eligible_regimes": {
+          "OTHER": 120,
+          "SIDEWAYS": 88,
+          "DIRECTIONAL_BUY": 13,
+          "DIRECTIONAL_SELL": 6,
+          "REVERSAL": 3
+        },
+        "registered_eligible_regimes": {
+          "OTHER": 38,
+          "SIDEWAYS": 29,
+          "REVERSAL": 1,
+          "DIRECTIONAL_BUY": 2,
+          "DIRECTIONAL_SELL": 2
+        },
+        "registered_volatile": 12
+      },
+      "cost_scenarios": {
+        "baseline": {
+          "costs": {
+            "tick": 0.001,
+            "pointvalue": 1.0,
+            "commission": 0.175,
+            "ticks": 2,
+            "spread": 0.35,
+            "extra_spread": 0.3,
+            "extra_slip": 0.1,
+            "extra_commission": 0.5
+          },
+          "origin_retest_pairs": {
+            "matched_isolated_closed_pairs": 4,
+            "mean_delta_r": -0.48354055228044523,
+            "median_delta_r": 1.6653345369377348e-16,
+            "better_retests": 1,
+            "worse_retests": 1,
+            "tied_retests": 2
+          },
+          "displacement": {
+            "RC2": {
+              "closed_campaigns_displaced": 0,
+              "wins_displaced": 0,
+              "losses_displaced": 0,
+              "original_net_usd": 0,
+              "rows": []
+            },
+            "S5_RAW": {
+              "closed_campaigns_displaced": 0,
+              "wins_displaced": 0,
+              "losses_displaced": 0,
+              "original_net_usd": 0,
+              "rows": []
+            },
+            "RC2_BY_ORIGINAL_SHADOW": {
+              "closed_campaigns_displaced": 0,
+              "wins_displaced": 0,
+              "losses_displaced": 0,
+              "original_net_usd": 0,
+              "rows": []
+            }
+          },
+          "models": {
+            "RC2": {
+              "metrics": {
+                "all": {
+                  "filled": 2,
+                  "closed": 2,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 1,
+                  "win_rate": 0.5,
+                  "net_usd": 7.524999999999999,
+                  "net_r": -0.08889167764733297,
+                  "expectancy_r": -0.044445838823666484,
+                  "profit_factor": 1.2088189588189542,
+                  "marked_bar_close_drawdown_usd": 70.01600000000124,
+                  "median_entry_repricing_atr": -0.00303582380295441,
+                  "mean_loss_usd": -36.03600000000078,
+                  "mean_loss_r": -0.999999999999996,
+                  "mean_win_usd": 43.56100000000078,
+                  "mean_win_r": 0.911108322352663
+                },
+                "BUY": {
+                  "filled": 0,
+                  "closed": 0,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 0,
+                  "win_rate": null,
+                  "net_usd": 0,
+                  "net_r": 0,
+                  "expectancy_r": null,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 0.0,
+                  "median_entry_repricing_atr": null,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "SELL": {
+                  "filled": 2,
+                  "closed": 2,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 1,
+                  "win_rate": 0.5,
+                  "net_usd": 7.524999999999999,
+                  "net_r": -0.08889167764733297,
+                  "expectancy_r": -0.044445838823666484,
+                  "profit_factor": 1.2088189588189542,
+                  "marked_bar_close_drawdown_usd": 70.01600000000124,
+                  "median_entry_repricing_atr": -0.00303582380295441,
+                  "mean_loss_usd": -36.03600000000078,
+                  "mean_loss_r": -0.999999999999996,
+                  "mean_win_usd": 43.56100000000078,
+                  "mean_win_r": 0.911108322352663
+                }
+              },
+              "states": {
+                "CLOSED": 2,
+                "POSITION_OCCUPIED": 1
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 2,
+                "closed_losses": 1,
+                "closed_net_usd": 7.524999999999999,
+                "opposite_directional_fills": 0
+              }
+            },
+            "S5_RAW": {
+              "metrics": {
+                "all": {
+                  "filled": 2,
+                  "closed": 2,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 1,
+                  "win_rate": 0.5,
+                  "net_usd": 9.311000000000057,
+                  "net_r": -0.05153625734656209,
+                  "expectancy_r": -0.025768128673281043,
+                  "profit_factor": 1.2583805083805044,
+                  "marked_bar_close_drawdown_usd": 68.23000000000118,
+                  "median_entry_repricing_atr": -0.00303582380295441,
+                  "mean_loss_usd": -36.03600000000078,
+                  "mean_loss_r": -0.999999999999996,
+                  "mean_win_usd": 45.34700000000084,
+                  "mean_win_r": 0.9484637426534339
+                },
+                "BUY": {
+                  "filled": 0,
+                  "closed": 0,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 0,
+                  "win_rate": null,
+                  "net_usd": 0,
+                  "net_r": 0,
+                  "expectancy_r": null,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 0.0,
+                  "median_entry_repricing_atr": null,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "SELL": {
+                  "filled": 2,
+                  "closed": 2,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 1,
+                  "win_rate": 0.5,
+                  "net_usd": 9.311000000000057,
+                  "net_r": -0.05153625734656209,
+                  "expectancy_r": -0.025768128673281043,
+                  "profit_factor": 1.2583805083805044,
+                  "marked_bar_close_drawdown_usd": 68.23000000000118,
+                  "median_entry_repricing_atr": -0.00303582380295441,
+                  "mean_loss_usd": -36.03600000000078,
+                  "mean_loss_r": -0.999999999999996,
+                  "mean_win_usd": 45.34700000000084,
+                  "mean_win_r": 0.9484637426534339
+                }
+              },
+              "states": {
+                "CLOSED": 2,
+                "POSITION_OCCUPIED": 1
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 2,
+                "closed_losses": 1,
+                "closed_net_usd": 9.311000000000057,
+                "opposite_directional_fills": 0
+              }
+            },
+            "RC2_PLUS_ORIGINAL_SHADOW": {
+              "metrics": {
+                "all": {
+                  "filled": 6,
+                  "closed": 6,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 5,
+                  "win_rate": 0.16666666666666666,
+                  "net_usd": -229.9880000000006,
+                  "net_r": -4.0888916776473705,
+                  "expectancy_r": -0.6814819462745618,
+                  "profit_factor": 0.15924386490171988,
+                  "marked_bar_close_drawdown_usd": 270.83599999999893,
+                  "median_entry_repricing_atr": 0.001132763669972295,
+                  "mean_loss_usd": -54.70980000000027,
+                  "mean_loss_r": -1.0000000000000067,
+                  "mean_win_usd": 43.56100000000078,
+                  "mean_win_r": 0.911108322352663
+                },
+                "BUY": {
+                  "filled": 0,
+                  "closed": 0,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 0,
+                  "win_rate": null,
+                  "net_usd": 0,
+                  "net_r": 0,
+                  "expectancy_r": null,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 0.0,
+                  "median_entry_repricing_atr": null,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "SELL": {
+                  "filled": 6,
+                  "closed": 6,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 5,
+                  "win_rate": 0.16666666666666666,
+                  "net_usd": -229.9880000000006,
+                  "net_r": -4.0888916776473705,
+                  "expectancy_r": -0.6814819462745618,
+                  "profit_factor": 0.15924386490171988,
+                  "marked_bar_close_drawdown_usd": 270.83599999999893,
+                  "median_entry_repricing_atr": 0.001132763669972295,
+                  "mean_loss_usd": -54.70980000000027,
+                  "mean_loss_r": -1.0000000000000067,
+                  "mean_win_usd": 43.56100000000078,
+                  "mean_win_r": 0.911108322352663
+                }
+              },
+              "states": {
+                "CLOSED": 6,
+                "POSITION_OCCUPIED": 12
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 6,
+                "closed_losses": 5,
+                "closed_net_usd": -229.98800000000062,
+                "opposite_directional_fills": 0
+              }
+            },
+            "RETEST_CONTINUATION": {
+              "metrics": {
+                "all": {
+                  "filled": 0,
+                  "closed": 0,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 0,
+                  "win_rate": null,
+                  "net_usd": 0,
+                  "net_r": 0,
+                  "expectancy_r": null,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 0.0,
+                  "median_entry_repricing_atr": null,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "BUY": {
+                  "filled": 0,
+                  "closed": 0,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 0,
+                  "win_rate": null,
+                  "net_usd": 0,
+                  "net_r": 0,
+                  "expectancy_r": null,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 0.0,
+                  "median_entry_repricing_atr": null,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "SELL": {
+                  "filled": 0,
+                  "closed": 0,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 0,
+                  "win_rate": null,
+                  "net_usd": 0,
+                  "net_r": 0,
+                  "expectancy_r": null,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 0.0,
+                  "median_entry_repricing_atr": null,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                }
+              },
+              "states": {},
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 1,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 1,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 0,
+                "closed_losses": 0,
+                "closed_net_usd": 0,
+                "opposite_directional_fills": 0
+              }
+            },
+            "STRUCTURAL_BREAK": {
+              "metrics": {
+                "all": {
+                  "filled": 4,
+                  "closed": 4,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 4,
+                  "win_rate": 0.0,
+                  "net_usd": -178.83699999999882,
+                  "net_r": -3.357358575614134,
+                  "expectancy_r": -0.8393396439035335,
+                  "profit_factor": 0.0,
+                  "marked_bar_close_drawdown_usd": 219.68499999999716,
+                  "median_entry_repricing_atr": 0.0004974041772636366,
+                  "mean_loss_usd": -44.709249999999706,
+                  "mean_loss_r": -0.8393396439035335,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "BUY": {
+                  "filled": 1,
+                  "closed": 1,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 1,
+                  "win_rate": 0.0,
+                  "net_usd": -26.463000000000008,
+                  "net_r": -0.9999999999999944,
+                  "expectancy_r": -0.9999999999999944,
+                  "profit_factor": 0.0,
+                  "marked_bar_close_drawdown_usd": 31.341000000000346,
+                  "median_entry_repricing_atr": -0.016216258526040087,
+                  "mean_loss_usd": -26.463000000000008,
+                  "mean_loss_r": -0.9999999999999944,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "SELL": {
+                  "filled": 3,
+                  "closed": 3,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 3,
+                  "win_rate": 0.0,
+                  "net_usd": -152.37399999999883,
+                  "net_r": -2.3573585756141395,
+                  "expectancy_r": -0.7857861918713799,
+                  "profit_factor": 0.0,
+                  "marked_bar_close_drawdown_usd": 193.22199999999714,
+                  "median_entry_repricing_atr": 0.0006169828682235396,
+                  "mean_loss_usd": -50.791333333332936,
+                  "mean_loss_r": -0.7857861918713799,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                }
+              },
+              "states": {
+                "CLOSED": 4,
+                "POSITION_OCCUPIED": 1
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 4,
+                "closed_losses": 4,
+                "closed_net_usd": -178.83699999999885,
+                "opposite_directional_fills": 0
+              }
+            },
+            "CONSOLIDATION_BREAK": {
+              "metrics": {
+                "all": {
+                  "filled": 1,
+                  "closed": 1,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 1,
+                  "win_rate": 0.0,
+                  "net_usd": -66.92400000000026,
+                  "net_r": -0.9999999999999981,
+                  "expectancy_r": -0.9999999999999981,
+                  "profit_factor": 0.0,
+                  "marked_bar_close_drawdown_usd": 107.77199999999858,
+                  "median_entry_repricing_atr": 0.00037782548630373354,
+                  "mean_loss_usd": -66.92400000000026,
+                  "mean_loss_r": -0.9999999999999981,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "BUY": {
+                  "filled": 0,
+                  "closed": 0,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 0,
+                  "win_rate": null,
+                  "net_usd": 0,
+                  "net_r": 0,
+                  "expectancy_r": null,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 0.0,
+                  "median_entry_repricing_atr": null,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "SELL": {
+                  "filled": 1,
+                  "closed": 1,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 1,
+                  "win_rate": 0.0,
+                  "net_usd": -66.92400000000026,
+                  "net_r": -0.9999999999999981,
+                  "expectancy_r": -0.9999999999999981,
+                  "profit_factor": 0.0,
+                  "marked_bar_close_drawdown_usd": 107.77199999999858,
+                  "median_entry_repricing_atr": 0.00037782548630373354,
+                  "mean_loss_usd": -66.92400000000026,
+                  "mean_loss_r": -0.9999999999999981,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                }
+              },
+              "states": {
+                "CLOSED": 1
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 1,
+                "closed_losses": 1,
+                "closed_net_usd": -66.92400000000026,
+                "opposite_directional_fills": 0
+              }
+            },
+            "PRECISION_POOL": {
+              "metrics": {
+                "all": {
+                  "filled": 4,
+                  "closed": 4,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 4,
+                  "win_rate": 0.0,
+                  "net_usd": -178.83699999999882,
+                  "net_r": -3.357358575614134,
+                  "expectancy_r": -0.8393396439035335,
+                  "profit_factor": 0.0,
+                  "marked_bar_close_drawdown_usd": 219.68499999999716,
+                  "median_entry_repricing_atr": 0.0004974041772636366,
+                  "mean_loss_usd": -44.709249999999706,
+                  "mean_loss_r": -0.8393396439035335,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "BUY": {
+                  "filled": 1,
+                  "closed": 1,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 1,
+                  "win_rate": 0.0,
+                  "net_usd": -26.463000000000008,
+                  "net_r": -0.9999999999999944,
+                  "expectancy_r": -0.9999999999999944,
+                  "profit_factor": 0.0,
+                  "marked_bar_close_drawdown_usd": 31.341000000000346,
+                  "median_entry_repricing_atr": -0.016216258526040087,
+                  "mean_loss_usd": -26.463000000000008,
+                  "mean_loss_r": -0.9999999999999944,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "SELL": {
+                  "filled": 3,
+                  "closed": 3,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 3,
+                  "win_rate": 0.0,
+                  "net_usd": -152.37399999999883,
+                  "net_r": -2.3573585756141395,
+                  "expectancy_r": -0.7857861918713799,
+                  "profit_factor": 0.0,
+                  "marked_bar_close_drawdown_usd": 193.22199999999714,
+                  "median_entry_repricing_atr": 0.0006169828682235396,
+                  "mean_loss_usd": -50.791333333332936,
+                  "mean_loss_r": -0.7857861918713799,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                }
+              },
+              "states": {
+                "CLOSED": 4,
+                "POSITION_OCCUPIED": 2
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 4,
+                "closed_losses": 4,
+                "closed_net_usd": -178.83699999999885,
+                "opposite_directional_fills": 0
+              }
+            },
+            "RC2_PLUS_PRECISION": {
+              "metrics": {
+                "all": {
+                  "filled": 5,
+                  "closed": 5,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 4,
+                  "win_rate": 0.2,
+                  "net_usd": -155.45600000000016,
+                  "net_r": -3.0888916776473234,
+                  "expectancy_r": -0.6177783355294647,
+                  "profit_factor": 0.2188807991277156,
+                  "marked_bar_close_drawdown_usd": 196.47299999999643,
+                  "median_entry_repricing_atr": 0.00037782548630373354,
+                  "mean_loss_usd": -49.75425000000023,
+                  "mean_loss_r": -0.9999999999999967,
+                  "mean_win_usd": 43.56100000000078,
+                  "mean_win_r": 0.911108322352663
+                },
+                "BUY": {
+                  "filled": 1,
+                  "closed": 1,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 1,
+                  "win_rate": 0.0,
+                  "net_usd": -26.463000000000008,
+                  "net_r": -0.9999999999999944,
+                  "expectancy_r": -0.9999999999999944,
+                  "profit_factor": 0.0,
+                  "marked_bar_close_drawdown_usd": 31.341000000000346,
+                  "median_entry_repricing_atr": -0.016216258526040087,
+                  "mean_loss_usd": -26.463000000000008,
+                  "mean_loss_r": -0.9999999999999944,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "SELL": {
+                  "filled": 4,
+                  "closed": 4,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 3,
+                  "win_rate": 0.25,
+                  "net_usd": -128.99300000000014,
+                  "net_r": -2.088891677647329,
+                  "expectancy_r": -0.5222229194118323,
+                  "profit_factor": 0.25244850887258796,
+                  "marked_bar_close_drawdown_usd": 196.47299999999643,
+                  "median_entry_repricing_atr": 0.0025285204238939952,
+                  "mean_loss_usd": -57.518000000000306,
+                  "mean_loss_r": -0.9999999999999974,
+                  "mean_win_usd": 43.56100000000078,
+                  "mean_win_r": 0.911108322352663
+                }
+              },
+              "states": {
+                "CLOSED": 5,
+                "POSITION_OCCUPIED": 4
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 5,
+                "closed_losses": 4,
+                "closed_net_usd": -155.45600000000016,
+                "opposite_directional_fills": 0
+              }
+            }
+          }
+        },
+        "stress": {
+          "costs": {
+            "tick": 0.001,
+            "pointvalue": 1.0,
+            "commission": 0.2625,
+            "ticks": 5,
+            "spread": 0.7,
+            "extra_spread": 0.3,
+            "extra_slip": 0.1,
+            "extra_commission": 0.5
+          },
+          "origin_retest_pairs": {
+            "matched_isolated_closed_pairs": 4,
+            "mean_delta_r": -0.473039401542757,
+            "median_delta_r": -4.440892098500626e-16,
+            "better_retests": 1,
+            "worse_retests": 1,
+            "tied_retests": 2
+          },
+          "displacement": {
+            "RC2": {
+              "closed_campaigns_displaced": 0,
+              "wins_displaced": 0,
+              "losses_displaced": 0,
+              "original_net_usd": 0,
+              "rows": []
+            },
+            "S5_RAW": {
+              "closed_campaigns_displaced": 0,
+              "wins_displaced": 0,
+              "losses_displaced": 0,
+              "original_net_usd": 0,
+              "rows": []
+            },
+            "RC2_BY_ORIGINAL_SHADOW": {
+              "closed_campaigns_displaced": 0,
+              "wins_displaced": 0,
+              "losses_displaced": 0,
+              "original_net_usd": 0,
+              "rows": []
+            }
+          },
+          "models": {
+            "RC2": {
+              "metrics": {
+                "all": {
+                  "filled": 2,
+                  "closed": 2,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 1,
+                  "win_rate": 0.5,
+                  "net_usd": 5.220000000000347,
+                  "net_r": -0.13410667157668144,
+                  "expectancy_r": -0.06705333578834072,
+                  "profit_factor": 1.140685640362231,
+                  "marked_bar_close_drawdown_usd": 71.0840000000014,
+                  "median_entry_repricing_atr": -0.00303582380295441,
+                  "mean_loss_usd": -37.10400000000091,
+                  "mean_loss_r": -1.0000000000000089,
+                  "mean_win_usd": 42.324000000001256,
+                  "mean_win_r": 0.8658933284233274
+                },
+                "BUY": {
+                  "filled": 0,
+                  "closed": 0,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 0,
+                  "win_rate": null,
+                  "net_usd": 0,
+                  "net_r": 0,
+                  "expectancy_r": null,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 0.0,
+                  "median_entry_repricing_atr": null,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "SELL": {
+                  "filled": 2,
+                  "closed": 2,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 1,
+                  "win_rate": 0.5,
+                  "net_usd": 5.220000000000347,
+                  "net_r": -0.13410667157668144,
+                  "expectancy_r": -0.06705333578834072,
+                  "profit_factor": 1.140685640362231,
+                  "marked_bar_close_drawdown_usd": 71.0840000000014,
+                  "median_entry_repricing_atr": -0.00303582380295441,
+                  "mean_loss_usd": -37.10400000000091,
+                  "mean_loss_r": -1.0000000000000089,
+                  "mean_win_usd": 42.324000000001256,
+                  "mean_win_r": 0.8658933284233274
+                }
+              },
+              "states": {
+                "CLOSED": 2,
+                "POSITION_OCCUPIED": 1
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 2,
+                "closed_losses": 1,
+                "closed_net_usd": 5.220000000000347,
+                "opposite_directional_fills": 0
+              }
+            },
+            "S5_RAW": {
+              "metrics": {
+                "all": {
+                  "filled": 2,
+                  "closed": 2,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 1,
+                  "win_rate": 0.5,
+                  "net_usd": 7.368000000000485,
+                  "net_r": -0.09016141901422581,
+                  "expectancy_r": -0.045080709507112904,
+                  "profit_factor": 1.198576972833126,
+                  "marked_bar_close_drawdown_usd": 68.93600000000126,
+                  "median_entry_repricing_atr": -0.00303582380295441,
+                  "mean_loss_usd": -37.10400000000091,
+                  "mean_loss_r": -1.0000000000000089,
+                  "mean_win_usd": 44.472000000001394,
+                  "mean_win_r": 0.9098385809857831
+                },
+                "BUY": {
+                  "filled": 0,
+                  "closed": 0,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 0,
+                  "win_rate": null,
+                  "net_usd": 0,
+                  "net_r": 0,
+                  "expectancy_r": null,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 0.0,
+                  "median_entry_repricing_atr": null,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "SELL": {
+                  "filled": 2,
+                  "closed": 2,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 1,
+                  "win_rate": 0.5,
+                  "net_usd": 7.368000000000485,
+                  "net_r": -0.09016141901422581,
+                  "expectancy_r": -0.045080709507112904,
+                  "profit_factor": 1.198576972833126,
+                  "marked_bar_close_drawdown_usd": 68.93600000000126,
+                  "median_entry_repricing_atr": -0.00303582380295441,
+                  "mean_loss_usd": -37.10400000000091,
+                  "mean_loss_r": -1.0000000000000089,
+                  "mean_win_usd": 44.472000000001394,
+                  "mean_win_r": 0.9098385809857831
+                }
+              },
+              "states": {
+                "CLOSED": 2,
+                "POSITION_OCCUPIED": 1
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 2,
+                "closed_losses": 1,
+                "closed_net_usd": 7.368000000000485,
+                "opposite_directional_fills": 0
+              }
+            },
+            "RC2_PLUS_ORIGINAL_SHADOW": {
+              "metrics": {
+                "all": {
+                  "filled": 6,
+                  "closed": 6,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 5,
+                  "win_rate": 0.16666666666666666,
+                  "net_usd": -236.5649999999993,
+                  "net_r": -4.134106671576706,
+                  "expectancy_r": -0.6890177785961177,
+                  "profit_factor": 0.15175930208793165,
+                  "marked_bar_close_drawdown_usd": 275.8199999999983,
+                  "median_entry_repricing_atr": 0.001132763669972295,
+                  "mean_loss_usd": -55.77780000000011,
+                  "mean_loss_r": -1.0000000000000067,
+                  "mean_win_usd": 42.324000000001256,
+                  "mean_win_r": 0.8658933284233274
+                },
+                "BUY": {
+                  "filled": 0,
+                  "closed": 0,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 0,
+                  "win_rate": null,
+                  "net_usd": 0,
+                  "net_r": 0,
+                  "expectancy_r": null,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 0.0,
+                  "median_entry_repricing_atr": null,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "SELL": {
+                  "filled": 6,
+                  "closed": 6,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 5,
+                  "win_rate": 0.16666666666666666,
+                  "net_usd": -236.5649999999993,
+                  "net_r": -4.134106671576706,
+                  "expectancy_r": -0.6890177785961177,
+                  "profit_factor": 0.15175930208793165,
+                  "marked_bar_close_drawdown_usd": 275.8199999999983,
+                  "median_entry_repricing_atr": 0.001132763669972295,
+                  "mean_loss_usd": -55.77780000000011,
+                  "mean_loss_r": -1.0000000000000067,
+                  "mean_win_usd": 42.324000000001256,
+                  "mean_win_r": 0.8658933284233274
+                }
+              },
+              "states": {
+                "CLOSED": 6,
+                "POSITION_OCCUPIED": 12
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 6,
+                "closed_losses": 5,
+                "closed_net_usd": -236.56499999999926,
+                "opposite_directional_fills": 0
+              }
+            },
+            "RETEST_CONTINUATION": {
+              "metrics": {
+                "all": {
+                  "filled": 0,
+                  "closed": 0,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 0,
+                  "win_rate": null,
+                  "net_usd": 0,
+                  "net_r": 0,
+                  "expectancy_r": null,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 0.0,
+                  "median_entry_repricing_atr": null,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "BUY": {
+                  "filled": 0,
+                  "closed": 0,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 0,
+                  "win_rate": null,
+                  "net_usd": 0,
+                  "net_r": 0,
+                  "expectancy_r": null,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 0.0,
+                  "median_entry_repricing_atr": null,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "SELL": {
+                  "filled": 0,
+                  "closed": 0,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 0,
+                  "win_rate": null,
+                  "net_usd": 0,
+                  "net_r": 0,
+                  "expectancy_r": null,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 0.0,
+                  "median_entry_repricing_atr": null,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                }
+              },
+              "states": {},
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 1,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 1,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 0,
+                "closed_losses": 0,
+                "closed_net_usd": 0,
+                "opposite_directional_fills": 0
+              }
+            },
+            "STRUCTURAL_BREAK": {
+              "metrics": {
+                "all": {
+                  "filled": 3,
+                  "closed": 3,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 3,
+                  "win_rate": 0.0,
+                  "net_usd": -155.57499999999806,
+                  "net_r": -2.372397552709168,
+                  "expectancy_r": -0.7907991842363894,
+                  "profit_factor": 0.0,
+                  "marked_bar_close_drawdown_usd": 194.82999999999709,
+                  "median_entry_repricing_atr": 0.0006169828682235396,
+                  "mean_loss_usd": -51.85833333333269,
+                  "mean_loss_r": -0.7907991842363894,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "BUY": {
+                  "filled": 0,
+                  "closed": 0,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 0,
+                  "win_rate": null,
+                  "net_usd": 0,
+                  "net_r": 0,
+                  "expectancy_r": null,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 0.0,
+                  "median_entry_repricing_atr": null,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "SELL": {
+                  "filled": 3,
+                  "closed": 3,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 3,
+                  "win_rate": 0.0,
+                  "net_usd": -155.57499999999806,
+                  "net_r": -2.372397552709168,
+                  "expectancy_r": -0.7907991842363894,
+                  "profit_factor": 0.0,
+                  "marked_bar_close_drawdown_usd": 194.82999999999709,
+                  "median_entry_repricing_atr": 0.0006169828682235396,
+                  "mean_loss_usd": -51.85833333333269,
+                  "mean_loss_r": -0.7907991842363894,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                }
+              },
+              "states": {
+                "CLOSED": 3
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 3,
+                "closed_losses": 3,
+                "closed_net_usd": -155.57499999999806,
+                "opposite_directional_fills": 0
+              }
+            },
+            "CONSOLIDATION_BREAK": {
+              "metrics": {
+                "all": {
+                  "filled": 1,
+                  "closed": 1,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 1,
+                  "win_rate": 0.0,
+                  "net_usd": -67.99200000000036,
+                  "net_r": -1.0000000000000049,
+                  "expectancy_r": -1.0000000000000049,
+                  "profit_factor": 0.0,
+                  "marked_bar_close_drawdown_usd": 107.24699999999937,
+                  "median_entry_repricing_atr": 0.00037782548630373354,
+                  "mean_loss_usd": -67.99200000000036,
+                  "mean_loss_r": -1.0000000000000049,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "BUY": {
+                  "filled": 0,
+                  "closed": 0,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 0,
+                  "win_rate": null,
+                  "net_usd": 0,
+                  "net_r": 0,
+                  "expectancy_r": null,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 0.0,
+                  "median_entry_repricing_atr": null,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "SELL": {
+                  "filled": 1,
+                  "closed": 1,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 1,
+                  "win_rate": 0.0,
+                  "net_usd": -67.99200000000036,
+                  "net_r": -1.0000000000000049,
+                  "expectancy_r": -1.0000000000000049,
+                  "profit_factor": 0.0,
+                  "marked_bar_close_drawdown_usd": 107.24699999999937,
+                  "median_entry_repricing_atr": 0.00037782548630373354,
+                  "mean_loss_usd": -67.99200000000036,
+                  "mean_loss_r": -1.0000000000000049,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                }
+              },
+              "states": {
+                "CLOSED": 1
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 1,
+                "closed_losses": 1,
+                "closed_net_usd": -67.99200000000036,
+                "opposite_directional_fills": 0
+              }
+            },
+            "PRECISION_POOL": {
+              "metrics": {
+                "all": {
+                  "filled": 3,
+                  "closed": 3,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 3,
+                  "win_rate": 0.0,
+                  "net_usd": -155.57499999999806,
+                  "net_r": -2.372397552709168,
+                  "expectancy_r": -0.7907991842363894,
+                  "profit_factor": 0.0,
+                  "marked_bar_close_drawdown_usd": 194.82999999999709,
+                  "median_entry_repricing_atr": 0.0006169828682235396,
+                  "mean_loss_usd": -51.85833333333269,
+                  "mean_loss_r": -0.7907991842363894,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "BUY": {
+                  "filled": 0,
+                  "closed": 0,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 0,
+                  "win_rate": null,
+                  "net_usd": 0,
+                  "net_r": 0,
+                  "expectancy_r": null,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 0.0,
+                  "median_entry_repricing_atr": null,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "SELL": {
+                  "filled": 3,
+                  "closed": 3,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 3,
+                  "win_rate": 0.0,
+                  "net_usd": -155.57499999999806,
+                  "net_r": -2.372397552709168,
+                  "expectancy_r": -0.7907991842363894,
+                  "profit_factor": 0.0,
+                  "marked_bar_close_drawdown_usd": 194.82999999999709,
+                  "median_entry_repricing_atr": 0.0006169828682235396,
+                  "mean_loss_usd": -51.85833333333269,
+                  "mean_loss_r": -0.7907991842363894,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                }
+              },
+              "states": {
+                "CLOSED": 3,
+                "POSITION_OCCUPIED": 1
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 3,
+                "closed_losses": 3,
+                "closed_net_usd": -155.57499999999806,
+                "opposite_directional_fills": 0
+              }
+            },
+            "RC2_PLUS_PRECISION": {
+              "metrics": {
+                "all": {
+                  "filled": 4,
+                  "closed": 4,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 3,
+                  "win_rate": 0.25,
+                  "net_usd": -133.434,
+                  "net_r": -2.1341066715766908,
+                  "expectancy_r": -0.5335266678941727,
+                  "profit_factor": 0.24080838425562967,
+                  "marked_bar_close_drawdown_usd": 198.60899999999663,
+                  "median_entry_repricing_atr": 0.0025285204238939952,
+                  "mean_loss_usd": -58.58600000000042,
+                  "mean_loss_r": -1.000000000000006,
+                  "mean_win_usd": 42.324000000001256,
+                  "mean_win_r": 0.8658933284233274
+                },
+                "BUY": {
+                  "filled": 0,
+                  "closed": 0,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 0,
+                  "win_rate": null,
+                  "net_usd": 0,
+                  "net_r": 0,
+                  "expectancy_r": null,
+                  "profit_factor": null,
+                  "marked_bar_close_drawdown_usd": 0.0,
+                  "median_entry_repricing_atr": null,
+                  "mean_loss_usd": null,
+                  "mean_loss_r": null,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "SELL": {
+                  "filled": 4,
+                  "closed": 4,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 3,
+                  "win_rate": 0.25,
+                  "net_usd": -133.434,
+                  "net_r": -2.1341066715766908,
+                  "expectancy_r": -0.5335266678941727,
+                  "profit_factor": 0.24080838425562967,
+                  "marked_bar_close_drawdown_usd": 198.60899999999663,
+                  "median_entry_repricing_atr": 0.0025285204238939952,
+                  "mean_loss_usd": -58.58600000000042,
+                  "mean_loss_r": -1.000000000000006,
+                  "mean_win_usd": 42.324000000001256,
+                  "mean_win_r": 0.8658933284233274
+                }
+              },
+              "states": {
+                "CLOSED": 4,
+                "POSITION_OCCUPIED": 3
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 4,
+                "closed_losses": 3,
+                "closed_net_usd": -133.43399999999997,
+                "opposite_directional_fills": 0
+              }
+            },
+            "RC2_PLUS_PRECISION_FIXED_BASE_OFFERS": {
+              "metrics": {
+                "all": {
+                  "filled": 5,
+                  "closed": 5,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 4,
+                  "win_rate": 0.2,
+                  "net_usd": -160.96500000000012,
+                  "net_r": -3.1341066715767028,
+                  "expectancy_r": -0.6268213343153405,
+                  "profit_factor": 0.20819621327273471,
+                  "marked_bar_close_drawdown_usd": 200.21999999999912,
+                  "median_entry_repricing_atr": 0.00037782548630373354,
+                  "mean_loss_usd": -50.822250000000345,
+                  "mean_loss_r": -1.0000000000000075,
+                  "mean_win_usd": 42.324000000001256,
+                  "mean_win_r": 0.8658933284233274
+                },
+                "BUY": {
+                  "filled": 1,
+                  "closed": 1,
+                  "censored_or_straddles": 0,
+                  "wins": 0,
+                  "losses": 1,
+                  "win_rate": 0.0,
+                  "net_usd": -27.531000000000134,
+                  "net_r": -1.0000000000000118,
+                  "expectancy_r": -1.0000000000000118,
+                  "profit_factor": 0.0,
+                  "marked_bar_close_drawdown_usd": 30.81600000000117,
+                  "median_entry_repricing_atr": -0.016216258526040087,
+                  "mean_loss_usd": -27.531000000000134,
+                  "mean_loss_r": -1.0000000000000118,
+                  "mean_win_usd": null,
+                  "mean_win_r": null
+                },
+                "SELL": {
+                  "filled": 4,
+                  "closed": 4,
+                  "censored_or_straddles": 0,
+                  "wins": 1,
+                  "losses": 3,
+                  "win_rate": 0.25,
+                  "net_usd": -133.434,
+                  "net_r": -2.1341066715766908,
+                  "expectancy_r": -0.5335266678941727,
+                  "profit_factor": 0.24080838425562967,
+                  "marked_bar_close_drawdown_usd": 198.60899999999663,
+                  "median_entry_repricing_atr": 0.0025285204238939952,
+                  "mean_loss_usd": -58.58600000000042,
+                  "mean_loss_r": -1.000000000000006,
+                  "mean_win_usd": 42.324000000001256,
+                  "mean_win_r": 0.8658933284233274
+                }
+              },
+              "states": {
+                "CLOSED": 5,
+                "POSITION_OCCUPIED": 4
+              },
+              "recall": {
+                "all": {
+                  "directional_hours": 4,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 4
+                },
+                "BUY": {
+                  "directional_hours": 2,
+                  "watch": 0,
+                  "confirmation": 0,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                },
+                "SELL": {
+                  "directional_hours": 2,
+                  "watch": 1,
+                  "confirmation": 1,
+                  "candidate": 0,
+                  "fill": 0,
+                  "missed": 2
+                }
+              },
+              "outside_same_side_event": {
+                "fills": 5,
+                "closed_losses": 4,
+                "closed_net_usd": -160.96500000000012,
+                "opposite_directional_fills": 0
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "original_shadow_loss_attribution": {
+    "M5": {
+      "scored_window_utc": {
+        "start": "2026-11-06T02:50:00Z",
+        "end": "2026-11-11T06:00:00Z"
+      },
+      "attribution": {
+        "rc2_alone": {
+          "closed": 8,
+          "wins": 4,
+          "losses": 4,
+          "net_usd": 46.158,
+          "net_r": 2.19601007,
+          "mean_loss_usd": -11.31675
+        },
+        "combined": {
+          "closed": 16,
+          "wins": 6,
+          "losses": 10,
+          "net_usd": -11.114,
+          "net_r": -1.494311385,
+          "mean_loss_usd": -17.8746
+        },
+        "admitted_shadow": {
+          "closed": 10,
+          "wins": 4,
+          "losses": 6,
+          "net_usd": -3.23,
+          "net_r": -0.217175601,
+          "mean_loss_usd": -22.573
+        },
+        "admitted_shadow_by_model": {
+          "CONSOLIDATION_BREAK": {
+            "closed": 3,
+            "wins": 0,
+            "losses": 3,
+            "net_usd": -82.686,
+            "net_r": -2.837241379,
+            "mean_loss_usd": -27.562
+          },
+          "STRUCTURAL_BREAK": {
+            "closed": 7,
+            "wins": 4,
+            "losses": 3,
+            "net_usd": 79.456,
+            "net_r": 2.620065779,
+            "mean_loss_usd": -17.584
+          }
+        },
+        "admitted_shadow_by_direction": {
+          "BUY": {
+            "closed": 4,
+            "wins": 1,
+            "losses": 3,
+            "net_usd": -1.838,
+            "net_r": -1.301846541,
+            "mean_loss_usd": -17.471
+          },
+          "SELL": {
+            "closed": 6,
+            "wins": 3,
+            "losses": 3,
+            "net_usd": -1.392,
+            "net_r": 1.08467094,
+            "mean_loss_usd": -27.675
+          }
+        },
+        "displaced_baseline": [
+          {
+            "standalone": {
+              "id": "S5|OANDA:XAUUSD|5|2|-1|1794289500000|1794289800000",
+              "model": "RC2",
+              "side": -1,
+              "decision_utc": "2026-11-10T05:50:00Z",
+              "reference": 4121.86,
+              "stop": 4128.547,
+              "targets": [
+                4115.173,
+                4108.486,
+                4101.799
+              ],
+              "state": "CLOSED",
+              "next_open_utc": "2026-11-10T05:50:00Z",
+              "next_open_mid": 4121.895,
+              "entry_utc": "2026-11-10T05:50:00Z",
+              "entry": 4121.718000000001,
+              "risk_usd": 21.54299999999644,
+              "realized_usd": 38.646000000002644,
+              "net_r": 1.7939005709515403,
+              "parts": [
+                {
+                  "bar": 858,
+                  "bar_open_utc": "2026-11-10T07:30:00Z",
+                  "known_at_utc": "2026-11-10T07:35:00Z",
+                  "leg": 1,
+                  "price": 4115.173,
+                  "reason": "TP1",
+                  "net_usd": 6.195000000000983
+                },
+                {
+                  "bar": 876,
+                  "bar_open_utc": "2026-11-10T09:00:00Z",
+                  "known_at_utc": "2026-11-10T09:05:00Z",
+                  "leg": 2,
+                  "price": 4108.486,
+                  "reason": "TP2",
+                  "net_usd": 12.88200000000088
+                },
+                {
+                  "bar": 876,
+                  "bar_open_utc": "2026-11-10T09:00:00Z",
+                  "known_at_utc": "2026-11-10T09:05:00Z",
+                  "leg": 3,
+                  "price": 4101.799,
+                  "reason": "TP3",
+                  "net_usd": 19.569000000000777
+                }
+              ],
+              "blocked_by": null
+            },
+            "combined": {
+              "id": "S5|OANDA:XAUUSD|5|2|-1|1794289500000|1794289800000",
+              "model": "RC2",
+              "side": -1,
+              "decision_utc": "2026-11-10T05:50:00Z",
+              "reference": 4121.86,
+              "stop": 4128.547,
+              "targets": [
+                4115.173,
+                4108.486,
+                4101.799
+              ],
+              "state": "POSITION_OCCUPIED",
+              "next_open_utc": "2026-11-10T05:50:00Z",
+              "next_open_mid": 4121.895,
+              "entry_utc": null,
+              "entry": null,
+              "risk_usd": null,
+              "realized_usd": 0,
+              "net_r": null,
+              "parts": [],
+              "blocked_by": "DT|CONSOLIDATION_BREAK|-1|1794278100000"
+            }
+          },
+          {
+            "standalone": {
+              "id": "S5|OANDA:XAUUSD|5|2|1|1794306900000|1794307200000",
+              "model": "RC2",
+              "side": 1,
+              "decision_utc": "2026-11-10T10:40:00Z",
+              "reference": 4076.81,
+              "stop": 4072.755,
+              "targets": [
+                4080.865,
+                4084.92,
+                4088.975
+              ],
+              "state": "CLOSED",
+              "next_open_utc": "2026-11-10T10:40:00Z",
+              "next_open_mid": 4076.765,
+              "entry_utc": "2026-11-10T10:40:00Z",
+              "entry": 4076.942,
+              "risk_usd": 13.616999999999692,
+              "realized_usd": -13.616999999999551,
+              "net_r": -0.9999999999999897,
+              "parts": [
+                {
+                  "bar": 899,
+                  "bar_open_utc": "2026-11-10T10:55:00Z",
+                  "known_at_utc": "2026-11-10T11:00:00Z",
+                  "leg": 1,
+                  "price": 4072.753,
+                  "reason": "SL",
+                  "net_usd": -4.5389999999998505
+                },
+                {
+                  "bar": 899,
+                  "bar_open_utc": "2026-11-10T10:55:00Z",
+                  "known_at_utc": "2026-11-10T11:00:00Z",
+                  "leg": 2,
+                  "price": 4072.753,
+                  "reason": "SL",
+                  "net_usd": -4.5389999999998505
+                },
+                {
+                  "bar": 899,
+                  "bar_open_utc": "2026-11-10T10:55:00Z",
+                  "known_at_utc": "2026-11-10T11:00:00Z",
+                  "leg": 3,
+                  "price": 4072.753,
+                  "reason": "SL",
+                  "net_usd": -4.5389999999998505
+                }
+              ],
+              "blocked_by": null
+            },
+            "combined": {
+              "id": "S5|OANDA:XAUUSD|5|2|1|1794306900000|1794307200000",
+              "model": "RC2",
+              "side": 1,
+              "decision_utc": "2026-11-10T10:40:00Z",
+              "reference": 4076.81,
+              "stop": 4072.755,
+              "targets": [
+                4080.865,
+                4084.92,
+                4088.975
+              ],
+              "state": "POSITION_OCCUPIED",
+              "next_open_utc": "2026-11-10T10:40:00Z",
+              "next_open_mid": 4076.765,
+              "entry_utc": null,
+              "entry": null,
+              "risk_usd": null,
+              "realized_usd": 0,
+              "net_r": null,
+              "parts": [],
+              "blocked_by": "DT|STRUCTURAL_BREAK|-1|1794306000000"
+            }
+          },
+          {
+            "standalone": {
+              "id": "S5|OANDA:XAUUSD|5|2|-1|1794356100000|1794356700000",
+              "model": "RC2",
+              "side": -1,
+              "decision_utc": "2026-11-11T00:25:00Z",
+              "reference": 4039.41,
+              "stop": 4042.486,
+              "targets": [
+                4036.334,
+                4033.258,
+                4030.182
+              ],
+              "state": "CLOSED",
+              "next_open_utc": "2026-11-11T00:25:00Z",
+              "next_open_mid": 4039.57,
+              "entry_utc": "2026-11-11T00:25:00Z",
+              "entry": 4039.393,
+              "risk_usd": 10.33499999999954,
+              "realized_usd": 17.355000000000654,
+              "net_r": 1.6792452830190059,
+              "parts": [
+                {
+                  "bar": 1050,
+                  "bar_open_utc": "2026-11-11T00:30:00Z",
+                  "known_at_utc": "2026-11-11T00:35:00Z",
+                  "leg": 1,
+                  "price": 4036.334,
+                  "reason": "TP1",
+                  "net_usd": 2.7090000000001964
+                },
+                {
+                  "bar": 1054,
+                  "bar_open_utc": "2026-11-11T00:50:00Z",
+                  "known_at_utc": "2026-11-11T00:55:00Z",
+                  "leg": 2,
+                  "price": 4033.258,
+                  "reason": "TP2",
+                  "net_usd": 5.785000000000219
+                },
+                {
+                  "bar": 1057,
+                  "bar_open_utc": "2026-11-11T01:05:00Z",
+                  "known_at_utc": "2026-11-11T01:10:00Z",
+                  "leg": 3,
+                  "price": 4030.182,
+                  "reason": "TP3",
+                  "net_usd": 8.86100000000024
+                }
+              ],
+              "blocked_by": null
+            },
+            "combined": {
+              "id": "S5|OANDA:XAUUSD|5|2|-1|1794356100000|1794356700000",
+              "model": "RC2",
+              "side": -1,
+              "decision_utc": "2026-11-11T00:25:00Z",
+              "reference": 4039.41,
+              "stop": 4042.486,
+              "targets": [
+                4036.334,
+                4033.258,
+                4030.182
+              ],
+              "state": "POSITION_OCCUPIED",
+              "next_open_utc": "2026-11-11T00:25:00Z",
+              "next_open_mid": 4039.57,
+              "entry_utc": null,
+              "entry": null,
+              "risk_usd": null,
+              "realized_usd": 0,
+              "net_r": null,
+              "parts": [],
+              "blocked_by": "DT|STRUCTURAL_BREAK|1|1794355200000"
+            }
+          }
+        ],
+        "new_rc2": [
+          {
+            "standalone": {
+              "id": "S5|OANDA:XAUUSD|5|2|1|1794296100000|1794296400000",
+              "model": "RC2",
+              "side": 1,
+              "decision_utc": "2026-11-10T07:40:00Z",
+              "reference": 4117.18,
+              "stop": 4113.848,
+              "targets": [
+                4120.512,
+                4123.844,
+                4127.176
+              ],
+              "state": "POSITION_OCCUPIED",
+              "next_open_utc": "2026-11-10T07:40:00Z",
+              "next_open_mid": 4117.205,
+              "entry_utc": null,
+              "entry": null,
+              "risk_usd": null,
+              "realized_usd": 0,
+              "net_r": null,
+              "parts": [],
+              "blocked_by": "S5|OANDA:XAUUSD|5|2|-1|1794289500000|1794289800000"
+            },
+            "combined": {
+              "id": "S5|OANDA:XAUUSD|5|2|1|1794296100000|1794296400000",
+              "model": "RC2",
+              "side": 1,
+              "decision_utc": "2026-11-10T07:40:00Z",
+              "reference": 4117.18,
+              "stop": 4113.848,
+              "targets": [
+                4120.512,
+                4123.844,
+                4127.176
+              ],
+              "state": "CLOSED",
+              "next_open_utc": "2026-11-10T07:40:00Z",
+              "next_open_mid": 4117.205,
+              "entry_utc": "2026-11-10T07:40:00Z",
+              "entry": 4117.382,
+              "risk_usd": 11.657999999998951,
+              "realized_usd": -11.658000000000175,
+              "net_r": -1.000000000000105,
+              "parts": [
+                {
+                  "bar": 860,
+                  "bar_open_utc": "2026-11-10T07:40:00Z",
+                  "known_at_utc": "2026-11-10T07:45:00Z",
+                  "leg": 1,
+                  "price": 4113.846,
+                  "reason": "SL",
+                  "net_usd": -3.8860000000000583
+                },
+                {
+                  "bar": 860,
+                  "bar_open_utc": "2026-11-10T07:40:00Z",
+                  "known_at_utc": "2026-11-10T07:45:00Z",
+                  "leg": 2,
+                  "price": 4113.846,
+                  "reason": "SL",
+                  "net_usd": -3.8860000000000583
+                },
+                {
+                  "bar": 860,
+                  "bar_open_utc": "2026-11-10T07:40:00Z",
+                  "known_at_utc": "2026-11-10T07:45:00Z",
+                  "leg": 3,
+                  "price": 4113.846,
+                  "reason": "SL",
+                  "net_usd": -3.8860000000000583
+                }
+              ],
+              "blocked_by": null
+            }
+          }
+        ]
+      },
+      "combined_effect_usd": -57.272,
+      "admitted_shadow_geometry_by_outcome": {
+        "wins": {
+          "median_stop_atr_at_confirmation": 1.5715859975000002,
+          "median_extension_atr_at_confirmation": 0.21255432797687535,
+          "nearest_known_obstacle": 0,
+          "known_obstacle_room_below_original_gate_after_fill": 0,
+          "exit_legs_by_reason": {
+            "TP1": 4,
+            "TIME_EXIT": 4,
+            "TP2": 2,
+            "TP3": 2
+          }
+        },
+        "losses": {
+          "median_stop_atr_at_confirmation": 2.042436129,
+          "median_extension_atr_at_confirmation": 0.2881823734488071,
+          "nearest_known_obstacle": 3,
+          "known_obstacle_room_below_original_gate_after_fill": 0,
+          "exit_legs_by_reason": {
+            "SL": 14,
+            "TP1": 1,
+            "TIME_EXIT": 3
+          }
+        }
+      },
+      "shadow_loss_descriptions": {
+        "closed_losses": 6,
+        "entry_bar_stop": 0,
+        "same_bar_sl_tp_ambiguity": 0,
+        "confirmed_level_reclaimed_in_three_bars": 3,
+        "observable_three_bar_path": 6,
+        "retest_losses": 0,
+        "friction_counterfactual_wins": 0,
+        "note": "All accepted shadow plans passed the historical close-time risk and room gates. The loss labels are observations after execution, not identified causal filters."
+      }
+    },
+    "M15": {
+      "scored_window_utc": {
+        "start": "2026-10-28T04:30:00Z",
+        "end": "2026-11-11T06:00:00Z"
+      },
+      "attribution": {
+        "rc2_alone": {
+          "closed": 2,
+          "wins": 1,
+          "losses": 1,
+          "net_usd": 7.525,
+          "net_r": -0.088891678,
+          "mean_loss_usd": -36.036
+        },
+        "combined": {
+          "closed": 16,
+          "wins": 4,
+          "losses": 12,
+          "net_usd": -364.497,
+          "net_r": -6.495848229,
+          "mean_loss_usd": -45.830833333
+        },
+        "admitted_shadow": {
+          "closed": 14,
+          "wins": 3,
+          "losses": 11,
+          "net_usd": -372.022,
+          "net_r": -6.406956551,
+          "mean_loss_usd": -46.721272727
+        },
+        "admitted_shadow_by_model": {
+          "CONSOLIDATION_BREAK": {
+            "closed": 1,
+            "wins": 0,
+            "losses": 1,
+            "net_usd": -39.831,
+            "net_r": -1.0,
+            "mean_loss_usd": -39.831
+          },
+          "RETEST_CONTINUATION": {
+            "closed": 1,
+            "wins": 1,
+            "losses": 0,
+            "net_usd": 54.852,
+            "net_r": 1.833533895,
+            "mean_loss_usd": null
+          },
+          "STRUCTURAL_BREAK": {
+            "closed": 12,
+            "wins": 2,
+            "losses": 10,
+            "net_usd": -387.043,
+            "net_r": -7.240490446,
+            "mean_loss_usd": -47.4103
+          }
+        },
+        "admitted_shadow_by_direction": {
+          "BUY": {
+            "closed": 3,
+            "wins": 1,
+            "losses": 2,
+            "net_usd": -23.857,
+            "net_r": -0.44816628,
+            "mean_loss_usd": -48.0645
+          },
+          "SELL": {
+            "closed": 11,
+            "wins": 2,
+            "losses": 9,
+            "net_usd": -348.165,
+            "net_r": -5.958790271,
+            "mean_loss_usd": -46.422777778
+          }
+        },
+        "displaced_baseline": [],
+        "new_rc2": []
+      },
+      "combined_effect_usd": -372.022,
+      "admitted_shadow_geometry_by_outcome": {
+        "wins": {
+          "median_stop_atr_at_confirmation": 1.2410475,
+          "median_extension_atr_at_confirmation": 0.4002575410378156,
+          "nearest_known_obstacle": 1,
+          "known_obstacle_room_below_original_gate_after_fill": 0,
+          "exit_legs_by_reason": {
+            "TP1": 3,
+            "TP2": 3,
+            "SL": 1,
+            "TP3": 1,
+            "TIME_EXIT": 1
+          }
+        },
+        "losses": {
+          "median_stop_atr_at_confirmation": 1.611727959,
+          "median_extension_atr_at_confirmation": 0.3691910573653726,
+          "nearest_known_obstacle": 2,
+          "known_obstacle_room_below_original_gate_after_fill": 0,
+          "exit_legs_by_reason": {
+            "SL": 32,
+            "TP1": 1
+          }
+        }
+      },
+      "shadow_loss_descriptions": {
+        "closed_losses": 11,
+        "entry_bar_stop": 0,
+        "same_bar_sl_tp_ambiguity": 0,
+        "confirmed_level_reclaimed_in_three_bars": 6,
+        "observable_three_bar_path": 11,
+        "retest_losses": 0,
+        "friction_counterfactual_wins": 0,
+        "note": "All accepted shadow plans passed the historical close-time risk and room gates. The loss labels are observations after execution, not identified causal filters."
+      }
+    }
+  },
+  "direct_trend_input_sha256": {
+    "gold_wick/wsb_forensic.py": "b12d8ae0652d524cfe222ed1d52c36feae57b4d4aa126f88192333128635197c",
+    "research/wsb_missed_sell/evidence/native-logs.zip": "23282ff59fd4c2cb1b2fbad116b4d8de304b331c8902b6994d608674f8771dfc",
+    "releases/gold-pro-rc2/evidence/native-logs.zip": "a058bd9789bf9f5d258a08316217f3bebc8b9951460ee0c499aae848c761813a",
+    "research/rc2-pressure-meter/evidence/native-logs.zip": "ccffc719d8b3b2b9bba1e56ba5c04894df813175f9e2faaf4964d3b6a476307b",
+    "docs/v21_evidence/event_evaluation_registration.json": "dc023d3c15e75327924bb3852cdcb620a079eee99a16edee7472fcdf9e8f04a7",
+    "docs/gold_pro_evidence/forward_seal_m5.json": "09181ecaf9e30cde62c5203b524cb458d808a07c24029e961e32bb25c474afd1",
+    "research/direct_trend_breakout/evidence/registered_m15_warmup_prefix.json": "e519925e61eaa80001ada52153a28511a28cd2ff999e4c5b5178004551760852",
+    "archival_m5_bars.csv": "44971f52b0008fefc4b61dda51c71043f08e4a2e3bc6d08121380e95232ace1d",
+    "archival_s5_native.csv": "b629dc4c3b1b624b5fc4632016ed1d568fbd65a83d26a17a8ee5aa909a7f0ef4"
+  },
+  "promotion_status": "RESEARCH_ONLY_NO_UNTOUCHED_MATCHED_DATA"
+}
