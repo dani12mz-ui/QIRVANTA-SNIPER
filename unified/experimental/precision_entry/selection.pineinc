@@ -1,0 +1,55 @@
+// Research-only validation of fixed Direct Trend Shadow geometry.
+type PeCandidate
+    string id
+    int side
+    int confirmed
+    float reference
+    float stop
+    float tp1
+    float tp2
+    float tp3
+
+var array<PeCandidate> peAccepted = array.new<PeCandidate>()
+if barstate.isconfirmed
+    array.clear(peAccepted)
+
+f_peAssess(DtSetup setup, DtGeometry geometry) =>
+    string reasons = geometry.reasons == "OVERLAP_SAME_BAR" ? "" : geometry.reasons
+    if not na(geometry.room) and geometry.room < .90
+        reasons := f_dtAddReason(reasons, "PE_INSUFFICIENT_NET_ROOM")
+    int age = setup.model == DT_RETEST ? bar_index - setup.firstBar : na
+    float originAtr = setup.model == DT_RETEST and age >= 1 and age <= 6 ? dtPriorAtr[age] : na
+    bool established = false
+    if setup.model == DT_STRUCTURAL
+        if geometry.extension > .75
+            reasons := f_dtAddReason(reasons, "PE_STRUCTURAL_MAX_EXTENSION")
+    else if setup.model == DT_CONSOLIDATION
+        if setup.side * (close - open) < .65 * dtPriorAtr
+            reasons := f_dtAddReason(reasons, "PE_CONSOLIDATION_WEAK_BODY")
+    else
+        if age < 2
+            reasons := f_dtAddReason(reasons, "PE_RETEST_TOO_EARLY")
+        if age >= 2 and age <= 6 and not na(originAtr)
+            for offset = 1 to age - 1
+                if setup.side * (close[offset] - setup.level) >= .25 * originAtr
+                    established := true
+        if not established
+            reasons := f_dtAddReason(reasons, "PE_RETEST_UNESTABLISHED")
+    bool accepted = reasons == "" and geometry.risk > 0
+    if accepted
+        array.push(peAccepted, PeCandidate.new(geometry.planId, setup.side, time_close, close,
+             geometry.stop, geometry.tp1, geometry.tp2, geometry.tp3))
+    if dtQa
+        string targets = na(geometry.tp1) ? "[]" : "[" + f_dtNumber(geometry.tp1) + "," +
+             f_dtNumber(geometry.tp2) + "," + f_dtNumber(geometry.tp3) + "]"
+        log.info('PE_PLAN|{"plan_id":' + f_dtString(geometry.planId) + ',"model":' + f_dtString(setup.model) +
+             ',"side":' + f_dtInt(setup.side) + ',"bar":' + f_dtInt(bar_index) +
+             ',"detection_ms":' + f_dtInt(setup.firstMs) + ',"confirmation_ms":' + f_dtInt(time_close) +
+             ',"origin_confirmation_ms":' + f_dtInt(setup.breakoutMs) +
+             ',"source_ms":' + f_dtInt(setup.sourceMs) + ',"level_known_ms":' + f_dtInt(setup.levelKnownMs) +
+             ',"next_open_ms":' + f_dtInt(time_close) + ',"expiry_ms":' + f_dtInt(time_close + time_close - time) +
+             ',"level":' + f_dtNumber(setup.level) + ',"reference":' + f_dtNumber(close) +
+             ',"stop":' + f_dtNumber(geometry.stop) + ',"targets":' + targets +
+             ',"prior_atr":' + f_dtNumber(dtPriorAtr) + ',"net_room_r":' + f_dtNumber(geometry.room) +
+             ',"accepted":' + str.tostring(accepted) + ',"reasons":' + f_dtReasons(reasons) + '}')
+    accepted

@@ -1,0 +1,55 @@
+// Historical Strategy Tester harness for emulator timing. Research fills use the Python quote model.
+int peFrom = input.time(PE_FROM_MS, "Tester first signal close UTC")
+int peUntil = input.time(PE_UNTIL_MS, "Tester last signal close UTC")
+var string peHeldId = ""
+var bool peFillSeen = false
+var int peEntryBar = na
+var int peSeenParts = 0
+
+f_peFill(string id, int stamp, float price) =>
+    log.info('PE_NATIVE_FILL|{"plan_id":' + f_dtString(id) + ',"entry_ms":' + f_dtInt(stamp) +
+         ',"seen_ms":' + f_dtInt(time_close) + ',"price":' + f_dtNumber(price) + '}')
+
+if barstate.isconfirmed and dtSupported
+    if peHeldId != "" and not peFillSeen and strategy.opentrades > 0
+        f_peFill(peHeldId, strategy.opentrades.entry_time(0), strategy.opentrades.entry_price(0))
+        peFillSeen := true
+        peEntryBar := strategy.opentrades.entry_bar_index(0)
+    if strategy.closedtrades > peSeenParts
+        for part = peSeenParts to strategy.closedtrades - 1
+            string id = strategy.closedtrades.entry_id(part)
+            if not peFillSeen
+                f_peFill(id, strategy.closedtrades.entry_time(part), strategy.closedtrades.entry_price(part))
+                peFillSeen := true
+            log.info('PE_NATIVE_PART|{"plan_id":' + f_dtString(id) + ',"entry_ms":' +
+                 f_dtInt(strategy.closedtrades.entry_time(part)) + ',"exit_ms":' +
+                 f_dtInt(strategy.closedtrades.exit_time(part)) + ',"seen_ms":' + f_dtInt(time_close) +
+                 ',"qty":' + f_dtNumber(strategy.closedtrades.size(part)) +
+                 ',"price":' + f_dtNumber(strategy.closedtrades.exit_price(part)) +
+                 ',"reason":' + f_dtString(strategy.closedtrades.exit_comment(part)) + '}')
+        peSeenParts := strategy.closedtrades
+    if peFillSeen and strategy.position_size == 0
+        peHeldId := ""
+        peFillSeen := false
+        peEntryBar := na
+    if peHeldId != "" and peFillSeen and not na(peEntryBar) and bar_index - peEntryBar + 1 >= 48
+        strategy.close(peHeldId, comment="TIME_EXIT", disable_alert=true)
+    if barstate.ishistory and peHeldId == "" and time_close >= peFrom and time_close <= peUntil and array.size(peAccepted) > 0
+        // Match the research portfolio: retest, structural, consolidation, then plan id.
+        PeCandidate choice = array.first(peAccepted)
+        int rank = str.contains(choice.id, "RETEST_CONTINUATION") ? 0 : str.contains(choice.id, "STRUCTURAL_BREAK") ? 1 : 2
+        for plan in peAccepted
+            int other = str.contains(plan.id, "RETEST_CONTINUATION") ? 0 : str.contains(plan.id, "STRUCTURAL_BREAK") ? 1 : 2
+            if other < rank or (other == rank and plan.side < choice.side)
+                choice := plan
+                rank := other
+        peHeldId := choice.id
+        log.info('PE_NATIVE_SUBMIT|{"plan_id":' + f_dtString(choice.id) + ',"confirmation_ms":' +
+             f_dtInt(choice.confirmed) + ',"side":' + f_dtInt(choice.side) + '}')
+        strategy.entry(choice.id, choice.side == 1 ? strategy.long : strategy.short, qty=3, disable_alert=true)
+        strategy.exit(choice.id + "|T1", choice.id, qty=1, limit=choice.tp1, stop=choice.stop,
+             comment_profit="TP1", comment_loss="SL", disable_alert=true)
+        strategy.exit(choice.id + "|T2", choice.id, qty=1, limit=choice.tp2, stop=choice.stop,
+             comment_profit="TP2", comment_loss="SL", disable_alert=true)
+        strategy.exit(choice.id + "|T3", choice.id, qty=1, limit=choice.tp3, stop=choice.stop,
+             comment_profit="TP3", comment_loss="SL", disable_alert=true)

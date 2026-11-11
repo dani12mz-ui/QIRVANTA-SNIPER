@@ -1,0 +1,1204 @@
+{
+  "symbol": "OANDA:XAUUSD",
+  "chart": "standard candles",
+  "pine_version": 6,
+  "decision_status": "MATCH",
+  "execution_scope": "Historical TradingView broker emulator vs independent replay. Pine market orders fill at the next available open. Replay requires a contiguous next open, applies executable quote spread and risk repricing, and resolves ambiguous OHLC stop before target. Compare fill and exit timestamps separately from prices and realized P&L.",
+  "forward_status": "Retrospective exported chart data only. No live or broker execution and no independent holdout claim.",
+  "frames": {
+    "M5": {
+      "indicator": {
+        "status": "MATCH",
+        "file": "indicator-matched-M5.csv",
+        "sha256": "6088718d728c4958a40d610cd2945b58027dab58256ba5730869419b73884f8d",
+        "bars": 1199,
+        "first_index": 0,
+        "historical_end": {
+          "index": 1198,
+          "time_close": 1794426000000
+        },
+        "first_open_utc": "2026-11-05T11:45:00Z",
+        "last_close_utc": "2026-11-11T19:40:00Z",
+        "identical_repeated_batches": [],
+        "original_shadow": {
+          "native": 528,
+          "python": 528,
+          "first_difference": null
+        },
+        "precision": {
+          "native": 92,
+          "python": 92,
+          "first_difference": null,
+          "accepted": 9,
+          "rejected": 83,
+          "accepted_by_model": {
+            "STRUCTURAL_BREAK": 4,
+            "CONSOLIDATION_BREAK": 4,
+            "RETEST_CONTINUATION": 1
+          },
+          "accepted_by_side": {
+            "-1": 7,
+            "1": 2
+          }
+        },
+        "strategy_log_rows": {
+          "PE_NATIVE_SUBMIT": 0,
+          "PE_NATIVE_FILL": 0,
+          "PE_NATIVE_PART": 0
+        }
+      },
+      "tester": {
+        "status": "MATCH",
+        "file": "tester-matched-M5.csv",
+        "sha256": "86651c49439a5ab7b117978bd5a39e66c5eb94d2a3a9996edf80fe8098c5f78f",
+        "bars": 1199,
+        "first_index": 0,
+        "historical_end": {
+          "index": 1198,
+          "time_close": 1794426000000
+        },
+        "first_open_utc": "2026-11-05T11:45:00Z",
+        "last_close_utc": "2026-11-11T19:40:00Z",
+        "identical_repeated_batches": [],
+        "original_shadow": {
+          "native": 528,
+          "python": 528,
+          "first_difference": null
+        },
+        "precision": {
+          "native": 92,
+          "python": 92,
+          "first_difference": null,
+          "accepted": 9,
+          "rejected": 83,
+          "accepted_by_model": {
+            "STRUCTURAL_BREAK": 4,
+            "CONSOLIDATION_BREAK": 4,
+            "RETEST_CONTINUATION": 1
+          },
+          "accepted_by_side": {
+            "-1": 7,
+            "1": 2
+          }
+        },
+        "strategy_log_rows": {
+          "PE_NATIVE_SUBMIT": 5,
+          "PE_NATIVE_FILL": 5,
+          "PE_NATIVE_PART": 11
+        }
+      },
+      "indicator_vs_tester": {
+        "status": "MATCH",
+        "common_bars": 1199,
+        "first_open_utc": "2026-11-05T11:45:00Z",
+        "last_close_utc": "2026-11-11T19:40:00Z",
+        "indicator_extra_bars": 0,
+        "tester_extra_bars": 0,
+        "indicator_warmup_starts_utc": "2026-11-05T11:45:00Z",
+        "tester_warmup_starts_utc": "2026-11-05T11:45:00Z",
+        "common_original_shadow_records": [
+          528,
+          528
+        ],
+        "differing_original_shadow_records": 0,
+        "common_precision_records": [
+          92,
+          92
+        ],
+        "differing_precision_records": 0,
+        "changed_accepted_plan_ids": [],
+        "first_precision_difference": null,
+        "python_identical_decision_prefixes": 76,
+        "python_first_failing_prefix": null
+      },
+      "execution": {
+        "status": "NATIVE_NEXT_AVAILABLE_OPEN_MATCH",
+        "signal_close_window_inclusive_utc": [
+          "2026-11-06T03:00:00Z",
+          "2026-11-11T17:30:00Z"
+        ],
+        "historical_bars_used_for_replay": 1199,
+        "chart_costs": {
+          "tick": 0.001,
+          "slippage_ticks": 2,
+          "commission_each_side_per_unit": 0.175,
+          "native_emulated_spread": 0,
+          "python_quote_spread": 0.35
+        },
+        "accepted_in_window": 9,
+        "native_submits": 5,
+        "native_explicit_fills": 5,
+        "native_part_only_entry_timestamps": 0,
+        "native_submits_without_observed_fill_or_part": [],
+        "native_closed_parts": 11,
+        "native_fully_closed_campaigns": 5,
+        "native_exit_units": 15,
+        "native_priced_fully_closed_campaigns": 5,
+        "native_fully_closed_net_usd_recomputed_without_spread": -3.922,
+        "research_fully_closed_net_usd_in_portfolio": -7.772,
+        "native_filled_campaigns_not_fully_closed": 0,
+        "native_fills_matching_next_available_open": 5,
+        "native_fills_matching_contiguous_open": 5,
+        "native_fill_prices_matching_mid_open_plus_slippage": 5,
+        "research_portfolio_states": {
+          "CLOSED": 5,
+          "POSITION_OCCUPIED": 4
+        },
+        "research_portfolio_fills": 5,
+        "native_and_research_portfolio_fill_ids": 5,
+        "native_only_fill_ids": [],
+        "research_only_fill_ids": [],
+        "research_isolated_entry_timestamps_compared": 5,
+        "research_isolated_entry_timestamps_matched": 5,
+        "research_isolated_exit_units_matching_timestamp_and_reason": 15.0,
+        "research_isolated_exit_units_also_matching_price": 8.0,
+        "research_only_fills": [],
+        "campaigns": [
+          {
+            "id": "DT|STRUCTURAL_BREAK|-1|1793934600000",
+            "side": "SELL",
+            "confirmation_utc": "2026-11-06T03:10:00Z",
+            "strict_contiguous_next_open_utc": "2026-11-06T03:10:00Z",
+            "next_available_open_utc": "2026-11-06T03:10:00Z",
+            "native_entry_utc": "2026-11-06T03:10:00Z",
+            "entry_timestamp_source": "PE_NATIVE_FILL",
+            "native_fill_price": 4052.858,
+            "native_matches_next_available_open": true,
+            "native_matches_contiguous_open": true,
+            "native_fill_matches_mid_open_plus_slippage": true,
+            "native_closed_units": 3,
+            "native_closed_parts_realized_usd_recomputed_without_spread": 23.849,
+            "native_exit_parts": [
+              {
+                "plan_id": "DT|STRUCTURAL_BREAK|-1|1793934600000",
+                "entry_ms": 1793934600000,
+                "exit_ms": 1793937900000,
+                "seen_ms": 1793938200000,
+                "qty": -1,
+                "price": 4038.451,
+                "reason": "TP1"
+              },
+              {
+                "plan_id": "DT|STRUCTURAL_BREAK|-1|1793934600000",
+                "entry_ms": 1793934600000,
+                "exit_ms": 1793949000000,
+                "seen_ms": 1793949300000,
+                "qty": -2,
+                "price": 4047.612,
+                "reason": "TIME_EXIT"
+              }
+            ],
+            "research_portfolio_state": "CLOSED",
+            "research_isolated_state": "CLOSED",
+            "research_isolated_entry_utc": "2026-11-06T03:10:00Z",
+            "research_isolated_fill_price": 4052.683,
+            "native_minus_research_fill_price": 0.175,
+            "native_matches_research_entry_timestamp": true,
+            "research_exit_parts": [
+              {
+                "bar": 184,
+                "bar_open_utc": "2026-11-06T04:05:00Z",
+                "known_at_utc": "2026-11-06T04:10:00Z",
+                "leg": 1,
+                "price": 4038.451,
+                "reason": "TP1",
+                "net_usd": 13.881999999999971,
+                "exit_ms": 1793937900000,
+                "qty": 1.0
+              },
+              {
+                "bar": 221,
+                "bar_open_utc": "2026-11-06T07:10:00Z",
+                "known_at_utc": "2026-11-06T07:15:00Z",
+                "leg": 2,
+                "price": 4047.7870000000003,
+                "reason": "TIME_EXIT",
+                "net_usd": 4.545999999999731,
+                "exit_ms": 1793949000000,
+                "qty": 1.0
+              },
+              {
+                "bar": 221,
+                "bar_open_utc": "2026-11-06T07:10:00Z",
+                "known_at_utc": "2026-11-06T07:15:00Z",
+                "leg": 3,
+                "price": 4047.7870000000003,
+                "reason": "TIME_EXIT",
+                "net_usd": 4.545999999999731,
+                "exit_ms": 1793949000000,
+                "qty": 1.0
+              }
+            ],
+            "research_closed_parts_realized_usd": 22.974,
+            "exit_units_matching_timestamp_and_reason": 3.0,
+            "exit_units_also_matching_price": 1.0
+          },
+          {
+            "id": "DT|STRUCTURAL_BREAK|-1|1793970300000",
+            "side": "SELL",
+            "confirmation_utc": "2026-11-06T13:05:00Z",
+            "strict_contiguous_next_open_utc": "2026-11-06T13:05:00Z",
+            "next_available_open_utc": "2026-11-06T13:05:00Z",
+            "native_entry_utc": "2026-11-06T13:05:00Z",
+            "entry_timestamp_source": "PE_NATIVE_FILL",
+            "native_fill_price": 4058.823,
+            "native_matches_next_available_open": true,
+            "native_matches_contiguous_open": true,
+            "native_fill_matches_mid_open_plus_slippage": true,
+            "native_closed_units": 3,
+            "native_closed_parts_realized_usd_recomputed_without_spread": -26.097,
+            "native_exit_parts": [
+              {
+                "plan_id": "DT|STRUCTURAL_BREAK|-1|1793970300000",
+                "entry_ms": 1793970300000,
+                "exit_ms": 1793971200000,
+                "seen_ms": 1793971500000,
+                "qty": -1,
+                "price": 4067.172,
+                "reason": "SL"
+              },
+              {
+                "plan_id": "DT|STRUCTURAL_BREAK|-1|1793970300000",
+                "entry_ms": 1793970300000,
+                "exit_ms": 1793971200000,
+                "seen_ms": 1793971500000,
+                "qty": -1,
+                "price": 4067.172,
+                "reason": "SL"
+              },
+              {
+                "plan_id": "DT|STRUCTURAL_BREAK|-1|1793970300000",
+                "entry_ms": 1793970300000,
+                "exit_ms": 1793971200000,
+                "seen_ms": 1793971500000,
+                "qty": -1,
+                "price": 4067.172,
+                "reason": "SL"
+              }
+            ],
+            "research_portfolio_state": "CLOSED",
+            "research_isolated_state": "CLOSED",
+            "research_isolated_entry_utc": "2026-11-06T13:05:00Z",
+            "research_isolated_fill_price": 4058.6479999999997,
+            "native_minus_research_fill_price": 0.175,
+            "native_matches_research_entry_timestamp": true,
+            "research_exit_parts": [
+              {
+                "bar": 295,
+                "bar_open_utc": "2026-11-06T13:20:00Z",
+                "known_at_utc": "2026-11-06T13:25:00Z",
+                "leg": 1,
+                "price": 4067.172,
+                "reason": "SL",
+                "net_usd": -8.874000000000342,
+                "exit_ms": 1793971200000,
+                "qty": 1.0
+              },
+              {
+                "bar": 295,
+                "bar_open_utc": "2026-11-06T13:20:00Z",
+                "known_at_utc": "2026-11-06T13:25:00Z",
+                "leg": 2,
+                "price": 4067.172,
+                "reason": "SL",
+                "net_usd": -8.874000000000342,
+                "exit_ms": 1793971200000,
+                "qty": 1.0
+              },
+              {
+                "bar": 295,
+                "bar_open_utc": "2026-11-06T13:20:00Z",
+                "known_at_utc": "2026-11-06T13:25:00Z",
+                "leg": 3,
+                "price": 4067.172,
+                "reason": "SL",
+                "net_usd": -8.874000000000342,
+                "exit_ms": 1793971200000,
+                "qty": 1.0
+              }
+            ],
+            "research_closed_parts_realized_usd": -26.622,
+            "exit_units_matching_timestamp_and_reason": 3.0,
+            "exit_units_also_matching_price": 3.0
+          },
+          {
+            "id": "DT|STRUCTURAL_BREAK|1|1794186000000",
+            "side": "BUY",
+            "confirmation_utc": "2026-11-09T01:00:00Z",
+            "strict_contiguous_next_open_utc": "2026-11-09T01:00:00Z",
+            "next_available_open_utc": "2026-11-09T01:00:00Z",
+            "native_entry_utc": "2026-11-09T01:00:00Z",
+            "entry_timestamp_source": "PE_NATIVE_FILL",
+            "native_fill_price": 4105.192,
+            "native_matches_next_available_open": true,
+            "native_matches_contiguous_open": true,
+            "native_fill_matches_mid_open_plus_slippage": true,
+            "native_closed_units": 3,
+            "native_closed_parts_realized_usd_recomputed_without_spread": 51.45,
+            "native_exit_parts": [
+              {
+                "plan_id": "DT|STRUCTURAL_BREAK|1|1794186000000",
+                "entry_ms": 1794186000000,
+                "exit_ms": 1794188400000,
+                "seen_ms": 1794188700000,
+                "qty": 1,
+                "price": 4119.81,
+                "reason": "TP1"
+              },
+              {
+                "plan_id": "DT|STRUCTURAL_BREAK|1|1794186000000",
+                "entry_ms": 1794186000000,
+                "exit_ms": 1794200400000,
+                "seen_ms": 1794200700000,
+                "qty": 2,
+                "price": 4124.133,
+                "reason": "TIME_EXIT"
+              }
+            ],
+            "research_portfolio_state": "CLOSED",
+            "research_isolated_state": "CLOSED",
+            "research_isolated_entry_utc": "2026-11-09T01:00:00Z",
+            "research_isolated_fill_price": 4105.366999999999,
+            "native_minus_research_fill_price": -0.175,
+            "native_matches_research_entry_timestamp": true,
+            "research_exit_parts": [
+              {
+                "bar": 431,
+                "bar_open_utc": "2026-11-09T01:40:00Z",
+                "known_at_utc": "2026-11-09T01:45:00Z",
+                "leg": 1,
+                "price": 4119.81,
+                "reason": "TP1",
+                "net_usd": 14.09300000000112,
+                "exit_ms": 1794188400000,
+                "qty": 1.0
+              },
+              {
+                "bar": 471,
+                "bar_open_utc": "2026-11-09T05:00:00Z",
+                "known_at_utc": "2026-11-09T05:05:00Z",
+                "leg": 2,
+                "price": 4123.958,
+                "reason": "TIME_EXIT",
+                "net_usd": 18.241000000000348,
+                "exit_ms": 1794200400000,
+                "qty": 1.0
+              },
+              {
+                "bar": 471,
+                "bar_open_utc": "2026-11-09T05:00:00Z",
+                "known_at_utc": "2026-11-09T05:05:00Z",
+                "leg": 3,
+                "price": 4123.958,
+                "reason": "TIME_EXIT",
+                "net_usd": 18.241000000000348,
+                "exit_ms": 1794200400000,
+                "qty": 1.0
+              }
+            ],
+            "research_closed_parts_realized_usd": 50.575,
+            "exit_units_matching_timestamp_and_reason": 3.0,
+            "exit_units_also_matching_price": 1.0
+          },
+          {
+            "id": "DT|CONSOLIDATION_BREAK|-1|1794278100000",
+            "side": "SELL",
+            "confirmation_utc": "2026-11-10T02:35:00Z",
+            "strict_contiguous_next_open_utc": "2026-11-10T02:35:00Z",
+            "next_available_open_utc": "2026-11-10T02:35:00Z",
+            "native_entry_utc": "2026-11-10T02:35:00Z",
+            "entry_timestamp_source": "PE_NATIVE_FILL",
+            "native_fill_price": 4116.693,
+            "native_matches_next_available_open": true,
+            "native_matches_contiguous_open": true,
+            "native_fill_matches_mid_open_plus_slippage": true,
+            "native_closed_units": 3,
+            "native_closed_parts_realized_usd_recomputed_without_spread": -29.907,
+            "native_exit_parts": [
+              {
+                "plan_id": "DT|CONSOLIDATION_BREAK|-1|1794278100000",
+                "entry_ms": 1794278100000,
+                "exit_ms": 1794292500000,
+                "seen_ms": 1794292800000,
+                "qty": -3,
+                "price": 4126.312,
+                "reason": "TIME_EXIT"
+              }
+            ],
+            "research_portfolio_state": "CLOSED",
+            "research_isolated_state": "CLOSED",
+            "research_isolated_entry_utc": "2026-11-10T02:35:00Z",
+            "research_isolated_fill_price": 4116.518,
+            "native_minus_research_fill_price": 0.175,
+            "native_matches_research_entry_timestamp": true,
+            "research_exit_parts": [
+              {
+                "bar": 766,
+                "bar_open_utc": "2026-11-10T06:35:00Z",
+                "known_at_utc": "2026-11-10T06:40:00Z",
+                "leg": 1,
+                "price": 4126.487000000001,
+                "reason": "TIME_EXIT",
+                "net_usd": -10.31900000000096,
+                "exit_ms": 1794292500000,
+                "qty": 1.0
+              },
+              {
+                "bar": 766,
+                "bar_open_utc": "2026-11-10T06:35:00Z",
+                "known_at_utc": "2026-11-10T06:40:00Z",
+                "leg": 2,
+                "price": 4126.487000000001,
+                "reason": "TIME_EXIT",
+                "net_usd": -10.31900000000096,
+                "exit_ms": 1794292500000,
+                "qty": 1.0
+              },
+              {
+                "bar": 766,
+                "bar_open_utc": "2026-11-10T06:35:00Z",
+                "known_at_utc": "2026-11-10T06:40:00Z",
+                "leg": 3,
+                "price": 4126.487000000001,
+                "reason": "TIME_EXIT",
+                "net_usd": -10.31900000000096,
+                "exit_ms": 1794292500000,
+                "qty": 1.0
+              }
+            ],
+            "research_closed_parts_realized_usd": -30.957,
+            "exit_units_matching_timestamp_and_reason": 3.0,
+            "exit_units_also_matching_price": 0
+          },
+          {
+            "id": "DT|CONSOLIDATION_BREAK|-1|1794309000000",
+            "side": "SELL",
+            "confirmation_utc": "2026-11-10T11:10:00Z",
+            "strict_contiguous_next_open_utc": "2026-11-10T11:10:00Z",
+            "next_available_open_utc": "2026-11-10T11:10:00Z",
+            "native_entry_utc": "2026-11-10T11:10:00Z",
+            "entry_timestamp_source": "PE_NATIVE_FILL",
+            "native_fill_price": 4070.553,
+            "native_matches_next_available_open": true,
+            "native_matches_contiguous_open": true,
+            "native_fill_matches_mid_open_plus_slippage": true,
+            "native_closed_units": 3,
+            "native_closed_parts_realized_usd_recomputed_without_spread": -23.217,
+            "native_exit_parts": [
+              {
+                "plan_id": "DT|CONSOLIDATION_BREAK|-1|1794309000000",
+                "entry_ms": 1794309000000,
+                "exit_ms": 1794312600000,
+                "seen_ms": 1794312900000,
+                "qty": -1,
+                "price": 4077.942,
+                "reason": "SL"
+              },
+              {
+                "plan_id": "DT|CONSOLIDATION_BREAK|-1|1794309000000",
+                "entry_ms": 1794309000000,
+                "exit_ms": 1794312600000,
+                "seen_ms": 1794312900000,
+                "qty": -1,
+                "price": 4077.942,
+                "reason": "SL"
+              },
+              {
+                "plan_id": "DT|CONSOLIDATION_BREAK|-1|1794309000000",
+                "entry_ms": 1794309000000,
+                "exit_ms": 1794312600000,
+                "seen_ms": 1794312900000,
+                "qty": -1,
+                "price": 4077.942,
+                "reason": "SL"
+              }
+            ],
+            "research_portfolio_state": "CLOSED",
+            "research_isolated_state": "CLOSED",
+            "research_isolated_entry_utc": "2026-11-10T11:10:00Z",
+            "research_isolated_fill_price": 4070.3779999999997,
+            "native_minus_research_fill_price": 0.175,
+            "native_matches_research_entry_timestamp": true,
+            "research_exit_parts": [
+              {
+                "bar": 833,
+                "bar_open_utc": "2026-11-10T12:10:00Z",
+                "known_at_utc": "2026-11-10T12:15:00Z",
+                "leg": 1,
+                "price": 4077.942,
+                "reason": "SL",
+                "net_usd": -7.914000000000305,
+                "exit_ms": 1794312600000,
+                "qty": 1.0
+              },
+              {
+                "bar": 833,
+                "bar_open_utc": "2026-11-10T12:10:00Z",
+                "known_at_utc": "2026-11-10T12:15:00Z",
+                "leg": 2,
+                "price": 4077.942,
+                "reason": "SL",
+                "net_usd": -7.914000000000305,
+                "exit_ms": 1794312600000,
+                "qty": 1.0
+              },
+              {
+                "bar": 833,
+                "bar_open_utc": "2026-11-10T12:10:00Z",
+                "known_at_utc": "2026-11-10T12:15:00Z",
+                "leg": 3,
+                "price": 4077.942,
+                "reason": "SL",
+                "net_usd": -7.914000000000305,
+                "exit_ms": 1794312600000,
+                "qty": 1.0
+              }
+            ],
+            "research_closed_parts_realized_usd": -23.742,
+            "exit_units_matching_timestamp_and_reason": 3.0,
+            "exit_units_also_matching_price": 3.0
+          }
+        ]
+      }
+    },
+    "M15": {
+      "indicator": {
+        "status": "MATCH",
+        "file": "indicator-M15.csv",
+        "sha256": "00022e306409a88ec9c8cb0c312e9182511ab40d159196a2fd7b78e24450badc",
+        "bars": 1199,
+        "first_index": 0,
+        "historical_end": {
+          "index": 1198,
+          "time_close": 1794425400000
+        },
+        "first_open_utc": "2026-10-23T17:45:00Z",
+        "last_close_utc": "2026-11-11T19:30:00Z",
+        "identical_repeated_batches": [],
+        "original_shadow": {
+          "native": 501,
+          "python": 501,
+          "first_difference": null
+        },
+        "precision": {
+          "native": 91,
+          "python": 91,
+          "first_difference": null,
+          "accepted": 22,
+          "rejected": 69,
+          "accepted_by_model": {
+            "STRUCTURAL_BREAK": 15,
+            "CONSOLIDATION_BREAK": 7
+          },
+          "accepted_by_side": {
+            "-1": 17,
+            "1": 5
+          }
+        },
+        "strategy_log_rows": {
+          "PE_NATIVE_SUBMIT": 0,
+          "PE_NATIVE_FILL": 0,
+          "PE_NATIVE_PART": 0
+        }
+      },
+      "tester": {
+        "status": "MATCH",
+        "file": "tester-final-M15.csv",
+        "sha256": "93039cf45f412067eb2f08ea5033e5e7c205fc4c64d6eb8af8953dcd35d8cf28",
+        "bars": 1199,
+        "first_index": 0,
+        "historical_end": {
+          "index": 1198,
+          "time_close": 1794425400000
+        },
+        "first_open_utc": "2026-10-23T17:45:00Z",
+        "last_close_utc": "2026-11-11T19:30:00Z",
+        "identical_repeated_batches": [],
+        "original_shadow": {
+          "native": 501,
+          "python": 501,
+          "first_difference": null
+        },
+        "precision": {
+          "native": 91,
+          "python": 91,
+          "first_difference": null,
+          "accepted": 22,
+          "rejected": 69,
+          "accepted_by_model": {
+            "STRUCTURAL_BREAK": 15,
+            "CONSOLIDATION_BREAK": 7
+          },
+          "accepted_by_side": {
+            "-1": 17,
+            "1": 5
+          }
+        },
+        "strategy_log_rows": {
+          "PE_NATIVE_SUBMIT": 6,
+          "PE_NATIVE_FILL": 6,
+          "PE_NATIVE_PART": 16
+        }
+      },
+      "indicator_vs_tester": {
+        "status": "MATCH",
+        "common_bars": 1199,
+        "first_open_utc": "2026-10-23T17:45:00Z",
+        "last_close_utc": "2026-11-11T19:30:00Z",
+        "indicator_extra_bars": 0,
+        "tester_extra_bars": 0,
+        "indicator_warmup_starts_utc": "2026-10-23T17:45:00Z",
+        "tester_warmup_starts_utc": "2026-10-23T17:45:00Z",
+        "common_original_shadow_records": [
+          501,
+          501
+        ],
+        "differing_original_shadow_records": 0,
+        "common_precision_records": [
+          91,
+          91
+        ],
+        "differing_precision_records": 0,
+        "changed_accepted_plan_ids": [],
+        "first_precision_difference": null,
+        "python_identical_decision_prefixes": 81,
+        "python_first_failing_prefix": null
+      },
+      "execution": {
+        "status": "NATIVE_NEXT_AVAILABLE_OPEN_MATCH",
+        "signal_close_window_inclusive_utc": [
+          "2026-11-06T03:00:00Z",
+          "2026-11-11T17:30:00Z"
+        ],
+        "historical_bars_used_for_replay": 1199,
+        "chart_costs": {
+          "tick": 0.001,
+          "slippage_ticks": 2,
+          "commission_each_side_per_unit": 0.175,
+          "native_emulated_spread": 0,
+          "python_quote_spread": 0.35
+        },
+        "accepted_in_window": 8,
+        "native_submits": 6,
+        "native_explicit_fills": 6,
+        "native_part_only_entry_timestamps": 0,
+        "native_submits_without_observed_fill_or_part": [],
+        "native_closed_parts": 16,
+        "native_fully_closed_campaigns": 5,
+        "native_exit_units": 16,
+        "native_priced_fully_closed_campaigns": 5,
+        "native_fully_closed_net_usd_recomputed_without_spread": -126.223,
+        "research_fully_closed_net_usd_in_portfolio": -128.848,
+        "native_filled_campaigns_not_fully_closed": 1,
+        "native_fills_matching_next_available_open": 6,
+        "native_fills_matching_contiguous_open": 6,
+        "native_fill_prices_matching_mid_open_plus_slippage": 6,
+        "research_portfolio_states": {
+          "CLOSED": 5,
+          "POSITION_OCCUPIED": 2,
+          "CENSORED_OPEN": 1
+        },
+        "research_portfolio_fills": 6,
+        "native_and_research_portfolio_fill_ids": 6,
+        "native_only_fill_ids": [],
+        "research_only_fill_ids": [],
+        "research_isolated_entry_timestamps_compared": 6,
+        "research_isolated_entry_timestamps_matched": 6,
+        "research_isolated_exit_units_matching_timestamp_and_reason": 16.0,
+        "research_isolated_exit_units_also_matching_price": 16.0,
+        "research_only_fills": [],
+        "campaigns": [
+          {
+            "id": "DT|STRUCTURAL_BREAK|-1|1793934900000",
+            "side": "SELL",
+            "confirmation_utc": "2026-11-06T03:15:00Z",
+            "strict_contiguous_next_open_utc": "2026-11-06T03:15:00Z",
+            "next_available_open_utc": "2026-11-06T03:15:00Z",
+            "native_entry_utc": "2026-11-06T03:15:00Z",
+            "entry_timestamp_source": "PE_NATIVE_FILL",
+            "native_fill_price": 4052.368,
+            "native_matches_next_available_open": true,
+            "native_matches_contiguous_open": true,
+            "native_fill_matches_mid_open_plus_slippage": true,
+            "native_closed_units": 3,
+            "native_closed_parts_realized_usd_recomputed_without_spread": -65.064,
+            "native_exit_parts": [
+              {
+                "plan_id": "DT|STRUCTURAL_BREAK|-1|1793934900000",
+                "entry_ms": 1793934900000,
+                "exit_ms": 1793954700000,
+                "seen_ms": 1793955600000,
+                "qty": -1,
+                "price": 4073.706,
+                "reason": "SL"
+              },
+              {
+                "plan_id": "DT|STRUCTURAL_BREAK|-1|1793934900000",
+                "entry_ms": 1793934900000,
+                "exit_ms": 1793954700000,
+                "seen_ms": 1793955600000,
+                "qty": -1,
+                "price": 4073.706,
+                "reason": "SL"
+              },
+              {
+                "plan_id": "DT|STRUCTURAL_BREAK|-1|1793934900000",
+                "entry_ms": 1793934900000,
+                "exit_ms": 1793954700000,
+                "seen_ms": 1793955600000,
+                "qty": -1,
+                "price": 4073.706,
+                "reason": "SL"
+              }
+            ],
+            "research_portfolio_state": "CLOSED",
+            "research_isolated_state": "CLOSED",
+            "research_isolated_entry_utc": "2026-11-06T03:15:00Z",
+            "research_isolated_fill_price": 4052.1929999999998,
+            "native_minus_research_fill_price": 0.175,
+            "native_matches_research_entry_timestamp": true,
+            "research_exit_parts": [
+              {
+                "bar": 880,
+                "bar_open_utc": "2026-11-06T08:45:00Z",
+                "known_at_utc": "2026-11-06T09:00:00Z",
+                "leg": 1,
+                "price": 4073.706,
+                "reason": "SL",
+                "net_usd": -21.863000000000376,
+                "exit_ms": 1793954700000,
+                "qty": 1.0
+              },
+              {
+                "bar": 880,
+                "bar_open_utc": "2026-11-06T08:45:00Z",
+                "known_at_utc": "2026-11-06T09:00:00Z",
+                "leg": 2,
+                "price": 4073.706,
+                "reason": "SL",
+                "net_usd": -21.863000000000376,
+                "exit_ms": 1793954700000,
+                "qty": 1.0
+              },
+              {
+                "bar": 880,
+                "bar_open_utc": "2026-11-06T08:45:00Z",
+                "known_at_utc": "2026-11-06T09:00:00Z",
+                "leg": 3,
+                "price": 4073.706,
+                "reason": "SL",
+                "net_usd": -21.863000000000376,
+                "exit_ms": 1793954700000,
+                "qty": 1.0
+              }
+            ],
+            "research_closed_parts_realized_usd": -65.589,
+            "exit_units_matching_timestamp_and_reason": 3.0,
+            "exit_units_also_matching_price": 3.0
+          },
+          {
+            "id": "DT|STRUCTURAL_BREAK|-1|1793975400000",
+            "side": "SELL",
+            "confirmation_utc": "2026-11-06T14:30:00Z",
+            "strict_contiguous_next_open_utc": "2026-11-06T14:30:00Z",
+            "next_available_open_utc": "2026-11-06T14:30:00Z",
+            "native_entry_utc": "2026-11-06T14:30:00Z",
+            "entry_timestamp_source": "PE_NATIVE_FILL",
+            "native_fill_price": 4031.653,
+            "native_matches_next_available_open": true,
+            "native_matches_contiguous_open": true,
+            "native_fill_matches_mid_open_plus_slippage": true,
+            "native_closed_units": 3,
+            "native_closed_parts_realized_usd_recomputed_without_spread": -70.404,
+            "native_exit_parts": [
+              {
+                "plan_id": "DT|STRUCTURAL_BREAK|-1|1793975400000",
+                "entry_ms": 1793975400000,
+                "exit_ms": 1793977200000,
+                "seen_ms": 1793978100000,
+                "qty": -1,
+                "price": 4054.771,
+                "reason": "SL"
+              },
+              {
+                "plan_id": "DT|STRUCTURAL_BREAK|-1|1793975400000",
+                "entry_ms": 1793975400000,
+                "exit_ms": 1793977200000,
+                "seen_ms": 1793978100000,
+                "qty": -1,
+                "price": 4054.771,
+                "reason": "SL"
+              },
+              {
+                "plan_id": "DT|STRUCTURAL_BREAK|-1|1793975400000",
+                "entry_ms": 1793975400000,
+                "exit_ms": 1793977200000,
+                "seen_ms": 1793978100000,
+                "qty": -1,
+                "price": 4054.771,
+                "reason": "SL"
+              }
+            ],
+            "research_portfolio_state": "CLOSED",
+            "research_isolated_state": "CLOSED",
+            "research_isolated_entry_utc": "2026-11-06T14:30:00Z",
+            "research_isolated_fill_price": 4031.478,
+            "native_minus_research_fill_price": 0.175,
+            "native_matches_research_entry_timestamp": true,
+            "research_exit_parts": [
+              {
+                "bar": 905,
+                "bar_open_utc": "2026-11-06T15:00:00Z",
+                "known_at_utc": "2026-11-06T15:15:00Z",
+                "leg": 1,
+                "price": 4054.7709999999997,
+                "reason": "SL",
+                "net_usd": -23.642999999999667,
+                "exit_ms": 1793977200000,
+                "qty": 1.0
+              },
+              {
+                "bar": 905,
+                "bar_open_utc": "2026-11-06T15:00:00Z",
+                "known_at_utc": "2026-11-06T15:15:00Z",
+                "leg": 2,
+                "price": 4054.7709999999997,
+                "reason": "SL",
+                "net_usd": -23.642999999999667,
+                "exit_ms": 1793977200000,
+                "qty": 1.0
+              },
+              {
+                "bar": 905,
+                "bar_open_utc": "2026-11-06T15:00:00Z",
+                "known_at_utc": "2026-11-06T15:15:00Z",
+                "leg": 3,
+                "price": 4054.7709999999997,
+                "reason": "SL",
+                "net_usd": -23.642999999999667,
+                "exit_ms": 1793977200000,
+                "qty": 1.0
+              }
+            ],
+            "research_closed_parts_realized_usd": -70.929,
+            "exit_units_matching_timestamp_and_reason": 3.0,
+            "exit_units_also_matching_price": 3.0
+          },
+          {
+            "id": "DT|STRUCTURAL_BREAK|-1|1794205800000",
+            "side": "SELL",
+            "confirmation_utc": "2026-11-09T06:30:00Z",
+            "strict_contiguous_next_open_utc": "2026-11-09T06:30:00Z",
+            "next_available_open_utc": "2026-11-09T06:30:00Z",
+            "native_entry_utc": "2026-11-09T06:30:00Z",
+            "entry_timestamp_source": "PE_NATIVE_FILL",
+            "native_fill_price": 4112.518,
+            "native_matches_next_available_open": true,
+            "native_matches_contiguous_open": true,
+            "native_fill_matches_mid_open_plus_slippage": true,
+            "native_closed_units": 3,
+            "native_closed_parts_realized_usd_recomputed_without_spread": -15.331,
+            "native_exit_parts": [
+              {
+                "plan_id": "DT|STRUCTURAL_BREAK|-1|1794205800000",
+                "entry_ms": 1794205800000,
+                "exit_ms": 1794208500000,
+                "seen_ms": 1794209400000,
+                "qty": -1,
+                "price": 4098.269,
+                "reason": "TP1"
+              },
+              {
+                "plan_id": "DT|STRUCTURAL_BREAK|-1|1794205800000",
+                "entry_ms": 1794205800000,
+                "exit_ms": 1794230100000,
+                "seen_ms": 1794231000000,
+                "qty": -1,
+                "price": 4126.783,
+                "reason": "SL"
+              },
+              {
+                "plan_id": "DT|STRUCTURAL_BREAK|-1|1794205800000",
+                "entry_ms": 1794205800000,
+                "exit_ms": 1794230100000,
+                "seen_ms": 1794231000000,
+                "qty": -1,
+                "price": 4126.783,
+                "reason": "SL"
+              }
+            ],
+            "research_portfolio_state": "CLOSED",
+            "research_isolated_state": "CLOSED",
+            "research_isolated_entry_utc": "2026-11-09T06:30:00Z",
+            "research_isolated_fill_price": 4112.343000000001,
+            "native_minus_research_fill_price": 0.175,
+            "native_matches_research_entry_timestamp": true,
+            "research_exit_parts": [
+              {
+                "bar": 966,
+                "bar_open_utc": "2026-11-09T07:15:00Z",
+                "known_at_utc": "2026-11-09T07:30:00Z",
+                "leg": 1,
+                "price": 4098.269,
+                "reason": "TP1",
+                "net_usd": 13.724000000000524,
+                "exit_ms": 1794208500000,
+                "qty": 1.0
+              },
+              {
+                "bar": 990,
+                "bar_open_utc": "2026-11-09T13:15:00Z",
+                "known_at_utc": "2026-11-09T13:30:00Z",
+                "leg": 2,
+                "price": 4126.783,
+                "reason": "SL",
+                "net_usd": -14.7899999999996,
+                "exit_ms": 1794230100000,
+                "qty": 1.0
+              },
+              {
+                "bar": 990,
+                "bar_open_utc": "2026-11-09T13:15:00Z",
+                "known_at_utc": "2026-11-09T13:30:00Z",
+                "leg": 3,
+                "price": 4126.783,
+                "reason": "SL",
+                "net_usd": -14.7899999999996,
+                "exit_ms": 1794230100000,
+                "qty": 1.0
+              }
+            ],
+            "research_closed_parts_realized_usd": -15.856,
+            "exit_units_matching_timestamp_and_reason": 3.0,
+            "exit_units_also_matching_price": 3.0
+          },
+          {
+            "id": "DT|STRUCTURAL_BREAK|1|1794355200000",
+            "side": "BUY",
+            "confirmation_utc": "2026-11-11T00:00:00Z",
+            "strict_contiguous_next_open_utc": "2026-11-11T00:00:00Z",
+            "next_available_open_utc": "2026-11-11T00:00:00Z",
+            "native_entry_utc": "2026-11-11T00:00:00Z",
+            "entry_timestamp_source": "PE_NATIVE_FILL",
+            "native_fill_price": 4038.932,
+            "native_matches_next_available_open": true,
+            "native_matches_contiguous_open": true,
+            "native_fill_matches_mid_open_plus_slippage": true,
+            "native_closed_units": 3,
+            "native_closed_parts_realized_usd_recomputed_without_spread": -25.938,
+            "native_exit_parts": [
+              {
+                "plan_id": "DT|STRUCTURAL_BREAK|1|1794355200000",
+                "entry_ms": 1794355200000,
+                "exit_ms": 1794358800000,
+                "seen_ms": 1794359700000,
+                "qty": 1,
+                "price": 4030.636,
+                "reason": "SL"
+              },
+              {
+                "plan_id": "DT|STRUCTURAL_BREAK|1|1794355200000",
+                "entry_ms": 1794355200000,
+                "exit_ms": 1794358800000,
+                "seen_ms": 1794359700000,
+                "qty": 1,
+                "price": 4030.636,
+                "reason": "SL"
+              },
+              {
+                "plan_id": "DT|STRUCTURAL_BREAK|1|1794355200000",
+                "entry_ms": 1794355200000,
+                "exit_ms": 1794358800000,
+                "seen_ms": 1794359700000,
+                "qty": 1,
+                "price": 4030.636,
+                "reason": "SL"
+              }
+            ],
+            "research_portfolio_state": "CLOSED",
+            "research_isolated_state": "CLOSED",
+            "research_isolated_entry_utc": "2026-11-11T00:00:00Z",
+            "research_isolated_fill_price": 4039.107,
+            "native_minus_research_fill_price": -0.175,
+            "native_matches_research_entry_timestamp": true,
+            "research_exit_parts": [
+              {
+                "bar": 1125,
+                "bar_open_utc": "2026-11-11T01:00:00Z",
+                "known_at_utc": "2026-11-11T01:15:00Z",
+                "leg": 1,
+                "price": 4030.636,
+                "reason": "SL",
+                "net_usd": -8.821000000000003,
+                "exit_ms": 1794358800000,
+                "qty": 1.0
+              },
+              {
+                "bar": 1125,
+                "bar_open_utc": "2026-11-11T01:00:00Z",
+                "known_at_utc": "2026-11-11T01:15:00Z",
+                "leg": 2,
+                "price": 4030.636,
+                "reason": "SL",
+                "net_usd": -8.821000000000003,
+                "exit_ms": 1794358800000,
+                "qty": 1.0
+              },
+              {
+                "bar": 1125,
+                "bar_open_utc": "2026-11-11T01:00:00Z",
+                "known_at_utc": "2026-11-11T01:15:00Z",
+                "leg": 3,
+                "price": 4030.636,
+                "reason": "SL",
+                "net_usd": -8.821000000000003,
+                "exit_ms": 1794358800000,
+                "qty": 1.0
+              }
+            ],
+            "research_closed_parts_realized_usd": -26.463,
+            "exit_units_matching_timestamp_and_reason": 3.0,
+            "exit_units_also_matching_price": 3.0
+          },
+          {
+            "id": "DT|CONSOLIDATION_BREAK|-1|1794403800000",
+            "side": "SELL",
+            "confirmation_utc": "2026-11-11T13:30:00Z",
+            "strict_contiguous_next_open_utc": "2026-11-11T13:30:00Z",
+            "next_available_open_utc": "2026-11-11T13:30:00Z",
+            "native_entry_utc": "2026-11-11T13:30:00Z",
+            "entry_timestamp_source": "PE_NATIVE_FILL",
+            "native_fill_price": 4038.828,
+            "native_matches_next_available_open": true,
+            "native_matches_contiguous_open": true,
+            "native_fill_matches_mid_open_plus_slippage": true,
+            "native_closed_units": 3,
+            "native_closed_parts_realized_usd_recomputed_without_spread": 50.514,
+            "native_exit_parts": [
+              {
+                "plan_id": "DT|CONSOLIDATION_BREAK|-1|1794403800000",
+                "entry_ms": 1794403800000,
+                "exit_ms": 1794405600000,
+                "seen_ms": 1794406500000,
+                "qty": -1,
+                "price": 4030.21,
+                "reason": "TP1"
+              },
+              {
+                "plan_id": "DT|CONSOLIDATION_BREAK|-1|1794403800000",
+                "entry_ms": 1794403800000,
+                "exit_ms": 1794407400000,
+                "seen_ms": 1794408300000,
+                "qty": -1,
+                "price": 4021.64,
+                "reason": "TP2"
+              },
+              {
+                "plan_id": "DT|CONSOLIDATION_BREAK|-1|1794403800000",
+                "entry_ms": 1794403800000,
+                "exit_ms": 1794407400000,
+                "seen_ms": 1794408300000,
+                "qty": -1,
+                "price": 4013.07,
+                "reason": "TP3"
+              }
+            ],
+            "research_portfolio_state": "CLOSED",
+            "research_isolated_state": "CLOSED",
+            "research_isolated_entry_utc": "2026-11-11T13:30:00Z",
+            "research_isolated_fill_price": 4038.653,
+            "native_minus_research_fill_price": 0.175,
+            "native_matches_research_entry_timestamp": true,
+            "research_exit_parts": [
+              {
+                "bar": 1177,
+                "bar_open_utc": "2026-11-11T14:00:00Z",
+                "known_at_utc": "2026-11-11T14:15:00Z",
+                "leg": 1,
+                "price": 4030.21,
+                "reason": "TP1",
+                "net_usd": 8.092999999999757,
+                "exit_ms": 1794405600000,
+                "qty": 1.0
+              },
+              {
+                "bar": 1179,
+                "bar_open_utc": "2026-11-11T14:30:00Z",
+                "known_at_utc": "2026-11-11T14:45:00Z",
+                "leg": 2,
+                "price": 4021.64,
+                "reason": "TP2",
+                "net_usd": 16.66299999999992,
+                "exit_ms": 1794407400000,
+                "qty": 1.0
+              },
+              {
+                "bar": 1179,
+                "bar_open_utc": "2026-11-11T14:30:00Z",
+                "known_at_utc": "2026-11-11T14:45:00Z",
+                "leg": 3,
+                "price": 4013.07,
+                "reason": "TP3",
+                "net_usd": 25.232999999999628,
+                "exit_ms": 1794407400000,
+                "qty": 1.0
+              }
+            ],
+            "research_closed_parts_realized_usd": 49.989,
+            "exit_units_matching_timestamp_and_reason": 3.0,
+            "exit_units_also_matching_price": 3.0
+          },
+          {
+            "id": "DT|STRUCTURAL_BREAK|-1|1794411000000",
+            "side": "SELL",
+            "confirmation_utc": "2026-11-11T15:30:00Z",
+            "strict_contiguous_next_open_utc": "2026-11-11T15:30:00Z",
+            "next_available_open_utc": "2026-11-11T15:30:00Z",
+            "native_entry_utc": "2026-11-11T15:30:00Z",
+            "entry_timestamp_source": "PE_NATIVE_FILL",
+            "native_fill_price": 4006.578,
+            "native_matches_next_available_open": true,
+            "native_matches_contiguous_open": true,
+            "native_fill_matches_mid_open_plus_slippage": true,
+            "native_closed_units": 1,
+            "native_closed_parts_realized_usd_recomputed_without_spread": 12.783,
+            "native_exit_parts": [
+              {
+                "plan_id": "DT|STRUCTURAL_BREAK|-1|1794411000000",
+                "entry_ms": 1794411000000,
+                "exit_ms": 1794419100000,
+                "seen_ms": 1794420000000,
+                "qty": -1,
+                "price": 3993.445,
+                "reason": "TP1"
+              }
+            ],
+            "research_portfolio_state": "CENSORED_OPEN",
+            "research_isolated_state": "CENSORED_OPEN",
+            "research_isolated_entry_utc": "2026-11-11T15:30:00Z",
+            "research_isolated_fill_price": 4006.403,
+            "native_minus_research_fill_price": 0.175,
+            "native_matches_research_entry_timestamp": true,
+            "research_exit_parts": [
+              {
+                "bar": 1192,
+                "bar_open_utc": "2026-11-11T17:45:00Z",
+                "known_at_utc": "2026-11-11T18:00:00Z",
+                "leg": 1,
+                "price": 3993.445,
+                "reason": "TP1",
+                "net_usd": 12.60799999999963,
+                "exit_ms": 1794419100000,
+                "qty": 1.0
+              }
+            ],
+            "research_closed_parts_realized_usd": 12.608,
+            "exit_units_matching_timestamp_and_reason": 1.0,
+            "exit_units_also_matching_price": 1.0
+          }
+        ]
+      }
+    }
+  },
+  "source_archive_sha256": "1ab8919ee1d15b24cc02b3a821549f28ec2da12d5dcecb10071d5447f487d788"
+}

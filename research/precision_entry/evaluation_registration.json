@@ -1,0 +1,34 @@
+{
+  "schema": "qirvanta.precision-entry.evaluation.v1",
+  "registered_at_utc": "2026-11-11T19:26:36Z",
+  "frozen_base_commit": "203f9d8a88a8c4b51a5dc646fc0f1752a596ba1f",
+  "symbol": "OANDA:XAUUSD",
+  "timeframes_minutes": [5, 15],
+  "historical": {
+    "archive": "releases/gold-pro-rc2/evidence/native-logs.zip",
+    "archive_sha256": "a058bd9789bf9f5d258a08316217f3bebc8b9951460ee0c499aae848c761813a",
+    "minimum_warmup_bars": 250,
+    "development_start_utc": "2026-11-06T03:00:00Z",
+    "readout_start_utc": "2026-11-09T00:00:00Z",
+    "end_utc": "2026-11-11T06:00:00Z",
+    "exposure": "Both chronological scoring intervals are already-observed history. The first full UTC hour after the common 250-bar warmup begins the comparison. The intervening Monday UTC week boundary fixes the readout split. Later sell-visibility case work is excluded.",
+    "same_tape": "Fixed and parity native CORE/READY must match for each frame. Both frames share UTC boundaries. Compare native M15 OHLC to three M5 bars where complete and disclose discrepancies without altering official bars.",
+    "sampling": "Scan each native tape from its own first loaded bar. Admit entries only from the common start. Report cohorts by fill open and censor closes after cohort end. Preserve occupancy across the historical split."
+  },
+  "simulation": {
+    "baseline": {"spread": 0.35, "adverse_ticks": 2, "commission_per_unit_each_way": 0.175},
+    "stress": {"spread": 0.7, "adverse_ticks": 5, "commission_per_unit_each_way": 0.2625},
+    "execution": "Reuse Direct Trend Breakout next-open OHLC simulator. Frozen stops and three equal target parts; evaluate quote-side gaps at open, then SL before ambiguous TP. No fill across a provider session gap. Retain S5 RAW lock at +0.05R from the next bar following TP1.",
+    "portfolio": "One position or reservation. On the same confirmation bar give existing S5/RC2 first priority, then fresh retest, structural and consolidation. Within priority use plan ID. Keep S5-only and RC2-only, original RC2 plus shadow, each independent precision hypothesis, and pooled research scenarios with/without baseline.",
+    "counterfactual": "Replay rejected geometry in isolation with the same next-open constraints and costs. Attribute a rejected winner or avoided loser only if a complete realized closed campaign is available. Separate single-gate from overlapping reasons. Compare baseline fills by identical plan ID for displaced campaigns.",
+    "regimes": "Use frozen v2.1 clock-hour opportunity rules, existing sideways/reversal labels, and a separate volatile overlay at 1.5x the median range of the previous 24 complete clock hours. Outcome labels and examples are retrospective and do not enter selection."
+  },
+  "prospective": {
+    "status": "REGISTERED_DATA_UNAVAILABLE",
+    "start_utc": "2027-01-12T00:00:00Z",
+    "end_utc": "2027-03-01T00:00:00Z",
+    "sealed_original_sha256": "09181ecaf9e30cde62c5203b524cb458d808a07c24029e961e32bb25c474afd1",
+    "intake": "Before data access, independently timestamp the final frozen code and manifests. Collect provider-specific ordinary OANDA XAUUSD M5 and M15 bars and corresponding unchanged S5 RAW and RC2 offer journals. Hash the raw exports and verify common UTC coverage, interval provenance and known-at times. Do not substitute an already examined tape or include any of the original sealed GOLD PRO period.",
+    "decision": "Promotion is gated on an actually unopened, matched dataset and the separate preregistered acceptance rules. Current archived comparisons have no promotion authority."
+  }
+}
