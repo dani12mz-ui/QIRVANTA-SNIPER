@@ -1,0 +1,76 @@
+// Only the selected view has a risk map. Reuse a fixed set of drawing objects.
+var array<line> v3RiskLines = array.new<line>()
+var array<label> v3RiskTags = array.new<label>()
+var box v3LossZone = na
+var box v3RewardZone = na
+
+f_v3RiskLevel(int slot, int left, int right, float price, string name, color ink, string stroke, bool tagged) =>
+    line rail = array.get(v3RiskLines, slot)
+    label tag = array.get(v3RiskTags, slot)
+    line.set_xy1(rail, left, price)
+    line.set_xy2(rail, right, price)
+    line.set_color(rail, ink)
+    line.set_style(rail, stroke)
+    line.set_width(rail, slot <= 1 ? 2 : 1)
+    // Historical labels face the open chart area to the right of the review cut.
+    label.set_style(tag, v3Review ? label.style_label_left : label.style_label_right)
+    label.set_xy(tag, right, tagged ? price : na)
+    label.set_text(tag, tagged ? name + "  " + f_v3Price(price) : "")
+    label.set_color(tag, v3Light ? #EDF3F8 : v3Graphite)
+    label.set_textcolor(tag, ink)
+    label.set_tooltip(tag, name + " · " + f_v3Price(price))
+
+f_v3RiskBand(box band, int left, int right, float first, float second, color ink) =>
+    box.set_lefttop(band, left, math.max(first, second))
+    box.set_rightbottom(band, right, math.min(first, second))
+    box.set_bgcolor(band, ink)
+
+bool v3RiskRender = (barstate.islast or barstate.islastconfirmedhistory) and wfSupported
+if v3RiskRender
+    bool visible = v3ShowPlan and not na(v3ViewPlan)
+    if visible
+        if array.size(v3RiskLines) == 0
+            for slot = 0 to 5
+                array.push(v3RiskLines, line.new(time, na, time, na, xloc=xloc.bar_time))
+                array.push(v3RiskTags, label.new(time, na, xloc=xloc.bar_time, yloc=yloc.price,
+                     style=label.style_label_right, size=9, text_font_family=font.family_monospace))
+            v3LossZone := box.new(time, na, time, na, xloc=xloc.bar_time, border_width=0)
+            v3RewardZone := box.new(time, na, time, na, xloc=xloc.bar_time, border_width=0)
+        int left = v3ViewPlan.knownAt
+        int right = v3Review ? math.max(left + wfInterval, v3ViewAt) : math.max(left + wfInterval, time_close + 2 * wfInterval)
+        float entry = v3ViewPlan.entry
+        float stop = v3ViewPlan.stop
+        float first = v3ViewPlan.tp1
+        float second = v3ViewPlan.tp2
+        float third = v3ViewPlan.tp3
+        bool tags = v3ShowPriceTags and not v3Mobile
+        float gap = math.max(wfTick * 5.0, v3ViewPlan.atr * (v3Compact ? 0.58 : 0.42))
+        float fillGap = math.max(wfTick * 2.0, v3ViewPlan.atr * 0.12)
+        bool showFill = not na(v3FillPrice) and not na(v3FillAt) and math.abs(v3FillPrice - entry) >= fillGap
+        bool showMidTarget = tags and not v3Compact and math.abs(second - third) >= gap
+        bool showFirstTarget = tags and not v3Compact and math.abs(first - entry) >= gap and
+             math.abs(first - (showMidTarget ? second : third)) >= gap
+        f_v3RiskLevel(0, left, right, entry, "ENTRY PLAN", v3ChartCyan, line.style_dashed, tags)
+        f_v3RiskLevel(1, left, right, stop, "SL · FIXED", v3ChartSell, line.style_solid, tags)
+        f_v3RiskLevel(2, left, right, first, "TP1 · 1R", v3ChartBuy, line.style_dotted, showFirstTarget)
+        f_v3RiskLevel(3, left, right, second, "TP2 · 2R", v3ChartBuy, line.style_dotted, showMidTarget)
+        f_v3RiskLevel(4, left, right, third, "TP3 · 3R", v3ChartBuy, line.style_solid, tags)
+        f_v3RiskLevel(5, showFill ? math.max(left, v3FillAt) : left, right, showFill ? v3FillPrice : na,
+             "SIM FILL", v3ChartNeutral, line.style_solid,
+             tags and showFill and math.abs(v3FillPrice - entry) >= gap and
+             math.abs(v3FillPrice - stop) >= gap and math.abs(v3FillPrice - first) >= gap)
+        bool zones = v3ShowRiskZones and not v3Mobile
+        f_v3RiskBand(v3LossZone, left, right, zones ? entry : na, zones ? stop : na,
+             color.new(v3ChartSell, v3Light ? 90 : 88))
+        f_v3RiskBand(v3RewardZone, left, right, zones ? entry : na, zones ? third : na,
+             color.new(v3ChartBuy, v3Light ? 94 : 92))
+    else if array.size(v3RiskLines) > 0
+        for slot = 0 to 5
+            line.delete(array.get(v3RiskLines, slot))
+            label.delete(array.get(v3RiskTags, slot))
+        array.clear(v3RiskLines)
+        array.clear(v3RiskTags)
+        box.delete(v3LossZone)
+        box.delete(v3RewardZone)
+        v3LossZone := na
+        v3RewardZone := na

@@ -1,0 +1,333 @@
+{
+  "alert_scope": "Static Pine alert semantics. Runtime alert delivery was not exercised.",
+  "matched_windows": {
+    "indicator_M15.csv": {
+      "baseline_rows": {
+        "WICK_CTX": 209,
+        "WICK_EVT": 59,
+        "WICK_PLAN": 5
+      },
+      "candidate_rows": {
+        "WICK_CTX": 209,
+        "WICK_EVT": 59,
+        "WICK_PLAN": 5
+      },
+      "candidate_sha256": "a1319c7f48cb5fda4cf8af7735eb89e6a241a7c6dc7acaaa4c9296c0064acfd8",
+      "closed_campaign_net_usd": "0",
+      "exact_ordered_native_rows": 273,
+      "execution_states": {},
+      "first_bar_open_ms": 1794181500000,
+      "last_bar_close_ms": 1794376800000,
+      "native_campaigns": 0,
+      "raw_export_bytes_equal": true,
+      "reference_sha256": "a1319c7f48cb5fda4cf8af7735eb89e6a241a7c6dc7acaaa4c9296c0064acfd8",
+      "scored_rows": {
+        "WICK_CTX": 117,
+        "WICK_EVT": 40,
+        "WICK_PLAN": 4
+      },
+      "status": "VERIFIED"
+    },
+    "indicator_M30.csv": {
+      "baseline_rows": {
+        "WICK_CTX": 105,
+        "WICK_EVT": 38,
+        "WICK_PLAN": 5
+      },
+      "candidate_rows": {
+        "WICK_CTX": 105,
+        "WICK_EVT": 38,
+        "WICK_PLAN": 5
+      },
+      "candidate_sha256": "8492927151bd4ec95d3064288ad2c4b10c01215440c8954b78a4f345f530e860",
+      "closed_campaign_net_usd": "0",
+      "exact_ordered_native_rows": 148,
+      "execution_states": {},
+      "first_bar_open_ms": 1794180600000,
+      "last_bar_close_ms": 1794376800000,
+      "native_campaigns": 0,
+      "raw_export_bytes_equal": true,
+      "reference_sha256": "8492927151bd4ec95d3064288ad2c4b10c01215440c8954b78a4f345f530e860",
+      "scored_rows": {
+        "WICK_CTX": 59,
+        "WICK_EVT": 23,
+        "WICK_PLAN": 3
+      },
+      "status": "VERIFIED"
+    },
+    "indicator_M5.csv": {
+      "baseline_rows": {
+        "WICK_CTX": 625,
+        "WICK_EVT": 207,
+        "WICK_PLAN": 16
+      },
+      "candidate_rows": {
+        "WICK_CTX": 625,
+        "WICK_EVT": 207,
+        "WICK_PLAN": 16
+      },
+      "candidate_sha256": "c9b0983c78a55c8e64dfbdfcdc037d8aed85de7dd375846e226585aff5503843",
+      "closed_campaign_net_usd": "0",
+      "exact_ordered_native_rows": 848,
+      "execution_states": {},
+      "first_bar_open_ms": 1794182100000,
+      "last_bar_close_ms": 1794376800000,
+      "native_campaigns": 0,
+      "raw_export_bytes_equal": true,
+      "reference_sha256": "c9b0983c78a55c8e64dfbdfcdc037d8aed85de7dd375846e226585aff5503843",
+      "scored_rows": {
+        "WICK_CTX": 349,
+        "WICK_EVT": 127,
+        "WICK_PLAN": 10
+      },
+      "status": "VERIFIED"
+    },
+    "strategy_M15.csv": {
+      "baseline_rows": {
+        "WICK_CTX": 209,
+        "WICK_EVT": 59,
+        "WICK_EXEC": 9,
+        "WICK_PLAN": 5
+      },
+      "candidate_rows": {
+        "WICK_CTX": 209,
+        "WICK_EVT": 59,
+        "WICK_EXEC": 9,
+        "WICK_PLAN": 5
+      },
+      "candidate_sha256": "ba27f49f8ca7a9246c93c72d2d3e4dec2ab5dcadf65cff09a4488c8ac4d121cf",
+      "closed_campaign_net_usd": "-44.316",
+      "exact_ordered_native_rows": 282,
+      "execution_states": {
+        "CLOSED": 1,
+        "EXIT_PART": 4,
+        "FILLED": 2,
+        "SUBMITTED": 2
+      },
+      "first_bar_open_ms": 1794181500000,
+      "last_bar_close_ms": 1794376800000,
+      "native_campaigns": 2,
+      "raw_export_bytes_equal": true,
+      "reference_sha256": "ba27f49f8ca7a9246c93c72d2d3e4dec2ab5dcadf65cff09a4488c8ac4d121cf",
+      "scored_rows": {
+        "WICK_CTX": 117,
+        "WICK_EVT": 40,
+        "WICK_EXEC": 9,
+        "WICK_PLAN": 4
+      },
+      "status": "VERIFIED"
+    },
+    "strategy_M30.csv": {
+      "baseline_rows": {
+        "WICK_CTX": 105,
+        "WICK_EVT": 38,
+        "WICK_EXEC": 3,
+        "WICK_PLAN": 5
+      },
+      "candidate_rows": {
+        "WICK_CTX": 105,
+        "WICK_EVT": 38,
+        "WICK_EXEC": 3,
+        "WICK_PLAN": 5
+      },
+      "candidate_sha256": "6dd914dd8260c877a1624a63cf0358ac028add5dbc5f779414ff5b85650380af",
+      "closed_campaign_net_usd": "0",
+      "exact_ordered_native_rows": 151,
+      "execution_states": {
+        "EXIT_PART": 1,
+        "FILLED": 1,
+        "SUBMITTED": 1
+      },
+      "first_bar_open_ms": 1794180600000,
+      "last_bar_close_ms": 1794376800000,
+      "native_campaigns": 1,
+      "raw_export_bytes_equal": true,
+      "reference_sha256": "6dd914dd8260c877a1624a63cf0358ac028add5dbc5f779414ff5b85650380af",
+      "scored_rows": {
+        "WICK_CTX": 59,
+        "WICK_EVT": 23,
+        "WICK_EXEC": 3,
+        "WICK_PLAN": 3
+      },
+      "status": "VERIFIED"
+    },
+    "strategy_M5.csv": {
+      "baseline_rows": {
+        "WICK_CTX": 625,
+        "WICK_EVT": 207,
+        "WICK_EXEC": 25,
+        "WICK_PLAN": 16
+      },
+      "candidate_rows": {
+        "WICK_CTX": 625,
+        "WICK_EVT": 207,
+        "WICK_EXEC": 25,
+        "WICK_PLAN": 16
+      },
+      "candidate_sha256": "1ab2d55f5202f250d6ab0200b54197da3997f9b6af791539d468eeb915eb5e4b",
+      "closed_campaign_net_usd": "-37.810",
+      "exact_ordered_native_rows": 873,
+      "execution_states": {
+        "CLOSED": 4,
+        "EXIT_PART": 12,
+        "EXIT_REQUEST": 1,
+        "FILLED": 4,
+        "SUBMITTED": 4
+      },
+      "first_bar_open_ms": 1794182100000,
+      "last_bar_close_ms": 1794376800000,
+      "native_campaigns": 4,
+      "raw_export_bytes_equal": true,
+      "reference_sha256": "1ab2d55f5202f250d6ab0200b54197da3997f9b6af791539d468eeb915eb5e4b",
+      "scored_rows": {
+        "WICK_CTX": 349,
+        "WICK_EVT": 127,
+        "WICK_EXEC": 25,
+        "WICK_PLAN": 10
+      },
+      "status": "VERIFIED"
+    }
+  },
+  "native_scope": "All WICK_CTX, WICK_EVT, WICK_PLAN and WICK_EXEC rows in each named native export",
+  "reference_audit_sha256": "02262aea6e59d5b1295a1b1c77067ddafd6397ec6ca54f002c2abc42336a0808",
+  "reference_commit": "c7e16f35b52c8fa2051535b0caacb10ae7595fca",
+  "scored_close_ms": [
+    1794268800000,
+    1794376800000
+  ],
+  "source_parity": {
+    "forward_seal_sha256": "09181ecaf9e30cde62c5203b524cb458d808a07c24029e961e32bb25c474afd1",
+    "roles": {
+      "indicator": {
+        "candidate_sha256": "d7e989d98ce1c0fbfef12ad189bb7cd8250a33629b5b29d7001925ddf6df00b8",
+        "custom_alert_calls": 0,
+        "identical_behavioral_declaration": true,
+        "identical_engine_and_execution_sha256": "614d8350fe8cda6afa842538dc3bf8b5277f966dcb54f807b36a6e6072ae9ede",
+        "order_calls_with_alerts_disabled": 0,
+        "reference_sha256": "497e4973bdb707660547ede81cb36eb377cceb267970aae6d1d5599e59a8de6e",
+        "status": "VERIFIED"
+      },
+      "strategy": {
+        "candidate_sha256": "dabbb86894a6aab1bc253cbd52eb128843b5e2acbc39bbc95809979ad954d27f",
+        "custom_alert_calls": 0,
+        "identical_behavioral_declaration": true,
+        "identical_engine_and_execution_sha256": "0ae46a33ada11a0fb9f5bc73e35d4b8484f0d3225354637ae90b490e23324b02",
+        "order_calls_with_alerts_disabled": 5,
+        "reference_sha256": "680dff2860c16d116a80029722948366099ee5d838ea837170217e634be681d9",
+        "status": "VERIFIED"
+      }
+    },
+    "status": "VERIFIED"
+  },
+  "status": "VERIFIED",
+  "supplemental_M5_variants": {
+    "strategy_M5_retest.csv": {
+      "baseline_rows": {
+        "WICK_CTX": 625,
+        "WICK_EVT": 207,
+        "WICK_EXEC": 6,
+        "WICK_PLAN": 16
+      },
+      "candidate_rows": {
+        "WICK_CTX": 625,
+        "WICK_EVT": 207,
+        "WICK_EXEC": 6,
+        "WICK_PLAN": 16
+      },
+      "candidate_sha256": "604bf58c72b0733ac8ad11ec90eaaf5e74f0cdaeed4b502cec5a7df5545e34e7",
+      "closed_campaign_net_usd": "18.723",
+      "exact_ordered_native_rows": 854,
+      "execution_states": {
+        "CLOSED": 1,
+        "EXIT_PART": 3,
+        "FILLED": 1,
+        "SUBMITTED": 1
+      },
+      "first_bar_open_ms": 1794182100000,
+      "last_bar_close_ms": 1794376800000,
+      "native_campaigns": 1,
+      "raw_export_bytes_equal": true,
+      "reference_sha256": "604bf58c72b0733ac8ad11ec90eaaf5e74f0cdaeed4b502cec5a7df5545e34e7",
+      "scored_rows": {
+        "WICK_CTX": 349,
+        "WICK_EVT": 127,
+        "WICK_EXEC": 6,
+        "WICK_PLAN": 10
+      },
+      "status": "VERIFIED"
+    },
+    "strategy_M5_volume_B.csv": {
+      "baseline_rows": {
+        "WICK_CTX": 625,
+        "WICK_EVT": 207,
+        "WICK_EXEC": 25,
+        "WICK_PLAN": 16
+      },
+      "candidate_rows": {
+        "WICK_CTX": 625,
+        "WICK_EVT": 207,
+        "WICK_EXEC": 25,
+        "WICK_PLAN": 16
+      },
+      "candidate_sha256": "1ab2d55f5202f250d6ab0200b54197da3997f9b6af791539d468eeb915eb5e4b",
+      "closed_campaign_net_usd": "-37.810",
+      "exact_ordered_native_rows": 873,
+      "execution_states": {
+        "CLOSED": 4,
+        "EXIT_PART": 12,
+        "EXIT_REQUEST": 1,
+        "FILLED": 4,
+        "SUBMITTED": 4
+      },
+      "first_bar_open_ms": 1794182100000,
+      "last_bar_close_ms": 1794376800000,
+      "native_campaigns": 4,
+      "raw_export_bytes_equal": true,
+      "reference_sha256": "1ab2d55f5202f250d6ab0200b54197da3997f9b6af791539d468eeb915eb5e4b",
+      "scored_rows": {
+        "WICK_CTX": 349,
+        "WICK_EVT": 127,
+        "WICK_EXEC": 25,
+        "WICK_PLAN": 10
+      },
+      "status": "VERIFIED"
+    },
+    "strategy_M5_volume_C.csv": {
+      "baseline_rows": {
+        "WICK_CTX": 625,
+        "WICK_EVT": 207,
+        "WICK_EXEC": 6,
+        "WICK_PLAN": 16
+      },
+      "candidate_rows": {
+        "WICK_CTX": 625,
+        "WICK_EVT": 207,
+        "WICK_EXEC": 6,
+        "WICK_PLAN": 16
+      },
+      "candidate_sha256": "78c44fb38ba3a4f2ac0c1b56a709f53c87482147d85b35945b9a70128b452e02",
+      "closed_campaign_net_usd": "-27.78",
+      "exact_ordered_native_rows": 854,
+      "execution_states": {
+        "CLOSED": 1,
+        "EXIT_PART": 3,
+        "FILLED": 1,
+        "SUBMITTED": 1
+      },
+      "first_bar_open_ms": 1794182100000,
+      "last_bar_close_ms": 1794376800000,
+      "native_campaigns": 1,
+      "raw_export_bytes_equal": true,
+      "reference_sha256": "78c44fb38ba3a4f2ac0c1b56a709f53c87482147d85b35945b9a70128b452e02",
+      "scored_rows": {
+        "WICK_CTX": 349,
+        "WICK_EVT": 127,
+        "WICK_EXEC": 6,
+        "WICK_PLAN": 10
+      },
+      "status": "VERIFIED"
+    }
+  },
+  "supplemental_not_exported": [],
+  "symbol": "OANDA:XAUUSD"
+}

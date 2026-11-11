@@ -1,0 +1,6 @@
+WickPlan v3RolePlan = na
+float v3RoleFill = na
+int v3RoleFillAt = na
+string v3RoleLast = "—"
+bool v3RoleSim = false
+bool v3RoleWindow = false

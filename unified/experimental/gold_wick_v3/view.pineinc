@@ -1,0 +1,156 @@
+// A read-only view of confirmed decisions and native simulation state.
+var WickPlan v3LatestOffer = na
+var int v3LatestClose = na
+var string v3LatestStage = "WAIT"
+var string v3LatestReason = ""
+var int v3LatestSide = 0
+var bool v3LatestInWindow = false
+var string v3LatestResult = "—"
+var bool v3LatestVolume = false
+
+if wfConfirmed
+    v3LatestOffer := wfSelectedPlan
+    v3LatestClose := time_close
+    v3LatestStage := wfState
+    v3LatestReason := wfReason
+    v3LatestSide := wfStateSide
+    v3LatestInWindow := v3RoleWindow
+    v3LatestResult := v3RoleLast
+    v3LatestVolume := wfVolumeKnown
+
+bool v3Review = v3Audit and v3Inspect
+int v3Clock = (barstate.islast or barstate.islastconfirmedhistory) ?
+     math.max(nz(v3LatestClose, time), timenow) : nz(v3LatestClose, time)
+int v3Known = nz(v3LatestClose, time)
+int v3CurrentDeadline = na(wfActive) ? na : na(wfActive.breakoutAt) ?
+     wfActive.knownAt + WF_WATCH_BARS * wfInterval : wfActive.breakoutAt + WF_RETEST_BARS * wfInterval
+bool v3FormationFresh = wfSupported and not na(v3CurrentDeadline) and v3Clock <= v3CurrentDeadline
+bool v3OfferFresh = wfSupported and not na(v3LatestOffer) and v3Clock < v3LatestOffer.knownAt + wfInterval
+
+var WickPlan v3ReviewPlan = na
+var int v3ReviewKnown = na
+var float v3ReviewFill = na
+var int v3ReviewFillAt = na
+var bool v3ReviewPending = false
+var bool v3ReviewOpen = false
+var string v3ReviewStage = "WAIT"
+var string v3ReviewReason = ""
+var int v3ReviewSide = 0
+var int v3ReviewH1 = na
+var int v3ReviewH4 = na
+var int v3ReviewDeadline = na
+var int v3ReviewFirst = na
+var float v3ReviewTop = na
+var float v3ReviewBottom = na
+var string v3ReviewLast = "—"
+var bool v3ReviewVolume = false
+if v3Review and wfConfirmed and time_close <= v3InspectAt
+    v3ReviewKnown := time_close
+    v3ReviewPlan := not na(v3RolePlan) ? v3RolePlan : wfSelectedPlan
+    v3ReviewFill := v3RoleFill
+    v3ReviewFillAt := v3RoleFillAt
+    v3ReviewPending := wfExecutionPending
+    v3ReviewOpen := wfPositionOpen
+    v3ReviewStage := wfState
+    v3ReviewReason := wfReason
+    v3ReviewSide := wfStateSide
+    v3ReviewH1 := wfH1Side
+    v3ReviewH4 := wfH4Side
+    v3ReviewDeadline := v3CurrentDeadline
+    v3ReviewFirst := na(wfActive) ? na : wfActive.knownAt
+    v3ReviewTop := na(wfActive) ? na : wfActive.top
+    v3ReviewBottom := na(wfActive) ? na : wfActive.bottom
+    v3ReviewLast := v3RoleLast
+    v3ReviewVolume := wfVolumeKnown
+
+bool v3ReviewReady = v3Review and not na(v3ReviewKnown) and
+     v3InspectAt >= v3ReviewKnown and v3InspectAt - v3ReviewKnown < wfInterval
+WickPlan v3ViewPlan = v3Review ? (v3ReviewReady ? v3ReviewPlan : na) :
+     not na(v3RolePlan) ? v3RolePlan : v3OfferFresh ? v3LatestOffer : na
+bool v3ViewPending = v3Review ? v3ReviewReady and v3ReviewPending : wfExecutionPending
+bool v3ViewOpen = v3Review ? v3ReviewReady and v3ReviewOpen : wfPositionOpen
+bool v3PlanFresh = not v3Review and v3OfferFresh and not v3ViewOpen and not v3ViewPending and
+     (not v3RoleSim or v3LatestInWindow)
+float v3FillPrice = v3Review ? (v3ReviewReady ? v3ReviewFill : na) : v3RoleFill
+int v3FillAt = v3Review ? (v3ReviewReady ? v3ReviewFillAt : na) : v3RoleFillAt
+int v3ViewAt = v3Review ? v3ReviewKnown : v3Known
+int v3ViewSide = v3Review ? v3ReviewSide : v3LatestSide
+int v3H1 = v3Review ? v3ReviewH1 : wfH1Side
+int v3H4 = v3Review ? v3ReviewH4 : wfH4Side
+bool v3CompactType = v3Compact or v3Mobile
+int v3MarketSide = not na(v3H1) and not na(v3H4) and v3H1 == v3H4 ? v3H1 : 0
+string v3MarketBias = na(v3H1) or na(v3H4) ? (v3CompactType ? "NO DATA" : "UNAVAILABLE") :
+     v3MarketSide > 0 ? "BULLISH" : v3MarketSide < 0 ? "BEARISH" :
+     v3H1 == 0 and v3H4 == 0 ? "NEUTRAL" : "MIXED"
+color v3BiasInk = v3MarketSide > 0 ? v3Emerald : v3MarketSide < 0 ? v3Coral : v3Text
+string v3RawStage = v3Review ? (v3ReviewReady ? v3ReviewStage : "WAIT") : v3LatestStage
+string v3RawReason = v3Review ? v3ReviewReason : v3LatestReason
+bool v3Unexpired = v3Review ? v3ReviewReady and not na(v3ReviewDeadline) : v3FormationFresh
+bool v3FormationTimedOut = not v3Review and not na(v3CurrentDeadline) and not v3FormationFresh
+bool v3BuildingFresh = v3Review or (not na(v3LatestClose) and v3Clock < v3LatestClose + wfInterval)
+string v3FormationStage = switch
+    not wfSupported => "UNSUPPORTED CHART"
+    v3Review and not v3ReviewReady => "NO CLOSED BAR"
+    v3RawStage == "FALSE BREAKOUT" => "BREAKOUT RECLAIMED"
+    v3RawReason == "OPPOSITE_EDGE_CLOSE" => "INVALIDATED"
+    v3RawStage == "FORMATION EXPIRED" or v3FormationTimedOut => "EXPIRED"
+    not v3Review and wfIntrabarPending and v3FormationFresh => "PROBE · UNCONFIRMED"
+    v3RawStage == "FORMATION BUILDING" and v3BuildingFresh => "FORMING"
+    v3RawStage == "RISK REJECTED" and v3Unexpired => "CLOSE CONFIRMED"
+    v3RawStage == "ENTRY VALID" and v3Unexpired => "CLOSE CONFIRMED"
+    v3RawStage == "BREAKOUT PENDING" and v3Unexpired => "PROBE · UNCONFIRMED"
+    v3RawStage == "RETEST WATCH" and v3Unexpired => "RETEST WINDOW"
+    str.contains(v3RawStage, "CONFIRMED") and v3Unexpired => "CLOSE CONFIRMED"
+    v3Unexpired => v3ViewSide > 0 ? "BUY WATCH" : "SELL WATCH"
+    => "SCANNING"
+
+string v3Action = switch
+    not wfSupported => "UNSUPPORTED"
+    v3Review => "HISTORICAL"
+    v3ViewOpen => "SIM OPEN"
+    v3ViewPending => "SIM PENDING"
+    v3PlanFresh => v3ViewPlan.side > 0 ? "BUY PLAN" : "SELL PLAN"
+    v3OfferFresh and v3RoleSim and not v3LatestInWindow => "SIM WINDOW OFF"
+    v3RawStage == "RISK REJECTED" and v3Unexpired => "RISK REJECTED"
+    => "WAIT"
+color v3ActionInk = v3PlanFresh ? (v3ViewPlan.side > 0 ? v3Emerald : v3Coral) :
+     v3ViewOpen or v3ViewPending ? v3Cyan : v3Action == "RISK REJECTED" ? v3Amber : v3Text
+
+f_v3Reason(string reason) =>
+    switch reason
+        "COST_TOO_HIGH" => "COST TOO HIGH"
+        "INSUFFICIENT_NET_ROOM" => "LIMITED REWARD"
+        "STRUCTURE_INVALID" => "INVALID STOP"
+        "OVERSIZED_STOP" => "STOP TOO WIDE"
+        "CASH_RISK_CAP" => "RISK CAP"
+        "H1_H4_UNALIGNED" => "H1 / H4 FILTER"
+        "VOLUME_UNAVAILABLE" => "VOLUME MISSING"
+        "VOLUME_WARMUP" => "VOLUME WARMUP"
+        "LOW_RELATIVE_ACTIVITY" => "LOW ACTIVITY"
+        "CLOSE_LOCATION" => "CLOSE LOCATION"
+        "OPPOSING_REJECTIONS" => "MIXED WICKS"
+        "RANGE_TOO_WIDE" => "RANGE TOO WIDE"
+        "CLOSE_BACK_INSIDE" => "CLOSED INSIDE"
+        "OPPOSITE_EDGE_CLOSE" => "OPPOSITE EDGE"
+        => ""
+
+string v3Quality = not na(v3ViewPlan) ? "RISK CHECK PASSED" :
+     f_v3Reason(v3RawReason) != "" and (v3Unexpired or v3BuildingFresh) ? f_v3Reason(v3RawReason) :
+     v3Unexpired and not na(wfActive) and wfActive.nearLevel and not v3Review ? "AT PRIOR LEVEL" :
+     v3Unexpired or v3FormationStage == "FORMING" ? "AWAITING PROOF" : "—"
+int v3First = v3Review ? v3ReviewFirst : v3FormationFresh ? wfActive.knownAt : na
+int v3Deadline = v3Review ? v3ReviewDeadline : v3FormationFresh ? v3CurrentDeadline : na
+int v3MinutesLeft = na(v3Deadline) ? na : int(math.ceil(math.max(0, v3Deadline - (v3Review ? v3ViewAt : v3Clock)) / 60000.0))
+string v3Freshness = not na(v3MinutesLeft) ? str.tostring(v3MinutesLeft) + "m LEFT" :
+     v3FormationStage == "FORMING" ? "LATEST CLOSE" : "—"
+float v3Top = v3Review ? v3ReviewTop : v3FormationFresh ? wfActive.top : na
+float v3Bottom = v3Review ? v3ReviewBottom : v3FormationFresh ? wfActive.bottom : na
+string v3FormationRange = na(v3Top) ? "—" : f_v3Price(v3Bottom) + " – " + f_v3Price(v3Top)
+string v3ModeStatus = v3Review ? "REVIEW · " + f_v3Utc(v3ViewAt) : not wfSupported ? "STANDARD OANDA XAUUSD" :
+     v3RoleSim ? "STRATEGY SIMULATION" : "MONITORING"
+string v3Feed = (v3Review ? v3ReviewVolume : v3LatestVolume) ?
+     (syminfo.volumetype == "tick" ? "OANDA · TICK VOL" : "OANDA · VOLUME") : "OANDA · VOL MISSING"
+string v3LastResult = v3Review ? v3ReviewLast : v3LatestResult
+string v3PlanWindow = v3Review ? (v3ReviewReady ? "AS OF " + f_v3Utc(v3ViewAt) : "NO CLOSED BAR AT CURSOR") :
+     v3ViewOpen ? "NATIVE SIMULATION · OPEN" : v3ViewPending ? "NATIVE SIMULATION · NEXT OPEN" :
+     not na(v3ViewPlan) ? "NEXT OPEN · DISPLAY UNTIL " + f_v3Utc(v3ViewPlan.knownAt + wfInterval) : "AWAITING A VALID PLAN"

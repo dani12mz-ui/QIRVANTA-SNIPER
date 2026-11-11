@@ -1,0 +1,52 @@
+string v3Preset = input.string("LIVE PREMIUM", "Presentation",
+     options=["LIVE PREMIUM", "COMPACT", "MOBILE", "FULL AUDIT"], group="V3 presentation", display=display.none)
+string v3PanelCorner = input.string("Auto", "Panel corner",
+     options=["Auto", "Top right", "Bottom right", "Bottom left", "Top left"], group="V3 presentation", display=display.none)
+bool v3ShowPanel = input.bool(true, "Show dashboard", group="V3 presentation", display=display.none)
+bool v3ShowZones = input.bool(true, "Formation zones", group="V3 chart", display=display.none)
+bool v3ShowMarkers = input.bool(true, "Signal markers", group="V3 chart", display=display.none)
+bool v3ShowPlan = input.bool(true, "Trade plan levels", group="V3 chart", display=display.none)
+bool v3ShowRiskZones = input.bool(true, "Trade risk and reward zones", group="V3 chart", display=display.none)
+bool v3ShowPriceTags = input.bool(true, "Trade price tags", group="V3 chart", display=display.none)
+bool v3Inspect = input.bool(false, "Inspect a historical bar close in FULL AUDIT",
+     group="V3 historical inspection", display=display.none,
+     tooltip="Show only the plan and state known at or before the selected UTC time. This changes presentation only.")
+int v3InspectAt = input.time(timestamp("10 Nov 2026 16:10 +0000"), "Historical bar close",
+     group="V3 historical inspection", display=display.none)
+
+color v3Graphite = #0D1520
+color v3Panel = #172435
+color v3Emerald = #12C9A7
+color v3Coral = #F05265
+color v3Cyan = #39BED5
+color v3Amber = #E9B65D
+color v3Text = #E8EDF3
+color v3Muted = #91A3B8
+color v3Border = #293544
+color v3Raised = #20324A
+bool v3Live = v3Preset == "LIVE PREMIUM"
+bool v3Compact = v3Preset == "COMPACT"
+bool v3Mobile = v3Preset == "MOBILE"
+bool v3Audit = v3Preset == "FULL AUDIT"
+bool v3Light = color.r(chart.bg_color) * 0.2126 + color.g(chart.bg_color) * 0.7152 +
+     color.b(chart.bg_color) * 0.0722 > 145
+color v3ChartBuy = v3Light ? #007969 : v3Emerald
+color v3ChartSell = v3Light ? #AE3048 : v3Coral
+color v3ChartCyan = v3Light ? #0C6980 : v3Cyan
+color v3ChartAmber = v3Light ? #885907 : v3Amber
+color v3ChartNeutral = v3Light ? #495F74 : v3Muted
+string v3PanelPosition = switch v3PanelCorner
+    "Top right" => position.top_right
+    "Bottom right" => position.bottom_right
+    "Bottom left" => position.bottom_left
+    "Top left" => position.top_left
+    => v3Mobile ? position.bottom_right : position.top_right
+
+f_v3SideInk(int side) =>
+    side > 0 ? v3ChartBuy : side < 0 ? v3ChartSell : v3ChartNeutral
+
+f_v3Price(float value) =>
+    na(value) ? "—" : str.tostring(value, format.mintick)
+
+f_v3Utc(int value) =>
+    na(value) ? "—" : str.format_time(value, "HH:mm", "UTC") + " UTC"

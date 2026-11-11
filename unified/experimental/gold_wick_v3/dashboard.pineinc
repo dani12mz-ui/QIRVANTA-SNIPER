@@ -1,0 +1,193 @@
+// The six-column grid is shared by the hero, formation, and trade plan tiles.
+const int V3_TITLE = 0
+const int V3_CONTEXT = 1
+const int V3_HERO_LABELS = 2
+const int V3_HERO_VALUES = 3
+const int V3_FORMATION_HEADER = 4
+const int V3_FORMATION_LABELS = 5
+const int V3_FORMATION_VALUES = 6
+const int V3_QUALITY = 7
+const int V3_PLAN_HEADER = 8
+const int V3_PLAN_LABELS = 9
+const int V3_PLAN_VALUES = 10
+const int V3_TARGET_LABELS = 11
+const int V3_TARGET_VALUES = 12
+const int V3_PLAN_STATUS = 13
+const int V3_FILL = 14
+const int V3_MONITOR_HEADER = 15
+const int V3_MONITOR_STATUS = 16
+const int V3_RESULT = 17
+const int V3_AUDIT_HEADER = 18
+const int V3_AUDIT_RANGE = 19
+const int V3_AUDIT_REASON = 20
+const int V3_AUDIT_CONTEXT = 21
+
+bool v3DashboardNarrow = v3Compact or v3Mobile
+int v3DashboardSizingRow = v3Audit ? 22 : 18
+int v3DashboardCaptionSize = v3Mobile ? 9 : 10
+int v3DashboardBodySize = v3Mobile ? 10 : v3Compact ? 11 : 12
+int v3DashboardValueSize = v3Mobile ? 11 : v3Compact ? 13 : 14
+int v3DashboardBiasSize = v3Mobile ? 11 : v3Compact ? 13 : 15
+int v3DashboardActionSize = v3Mobile ? 13 : v3Compact ? 16 : 19
+int v3DashboardTitleSize = v3Mobile ? 13 : v3Compact ? 16 : 19
+float v3DashboardColumnWidth = v3Mobile ? 13.5 : v3Compact ? 3.8 : 4.7
+var table v3Dashboard = table.new(v3PanelPosition, 6, v3DashboardSizingRow + 1,
+     bgcolor=v3Graphite, frame_color=v3Border, frame_width=1,
+     border_color=v3Graphite, border_width=1)
+
+f_v3DashboardCell(int col, int row, string value, color ink, color paper, int fontSize,
+                   string align, bool bold=false, string tip="", bool numeric=false) =>
+    table.cell(v3Dashboard, col, row, value, text_color=ink, bgcolor=paper,
+         text_halign=align, text_valign=text.align_center, text_size=fontSize, tooltip=tip,
+         text_font_family=numeric ? font.family_monospace : font.family_default,
+         text_formatting=bold ? text.format_bold : text.format_none)
+
+f_v3DashboardSection(int row, string title, color ink, string tip="") =>
+    f_v3DashboardCell(0, row, "  " + title, ink, v3Raised, v3DashboardCaptionSize,
+         text.align_left, true, tip)
+
+f_v3DashboardHtf(int side) =>
+    na(side) ? "UNAVAILABLE" : side > 0 ? "BULLISH" : side < 0 ? "BEARISH" : "NEUTRAL"
+
+if barstate.isfirst
+    for row in array.from(V3_TITLE, V3_CONTEXT, V3_FORMATION_HEADER, V3_PLAN_HEADER, V3_PLAN_STATUS,
+                          V3_FILL, V3_MONITOR_HEADER, V3_RESULT)
+        table.merge_cells(v3Dashboard, 0, row, 5, row)
+    for row in array.from(V3_HERO_LABELS, V3_HERO_VALUES, V3_FORMATION_LABELS, V3_FORMATION_VALUES,
+                          V3_QUALITY, V3_PLAN_LABELS, V3_PLAN_VALUES, V3_MONITOR_STATUS)
+        table.merge_cells(v3Dashboard, 0, row, 2, row)
+        table.merge_cells(v3Dashboard, 3, row, 5, row)
+    for row in array.from(V3_TARGET_LABELS, V3_TARGET_VALUES)
+        for col = 0 to 4 by 2
+            table.merge_cells(v3Dashboard, col, row, col + 1, row)
+    if v3Audit
+        for row = V3_AUDIT_HEADER to V3_AUDIT_CONTEXT
+            table.merge_cells(v3Dashboard, 0, row, 5, row)
+
+if (barstate.islast or barstate.islastconfirmedhistory) and v3ShowPanel
+    // The unmerged sizing band keeps the halves and thirds aligned at every viewport.
+    for col = 0 to 5
+        table.cell(v3Dashboard, col, v3DashboardSizingRow, "", width=v3DashboardColumnWidth,
+             height=0.45, bgcolor=color.new(v3Cyan, 76), text_size=1)
+
+    string feedTitle = wfSupported ? "XAUUSD · M" + timeframe.period :
+         v3DashboardNarrow ? "OANDA XAUUSD" : "OANDA XAUUSD · M5 / M15 / M30"
+    string presentation = v3Audit ? "FULL AUDIT" : "LIVE ANALYSIS"
+    f_v3DashboardCell(0, V3_TITLE, "  QIRVANTA GOLD PRO", v3Text, v3Graphite, v3DashboardTitleSize,
+         text.align_left, true)
+    f_v3DashboardCell(0, V3_CONTEXT, "  " + feedTitle + " · " + presentation, v3Cyan, v3Graphite,
+         v3DashboardCaptionSize, text.align_left, true, "Wick & Formation Intelligence · research")
+
+    color biasPaper = v3Panel
+    color actionInk = v3Action == "WAIT" ? v3Cyan : v3Review ? v3Amber : v3ActionInk
+    color actionPaper = color.new(actionInk, 78)
+    f_v3DashboardCell(0, V3_HERO_LABELS, "MARKET BIAS", v3Muted, biasPaper,
+         v3DashboardCaptionSize, text.align_center, true, "Consensus of confirmed H1 and H4 context")
+    f_v3DashboardCell(3, V3_HERO_LABELS, "TRADE ACTION", v3Text, actionPaper,
+         v3DashboardCaptionSize, text.align_center, true, "A current plan or the actual simulation state")
+    f_v3DashboardCell(0, V3_HERO_VALUES, v3MarketBias, v3BiasInk, biasPaper,
+         v3DashboardBiasSize, text.align_center, true)
+    string heroAction = v3Mobile and v3Action == "SIM WINDOW OFF" ? "WINDOW OFF" : v3Action
+    f_v3DashboardCell(3, V3_HERO_VALUES, heroAction, actionInk, actionPaper,
+         v3DashboardActionSize, text.align_center, true, v3Action)
+
+    string formation = "None"
+    color formationInk = v3Muted
+    if not wfSupported
+        formation := "Unsupported"
+    else if v3Review
+        formation := v3ReviewReady ? "Historical case" : "No closed bar"
+        formationInk := v3Amber
+    else if v3FormationFresh and not na(wfActive)
+        formation := (wfActive.side > 0 ? "BUY" : "SELL") + (na(wfActive.breakoutAt) ? " WATCH" : " FORMATION")
+        formationInk := wfActive.side > 0 ? v3Emerald : v3Coral
+    else if v3FormationStage == "FORMING"
+        formation := "Wick cluster"
+        formationInk := v3Cyan
+    string shownStage = switch v3FormationStage
+        "FORMING" => v3DashboardNarrow ? "Collecting wicks" : "Collecting evidence"
+        "BUY WATCH" => v3DashboardNarrow ? "Awaiting break" : "Awaiting breakout"
+        "SELL WATCH" => v3DashboardNarrow ? "Awaiting break" : "Awaiting breakout"
+        "UNSUPPORTED CHART" => v3DashboardNarrow ? "Unsupported" : "Unsupported chart"
+        "BREAKOUT RECLAIMED" => v3DashboardNarrow ? "Reclaimed" : "Breakout reclaimed"
+        "PROBE · UNCONFIRMED" => "Unconfirmed probe"
+        "CLOSE CONFIRMED" => "Close confirmed"
+        "RETEST WINDOW" => "Retest window"
+        => v3FormationStage
+    f_v3DashboardSection(V3_FORMATION_HEADER, "FORMATION", v3Cyan)
+    f_v3DashboardCell(0, V3_FORMATION_LABELS, v3DashboardNarrow ? "CURRENT" : "CURRENT FORMATION",
+         v3Muted, v3Panel, v3DashboardCaptionSize, text.align_center)
+    f_v3DashboardCell(3, V3_FORMATION_LABELS, v3DashboardNarrow ? "STAGE" : "BREAKOUT / RETEST STAGE",
+         v3Muted, v3Panel, v3DashboardCaptionSize, text.align_center)
+    f_v3DashboardCell(0, V3_FORMATION_VALUES, formation, formationInk, v3Panel,
+         v3DashboardValueSize, text.align_center, true, v3FormationRange)
+    f_v3DashboardCell(3, V3_FORMATION_VALUES, shownStage, v3Text,
+         v3Panel, v3DashboardBodySize, text.align_center, true, v3FormationStage)
+    string formationQuality = v3Quality
+    if not v3Review and not v3PlanFresh and not na(v3ViewPlan)
+        if not v3FormationFresh or na(wfActive) or v3ViewPlan.formationId != wfActive.id
+            formationQuality := v3FormationFresh ? "AWAITING PROOF" : "—"
+    f_v3DashboardCell(0, V3_QUALITY, v3DashboardNarrow ? formationQuality : "Quality · " + formationQuality,
+         v3Muted, v3Graphite, v3DashboardCaptionSize, text.align_center, false, "Signal quality from confirmed evidence")
+    f_v3DashboardCell(3, V3_QUALITY, v3DashboardNarrow ? v3Freshness : "Freshness · " + v3Freshness,
+         v3Muted, v3Graphite, v3DashboardCaptionSize, text.align_center, false, "Age at the last confirmed observation")
+
+    bool showPlan = not na(v3ViewPlan)
+    bool hasFill = showPlan and not na(v3FillPrice)
+    string planHeader = v3Review ? "TRADE PLAN · HISTORICAL" : "TRADE PLAN"
+    color planInk = v3Review ? v3Amber : v3Cyan
+    f_v3DashboardSection(V3_PLAN_HEADER, planHeader, planInk, "1R, 2R and 3R are projected targets")
+    if showPlan
+        string stopLabel = v3DashboardNarrow ? "FIXED STOP" : "SL · INITIAL = CURRENT"
+        f_v3DashboardCell(0, V3_PLAN_LABELS, "ENTRY", v3Muted, v3Panel,
+             v3DashboardCaptionSize, text.align_center)
+        f_v3DashboardCell(3, V3_PLAN_LABELS, stopLabel, v3Muted, v3Panel,
+             v3DashboardCaptionSize, text.align_center)
+        f_v3DashboardCell(0, V3_PLAN_VALUES, f_v3Price(v3ViewPlan.entry), v3Cyan, v3Panel,
+             v3DashboardValueSize, text.align_center, true, "Planned entry", true)
+        f_v3DashboardCell(3, V3_PLAN_VALUES, f_v3Price(v3ViewPlan.stop), v3Coral, v3Panel,
+             v3DashboardValueSize, text.align_center, true, "Initial SL and current SL use the same fixed price", true)
+        for col = 0 to 4 by 2
+            int target = int(col / 2) + 1
+            float targetPrice = target == 1 ? v3ViewPlan.tp1 : target == 2 ? v3ViewPlan.tp2 : v3ViewPlan.tp3
+            string targetLabel = "TP" + str.tostring(target) + " · " + str.tostring(target) + "R"
+            f_v3DashboardCell(col, V3_TARGET_LABELS, targetLabel, v3Muted, v3Panel,
+                 v3DashboardCaptionSize, text.align_center)
+            f_v3DashboardCell(col, V3_TARGET_VALUES, f_v3Price(targetPrice), v3Emerald, v3Panel,
+                 v3DashboardValueSize, text.align_center, true,
+                 "Projected target at " + str.tostring(target) + " times initial risk", true)
+    else
+        table.clear(v3Dashboard, 0, V3_PLAN_LABELS, 5, V3_TARGET_VALUES)
+    string planStatus = showPlan ? v3PlanWindow : "No current plan"
+    if showPlan and v3Mobile
+        planStatus := v3ViewOpen ? "SIM OPEN" : v3ViewPending ? "SIM NEXT OPEN" :
+             "VALID UNTIL " + f_v3Utc(v3ViewPlan.knownAt + wfInterval)
+    f_v3DashboardCell(0, V3_PLAN_STATUS, "  " + planStatus, v3PlanFresh ? v3Cyan : v3Muted,
+         v3Graphite, v3DashboardBodySize, text.align_left, v3PlanFresh, v3PlanWindow)
+    if hasFill
+        f_v3DashboardCell(0, V3_FILL, "  SIM FILL  " + f_v3Price(v3FillPrice), v3Cyan, v3Graphite,
+             v3DashboardCaptionSize, text.align_left, false, "Actual simulated fill price")
+    else
+        table.clear(v3Dashboard, 0, V3_FILL, 5, V3_FILL)
+
+    f_v3DashboardSection(V3_MONITOR_HEADER, "MONITOR", v3Cyan)
+    string monitorMode = v3DashboardNarrow and v3ModeStatus == "STRATEGY SIMULATION" ? "SIMULATION" : v3ModeStatus
+    string monitorFeed = not wfSupported ? "DATA UNAVAILABLE" :
+         v3DashboardNarrow ? str.replace_all(v3Feed, "OANDA · ", "") : v3Feed
+    f_v3DashboardCell(0, V3_MONITOR_STATUS, monitorMode, v3Text, v3Panel,
+         v3DashboardCaptionSize, text.align_center, false, v3ModeStatus)
+    f_v3DashboardCell(3, V3_MONITOR_STATUS, monitorFeed, v3Muted, v3Panel,
+         v3DashboardCaptionSize, text.align_center, false, v3Feed)
+    f_v3DashboardCell(0, V3_RESULT, "  LAST SIM RESULT   " + v3LastResult, v3Muted, v3Graphite,
+         v3DashboardCaptionSize, text.align_left, false, "Last closed simulated campaign")
+
+    if v3Audit
+        f_v3DashboardSection(V3_AUDIT_HEADER, "AUDIT DETAILS", v3Amber)
+        f_v3DashboardCell(0, V3_AUDIT_RANGE, "  RANGE   " + v3FormationRange, v3Text, v3Panel,
+             v3DashboardBodySize, text.align_left, false, "Fixed formation boundaries")
+        string diagnostic = v3RawReason == "" ? "—" : str.replace_all(v3RawReason, "_", " ")
+        f_v3DashboardCell(0, V3_AUDIT_REASON, "  EVENT   " + diagnostic, v3Muted, v3Panel,
+             v3DashboardCaptionSize, text.align_left, false, "Source engine reason for the displayed bar")
+        string sourceBias = "  H1 " + f_v3DashboardHtf(v3H1) + "    H4 " + f_v3DashboardHtf(v3H4)
+        f_v3DashboardCell(0, V3_AUDIT_CONTEXT, sourceBias, v3Muted, v3Graphite,
+             v3DashboardCaptionSize, text.align_left)

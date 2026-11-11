@@ -1,0 +1,6 @@
+WickPlan v3RolePlan = wfCampaign
+float v3RoleFill = wfPositionOpen and strategy.opentrades > 0 ? strategy.opentrades.entry_price(0) : na
+int v3RoleFillAt = wfPositionOpen and strategy.opentrades > 0 ? strategy.opentrades.entry_time(0) : na
+string v3RoleLast = wfLastTrade
+bool v3RoleSim = wfSim
+bool v3RoleWindow = time_close >= wfSimStart and time_close <= wfSimEnd
