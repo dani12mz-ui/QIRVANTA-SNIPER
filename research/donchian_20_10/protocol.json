@@ -1,0 +1,72 @@
+{
+  "schema": "qirvanta.donchian-20-10.v1",
+  "registered_at_utc": "2026-11-11T20:11:33Z",
+  "registration_stage": "Before the first candidate simulation or native strategy execution",
+  "task_sha256": "83ac8c158c23a61a21bb9017d7df5c1ea66273d2052d3ce19df945759c0f7ff5",
+  "base_commit": "a0666824a8cc6ad9b0055c47ca74292d3b8d3d90",
+  "rc2_control_commit": "cb848e1e4d6d2686c524ac1a9136804748e9f577",
+  "instrument": "OANDA:XAUUSD",
+  "timeframes": {"primary": "D1", "secondary": "H4"},
+  "signal": {
+    "entry_lookback_bars": 20,
+    "exit_lookback_bars": 10,
+    "channels_exclude_current_bar": true,
+    "entry": "At confirmed close, strict close outside the prior 20 bars in its direction, while flat and with no close reported on that bar.",
+    "exit": "At confirmed close, strict close through the opposite prior-10-bar boundary; a market exit is queued and the existing protective order stays active.",
+    "execution": "Market orders at next available open, no synthetic ticks; initially linked protective stop at ceil(2 * current ATR20 / tick) ticks from the actual fill, held fixed. One position with no auto-reversal.",
+    "minimum_prior_bars": 100,
+    "pyramiding": 0,
+    "calc_on_every_tick": false,
+    "calc_on_order_fills": false,
+    "process_orders_on_close": false,
+    "bar_magnifier": false
+  },
+  "account": {
+    "currency": "USD",
+    "initial_equity_usd": 100000,
+    "risk_fraction": 0.0025,
+    "margin_percent": 100,
+    "sizing": "Equity at signal divided into risk budget. Per-unit risk includes tick-rounded stop, full modeled spread, two adverse slippage allowances, two commissions and one estimated unweighted rollover at signal close. Floor quantity to symbol minimum-contract increment. Also cap by unleveraged entry value plus estimated entry fee.",
+    "filled_orders": "Compute actual risk from the fill; never retrospectively cancel an observed fill."
+  },
+  "costs": {
+    "broker_status": "BROKER COSTS UNVERIFIED",
+    "spread_unit": "USD price distance per unit, applied as half-spread per side",
+    "commission_unit": "USD per unit per side",
+    "slippage_unit": "Adverse minimum ticks per market or protective stop fill",
+    "financing_unit": "Annual debit assumption on marked USD notional, per side and direction",
+    "baseline": {"spread": 0.35, "slippage_ticks": 2, "commission_per_side": 0.175, "annual_financing": 0.04},
+    "adverse": {"spread": 0.70, "slippage_ticks": 5, "commission_per_side": 0.2625, "annual_financing": 0.08},
+    "severe": {"spread": 1.05, "slippage_ticks": 10, "commission_per_side": 0.35, "annual_financing": 0.12},
+    "financing": "Debit when held across 17:00 America/New_York on weekdays. Wednesday counts as three days. Use the latest observable mark; no historical account-specific holiday corrections. Document timing convention for bars that span rollover.",
+    "native": "TradingView standard broker emulator uses 0.175 USD per unit per side and 2 ticks of adverse slippage; no spread or financing charged in its P&L. The base sizing estimate still includes spread and estimated rollover."
+  },
+  "evaluation": {
+    "historical_start_utc": "2016-01-01T00:00:00Z",
+    "historical_end_utc_exclusive_for_signals": "2026-11-11T00:00:00Z",
+    "score_to_last_completed_bar": true,
+    "end_mark": "Open or pending position is disclosed and marked using the last eligible observed bar. No artificial close.",
+    "fixed_utc_partitions": [
+      ["2016-01-01T00:00:00Z", "2021-01-01T00:00:00Z"],
+      ["2021-01-01T00:00:00Z", "2024-01-01T00:00:00Z"],
+      ["2024-01-01T00:00:00Z", "2026-11-11T00:00:00Z"]
+    ],
+    "common_control_window_utc": ["2026-11-06T03:00:00Z", "2026-11-11T00:00:00Z"],
+    "exposure": "Existing archive and native history are retrospective. The three partitions do not establish untouched validation. D1 stays primary and no best-of-two claim is made.",
+    "execution_resolution": "Primary economic replay uses conservative OHLC. Native emulator and optional verified finer replay have separate evidence. No cross-provider substitutions.",
+    "decision": "Use REJECTED if sufficiently informative stressed evidence rules out further research, INCONCLUSIVE for insufficient evidence or unresolved comparability, and CANDIDATE FOR FORWARD TEST only when sufficient stressed standalone evidence and control comparison justify a prospective test. None authorizes deployment."
+  },
+  "data": {
+    "manifest": "evidence/data_manifest.json",
+    "local_oanda_m30_archive_sha256": "1b31dc5dad532b9362c5340511211fbc13a33c64983d4a49485c7442a269c5d5",
+    "rc2_native_archive_sha256": "a058bd9789bf9f5d258a08316217f3bebc8b9951460ee0c499aae848c761813a",
+    "aggregation": "Use the pinned earlier OANDA M30 export plus matching RC2 M30 tail. Require identical overlaps and complete market coverage, normally 18:00–17:00 New York. Alignment verified from native OANDA chart metadata: D1 nominal 17:00 to 17:00, H4 nominal 17/21/01/05/09/13. Include published 2026 early closes only with full M30 coverage to the known shortened end, preserving nominal HTF timestamps as observed natively. No synthesized missing quotes.",
+    "alignment_note": "Native timestamp and public holiday checks refine data normalization only. Signal, risk, cost and evaluation rules frozen before the first test are unchanged.",
+    "publication": "Keep complete raw provider OHLC local. Publish hashes, reconstruction commands, derived metrics, strategy-event journals and chart evidence."
+  },
+  "protected": {
+    "forward_from_utc": "2026-11-16T00:00:00Z",
+    "forward_to_utc": "2027-01-11T00:00:00Z",
+    "forward_seal_sha256": "09181ecaf9e30cde62c5203b524cb458d808a07c24029e961e32bb25c474afd1"
+  }
+}

@@ -1,0 +1,216 @@
+{
+  "D1": {
+    "journal_sha256": "13f4d7446bd936c2fb00182d0cb28d7a845a32602ca576a3c5de4a3b9f4cd525",
+    "status": "CHECKS_MATCH",
+    "scope": "Observed native events and independent arithmetic checks, separate from OHLC replay",
+    "meta": {
+      "symbol": "OANDA:XAUUSD",
+      "timeframe": 1440,
+      "mintick": "0.001",
+      "mincontract": "0.01",
+      "pointvalue": 1,
+      "timezone": "America/New_York",
+      "currency": "USD",
+      "first_index": 0,
+      "first_time": 1142805600000,
+      "initial_capital": 100000,
+      "first_signal_utc": 1451606400000,
+      "last_signal_utc_exclusive": 1794355200000,
+      "warmup_bars": 100,
+      "schema_version": 1
+    },
+    "first_loaded_open_utc": "2006-03-19T22:00:00Z",
+    "anchor": {
+      "index": 5127,
+      "time": 1767564000000,
+      "time_close": 1767650400000
+    },
+    "end": {
+      "index": 5347,
+      "time": 1794261600000,
+      "time_close": 1794348000000,
+      "first_scoring_ms": 1451685600000,
+      "closed_trades": 79,
+      "open_trades": 1,
+      "net_profit": "2761.892639999995",
+      "equity": "102754.01594999999"
+    },
+    "last_confirmed_close_utc": "2026-11-10T22:00:00Z",
+    "counts": {
+      "D20_ANCHOR": 1,
+      "D20_CHANNEL": 52,
+      "D20_END": 1,
+      "D20_EXIT": 79,
+      "D20_FILL": 80,
+      "D20_META": 1,
+      "D20_SIGNAL": 80
+    },
+    "native_cutoff_snapshot": {
+      "cutoff_utc": "2026-11-11T00:00:00Z",
+      "fills_confirmed_by_cutoff": 80,
+      "closed_by_cutoff": 79,
+      "closed_net_usd": "2762.167389999989",
+      "open_at_cutoff": 1,
+      "closed_reasons": {
+        "CHANNEL": 52,
+        "SL": 27
+      },
+      "closed_by_side": {
+        "BUY": 43,
+        "SELL": 36
+      }
+    },
+    "end_closed_ledger_net_usd": "2762.167389999989",
+    "end_open_entry_commission_usd": "0.27475",
+    "end_gross_open_mark_usd": "-7.876690000005",
+    "end_equity_pnl_usd": "2754.01594999999",
+    "risk_budget_flags": 0,
+    "capital_budget_flags": 0,
+    "same_bar_stops": [],
+    "stop_gaps_observed": 0,
+    "decimal_nearest_tick_differences": [
+      {
+        "id": "D20|S|1478901600000",
+        "event": "FILL",
+        "utc": "2016-11-13T22:00:00Z",
+        "raw_open": "1227.8555",
+        "native_price": "1227.853",
+        "nearest_tick_from_logged_quote": "1227.854",
+        "difference_ticks": "-1"
+      },
+      {
+        "id": "D20|L|1484085600000",
+        "event": "FILL",
+        "utc": "2017-01-10T22:00:00Z",
+        "raw_open": "1187.6915",
+        "native_price": "1187.693",
+        "nearest_tick_from_logged_quote": "1187.694",
+        "difference_ticks": "-1"
+      }
+    ],
+    "decimal_nearest_tick_note": "Recomputed from printed native open or stop with decimal half-up; a printed half tick can hide source precision and the emulator's floating-point tie path.",
+    "differences": {}
+  },
+  "H4": {
+    "journal_sha256": "c5d1976628810514e0048acff877b6536b21058bfd4cb204cf6e35b256f58bc1",
+    "status": "CHECKS_MATCH",
+    "scope": "Observed native events and independent arithmetic checks, separate from OHLC replay",
+    "meta": {
+      "symbol": "OANDA:XAUUSD",
+      "timeframe": 240,
+      "mintick": "0.001",
+      "mincontract": "0.01",
+      "pointvalue": 1,
+      "timezone": "America/New_York",
+      "currency": "USD",
+      "first_index": 0,
+      "first_time": 1672696800000,
+      "initial_capital": 100000,
+      "first_signal_utc": 1451606400000,
+      "last_signal_utc_exclusive": 1794355200000,
+      "warmup_bars": 100,
+      "schema_version": 1
+    },
+    "first_loaded_open_utc": "2023-01-02T22:00:00Z",
+    "anchor": {
+      "index": 4644,
+      "time": 1767319200000,
+      "time_close": 1767333600000
+    },
+    "end": {
+      "index": 5977,
+      "time": 1794405600000,
+      "time_close": 1794420000000,
+      "first_scoring_ms": 1674669600000,
+      "closed_trades": 164,
+      "open_trades": 0,
+      "net_profit": "6469.955469999997",
+      "equity": "106469.95547"
+    },
+    "last_confirmed_close_utc": "2026-11-11T18:00:00Z",
+    "counts": {
+      "D20_ANCHOR": 1,
+      "D20_CHANNEL": 100,
+      "D20_END": 1,
+      "D20_EXIT": 164,
+      "D20_FILL": 164,
+      "D20_META": 1,
+      "D20_SIGNAL": 164
+    },
+    "native_cutoff_snapshot": {
+      "cutoff_utc": "2026-11-11T00:00:00Z",
+      "fills_confirmed_by_cutoff": 164,
+      "closed_by_cutoff": 164,
+      "closed_net_usd": "6469.955469999992",
+      "open_at_cutoff": 0,
+      "closed_reasons": {
+        "SL": 64,
+        "CHANNEL": 100
+      },
+      "closed_by_side": {
+        "BUY": 88,
+        "SELL": 76
+      }
+    },
+    "end_closed_ledger_net_usd": "6469.955469999992",
+    "end_open_entry_commission_usd": "0",
+    "end_gross_open_mark_usd": "3E-12",
+    "end_equity_pnl_usd": "6469.95547",
+    "risk_budget_flags": 0,
+    "capital_budget_flags": 0,
+    "same_bar_stops": [
+      {
+        "id": "D20|L|1675951200000",
+        "utc": "2023-02-09T14:00:00Z",
+        "bar": 166,
+        "side": 1,
+        "frozen_ticks": 20153,
+        "fill": "1889.592",
+        "sl": "1869.439",
+        "exit": "1869.437",
+        "bar_low": 1863,
+        "bar_high": "1890.25"
+      },
+      {
+        "id": "D20|L|1681304400000",
+        "utc": "2023-04-12T13:00:00Z",
+        "bar": 424,
+        "side": 1,
+        "frozen_ticks": 21017,
+        "fill": "2022.327",
+        "sl": "2001.31",
+        "exit": "2001.308",
+        "bar_low": "2001.22",
+        "bar_high": "2023.835"
+      },
+      {
+        "id": "D20|L|1706536800000",
+        "utc": "2024-01-29T14:00:00Z",
+        "bar": 1660,
+        "side": 1,
+        "frozen_ticks": 16174,
+        "fill": "2036.907",
+        "sl": "2020.733",
+        "exit": "2020.731",
+        "bar_low": "2020.61",
+        "bar_high": "2037.295"
+      },
+      {
+        "id": "D20|L|1706724000000",
+        "utc": "2024-01-31T18:00:00Z",
+        "bar": 1673,
+        "side": 1,
+        "frozen_ticks": 16548,
+        "fill": "2049.687",
+        "sl": "2033.139",
+        "exit": "2033.137",
+        "bar_low": "2030.94",
+        "bar_high": "2050.92"
+      }
+    ],
+    "stop_gaps_observed": 0,
+    "decimal_nearest_tick_differences": [],
+    "decimal_nearest_tick_note": "Recomputed from printed native open or stop with decimal half-up; a printed half tick can hide source precision and the emulator's floating-point tie path.",
+    "differences": {}
+  }
+}

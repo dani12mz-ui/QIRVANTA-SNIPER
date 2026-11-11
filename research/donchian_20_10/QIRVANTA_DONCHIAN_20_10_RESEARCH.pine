@@ -1,0 +1,265 @@
+//@version=6
+strategy("QIRVANTA DONCHIAN 20/10 · TREND RESEARCH", shorttitle="QIRVANTA D20/10",
+     overlay=true, initial_capital=100000, currency=currency.USD, pyramiding=0,
+     commission_type=strategy.commission.cash_per_contract, commission_value=0.175, slippage=2,
+     margin_long=100, margin_short=100, calc_on_every_tick=false, calc_on_order_fills=false,
+     process_orders_on_close=false, use_bar_magnifier=false)
+
+const int FIRST_SIGNAL_UTC = timestamp("01 Jan 2016 00:00 +0000")
+const int LAST_SIGNAL_UTC_EXCLUSIVE = timestamp("11 Nov 2026 00:00 +0000")
+const int WARMUP_BARS = 100
+const float RISK_FRACTION = 0.0025
+const float NATIVE_COMMISSION = 0.175
+const int NATIVE_SLIPPAGE = 2
+const float ESTIMATED_SPREAD = 0.35
+const float ESTIMATED_FINANCING = 0.04
+
+bool journal = input.bool(true, "Pine Logs", group="Research journal")
+int journalFrom = input.time(timestamp("01 Jan 1900 00:00 +0000"), "From UTC", group="Research journal")
+int journalUntil = input.time(timestamp("01 Jan 2100 00:00 +0000"), "Until UTC (exclusive)", group="Research journal")
+int journalAnchor = input.time(timestamp("01 Jan 2026 23:00 +0000"), "QA anchor UTC", group="Research journal")
+string instrument = ticker.standard(syminfo.tickerid)
+int frame = int(timeframe.in_seconds() / 60)
+bool supported = chart.is_standard and instrument == "OANDA:XAUUSD" and syminfo.currency == "USD" and
+     ((timeframe.isintraday and timeframe.multiplier == 240) or (timeframe.isdaily and timeframe.multiplier == 1))
+bool exportBar = journal and supported and time_close >= journalFrom and time_close < journalUntil
+
+float entryHigh = ta.highest(high, 20)[1]
+float entryLow = ta.lowest(low, 20)[1]
+float exitHigh = ta.highest(high, 10)[1]
+float exitLow = ta.lowest(low, 10)[1]
+float atr20 = ta.atr(20)
+
+var string activeId = ""
+var int activeSide = 0
+var int activeSignalBar = na
+var int activeSignalTime = na
+var int activeStopTicks = na
+var float activeSize = na
+var float activePlannedRisk = na
+var float activeBudget = na
+var float activeSignalEquity = na
+var float fillPrice = na
+var float activeStop = na
+var bool exitPending = false
+var int seenClosed = 0
+var bool wroteMeta = false
+var bool wroteAnchor = false
+var int firstScoringTime = na
+
+f_n(float value) =>
+    na(value) ? "null" : str.tostring(value, "0.############")
+
+f_i(int value) =>
+    na(value) ? "null" : str.tostring(value)
+
+f_b(bool value) =>
+    value ? "true" : "false"
+
+f_q(string value) =>
+    na(value) ? "null" : '"' + str.replace_all(str.replace_all(value, "\\", "\\\\"), '"', '\\"') + '"'
+
+f_cost(float basis) =>
+    ESTIMATED_SPREAD * syminfo.pointvalue + 2 * NATIVE_SLIPPAGE * syminfo.mintick * syminfo.pointvalue +
+         2 * NATIVE_COMMISSION + basis * syminfo.pointvalue * ESTIMATED_FINANCING / 365
+
+f_fillRisk(float fill, float qty, int ticks) =>
+    qty * (ticks * syminfo.mintick * syminfo.pointvalue + f_cost(fill))
+
+f_logFill(string id, int side, int entryTime, int entryBar, float price, float qty, float sl,
+          float planned, float budget, float equity, int stopTicks) =>
+    float actualRisk = f_fillRisk(price, qty, stopTicks)
+    float capitalUsed = qty * (price * syminfo.pointvalue + NATIVE_COMMISSION)
+    log.info('D20_FILL|{"id":' + f_q(id) + ',"side":' + f_i(side) + ',"entry_ms":' + f_i(entryTime) +
+         ',"bar":' + f_i(entryBar) + ',"seen_ms":' + f_i(time_close) + ',"price":' + f_n(price) +
+         ',"open":' + f_n(open) + ',"qty":' + f_n(qty) + ',"sl":' + f_n(sl) + ',"planned_risk_usd":' + f_n(planned) +
+         ',"fill_risk_usd":' + f_n(actualRisk) + ',"fill_capital_used_usd":' + f_n(capitalUsed) +
+         ',"fill_risk_over_budget":' + f_b(actualRisk > budget) +
+         ',"fill_capital_over_budget":' + f_b(capitalUsed > equity) + '}')
+
+f_logReject(string id, int side, string reason, float equity, float budget) =>
+    log.info('D20_REJECT|{"id":' + f_q(id) + ',"side":' + f_i(side) + ',"time_ms":' + f_i(time_close) +
+         ',"bar":' + f_i(bar_index) + ',"reason":' + f_q(reason) + ',"equity":' + f_n(equity) +
+         ',"risk_budget":' + f_n(budget) + ',"min_qty":' + f_n(syminfo.mincontract) + '}')
+
+bool buySignal = false
+bool sellSignal = false
+float entryBarFill = na
+float entryBarStop = na
+
+if barstate.isconfirmed and supported
+    if exportBar
+        if not wroteMeta
+            log.info('D20_META|{"symbol":' + f_q(instrument) + ',"timeframe":' + f_i(frame) +
+                 ',"mintick":' + f_n(syminfo.mintick) + ',"mincontract":' + f_n(syminfo.mincontract) +
+                 ',"pointvalue":' + f_n(syminfo.pointvalue) + ',"timezone":' + f_q(syminfo.timezone) +
+                 ',"currency":' + f_q(syminfo.currency) + ',"first_index":' + f_i(bar_index) +
+                 ',"first_time":' + f_i(time) + ',"initial_capital":' + f_n(strategy.initial_capital) +
+                 ',"first_signal_utc":' + f_i(FIRST_SIGNAL_UTC) +
+                 ',"last_signal_utc_exclusive":' + f_i(LAST_SIGNAL_UTC_EXCLUSIVE) + ',"warmup_bars":' + f_i(WARMUP_BARS) +
+                 ',"schema_version":1}')
+            wroteMeta := true
+        if not wroteAnchor and time >= journalAnchor
+            log.info('D20_ANCHOR|{"index":' + f_i(bar_index) + ',"time":' + f_i(time) +
+                 ',"time_close":' + f_i(time_close) + '}')
+            wroteAnchor := true
+
+    bool closedHere = strategy.closedtrades > seenClosed
+    bool openHere = strategy.opentrades > 0
+    if activeId != "" and na(fillPrice) and bar_index > activeSignalBar
+        if openHere or closedHere
+            // Read closedtrades when the relative stop closes the whole position on the entry bar.
+            int opened = openHere ? strategy.opentrades.entry_time(0) : strategy.closedtrades.entry_time(seenClosed)
+            int openedBar = openHere ? strategy.opentrades.entry_bar_index(0) : strategy.closedtrades.entry_bar_index(seenClosed)
+            fillPrice := openHere ? strategy.opentrades.entry_price(0) : strategy.closedtrades.entry_price(seenClosed)
+            activeStop := math.round_to_mintick(fillPrice - activeSide * activeStopTicks * syminfo.mintick)
+            float filledSize = openHere ? math.abs(strategy.opentrades.size(0)) : 0
+            if closedHere
+                for trade = seenClosed to strategy.closedtrades - 1
+                    if strategy.closedtrades.entry_id(trade) == activeId
+                        filledSize += math.abs(strategy.closedtrades.size(trade))
+            if openedBar == bar_index
+                entryBarFill := fillPrice
+                entryBarStop := activeStop
+            if exportBar
+                f_logFill(activeId, activeSide, opened, openedBar, fillPrice, filledSize, activeStop,
+                     activePlannedRisk, activeBudget, activeSignalEquity, activeStopTicks)
+        else
+            // Native margin or instrument constraints can reject a submitted market order.
+            if exportBar
+                f_logReject(activeId, activeSide, "NATIVE_ENTRY_NOT_FILLED", activeSignalEquity, activeBudget)
+            activeId := ""
+
+    if closedHere
+        if exportBar
+            for trade = seenClosed to strategy.closedtrades - 1
+                float closedSize = strategy.closedtrades.size(trade)
+                int closedSide = closedSize > 0 ? 1 : -1
+                bool stoppedOnEntryBar = strategy.closedtrades.entry_bar_index(trade) == bar_index and
+                     strategy.closedtrades.exit_comment(trade) == "SL"
+                log.info('D20_EXIT|{"id":' + f_q(strategy.closedtrades.entry_id(trade)) +
+                     ',"side":' + f_i(closedSide) + ',"entry_ms":' + f_i(strategy.closedtrades.entry_time(trade)) +
+                     ',"exit_ms":' + f_i(strategy.closedtrades.exit_time(trade)) +
+                     ',"bar":' + f_i(strategy.closedtrades.exit_bar_index(trade)) + ',"seen_ms":' + f_i(time_close) +
+                     ',"entry":' + f_n(strategy.closedtrades.entry_price(trade)) +
+                     ',"price":' + f_n(strategy.closedtrades.exit_price(trade)) + ',"qty":' + f_n(math.abs(closedSize)) +
+                     ',"open":' + f_n(open) + ',"same_bar_sl":' + f_b(stoppedOnEntryBar) +
+                     ',"same_bar_high":' + f_n(stoppedOnEntryBar ? high : na) +
+                     ',"same_bar_low":' + f_n(stoppedOnEntryBar ? low : na) +
+                     ',"commission":' + f_n(strategy.closedtrades.commission(trade)) +
+                     ',"pnl":' + f_n(strategy.closedtrades.profit(trade)) +
+                     ',"reason":' + f_q(strategy.closedtrades.exit_comment(trade)) +
+                     ',"exit_id":' + f_q(strategy.closedtrades.exit_id(trade)) + '}')
+        seenClosed := strategy.closedtrades
+        if strategy.position_size == 0
+            activeId := ""
+            fillPrice := na
+            activeStop := na
+            exitPending := false
+
+    float exitLevel = strategy.position_size > 0 ? exitLow : exitHigh
+    bool exitCross = (strategy.position_size > 0 and close < exitLow) or
+         (strategy.position_size < 0 and close > exitHigh)
+    if activeId != "" and not exitPending and exitCross
+        // Keep the original relative stop working while the market exit waits for the next tick.
+        strategy.close(activeId, comment="CHANNEL", disable_alert=true)
+        exitPending := true
+        if exportBar
+            log.info('D20_CHANNEL|{"id":' + f_q(activeId) + ',"side":' + f_i(activeSide) +
+                 ',"time_ms":' + f_i(time_close) + ',"bar":' + f_i(bar_index) + ',"exit_level":' + f_n(exitLevel) + '}')
+
+    bool scoring = time_close >= FIRST_SIGNAL_UTC and time_close < LAST_SIGNAL_UTC_EXCLUSIVE and
+         bar_index >= WARMUP_BARS and not na(atr20)
+    if scoring and na(firstScoringTime)
+        firstScoringTime := time_close
+    int side = close > entryHigh ? 1 : close < entryLow ? -1 : 0
+    if scoring and side != 0 and strategy.position_size == 0 and activeId == "" and not closedHere
+        string id = "D20|" + (side == 1 ? "L|" : "S|") + f_i(time_close)
+        float equity = strategy.equity
+        float budget = equity * RISK_FRACTION
+        int stopTicks = int(math.ceil(2 * atr20 / syminfo.mintick))
+        float riskPerUnit = stopTicks * syminfo.mintick * syminfo.pointvalue + f_cost(close)
+        float riskQuantity = budget / riskPerUnit
+        float capitalPerUnit = (close + NATIVE_SLIPPAGE * syminfo.mintick) * syminfo.pointvalue + NATIVE_COMMISSION
+        float capitalQuantity = equity / capitalPerUnit
+        float qty = math.floor(math.min(riskQuantity, capitalQuantity) / syminfo.mincontract) * syminfo.mincontract
+        if stopTicks <= 0 or qty < syminfo.mincontract
+            string reason = stopTicks <= 0 ? "ZERO_STOP_DISTANCE" :
+                 riskQuantity < syminfo.mincontract ? "RISK_BELOW_MIN_QTY" : "CAPITAL_BELOW_MIN_QTY"
+            if exportBar
+                f_logReject(id, side, reason, equity, budget)
+        else
+            activeId := id
+            activeSide := side
+            activeSignalBar := bar_index
+            activeSignalTime := time_close
+            activeStopTicks := stopTicks
+            activeSize := qty
+            activePlannedRisk := qty * riskPerUnit
+            activeBudget := budget
+            activeSignalEquity := equity
+            fillPrice := na
+            activeStop := na
+            exitPending := false
+            buySignal := side == 1
+            sellSignal := side == -1
+            strategy.entry(id, side == 1 ? strategy.long : strategy.short, qty=qty, disable_alert=true)
+            // Attach to the pending entry so the stop can fill on the entry bar.
+            strategy.exit(id + "|SL", from_entry=id, loss=stopTicks, comment_loss="SL", disable_alert=true)
+            if exportBar
+                log.info('D20_SIGNAL|{"id":' + f_q(id) + ',"side":' + f_i(side) + ',"time_ms":' + f_i(time_close) +
+                     ',"bar":' + f_i(bar_index) + ',"atr":' + f_n(atr20) + ',"stop_ticks":' + f_i(stopTicks) +
+                     ',"qty":' + f_n(qty) + ',"equity":' + f_n(equity) + ',"risk_budget":' + f_n(budget) +
+                     ',"risk_usd":' + f_n(activePlannedRisk) + ',"margin_capped":' + f_b(capitalQuantity < riskQuantity) +
+                     ',"signal_close":' + f_n(close) + ',"entry_level":' + f_n(side == 1 ? entryHigh : entryLow) + '}')
+    if exportBar and barstate.islastconfirmedhistory
+        log.info('D20_END|{"index":' + f_i(bar_index) + ',"time":' + f_i(time) +
+             ',"time_close":' + f_i(time_close) + ',"first_scoring_ms":' + f_i(firstScoringTime) +
+             ',"closed_trades":' + f_i(strategy.closedtrades) + ',"open_trades":' + f_i(strategy.opentrades) +
+             ',"net_profit":' + f_n(strategy.netprofit) + ',"equity":' + f_n(strategy.equity) + '}')
+
+color up = color.rgb(25, 145, 122)
+color down = color.rgb(201, 72, 86)
+color quiet = color.rgb(122, 140, 160)
+color panel = color.rgb(19, 28, 42)
+color fg = color.rgb(234, 239, 246)
+
+plot(supported ? entryHigh : na, "Entry 20 high", color.new(up, 38))
+plot(supported ? entryLow : na, "Entry 20 low", color.new(down, 38))
+plot(supported ? exitHigh : na, "Exit 10 high", color.new(quiet, 37))
+plot(supported ? exitLow : na, "Exit 10 low", color.new(quiet, 37))
+plot(activeId != "" ? fillPrice : entryBarFill, "Simulated entry", color.rgb(85, 137, 224), style=plot.style_linebr)
+plot(activeId != "" ? activeStop : entryBarStop, "Initial stop", down, style=plot.style_linebr)
+plotshape(buySignal, "Confirmed BUY", shape.labelup, location.belowbar, up, text="BUY", textcolor=color.white, size=size.tiny)
+plotshape(sellSignal, "Confirmed SELL", shape.labeldown, location.abovebar, down, text="SELL", textcolor=color.white, size=size.tiny)
+
+f_level(float value) =>
+    na(value) ? "—" : str.tostring(value, format.mintick)
+
+var table dashboard = table.new(position.top_right, 2, 8, bgcolor=panel, frame_color=color.new(quiet, 45), frame_width=1)
+
+f_row(int row, string key, string value, color valueColor) =>
+    table.cell(dashboard, 0, row, key, text_color=fg, text_halign=text.align_left, text_size=size.small)
+    table.cell(dashboard, 1, row, value, text_color=valueColor, text_halign=text.align_right, text_size=size.small)
+
+// A close-only strategy does not run on the first tick of the open realtime bar.
+if barstate.islastconfirmedhistory or barstate.islast
+    bool hasPlan = activeId != ""
+    string status = not supported ? "WAIT · OANDA H4 / D1" : exitPending ? "EXIT PENDING" :
+         hasPlan and na(fillPrice) ? "ENTRY PENDING" : strategy.position_size > 0 ? "SIM LONG" :
+         strategy.position_size < 0 ? "SIM SHORT" : "WAIT"
+    string frameLabel = (not supported ? timeframe.period : frame == 1440 ? "D1" : "H4") +
+         (time_close >= LAST_SIGNAL_UTC_EXCLUSIVE ? " · HISTORY" : "")
+    string timeLabel = hasPlan ? str.format_time(activeSignalTime, "yyyy-MM-dd HH:mm", "UTC") : "—"
+    string exitLabel = hasPlan ? f_level(activeSide == 1 ? exitLow : exitHigh) :
+         f_level(exitLow) + " / " + f_level(exitHigh)
+    float tableSize = na(fillPrice) ? activeSize : math.abs(strategy.position_size)
+    color statusColor = not hasPlan ? quiet : activeSide > 0 ? up : down
+    f_row(0, "TREND RESEARCH — НЕ Е M5 СКАЛПИНГ", frameLabel, color.rgb(229, 190, 103))
+    f_row(1, "Статус", status, statusColor)
+    f_row(2, "Потвърждение UTC", timeLabel, fg)
+    f_row(3, "Симулиран fill", hasPlan ? f_level(fillPrice) : "—", fg)
+    f_row(4, "Фиксиран SL", hasPlan ? f_level(activeStop) : "—", down)
+    f_row(5, "Изходен канал 10", supported ? exitLabel : "—", fg)
+    f_row(6, "Количество", hasPlan ? f_n(tableSize) : "—", fg)
+    f_row(7, "Планиран риск", hasPlan ? str.tostring(activePlannedRisk, "0.00") + " USD" : "—", fg)

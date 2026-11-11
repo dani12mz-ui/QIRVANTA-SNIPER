@@ -1,0 +1,33 @@
+{
+  "observed_utc_date": "2026-11-11",
+  "profile": "authorized TradingView test account, Basic, Autosave off",
+  "symbol": "OANDA:XAUUSD",
+  "chart_type": "ordinary candlesticks",
+  "final_pine_sha256": "47bd5a245c527506e5b7bfe14f894918e576d47b90c5a9a6d9557b2bc0adb417",
+  "pre_display_fix_pine_sha256": "a0ad5a56c0cd7ef02a4fe3c8626be4f8ad763a6f8bb29ac9d2c5b120b67bbd74",
+  "post_display_fix_journals_byte_identical": {
+    "D1": true,
+    "H4": true
+  },
+  "qa_probe_sha256": {
+    "D1": "97caec84f477b6d509b32d7364ac83e9f41274394adcb1da24b66e4c2e1d579c",
+    "H4": "dcd4d9a66fa313d3bdce1383d2e4b2f76143d22d2e679fef9dec9f4c2c98889a"
+  },
+  "artifact_sha256": {
+    "basic-csv-export-blocked.jpg": "74eeece98280183f1350dbae540e4179a54252266275b44cef5a7c8ba641fb72",
+    "controls.json": "1528f5c340b6528cdcbc602787b14572ef197f0cb9f7433b8361e5d20d1ba63f",
+    "costs_D1.csv": "27e29bbfb28f92d8fac51e718e1a7a78d6f9ac196a7fa3921433a1990dfc2e6d",
+    "costs_H4.csv": "3a740aa666543cce2db175ce48e969c085edfb5fc5da07d204128ae92298c507",
+    "D1-chart.jpg": "fa7e327027a5fffb0f95f79df562aa3cd9ff29aa9e12dbdc49b18cda10b0c7e3",
+    "D1-pine-v6-compile.jpg": "712af487ba4fb7fd916ebe04d3bb549c3c6468c0e558b98acca148b124ec0a2b",
+    "D1-strategy-report.jpg": "39b26dd4734aa43225730d06a9d19f1b8cffa51238ac13c5e9f90181531e868d",
+    "data_manifest.json": "f2c8e99adb17617d3fa779a0997983835f55706912ab83540229dbf112223c04",
+    "finer_m30_audit.json": "3933de448436cfef0a017122fea26e0669b3478192a05aba4cf7408d68e71b0a",
+    "H4-chart.jpg": "002751ebf1f64f7887ecfa8e991351f57b80cba8985d28980117270fb807068c",
+    "H4-strategy-report.jpg": "5acaae0ac304068c323a3c6458f155bc077b7f3bb8c70b27993d2a890b500c43",
+    "native-logs.zip": "58d829a2cc5b299835618c7f5af159b0126d064ef9433219a147ca1537fc325f",
+    "native_runtime.json": "33e84d2d7ba2d00ce6626c2110674068fbb829754aae061c29ce641b163c1d76",
+    "results.json": "ce3cf13d2b16fec39d901d68bbaf55c58ff4e155b2347979980f27fd4bbfe05e",
+    "trades.csv": "bf14887ef6b2fc06f0b133311f2b674ac6a74094149ceb8e002adfdb4aa9e60b"
+  }
+}
