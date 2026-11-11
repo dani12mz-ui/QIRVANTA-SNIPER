@@ -1,0 +1,304 @@
+{
+  "status": "VERIFIED",
+  "cells": [
+    {
+      "status": "VERIFIED",
+      "frame": "5",
+      "first_open_utc_ms": 1793816400000,
+      "last_close_utc_ms": 1794322800000,
+      "bars": 1064,
+      "fingerprints": [
+        514194966,
+        421272167
+      ],
+      "confirmed_htf_bars": {
+        "h1": 87,
+        "h4": 21
+      },
+      "confirmed_htf_coverage": {
+        "h1": {
+          "distinct_closed_bars": 87,
+          "ltf_rows_with_initialized_emas": 396,
+          "ltf_rows_with_initialized_emas_after_warmup": 396,
+          "first_initialized_ltf_close_ms": 1794200700000,
+          "initialized_bias_counts": {
+            "-1": 24,
+            "0": 144,
+            "1": 228
+          }
+        },
+        "h4": {
+          "distinct_closed_bars": 21,
+          "ltf_rows_with_initialized_emas": 0,
+          "ltf_rows_with_initialized_emas_after_warmup": 0,
+          "first_initialized_ltf_close_ms": null,
+          "initialized_bias_counts": {}
+        }
+      },
+      "strict_confirmed_swings": {
+        "highs": 146,
+        "lows": 148
+      },
+      "regime_transitions": 346,
+      "regime_bars": {
+        "BEARISH TREND": 125,
+        "BULLISH TREND": 87,
+        "COMPRESSION": 159,
+        "EXHAUSTION / OVEREXTENSION": 88,
+        "POTENTIAL REVERSAL": 39,
+        "SIDEWAYS / RANGE": 260,
+        "VOLATILITY EXPANSION": 56,
+        "WARMUP": 250
+      },
+      "model_states": {
+        "A": {
+          "CONFIRMED": 33,
+          "CONFIRMING": 44,
+          "INVALIDATED": 11,
+          "WATCH": 44
+        },
+        "B": {
+          "CONFIRMED": 13,
+          "CONFIRMING": 33,
+          "EXPIRED": 11,
+          "INVALIDATED": 11,
+          "WATCH": 35
+        },
+        "C": {
+          "CONFIRMED": 3,
+          "CONFIRMING": 28,
+          "EXPIRED": 11,
+          "INVALIDATED": 15,
+          "WATCH": 29
+        }
+      },
+      "candidates": 49,
+      "enabled_a_b_c_and_a_displacement": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "matched_replay": {
+        "status": "MATCHED",
+        "scope": "Independent LTF feature and model replay with the native confirmed H1/H4 context.",
+        "native_observations": 321,
+        "native_candidate_count": 49,
+        "extra_native_observations": [],
+        "missing_native_observations": [],
+        "candidate_differences": [],
+        "prefix_lengths": [
+          251,
+          354,
+          532,
+          709,
+          1063
+        ],
+        "prefix_mismatches": []
+      },
+      "raw_log_sha256": "532d0a48d79d63d2daefc1a58c7d2dcacbcfc8c35d33c363bcdf35418f2a931f"
+    },
+    {
+      "status": "VERIFIED",
+      "frame": "15",
+      "first_open_utc_ms": 1792699200000,
+      "last_close_utc_ms": 1794322800000,
+      "bars": 1172,
+      "fingerprints": [
+        162199726,
+        424111298
+      ],
+      "confirmed_htf_bars": {
+        "h1": 291,
+        "h4": 72
+      },
+      "confirmed_htf_coverage": {
+        "h1": {
+          "distinct_closed_bars": 291,
+          "ltf_rows_with_initialized_emas": 948,
+          "ltf_rows_with_initialized_emas_after_warmup": 922,
+          "first_initialized_ltf_close_ms": 1793085300000,
+          "initialized_bias_counts": {
+            "-1": 252,
+            "0": 332,
+            "1": 364
+          }
+        },
+        "h4": {
+          "distinct_closed_bars": 72,
+          "ltf_rows_with_initialized_emas": 264,
+          "ltf_rows_with_initialized_emas_after_warmup": 264,
+          "first_initialized_ltf_close_ms": 1793902500000,
+          "initialized_bias_counts": {
+            "0": 36,
+            "1": 228
+          }
+        }
+      },
+      "strict_confirmed_swings": {
+        "highs": 159,
+        "lows": 145
+      },
+      "regime_transitions": 350,
+      "regime_bars": {
+        "BEARISH TREND": 138,
+        "BULLISH TREND": 110,
+        "COMPRESSION": 214,
+        "EXHAUSTION / OVEREXTENSION": 124,
+        "POTENTIAL REVERSAL": 45,
+        "SIDEWAYS / RANGE": 224,
+        "VOLATILITY EXPANSION": 67,
+        "WARMUP": 250
+      },
+      "model_states": {
+        "A": {
+          "CONFIRMED": 27,
+          "CONFIRMING": 48,
+          "EXPIRED": 1,
+          "INVALIDATED": 25,
+          "WATCH": 53
+        },
+        "B": {
+          "CONFIRMED": 18,
+          "CONFIRMING": 43,
+          "EXPIRED": 11,
+          "INVALIDATED": 15,
+          "WATCH": 44
+        },
+        "C": {
+          "CONFIRMED": 4,
+          "CONFIRMING": 36,
+          "EXPIRED": 11,
+          "INVALIDATED": 27,
+          "WATCH": 42
+        }
+      },
+      "candidates": 49,
+      "enabled_a_b_c_and_a_displacement": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "matched_replay": {
+        "status": "MATCHED",
+        "scope": "Independent LTF feature and model replay with the native confirmed H1/H4 context.",
+        "native_observations": 405,
+        "native_candidate_count": 49,
+        "extra_native_observations": [],
+        "missing_native_observations": [],
+        "candidate_differences": [],
+        "prefix_lengths": [
+          251,
+          390,
+          586,
+          781,
+          1171
+        ],
+        "prefix_mismatches": []
+      },
+      "raw_log_sha256": "f48bd146f960acbb5736e05f9178d8117b17fcf1d7484af8b1e36d8dcd19c3f0"
+    },
+    {
+      "status": "VERIFIED",
+      "frame": "30",
+      "first_open_utc_ms": 1791201600000,
+      "last_close_utc_ms": 1794322800000,
+      "bars": 1200,
+      "fingerprints": [
+        554800516,
+        632245589
+      ],
+      "confirmed_htf_bars": {
+        "h1": 598,
+        "h4": 149
+      },
+      "confirmed_htf_coverage": {
+        "h1": {
+          "distinct_closed_bars": 598,
+          "ltf_rows_with_initialized_emas": 1088,
+          "ltf_rows_with_initialized_emas_after_warmup": 950,
+          "first_initialized_ltf_close_ms": 1791415800000,
+          "initialized_bias_counts": {
+            "-1": 400,
+            "0": 382,
+            "1": 306
+          }
+        },
+        "h4": {
+          "distinct_closed_bars": 149,
+          "ltf_rows_with_initialized_emas": 722,
+          "ltf_rows_with_initialized_emas_after_warmup": 722,
+          "first_initialized_ltf_close_ms": 1792449000000,
+          "initialized_bias_counts": {
+            "-1": 432,
+            "0": 168,
+            "1": 122
+          }
+        }
+      },
+      "strict_confirmed_swings": {
+        "highs": 160,
+        "lows": 166
+      },
+      "regime_transitions": 394,
+      "regime_bars": {
+        "BEARISH TREND": 156,
+        "BULLISH TREND": 110,
+        "COMPRESSION": 207,
+        "EXHAUSTION / OVEREXTENSION": 93,
+        "POTENTIAL REVERSAL": 40,
+        "SIDEWAYS / RANGE": 251,
+        "VOLATILITY EXPANSION": 93,
+        "WARMUP": 250
+      },
+      "model_states": {
+        "A": {
+          "CONFIRMED": 32,
+          "CONFIRMING": 52,
+          "INVALIDATED": 21,
+          "WATCH": 53
+        },
+        "B": {
+          "CONFIRMED": 17,
+          "CONFIRMING": 39,
+          "EXPIRED": 10,
+          "INVALIDATED": 19,
+          "WATCH": 46
+        },
+        "C": {
+          "CONFIRMED": 5,
+          "CONFIRMING": 33,
+          "EXPIRED": 11,
+          "INVALIDATED": 21,
+          "WATCH": 37
+        }
+      },
+      "candidates": 54,
+      "enabled_a_b_c_and_a_displacement": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "matched_replay": {
+        "status": "MATCHED",
+        "scope": "Independent LTF feature and model replay with the native confirmed H1/H4 context.",
+        "native_observations": 396,
+        "native_candidate_count": 54,
+        "extra_native_observations": [],
+        "missing_native_observations": [],
+        "candidate_differences": [],
+        "prefix_lengths": [
+          251,
+          400,
+          600,
+          800,
+          1199
+        ],
+        "prefix_mismatches": []
+      },
+      "raw_log_sha256": "c16ceded32c7c78ed23555a7ca6602850d9e4c37cb7b6cf632ae6c6845dcd194"
+    }
+  ]
+}

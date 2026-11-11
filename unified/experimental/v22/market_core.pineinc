@@ -1,0 +1,287 @@
+// Shared closed-bar market and model logic for the V2.2 indicator and strategy.
+const int V22_WARMUP = 250
+const int V22_COOLDOWN = 6
+const float V22_MAX_EXTENSION = 2.50
+
+bool v22EnableA = input.bool(true, "A · Structural breakout", group="V2.2 models", display=display.none)
+bool v22EnableB = input.bool(true, "B · Smart pullback", group="V2.2 models", display=display.none)
+bool v22EnableC = input.bool(true, "C · Consolidation continuation", group="V2.2 models", display=display.none)
+bool v22RequireADisplacement = input.bool(false, "A · Require displacement", group="V2.2 models", display=display.none)
+
+type V22Candidate
+    string model
+    int side
+    string setupId
+    int watchedAt
+    int knownAt
+    float level
+    float reference
+    float stopBase
+    float barrier
+    float atr
+    float extension
+    bool spike
+    bool htfConflict
+
+type V22Observation
+    string model
+    int side
+    string setupId
+    int knownAt
+    string state
+    string reason
+    float level
+
+type V22Setup
+    int side = 0
+    int watchedAt = na
+    int started = na
+    int pivotId = na
+    int lastConfirmation = na
+    float level = na
+    float trigger = na
+    float stopBase = na
+    float atr = na
+    string id = ""
+
+bool v22Supported = chart.is_standard and syminfo.tickerid == "OANDA:XAUUSD" and timeframe.isminutes and
+  (timeframe.multiplier == 5 or timeframe.multiplier == 15 or timeframe.multiplier == 30)
+float v22TR = ta.tr(true)
+float v22RawATR = ta.atr(14)
+float v22ATR = v22RawATR[1]
+float v22MeanATR = ta.sma(v22RawATR, 20)[1]
+float v22EMA21 = ta.ema(close, 21)
+float v22EMA55 = ta.ema(close, 55)
+[v22DIPlus, v22DIMinus, v22ADX] = ta.dmi(14, 14)
+
+// Each requested value refers to the previous HTF bar. Timestamp checks
+// keep the HTF context as-of the opening of the current chart bar.
+[v22H1Close, v22H1Fast, v22H1Slow, v22H1At] = request.security(syminfo.tickerid, "60",
+  [close[1], ta.ema(close, 21)[1], ta.ema(close, 55)[1], time_close[1]], lookahead=barmerge.lookahead_on)
+[v22H4Close, v22H4Fast, v22H4Slow, v22H4At] = request.security(syminfo.tickerid, "240",
+  [close[1], ta.ema(close, 21)[1], ta.ema(close, 55)[1], time_close[1]], lookahead=barmerge.lookahead_on)
+int v22H1Known = v22Supported and v22H1At <= time ? v22H1At : na
+int v22H4Known = v22Supported and v22H4At <= time ? v22H4At : na
+f_v22Bias(float price, float fast, float slow) =>
+    price > fast and fast > slow ? 1 : price < fast and fast < slow ? -1 : 0
+int v22H1 = not na(v22H1Known) ? f_v22Bias(v22H1Close, v22H1Fast, v22H1Slow) : 0
+int v22H4 = not na(v22H4Known) ? f_v22Bias(v22H4Close, v22H4Fast, v22H4Slow) : 0
+
+bool v22HighPivot = high[2] > high[4] and high[2] > high[3] and high[2] > high[1] and high[2] > high
+bool v22LowPivot = low[2] < low[4] and low[2] < low[3] and low[2] < low[1] and low[2] < low
+var float v22LastHigh = na
+var float v22LastLow = na
+var float v22PreviousHigh = na
+var float v22PreviousLow = na
+var int v22LastHighKnown = na
+var int v22LastLowKnown = na
+var int v22BreakBias = 0
+
+// These scalar values snapshot the pivots before any disclosure on this close.
+float v22PriorHigh = v22LastHigh
+float v22PriorLow = v22LastLow
+float v22EarlierHigh = v22PreviousHigh
+float v22EarlierLow = v22PreviousLow
+int v22PriorHighKnown = v22LastHighKnown
+int v22PriorLowKnown = v22LastLowKnown
+bool v22HHHL = v22PriorHigh > v22EarlierHigh and v22PriorLow > v22EarlierLow
+bool v22LHLL = v22PriorHigh < v22EarlierHigh and v22PriorLow < v22EarlierLow
+int v22LocalBias = f_v22Bias(close, v22EMA21, v22EMA55)
+bool v22BullEMA = v22LocalBias == 1 and v22EMA21 > v22EMA21[3] and v22EMA55 > v22EMA55[3]
+bool v22BearEMA = v22LocalBias == -1 and v22EMA21 < v22EMA21[3] and v22EMA55 < v22EMA55[3]
+int v22Trend = v22BullEMA and (v22HHHL or (v22ADX >= 18 and v22DIPlus > v22DIMinus)) ? 1 :
+  v22BearEMA and (v22LHLL or (v22ADX >= 18 and v22DIMinus > v22DIPlus)) ? -1 : 0
+bool v22Ready = v22Supported and bar_index >= V22_WARMUP and not na(v22ATR) and v22ATR > 0
+float v22Extension = v22Ready ? math.abs(close - v22EMA21) / v22ATR : na
+float v22Momentum = v22Ready ? (close - close[3]) / v22ATR : na
+bool v22Spike = v22Ready and v22TR > 2.50 * v22ATR
+float v22Candle = high - low
+float v22Body = close - open
+bool v22SubstantialBody = v22Candle > 0 and math.abs(v22Body) >= 0.55 * v22Candle
+bool v22BullDisplacement = v22SubstantialBody and v22Body >= 0.80 * v22ATR and high - close <= 0.25 * v22Candle
+bool v22BearDisplacement = v22SubstantialBody and -v22Body >= 0.80 * v22ATR and close - low <= 0.25 * v22Candle
+
+f_v22Break(int side, float level) =>
+    side * (close[1] - level) <= 0 and side * (close - level) > 0
+bool v22BullBreak = v22Ready and f_v22Break(1, v22PriorHigh)
+bool v22BearBreak = v22Ready and f_v22Break(-1, v22PriorLow)
+int v22BOS = v22BullBreak ? 1 : v22BearBreak ? -1 : 0
+bool v22MSS = v22BOS != 0 and v22BreakBias == -v22BOS
+string v22Structure = v22MSS ? (v22BOS == 1 ? "MSS UP" : "MSS DOWN") :
+  v22BOS == 1 ? "BOS UP" : v22BOS == -1 ? "BOS DOWN" : v22HHHL ? "HH / HL" : v22LHLL ? "LH / LL" : "MIXED"
+
+float v22BoxHigh = ta.highest(high, 4)
+float v22BoxLow = ta.lowest(low, 4)
+float v22TR4 = ta.sma(v22TR, 4)
+bool v22NarrowBox = v22Ready and v22BoxHigh - v22BoxLow <= 1.50 * v22ATR and v22TR4 <= 0.80 * v22ATR
+bool v22Compression = v22Ready and (v22NarrowBox or v22ATR <= 0.80 * v22MeanATR)
+bool v22Expansion = v22Ready and v22TR >= 1.50 * v22ATR
+bool v22UpperExhaustion = v22Ready and v22Momentum[1] >= 0.80 and high - v22EMA21 >= 2.50 * v22ATR and
+  v22Candle > 0 and high - math.max(open, close) >= 0.50 * v22Candle and v22Momentum < v22Momentum[1]
+bool v22LowerExhaustion = v22Ready and v22Momentum[1] <= -0.80 and v22EMA21 - low >= 2.50 * v22ATR and
+  v22Candle > 0 and math.min(open, close) - low >= 0.50 * v22Candle and v22Momentum > v22Momentum[1]
+bool v22Exhausted = v22Ready and (v22Extension > V22_MAX_EXTENSION or v22UpperExhaustion or v22LowerExhaustion)
+string v22RegimeNow = not v22Supported ? "UNSUPPORTED" : not v22Ready ? "WARMUP" :
+  v22Exhausted ? "EXHAUSTION / OVEREXTENSION" : v22MSS ? "POTENTIAL REVERSAL" :
+  v22Expansion ? "VOLATILITY EXPANSION" : v22Compression ? "COMPRESSION" :
+  v22Trend == 1 ? "BULLISH TREND" : v22Trend == -1 ? "BEARISH TREND" : "SIDEWAYS / RANGE"
+string v22RegimeReason = not v22Supported ? "SYMBOL_OR_TIMEFRAME" : not v22Ready ? "INSUFFICIENT_BARS" :
+  v22Exhausted ? (v22Extension > V22_MAX_EXTENSION ? "EMA_DISTANCE" : "WICK_AND_DECELERATION") :
+  v22MSS ? "OPPOSITE_STRUCTURE_BREAK" : v22Expansion ? "TRUE_RANGE_EXPANSION" :
+  v22Compression ? (v22NarrowBox ? "NARROW_BOX" : "ATR_CONTRACTION") : v22Trend != 0 ? "EMA_DIRECTION_WITH_STRUCTURE_OR_DMI" :
+  "NO_QUALIFIED_TREND"
+var string v22Regime = ""
+var array<V22Candidate> v22Candidates = array.new<V22Candidate>()
+var array<V22Observation> v22Observations = array.new<V22Observation>()
+var V22Setup v22SetupA = V22Setup.new()
+var V22Setup v22SetupB = V22Setup.new()
+var V22Setup v22SetupC = V22Setup.new()
+var int v22AUsedHigh = na
+var int v22AUsedLow = na
+
+f_v22Direction(int side) =>
+    side > 0 ? "BUY" : side < 0 ? "SELL" : "NEUTRAL"
+
+f_v22Emit(string model, V22Setup setup, string state, string reason) =>
+    array.push(v22Observations, V22Observation.new(model, setup.side, setup.id, time_close, state, reason, setup.level))
+
+f_v22Watch(string model, V22Setup setup, int side, float level, float trigger, float stopBase, int pivotId, string reason) =>
+    setup.side := side
+    setup.watchedAt := time_close
+    setup.started := bar_index
+    setup.pivotId := pivotId
+    setup.level := level
+    setup.trigger := trigger
+    setup.stopBase := stopBase
+    setup.atr := v22ATR
+    setup.id := model + "-" + f_v22Direction(side) + "-" + str.tostring(time_close)
+    f_v22Emit(model, setup, "WATCH", reason)
+
+f_v22Barrier(int side) =>
+    float first = side == 1 ? v22PriorHigh : v22PriorLow
+    float second = side == 1 ? v22EarlierHigh : v22EarlierLow
+    bool firstAhead = side * (first - close) > 0
+    bool secondAhead = side * (second - close) > 0
+    firstAhead and secondAhead ? (side == 1 ? math.min(first, second) : math.max(first, second)) :
+      firstAhead ? first : secondAhead ? second : na
+
+f_v22Confirm(string model, V22Setup setup, string reason) =>
+    int side = setup.side
+    f_v22Emit(model, setup, "CONFIRMED", reason)
+    array.push(v22Candidates, V22Candidate.new(model, side, setup.id, setup.watchedAt, time_close, setup.level,
+      close, setup.stopBase, f_v22Barrier(side), v22ATR, v22Extension, v22Spike, v22H1 == -side or v22H4 == -side))
+    setup.lastConfirmation := bar_index
+    setup.side := 0
+
+f_v22Cancel(string model, V22Setup setup, string state, string reason) =>
+    f_v22Emit(model, setup, state, reason)
+    setup.side := 0
+
+f_v22Cooled(V22Setup setup) =>
+    na(setup.lastConfirmation) or bar_index - setup.lastConfirmation > V22_COOLDOWN
+
+f_v22Displaced(int side) =>
+    side == 1 ? v22BullDisplacement : v22BearDisplacement
+
+array.clear(v22Candidates)
+array.clear(v22Observations)
+
+if barstate.isconfirmed
+    if v22RegimeNow != v22Regime
+        string transition = (v22Regime == "" ? "INITIAL" : v22Regime) + ">" + v22RegimeNow + ":" + v22RegimeReason
+        array.push(v22Observations, V22Observation.new("REGIME", v22Trend, "REGIME-" + str.tostring(time_close),
+          time_close, "REGIME_TRANSITION", transition, close))
+        v22Regime := v22RegimeNow
+    if v22Ready
+        if v22EnableA
+            if v22SetupA.side != 0
+                int age = bar_index - v22SetupA.started
+                int activePivot = v22SetupA.side == 1 ? v22PriorHighKnown : v22PriorLowKnown
+                if age > 8
+                    f_v22Cancel("A", v22SetupA, "EXPIRED", "EXPIRED")
+                else if v22Trend == -v22SetupA.side or activePivot != v22SetupA.pivotId
+                    f_v22Cancel("A", v22SetupA, "INVALIDATED", "STRUCTURE_INVALID")
+                else if age == 1
+                    f_v22Emit("A", v22SetupA, "CONFIRMING", "WAITING_FOR_STRUCTURE_BREAK")
+            if v22SetupA.side == 0 and f_v22Cooled(v22SetupA) and v22Trend != 0
+                int side = v22Trend
+                float level = side == 1 ? v22PriorHigh : v22PriorLow
+                float stopBase = side == 1 ? v22PriorLow : v22PriorHigh
+                int pivotId = side == 1 ? v22PriorHighKnown : v22PriorLowKnown
+                int used = side == 1 ? v22AUsedHigh : v22AUsedLow
+                float approach = side * (level - close)
+                if not na(level) and not na(stopBase) and (na(used) or pivotId != used) and
+                  ((approach >= 0 and approach <= 0.60 * v22ATR) or f_v22Break(side, level))
+                    f_v22Watch("A", v22SetupA, side, level, level, stopBase, pivotId, "KNOWN_SWING_APPROACH")
+            if v22SetupA.side != 0 and f_v22Break(v22SetupA.side, v22SetupA.level)
+                int side = v22SetupA.side
+                if side == 1
+                    v22AUsedHigh := v22SetupA.pivotId
+                else
+                    v22AUsedLow := v22SetupA.pivotId
+                if v22SetupA.started == bar_index
+                    f_v22Emit("A", v22SetupA, "CONFIRMING", "STRUCTURE_BREAK")
+                if v22Trend == side and (not v22RequireADisplacement or f_v22Displaced(side))
+                    v22SetupA.stopBase := side == 1 ? v22PriorLow : v22PriorHigh
+                    f_v22Confirm("A", v22SetupA, "STRUCTURE_BREAK")
+                else
+                    f_v22Cancel("A", v22SetupA, "INVALIDATED", "NO_CONFIRMATION")
+
+        if v22EnableB
+            if v22SetupB.side != 0
+                int age = bar_index - v22SetupB.started
+                int side = v22SetupB.side
+                if age > 6
+                    f_v22Cancel("B", v22SetupB, "EXPIRED", "EXPIRED")
+                else if v22Trend == -side or side * (close - v22SetupB.level) < -0.75 * v22SetupB.atr
+                    f_v22Cancel("B", v22SetupB, "INVALIDATED", "STRUCTURE_INVALID")
+                else
+                    if age == 1
+                        f_v22Emit("B", v22SetupB, "CONFIRMING", "WAITING_FOR_PULLBACK_REJECTION")
+                    v22SetupB.stopBase := side == 1 ? math.min(v22SetupB.stopBase, low) : math.max(v22SetupB.stopBase, high)
+                    if v22Trend == side and side * v22Body > 0 and side * (close - v22SetupB.trigger) > 0
+                        f_v22Confirm("B", v22SetupB, "PULLBACK_REJECTION")
+            if v22SetupB.side == 0 and f_v22Cooled(v22SetupB) and v22Trend[1] != 0
+                int side = v22Trend[1]
+                float level = v22EMA21[1]
+                bool touched = side == 1 ? low <= level + 0.20 * v22ATR : high >= level - 0.20 * v22ATR
+                if v22Trend != -side and side * (close[1] - level) > 0.20 * v22ATR and touched and
+                  side * (close - level) >= -0.75 * v22ATR
+                    f_v22Watch("B", v22SetupB, side, level, side == 1 ? high : low, side == 1 ? low : high, na,
+                      "PRIOR_EMA21_PULLBACK")
+
+        if v22EnableC
+            if v22SetupC.side != 0
+                int age = bar_index - v22SetupC.started
+                int side = v22SetupC.side
+                if age > 4
+                    f_v22Cancel("C", v22SetupC, "EXPIRED", "EXPIRED")
+                else if v22Trend == -side or side * (close - v22SetupC.stopBase) < 0
+                    f_v22Cancel("C", v22SetupC, "INVALIDATED", "STRUCTURE_INVALID")
+                else
+                    if age == 1
+                        f_v22Emit("C", v22SetupC, "CONFIRMING", "WAITING_FOR_BOX_BREAK")
+                    if side * (close - v22SetupC.trigger) > 0
+                        if v22Trend == side and f_v22Displaced(side)
+                            f_v22Confirm("C", v22SetupC, "BOX_BREAK_WITH_DISPLACEMENT")
+                        else
+                            f_v22Cancel("C", v22SetupC, "INVALIDATED", "NO_CONFIRMATION")
+            if v22SetupC.side == 0 and f_v22Cooled(v22SetupC) and v22NarrowBox and v22Trend != 0
+                int side = v22Trend
+                if (side == 1 and low > low[3]) or (side == -1 and high < high[3])
+                    float level = side == 1 ? v22BoxHigh : v22BoxLow
+                    f_v22Watch("C", v22SetupC, side, level, level, side == 1 ? v22BoxLow : v22BoxHigh, na,
+                      "DIRECTIONAL_COMPRESSION")
+
+    if v22BOS != 0
+        v22BreakBias := v22BOS
+    // Disclose strict 2/2 pivots on this close. Model decisions see them from
+    // the next chart bar. Trailing rules can schedule them on this close.
+    if v22HighPivot
+        v22PreviousHigh := v22LastHigh
+        v22LastHigh := high[2]
+        v22LastHighKnown := time_close
+    if v22LowPivot
+        v22PreviousLow := v22LastLow
+        v22LastLow := low[2]
+        v22LastLowKnown := time_close

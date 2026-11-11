@@ -1,0 +1,139 @@
+bool viPanel = input.bool(true, "Show dashboard", group="V2.2 display", display=display.none)
+string viPreset = input.string("Compact", "Dashboard preset", options=["Compact", "Desktop", "Mobile"], group="V2.2 display", display=display.none)
+string viCorner = input.string("Top right", "Dashboard position", options=["Top right", "Bottom right", "Top left", "Bottom left"], group="V2.2 display", display=display.none)
+bool viWatches = input.bool(true, "Plot WATCH markers", group="V2.2 display", display=display.none)
+bool viConfirmations = input.bool(true, "Plot CONFIRMED markers", group="V2.2 display", display=display.none)
+bool viAudit = input.bool(false, "Export observations to Pine Logs", group="V2.2 audit", display=display.none)
+bool viBars = input.bool(false, "Include every OHLC / HTF row", group="V2.2 audit", display=display.none)
+int viFrom = input.time(1577836800000, "Audit start · UTC", group="V2.2 audit", display=display.none)
+int viUntil = input.time(2051222400000, "Audit cutoff · UTC", group="V2.2 audit", display=display.none)
+
+f_viNumber(float value) =>
+    na(value) ? "-" : str.tostring(value, "#.########")
+f_viTime(int value) =>
+    na(value) ? "-" : str.tostring(value)
+f_viPrice(float value) =>
+    na(value) ? "—" : str.tostring(value, format.mintick)
+f_viBool(bool value) =>
+    value ? "1" : "0"
+f_viHtf(int side, int knownAt, float price, float fast, float slow) =>
+    na(knownAt) or na(price) or na(fast) or na(slow) ? "WARMUP" : f_v22Direction(side)
+
+bool viBullWatch = false
+bool viBearWatch = false
+bool viBullConfirm = false
+bool viBearConfirm = false
+var string viLastState = "—"
+var string viLastReason = "—"
+var string viStructure = "—"
+var V22Candidate viLastCandidate = na
+var int viObsCount = 0
+var int viCandidateCount = 0
+var int viRegimes = 0
+
+bool viLog = viAudit and barstate.isconfirmed and time_close >= viFrom and time_close <= viUntil
+if barstate.isconfirmed
+    viStructure := v22Structure
+    for obs in v22Observations
+        if obs.model == "REGIME"
+            viRegimes += 1
+        else
+            viObsCount += 1
+            viBullWatch := viBullWatch or (obs.state == "WATCH" and obs.side == 1)
+            viBearWatch := viBearWatch or (obs.state == "WATCH" and obs.side == -1)
+            viBullConfirm := viBullConfirm or (obs.state == "CONFIRMED" and obs.side == 1)
+            viBearConfirm := viBearConfirm or (obs.state == "CONFIRMED" and obs.side == -1)
+            viLastState := obs.model + " · " + f_v22Direction(obs.side) + " " + obs.state
+            viLastReason := obs.reason
+        if viLog
+            log.info("V22I|OBS|" + str.tostring(obs.knownAt) + "|" + obs.model + "|" + str.tostring(obs.side) + "|" +
+              obs.setupId + "|" + obs.state + "|" + obs.reason + "|" + f_viNumber(obs.level))
+    for candidate in v22Candidates
+        viCandidateCount += 1
+        viLastCandidate := candidate
+        if viLog
+            log.info("V22I|CANDIDATE|" + str.tostring(candidate.knownAt) + "|" + candidate.model + "|" +
+              str.tostring(candidate.side) + "|" + candidate.setupId + "|" + str.tostring(candidate.watchedAt) + "|" +
+              f_viNumber(candidate.level) + "|" + f_viNumber(candidate.reference) + "|" + f_viNumber(candidate.stopBase) + "|" +
+              f_viNumber(candidate.barrier) + "|" + f_viNumber(candidate.atr) + "|" + f_viNumber(candidate.extension) + "|" +
+              f_viBool(candidate.spike) + "|" + f_viBool(candidate.htfConflict))
+
+var int viFirstBar = na
+var int viBarCount = 0
+var int viHash1 = 0
+var int viHash2 = 0
+var bool viSnapshot = false
+if viAudit and barstate.isconfirmed and time_close <= viUntil
+    viFirstBar := na(viFirstBar) ? time : viFirstBar
+    viBarCount += 1
+    int o = int(math.round(open / syminfo.mintick))
+    int h = int(math.round(high / syminfo.mintick))
+    int l = int(math.round(low / syminfo.mintick))
+    int c = int(math.round(close / syminfo.mintick))
+    int stamp = int(time / 1000)
+    viHash1 := (viHash1 * 31 + stamp + 3 * o + 5 * h + 7 * l + 11 * c) % 1000000007
+    viHash2 := (viHash2 * 131 + stamp + 13 * o + 17 * h + 19 * l + 23 * c) % 1000000009
+    if viLog and viBars
+        log.info("V22I|BAR|" + str.tostring(time_close) + "|" + str.tostring(time) + "|" +
+          f_viNumber(open) + "|" + f_viNumber(high) + "|" + f_viNumber(low) + "|" + f_viNumber(close) + "|" +
+          f_viNumber(v22ATR) + "|" + f_viNumber(v22EMA21) + "|" + f_viNumber(v22EMA55) + "|" +
+          f_viNumber(v22ADX) + "|" + f_viNumber(v22DIPlus) + "|" + f_viNumber(v22DIMinus) + "|" +
+          f_viNumber(v22PriorHigh) + "|" + f_viNumber(v22PriorLow) + "|" + str.tostring(v22Trend) + "|" +
+          v22Structure + "|" + v22Regime + "|" + f_viTime(v22H1Known) + "|" + str.tostring(v22H1) + "|" +
+          f_viTime(v22H4Known) + "|" + str.tostring(v22H4) + "|" + f_viNumber(v22H1Close) + "|" +
+          f_viNumber(v22H1Fast) + "|" + f_viNumber(v22H1Slow) + "|" + f_viNumber(v22H4Close) + "|" +
+          f_viNumber(v22H4Fast) + "|" + f_viNumber(v22H4Slow))
+    if viLog and not viSnapshot and (time_close == viUntil or barstate.islastconfirmedhistory)
+        viSnapshot := true
+        log.info("V22I|SNAPSHOT|" + str.tostring(time_close) + "|" + syminfo.tickerid + "|" + timeframe.period + "|" +
+          str.tostring(viFirstBar) + "|" + str.tostring(time) + "|" + str.tostring(viBarCount) + "|" +
+          str.tostring(viHash1) + "|" + str.tostring(viHash2) + "|" + str.tostring(viObsCount) + "|" +
+          str.tostring(viCandidateCount) + "|" + str.tostring(viRegimes) + "|" + str.tostring(viUntil) + "|" +
+          f_viNumber(syminfo.mintick) + "|" + f_viBool(v22EnableA) + "|" + f_viBool(v22EnableB) + "|" +
+          f_viBool(v22EnableC) + "|" + f_viBool(v22RequireADisplacement))
+
+color viBuy = color.rgb(65, 218, 181)
+color viSell = color.rgb(246, 110, 123)
+color viPanelBg = color.rgb(14, 21, 30)
+color viMuted = color.rgb(166, 184, 199)
+plotshape(viWatches and viBullWatch, "BUY WATCH", shape.circle, location.belowbar, color.new(viBuy, 40), size=size.tiny)
+plotshape(viWatches and viBearWatch, "SELL WATCH", shape.circle, location.abovebar, color.new(viSell, 40), size=size.tiny)
+plotshape(viConfirmations and viBullConfirm, "BUY CONFIRMED", shape.triangleup, location.belowbar, viBuy, size=size.tiny)
+plotshape(viConfirmations and viBearConfirm, "SELL CONFIRMED", shape.triangledown, location.abovebar, viSell, size=size.tiny)
+plot(barstate.isconfirmed ? v22Trend : na, "Closed-bar bias", display=display.data_window)
+plot(barstate.isconfirmed ? v22H1 : na, "Confirmed H1 bias", display=display.data_window)
+plot(barstate.isconfirmed ? v22H4 : na, "Confirmed H4 bias", display=display.data_window)
+
+string viPosition = switch viCorner
+    "Bottom right" => position.bottom_right
+    "Top left" => position.top_left
+    "Bottom left" => position.bottom_left
+    => position.top_right
+int viRows = viPreset == "Mobile" ? 6 : viPreset == "Desktop" ? 12 : 9
+string viFont = viPreset == "Mobile" ? size.tiny : size.small
+var table viTable = table.new(viPosition, 2, viRows, bgcolor=viPanelBg, frame_color=color.rgb(62, 77, 93), frame_width=1)
+f_viRow(int row, string caption, string value, color ink) =>
+    table.cell(viTable, 0, row, caption, text_color=viMuted, text_size=viFont, text_halign=text.align_left)
+    table.cell(viTable, 1, row, value, text_color=ink, text_size=viFont, text_halign=text.align_right)
+
+if viPanel and (barstate.islastconfirmedhistory or barstate.islast)
+    int visibleTrend = barstate.isconfirmed ? v22Trend : v22Trend[1]
+    color sideColor = visibleTrend == 1 ? viBuy : visibleTrend == -1 ? viSell : viMuted
+    f_viRow(0, "QIRVANTA V2.2", viPreset == "Mobile" ? "INTELLIGENCE" : "INTELLIGENCE · EXPERIMENTAL", color.aqua)
+    f_viRow(1, "Regime", v22Regime, color.white)
+    f_viRow(2, "Bias / structure", f_v22Direction(visibleTrend) + " / " + viStructure, sideColor)
+    string h1Text = f_viHtf(v22H1, v22H1Known, v22H1Close, v22H1Fast, v22H1Slow)
+    string h4Text = f_viHtf(v22H4, v22H4Known, v22H4Close, v22H4Fast, v22H4Slow)
+    f_viRow(3, "Closed H1 / H4", h1Text + " / " + h4Text, color.white)
+    f_viRow(4, "Last observation", viLastState, color.white)
+    f_viRow(5, "Reason", viLastReason, color.orange)
+    if viRows >= 9
+        f_viRow(6, "Confirmed reference", na(viLastCandidate) ? "—" : f_viPrice(viLastCandidate.reference), color.white)
+        f_viRow(7, "Structural base / barrier", na(viLastCandidate) ? "—" : f_viPrice(viLastCandidate.stopBase) + " / " +
+          f_viPrice(viLastCandidate.barrier), color.white)
+        f_viRow(8, "Entry readiness", na(viLastCandidate) ? "—" : "STRATEGY RISK CHECK", color.orange)
+    if viRows == 12
+        f_viRow(9, "ATR / ADX", f_viPrice(v22ATR) + " / " + f_viNumber(v22ADX), color.white)
+        f_viRow(10, "Candidate extension", na(viLastCandidate) ? "—" : f_viNumber(viLastCandidate.extension) + " ATR", color.white)
+        f_viRow(11, "HTF conflict / spike", na(viLastCandidate) ? "—" : (viLastCandidate.htfConflict ? "YES" : "NO") +
+          " / " + (viLastCandidate.spike ? "YES" : "NO"), color.white)

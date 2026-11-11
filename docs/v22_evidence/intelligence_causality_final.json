@@ -1,0 +1,310 @@
+{
+  "status": "VERIFIED",
+  "cells": [
+    {
+      "status": "VERIFIED",
+      "frame": "5",
+      "first_open_utc_ms": 1792726800000,
+      "last_close_utc_ms": 1794322800000,
+      "bars": 3436,
+      "fingerprints": [
+        586837040,
+        652084830
+      ],
+      "confirmed_htf_bars": {
+        "h1": 285,
+        "h4": 71
+      },
+      "confirmed_htf_coverage": {
+        "h1": {
+          "distinct_closed_bars": 285,
+          "ltf_rows_with_initialized_emas": 2772,
+          "ltf_rows_with_initialized_emas_after_warmup": 2772,
+          "first_initialized_ltf_close_ms": 1793106300000,
+          "initialized_bias_counts": {
+            "-1": 708,
+            "0": 972,
+            "1": 1092
+          }
+        },
+        "h4": {
+          "distinct_closed_bars": 71,
+          "ltf_rows_with_initialized_emas": 744,
+          "ltf_rows_with_initialized_emas_after_warmup": 744,
+          "first_initialized_ltf_close_ms": 1793919900000,
+          "initialized_bias_counts": {
+            "0": 108,
+            "1": 636
+          }
+        }
+      },
+      "strict_confirmed_swings": {
+        "highs": 446,
+        "lows": 453
+      },
+      "regime_transitions": 1243,
+      "regime_bars": {
+        "BEARISH TREND": 512,
+        "BULLISH TREND": 404,
+        "COMPRESSION": 646,
+        "EXHAUSTION / OVEREXTENSION": 287,
+        "POTENTIAL REVERSAL": 138,
+        "SIDEWAYS / RANGE": 939,
+        "VOLATILITY EXPANSION": 260,
+        "WARMUP": 250
+      },
+      "model_states": {
+        "A": {
+          "CONFIRMED": 112,
+          "CONFIRMING": 159,
+          "EXPIRED": 2,
+          "INVALIDATED": 49,
+          "WATCH": 163
+        },
+        "B": {
+          "CONFIRMED": 58,
+          "CONFIRMING": 125,
+          "EXPIRED": 33,
+          "INVALIDATED": 44,
+          "WATCH": 135
+        },
+        "C": {
+          "CONFIRMED": 15,
+          "CONFIRMING": 104,
+          "EXPIRED": 33,
+          "INVALIDATED": 61,
+          "WATCH": 109
+        }
+      },
+      "candidates": 185,
+      "enabled_a_b_c_and_a_displacement": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "matched_replay": {
+        "status": "MATCHED",
+        "scope": "Independent LTF feature and model replay with the native confirmed H1/H4 context.",
+        "native_observations": 1202,
+        "native_candidate_count": 185,
+        "extra_native_observations": [],
+        "missing_native_observations": [],
+        "candidate_differences": [],
+        "prefix_lengths": [
+          251,
+          1145,
+          1718,
+          2290,
+          3435
+        ],
+        "prefix_mismatches": []
+      },
+      "raw_log_sha256": "fc88437df919a0b4fabebdc1d03d048e7c1c814fd4315a4ca7d559c1290b8385"
+    },
+    {
+      "status": "VERIFIED",
+      "frame": "15",
+      "first_open_utc_ms": 1789609500000,
+      "last_close_utc_ms": 1794322800000,
+      "bars": 3545,
+      "fingerprints": [
+        720799684,
+        523395615
+      ],
+      "confirmed_htf_bars": {
+        "h1": 885,
+        "h4": 221
+      },
+      "confirmed_htf_coverage": {
+        "h1": {
+          "distinct_closed_bars": 885,
+          "ltf_rows_with_initialized_emas": 3324,
+          "ltf_rows_with_initialized_emas_after_warmup": 3295,
+          "first_initialized_ltf_close_ms": 1789989300000,
+          "initialized_bias_counts": {
+            "-1": 1480,
+            "0": 1164,
+            "1": 680
+          }
+        },
+        "h4": {
+          "distinct_closed_bars": 221,
+          "ltf_rows_with_initialized_emas": 2548,
+          "ltf_rows_with_initialized_emas_after_warmup": 2548,
+          "first_initialized_ltf_close_ms": 1790892900000,
+          "initialized_bias_counts": {
+            "-1": 1504,
+            "0": 800,
+            "1": 244
+          }
+        }
+      },
+      "strict_confirmed_swings": {
+        "highs": 465,
+        "lows": 456
+      },
+      "regime_transitions": 1323,
+      "regime_bars": {
+        "BEARISH TREND": 557,
+        "BULLISH TREND": 397,
+        "COMPRESSION": 778,
+        "EXHAUSTION / OVEREXTENSION": 288,
+        "POTENTIAL REVERSAL": 163,
+        "SIDEWAYS / RANGE": 842,
+        "VOLATILITY EXPANSION": 270,
+        "WARMUP": 250
+      },
+      "model_states": {
+        "A": {
+          "CONFIRMED": 103,
+          "CONFIRMING": 167,
+          "EXPIRED": 1,
+          "INVALIDATED": 71,
+          "WATCH": 175
+        },
+        "B": {
+          "CONFIRMED": 66,
+          "CONFIRMING": 151,
+          "EXPIRED": 44,
+          "INVALIDATED": 51,
+          "WATCH": 161
+        },
+        "C": {
+          "CONFIRMED": 14,
+          "CONFIRMING": 137,
+          "EXPIRED": 34,
+          "INVALIDATED": 102,
+          "WATCH": 150
+        }
+      },
+      "candidates": 183,
+      "enabled_a_b_c_and_a_displacement": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "matched_replay": {
+        "status": "MATCHED",
+        "scope": "Independent LTF feature and model replay with the native confirmed H1/H4 context.",
+        "native_observations": 1427,
+        "native_candidate_count": 183,
+        "extra_native_observations": [],
+        "missing_native_observations": [],
+        "candidate_differences": [],
+        "prefix_lengths": [
+          251,
+          1181,
+          1772,
+          2363,
+          3544
+        ],
+        "prefix_mismatches": []
+      },
+      "raw_log_sha256": "35e911e9ed53f57d4550bea601ec6653217254d83422dcf2d3eb63cf824b2252"
+    },
+    {
+      "status": "VERIFIED",
+      "frame": "30",
+      "first_open_utc_ms": 1784835000000,
+      "last_close_utc_ms": 1794322800000,
+      "bars": 3572,
+      "fingerprints": [
+        109126793,
+        571622709
+      ],
+      "confirmed_htf_bars": {
+        "h1": 1785,
+        "h4": 446
+      },
+      "confirmed_htf_coverage": {
+        "h1": {
+          "distinct_closed_bars": 1785,
+          "ltf_rows_with_initialized_emas": 3461,
+          "ltf_rows_with_initialized_emas_after_warmup": 3322,
+          "first_initialized_ltf_close_ms": 1785220200000,
+          "initialized_bias_counts": {
+            "-1": 1295,
+            "0": 1166,
+            "1": 1000
+          }
+        },
+        "h4": {
+          "distinct_closed_bars": 446,
+          "ltf_rows_with_initialized_emas": 2995,
+          "ltf_rows_with_initialized_emas_after_warmup": 2995,
+          "first_initialized_ltf_close_ms": 1786440600000,
+          "initialized_bias_counts": {
+            "-1": 1541,
+            "0": 862,
+            "1": 592
+          }
+        }
+      },
+      "strict_confirmed_swings": {
+        "highs": 472,
+        "lows": 473
+      },
+      "regime_transitions": 1416,
+      "regime_bars": {
+        "BEARISH TREND": 526,
+        "BULLISH TREND": 441,
+        "COMPRESSION": 722,
+        "EXHAUSTION / OVEREXTENSION": 315,
+        "POTENTIAL REVERSAL": 159,
+        "SIDEWAYS / RANGE": 847,
+        "VOLATILITY EXPANSION": 312,
+        "WARMUP": 250
+      },
+      "model_states": {
+        "A": {
+          "CONFIRMED": 115,
+          "CONFIRMING": 183,
+          "EXPIRED": 1,
+          "INVALIDATED": 75,
+          "WATCH": 191
+        },
+        "B": {
+          "CONFIRMED": 62,
+          "CONFIRMING": 146,
+          "EXPIRED": 42,
+          "INVALIDATED": 56,
+          "WATCH": 160
+        },
+        "C": {
+          "CONFIRMED": 19,
+          "CONFIRMING": 127,
+          "EXPIRED": 32,
+          "INVALIDATED": 86,
+          "WATCH": 137
+        }
+      },
+      "candidates": 196,
+      "enabled_a_b_c_and_a_displacement": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "matched_replay": {
+        "status": "MATCHED",
+        "scope": "Independent LTF feature and model replay with the native confirmed H1/H4 context.",
+        "native_observations": 1432,
+        "native_candidate_count": 196,
+        "extra_native_observations": [],
+        "missing_native_observations": [],
+        "candidate_differences": [],
+        "prefix_lengths": [
+          251,
+          1190,
+          1786,
+          2381,
+          3571
+        ],
+        "prefix_mismatches": []
+      },
+      "raw_log_sha256": "d4097d7adacec54a9b61ad663dbdc0edd12731625eb20d532af8f0c1762900a7"
+    }
+  ]
+}

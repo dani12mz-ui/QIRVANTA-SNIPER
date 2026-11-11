@@ -1,0 +1,3844 @@
+{
+  "schema": "qirvanta.v22.screenshot-case.v1",
+  "screenshot_clock_utc": "2026-11-10T14:52:12+00:00",
+  "status": "NATIVE_INDICATOR_AND_STRATEGY_SEPARATE_HYPOTHETICAL_PATHS",
+  "scenario_basis": "Risk gates use native indicator values and fixed strategy defaults. Paths are diagnostic counterfactuals on complete chart candles known by the screenshot, with fees and two ticks of market and stop slippage. Rejected candidates were never enabled. Native strategy and indicator may load different warmup ranges.",
+  "tape_sha256": "33a11a68f3f9ac0801d40c6dd095df0afe9f88c81cf50b5e4400af5fed738988",
+  "frames": {
+    "5": {
+      "timeframe": 5,
+      "screen_last_confirmed_close": 1794322200000,
+      "observed_from": 1792726800000,
+      "observed_last_close_in_export": 1794322800000,
+      "indicator_ohlc_fingerprints": [
+        586837040,
+        652084830
+      ],
+      "peak": {
+        "price": 4148.71,
+        "open": 1794255900000,
+        "known": 1794256200000
+      },
+      "trough": {
+        "price": 4033.915,
+        "open": 1794321600000,
+        "known": 1794321900000
+      },
+      "peak_to_trough_price": 114.795,
+      "first_native_bearish_structure_after_peak": {
+        "known": 1794260700000,
+        "open_time": 1794260400000,
+        "open": 4137.23,
+        "high": 4137.78,
+        "low": 4134.085,
+        "close": 4135.255,
+        "atr": 4.86864973,
+        "ema21": 4136.72765752,
+        "ema55": 4127.56756521,
+        "adx": 46.90332261,
+        "di_plus": 26.00763056,
+        "di_minus": 17.02176105,
+        "prior_high": 4146.2,
+        "prior_low": 4136.335,
+        "trend": 0,
+        "structure": "MSS DOWN",
+        "regime": "POTENTIAL REVERSAL",
+        "h1_at": 1794258000000,
+        "h1_bias": 1,
+        "h4_at": 1794247200000,
+        "h4_bias": 1,
+        "h1_values": [
+          4141.69,
+          4109.57428116,
+          4089.5783031
+        ],
+        "h4_values": [
+          4102.16,
+          4073.37931935,
+          4033.76637686
+        ]
+      },
+      "model_firsts": {
+        "A": {
+          "first_watch": {
+            "time": 1794272400000,
+            "model": "A",
+            "side": -1,
+            "id": "A-SELL-1794272400000",
+            "state": "WATCH",
+            "reason": "KNOWN_SWING_APPROACH",
+            "level": 4121.65
+          },
+          "first_confirmation": {
+            "confirmation": {
+              "model": "A",
+              "side": -1,
+              "index": 3300,
+              "time": 1794282300000,
+              "watch_time": 1794279900000,
+              "trigger": 4110.09,
+              "stop_base": 4127.975,
+              "reference": 4109.445,
+              "atr": 4.27569121,
+              "extension": 1.731564,
+              "barrier": null,
+              "spike": false,
+              "htf_conflict": true
+            },
+            "plan": {
+              "id": "A-SELL-1794279900000|1794282300000",
+              "model": "A",
+              "side": -1,
+              "bar": 3300,
+              "time": 1794282300000,
+              "watch_time": 1794279900000,
+              "reference": 4109.445,
+              "stop": 4128.403,
+              "targets": [
+                4090.487,
+                4071.529,
+                4052.571
+              ],
+              "prior_atr": 4.27569121,
+              "risk_price": 18.958,
+              "cost_to_risk": 0.0371347188521996,
+              "net_room_r": 0.9628652811478003
+            },
+            "indicator_htf_context": {
+              "h1_known": 1794279600000,
+              "h1_bias": 0,
+              "h4_known": 1794276000000,
+              "h4_bias": 1,
+              "h1_confirmed_values": [
+                4111.655,
+                4116.22851843,
+                4095.95752576
+              ],
+              "h4_confirmed_values": [
+                4127.715,
+                4083.88137963,
+                4040.80383129
+              ]
+            },
+            "primary_geometry_gate": "HTF_CONFLICT",
+            "all_geometry_gate_failures": [
+              "HTF_CONFLICT",
+              "OVERSIZED_STOP"
+            ],
+            "native_strategy_match": "NO_MATCHING_NATIVE_SUBMISSION",
+            "native_lifecycle": [
+              {
+                "state": "WATCH",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794279900000",
+                "reason": "KNOWN_SWING_APPROACH",
+                "known_at": 1794279900000,
+                "effective_at": null,
+                "price": 4110.09
+              },
+              {
+                "state": "CONFIRMING",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794279900000",
+                "reason": "WAITING_FOR_STRUCTURE_BREAK",
+                "known_at": 1794280200000,
+                "effective_at": null,
+                "price": 4110.09
+              },
+              {
+                "state": "CONFIRMED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794279900000",
+                "reason": "STRUCTURE_BREAK",
+                "known_at": 1794282300000,
+                "effective_at": null,
+                "price": 4110.09
+              },
+              {
+                "state": "REJECTED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794279900000",
+                "reason": "HTF_CONFLICT",
+                "known_at": 1794282300000,
+                "effective_at": null,
+                "price": 4109.445
+              }
+            ],
+            "native_risk_gate_pass_observed": false,
+            "native_rejection_reasons": [
+              "HTF_CONFLICT"
+            ],
+            "native_fill_known_by_screen": null,
+            "native_exit_parts_known_by_screen": [],
+            "hypothetical_fixed_path": {
+              "status": "CLOSED_HYPOTHETICAL",
+              "known_confirmation": 1794282300000,
+              "entry_bar_open": 1794282300000,
+              "entry_price_after_slippage": 4109.518,
+              "confirmation_to_entry_open_minutes": 0.0,
+              "actual_initial_risk_usd": 56.655,
+              "gap_invalid_at_fill": true,
+              "exit_parts": [
+                {
+                  "bar": 3302,
+                  "time": 1794282600000,
+                  "price": 4108.402,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": 0.766,
+                  "reason": "GAP_INVALID"
+                },
+                {
+                  "bar": 3302,
+                  "time": 1794282600000,
+                  "price": 4108.402,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": 0.766,
+                  "reason": "GAP_INVALID"
+                },
+                {
+                  "bar": 3302,
+                  "time": 1794282600000,
+                  "price": 4108.402,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": 0.766,
+                  "reason": "GAP_INVALID"
+                }
+              ],
+              "fee_usd_on_realized_parts": 1.05,
+              "net_realized_parts_usd": 2.298,
+              "full_campaign_net_usd": 2.298,
+              "full_campaign_stressed_net_usd": 0.273,
+              "favorable_excursion_price": 1.3029999999998836,
+              "adverse_excursion_price": 2.2020000000002256,
+              "favorable_fraction_of_observed_peak_to_trough": 0.01135066858312542
+            }
+          },
+          "first_risk_valid_indicator_candidate": null,
+          "first_risk_rejected_indicator_candidate": {
+            "confirmation": {
+              "model": "A",
+              "side": -1,
+              "index": 3300,
+              "time": 1794282300000,
+              "watch_time": 1794279900000,
+              "trigger": 4110.09,
+              "stop_base": 4127.975,
+              "reference": 4109.445,
+              "atr": 4.27569121,
+              "extension": 1.731564,
+              "barrier": null,
+              "spike": false,
+              "htf_conflict": true
+            },
+            "plan": {
+              "id": "A-SELL-1794279900000|1794282300000",
+              "model": "A",
+              "side": -1,
+              "bar": 3300,
+              "time": 1794282300000,
+              "watch_time": 1794279900000,
+              "reference": 4109.445,
+              "stop": 4128.403,
+              "targets": [
+                4090.487,
+                4071.529,
+                4052.571
+              ],
+              "prior_atr": 4.27569121,
+              "risk_price": 18.958,
+              "cost_to_risk": 0.0371347188521996,
+              "net_room_r": 0.9628652811478003
+            },
+            "indicator_htf_context": {
+              "h1_known": 1794279600000,
+              "h1_bias": 0,
+              "h4_known": 1794276000000,
+              "h4_bias": 1,
+              "h1_confirmed_values": [
+                4111.655,
+                4116.22851843,
+                4095.95752576
+              ],
+              "h4_confirmed_values": [
+                4127.715,
+                4083.88137963,
+                4040.80383129
+              ]
+            },
+            "primary_geometry_gate": "HTF_CONFLICT",
+            "all_geometry_gate_failures": [
+              "HTF_CONFLICT",
+              "OVERSIZED_STOP"
+            ],
+            "native_strategy_match": "NO_MATCHING_NATIVE_SUBMISSION",
+            "native_lifecycle": [
+              {
+                "state": "WATCH",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794279900000",
+                "reason": "KNOWN_SWING_APPROACH",
+                "known_at": 1794279900000,
+                "effective_at": null,
+                "price": 4110.09
+              },
+              {
+                "state": "CONFIRMING",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794279900000",
+                "reason": "WAITING_FOR_STRUCTURE_BREAK",
+                "known_at": 1794280200000,
+                "effective_at": null,
+                "price": 4110.09
+              },
+              {
+                "state": "CONFIRMED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794279900000",
+                "reason": "STRUCTURE_BREAK",
+                "known_at": 1794282300000,
+                "effective_at": null,
+                "price": 4110.09
+              },
+              {
+                "state": "REJECTED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794279900000",
+                "reason": "HTF_CONFLICT",
+                "known_at": 1794282300000,
+                "effective_at": null,
+                "price": 4109.445
+              }
+            ],
+            "native_risk_gate_pass_observed": false,
+            "native_rejection_reasons": [
+              "HTF_CONFLICT"
+            ],
+            "native_fill_known_by_screen": null,
+            "native_exit_parts_known_by_screen": [],
+            "hypothetical_fixed_path": {
+              "status": "CLOSED_HYPOTHETICAL",
+              "known_confirmation": 1794282300000,
+              "entry_bar_open": 1794282300000,
+              "entry_price_after_slippage": 4109.518,
+              "confirmation_to_entry_open_minutes": 0.0,
+              "actual_initial_risk_usd": 56.655,
+              "gap_invalid_at_fill": true,
+              "exit_parts": [
+                {
+                  "bar": 3302,
+                  "time": 1794282600000,
+                  "price": 4108.402,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": 0.766,
+                  "reason": "GAP_INVALID"
+                },
+                {
+                  "bar": 3302,
+                  "time": 1794282600000,
+                  "price": 4108.402,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": 0.766,
+                  "reason": "GAP_INVALID"
+                },
+                {
+                  "bar": 3302,
+                  "time": 1794282600000,
+                  "price": 4108.402,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": 0.766,
+                  "reason": "GAP_INVALID"
+                }
+              ],
+              "fee_usd_on_realized_parts": 1.05,
+              "net_realized_parts_usd": 2.298,
+              "full_campaign_net_usd": 2.298,
+              "full_campaign_stressed_net_usd": 0.273,
+              "favorable_excursion_price": 1.3029999999998836,
+              "adverse_excursion_price": 2.2020000000002256,
+              "favorable_fraction_of_observed_peak_to_trough": 0.01135066858312542
+            }
+          },
+          "first_native_entry_valid": {
+            "confirmation": {
+              "model": "A",
+              "side": -1,
+              "index": 3416,
+              "time": 1794317100000,
+              "watch_time": 1794316800000,
+              "trigger": 4072.29,
+              "stop_base": 4079.8,
+              "reference": 4070.065,
+              "atr": 4.28277609,
+              "extension": 1.37223081,
+              "barrier": null,
+              "spike": false,
+              "htf_conflict": true
+            },
+            "plan": {
+              "id": "A-SELL-1794316800000|1794317100000",
+              "model": "A",
+              "side": -1,
+              "bar": 3416,
+              "time": 1794317100000,
+              "watch_time": 1794316800000,
+              "reference": 4070.065,
+              "stop": 4080.229,
+              "targets": [
+                4059.901,
+                4049.737,
+                4039.573
+              ],
+              "prior_atr": 4.28277609,
+              "risk_price": 10.164,
+              "cost_to_risk": 0.06926406926406926,
+              "net_room_r": 0.9307359307359306
+            },
+            "indicator_htf_context": {
+              "h1_known": 1794315600000,
+              "h1_bias": 0,
+              "h4_known": 1794304800000,
+              "h4_bias": 1,
+              "h1_confirmed_values": [
+                4079.11,
+                4104.31148314,
+                4097.07160315
+              ],
+              "h4_confirmed_values": [
+                4087.525,
+                4087.49804101,
+                4045.32504848
+              ]
+            },
+            "primary_geometry_gate": "HTF_CONFLICT",
+            "all_geometry_gate_failures": [
+              "HTF_CONFLICT"
+            ],
+            "native_strategy_match": "MATCHED_NATIVE_SUBMISSION",
+            "native_lifecycle": [
+              {
+                "state": "WATCH",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794316800000",
+                "reason": "KNOWN_SWING_APPROACH",
+                "known_at": 1794316800000,
+                "effective_at": null,
+                "price": 4072.29
+              },
+              {
+                "state": "CONFIRMING",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794316800000",
+                "reason": "WAITING_FOR_STRUCTURE_BREAK",
+                "known_at": 1794317100000,
+                "effective_at": null,
+                "price": 4072.29
+              },
+              {
+                "state": "CONFIRMED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794316800000",
+                "reason": "STRUCTURE_BREAK",
+                "known_at": 1794317100000,
+                "effective_at": null,
+                "price": 4072.29
+              },
+              {
+                "state": "ENTRY_VALID",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794316800000",
+                "reason": "",
+                "known_at": 1794317100000,
+                "effective_at": null,
+                "price": 4070.065
+              },
+              {
+                "state": "SUBMITTED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794316800000|1794317100000",
+                "reason": "NEXT_AVAILABLE_TICK",
+                "known_at": 1794317100000,
+                "effective_at": null,
+                "price": 4070.065
+              },
+              {
+                "state": "FILLED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794316800000|1794317100000",
+                "reason": "NATIVE_NEXT_TICK",
+                "known_at": 1794317400000,
+                "effective_at": 1794317100000,
+                "price": 4070.128
+              },
+              {
+                "state": "ACTIVE",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794316800000|1794317100000",
+                "reason": "",
+                "known_at": 1794317400000,
+                "effective_at": 1794317100000,
+                "price": 4070.128
+              },
+              {
+                "state": "STOP_FILLED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794316800000|1794317100000",
+                "reason": "SL",
+                "known_at": 1794317700000,
+                "effective_at": 1794317400000,
+                "price": 4080.231
+              },
+              {
+                "state": "STOP_FILLED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794316800000|1794317100000",
+                "reason": "SL",
+                "known_at": 1794317700000,
+                "effective_at": 1794317400000,
+                "price": 4080.231
+              },
+              {
+                "state": "STOP_FILLED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794316800000|1794317100000",
+                "reason": "SL",
+                "known_at": 1794317700000,
+                "effective_at": 1794317400000,
+                "price": 4080.231
+              },
+              {
+                "state": "CLOSED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794316800000|1794317100000",
+                "reason": "SL",
+                "known_at": 1794317700000,
+                "effective_at": null,
+                "price": null
+              }
+            ],
+            "native_risk_gate_pass_observed": true,
+            "native_rejection_reasons": [],
+            "native_fill_known_by_screen": 4070.128,
+            "native_exit_parts_known_by_screen": [
+              {
+                "schema": "qirvanta.native.v1",
+                "run_id": "v22|ABC|A|5",
+                "kind": "closed",
+                "trade_index": 100,
+                "entry_id": "A-SELL-1794316800000|1794317100000",
+                "exit_id": "A-SELL-1794316800000|1794317100000|T1",
+                "exit_comment": "SL",
+                "entry_time": 1794317100000,
+                "exit_time": 1794317400000,
+                "entry_bar_index": 5969,
+                "exit_bar_index": 5970,
+                "entry_price": 4070.128,
+                "exit_price": 4080.231,
+                "size": -1.0,
+                "profit": -10.453,
+                "commission": 0.35,
+                "max_drawdown": 10.278,
+                "max_runup": 1.858,
+                "gross_cash_from_prices": -10.103,
+                "net_cash": -10.453,
+                "api_profit_classification": "NET"
+              },
+              {
+                "schema": "qirvanta.native.v1",
+                "run_id": "v22|ABC|A|5",
+                "kind": "closed",
+                "trade_index": 101,
+                "entry_id": "A-SELL-1794316800000|1794317100000",
+                "exit_id": "A-SELL-1794316800000|1794317100000|T2",
+                "exit_comment": "SL",
+                "entry_time": 1794317100000,
+                "exit_time": 1794317400000,
+                "entry_bar_index": 5969,
+                "exit_bar_index": 5970,
+                "entry_price": 4070.128,
+                "exit_price": 4080.231,
+                "size": -1.0,
+                "profit": -10.453,
+                "commission": 0.35,
+                "max_drawdown": 10.278,
+                "max_runup": 1.858,
+                "gross_cash_from_prices": -10.103,
+                "net_cash": -10.453,
+                "api_profit_classification": "NET"
+              },
+              {
+                "schema": "qirvanta.native.v1",
+                "run_id": "v22|ABC|A|5",
+                "kind": "closed",
+                "trade_index": 102,
+                "entry_id": "A-SELL-1794316800000|1794317100000",
+                "exit_id": "A-SELL-1794316800000|1794317100000|T3",
+                "exit_comment": "SL",
+                "entry_time": 1794317100000,
+                "exit_time": 1794317400000,
+                "entry_bar_index": 5969,
+                "exit_bar_index": 5970,
+                "entry_price": 4070.128,
+                "exit_price": 4080.231,
+                "size": -1.0,
+                "profit": -10.453,
+                "commission": 0.35,
+                "max_drawdown": 10.278,
+                "max_runup": 1.858,
+                "gross_cash_from_prices": -10.103,
+                "net_cash": -10.453,
+                "api_profit_classification": "NET"
+              }
+            ],
+            "hypothetical_fixed_path": {
+              "status": "CLOSED_HYPOTHETICAL",
+              "known_confirmation": 1794317100000,
+              "entry_bar_open": 1794317100000,
+              "entry_price_after_slippage": 4070.128,
+              "confirmation_to_entry_open_minutes": 0.0,
+              "actual_initial_risk_usd": 30.303,
+              "gap_invalid_at_fill": false,
+              "exit_parts": [
+                {
+                  "bar": 3418,
+                  "time": 1794317400000,
+                  "price": 4080.231,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": -10.453,
+                  "reason": "STOP"
+                },
+                {
+                  "bar": 3418,
+                  "time": 1794317400000,
+                  "price": 4080.231,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": -10.453,
+                  "reason": "STOP"
+                },
+                {
+                  "bar": 3418,
+                  "time": 1794317400000,
+                  "price": 4080.231,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": -10.453,
+                  "reason": "STOP"
+                }
+              ],
+              "fee_usd_on_realized_parts": 1.05,
+              "net_realized_parts_usd": -31.359,
+              "full_campaign_net_usd": -31.359,
+              "full_campaign_stressed_net_usd": -33.384,
+              "favorable_excursion_price": 2.0330000000003565,
+              "adverse_excursion_price": 10.103000000000065,
+              "favorable_fraction_of_observed_peak_to_trough": 0.017709830567536524
+            }
+          },
+          "first_native_rejected_confirmation": {
+            "confirmation": {
+              "model": "A",
+              "side": -1,
+              "index": 3300,
+              "time": 1794282300000,
+              "watch_time": 1794279900000,
+              "trigger": 4110.09,
+              "stop_base": 4127.975,
+              "reference": 4109.445,
+              "atr": 4.27569121,
+              "extension": 1.731564,
+              "barrier": null,
+              "spike": false,
+              "htf_conflict": true
+            },
+            "plan": {
+              "id": "A-SELL-1794279900000|1794282300000",
+              "model": "A",
+              "side": -1,
+              "bar": 3300,
+              "time": 1794282300000,
+              "watch_time": 1794279900000,
+              "reference": 4109.445,
+              "stop": 4128.403,
+              "targets": [
+                4090.487,
+                4071.529,
+                4052.571
+              ],
+              "prior_atr": 4.27569121,
+              "risk_price": 18.958,
+              "cost_to_risk": 0.0371347188521996,
+              "net_room_r": 0.9628652811478003
+            },
+            "indicator_htf_context": {
+              "h1_known": 1794279600000,
+              "h1_bias": 0,
+              "h4_known": 1794276000000,
+              "h4_bias": 1,
+              "h1_confirmed_values": [
+                4111.655,
+                4116.22851843,
+                4095.95752576
+              ],
+              "h4_confirmed_values": [
+                4127.715,
+                4083.88137963,
+                4040.80383129
+              ]
+            },
+            "primary_geometry_gate": "HTF_CONFLICT",
+            "all_geometry_gate_failures": [
+              "HTF_CONFLICT",
+              "OVERSIZED_STOP"
+            ],
+            "native_strategy_match": "NO_MATCHING_NATIVE_SUBMISSION",
+            "native_lifecycle": [
+              {
+                "state": "WATCH",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794279900000",
+                "reason": "KNOWN_SWING_APPROACH",
+                "known_at": 1794279900000,
+                "effective_at": null,
+                "price": 4110.09
+              },
+              {
+                "state": "CONFIRMING",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794279900000",
+                "reason": "WAITING_FOR_STRUCTURE_BREAK",
+                "known_at": 1794280200000,
+                "effective_at": null,
+                "price": 4110.09
+              },
+              {
+                "state": "CONFIRMED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794279900000",
+                "reason": "STRUCTURE_BREAK",
+                "known_at": 1794282300000,
+                "effective_at": null,
+                "price": 4110.09
+              },
+              {
+                "state": "REJECTED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794279900000",
+                "reason": "HTF_CONFLICT",
+                "known_at": 1794282300000,
+                "effective_at": null,
+                "price": 4109.445
+              }
+            ],
+            "native_risk_gate_pass_observed": false,
+            "native_rejection_reasons": [
+              "HTF_CONFLICT"
+            ],
+            "native_fill_known_by_screen": null,
+            "native_exit_parts_known_by_screen": [],
+            "hypothetical_fixed_path": {
+              "status": "CLOSED_HYPOTHETICAL",
+              "known_confirmation": 1794282300000,
+              "entry_bar_open": 1794282300000,
+              "entry_price_after_slippage": 4109.518,
+              "confirmation_to_entry_open_minutes": 0.0,
+              "actual_initial_risk_usd": 56.655,
+              "gap_invalid_at_fill": true,
+              "exit_parts": [
+                {
+                  "bar": 3302,
+                  "time": 1794282600000,
+                  "price": 4108.402,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": 0.766,
+                  "reason": "GAP_INVALID"
+                },
+                {
+                  "bar": 3302,
+                  "time": 1794282600000,
+                  "price": 4108.402,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": 0.766,
+                  "reason": "GAP_INVALID"
+                },
+                {
+                  "bar": 3302,
+                  "time": 1794282600000,
+                  "price": 4108.402,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": 0.766,
+                  "reason": "GAP_INVALID"
+                }
+              ],
+              "fee_usd_on_realized_parts": 1.05,
+              "net_realized_parts_usd": 2.298,
+              "full_campaign_net_usd": 2.298,
+              "full_campaign_stressed_net_usd": 0.273,
+              "favorable_excursion_price": 1.3029999999998836,
+              "adverse_excursion_price": 2.2020000000002256,
+              "favorable_fraction_of_observed_peak_to_trough": 0.01135066858312542
+            }
+          },
+          "first_exact_native_admission_of_an_indicator_candidate": {
+            "confirmation": {
+              "model": "A",
+              "side": -1,
+              "index": 3416,
+              "time": 1794317100000,
+              "watch_time": 1794316800000,
+              "trigger": 4072.29,
+              "stop_base": 4079.8,
+              "reference": 4070.065,
+              "atr": 4.28277609,
+              "extension": 1.37223081,
+              "barrier": null,
+              "spike": false,
+              "htf_conflict": true
+            },
+            "plan": {
+              "id": "A-SELL-1794316800000|1794317100000",
+              "model": "A",
+              "side": -1,
+              "bar": 3416,
+              "time": 1794317100000,
+              "watch_time": 1794316800000,
+              "reference": 4070.065,
+              "stop": 4080.229,
+              "targets": [
+                4059.901,
+                4049.737,
+                4039.573
+              ],
+              "prior_atr": 4.28277609,
+              "risk_price": 10.164,
+              "cost_to_risk": 0.06926406926406926,
+              "net_room_r": 0.9307359307359306
+            },
+            "indicator_htf_context": {
+              "h1_known": 1794315600000,
+              "h1_bias": 0,
+              "h4_known": 1794304800000,
+              "h4_bias": 1,
+              "h1_confirmed_values": [
+                4079.11,
+                4104.31148314,
+                4097.07160315
+              ],
+              "h4_confirmed_values": [
+                4087.525,
+                4087.49804101,
+                4045.32504848
+              ]
+            },
+            "primary_geometry_gate": "HTF_CONFLICT",
+            "all_geometry_gate_failures": [
+              "HTF_CONFLICT"
+            ],
+            "native_strategy_match": "MATCHED_NATIVE_SUBMISSION",
+            "native_lifecycle": [
+              {
+                "state": "WATCH",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794316800000",
+                "reason": "KNOWN_SWING_APPROACH",
+                "known_at": 1794316800000,
+                "effective_at": null,
+                "price": 4072.29
+              },
+              {
+                "state": "CONFIRMING",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794316800000",
+                "reason": "WAITING_FOR_STRUCTURE_BREAK",
+                "known_at": 1794317100000,
+                "effective_at": null,
+                "price": 4072.29
+              },
+              {
+                "state": "CONFIRMED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794316800000",
+                "reason": "STRUCTURE_BREAK",
+                "known_at": 1794317100000,
+                "effective_at": null,
+                "price": 4072.29
+              },
+              {
+                "state": "ENTRY_VALID",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794316800000",
+                "reason": "",
+                "known_at": 1794317100000,
+                "effective_at": null,
+                "price": 4070.065
+              },
+              {
+                "state": "SUBMITTED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794316800000|1794317100000",
+                "reason": "NEXT_AVAILABLE_TICK",
+                "known_at": 1794317100000,
+                "effective_at": null,
+                "price": 4070.065
+              },
+              {
+                "state": "FILLED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794316800000|1794317100000",
+                "reason": "NATIVE_NEXT_TICK",
+                "known_at": 1794317400000,
+                "effective_at": 1794317100000,
+                "price": 4070.128
+              },
+              {
+                "state": "ACTIVE",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794316800000|1794317100000",
+                "reason": "",
+                "known_at": 1794317400000,
+                "effective_at": 1794317100000,
+                "price": 4070.128
+              },
+              {
+                "state": "STOP_FILLED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794316800000|1794317100000",
+                "reason": "SL",
+                "known_at": 1794317700000,
+                "effective_at": 1794317400000,
+                "price": 4080.231
+              },
+              {
+                "state": "STOP_FILLED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794316800000|1794317100000",
+                "reason": "SL",
+                "known_at": 1794317700000,
+                "effective_at": 1794317400000,
+                "price": 4080.231
+              },
+              {
+                "state": "STOP_FILLED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794316800000|1794317100000",
+                "reason": "SL",
+                "known_at": 1794317700000,
+                "effective_at": 1794317400000,
+                "price": 4080.231
+              },
+              {
+                "state": "CLOSED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794316800000|1794317100000",
+                "reason": "SL",
+                "known_at": 1794317700000,
+                "effective_at": null,
+                "price": null
+              }
+            ],
+            "native_risk_gate_pass_observed": true,
+            "native_rejection_reasons": [],
+            "native_fill_known_by_screen": 4070.128,
+            "native_exit_parts_known_by_screen": [
+              {
+                "schema": "qirvanta.native.v1",
+                "run_id": "v22|ABC|A|5",
+                "kind": "closed",
+                "trade_index": 100,
+                "entry_id": "A-SELL-1794316800000|1794317100000",
+                "exit_id": "A-SELL-1794316800000|1794317100000|T1",
+                "exit_comment": "SL",
+                "entry_time": 1794317100000,
+                "exit_time": 1794317400000,
+                "entry_bar_index": 5969,
+                "exit_bar_index": 5970,
+                "entry_price": 4070.128,
+                "exit_price": 4080.231,
+                "size": -1.0,
+                "profit": -10.453,
+                "commission": 0.35,
+                "max_drawdown": 10.278,
+                "max_runup": 1.858,
+                "gross_cash_from_prices": -10.103,
+                "net_cash": -10.453,
+                "api_profit_classification": "NET"
+              },
+              {
+                "schema": "qirvanta.native.v1",
+                "run_id": "v22|ABC|A|5",
+                "kind": "closed",
+                "trade_index": 101,
+                "entry_id": "A-SELL-1794316800000|1794317100000",
+                "exit_id": "A-SELL-1794316800000|1794317100000|T2",
+                "exit_comment": "SL",
+                "entry_time": 1794317100000,
+                "exit_time": 1794317400000,
+                "entry_bar_index": 5969,
+                "exit_bar_index": 5970,
+                "entry_price": 4070.128,
+                "exit_price": 4080.231,
+                "size": -1.0,
+                "profit": -10.453,
+                "commission": 0.35,
+                "max_drawdown": 10.278,
+                "max_runup": 1.858,
+                "gross_cash_from_prices": -10.103,
+                "net_cash": -10.453,
+                "api_profit_classification": "NET"
+              },
+              {
+                "schema": "qirvanta.native.v1",
+                "run_id": "v22|ABC|A|5",
+                "kind": "closed",
+                "trade_index": 102,
+                "entry_id": "A-SELL-1794316800000|1794317100000",
+                "exit_id": "A-SELL-1794316800000|1794317100000|T3",
+                "exit_comment": "SL",
+                "entry_time": 1794317100000,
+                "exit_time": 1794317400000,
+                "entry_bar_index": 5969,
+                "exit_bar_index": 5970,
+                "entry_price": 4070.128,
+                "exit_price": 4080.231,
+                "size": -1.0,
+                "profit": -10.453,
+                "commission": 0.35,
+                "max_drawdown": 10.278,
+                "max_runup": 1.858,
+                "gross_cash_from_prices": -10.103,
+                "net_cash": -10.453,
+                "api_profit_classification": "NET"
+              }
+            ],
+            "hypothetical_fixed_path": {
+              "status": "CLOSED_HYPOTHETICAL",
+              "known_confirmation": 1794317100000,
+              "entry_bar_open": 1794317100000,
+              "entry_price_after_slippage": 4070.128,
+              "confirmation_to_entry_open_minutes": 0.0,
+              "actual_initial_risk_usd": 30.303,
+              "gap_invalid_at_fill": false,
+              "exit_parts": [
+                {
+                  "bar": 3418,
+                  "time": 1794317400000,
+                  "price": 4080.231,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": -10.453,
+                  "reason": "STOP"
+                },
+                {
+                  "bar": 3418,
+                  "time": 1794317400000,
+                  "price": 4080.231,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": -10.453,
+                  "reason": "STOP"
+                },
+                {
+                  "bar": 3418,
+                  "time": 1794317400000,
+                  "price": 4080.231,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": -10.453,
+                  "reason": "STOP"
+                }
+              ],
+              "fee_usd_on_realized_parts": 1.05,
+              "net_realized_parts_usd": -31.359,
+              "full_campaign_net_usd": -31.359,
+              "full_campaign_stressed_net_usd": -33.384,
+              "favorable_excursion_price": 2.0330000000003565,
+              "adverse_excursion_price": 10.103000000000065,
+              "favorable_fraction_of_observed_peak_to_trough": 0.017709830567536524
+            }
+          },
+          "confirmations": 7,
+          "primary_geometry_gate_counts": {
+            "HTF_CONFLICT": 6,
+            "INSUFFICIENT_ROOM": 1
+          },
+          "native_rejection_counts": {
+            "HTF_CONFLICT": 3,
+            "EXCESSIVE_EXTENSION": 2,
+            "INSUFFICIENT_ROOM": 1
+          }
+        },
+        "B": {
+          "first_watch": {
+            "time": 1794272700000,
+            "model": "B",
+            "side": -1,
+            "id": "B-SELL-1794272700000",
+            "state": "WATCH",
+            "reason": "PRIOR_EMA21_PULLBACK",
+            "level": 4130.97335949
+          },
+          "first_confirmation": {
+            "confirmation": {
+              "model": "B",
+              "side": -1,
+              "index": 3349,
+              "time": 1794297000000,
+              "watch_time": 1794296100000,
+              "trigger": 4120.20981679,
+              "stop_base": 4120.115,
+              "reference": 4114.295,
+              "atr": 4.05227405,
+              "extension": 1.07862001,
+              "barrier": null,
+              "spike": false,
+              "htf_conflict": true
+            },
+            "plan": {
+              "id": "B-SELL-1794296100000|1794297000000",
+              "model": "B",
+              "side": -1,
+              "bar": 3349,
+              "time": 1794297000000,
+              "watch_time": 1794296100000,
+              "reference": 4114.295,
+              "stop": 4120.521,
+              "targets": [
+                4108.069,
+                4101.843,
+                4095.617
+              ],
+              "prior_atr": 4.05227405,
+              "risk_price": 6.226,
+              "cost_to_risk": 0.11307420494699646,
+              "net_room_r": 0.8869257950530036
+            },
+            "indicator_htf_context": {
+              "h1_known": 1794294000000,
+              "h1_bias": 1,
+              "h4_known": 1794290400000,
+              "h4_bias": 1,
+              "h1_confirmed_values": [
+                4121.245,
+                4116.84745777,
+                4098.92824626
+              ],
+              "h4_confirmed_values": [
+                4123.635,
+                4087.49534511,
+                4043.76208732
+              ]
+            },
+            "primary_geometry_gate": "HTF_CONFLICT",
+            "all_geometry_gate_failures": [
+              "HTF_CONFLICT"
+            ],
+            "native_strategy_match": "NO_MATCHING_NATIVE_SUBMISSION",
+            "native_lifecycle": [
+              {
+                "state": "WATCH",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794296100000",
+                "reason": "PRIOR_EMA21_PULLBACK",
+                "known_at": 1794296100000,
+                "effective_at": null,
+                "price": 4120.20981679
+              },
+              {
+                "state": "CONFIRMING",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794296100000",
+                "reason": "WAITING_FOR_PULLBACK_REJECTION",
+                "known_at": 1794296400000,
+                "effective_at": null,
+                "price": 4120.20981679
+              },
+              {
+                "state": "CONFIRMED",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794296100000",
+                "reason": "PULLBACK_REJECTION",
+                "known_at": 1794297000000,
+                "effective_at": null,
+                "price": 4120.20981679
+              },
+              {
+                "state": "REJECTED",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794296100000",
+                "reason": "HTF_CONFLICT",
+                "known_at": 1794297000000,
+                "effective_at": null,
+                "price": 4114.295
+              }
+            ],
+            "native_risk_gate_pass_observed": false,
+            "native_rejection_reasons": [
+              "HTF_CONFLICT"
+            ],
+            "native_fill_known_by_screen": null,
+            "native_exit_parts_known_by_screen": [],
+            "hypothetical_fixed_path": {
+              "status": "CLOSED_HYPOTHETICAL",
+              "known_confirmation": 1794297000000,
+              "entry_bar_open": 1794297000000,
+              "entry_price_after_slippage": 4114.268,
+              "confirmation_to_entry_open_minutes": 0.0,
+              "actual_initial_risk_usd": 18.759,
+              "gap_invalid_at_fill": false,
+              "exit_parts": [
+                {
+                  "bar": 3355,
+                  "time": 1794298500000,
+                  "price": 4120.523,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": -6.605,
+                  "reason": "STOP"
+                },
+                {
+                  "bar": 3355,
+                  "time": 1794298500000,
+                  "price": 4120.523,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": -6.605,
+                  "reason": "STOP"
+                },
+                {
+                  "bar": 3355,
+                  "time": 1794298500000,
+                  "price": 4120.523,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": -6.605,
+                  "reason": "STOP"
+                }
+              ],
+              "fee_usd_on_realized_parts": 1.05,
+              "net_realized_parts_usd": -19.815,
+              "full_campaign_net_usd": -19.815,
+              "full_campaign_stressed_net_usd": -21.84,
+              "favorable_excursion_price": 1.9679999999998472,
+              "adverse_excursion_price": 6.255000000000109,
+              "favorable_fraction_of_observed_peak_to_trough": 0.017143603815495848
+            }
+          },
+          "first_risk_valid_indicator_candidate": null,
+          "first_risk_rejected_indicator_candidate": {
+            "confirmation": {
+              "model": "B",
+              "side": -1,
+              "index": 3349,
+              "time": 1794297000000,
+              "watch_time": 1794296100000,
+              "trigger": 4120.20981679,
+              "stop_base": 4120.115,
+              "reference": 4114.295,
+              "atr": 4.05227405,
+              "extension": 1.07862001,
+              "barrier": null,
+              "spike": false,
+              "htf_conflict": true
+            },
+            "plan": {
+              "id": "B-SELL-1794296100000|1794297000000",
+              "model": "B",
+              "side": -1,
+              "bar": 3349,
+              "time": 1794297000000,
+              "watch_time": 1794296100000,
+              "reference": 4114.295,
+              "stop": 4120.521,
+              "targets": [
+                4108.069,
+                4101.843,
+                4095.617
+              ],
+              "prior_atr": 4.05227405,
+              "risk_price": 6.226,
+              "cost_to_risk": 0.11307420494699646,
+              "net_room_r": 0.8869257950530036
+            },
+            "indicator_htf_context": {
+              "h1_known": 1794294000000,
+              "h1_bias": 1,
+              "h4_known": 1794290400000,
+              "h4_bias": 1,
+              "h1_confirmed_values": [
+                4121.245,
+                4116.84745777,
+                4098.92824626
+              ],
+              "h4_confirmed_values": [
+                4123.635,
+                4087.49534511,
+                4043.76208732
+              ]
+            },
+            "primary_geometry_gate": "HTF_CONFLICT",
+            "all_geometry_gate_failures": [
+              "HTF_CONFLICT"
+            ],
+            "native_strategy_match": "NO_MATCHING_NATIVE_SUBMISSION",
+            "native_lifecycle": [
+              {
+                "state": "WATCH",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794296100000",
+                "reason": "PRIOR_EMA21_PULLBACK",
+                "known_at": 1794296100000,
+                "effective_at": null,
+                "price": 4120.20981679
+              },
+              {
+                "state": "CONFIRMING",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794296100000",
+                "reason": "WAITING_FOR_PULLBACK_REJECTION",
+                "known_at": 1794296400000,
+                "effective_at": null,
+                "price": 4120.20981679
+              },
+              {
+                "state": "CONFIRMED",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794296100000",
+                "reason": "PULLBACK_REJECTION",
+                "known_at": 1794297000000,
+                "effective_at": null,
+                "price": 4120.20981679
+              },
+              {
+                "state": "REJECTED",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794296100000",
+                "reason": "HTF_CONFLICT",
+                "known_at": 1794297000000,
+                "effective_at": null,
+                "price": 4114.295
+              }
+            ],
+            "native_risk_gate_pass_observed": false,
+            "native_rejection_reasons": [
+              "HTF_CONFLICT"
+            ],
+            "native_fill_known_by_screen": null,
+            "native_exit_parts_known_by_screen": [],
+            "hypothetical_fixed_path": {
+              "status": "CLOSED_HYPOTHETICAL",
+              "known_confirmation": 1794297000000,
+              "entry_bar_open": 1794297000000,
+              "entry_price_after_slippage": 4114.268,
+              "confirmation_to_entry_open_minutes": 0.0,
+              "actual_initial_risk_usd": 18.759,
+              "gap_invalid_at_fill": false,
+              "exit_parts": [
+                {
+                  "bar": 3355,
+                  "time": 1794298500000,
+                  "price": 4120.523,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": -6.605,
+                  "reason": "STOP"
+                },
+                {
+                  "bar": 3355,
+                  "time": 1794298500000,
+                  "price": 4120.523,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": -6.605,
+                  "reason": "STOP"
+                },
+                {
+                  "bar": 3355,
+                  "time": 1794298500000,
+                  "price": 4120.523,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": -6.605,
+                  "reason": "STOP"
+                }
+              ],
+              "fee_usd_on_realized_parts": 1.05,
+              "net_realized_parts_usd": -19.815,
+              "full_campaign_net_usd": -19.815,
+              "full_campaign_stressed_net_usd": -21.84,
+              "favorable_excursion_price": 1.9679999999998472,
+              "adverse_excursion_price": 6.255000000000109,
+              "favorable_fraction_of_observed_peak_to_trough": 0.017143603815495848
+            }
+          },
+          "first_native_entry_valid": {
+            "confirmation": {
+              "model": "B",
+              "side": -1,
+              "index": 3416,
+              "time": 1794317100000,
+              "watch_time": 1794316200000,
+              "trigger": 4076.66732318,
+              "stop_base": 4079.8,
+              "reference": 4070.065,
+              "atr": 4.28277609,
+              "extension": 1.37223081,
+              "barrier": null,
+              "spike": false,
+              "htf_conflict": true
+            },
+            "plan": {
+              "id": "B-SELL-1794316200000|1794317100000",
+              "model": "B",
+              "side": -1,
+              "bar": 3416,
+              "time": 1794317100000,
+              "watch_time": 1794316200000,
+              "reference": 4070.065,
+              "stop": 4080.229,
+              "targets": [
+                4059.901,
+                4049.737,
+                4039.573
+              ],
+              "prior_atr": 4.28277609,
+              "risk_price": 10.164,
+              "cost_to_risk": 0.06926406926406926,
+              "net_room_r": 0.9307359307359306
+            },
+            "indicator_htf_context": {
+              "h1_known": 1794315600000,
+              "h1_bias": 0,
+              "h4_known": 1794304800000,
+              "h4_bias": 1,
+              "h1_confirmed_values": [
+                4079.11,
+                4104.31148314,
+                4097.07160315
+              ],
+              "h4_confirmed_values": [
+                4087.525,
+                4087.49804101,
+                4045.32504848
+              ]
+            },
+            "primary_geometry_gate": "HTF_CONFLICT",
+            "all_geometry_gate_failures": [
+              "HTF_CONFLICT"
+            ],
+            "native_strategy_match": "NO_MATCHING_NATIVE_SUBMISSION",
+            "native_lifecycle": [
+              {
+                "state": "WATCH",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794316200000",
+                "reason": "PRIOR_EMA21_PULLBACK",
+                "known_at": 1794316200000,
+                "effective_at": null,
+                "price": 4076.66732318
+              },
+              {
+                "state": "CONFIRMING",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794316200000",
+                "reason": "WAITING_FOR_PULLBACK_REJECTION",
+                "known_at": 1794316500000,
+                "effective_at": null,
+                "price": 4076.66732318
+              },
+              {
+                "state": "CONFIRMED",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794316200000",
+                "reason": "PULLBACK_REJECTION",
+                "known_at": 1794317100000,
+                "effective_at": null,
+                "price": 4076.66732318
+              },
+              {
+                "state": "ENTRY_VALID",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794316200000",
+                "reason": "",
+                "known_at": 1794317100000,
+                "effective_at": null,
+                "price": 4070.065
+              },
+              {
+                "state": "REJECTED",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794316200000",
+                "reason": "PORTFOLIO_PRIORITY",
+                "known_at": 1794317100000,
+                "effective_at": null,
+                "price": 4070.065
+              }
+            ],
+            "native_risk_gate_pass_observed": true,
+            "native_rejection_reasons": [
+              "PORTFOLIO_PRIORITY"
+            ],
+            "native_fill_known_by_screen": null,
+            "native_exit_parts_known_by_screen": [],
+            "hypothetical_fixed_path": {
+              "status": "CLOSED_HYPOTHETICAL",
+              "known_confirmation": 1794317100000,
+              "entry_bar_open": 1794317100000,
+              "entry_price_after_slippage": 4070.128,
+              "confirmation_to_entry_open_minutes": 0.0,
+              "actual_initial_risk_usd": 30.303,
+              "gap_invalid_at_fill": false,
+              "exit_parts": [
+                {
+                  "bar": 3418,
+                  "time": 1794317400000,
+                  "price": 4080.231,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": -10.453,
+                  "reason": "STOP"
+                },
+                {
+                  "bar": 3418,
+                  "time": 1794317400000,
+                  "price": 4080.231,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": -10.453,
+                  "reason": "STOP"
+                },
+                {
+                  "bar": 3418,
+                  "time": 1794317400000,
+                  "price": 4080.231,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": -10.453,
+                  "reason": "STOP"
+                }
+              ],
+              "fee_usd_on_realized_parts": 1.05,
+              "net_realized_parts_usd": -31.359,
+              "full_campaign_net_usd": -31.359,
+              "full_campaign_stressed_net_usd": -33.384,
+              "favorable_excursion_price": 2.0330000000003565,
+              "adverse_excursion_price": 10.103000000000065,
+              "favorable_fraction_of_observed_peak_to_trough": 0.017709830567536524
+            }
+          },
+          "first_native_rejected_confirmation": {
+            "confirmation": {
+              "model": "B",
+              "side": -1,
+              "index": 3349,
+              "time": 1794297000000,
+              "watch_time": 1794296100000,
+              "trigger": 4120.20981679,
+              "stop_base": 4120.115,
+              "reference": 4114.295,
+              "atr": 4.05227405,
+              "extension": 1.07862001,
+              "barrier": null,
+              "spike": false,
+              "htf_conflict": true
+            },
+            "plan": {
+              "id": "B-SELL-1794296100000|1794297000000",
+              "model": "B",
+              "side": -1,
+              "bar": 3349,
+              "time": 1794297000000,
+              "watch_time": 1794296100000,
+              "reference": 4114.295,
+              "stop": 4120.521,
+              "targets": [
+                4108.069,
+                4101.843,
+                4095.617
+              ],
+              "prior_atr": 4.05227405,
+              "risk_price": 6.226,
+              "cost_to_risk": 0.11307420494699646,
+              "net_room_r": 0.8869257950530036
+            },
+            "indicator_htf_context": {
+              "h1_known": 1794294000000,
+              "h1_bias": 1,
+              "h4_known": 1794290400000,
+              "h4_bias": 1,
+              "h1_confirmed_values": [
+                4121.245,
+                4116.84745777,
+                4098.92824626
+              ],
+              "h4_confirmed_values": [
+                4123.635,
+                4087.49534511,
+                4043.76208732
+              ]
+            },
+            "primary_geometry_gate": "HTF_CONFLICT",
+            "all_geometry_gate_failures": [
+              "HTF_CONFLICT"
+            ],
+            "native_strategy_match": "NO_MATCHING_NATIVE_SUBMISSION",
+            "native_lifecycle": [
+              {
+                "state": "WATCH",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794296100000",
+                "reason": "PRIOR_EMA21_PULLBACK",
+                "known_at": 1794296100000,
+                "effective_at": null,
+                "price": 4120.20981679
+              },
+              {
+                "state": "CONFIRMING",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794296100000",
+                "reason": "WAITING_FOR_PULLBACK_REJECTION",
+                "known_at": 1794296400000,
+                "effective_at": null,
+                "price": 4120.20981679
+              },
+              {
+                "state": "CONFIRMED",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794296100000",
+                "reason": "PULLBACK_REJECTION",
+                "known_at": 1794297000000,
+                "effective_at": null,
+                "price": 4120.20981679
+              },
+              {
+                "state": "REJECTED",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794296100000",
+                "reason": "HTF_CONFLICT",
+                "known_at": 1794297000000,
+                "effective_at": null,
+                "price": 4114.295
+              }
+            ],
+            "native_risk_gate_pass_observed": false,
+            "native_rejection_reasons": [
+              "HTF_CONFLICT"
+            ],
+            "native_fill_known_by_screen": null,
+            "native_exit_parts_known_by_screen": [],
+            "hypothetical_fixed_path": {
+              "status": "CLOSED_HYPOTHETICAL",
+              "known_confirmation": 1794297000000,
+              "entry_bar_open": 1794297000000,
+              "entry_price_after_slippage": 4114.268,
+              "confirmation_to_entry_open_minutes": 0.0,
+              "actual_initial_risk_usd": 18.759,
+              "gap_invalid_at_fill": false,
+              "exit_parts": [
+                {
+                  "bar": 3355,
+                  "time": 1794298500000,
+                  "price": 4120.523,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": -6.605,
+                  "reason": "STOP"
+                },
+                {
+                  "bar": 3355,
+                  "time": 1794298500000,
+                  "price": 4120.523,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": -6.605,
+                  "reason": "STOP"
+                },
+                {
+                  "bar": 3355,
+                  "time": 1794298500000,
+                  "price": 4120.523,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": -6.605,
+                  "reason": "STOP"
+                }
+              ],
+              "fee_usd_on_realized_parts": 1.05,
+              "net_realized_parts_usd": -19.815,
+              "full_campaign_net_usd": -19.815,
+              "full_campaign_stressed_net_usd": -21.84,
+              "favorable_excursion_price": 1.9679999999998472,
+              "adverse_excursion_price": 6.255000000000109,
+              "favorable_fraction_of_observed_peak_to_trough": 0.017143603815495848
+            }
+          },
+          "first_exact_native_admission_of_an_indicator_candidate": null,
+          "confirmations": 2,
+          "primary_geometry_gate_counts": {
+            "HTF_CONFLICT": 2
+          },
+          "native_rejection_counts": {
+            "HTF_CONFLICT": 1,
+            "PORTFOLIO_PRIORITY": 1
+          }
+        },
+        "C": {
+          "first_watch": {
+            "time": 1794279300000,
+            "model": "C",
+            "side": -1,
+            "id": "C-SELL-1794279300000",
+            "state": "WATCH",
+            "reason": "DIRECTIONAL_COMPRESSION",
+            "level": 4110.09
+          },
+          "first_confirmation": {
+            "confirmation": {
+              "model": "C",
+              "side": -1,
+              "index": 3300,
+              "time": 1794282300000,
+              "watch_time": 1794282000000,
+              "trigger": 4112.015,
+              "stop_base": 4117.51,
+              "reference": 4109.445,
+              "atr": 4.27569121,
+              "extension": 1.731564,
+              "barrier": null,
+              "spike": false,
+              "htf_conflict": true
+            },
+            "plan": {
+              "id": "C-SELL-1794282000000|1794282300000",
+              "model": "C",
+              "side": -1,
+              "bar": 3300,
+              "time": 1794282300000,
+              "watch_time": 1794282000000,
+              "reference": 4109.445,
+              "stop": 4117.938,
+              "targets": [
+                4100.952,
+                4092.459,
+                4083.966
+              ],
+              "prior_atr": 4.27569121,
+              "risk_price": 8.493,
+              "cost_to_risk": 0.08289179324149298,
+              "net_room_r": 0.917108206758507
+            },
+            "indicator_htf_context": {
+              "h1_known": 1794279600000,
+              "h1_bias": 0,
+              "h4_known": 1794276000000,
+              "h4_bias": 1,
+              "h1_confirmed_values": [
+                4111.655,
+                4116.22851843,
+                4095.95752576
+              ],
+              "h4_confirmed_values": [
+                4127.715,
+                4083.88137963,
+                4040.80383129
+              ]
+            },
+            "primary_geometry_gate": "HTF_CONFLICT",
+            "all_geometry_gate_failures": [
+              "HTF_CONFLICT"
+            ],
+            "native_strategy_match": "NO_MATCHING_NATIVE_SUBMISSION",
+            "native_lifecycle": [
+              {
+                "state": "WATCH",
+                "model": "C",
+                "side": -1,
+                "id": "C-SELL-1794282000000",
+                "reason": "DIRECTIONAL_COMPRESSION",
+                "known_at": 1794282000000,
+                "effective_at": null,
+                "price": 4112.015
+              },
+              {
+                "state": "CONFIRMING",
+                "model": "C",
+                "side": -1,
+                "id": "C-SELL-1794282000000",
+                "reason": "WAITING_FOR_BOX_BREAK",
+                "known_at": 1794282300000,
+                "effective_at": null,
+                "price": 4112.015
+              },
+              {
+                "state": "CONFIRMED",
+                "model": "C",
+                "side": -1,
+                "id": "C-SELL-1794282000000",
+                "reason": "BOX_BREAK_WITH_DISPLACEMENT",
+                "known_at": 1794282300000,
+                "effective_at": null,
+                "price": 4112.015
+              },
+              {
+                "state": "REJECTED",
+                "model": "C",
+                "side": -1,
+                "id": "C-SELL-1794282000000",
+                "reason": "HTF_CONFLICT",
+                "known_at": 1794282300000,
+                "effective_at": null,
+                "price": 4109.445
+              }
+            ],
+            "native_risk_gate_pass_observed": false,
+            "native_rejection_reasons": [
+              "HTF_CONFLICT"
+            ],
+            "native_fill_known_by_screen": null,
+            "native_exit_parts_known_by_screen": [],
+            "hypothetical_fixed_path": {
+              "status": "CLOSED_HYPOTHETICAL",
+              "known_confirmation": 1794282300000,
+              "entry_bar_open": 1794282300000,
+              "entry_price_after_slippage": 4109.518,
+              "confirmation_to_entry_open_minutes": 0.0,
+              "actual_initial_risk_usd": 25.26,
+              "gap_invalid_at_fill": false,
+              "exit_parts": [
+                {
+                  "bar": 3320,
+                  "time": 1794288000000,
+                  "price": 4117.94,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": -8.772,
+                  "reason": "STOP"
+                },
+                {
+                  "bar": 3320,
+                  "time": 1794288000000,
+                  "price": 4117.94,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": -8.772,
+                  "reason": "STOP"
+                },
+                {
+                  "bar": 3320,
+                  "time": 1794288000000,
+                  "price": 4117.94,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": -8.772,
+                  "reason": "STOP"
+                }
+              ],
+              "fee_usd_on_realized_parts": 1.05,
+              "net_realized_parts_usd": -26.316,
+              "full_campaign_net_usd": -26.316,
+              "full_campaign_stressed_net_usd": -28.341,
+              "favorable_excursion_price": 1.3029999999998836,
+              "adverse_excursion_price": 8.42199999999957,
+              "favorable_fraction_of_observed_peak_to_trough": 0.01135066858312542
+            }
+          },
+          "first_risk_valid_indicator_candidate": null,
+          "first_risk_rejected_indicator_candidate": {
+            "confirmation": {
+              "model": "C",
+              "side": -1,
+              "index": 3300,
+              "time": 1794282300000,
+              "watch_time": 1794282000000,
+              "trigger": 4112.015,
+              "stop_base": 4117.51,
+              "reference": 4109.445,
+              "atr": 4.27569121,
+              "extension": 1.731564,
+              "barrier": null,
+              "spike": false,
+              "htf_conflict": true
+            },
+            "plan": {
+              "id": "C-SELL-1794282000000|1794282300000",
+              "model": "C",
+              "side": -1,
+              "bar": 3300,
+              "time": 1794282300000,
+              "watch_time": 1794282000000,
+              "reference": 4109.445,
+              "stop": 4117.938,
+              "targets": [
+                4100.952,
+                4092.459,
+                4083.966
+              ],
+              "prior_atr": 4.27569121,
+              "risk_price": 8.493,
+              "cost_to_risk": 0.08289179324149298,
+              "net_room_r": 0.917108206758507
+            },
+            "indicator_htf_context": {
+              "h1_known": 1794279600000,
+              "h1_bias": 0,
+              "h4_known": 1794276000000,
+              "h4_bias": 1,
+              "h1_confirmed_values": [
+                4111.655,
+                4116.22851843,
+                4095.95752576
+              ],
+              "h4_confirmed_values": [
+                4127.715,
+                4083.88137963,
+                4040.80383129
+              ]
+            },
+            "primary_geometry_gate": "HTF_CONFLICT",
+            "all_geometry_gate_failures": [
+              "HTF_CONFLICT"
+            ],
+            "native_strategy_match": "NO_MATCHING_NATIVE_SUBMISSION",
+            "native_lifecycle": [
+              {
+                "state": "WATCH",
+                "model": "C",
+                "side": -1,
+                "id": "C-SELL-1794282000000",
+                "reason": "DIRECTIONAL_COMPRESSION",
+                "known_at": 1794282000000,
+                "effective_at": null,
+                "price": 4112.015
+              },
+              {
+                "state": "CONFIRMING",
+                "model": "C",
+                "side": -1,
+                "id": "C-SELL-1794282000000",
+                "reason": "WAITING_FOR_BOX_BREAK",
+                "known_at": 1794282300000,
+                "effective_at": null,
+                "price": 4112.015
+              },
+              {
+                "state": "CONFIRMED",
+                "model": "C",
+                "side": -1,
+                "id": "C-SELL-1794282000000",
+                "reason": "BOX_BREAK_WITH_DISPLACEMENT",
+                "known_at": 1794282300000,
+                "effective_at": null,
+                "price": 4112.015
+              },
+              {
+                "state": "REJECTED",
+                "model": "C",
+                "side": -1,
+                "id": "C-SELL-1794282000000",
+                "reason": "HTF_CONFLICT",
+                "known_at": 1794282300000,
+                "effective_at": null,
+                "price": 4109.445
+              }
+            ],
+            "native_risk_gate_pass_observed": false,
+            "native_rejection_reasons": [
+              "HTF_CONFLICT"
+            ],
+            "native_fill_known_by_screen": null,
+            "native_exit_parts_known_by_screen": [],
+            "hypothetical_fixed_path": {
+              "status": "CLOSED_HYPOTHETICAL",
+              "known_confirmation": 1794282300000,
+              "entry_bar_open": 1794282300000,
+              "entry_price_after_slippage": 4109.518,
+              "confirmation_to_entry_open_minutes": 0.0,
+              "actual_initial_risk_usd": 25.26,
+              "gap_invalid_at_fill": false,
+              "exit_parts": [
+                {
+                  "bar": 3320,
+                  "time": 1794288000000,
+                  "price": 4117.94,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": -8.772,
+                  "reason": "STOP"
+                },
+                {
+                  "bar": 3320,
+                  "time": 1794288000000,
+                  "price": 4117.94,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": -8.772,
+                  "reason": "STOP"
+                },
+                {
+                  "bar": 3320,
+                  "time": 1794288000000,
+                  "price": 4117.94,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": -8.772,
+                  "reason": "STOP"
+                }
+              ],
+              "fee_usd_on_realized_parts": 1.05,
+              "net_realized_parts_usd": -26.316,
+              "full_campaign_net_usd": -26.316,
+              "full_campaign_stressed_net_usd": -28.341,
+              "favorable_excursion_price": 1.3029999999998836,
+              "adverse_excursion_price": 8.42199999999957,
+              "favorable_fraction_of_observed_peak_to_trough": 0.01135066858312542
+            }
+          },
+          "first_native_entry_valid": null,
+          "first_native_rejected_confirmation": {
+            "confirmation": {
+              "model": "C",
+              "side": -1,
+              "index": 3300,
+              "time": 1794282300000,
+              "watch_time": 1794282000000,
+              "trigger": 4112.015,
+              "stop_base": 4117.51,
+              "reference": 4109.445,
+              "atr": 4.27569121,
+              "extension": 1.731564,
+              "barrier": null,
+              "spike": false,
+              "htf_conflict": true
+            },
+            "plan": {
+              "id": "C-SELL-1794282000000|1794282300000",
+              "model": "C",
+              "side": -1,
+              "bar": 3300,
+              "time": 1794282300000,
+              "watch_time": 1794282000000,
+              "reference": 4109.445,
+              "stop": 4117.938,
+              "targets": [
+                4100.952,
+                4092.459,
+                4083.966
+              ],
+              "prior_atr": 4.27569121,
+              "risk_price": 8.493,
+              "cost_to_risk": 0.08289179324149298,
+              "net_room_r": 0.917108206758507
+            },
+            "indicator_htf_context": {
+              "h1_known": 1794279600000,
+              "h1_bias": 0,
+              "h4_known": 1794276000000,
+              "h4_bias": 1,
+              "h1_confirmed_values": [
+                4111.655,
+                4116.22851843,
+                4095.95752576
+              ],
+              "h4_confirmed_values": [
+                4127.715,
+                4083.88137963,
+                4040.80383129
+              ]
+            },
+            "primary_geometry_gate": "HTF_CONFLICT",
+            "all_geometry_gate_failures": [
+              "HTF_CONFLICT"
+            ],
+            "native_strategy_match": "NO_MATCHING_NATIVE_SUBMISSION",
+            "native_lifecycle": [
+              {
+                "state": "WATCH",
+                "model": "C",
+                "side": -1,
+                "id": "C-SELL-1794282000000",
+                "reason": "DIRECTIONAL_COMPRESSION",
+                "known_at": 1794282000000,
+                "effective_at": null,
+                "price": 4112.015
+              },
+              {
+                "state": "CONFIRMING",
+                "model": "C",
+                "side": -1,
+                "id": "C-SELL-1794282000000",
+                "reason": "WAITING_FOR_BOX_BREAK",
+                "known_at": 1794282300000,
+                "effective_at": null,
+                "price": 4112.015
+              },
+              {
+                "state": "CONFIRMED",
+                "model": "C",
+                "side": -1,
+                "id": "C-SELL-1794282000000",
+                "reason": "BOX_BREAK_WITH_DISPLACEMENT",
+                "known_at": 1794282300000,
+                "effective_at": null,
+                "price": 4112.015
+              },
+              {
+                "state": "REJECTED",
+                "model": "C",
+                "side": -1,
+                "id": "C-SELL-1794282000000",
+                "reason": "HTF_CONFLICT",
+                "known_at": 1794282300000,
+                "effective_at": null,
+                "price": 4109.445
+              }
+            ],
+            "native_risk_gate_pass_observed": false,
+            "native_rejection_reasons": [
+              "HTF_CONFLICT"
+            ],
+            "native_fill_known_by_screen": null,
+            "native_exit_parts_known_by_screen": [],
+            "hypothetical_fixed_path": {
+              "status": "CLOSED_HYPOTHETICAL",
+              "known_confirmation": 1794282300000,
+              "entry_bar_open": 1794282300000,
+              "entry_price_after_slippage": 4109.518,
+              "confirmation_to_entry_open_minutes": 0.0,
+              "actual_initial_risk_usd": 25.26,
+              "gap_invalid_at_fill": false,
+              "exit_parts": [
+                {
+                  "bar": 3320,
+                  "time": 1794288000000,
+                  "price": 4117.94,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": -8.772,
+                  "reason": "STOP"
+                },
+                {
+                  "bar": 3320,
+                  "time": 1794288000000,
+                  "price": 4117.94,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": -8.772,
+                  "reason": "STOP"
+                },
+                {
+                  "bar": 3320,
+                  "time": 1794288000000,
+                  "price": 4117.94,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": -8.772,
+                  "reason": "STOP"
+                }
+              ],
+              "fee_usd_on_realized_parts": 1.05,
+              "net_realized_parts_usd": -26.316,
+              "full_campaign_net_usd": -26.316,
+              "full_campaign_stressed_net_usd": -28.341,
+              "favorable_excursion_price": 1.3029999999998836,
+              "adverse_excursion_price": 8.42199999999957,
+              "favorable_fraction_of_observed_peak_to_trough": 0.01135066858312542
+            }
+          },
+          "first_exact_native_admission_of_an_indicator_candidate": null,
+          "confirmations": 1,
+          "primary_geometry_gate_counts": {
+            "HTF_CONFLICT": 1
+          },
+          "native_rejection_counts": {
+            "HTF_CONFLICT": 1
+          }
+        }
+      },
+      "native_sell_submissions_in_case": [
+        {
+          "model": "A",
+          "id": "A-SELL-1794316800000|1794317100000",
+          "submission": {
+            "schema": "qirvanta.native.v1",
+            "run_id": "v22|ABC|A|5",
+            "kind": "submitted",
+            "plan_id": "A-SELL-1794316800000|1794317100000",
+            "entry_id": "A-SELL-1794316800000|1794317100000",
+            "submitted_time": 1794317100000,
+            "submitted_bar": 5968,
+            "quantity": 3.0,
+            "family": 1,
+            "side": -1,
+            "htf_bias": 0,
+            "regime": "POTENTIAL REVERSAL",
+            "reference": 4070.065,
+            "initial_sl": 4080.229,
+            "tp1": 4059.901,
+            "tp2": 4049.737,
+            "tp3": 4039.573,
+            "watch_time": 1794316800000,
+            "atr": 4.28277609
+          },
+          "entry_time": 1794317100000,
+          "actual_entry": 4070.128,
+          "native_parts_known_by_screen": [
+            {
+              "schema": "qirvanta.native.v1",
+              "run_id": "v22|ABC|A|5",
+              "kind": "closed",
+              "trade_index": 100,
+              "entry_id": "A-SELL-1794316800000|1794317100000",
+              "exit_id": "A-SELL-1794316800000|1794317100000|T1",
+              "exit_comment": "SL",
+              "entry_time": 1794317100000,
+              "exit_time": 1794317400000,
+              "entry_bar_index": 5969,
+              "exit_bar_index": 5970,
+              "entry_price": 4070.128,
+              "exit_price": 4080.231,
+              "size": -1.0,
+              "profit": -10.453,
+              "commission": 0.35,
+              "max_drawdown": 10.278,
+              "max_runup": 1.858,
+              "gross_cash_from_prices": -10.103,
+              "net_cash": -10.453,
+              "api_profit_classification": "NET"
+            },
+            {
+              "schema": "qirvanta.native.v1",
+              "run_id": "v22|ABC|A|5",
+              "kind": "closed",
+              "trade_index": 101,
+              "entry_id": "A-SELL-1794316800000|1794317100000",
+              "exit_id": "A-SELL-1794316800000|1794317100000|T2",
+              "exit_comment": "SL",
+              "entry_time": 1794317100000,
+              "exit_time": 1794317400000,
+              "entry_bar_index": 5969,
+              "exit_bar_index": 5970,
+              "entry_price": 4070.128,
+              "exit_price": 4080.231,
+              "size": -1.0,
+              "profit": -10.453,
+              "commission": 0.35,
+              "max_drawdown": 10.278,
+              "max_runup": 1.858,
+              "gross_cash_from_prices": -10.103,
+              "net_cash": -10.453,
+              "api_profit_classification": "NET"
+            },
+            {
+              "schema": "qirvanta.native.v1",
+              "run_id": "v22|ABC|A|5",
+              "kind": "closed",
+              "trade_index": 102,
+              "entry_id": "A-SELL-1794316800000|1794317100000",
+              "exit_id": "A-SELL-1794316800000|1794317100000|T3",
+              "exit_comment": "SL",
+              "entry_time": 1794317100000,
+              "exit_time": 1794317400000,
+              "entry_bar_index": 5969,
+              "exit_bar_index": 5970,
+              "entry_price": 4070.128,
+              "exit_price": 4080.231,
+              "size": -1.0,
+              "profit": -10.453,
+              "commission": 0.35,
+              "max_drawdown": 10.278,
+              "max_runup": 1.858,
+              "gross_cash_from_prices": -10.103,
+              "net_cash": -10.453,
+              "api_profit_classification": "NET"
+            }
+          ]
+        }
+      ],
+      "strategy_first_open": 1791756000000,
+      "strategy_bar_count": 5988,
+      "source_hashes": {
+        "indicator_final_M5.csv": "fc88437df919a0b4fabebdc1d03d048e7c1c814fd4315a4ca7d559c1290b8385",
+        "strategy_M5_ABC_A.csv": "c369bf871ed26cbd93c58f8907917cea14eeaf7dbff14b28dd5592796b9639d7",
+        "strategy_M5_lifecycle.csv": "f8d27bc63c4b6f772d932db6fbc7b1c5164aa71cacf869cd80d2ecd4522a2b64"
+      }
+    },
+    "15": {
+      "timeframe": 15,
+      "screen_last_confirmed_close": 1794321900000,
+      "observed_from": 1789609500000,
+      "observed_last_close_in_export": 1794322800000,
+      "indicator_ohlc_fingerprints": [
+        720799684,
+        523395615
+      ],
+      "peak": {
+        "price": 4148.71,
+        "open": 1794255300000,
+        "known": 1794256200000
+      },
+      "trough": {
+        "price": 4033.915,
+        "open": 1794321000000,
+        "known": 1794321900000
+      },
+      "peak_to_trough_price": 114.795,
+      "first_native_bearish_structure_after_peak": {
+        "known": 1794270600000,
+        "open_time": 1794269700000,
+        "open": 4135.425,
+        "high": 4135.65,
+        "low": 4126.84,
+        "close": 4128.695,
+        "atr": 7.96316215,
+        "ema21": 4131.98416646,
+        "ema55": 4121.42941324,
+        "adx": 35.76538189,
+        "di_plus": 22.11239857,
+        "di_minus": 18.73170796,
+        "prior_high": 4146.74,
+        "prior_low": 4134.085,
+        "trend": 0,
+        "structure": "MSS DOWN",
+        "regime": "POTENTIAL REVERSAL",
+        "h1_at": 1794268800000,
+        "h1_bias": 1,
+        "h4_at": 1794261600000,
+        "h4_bias": 1,
+        "h1_values": [
+          4138.915,
+          4114.81275302,
+          4093.10410537
+        ],
+        "h4_values": [
+          4140.685,
+          4079.66739595,
+          4051.05196234
+        ]
+      },
+      "model_firsts": {
+        "A": {
+          "first_watch": {
+            "time": 1794317400000,
+            "model": "A",
+            "side": -1,
+            "id": "A-SELL-1794317400000",
+            "state": "WATCH",
+            "reason": "KNOWN_SWING_APPROACH",
+            "level": 4069.53
+          },
+          "first_confirmation": {
+            "confirmation": {
+              "model": "A",
+              "side": -1,
+              "index": 3539,
+              "time": 1794318300000,
+              "watch_time": 1794317400000,
+              "trigger": 4069.53,
+              "stop_base": 4079.82,
+              "reference": 4056.745,
+              "atr": 6.77197605,
+              "extension": 3.77009,
+              "barrier": null,
+              "spike": true,
+              "htf_conflict": false
+            },
+            "plan": {
+              "id": "A-SELL-1794317400000|1794318300000",
+              "model": "A",
+              "side": -1,
+              "bar": 3539,
+              "time": 1794318300000,
+              "watch_time": 1794317400000,
+              "reference": 4056.745,
+              "stop": 4080.498,
+              "targets": [
+                4032.992,
+                4009.239,
+                3985.486
+              ],
+              "prior_atr": 6.77197605,
+              "risk_price": 23.753,
+              "cost_to_risk": 0.029638361470130086,
+              "net_room_r": 0.9703616385298699
+            },
+            "indicator_htf_context": {
+              "h1_known": 1794315600000,
+              "h1_bias": 0,
+              "h4_known": 1794304800000,
+              "h4_bias": 0,
+              "h1_confirmed_values": [
+                4079.11,
+                4104.31148314,
+                4097.07392502
+              ],
+              "h4_confirmed_values": [
+                4087.525,
+                4087.62529748,
+                4057.40013072
+              ]
+            },
+            "primary_geometry_gate": "VOLATILITY_SPIKE",
+            "all_geometry_gate_failures": [
+              "VOLATILITY_SPIKE",
+              "EXCESSIVE_EXTENSION",
+              "OVERSIZED_STOP"
+            ],
+            "native_strategy_match": "NO_MATCHING_NATIVE_SUBMISSION",
+            "native_lifecycle": [
+              {
+                "state": "WATCH",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794317400000",
+                "reason": "KNOWN_SWING_APPROACH",
+                "known_at": 1794317400000,
+                "effective_at": null,
+                "price": 4069.53
+              },
+              {
+                "state": "CONFIRMING",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794317400000",
+                "reason": "WAITING_FOR_STRUCTURE_BREAK",
+                "known_at": 1794318300000,
+                "effective_at": null,
+                "price": 4069.53
+              },
+              {
+                "state": "CONFIRMED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794317400000",
+                "reason": "STRUCTURE_BREAK",
+                "known_at": 1794318300000,
+                "effective_at": null,
+                "price": 4069.53
+              },
+              {
+                "state": "REJECTED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794317400000",
+                "reason": "VOLATILITY_SPIKE",
+                "known_at": 1794318300000,
+                "effective_at": null,
+                "price": 4056.745
+              }
+            ],
+            "native_risk_gate_pass_observed": false,
+            "native_rejection_reasons": [
+              "VOLATILITY_SPIKE"
+            ],
+            "native_fill_known_by_screen": null,
+            "native_exit_parts_known_by_screen": [],
+            "hypothetical_fixed_path": {
+              "status": "CLOSED_HYPOTHETICAL",
+              "known_confirmation": 1794318300000,
+              "entry_bar_open": 1794318300000,
+              "entry_price_after_slippage": 4056.733,
+              "confirmation_to_entry_open_minutes": 0.0,
+              "actual_initial_risk_usd": 71.295,
+              "gap_invalid_at_fill": true,
+              "exit_parts": [
+                {
+                  "bar": 3541,
+                  "time": 1794319200000,
+                  "price": 4052.097,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": 4.286,
+                  "reason": "GAP_INVALID"
+                },
+                {
+                  "bar": 3541,
+                  "time": 1794319200000,
+                  "price": 4052.097,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": 4.286,
+                  "reason": "GAP_INVALID"
+                },
+                {
+                  "bar": 3541,
+                  "time": 1794319200000,
+                  "price": 4052.097,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": 4.286,
+                  "reason": "GAP_INVALID"
+                }
+              ],
+              "fee_usd_on_realized_parts": 1.05,
+              "net_realized_parts_usd": 12.858,
+              "full_campaign_net_usd": 12.858,
+              "full_campaign_stressed_net_usd": 10.833,
+              "favorable_excursion_price": 7.32300000000032,
+              "adverse_excursion_price": 6.83199999999988,
+              "favorable_fraction_of_observed_peak_to_trough": 0.06379197700248543
+            }
+          },
+          "first_risk_valid_indicator_candidate": null,
+          "first_risk_rejected_indicator_candidate": {
+            "confirmation": {
+              "model": "A",
+              "side": -1,
+              "index": 3539,
+              "time": 1794318300000,
+              "watch_time": 1794317400000,
+              "trigger": 4069.53,
+              "stop_base": 4079.82,
+              "reference": 4056.745,
+              "atr": 6.77197605,
+              "extension": 3.77009,
+              "barrier": null,
+              "spike": true,
+              "htf_conflict": false
+            },
+            "plan": {
+              "id": "A-SELL-1794317400000|1794318300000",
+              "model": "A",
+              "side": -1,
+              "bar": 3539,
+              "time": 1794318300000,
+              "watch_time": 1794317400000,
+              "reference": 4056.745,
+              "stop": 4080.498,
+              "targets": [
+                4032.992,
+                4009.239,
+                3985.486
+              ],
+              "prior_atr": 6.77197605,
+              "risk_price": 23.753,
+              "cost_to_risk": 0.029638361470130086,
+              "net_room_r": 0.9703616385298699
+            },
+            "indicator_htf_context": {
+              "h1_known": 1794315600000,
+              "h1_bias": 0,
+              "h4_known": 1794304800000,
+              "h4_bias": 0,
+              "h1_confirmed_values": [
+                4079.11,
+                4104.31148314,
+                4097.07392502
+              ],
+              "h4_confirmed_values": [
+                4087.525,
+                4087.62529748,
+                4057.40013072
+              ]
+            },
+            "primary_geometry_gate": "VOLATILITY_SPIKE",
+            "all_geometry_gate_failures": [
+              "VOLATILITY_SPIKE",
+              "EXCESSIVE_EXTENSION",
+              "OVERSIZED_STOP"
+            ],
+            "native_strategy_match": "NO_MATCHING_NATIVE_SUBMISSION",
+            "native_lifecycle": [
+              {
+                "state": "WATCH",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794317400000",
+                "reason": "KNOWN_SWING_APPROACH",
+                "known_at": 1794317400000,
+                "effective_at": null,
+                "price": 4069.53
+              },
+              {
+                "state": "CONFIRMING",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794317400000",
+                "reason": "WAITING_FOR_STRUCTURE_BREAK",
+                "known_at": 1794318300000,
+                "effective_at": null,
+                "price": 4069.53
+              },
+              {
+                "state": "CONFIRMED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794317400000",
+                "reason": "STRUCTURE_BREAK",
+                "known_at": 1794318300000,
+                "effective_at": null,
+                "price": 4069.53
+              },
+              {
+                "state": "REJECTED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794317400000",
+                "reason": "VOLATILITY_SPIKE",
+                "known_at": 1794318300000,
+                "effective_at": null,
+                "price": 4056.745
+              }
+            ],
+            "native_risk_gate_pass_observed": false,
+            "native_rejection_reasons": [
+              "VOLATILITY_SPIKE"
+            ],
+            "native_fill_known_by_screen": null,
+            "native_exit_parts_known_by_screen": [],
+            "hypothetical_fixed_path": {
+              "status": "CLOSED_HYPOTHETICAL",
+              "known_confirmation": 1794318300000,
+              "entry_bar_open": 1794318300000,
+              "entry_price_after_slippage": 4056.733,
+              "confirmation_to_entry_open_minutes": 0.0,
+              "actual_initial_risk_usd": 71.295,
+              "gap_invalid_at_fill": true,
+              "exit_parts": [
+                {
+                  "bar": 3541,
+                  "time": 1794319200000,
+                  "price": 4052.097,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": 4.286,
+                  "reason": "GAP_INVALID"
+                },
+                {
+                  "bar": 3541,
+                  "time": 1794319200000,
+                  "price": 4052.097,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": 4.286,
+                  "reason": "GAP_INVALID"
+                },
+                {
+                  "bar": 3541,
+                  "time": 1794319200000,
+                  "price": 4052.097,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": 4.286,
+                  "reason": "GAP_INVALID"
+                }
+              ],
+              "fee_usd_on_realized_parts": 1.05,
+              "net_realized_parts_usd": 12.858,
+              "full_campaign_net_usd": 12.858,
+              "full_campaign_stressed_net_usd": 10.833,
+              "favorable_excursion_price": 7.32300000000032,
+              "adverse_excursion_price": 6.83199999999988,
+              "favorable_fraction_of_observed_peak_to_trough": 0.06379197700248543
+            }
+          },
+          "first_native_entry_valid": null,
+          "first_native_rejected_confirmation": {
+            "confirmation": {
+              "model": "A",
+              "side": -1,
+              "index": 3539,
+              "time": 1794318300000,
+              "watch_time": 1794317400000,
+              "trigger": 4069.53,
+              "stop_base": 4079.82,
+              "reference": 4056.745,
+              "atr": 6.77197605,
+              "extension": 3.77009,
+              "barrier": null,
+              "spike": true,
+              "htf_conflict": false
+            },
+            "plan": {
+              "id": "A-SELL-1794317400000|1794318300000",
+              "model": "A",
+              "side": -1,
+              "bar": 3539,
+              "time": 1794318300000,
+              "watch_time": 1794317400000,
+              "reference": 4056.745,
+              "stop": 4080.498,
+              "targets": [
+                4032.992,
+                4009.239,
+                3985.486
+              ],
+              "prior_atr": 6.77197605,
+              "risk_price": 23.753,
+              "cost_to_risk": 0.029638361470130086,
+              "net_room_r": 0.9703616385298699
+            },
+            "indicator_htf_context": {
+              "h1_known": 1794315600000,
+              "h1_bias": 0,
+              "h4_known": 1794304800000,
+              "h4_bias": 0,
+              "h1_confirmed_values": [
+                4079.11,
+                4104.31148314,
+                4097.07392502
+              ],
+              "h4_confirmed_values": [
+                4087.525,
+                4087.62529748,
+                4057.40013072
+              ]
+            },
+            "primary_geometry_gate": "VOLATILITY_SPIKE",
+            "all_geometry_gate_failures": [
+              "VOLATILITY_SPIKE",
+              "EXCESSIVE_EXTENSION",
+              "OVERSIZED_STOP"
+            ],
+            "native_strategy_match": "NO_MATCHING_NATIVE_SUBMISSION",
+            "native_lifecycle": [
+              {
+                "state": "WATCH",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794317400000",
+                "reason": "KNOWN_SWING_APPROACH",
+                "known_at": 1794317400000,
+                "effective_at": null,
+                "price": 4069.53
+              },
+              {
+                "state": "CONFIRMING",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794317400000",
+                "reason": "WAITING_FOR_STRUCTURE_BREAK",
+                "known_at": 1794318300000,
+                "effective_at": null,
+                "price": 4069.53
+              },
+              {
+                "state": "CONFIRMED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794317400000",
+                "reason": "STRUCTURE_BREAK",
+                "known_at": 1794318300000,
+                "effective_at": null,
+                "price": 4069.53
+              },
+              {
+                "state": "REJECTED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794317400000",
+                "reason": "VOLATILITY_SPIKE",
+                "known_at": 1794318300000,
+                "effective_at": null,
+                "price": 4056.745
+              }
+            ],
+            "native_risk_gate_pass_observed": false,
+            "native_rejection_reasons": [
+              "VOLATILITY_SPIKE"
+            ],
+            "native_fill_known_by_screen": null,
+            "native_exit_parts_known_by_screen": [],
+            "hypothetical_fixed_path": {
+              "status": "CLOSED_HYPOTHETICAL",
+              "known_confirmation": 1794318300000,
+              "entry_bar_open": 1794318300000,
+              "entry_price_after_slippage": 4056.733,
+              "confirmation_to_entry_open_minutes": 0.0,
+              "actual_initial_risk_usd": 71.295,
+              "gap_invalid_at_fill": true,
+              "exit_parts": [
+                {
+                  "bar": 3541,
+                  "time": 1794319200000,
+                  "price": 4052.097,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": 4.286,
+                  "reason": "GAP_INVALID"
+                },
+                {
+                  "bar": 3541,
+                  "time": 1794319200000,
+                  "price": 4052.097,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": 4.286,
+                  "reason": "GAP_INVALID"
+                },
+                {
+                  "bar": 3541,
+                  "time": 1794319200000,
+                  "price": 4052.097,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": 4.286,
+                  "reason": "GAP_INVALID"
+                }
+              ],
+              "fee_usd_on_realized_parts": 1.05,
+              "net_realized_parts_usd": 12.858,
+              "full_campaign_net_usd": 12.858,
+              "full_campaign_stressed_net_usd": 10.833,
+              "favorable_excursion_price": 7.32300000000032,
+              "adverse_excursion_price": 6.83199999999988,
+              "favorable_fraction_of_observed_peak_to_trough": 0.06379197700248543
+            }
+          },
+          "first_exact_native_admission_of_an_indicator_candidate": null,
+          "confirmations": 1,
+          "primary_geometry_gate_counts": {
+            "VOLATILITY_SPIKE": 1
+          },
+          "native_rejection_counts": {
+            "VOLATILITY_SPIKE": 1
+          }
+        },
+        "B": {
+          "first_watch": {
+            "time": 1794288600000,
+            "model": "B",
+            "side": -1,
+            "id": "B-SELL-1794288600000",
+            "state": "WATCH",
+            "reason": "PRIOR_EMA21_PULLBACK",
+            "level": 4119.66317944
+          },
+          "first_confirmation": {
+            "confirmation": {
+              "model": "B",
+              "side": -1,
+              "index": 3522,
+              "time": 1794303000000,
+              "watch_time": 1794298500000,
+              "trigger": 4119.45095241,
+              "stop_base": 4121.63,
+              "reference": 4090.425,
+              "atr": 7.80655101,
+              "extension": 3.02413309,
+              "barrier": null,
+              "spike": false,
+              "htf_conflict": true
+            },
+            "plan": {
+              "id": "B-SELL-1794298500000|1794303000000",
+              "model": "B",
+              "side": -1,
+              "bar": 3522,
+              "time": 1794303000000,
+              "watch_time": 1794298500000,
+              "reference": 4090.425,
+              "stop": 4122.411,
+              "targets": [
+                4058.439,
+                4026.453,
+                3994.467
+              ],
+              "prior_atr": 7.80655101,
+              "risk_price": 31.986,
+              "cost_to_risk": 0.02200962921278059,
+              "net_room_r": 0.9779903707872194
+            },
+            "indicator_htf_context": {
+              "h1_known": 1794301200000,
+              "h1_bias": 0,
+              "h4_known": 1794290400000,
+              "h4_bias": 1,
+              "h1_confirmed_values": [
+                4113.37,
+                4116.18360147,
+                4099.91892463
+              ],
+              "h4_confirmed_values": [
+                4123.635,
+                4087.63532723,
+                4056.28439483
+              ]
+            },
+            "primary_geometry_gate": "HTF_CONFLICT",
+            "all_geometry_gate_failures": [
+              "HTF_CONFLICT",
+              "EXCESSIVE_EXTENSION",
+              "OVERSIZED_STOP"
+            ],
+            "native_strategy_match": "NO_MATCHING_NATIVE_SUBMISSION",
+            "native_lifecycle": [
+              {
+                "state": "WATCH",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794298500000",
+                "reason": "PRIOR_EMA21_PULLBACK",
+                "known_at": 1794298500000,
+                "effective_at": null,
+                "price": 4119.45095241
+              },
+              {
+                "state": "CONFIRMING",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794298500000",
+                "reason": "WAITING_FOR_PULLBACK_REJECTION",
+                "known_at": 1794299400000,
+                "effective_at": null,
+                "price": 4119.45095241
+              },
+              {
+                "state": "CONFIRMED",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794298500000",
+                "reason": "PULLBACK_REJECTION",
+                "known_at": 1794303000000,
+                "effective_at": null,
+                "price": 4119.45095241
+              },
+              {
+                "state": "REJECTED",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794298500000",
+                "reason": "HTF_CONFLICT",
+                "known_at": 1794303000000,
+                "effective_at": null,
+                "price": 4090.425
+              }
+            ],
+            "native_risk_gate_pass_observed": false,
+            "native_rejection_reasons": [
+              "HTF_CONFLICT"
+            ],
+            "native_fill_known_by_screen": null,
+            "native_exit_parts_known_by_screen": [],
+            "hypothetical_fixed_path": {
+              "status": "CLOSED_HYPOTHETICAL",
+              "known_confirmation": 1794303000000,
+              "entry_bar_open": 1794303000000,
+              "entry_price_after_slippage": 4090.413,
+              "confirmation_to_entry_open_minutes": 0.0,
+              "actual_initial_risk_usd": 95.994,
+              "gap_invalid_at_fill": true,
+              "exit_parts": [
+                {
+                  "bar": 3524,
+                  "time": 1794303900000,
+                  "price": 4084.147,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": 5.916,
+                  "reason": "GAP_INVALID"
+                },
+                {
+                  "bar": 3524,
+                  "time": 1794303900000,
+                  "price": 4084.147,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": 5.916,
+                  "reason": "GAP_INVALID"
+                },
+                {
+                  "bar": 3524,
+                  "time": 1794303900000,
+                  "price": 4084.147,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": 5.916,
+                  "reason": "GAP_INVALID"
+                }
+              ],
+              "fee_usd_on_realized_parts": 1.05,
+              "net_realized_parts_usd": 17.748,
+              "full_campaign_net_usd": 17.748,
+              "full_campaign_stressed_net_usd": 15.723,
+              "favorable_excursion_price": 8.338000000000193,
+              "adverse_excursion_price": 0.5619999999998981,
+              "favorable_fraction_of_observed_peak_to_trough": 0.0726338255150502
+            }
+          },
+          "first_risk_valid_indicator_candidate": null,
+          "first_risk_rejected_indicator_candidate": {
+            "confirmation": {
+              "model": "B",
+              "side": -1,
+              "index": 3522,
+              "time": 1794303000000,
+              "watch_time": 1794298500000,
+              "trigger": 4119.45095241,
+              "stop_base": 4121.63,
+              "reference": 4090.425,
+              "atr": 7.80655101,
+              "extension": 3.02413309,
+              "barrier": null,
+              "spike": false,
+              "htf_conflict": true
+            },
+            "plan": {
+              "id": "B-SELL-1794298500000|1794303000000",
+              "model": "B",
+              "side": -1,
+              "bar": 3522,
+              "time": 1794303000000,
+              "watch_time": 1794298500000,
+              "reference": 4090.425,
+              "stop": 4122.411,
+              "targets": [
+                4058.439,
+                4026.453,
+                3994.467
+              ],
+              "prior_atr": 7.80655101,
+              "risk_price": 31.986,
+              "cost_to_risk": 0.02200962921278059,
+              "net_room_r": 0.9779903707872194
+            },
+            "indicator_htf_context": {
+              "h1_known": 1794301200000,
+              "h1_bias": 0,
+              "h4_known": 1794290400000,
+              "h4_bias": 1,
+              "h1_confirmed_values": [
+                4113.37,
+                4116.18360147,
+                4099.91892463
+              ],
+              "h4_confirmed_values": [
+                4123.635,
+                4087.63532723,
+                4056.28439483
+              ]
+            },
+            "primary_geometry_gate": "HTF_CONFLICT",
+            "all_geometry_gate_failures": [
+              "HTF_CONFLICT",
+              "EXCESSIVE_EXTENSION",
+              "OVERSIZED_STOP"
+            ],
+            "native_strategy_match": "NO_MATCHING_NATIVE_SUBMISSION",
+            "native_lifecycle": [
+              {
+                "state": "WATCH",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794298500000",
+                "reason": "PRIOR_EMA21_PULLBACK",
+                "known_at": 1794298500000,
+                "effective_at": null,
+                "price": 4119.45095241
+              },
+              {
+                "state": "CONFIRMING",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794298500000",
+                "reason": "WAITING_FOR_PULLBACK_REJECTION",
+                "known_at": 1794299400000,
+                "effective_at": null,
+                "price": 4119.45095241
+              },
+              {
+                "state": "CONFIRMED",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794298500000",
+                "reason": "PULLBACK_REJECTION",
+                "known_at": 1794303000000,
+                "effective_at": null,
+                "price": 4119.45095241
+              },
+              {
+                "state": "REJECTED",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794298500000",
+                "reason": "HTF_CONFLICT",
+                "known_at": 1794303000000,
+                "effective_at": null,
+                "price": 4090.425
+              }
+            ],
+            "native_risk_gate_pass_observed": false,
+            "native_rejection_reasons": [
+              "HTF_CONFLICT"
+            ],
+            "native_fill_known_by_screen": null,
+            "native_exit_parts_known_by_screen": [],
+            "hypothetical_fixed_path": {
+              "status": "CLOSED_HYPOTHETICAL",
+              "known_confirmation": 1794303000000,
+              "entry_bar_open": 1794303000000,
+              "entry_price_after_slippage": 4090.413,
+              "confirmation_to_entry_open_minutes": 0.0,
+              "actual_initial_risk_usd": 95.994,
+              "gap_invalid_at_fill": true,
+              "exit_parts": [
+                {
+                  "bar": 3524,
+                  "time": 1794303900000,
+                  "price": 4084.147,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": 5.916,
+                  "reason": "GAP_INVALID"
+                },
+                {
+                  "bar": 3524,
+                  "time": 1794303900000,
+                  "price": 4084.147,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": 5.916,
+                  "reason": "GAP_INVALID"
+                },
+                {
+                  "bar": 3524,
+                  "time": 1794303900000,
+                  "price": 4084.147,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": 5.916,
+                  "reason": "GAP_INVALID"
+                }
+              ],
+              "fee_usd_on_realized_parts": 1.05,
+              "net_realized_parts_usd": 17.748,
+              "full_campaign_net_usd": 17.748,
+              "full_campaign_stressed_net_usd": 15.723,
+              "favorable_excursion_price": 8.338000000000193,
+              "adverse_excursion_price": 0.5619999999998981,
+              "favorable_fraction_of_observed_peak_to_trough": 0.0726338255150502
+            }
+          },
+          "first_native_entry_valid": null,
+          "first_native_rejected_confirmation": {
+            "confirmation": {
+              "model": "B",
+              "side": -1,
+              "index": 3522,
+              "time": 1794303000000,
+              "watch_time": 1794298500000,
+              "trigger": 4119.45095241,
+              "stop_base": 4121.63,
+              "reference": 4090.425,
+              "atr": 7.80655101,
+              "extension": 3.02413309,
+              "barrier": null,
+              "spike": false,
+              "htf_conflict": true
+            },
+            "plan": {
+              "id": "B-SELL-1794298500000|1794303000000",
+              "model": "B",
+              "side": -1,
+              "bar": 3522,
+              "time": 1794303000000,
+              "watch_time": 1794298500000,
+              "reference": 4090.425,
+              "stop": 4122.411,
+              "targets": [
+                4058.439,
+                4026.453,
+                3994.467
+              ],
+              "prior_atr": 7.80655101,
+              "risk_price": 31.986,
+              "cost_to_risk": 0.02200962921278059,
+              "net_room_r": 0.9779903707872194
+            },
+            "indicator_htf_context": {
+              "h1_known": 1794301200000,
+              "h1_bias": 0,
+              "h4_known": 1794290400000,
+              "h4_bias": 1,
+              "h1_confirmed_values": [
+                4113.37,
+                4116.18360147,
+                4099.91892463
+              ],
+              "h4_confirmed_values": [
+                4123.635,
+                4087.63532723,
+                4056.28439483
+              ]
+            },
+            "primary_geometry_gate": "HTF_CONFLICT",
+            "all_geometry_gate_failures": [
+              "HTF_CONFLICT",
+              "EXCESSIVE_EXTENSION",
+              "OVERSIZED_STOP"
+            ],
+            "native_strategy_match": "NO_MATCHING_NATIVE_SUBMISSION",
+            "native_lifecycle": [
+              {
+                "state": "WATCH",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794298500000",
+                "reason": "PRIOR_EMA21_PULLBACK",
+                "known_at": 1794298500000,
+                "effective_at": null,
+                "price": 4119.45095241
+              },
+              {
+                "state": "CONFIRMING",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794298500000",
+                "reason": "WAITING_FOR_PULLBACK_REJECTION",
+                "known_at": 1794299400000,
+                "effective_at": null,
+                "price": 4119.45095241
+              },
+              {
+                "state": "CONFIRMED",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794298500000",
+                "reason": "PULLBACK_REJECTION",
+                "known_at": 1794303000000,
+                "effective_at": null,
+                "price": 4119.45095241
+              },
+              {
+                "state": "REJECTED",
+                "model": "B",
+                "side": -1,
+                "id": "B-SELL-1794298500000",
+                "reason": "HTF_CONFLICT",
+                "known_at": 1794303000000,
+                "effective_at": null,
+                "price": 4090.425
+              }
+            ],
+            "native_risk_gate_pass_observed": false,
+            "native_rejection_reasons": [
+              "HTF_CONFLICT"
+            ],
+            "native_fill_known_by_screen": null,
+            "native_exit_parts_known_by_screen": [],
+            "hypothetical_fixed_path": {
+              "status": "CLOSED_HYPOTHETICAL",
+              "known_confirmation": 1794303000000,
+              "entry_bar_open": 1794303000000,
+              "entry_price_after_slippage": 4090.413,
+              "confirmation_to_entry_open_minutes": 0.0,
+              "actual_initial_risk_usd": 95.994,
+              "gap_invalid_at_fill": true,
+              "exit_parts": [
+                {
+                  "bar": 3524,
+                  "time": 1794303900000,
+                  "price": 4084.147,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": 5.916,
+                  "reason": "GAP_INVALID"
+                },
+                {
+                  "bar": 3524,
+                  "time": 1794303900000,
+                  "price": 4084.147,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": 5.916,
+                  "reason": "GAP_INVALID"
+                },
+                {
+                  "bar": 3524,
+                  "time": 1794303900000,
+                  "price": 4084.147,
+                  "units": 1.0,
+                  "commission": 0.35,
+                  "net": 5.916,
+                  "reason": "GAP_INVALID"
+                }
+              ],
+              "fee_usd_on_realized_parts": 1.05,
+              "net_realized_parts_usd": 17.748,
+              "full_campaign_net_usd": 17.748,
+              "full_campaign_stressed_net_usd": 15.723,
+              "favorable_excursion_price": 8.338000000000193,
+              "adverse_excursion_price": 0.5619999999998981,
+              "favorable_fraction_of_observed_peak_to_trough": 0.0726338255150502
+            }
+          },
+          "first_exact_native_admission_of_an_indicator_candidate": null,
+          "confirmations": 1,
+          "primary_geometry_gate_counts": {
+            "HTF_CONFLICT": 1
+          },
+          "native_rejection_counts": {
+            "HTF_CONFLICT": 1
+          }
+        },
+        "C": {
+          "first_watch": {
+            "time": 1794287700000,
+            "model": "C",
+            "side": -1,
+            "id": "C-SELL-1794287700000",
+            "state": "WATCH",
+            "reason": "DIRECTIONAL_COMPRESSION",
+            "level": 4110.205
+          },
+          "first_confirmation": null,
+          "first_risk_valid_indicator_candidate": null,
+          "first_risk_rejected_indicator_candidate": null,
+          "first_native_entry_valid": null,
+          "first_native_rejected_confirmation": null,
+          "first_exact_native_admission_of_an_indicator_candidate": null,
+          "confirmations": 0,
+          "primary_geometry_gate_counts": {},
+          "native_rejection_counts": {}
+        }
+      },
+      "native_sell_submissions_in_case": [],
+      "strategy_first_open": 1785708000000,
+      "strategy_bar_count": 6586,
+      "source_hashes": {
+        "indicator_final_M15.csv": "35e911e9ed53f57d4550bea601ec6653217254d83422dcf2d3eb63cf824b2252",
+        "strategy_M15_ABC_A.csv": "8c5f7cd03d87ea2f95f905f38bc7fc935c7d0b72ff16f6ffbab78643592dbf24",
+        "strategy_M15_lifecycle.csv": "2ddfb58119dfe528b973179869d7e5cbbee2d608d8c3dff3f36dc804fee0f178"
+      }
+    },
+    "30": {
+      "timeframe": 30,
+      "screen_last_confirmed_close": 1794321000000,
+      "observed_from": 1784835000000,
+      "observed_last_close_in_export": 1794322800000,
+      "indicator_ohlc_fingerprints": [
+        109126793,
+        571622709
+      ],
+      "peak": {
+        "price": 4148.71,
+        "open": 1794254400000,
+        "known": 1794256200000
+      },
+      "trough": {
+        "price": 4039.72,
+        "open": 1794317400000,
+        "known": 1794319200000
+      },
+      "peak_to_trough_price": 108.99,
+      "first_native_bearish_structure_after_peak": {
+        "known": 1794270600000,
+        "open_time": 1794268800000,
+        "open": 4139.025,
+        "high": 4139.19,
+        "low": 4126.84,
+        "close": 4128.695,
+        "atr": 11.14479798,
+        "ema21": 4125.45668996,
+        "ema55": 4110.17435496,
+        "adx": 31.99959395,
+        "di_plus": 25.64186009,
+        "di_minus": 15.44508389,
+        "prior_high": 4148.71,
+        "prior_low": 4134.085,
+        "trend": 1,
+        "structure": "MSS DOWN",
+        "regime": "POTENTIAL REVERSAL",
+        "h1_at": 1794268800000,
+        "h1_bias": 1,
+        "h4_at": 1794261600000,
+        "h4_bias": 1,
+        "h1_values": [
+          4138.915,
+          4114.81275302,
+          4093.10410537
+        ],
+        "h4_values": [
+          4140.685,
+          4079.66739587,
+          4050.99787723
+        ]
+      },
+      "model_firsts": {
+        "A": {
+          "first_watch": {
+            "time": 1794317400000,
+            "model": "A",
+            "side": -1,
+            "id": "A-SELL-1794317400000",
+            "state": "WATCH",
+            "reason": "KNOWN_SWING_APPROACH",
+            "level": 4068.715
+          },
+          "first_confirmation": {
+            "confirmation": {
+              "model": "A",
+              "side": -1,
+              "index": 3569,
+              "time": 1794319200000,
+              "watch_time": 1794317400000,
+              "trigger": 4068.715,
+              "stop_base": 4128.01,
+              "reference": 4052.13,
+              "atr": 9.75148787,
+              "extension": 4.02808002,
+              "barrier": null,
+              "spike": true,
+              "htf_conflict": false
+            },
+            "plan": {
+              "id": "A-SELL-1794317400000|1794319200000",
+              "model": "A",
+              "side": -1,
+              "bar": 3569,
+              "time": 1794319200000,
+              "watch_time": 1794317400000,
+              "reference": 4052.13,
+              "stop": 4128.986,
+              "targets": [
+                3975.274,
+                3898.418,
+                3821.562
+              ],
+              "prior_atr": 9.75148787,
+              "risk_price": 76.856,
+              "cost_to_risk": 0.009159987509107943,
+              "net_room_r": 0.9908400124908922
+            },
+            "indicator_htf_context": {
+              "h1_known": 1794315600000,
+              "h1_bias": 0,
+              "h4_known": 1794304800000,
+              "h4_bias": 0,
+              "h1_confirmed_values": [
+                4079.11,
+                4104.31148314,
+                4097.07392502
+              ],
+              "h4_confirmed_values": [
+                4087.525,
+                4087.62529742,
+                4057.35163595
+              ]
+            },
+            "primary_geometry_gate": "VOLATILITY_SPIKE",
+            "all_geometry_gate_failures": [
+              "VOLATILITY_SPIKE",
+              "EXCESSIVE_EXTENSION",
+              "OVERSIZED_STOP"
+            ],
+            "native_strategy_match": "NO_MATCHING_NATIVE_SUBMISSION",
+            "native_lifecycle": [
+              {
+                "state": "WATCH",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794317400000",
+                "reason": "KNOWN_SWING_APPROACH",
+                "known_at": 1794317400000,
+                "effective_at": null,
+                "price": 4068.715
+              },
+              {
+                "state": "CONFIRMING",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794317400000",
+                "reason": "WAITING_FOR_STRUCTURE_BREAK",
+                "known_at": 1794319200000,
+                "effective_at": null,
+                "price": 4068.715
+              },
+              {
+                "state": "CONFIRMED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794317400000",
+                "reason": "STRUCTURE_BREAK",
+                "known_at": 1794319200000,
+                "effective_at": null,
+                "price": 4068.715
+              },
+              {
+                "state": "REJECTED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794317400000",
+                "reason": "VOLATILITY_SPIKE",
+                "known_at": 1794319200000,
+                "effective_at": null,
+                "price": 4052.13
+              }
+            ],
+            "native_risk_gate_pass_observed": false,
+            "native_rejection_reasons": [
+              "VOLATILITY_SPIKE"
+            ],
+            "native_fill_known_by_screen": null,
+            "native_exit_parts_known_by_screen": [],
+            "hypothetical_fixed_path": {
+              "status": "CENSORED_AT_SCREENSHOT",
+              "known_confirmation": 1794319200000,
+              "entry_bar_open": 1794319200000,
+              "entry_price_after_slippage": 4052.093,
+              "confirmation_to_entry_open_minutes": 0.0,
+              "actual_initial_risk_usd": 230.679,
+              "gap_invalid_at_fill": true,
+              "exit_parts": [],
+              "fee_usd_on_realized_parts": 0.0,
+              "net_realized_parts_usd": 0.0,
+              "full_campaign_net_usd": null,
+              "full_campaign_stressed_net_usd": null,
+              "favorable_excursion_price": 3.3530000000000655,
+              "adverse_excursion_price": 9.36200000000008,
+              "favorable_fraction_of_observed_peak_to_trough": 0.03076429030186309
+            }
+          },
+          "first_risk_valid_indicator_candidate": null,
+          "first_risk_rejected_indicator_candidate": {
+            "confirmation": {
+              "model": "A",
+              "side": -1,
+              "index": 3569,
+              "time": 1794319200000,
+              "watch_time": 1794317400000,
+              "trigger": 4068.715,
+              "stop_base": 4128.01,
+              "reference": 4052.13,
+              "atr": 9.75148787,
+              "extension": 4.02808002,
+              "barrier": null,
+              "spike": true,
+              "htf_conflict": false
+            },
+            "plan": {
+              "id": "A-SELL-1794317400000|1794319200000",
+              "model": "A",
+              "side": -1,
+              "bar": 3569,
+              "time": 1794319200000,
+              "watch_time": 1794317400000,
+              "reference": 4052.13,
+              "stop": 4128.986,
+              "targets": [
+                3975.274,
+                3898.418,
+                3821.562
+              ],
+              "prior_atr": 9.75148787,
+              "risk_price": 76.856,
+              "cost_to_risk": 0.009159987509107943,
+              "net_room_r": 0.9908400124908922
+            },
+            "indicator_htf_context": {
+              "h1_known": 1794315600000,
+              "h1_bias": 0,
+              "h4_known": 1794304800000,
+              "h4_bias": 0,
+              "h1_confirmed_values": [
+                4079.11,
+                4104.31148314,
+                4097.07392502
+              ],
+              "h4_confirmed_values": [
+                4087.525,
+                4087.62529742,
+                4057.35163595
+              ]
+            },
+            "primary_geometry_gate": "VOLATILITY_SPIKE",
+            "all_geometry_gate_failures": [
+              "VOLATILITY_SPIKE",
+              "EXCESSIVE_EXTENSION",
+              "OVERSIZED_STOP"
+            ],
+            "native_strategy_match": "NO_MATCHING_NATIVE_SUBMISSION",
+            "native_lifecycle": [
+              {
+                "state": "WATCH",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794317400000",
+                "reason": "KNOWN_SWING_APPROACH",
+                "known_at": 1794317400000,
+                "effective_at": null,
+                "price": 4068.715
+              },
+              {
+                "state": "CONFIRMING",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794317400000",
+                "reason": "WAITING_FOR_STRUCTURE_BREAK",
+                "known_at": 1794319200000,
+                "effective_at": null,
+                "price": 4068.715
+              },
+              {
+                "state": "CONFIRMED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794317400000",
+                "reason": "STRUCTURE_BREAK",
+                "known_at": 1794319200000,
+                "effective_at": null,
+                "price": 4068.715
+              },
+              {
+                "state": "REJECTED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794317400000",
+                "reason": "VOLATILITY_SPIKE",
+                "known_at": 1794319200000,
+                "effective_at": null,
+                "price": 4052.13
+              }
+            ],
+            "native_risk_gate_pass_observed": false,
+            "native_rejection_reasons": [
+              "VOLATILITY_SPIKE"
+            ],
+            "native_fill_known_by_screen": null,
+            "native_exit_parts_known_by_screen": [],
+            "hypothetical_fixed_path": {
+              "status": "CENSORED_AT_SCREENSHOT",
+              "known_confirmation": 1794319200000,
+              "entry_bar_open": 1794319200000,
+              "entry_price_after_slippage": 4052.093,
+              "confirmation_to_entry_open_minutes": 0.0,
+              "actual_initial_risk_usd": 230.679,
+              "gap_invalid_at_fill": true,
+              "exit_parts": [],
+              "fee_usd_on_realized_parts": 0.0,
+              "net_realized_parts_usd": 0.0,
+              "full_campaign_net_usd": null,
+              "full_campaign_stressed_net_usd": null,
+              "favorable_excursion_price": 3.3530000000000655,
+              "adverse_excursion_price": 9.36200000000008,
+              "favorable_fraction_of_observed_peak_to_trough": 0.03076429030186309
+            }
+          },
+          "first_native_entry_valid": null,
+          "first_native_rejected_confirmation": {
+            "confirmation": {
+              "model": "A",
+              "side": -1,
+              "index": 3569,
+              "time": 1794319200000,
+              "watch_time": 1794317400000,
+              "trigger": 4068.715,
+              "stop_base": 4128.01,
+              "reference": 4052.13,
+              "atr": 9.75148787,
+              "extension": 4.02808002,
+              "barrier": null,
+              "spike": true,
+              "htf_conflict": false
+            },
+            "plan": {
+              "id": "A-SELL-1794317400000|1794319200000",
+              "model": "A",
+              "side": -1,
+              "bar": 3569,
+              "time": 1794319200000,
+              "watch_time": 1794317400000,
+              "reference": 4052.13,
+              "stop": 4128.986,
+              "targets": [
+                3975.274,
+                3898.418,
+                3821.562
+              ],
+              "prior_atr": 9.75148787,
+              "risk_price": 76.856,
+              "cost_to_risk": 0.009159987509107943,
+              "net_room_r": 0.9908400124908922
+            },
+            "indicator_htf_context": {
+              "h1_known": 1794315600000,
+              "h1_bias": 0,
+              "h4_known": 1794304800000,
+              "h4_bias": 0,
+              "h1_confirmed_values": [
+                4079.11,
+                4104.31148314,
+                4097.07392502
+              ],
+              "h4_confirmed_values": [
+                4087.525,
+                4087.62529742,
+                4057.35163595
+              ]
+            },
+            "primary_geometry_gate": "VOLATILITY_SPIKE",
+            "all_geometry_gate_failures": [
+              "VOLATILITY_SPIKE",
+              "EXCESSIVE_EXTENSION",
+              "OVERSIZED_STOP"
+            ],
+            "native_strategy_match": "NO_MATCHING_NATIVE_SUBMISSION",
+            "native_lifecycle": [
+              {
+                "state": "WATCH",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794317400000",
+                "reason": "KNOWN_SWING_APPROACH",
+                "known_at": 1794317400000,
+                "effective_at": null,
+                "price": 4068.715
+              },
+              {
+                "state": "CONFIRMING",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794317400000",
+                "reason": "WAITING_FOR_STRUCTURE_BREAK",
+                "known_at": 1794319200000,
+                "effective_at": null,
+                "price": 4068.715
+              },
+              {
+                "state": "CONFIRMED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794317400000",
+                "reason": "STRUCTURE_BREAK",
+                "known_at": 1794319200000,
+                "effective_at": null,
+                "price": 4068.715
+              },
+              {
+                "state": "REJECTED",
+                "model": "A",
+                "side": -1,
+                "id": "A-SELL-1794317400000",
+                "reason": "VOLATILITY_SPIKE",
+                "known_at": 1794319200000,
+                "effective_at": null,
+                "price": 4052.13
+              }
+            ],
+            "native_risk_gate_pass_observed": false,
+            "native_rejection_reasons": [
+              "VOLATILITY_SPIKE"
+            ],
+            "native_fill_known_by_screen": null,
+            "native_exit_parts_known_by_screen": [],
+            "hypothetical_fixed_path": {
+              "status": "CENSORED_AT_SCREENSHOT",
+              "known_confirmation": 1794319200000,
+              "entry_bar_open": 1794319200000,
+              "entry_price_after_slippage": 4052.093,
+              "confirmation_to_entry_open_minutes": 0.0,
+              "actual_initial_risk_usd": 230.679,
+              "gap_invalid_at_fill": true,
+              "exit_parts": [],
+              "fee_usd_on_realized_parts": 0.0,
+              "net_realized_parts_usd": 0.0,
+              "full_campaign_net_usd": null,
+              "full_campaign_stressed_net_usd": null,
+              "favorable_excursion_price": 3.3530000000000655,
+              "adverse_excursion_price": 9.36200000000008,
+              "favorable_fraction_of_observed_peak_to_trough": 0.03076429030186309
+            }
+          },
+          "first_exact_native_admission_of_an_indicator_candidate": null,
+          "confirmations": 1,
+          "primary_geometry_gate_counts": {
+            "VOLATILITY_SPIKE": 1
+          },
+          "native_rejection_counts": {
+            "VOLATILITY_SPIKE": 1
+          }
+        },
+        "B": {
+          "first_watch": null,
+          "first_confirmation": null,
+          "first_risk_valid_indicator_candidate": null,
+          "first_risk_rejected_indicator_candidate": null,
+          "first_native_entry_valid": null,
+          "first_native_rejected_confirmation": null,
+          "first_exact_native_admission_of_an_indicator_candidate": null,
+          "confirmations": 0,
+          "primary_geometry_gate_counts": {},
+          "native_rejection_counts": {}
+        },
+        "C": {
+          "first_watch": null,
+          "first_confirmation": null,
+          "first_risk_valid_indicator_candidate": null,
+          "first_risk_rejected_indicator_candidate": null,
+          "first_native_entry_valid": null,
+          "first_native_rejected_confirmation": null,
+          "first_exact_native_admission_of_an_indicator_candidate": null,
+          "confirmations": 0,
+          "primary_geometry_gate_counts": {},
+          "native_rejection_counts": {}
+        }
+      },
+      "native_sell_submissions_in_case": [],
+      "strategy_first_open": 1767308400000,
+      "strategy_bar_count": 10162,
+      "source_hashes": {
+        "indicator_final_M30.csv": "d4097d7adacec54a9b61ad663dbdc0edd12731625eb20d532af8f0c1762900a7",
+        "strategy_M30_ABC_A.csv": "8d38cb3e93da13f8654754e85c874afe4c46c76cb39c49574785211d40dee384",
+        "strategy_M30_lifecycle.csv": "70a693d6e83e10fdb68058b4de53d14db39d01bddab21ff2816d943a28ac91e3"
+      }
+    }
+  }
+}

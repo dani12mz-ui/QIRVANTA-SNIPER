@@ -1,0 +1,408 @@
+// Simulated risk and execution. The market core supplies confirmed observations.
+string v22Policy = input.string("A Fixed 1R / 2R / 3R", "Management", options=["A Fixed 1R / 2R / 3R", "B Cost-adjusted BE after TP1", "C 0.05R profit lock after TP1", "D ATR trail", "E Confirmed swing trail", "F Time exit", "G Momentum deterioration"], group="V2.2 / RISK")
+float v22Spread = input.float(0.35, "Estimated spread in price units", minval=0.0, step=0.05, group="V2.2 / RISK", tooltip="Budget for plan admission and cost-adjusted BE. The native emulator accounts for its configured fees and slippage.")
+bool v22UseHtf = input.bool(true, "Reject opposing confirmed H1 or H4", group="V2.2 / RISK")
+int v22OrderStart = input.time(timestamp("01 Jan 2020 00:00 +0000"), "First allowed order close", group="V2.2 / WINDOW")
+int v22OrderEnd = input.time(timestamp("01 Jan 2035 00:00 +0000"), "End of new orders (exclusive)", group="V2.2 / WINDOW")
+bool v22OrdersEnabled = input.bool(true, "Enable TradingView simulated orders", group="V2.2 / WINDOW")
+string v22Display = input.string("Compact", "Dashboard preset", options=["Compact", "Desktop", "Mobile"], group="V2.2 / DISPLAY")
+bool v22ShowLevels = input.bool(true, "Show active Entry / SL / TP levels", group="V2.2 / DISPLAY")
+bool v22ShowWatch = input.bool(false, "Show observational watch markers", group="V2.2 / DISPLAY")
+string v22Logging = input.string("Off", "Logging", options=["Off", "Lifecycle", "Native journal"], group="V2.2 / EVIDENCE")
+int v22LogFrom = input.time(timestamp("10 Nov 2026 00:00 +0000"), "Lifecycle log start", group="V2.2 / EVIDENCE")
+int v22Cutoff = input.time(timestamp("11 Nov 2026 00:00 +0000"), "Native journal cutoff close (UTC)", group="V2.2 / EVIDENCE")
+const string V22_TEMPLATE_SHA = "__V22_TEMPLATE_SHA__"
+const float V22_QTY = 3.0
+const float V22_FEE = 0.175
+const float V22_SLIP = 2.0
+const float V22_MAX_RISK_ATR = 3.0
+const int V22_JOURNAL_LIMIT = 1600
+float v22Tick = syminfo.mintick
+float v22Cost = v22Spread + (2.0 * V22_FEE) / syminfo.pointvalue + 2.0 * V22_SLIP * v22Tick
+float v22Rsi = ta.rsi(close, 14)
+float v22PriorClose = close[1]
+bool v22Contiguous = time == time_close[1]
+bool v22Lifecycle = v22Logging == "Lifecycle" and time_close >= v22LogFrom and time_close <= v22Cutoff
+bool v22Audit = v22Logging == "Native journal" and time_close <= v22Cutoff
+bool v22Sized = not na(syminfo.mincontract) and syminfo.mincontract > 0 and math.abs(1.0 / syminfo.mincontract - math.round(1.0 / syminfo.mincontract)) <= 1e-7
+bool v22Contract = v22Supported and syminfo.tickerid == "OANDA:XAUUSD" and chart.is_standard and v22Sized and syminfo.pointvalue > 0 and syminfo.currency == strategy.account_currency
+string v22ModeId = (v22EnableA ? "A" : "") + (v22EnableB ? "B" : "") + (v22EnableC ? "C" : "")
+string v22RunId = "v22|" + v22ModeId + "|" + str.substring(v22Policy, 0, 1) + "|" + timeframe.period
+
+type V22NativePlan
+    string id = ""
+    string model = ""
+    int side = 0
+    int submitBar = na
+    int fillBar = na
+    int fillAt = na
+    int watchedAt = na
+    float planned = na
+    float initialSL = na
+    float currentSL = na
+    float effectiveSL = na
+    int stopSubmitBar = na
+    float tp1 = na
+    float tp2 = na
+    float tp3 = na
+    float atr = na
+    float fill = na
+    float risk = na
+    float cash = 0.0
+    float closedQty = 0.0
+    bool leg1Closed = false
+    bool leg2Closed = false
+    bool leg3Closed = false
+    bool tp1Hit = false
+    bool tp2Hit = false
+    bool tp3Hit = false
+    bool exitRequested = false
+    bool ledgerIncomplete = false
+    string status = "SUBMITTED"
+    string reason = ""
+    int lastExitBar = na
+    string lastExitKind = ""
+
+var V22NativePlan v22Trade = na
+var V22NativePlan v22LastTrade = na
+var int v22SeenClosed = 0
+var int v22SubmittedCount = 0
+var string v22LastReason = ""
+var string v22LastState = ""
+var string v22LastSignal = ""
+var int v22LastSignalAt = na
+var array<string> v22Rows = array.new_string()
+var int v22FirstBar = na
+var int v22AuditBarCount = 0
+var float v22Hash1 = 0.0
+var float v22Hash2 = 0.0
+
+f_v22Num(float x) =>
+    na(x) ? "null" : str.tostring(x, "#.########")
+f_v22Int(int x) =>
+    na(x) ? "null" : str.tostring(x)
+f_v22Quote(string x) =>
+    "\"" + x + "\""
+f_v22Head(string kind) =>
+    '{"schema":"qirvanta.native.v1","run_id":' + f_v22Quote(v22RunId) + ',"kind":' + f_v22Quote(kind)
+f_v22Life(string state, string model, string planId, int side, string why, int effective, float price, float quantity) =>
+    if v22Lifecycle
+        log.info('{"schema":"qirvanta.v22.lifecycle.v1","run_id":' + f_v22Quote(v22RunId) + ',"state":' + f_v22Quote(state) + ',"model":' + f_v22Quote(model) + ',"id":' + f_v22Quote(planId) + ',"side":' + str.tostring(side) + ',"reason":' + f_v22Quote(why) + ',"known_at":' + f_v22Int(time_close) + ',"effective_at":' + f_v22Int(effective) + ',"bar":' + str.tostring(bar_index) + ',"price":' + f_v22Num(price) + ',"quantity":' + f_v22Num(quantity) + '}')
+f_v22Append(string row) =>
+    if array.size(v22Rows) < V22_JOURNAL_LIMIT
+        array.push(v22Rows, row)
+
+f_v22StopRound(float x, int side) =>
+    side == 1 ? math.floor(x / v22Tick + 1e-8) * v22Tick : math.ceil(x / v22Tick - 1e-8) * v22Tick
+f_v22TargetRound(float x, int side) =>
+    f_v22StopRound(x, -side)
+f_v22Stop(V22Candidate c) =>
+    f_v22StopRound(c.stopBase - c.side * 0.10 * c.atr, c.side)
+f_v22CandidateReason(V22Candidate c, float ref, float stop) =>
+    float risk = (ref - stop) * c.side
+    float room = na(c.barrier) ? risk : math.min(risk, (c.barrier - ref) * c.side)
+    string reason = ""
+    if not v22OrdersEnabled
+        reason := "ORDERS_DISABLED"
+    else if not v22Contract
+        reason := "CONTRACT_UNSUPPORTED"
+    else if time_close < v22OrderStart or time_close >= v22OrderEnd
+        reason := "WINDOW_CLOSED"
+    else if na(stop) or na(c.atr) or c.atr <= 0 or risk < v22Tick * (1.0 - 1e-7)
+        reason := "STRUCTURE_INVALID"
+    else if c.spike
+        reason := "VOLATILITY_SPIKE"
+    else if v22UseHtf and c.htfConflict
+        reason := "HTF_CONFLICT"
+    else if c.extension > 1.75
+        reason := "EXCESSIVE_EXTENSION"
+    else if risk > V22_MAX_RISK_ATR * c.atr
+        reason := "OVERSIZED_STOP"
+    else if v22Cost > 0.30 * risk
+        reason := "COST_TOO_HIGH"
+    else if room - v22Cost < 0.70 * risk
+        reason := "INSUFFICIENT_ROOM"
+    reason
+f_v22Gap(V22NativePlan p) =>
+    p.risk < v22Tick * (1.0 - 1e-7) or p.risk > V22_MAX_RISK_ATR * p.atr or math.abs(p.fill - p.planned) > 0.60 * p.atr or (p.tp1 - p.fill) * p.side <= 0
+f_v22ObserveFill(V22NativePlan p, float price, int fillBar, int at) =>
+    p.fill := price
+    p.fillBar := fillBar
+    p.fillAt := at
+    p.risk := (price - p.initialSL) * p.side
+    p.status := "ACTIVE"
+    f_v22Life("FILLED", p.model, p.id, p.side, "NATIVE_NEXT_TICK", at, price, V22_QTY)
+    f_v22Life("ACTIVE", p.model, p.id, p.side, "", at, price, V22_QTY)
+    if f_v22Gap(p)
+        p.status := "INVALIDATED"
+        p.reason := "GAP_INVALID"
+        f_v22Life("INVALIDATED", p.model, p.id, p.side, p.reason, na, price, na)
+
+f_v22Brackets(V22NativePlan p) =>
+    if not p.leg1Closed
+        strategy.exit(p.id + "|T1", from_entry=p.id, qty=1.0, stop=p.currentSL, limit=p.tp1, oca_name=p.id + "|B1", comment_profit="TP1", comment_loss="SL", disable_alert=true)
+    if not p.leg2Closed
+        strategy.exit(p.id + "|T2", from_entry=p.id, qty=1.0, stop=p.currentSL, limit=p.tp2, oca_name=p.id + "|B2", comment_profit="TP2", comment_loss="SL", disable_alert=true)
+    if not p.leg3Closed
+        strategy.exit(p.id + "|T3", from_entry=p.id, qty=1.0, stop=p.currentSL, limit=p.tp3, oca_name=p.id + "|B3", comment_profit="TP3", comment_loss="SL", disable_alert=true)
+f_v22CancelOrders(V22NativePlan p) =>
+    strategy.cancel(p.id)
+    strategy.cancel(p.id + "|T1")
+    strategy.cancel(p.id + "|T2")
+    strategy.cancel(p.id + "|T3")
+
+f_v22ProposedStop(V22NativePlan p) =>
+    float proposed = na
+    if p.risk > 0
+        if str.startswith(v22Policy, "B") and p.tp1Hit
+            float be = p.fill + p.side * (v22Spread + 2.0 * V22_FEE / syminfo.pointvalue + V22_SLIP * v22Tick)
+            proposed := f_v22TargetRound(be, p.side)
+        else if str.startswith(v22Policy, "C") and p.tp1Hit
+            proposed := f_v22StopRound(p.fill + p.side * 0.05 * p.risk, p.side)
+        else if str.startswith(v22Policy, "D")
+            proposed := f_v22StopRound(close - p.side * 2.0 * v22ATR, p.side)
+        else if str.startswith(v22Policy, "E")
+            float swing = p.side == 1 ? v22LastLow : v22LastHigh
+            int disclosedAt = p.side == 1 ? v22LastLowKnown : v22LastHighKnown
+            if not na(disclosedAt) and disclosedAt >= p.fillAt
+                proposed := f_v22StopRound(swing - p.side * 0.10 * v22ATR, p.side)
+    proposed
+f_v22MarketExit(V22NativePlan p) =>
+    int baseBars = timeframe.in_seconds() <= 900 ? 48 : 60
+    int maxBars = str.startswith(v22Policy, "F") and not p.tp1Hit ? 24 : baseBars
+    bool weak = str.startswith(v22Policy, "G") and bar_index > p.fillBar and v22Contiguous and (close - p.fill) * p.side < 0 and (v22PriorClose - p.fill) * p.side < 0 and (v22Rsi - 50) * p.side < 0
+    p.reason == "GAP_INVALID" ? "GAP_INVALID" : bar_index - p.fillBar >= maxBars ? "TIME_EXIT" : weak ? "MOMENTUM_EXIT" : ""
+
+bool v22WatchBuy = false
+bool v22WatchSell = false
+bool v22SubmitBuy = false
+bool v22SubmitSell = false
+if barstate.isconfirmed
+    for obs in v22Observations
+        v22LastState := obs.state
+        v22LastReason := obs.reason
+        if obs.state == "WATCH"
+            v22WatchBuy := v22WatchBuy or obs.side == 1
+            v22WatchSell := v22WatchSell or obs.side == -1
+        if obs.state == "CONFIRMED"
+            v22LastSignal := obs.model + (obs.side == 1 ? " BUY" : " SELL")
+            v22LastSignalAt := obs.knownAt
+        f_v22Life(obs.state, obs.model, obs.setupId, obs.side, obs.reason, na, obs.level, na)
+
+    // A prior close scheduled this level for the first available tick of this bar.
+    if not na(v22Trade) and not na(v22Trade.stopSubmitBar) and bar_index > v22Trade.stopSubmitBar
+        v22Trade.effectiveSL := v22Trade.currentSL
+        v22Trade.stopSubmitBar := na
+    // Native outcomes on this bar were decided before this close.
+    if not na(v22Trade) and na(v22Trade.fillBar) and strategy.position_size != 0 and strategy.opentrades > 0
+        f_v22ObserveFill(v22Trade, strategy.opentrades.entry_price(0), strategy.opentrades.entry_bar_index(0), strategy.opentrades.entry_time(0))
+    if strategy.closedtrades > v22SeenClosed
+        int firstAvailable = nz(strategy.closedtrades.first_index, 0)
+        if not na(v22Trade) and firstAvailable > v22SeenClosed
+            v22Trade.ledgerIncomplete := true
+        for j = math.max(v22SeenClosed, firstAvailable) to strategy.closedtrades - 1
+            string entryId = strategy.closedtrades.entry_id(j)
+            string exitId = strategy.closedtrades.exit_id(j)
+            string comment = strategy.closedtrades.exit_comment(j)
+            string note = na(comment) ? "" : comment
+            float fill = strategy.closedtrades.entry_price(j)
+            float exit = strategy.closedtrades.exit_price(j)
+            float signed = strategy.closedtrades.size(j)
+            int entryAt = strategy.closedtrades.entry_time(j)
+            int exitAt = strategy.closedtrades.exit_time(j)
+            int exitBar = strategy.closedtrades.exit_bar_index(j)
+            if v22Audit
+                f_v22Append(f_v22Head("closed") + ',"trade_index":' + str.tostring(j) + ',"entry_id":' + f_v22Quote(entryId) + ',"exit_id":' + f_v22Quote(exitId) + ',"exit_comment":' + f_v22Quote(note) + ',"entry_time":' + f_v22Int(entryAt) + ',"exit_time":' + f_v22Int(exitAt) + ',"entry_bar_index":' + f_v22Int(strategy.closedtrades.entry_bar_index(j)) + ',"exit_bar_index":' + f_v22Int(exitBar) + ',"entry_price":' + f_v22Num(fill) + ',"exit_price":' + f_v22Num(exit) + ',"size":' + f_v22Num(signed) + ',"profit":' + f_v22Num(strategy.closedtrades.profit(j)) + ',"commission":' + f_v22Num(strategy.closedtrades.commission(j)) + ',"max_drawdown":' + f_v22Num(strategy.closedtrades.max_drawdown(j)) + ',"max_runup":' + f_v22Num(strategy.closedtrades.max_runup(j)) + '}')
+            if not na(v22Trade) and entryId == v22Trade.id
+                if na(v22Trade.fillBar)
+                    f_v22ObserveFill(v22Trade, fill, strategy.closedtrades.entry_bar_index(j), entryAt)
+                v22Trade.cash += (exit - fill) * signed * syminfo.pointvalue - strategy.closedtrades.commission(j)
+                v22Trade.closedQty += math.abs(signed)
+                v22Trade.leg1Closed := v22Trade.leg1Closed or exitId == entryId + "|T1"
+                v22Trade.leg2Closed := v22Trade.leg2Closed or exitId == entryId + "|T2"
+                v22Trade.leg3Closed := v22Trade.leg3Closed or exitId == entryId + "|T3"
+                v22Trade.tp1Hit := v22Trade.tp1Hit or note == "TP1"
+                v22Trade.tp2Hit := v22Trade.tp2Hit or note == "TP2"
+                v22Trade.tp3Hit := v22Trade.tp3Hit or note == "TP3"
+                string state = note == "TP1" ? "TP1_FILLED" : note == "TP2" ? "TP2_FILLED" : note == "TP3" ? "TP3_FILLED" : note == "SL" ? "STOP_FILLED" : "EXIT_FILLED"
+                bool tpStopBar = v22Trade.lastExitBar == exitBar and ((note == "SL" and str.startswith(v22Trade.lastExitKind, "TP")) or (v22Trade.lastExitKind == "SL" and str.startswith(note, "TP")))
+                if tpStopBar
+                    f_v22Life("EMULATOR_SAME_BAR_TP_SL", v22Trade.model, entryId, v22Trade.side, "INTRABAR_PATH_UNVERIFIED", exitAt, exit, math.abs(signed))
+                v22Trade.lastExitBar := exitBar
+                v22Trade.lastExitKind := note
+                f_v22Life(state, v22Trade.model, entryId, v22Trade.side, note, exitAt, exit, math.abs(signed))
+        v22SeenClosed := strategy.closedtrades
+
+    if not na(v22Trade) and strategy.position_size == 0 and bar_index > v22Trade.submitBar
+        if na(v22Trade.fillBar)
+            v22Trade.status := "EXPIRED"
+            v22Trade.reason := "NO_NATIVE_FILL"
+            f_v22Life("EXPIRED", v22Trade.model, v22Trade.id, v22Trade.side, v22Trade.reason, na, na, na)
+        else
+            v22Trade.status := "CLOSED"
+            v22Trade.ledgerIncomplete := v22Trade.ledgerIncomplete or math.abs(v22Trade.closedQty - V22_QTY) > 1e-7
+            v22Trade.reason := v22Trade.ledgerIncomplete ? "INCOMPLETE_LEDGER" : v22Trade.lastExitKind
+            f_v22Life("CLOSED", v22Trade.model, v22Trade.id, v22Trade.side, v22Trade.reason, na, na, v22Trade.closedQty)
+        f_v22CancelOrders(v22Trade)
+        v22LastTrade := v22Trade
+        v22Trade := na
+
+    if not na(v22Trade) and strategy.position_size != 0 and not na(v22Trade.fillBar) and not v22Trade.exitRequested
+        string exitReason = f_v22MarketExit(v22Trade)
+        if exitReason != ""
+            strategy.close(v22Trade.id, comment=exitReason, disable_alert=true)
+            v22Trade.exitRequested := true
+            v22Trade.reason := exitReason
+            f_v22Life("EXIT_SCHEDULED", v22Trade.model, v22Trade.id, v22Trade.side, exitReason, na, na, math.abs(strategy.position_size))
+        else
+            float newStop = f_v22ProposedStop(v22Trade)
+            if not na(newStop) and (newStop - v22Trade.currentSL) * v22Trade.side >= v22Tick * 0.5 and (close - newStop) * v22Trade.side >= v22Tick * 0.5
+                v22Trade.currentSL := newStop
+                v22Trade.stopSubmitBar := bar_index
+                f_v22Brackets(v22Trade)
+                f_v22Life("STOP_SCHEDULED", v22Trade.model, v22Trade.id, v22Trade.side, "NEXT_AVAILABLE_TICK", na, newStop, math.abs(strategy.position_size))
+
+    V22Candidate selected = na
+    bool opposed = false
+    for candidate in v22Candidates
+        float ref = math.round_to_mintick(candidate.reference)
+        float initial = f_v22Stop(candidate)
+        string reason = f_v22CandidateReason(candidate, ref, initial)
+        if reason == ""
+            f_v22Life("ENTRY_VALID", candidate.model, candidate.setupId, candidate.side, "", na, ref, na)
+            if not na(v22Trade) or strategy.position_size != 0
+                reason := "POSITION_OCCUPIED"
+            else if na(selected)
+                selected := candidate
+            else
+                opposed := opposed or selected.side != candidate.side
+                reason := selected.side != candidate.side ? "POSITION_CONFLICT" : "PORTFOLIO_PRIORITY"
+        if reason != ""
+            v22LastState := "REJECTED"
+            v22LastReason := reason
+            f_v22Life("REJECTED", candidate.model, candidate.setupId, candidate.side, reason, na, ref, na)
+    if not na(selected) and opposed
+        v22LastState := "REJECTED"
+        v22LastReason := "POSITION_CONFLICT"
+        f_v22Life("REJECTED", selected.model, selected.setupId, selected.side, v22LastReason, na, selected.reference, na)
+    if not na(selected) and not opposed
+        int side = selected.side
+        float ref = math.round_to_mintick(selected.reference)
+        float initial = f_v22Stop(selected)
+        float risk = (ref - initial) * side
+        V22NativePlan plan = V22NativePlan.new()
+        plan.id := selected.setupId + "|" + str.tostring(selected.knownAt)
+        plan.model := selected.model
+        plan.side := side
+        plan.submitBar := bar_index
+        plan.watchedAt := selected.watchedAt
+        plan.planned := ref
+        plan.initialSL := initial
+        plan.currentSL := initial
+        plan.effectiveSL := initial
+        plan.atr := selected.atr
+        plan.tp1 := f_v22TargetRound(ref + side * risk, side)
+        plan.tp2 := f_v22TargetRound(ref + side * 2.0 * risk, side)
+        plan.tp3 := f_v22TargetRound(ref + side * 3.0 * risk, side)
+        v22Trade := plan
+        v22SubmittedCount += 1
+        v22SubmitBuy := side == 1
+        v22SubmitSell := side == -1
+        v22LastState := "SUBMITTED"
+        v22LastReason := ""
+        strategy.entry(plan.id, side == 1 ? strategy.long : strategy.short, qty=V22_QTY, comment=plan.model, disable_alert=true)
+        f_v22Brackets(plan)
+        f_v22Life("SUBMITTED", plan.model, plan.id, side, "NEXT_AVAILABLE_TICK", na, ref, V22_QTY)
+        if v22Audit
+            string family = plan.model == "A" ? "1" : plan.model == "B" ? "2" : "3"
+            f_v22Append(f_v22Head("submitted") + ',"plan_id":' + f_v22Quote(plan.id) + ',"entry_id":' + f_v22Quote(plan.id) + ',"submitted_time":' + f_v22Int(time_close) + ',"submitted_bar":' + str.tostring(bar_index) + ',"quantity":' + f_v22Num(V22_QTY) + ',"family":' + family + ',"side":' + str.tostring(side) + ',"htf_bias":' + str.tostring(v22H1) + ',"regime":' + f_v22Quote(v22Regime) + ',"reference":' + f_v22Num(ref) + ',"initial_sl":' + f_v22Num(initial) + ',"tp1":' + f_v22Num(plan.tp1) + ',"tp2":' + f_v22Num(plan.tp2) + ',"tp3":' + f_v22Num(plan.tp3) + ',"watch_time":' + f_v22Int(plan.watchedAt) + ',"atr":' + f_v22Num(plan.atr) + '}')
+
+    if v22Audit
+        v22FirstBar := na(v22FirstBar) ? time : v22FirstBar
+        v22AuditBarCount += 1
+        for sample in array.from(float(time), open / v22Tick, high / v22Tick, low / v22Tick, close / v22Tick, volume, float(v22H1Known), float(v22H4Known), float(v22H1), float(v22H4))
+            float value = na(sample) ? -999999.0 : math.round(sample)
+            v22Hash1 := (v22Hash1 * 131.0 + value) % 1000000007.0
+            v22Hash2 := (v22Hash2 * 137.0 + value) % 1000000009.0
+        if time_close == v22Cutoff
+            string run = f_v22Head("run") + ',"symbol":' + f_v22Quote(syminfo.tickerid) + ',"timeframe":' + f_v22Quote(timeframe.period) + ',"source_sha256":' + f_v22Quote(V22_TEMPLATE_SHA) + ',"source_identity":"CANONICAL_TEMPLATE_WITH_SHA_TOKEN","origin":"REAL_TRADINGVIEW","account_currency":' + f_v22Quote(strategy.account_currency) + ',"symbol_currency":' + f_v22Quote(syminfo.currency) + ',"pointvalue":' + f_v22Num(syminfo.pointvalue) + ',"mintick":' + f_v22Num(v22Tick) + ',"mincontract":' + f_v22Num(syminfo.mincontract) + ',"first_bar_time":' + f_v22Int(v22FirstBar) + ',"last_bar_open":' + f_v22Int(time) + ',"cutoff":' + f_v22Int(v22Cutoff) + ',"bar_count":' + str.tostring(v22AuditBarCount) + ',"checksum1":' + f_v22Num(v22Hash1) + ',"checksum2":' + f_v22Num(v22Hash2) + ',"order_start":' + f_v22Int(v22OrderStart) + ',"order_end":' + f_v22Int(v22OrderEnd) + ',"spread_budget_price":' + f_v22Num(v22Spread) + ',"reject_htf_conflict":' + str.tostring(v22UseHtf) + ',"require_displacement":' + str.tostring(v22RequireADisplacement) + ',"orders_enabled":' + str.tostring(v22OrdersEnabled) + '}'
+            log.info("QIRVANTA_DATA_BEGIN\n" + run)
+            string batch = ""
+            int count = 0
+            for row in v22Rows
+                batch += row + "\n"
+                count += 1
+                if count == 10
+                    log.info(batch)
+                    batch := ""
+                    count := 0
+            if batch != ""
+                log.info(batch)
+            string openRow = ""
+            if strategy.opentrades > 0
+                openRow := '{"entry_id":' + f_v22Quote(strategy.opentrades.entry_id(0)) + ',"entry_time":' + f_v22Int(strategy.opentrades.entry_time(0)) + ',"entry_bar_index":' + f_v22Int(strategy.opentrades.entry_bar_index(0)) + ',"size":' + f_v22Num(strategy.opentrades.size(0)) + ',"entry_price":' + f_v22Num(strategy.opentrades.entry_price(0)) + '}'
+            string snap = f_v22Head("snapshot") + ',"at_time":' + f_v22Int(time_close) + ',"at_bar":' + str.tostring(bar_index) + ',"closed_count":' + str.tostring(strategy.closedtrades) + ',"first_closed_index":' + f_v22Int(nz(strategy.closedtrades.first_index, 0)) + ',"submitted_count":' + str.tostring(v22SubmittedCount) + ',"open_complete":' + str.tostring(strategy.opentrades <= 1) + ',"open":[' + openRow + '],"netprofit":' + f_v22Num(strategy.netprofit) + ',"max_drawdown":' + f_v22Num(strategy.max_drawdown) + '}'
+            log.info(snap + "\nQIRVANTA_DATA_END")
+
+// Dashboard reads native fills and causal observations without changing execution.
+color v22Teal = color.rgb(100, 219, 195)
+color v22Red = color.rgb(243, 111, 117)
+color v22Text = color.rgb(224, 233, 235)
+color v22Panel = color.rgb(16, 25, 31)
+bool v22Mobile = v22Display == "Mobile"
+string v22Font = v22Mobile ? size.tiny : size.small
+var table v22Board = table.new(v22Display == "Desktop" ? position.top_right : position.bottom_right, 2, 15, bgcolor=v22Panel, frame_color=color.new(v22Teal, 30), frame_width=1)
+f_v22DisplayPrice(float x) =>
+    na(x) ? "—" : str.tostring(x, format.mintick)
+f_v22DashboardHtf(int side, int knownAt, float price, float fast, float slow) =>
+    na(knownAt) or na(price) or na(fast) or na(slow) ? "WARMUP" : f_v22Direction(side)
+f_v22Cell(int row, string key, string value, color tone) =>
+    table.cell(v22Board, 0, row, key, text_color=v22Text, text_halign=text.align_left, text_size=v22Font, bgcolor=v22Panel)
+    table.cell(v22Board, 1, row, value, text_color=tone, text_halign=text.align_right, text_size=v22Font, bgcolor=v22Panel)
+f_v22TargetText(float target, bool filled, float ref, float risk, int side) =>
+    f_v22DisplayPrice(target) + (filled ? " ✓" : "") + (risk > 0 ? "  " + str.tostring((target - ref) * side / risk, "#.##") + "R" : "")
+
+// Close-only strategies can render immediately from the last completed bar.
+if barstate.islastconfirmedhistory or barstate.islast
+    V22NativePlan plan = na(v22Trade) ? v22LastTrade : v22Trade
+    bool present = not na(plan)
+    string state = present ? plan.status : v22LastState
+    string planReason = not na(v22Trade) and v22Trade.reason != "" ? v22Trade.reason : v22LastReason
+    color tone = present and plan.side < 0 ? v22Red : v22Teal
+    f_v22Cell(0, "QIRVANTA SNIPER V2.2", timeframe.period + " · SIM", v22Teal)
+    f_v22Cell(1, "Regime", v22Regime + " · " + f_v22Direction(v22Trend), v22Text)
+    f_v22Cell(2, "Structure", v22Structure, v22Text)
+    string h1Text = f_v22DashboardHtf(v22H1, v22H1Known, v22H1Close, v22H1Fast, v22H1Slow)
+    string h4Text = f_v22DashboardHtf(v22H4, v22H4Known, v22H4Close, v22H4Fast, v22H4Slow)
+    f_v22Cell(3, v22Mobile ? "H1 / H4" : "Confirmed H1 / H4", h1Text + " / " + h4Text, v22Text)
+    f_v22Cell(4, "Models / exits", v22ModeId + " / " + str.substring(v22Policy, 0, 1), v22Teal)
+    f_v22Cell(5, "Last confirmed", v22LastSignal == "" ? "—" : v22LastSignal + (v22Mobile ? "" : " " + str.format_time(v22LastSignalAt, "dd.MM HH:mm", "UTC")), tone)
+    f_v22Cell(6, na(v22Trade) ? "No active position" : "Simulated plan", state == "" ? "WAIT" : state, tone)
+    f_v22Cell(7, "Planned / filled", present ? f_v22DisplayPrice(plan.planned) + " / " + f_v22DisplayPrice(plan.fill) : "—", v22Text)
+    f_v22Cell(8, "Initial / current SL", present ? f_v22DisplayPrice(plan.initialSL) + " / " + f_v22DisplayPrice(plan.effectiveSL) : "—", v22Red)
+    float rrRef = present ? (na(plan.fill) ? plan.planned : plan.fill) : na
+    float rrRisk = present ? (rrRef - plan.initialSL) * plan.side : na
+    f_v22Cell(9, "TP1", present ? f_v22TargetText(plan.tp1, plan.tp1Hit, rrRef, rrRisk, plan.side) : "—", v22Teal)
+    f_v22Cell(10, "TP2", present ? f_v22TargetText(plan.tp2, plan.tp2Hit, rrRef, rrRisk, plan.side) : "—", v22Teal)
+    f_v22Cell(11, "TP3", present ? f_v22TargetText(plan.tp3, plan.tp3Hit, rrRef, rrRisk, plan.side) : "—", v22Teal)
+    string net = present and not plan.ledgerIncomplete ? str.tostring(plan.cash, "#.##") + " USD" : "—"
+    if present and not plan.ledgerIncomplete and plan.risk > 0
+        net += " / " + str.tostring(plan.cash / (plan.risk * V22_QTY * syminfo.pointvalue), "#.##") + "R"
+    f_v22Cell(12, "Realized / budget", net + (v22Mobile ? "" : " · " + str.tostring(v22Cost, "#.###")), v22Text)
+    f_v22Cell(13, "Observation", v22LastState + (planReason == "" ? "" : " · " + planReason), v22Text)
+    string protection = not na(v22Trade) and not na(v22Trade.stopSubmitBar) ? "Next tick " + f_v22DisplayPrice(v22Trade.currentSL) : "—"
+    if protection == "—" and not na(v22LastTrade)
+        protection := v22LastTrade.model + " " + f_v22Direction(v22LastTrade.side) + " · " + v22LastTrade.status
+    f_v22Cell(14, "Protection / last", protection, v22Text)
+
+bool v22PlotPlan = v22ShowLevels and not na(v22Trade)
+plot(v22PlotPlan ? (na(v22Trade.fill) ? v22Trade.planned : v22Trade.fill) : na, "Plan or observed fill", color=v22Text, style=plot.style_linebr)
+plot(v22PlotPlan ? v22Trade.effectiveSL : na, "Current SL", color=v22Red, style=plot.style_linebr)
+plot(v22PlotPlan and v22Trade.effectiveSL != v22Trade.initialSL ? v22Trade.initialSL : na, "Initial SL", color=color.new(v22Red, 55), style=plot.style_linebr)
+plot(v22PlotPlan ? v22Trade.tp1 : na, "TP1", color=color.new(v22Teal, 30), style=plot.style_linebr)
+plot(v22PlotPlan ? v22Trade.tp2 : na, "TP2", color=color.new(v22Teal, 20), style=plot.style_linebr)
+plot(v22PlotPlan ? v22Trade.tp3 : na, "TP3", color=v22Teal, style=plot.style_linebr)
+plotshape(v22SubmitBuy, "Submitted BUY", shape.triangleup, location.belowbar, v22Teal, text="BUY", textcolor=v22Teal, size=size.tiny)
+plotshape(v22SubmitSell, "Submitted SELL", shape.triangledown, location.abovebar, v22Red, text="SELL", textcolor=v22Red, size=size.tiny)
+plotshape(v22ShowWatch and v22WatchBuy and not v22SubmitBuy, "WATCH BUY", shape.circle, location.belowbar, color.new(v22Teal, 55), size=size.tiny)
+plotshape(v22ShowWatch and v22WatchSell and not v22SubmitSell, "WATCH SELL", shape.circle, location.abovebar, color.new(v22Red, 55), size=size.tiny)
