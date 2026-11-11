@@ -1,0 +1,22 @@
+{
+  "schema": "qirvanta.precision-fast-diagnostic.v1",
+  "source_commit": "9371622a02a75d777841531f57c81cfbef8f78bc",
+  "source_report_sha256": "68ae12d3bc8e3bc35cbd0376fdc2c4e4e0808e2ba92631390bb5f76d43636e1c",
+  "source_tape_sha256": "41db20178030940d5ecd5dce89b42b6fbf69f2d131c4c52b3f37c360478100a7",
+  "feature_config_sha256": "f30c0b84549f8952f03cdb1f1c237a7c54d8781e04a883d999660c90a3401ac5",
+  "feature_code_sha256": "480fb55822c4da89c676236653b62b69032ba0825ff877c4db06cccb1c39d21e",
+  "event_config_sha256": "dc023d3c15e75327924bb3852cdcb620a079eee99a16edee7472fcdf9e8f04a7",
+  "event_code_sha256": "4adcf25baef5048ec77c1933b9ffa92b4a83a0727535e52f7900cbf27e509bfa",
+  "closed_campaign_count": 123,
+  "censored_open_count": 1,
+  "lookback_opposing_bars": 3,
+  "anchor_failure_atr": 0.10,
+  "late_signal_age_bars": 4,
+  "late_extension_atr": 1.25,
+  "late_adverse_fill_atr": 0.25,
+  "unfavorable_friction_to_initial_risk": 0.25,
+  "thin_room_net_r": 0.75,
+  "wide_stop_atr": 1.6,
+  "rejected_event_excursion_atr": 1.0,
+  "scope": "Descriptive frozen predicates on the previously inspected archive. Predicates do not change original admission, stops or results."
+}

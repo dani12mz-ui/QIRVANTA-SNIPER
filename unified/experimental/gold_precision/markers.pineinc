@@ -1,0 +1,78 @@
+// Ring capacity is set by the preset and the requested historical density.
+int prRequestedMarkers = switch prDensity
+    "Off" => 0
+    "High" => 48
+    "Medium" => 24
+    => 12
+int prMarkerLimit = math.min(prRequestedMarkers, prMobile ? 6 : prMinimal ? 3 : 48)
+var array<label> prHistory = array.new<label>()
+var int prHistoryHead = 0
+bool prNewOpportunity = gpOpportunityAt == time_close
+bool prNewPlan = not na(gpLastPlan) and gpLastPlan.knownAt == time_close
+bool prSignalConflict = gpBuyConfirmed and gpSellConfirmed
+bool prWatch = gpBuyWatch or gpSellWatch or prNewOpportunity and
+  (gpOpportunityText == "BUY WATCH" or gpOpportunityText == "SELL WATCH")
+bool prWait = prNewOpportunity and gpOpportunityText == "WAIT FOR PULLBACK"
+bool prExpired = gpExpiryMark or prNewOpportunity and gpOpportunityText == "OPPORTUNITY EXPIRED"
+int prMarkerSide = prNewPlan ? gpLastPlan.side : gpBuyConfirmed or gpOpportunityText == "BUY WATCH" or gpBuyWatch ? 1 : -1
+if gpClosedBar and prMarkerLimit > 0
+    string glyph = ""
+    string detail = ""
+    bool badge = false
+    color accent = prMarkerSide > 0 ? prChartBuy : prChartSell
+    if gpClosedMark
+        glyph := "×"
+        detail := "Simulated campaign closed"
+        accent := prChartNeutral
+    else if prSignalConflict
+        glyph := "!"
+        detail := "Conflicting confirmed BUY and SELL signals"
+        accent := prChartWarning
+    else if prNewPlan and gpLastState == "ENTRY_VALID"
+        glyph := gpLastPlan.model == "R" ? "2nd" : f_prSide(prMarkerSide)
+        detail := (gpLastPlan.model == "R" ? "SECOND CHANCE" : "ENTRY VALID") + " · " + f_prSide(prMarkerSide)
+        badge := true
+    else if gpBuyConfirmed or gpSellConfirmed
+        glyph := prMarkerSide > 0 ? "B" : "S"
+        detail := f_prSide(prMarkerSide) + " CONFIRMED"
+        badge := true
+    else if prShowDecisions and prNewPlan and gpLastState == "ENTRY_REJECTED"
+        glyph := "!"
+        detail := "ENTRY REJECTED · " + f_prReadable(gpLastReason)
+        accent := prChartWarning
+    else if prShowDecisions and prExpired
+        glyph := "×"
+        detail := "EXPIRED · " + f_prReadable(gpLastReason)
+        accent := prChartNeutral
+    else if prShowWatches and prWait
+        glyph := "…"
+        detail := "WAIT FOR PULLBACK · " + f_prReadable(gpLastReason)
+        accent := prChartWarning
+    else if prShowWatches and prWatch
+        glyph := "·"
+        detail := f_prSide(prMarkerSide) + " WATCH"
+    if glyph != ""
+        bool buy = prMarkerSide > 0 and not prSignalConflict and not gpClosedMark
+        float padding = math.max(nz(v22ATR, gpTick) * 0.16, gpTick * 3)
+        float markerPrice = buy ? low - padding : high + padding
+        string badgeStyle = not badge ? label.style_none : buy ? label.style_label_up : label.style_label_down
+        color background = badge ? color.new(accent, 10) : color.new(accent, 100)
+        color textInk = badge ? (prLightChart ? #FFFFFF : prGraphite) : accent
+        label marker = na
+        if prHistory.size() < prMarkerLimit
+            marker := label.new(bar_index, markerPrice, yloc=yloc.price, size=9)
+            prHistory.push(marker)
+        else
+            marker := prHistory.get(prHistoryHead)
+            prHistoryHead := (prHistoryHead + 1) % prMarkerLimit
+        label.set_xy(marker, bar_index, markerPrice)
+        label.set_style(marker, badgeStyle)
+        label.set_text(marker, glyph)
+        label.set_color(marker, background)
+        label.set_textcolor(marker, textInk)
+        label.set_tooltip(marker, detail + "\n" + str.format_time(time_close, "dd MMM HH:mm", "UTC") + " UTC")
+
+plotshape(prShowFills and prNativeFillMark and prNativeFillSide > 0, "Native simulated BUY fill", shape.arrowup,
+  location.belowbar, prChartBuy, text="SIM", textcolor=prChartBuy, size=size.tiny, display=display.pane)
+plotshape(prShowFills and prNativeFillMark and prNativeFillSide < 0, "Native simulated SELL fill", shape.arrowdown,
+  location.abovebar, prChartSell, text="SIM", textcolor=prChartSell, size=size.tiny, display=display.pane)

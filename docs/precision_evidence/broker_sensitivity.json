@@ -1,0 +1,131 @@
+{
+  "lanes": {
+    "FAST": {
+      "OANDA_REFERENCE": {
+        "assumptions": [
+          0.35,
+          0.002,
+          0.35,
+          0.0
+        ],
+        "campaign_close_drawdown_usd": 272.3680000000732,
+        "campaigns": 123,
+        "hypothetical_swap_usd": 0.0,
+        "losses": 80,
+        "net_usd": -160.4040000000866,
+        "wins": 43
+      },
+      "PU_ASSUMPTION_CENTRAL": {
+        "assumptions": [
+          0.5,
+          0.1,
+          0.35,
+          0.1
+        ],
+        "campaign_close_drawdown_usd": 346.55900000007404,
+        "campaigns": 123,
+        "hypothetical_swap_usd": 1.2,
+        "losses": 80,
+        "net_usd": -276.7340000000866,
+        "wins": 43
+      },
+      "PU_ASSUMPTION_LOW": {
+        "assumptions": [
+          0.3,
+          0.03,
+          0.0,
+          0.05
+        ],
+        "campaign_close_drawdown_usd": 202.8880000000732,
+        "campaigns": 123,
+        "hypothetical_swap_usd": 0.6,
+        "losses": 80,
+        "net_usd": -30.484000000086585,
+        "wins": 43
+      },
+      "PU_ASSUMPTION_STRESS": {
+        "assumptions": [
+          0.8,
+          0.2,
+          0.5,
+          0.2
+        ],
+        "campaign_close_drawdown_usd": 560.7350000000775,
+        "campaigns": 123,
+        "hypothetical_swap_usd": 2.4,
+        "losses": 80,
+        "net_usd": -504.9840000000866,
+        "wins": 43
+      }
+    },
+    "S5": {
+      "OANDA_REFERENCE": {
+        "assumptions": [
+          0.35,
+          0.002,
+          0.35,
+          0.0
+        ],
+        "campaign_close_drawdown_usd": 145.759,
+        "campaigns": 98,
+        "hypothetical_swap_usd": 0.0,
+        "losses": 41,
+        "net_usd": 1.6310000000000202,
+        "wins": 57
+      },
+      "PU_ASSUMPTION_CENTRAL": {
+        "assumptions": [
+          0.5,
+          0.1,
+          0.35,
+          0.1
+        ],
+        "campaign_close_drawdown_usd": 154.51299999999998,
+        "campaigns": 98,
+        "hypothetical_swap_usd": 1.0,
+        "losses": 46,
+        "net_usd": -91.88099999999999,
+        "wins": 52
+      },
+      "PU_ASSUMPTION_LOW": {
+        "assumptions": [
+          0.3,
+          0.03,
+          0.0,
+          0.05
+        ],
+        "campaign_close_drawdown_usd": 136.303,
+        "campaigns": 98,
+        "hypothetical_swap_usd": 0.5,
+        "losses": 41,
+        "net_usd": 104.89900000000002,
+        "wins": 57
+      },
+      "PU_ASSUMPTION_STRESS": {
+        "assumptions": [
+          0.8,
+          0.2,
+          0.5,
+          0.2
+        ],
+        "campaign_close_drawdown_usd": 286.80199999999996,
+        "campaigns": 98,
+        "hypothetical_swap_usd": 2.0,
+        "losses": 56,
+        "net_usd": -274.58099999999996,
+        "wins": 42
+      }
+    }
+  },
+  "market_sha256": "44971f52b0008fefc4b61dda51c71043f08e4a2e3bc6d08121380e95232ace1d",
+  "parameter_order": [
+    "spread_usd_per_unit_round_trip",
+    "adverse_slip_usd_per_market_or_stop_unit",
+    "commission_usd_per_unit_round_trip",
+    "swap_usd_per_unit_rollover_weight"
+  ],
+  "pu_prime_account_specification": "BLOCKED",
+  "scope": "Fixed OANDA price paths, order admissions and simulated quantities. No broker executable volume.",
+  "status": "EXPERIMENTAL_COST_SENSITIVITY",
+  "tape_sha256": "41db20178030940d5ecd5dce89b42b6fbf69f2d131c4c52b3f37c360478100a7"
+}

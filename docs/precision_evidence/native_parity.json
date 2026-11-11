@@ -1,0 +1,354 @@
+{
+  "alert_scope": "Payload-generating native events, no alert delivery test.",
+  "pairs": [
+    {
+      "counts": {
+        "context": 349,
+        "event": 332,
+        "plan": 63
+      },
+      "first_difference_index": null,
+      "frame": 5,
+      "lifecycle_counts": {
+        "BUY WATCH": 3,
+        "CONFIRMED": 53,
+        "ENTRY_REJECTED": 47,
+        "ENTRY_VALID": 6,
+        "EXPIRED": 13,
+        "INVALIDATED": 28,
+        "OPPORTUNITY EXPIRED": 12,
+        "SECOND CHANCE": 12,
+        "SELL WATCH": 6,
+        "SETUP_FORMING": 64,
+        "TREND CONFIRMED": 6,
+        "WATCH": 82
+      },
+      "matched_native_campaigns": [],
+      "original_normalized_sha256": "0c574542191e7443565ba993f2e813c5792fde5321c5ab5eb787480251fc01b5",
+      "original_sha256": "ac73a062684ac10e740c9e9e662a64218428c0f62892247400b555cbcd5ec5a8",
+      "policy": "CONFIRMED",
+      "precision_counts": {
+        "context": 349,
+        "event": 332,
+        "plan": 63
+      },
+      "precision_normalized_sha256": "0c574542191e7443565ba993f2e813c5792fde5321c5ab5eb787480251fc01b5",
+      "precision_sha256": "ac73a062684ac10e740c9e9e662a64218428c0f62892247400b555cbcd5ec5a8",
+      "role": "indicator",
+      "status": "VERIFIED"
+    },
+    {
+      "counts": {
+        "context": 117,
+        "event": 97,
+        "plan": 15
+      },
+      "first_difference_index": null,
+      "frame": 15,
+      "lifecycle_counts": {
+        "BUY WATCH": 1,
+        "CONFIRMED": 10,
+        "ENTRY_REJECTED": 10,
+        "EXPIRED": 4,
+        "INVALIDATED": 15,
+        "OPPORTUNITY EXPIRED": 6,
+        "SECOND CHANCE": 1,
+        "SELL WATCH": 4,
+        "SETUP_FORMING": 19,
+        "TREND CONFIRMED": 2,
+        "WATCH": 25
+      },
+      "matched_native_campaigns": [],
+      "original_normalized_sha256": "cc2803ed3c35ecbe420d9af1b2241b45a2192562835ea7c6d51a0f9063587e36",
+      "original_sha256": "6ba601037c551fcdf3294bf8d6b95f9d696e506edf5a8550ac790e27efe85c18",
+      "policy": "CONFIRMED",
+      "precision_counts": {
+        "context": 117,
+        "event": 97,
+        "plan": 15
+      },
+      "precision_normalized_sha256": "cc2803ed3c35ecbe420d9af1b2241b45a2192562835ea7c6d51a0f9063587e36",
+      "precision_sha256": "6ba601037c551fcdf3294bf8d6b95f9d696e506edf5a8550ac790e27efe85c18",
+      "role": "indicator",
+      "status": "VERIFIED"
+    },
+    {
+      "counts": {
+        "context": 59,
+        "event": 39,
+        "plan": 6
+      },
+      "first_difference_index": null,
+      "frame": 30,
+      "lifecycle_counts": {
+        "CONFIRMED": 6,
+        "ENTRY_REJECTED": 6,
+        "INVALIDATED": 6,
+        "OPPORTUNITY EXPIRED": 2,
+        "SECOND CHANCE": 1,
+        "SETUP_FORMING": 7,
+        "WATCH": 11
+      },
+      "matched_native_campaigns": [],
+      "original_normalized_sha256": "d950f6a0f1f44c80b7beba954ef5e66ee3f9c2ebe7f899cd9338c475ed2811de",
+      "original_sha256": "6e961b705ee015e0d598a6631650189543643c237461b7b7ab62958469fe7cfa",
+      "policy": "CONFIRMED",
+      "precision_counts": {
+        "context": 59,
+        "event": 39,
+        "plan": 6
+      },
+      "precision_normalized_sha256": "d950f6a0f1f44c80b7beba954ef5e66ee3f9c2ebe7f899cd9338c475ed2811de",
+      "precision_sha256": "6e961b705ee015e0d598a6631650189543643c237461b7b7ab62958469fe7cfa",
+      "role": "indicator",
+      "status": "VERIFIED"
+    },
+    {
+      "counts": {
+        "context": 349,
+        "event": 344,
+        "plan": 63
+      },
+      "first_difference_index": null,
+      "frame": 5,
+      "lifecycle_counts": {
+        "BUY WATCH": 3,
+        "CONFIRMED": 53,
+        "ENTRY_REJECTED": 47,
+        "ENTRY_VALID": 6,
+        "EXPIRED": 13,
+        "INVALIDATED": 28,
+        "OPPORTUNITY EXPIRED": 12,
+        "POSITION_CLOSED": 2,
+        "SECOND CHANCE": 12,
+        "SELL WATCH": 6,
+        "SETUP_FORMING": 64,
+        "SIMULATED_FILLED": 2,
+        "STOP_FILLED": 3,
+        "SUBMITTED": 2,
+        "TP1_FILLED": 1,
+        "TP2_FILLED": 1,
+        "TP3_FILLED": 1,
+        "TREND CONFIRMED": 6,
+        "WATCH": 82
+      },
+      "matched_native_campaigns": [
+        {
+          "close_reason": "SL",
+          "closed_at": 1794317700000,
+          "direction": "SELL",
+          "entry_price": 4070.128,
+          "exit_legs": [
+            {
+              "observed_at": 1794317700000,
+              "price": 4080.231,
+              "state": "STOP_FILLED"
+            },
+            {
+              "observed_at": 1794317700000,
+              "price": 4080.231,
+              "state": "STOP_FILLED"
+            },
+            {
+              "observed_at": 1794317700000,
+              "price": 4080.231,
+              "state": "STOP_FILLED"
+            }
+          ],
+          "fill_bar_open": 1794317100000,
+          "fill_observed_at": 1794317400000,
+          "id": "A-SELL-1794316800000|1794317100000",
+          "initial_stop": 4080.229,
+          "net_usd_reconstructed": -31.359,
+          "next_contiguous_bar": true,
+          "submitted_at": 1794317100000
+        },
+        {
+          "close_reason": "TP3",
+          "closed_at": 1794327900000,
+          "direction": "SELL",
+          "entry_price": 4045.908,
+          "exit_legs": [
+            {
+              "observed_at": 1794326100000,
+              "price": 4038.649,
+              "state": "TP1_FILLED"
+            },
+            {
+              "observed_at": 1794327900000,
+              "price": 4031.488,
+              "state": "TP2_FILLED"
+            },
+            {
+              "observed_at": 1794327900000,
+              "price": 4024.327,
+              "state": "TP3_FILLED"
+            }
+          ],
+          "fill_bar_open": 1794325500000,
+          "fill_observed_at": 1794325800000,
+          "id": "A-SELL-1794325500000|1794325500000",
+          "initial_stop": 4052.971,
+          "net_usd_reconstructed": 42.21,
+          "next_contiguous_bar": true,
+          "submitted_at": 1794325500000
+        }
+      ],
+      "original_normalized_sha256": "0fa3b4731609bacc502a482c90f96fbcd1c7bb879189d42f99232f2267b3a37e",
+      "original_sha256": "aa6da49aee67b9fb65e134dfed47a04a69d8d6e7f655dba625a5713c7194f17f",
+      "policy": "CONFIRMED",
+      "precision_counts": {
+        "context": 349,
+        "event": 344,
+        "plan": 63
+      },
+      "precision_normalized_sha256": "0fa3b4731609bacc502a482c90f96fbcd1c7bb879189d42f99232f2267b3a37e",
+      "precision_sha256": "aa6da49aee67b9fb65e134dfed47a04a69d8d6e7f655dba625a5713c7194f17f",
+      "role": "strategy",
+      "status": "VERIFIED"
+    },
+    {
+      "counts": {
+        "context": 117,
+        "event": 97,
+        "plan": 15
+      },
+      "first_difference_index": null,
+      "frame": 15,
+      "lifecycle_counts": {
+        "BUY WATCH": 1,
+        "CONFIRMED": 10,
+        "ENTRY_REJECTED": 10,
+        "EXPIRED": 4,
+        "INVALIDATED": 15,
+        "OPPORTUNITY EXPIRED": 6,
+        "SECOND CHANCE": 1,
+        "SELL WATCH": 4,
+        "SETUP_FORMING": 19,
+        "TREND CONFIRMED": 2,
+        "WATCH": 25
+      },
+      "matched_native_campaigns": [],
+      "original_normalized_sha256": "cc2803ed3c35ecbe420d9af1b2241b45a2192562835ea7c6d51a0f9063587e36",
+      "original_sha256": "6ba601037c551fcdf3294bf8d6b95f9d696e506edf5a8550ac790e27efe85c18",
+      "policy": "CONFIRMED",
+      "precision_counts": {
+        "context": 117,
+        "event": 97,
+        "plan": 15
+      },
+      "precision_normalized_sha256": "cc2803ed3c35ecbe420d9af1b2241b45a2192562835ea7c6d51a0f9063587e36",
+      "precision_sha256": "6ba601037c551fcdf3294bf8d6b95f9d696e506edf5a8550ac790e27efe85c18",
+      "role": "strategy",
+      "status": "VERIFIED"
+    },
+    {
+      "counts": {
+        "context": 59,
+        "event": 39,
+        "plan": 6
+      },
+      "first_difference_index": null,
+      "frame": 30,
+      "lifecycle_counts": {
+        "CONFIRMED": 6,
+        "ENTRY_REJECTED": 6,
+        "INVALIDATED": 6,
+        "OPPORTUNITY EXPIRED": 2,
+        "SECOND CHANCE": 1,
+        "SETUP_FORMING": 7,
+        "WATCH": 11
+      },
+      "matched_native_campaigns": [],
+      "original_normalized_sha256": "d950f6a0f1f44c80b7beba954ef5e66ee3f9c2ebe7f899cd9338c475ed2811de",
+      "original_sha256": "6e961b705ee015e0d598a6631650189543643c237461b7b7ab62958469fe7cfa",
+      "policy": "CONFIRMED",
+      "precision_counts": {
+        "context": 59,
+        "event": 39,
+        "plan": 6
+      },
+      "precision_normalized_sha256": "d950f6a0f1f44c80b7beba954ef5e66ee3f9c2ebe7f899cd9338c475ed2811de",
+      "precision_sha256": "6e961b705ee015e0d598a6631650189543643c237461b7b7ab62958469fe7cfa",
+      "role": "strategy",
+      "status": "VERIFIED"
+    },
+    {
+      "counts": {
+        "context": 349,
+        "event": 289,
+        "plan": 62
+      },
+      "first_difference_index": null,
+      "frame": 5,
+      "lifecycle_counts": {
+        "BUY WATCH": 4,
+        "CONFIRMED": 47,
+        "ENTRY_REJECTED": 14,
+        "ENTRY_VALID": 1,
+        "EXPIRED": 13,
+        "INVALIDATED": 28,
+        "OPPORTUNITY EXPIRED": 10,
+        "POSITION_CLOSED": 1,
+        "SECOND CHANCE": 6,
+        "SELL WATCH": 8,
+        "SETUP_FORMING": 64,
+        "SIMULATED_FILLED": 1,
+        "STOP_FILLED": 3,
+        "SUBMITTED": 1,
+        "TREND CONFIRMED": 6,
+        "WATCH": 82
+      },
+      "matched_native_campaigns": [
+        {
+          "close_reason": "SL",
+          "closed_at": 1794312300000,
+          "direction": "SELL",
+          "entry_price": 4072.883,
+          "exit_legs": [
+            {
+              "observed_at": 1794312300000,
+              "price": 4077.082,
+              "state": "STOP_FILLED"
+            },
+            {
+              "observed_at": 1794312300000,
+              "price": 4077.082,
+              "state": "STOP_FILLED"
+            },
+            {
+              "observed_at": 1794312300000,
+              "price": 4077.082,
+              "state": "STOP_FILLED"
+            }
+          ],
+          "fill_bar_open": 1794310200000,
+          "fill_observed_at": 1794310500000,
+          "id": "Q-SELL-1794310200000|1794310200000",
+          "initial_stop": 4077.08,
+          "net_usd_reconstructed": -13.647,
+          "next_contiguous_bar": true,
+          "submitted_at": 1794310200000
+        }
+      ],
+      "original_normalized_sha256": "8b47fc08b339f2cac825e6ef90b5e730c66265b06c6b22b88e6ac348a9f68222",
+      "original_sha256": "b72ca576c41243ac2b87fd655d397b542f7fcf41e94b1d626336f6e933c620aa",
+      "policy": "FAST",
+      "precision_counts": {
+        "context": 349,
+        "event": 289,
+        "plan": 62
+      },
+      "precision_normalized_sha256": "8b47fc08b339f2cac825e6ef90b5e730c66265b06c6b22b88e6ac348a9f68222",
+      "precision_sha256": "b72ca576c41243ac2b87fd655d397b542f7fcf41e94b1d626336f6e933c620aa",
+      "role": "strategy",
+      "status": "VERIFIED"
+    }
+  ],
+  "scope": "Unchanged original GOLD PRO and Precision on same standard OANDA:XAUUSD chart bars.",
+  "status": "VERIFIED",
+  "window": [
+    "2026-11-10T00:00:00Z",
+    "2026-11-11T06:00:00Z"
+  ]
+}

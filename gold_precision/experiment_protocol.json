@@ -1,0 +1,157 @@
+{
+  "schema": "qirvanta.gold-precision.archive-experiments.v1",
+  "registered_utc": "2026-11-11T07:13:00Z",
+  "source_commit": "9371622a02a75d777841531f57c81cfbef8f78bc",
+  "market": "OANDA:XAUUSD",
+  "timeframe_minutes": 5,
+  "baseline_tape_sha256": "41db20178030940d5ecd5dce89b42b6fbf69f2d131c4c52b3f37c360478100a7",
+  "expected_fast_campaigns": 123,
+  "archive_qualification": "Previously examined 2026-10-11 through 2026-11-09. Separate from the untouched original forward seal. No new forward data consumed or candidate promotion.",
+  "new_forward_requirement": "If independently advanced, register source hash, complete candidate family and new unseen date range before accessing that feed. Do not revise the original GOLD PRO 2026-11-16–2027-01-11 UTC seal.",
+  "split": {
+    "bar_fraction": 0.6,
+    "embargo_minutes": 60,
+    "rule": "Use the first 60% for descriptive development and report the later archive after a 60-minute embargo. Include only campaigns wholly contained in each scored slice. No threshold selection on either slice."
+  },
+  "primary": {
+    "metric": "paired UTC-day stressed net R sum",
+    "inference": "One-sided sign flip on contiguous non-overlapping five calendar-day blocks in later slice, including flat days. Holm adjusts across every listed arm. Circular bootstrap on the same paired blocks. Archive inference is exploratory.",
+    "block_days": 5,
+    "repetitions": 2000,
+    "seed": 20261111,
+    "minimum_campaigns": 30,
+    "minimum_expectancy_gain_r": 0.05,
+    "min_frequency_fraction": 0.65,
+    "max_drawdown_fraction": 1,
+    "min_event_fill_fraction": 1,
+    "rule": "A historical candidate needs net R improvement, nondegrading stress net USD and drawdown, coverage and a supported sample. Any candidate remains experimental pending new untouched evaluation, native validation and explicit approval."
+  },
+  "entry_axes": [
+    [
+      "FIRST_BREAK",
+      "First risk-valid structural breakout per directional root watch"
+    ],
+    [
+      "DISPLACEMENT",
+      "Signal bar direction equals the confirmed displacement flag"
+    ],
+    [
+      "PERSISTENCE",
+      "Last two close-to-close steps agree with the side"
+    ],
+    [
+      "ROOM_085",
+      "Gross distance to the nearest known barrier at least 0.85 planned R, with original TP1 projection as no-barrier fallback"
+    ],
+    [
+      "RECLAIM",
+      "Retain only the independent PULLBACK and RETEST models"
+    ],
+    [
+      "FRESH_4",
+      "Watch age at most four M5 bars and twenty minutes"
+    ],
+    [
+      "EXTENSION_110",
+      "Extension at most 1.10 prior ATR"
+    ],
+    [
+      "HTF_BOTH",
+      "Confirmed H1 and H4 both agree with the side"
+    ],
+    [
+      "VOL_STABLE",
+      "Signal-bar true range at most 1.50 prior ATR"
+    ],
+    [
+      "COST_015",
+      "All-in planned price friction at most 0.15 planned R"
+    ]
+  ],
+  "early_exit_axes": [
+    [
+      "OPPOSITE_MSS",
+      "Opposite BOS with market structure shift, act at next available open"
+    ],
+    [
+      "MOMENTUM_FAILURE",
+      "Two consecutive adverse close steps and signed three-bar movement at most -0.35 prior ATR"
+    ],
+    [
+      "STRUCTURE_FAILURE",
+      "Close across frozen pre-buffer structural stop anchor by one tick"
+    ],
+    [
+      "ADVERSE_SHOCK",
+      "Confirmed volatility spike with adverse candle and close behind fill"
+    ],
+    [
+      "TIME_FAILURE_12",
+      "No TP1 after twelve complete held bars and no mark-to-market cushion over all-in friction"
+    ],
+    [
+      "ACTUAL_RISK_20",
+      "All-in dollar risk on the observed fill exceeds USD 20, queue earliest next open"
+    ]
+  ],
+  "recovery_axes": [
+    [
+      "RECOVERY_ONLY",
+      "Standalone fresh second-chance, post-expiry, or post-closure follow-up within twelve M5 bars and sixty minutes of a prior same-side control event. Fresh non-BREAKOUT trigger, new offer ID, changed entry and stop versus any prior accepted trade, no reuse of original plan. Only information available at close. Use original FAST anchor clock for classification."
+    ],
+    [
+      "NO_RECOVERY",
+      "Original FAST excluding offers classified as recovery against the frozen causal anchor tape. Recompute occupancy."
+    ],
+    [
+      "RECOVERY_PRIORITY",
+      "Original FAST with fresh recovery offers first at the same close. Recompute occupancy while preserving S5 priority in the shared book."
+    ]
+  ],
+  "sizing_axes": [
+    [
+      "CAP_20",
+      "Three-unit ceiling, fixed planned all-in budget of USD 20, rounded down in 0.03-unit increments with 0.01-unit exit legs"
+    ]
+  ],
+  "management_axes": [
+    [
+      "ALLOC_503020",
+      "50/30/20 allocation to unchanged TP1/TP2/TP3"
+    ],
+    [
+      "PARTIAL_RUNNER",
+      "50% at TP1, 50% at TP3"
+    ],
+    [
+      "COST_BE",
+      "After TP1 schedule a cost-adjusted break-even stop"
+    ],
+    [
+      "COST_LOCK_005",
+      "After TP1 schedule cost-adjusted break-even plus 0.05 actual initial R"
+    ],
+    [
+      "ATR_TRAIL_150",
+      "After TP1 schedule a trail 1.50 prior ATR from latest close"
+    ],
+    [
+      "SWING_TRAIL",
+      "After TP1 schedule stop 0.10 prior ATR beyond the latest confirmed same-side protective swing since fill"
+    ],
+    [
+      "TIME_24",
+      "After twenty-four complete held bars queue a market exit"
+    ],
+    [
+      "STRUCTURE_CONTINUATION",
+      "After TP1 any confirmed opposite BOS queues a next-open exit"
+    ]
+  ],
+  "common_execution": {
+    "fill": "Existing next-open market fill and original invalid-gap logic, one occupied or reserved slot. Native S5 provides frozen fills in shared portfolio. S5 first at simultaneous decision.",
+    "ambiguity": "Open ordering retained. Process stop before same-bar targets when intrabar ordering is unknown. Later close changes are effective at the next bar. A gap beyond any stop fills at the next available open with adverse slippage.",
+    "recovery": "Original registered second-chance flag or independent non-breakout after a recorded expiry, missed occupied offer, or completed same-side control campaign. The prior anchor must already be known at the candidate close. For any accepted control anchor, both reference and initial stop must change by a tick or more.",
+    "cost": "Original pinned OANDA assumptions and stress. Parent audit owns the separate illustrative PU Prime friction sensitivity. USD budgets refer to OANDA research units."
+  }
+}

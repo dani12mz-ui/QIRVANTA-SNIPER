@@ -1,0 +1,17 @@
+// Precision view reads confirmed market observations.
+bool prNativeActive = false
+bool prNativeClosed = false
+bool prPlanAvailable = gpLastState == "ENTRY_VALID" and not na(gpPlanValidThrough) and bar_index < gpPlanValidThrough
+GoldPlan prViewPlan = gpLastPlan
+float prViewFill = na
+float prViewStop = na(prViewPlan) ? na : prViewPlan.stop
+int prViewFillAt = na
+int prViewStopAt = na
+int prViewClosedAt = na
+bool prHitOne = false
+bool prHitTwo = false
+bool prHitThree = false
+bool prNativeFillMark = false
+int prNativeFillSide = 0
+string prProtection = "INITIAL"
+string prPosition = prPlanAvailable ? "PLAN READY" : "OBSERVATION"

@@ -1,0 +1,62 @@
+// Precision view derives display state from the native simulation ledger.
+bool prNativeActive = not na(gpActiveCampaign)
+bool prPlanAvailable = gpLastState == "ENTRY_VALID" and not na(gpPlanValidThrough) and bar_index < gpPlanValidThrough
+bool prNativeClosed = not prNativeActive and not prPlanAvailable and not na(gpLastCampaign)
+GoldCampaign prViewCampaign = prNativeActive ? gpActiveCampaign : prNativeClosed ? gpLastCampaign : na
+GoldPlan prViewPlan = na(prViewCampaign) ? gpLastPlan : prViewCampaign.plan
+float prViewFill = na(prViewCampaign) ? na : prViewCampaign.filled
+float prViewStop = na(prViewCampaign) ? (na(prViewPlan) ? na : prViewPlan.stop) : prViewCampaign.effectiveStop
+int prViewFillAt = na(prViewCampaign) ? na : prViewCampaign.fillBar
+
+var string prTargetsCampaign = ""
+var int prTargetsSeen = 0
+var bool prTargetOne = false
+var bool prTargetTwo = false
+var bool prTargetThree = false
+var int prNativeExitBar = na
+var string prTrackedStopCampaign = ""
+var float prTrackedStop = na
+var int prTrackedStopAt = na
+var int prClosedStopAt = na
+if gpClosedBar and gpSimEnabled
+    if strategy.closedtrades > prTargetsSeen
+        int firstTrade = math.max(prTargetsSeen, nz(strategy.closedtrades.first_index, 0))
+        if firstTrade < strategy.closedtrades
+            for tradeNumber = firstTrade to strategy.closedtrades - 1
+                string entryId = strategy.closedtrades.entry_id(tradeNumber)
+                if entryId != prTargetsCampaign
+                    prTargetsCampaign := entryId
+                    prTargetOne := false
+                    prTargetTwo := false
+                    prTargetThree := false
+                string exitId = strategy.closedtrades.exit_id(tradeNumber)
+                string exitReason = strategy.closedtrades.exit_comment(tradeNumber)
+                prTargetOne := prTargetOne or (exitId == entryId + "|1" and exitReason == "TP1")
+                prTargetTwo := prTargetTwo or (exitId == entryId + "|2" and exitReason == "TP2")
+                prTargetThree := prTargetThree or (exitId == entryId + "|3" and exitReason == "TP3")
+                prNativeExitBar := strategy.closedtrades.exit_bar_index(tradeNumber)
+        prTargetsSeen := strategy.closedtrades
+    if gpClosedMark and not na(gpLastCampaign)
+        prClosedStopAt := prTrackedStopCampaign == gpLastCampaign.plan.id and
+          prTrackedStop == gpLastCampaign.effectiveStop ? prTrackedStopAt : bar_index
+    if prNativeActive
+        if prTrackedStopCampaign != gpActiveCampaign.plan.id or prTrackedStop != gpActiveCampaign.effectiveStop
+            prTrackedStopCampaign := gpActiveCampaign.plan.id
+            prTrackedStop := gpActiveCampaign.effectiveStop
+            prTrackedStopAt := bar_index
+
+bool prLedgerForPlan = not na(prViewCampaign) and prViewCampaign.plan.id == prTargetsCampaign
+int prViewClosedAt = prNativeClosed and prLedgerForPlan ? prNativeExitBar : na
+int prViewStopAt = prNativeActive ? prTrackedStopAt : prClosedStopAt
+bool prHitOne = prLedgerForPlan and prTargetOne
+bool prHitTwo = prLedgerForPlan and prTargetTwo
+bool prHitThree = prLedgerForPlan and prTargetThree
+GoldCampaign prFillCampaign = gpClosedMark and not na(gpLastCampaign) and gpLastCampaign.fillBar == bar_index ?
+  gpLastCampaign : gpActiveCampaign
+bool prNativeFillMark = gpClosedBar and not na(prFillCampaign) and prFillCampaign.fillBar == bar_index
+int prNativeFillSide = prNativeFillMark ? prFillCampaign.plan.side : 0
+bool prMovedStop = not na(prViewCampaign) and prViewStop != prViewCampaign.plan.stop
+string prProtection = not prMovedStop ? "INITIAL" : gpManagement == "Cost-adjusted BE" ? "BREAK EVEN" :
+  gpManagement == "Profit lock" ? "PROFIT LOCK" : "TRAILING"
+string prPosition = prNativeActive ? (na(prViewFill) ? "SIM ORDER PENDING" : "SIM ACTIVE") :
+  prPlanAvailable ? "PLAN READY" : prNativeClosed ? "SIM CLOSED" : "FLAT"

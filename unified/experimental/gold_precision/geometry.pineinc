@@ -1,0 +1,94 @@
+// A single set of price objects is reused when the displayed plan changes.
+var array<line> prLines = array.new<line>()
+var array<label> prTags = array.new<label>()
+var box prRiskBox = na
+var box prRewardBox = na
+
+f_prLevel(int index, int startAt, int endAt, float price, string caption, color ink, string stroke, bool tag, int shift = 0) =>
+    line guide = prLines.get(index)
+    label priceTag = prTags.get(index)
+    bool visible = not na(price) and not na(startAt) and not na(endAt) and startAt <= endAt
+    line.set_xy1(guide, visible ? startAt : bar_index, visible ? price : na)
+    line.set_xy2(guide, visible ? endAt : bar_index, visible ? price : na)
+    line.set_color(guide, ink)
+    line.set_style(guide, stroke)
+    label.set_xy(priceTag, visible and tag ? endAt + shift : bar_index, visible and tag ? price : na)
+    label.set_text(priceTag, visible and tag ? caption + "  " + f_prPrice(price) : "")
+    label.set_textcolor(priceTag, ink)
+    label.set_color(priceTag, prLightChart ? color.new(#F2F6FA, 8) : color.new(prGraphite, 6))
+    label.set_tooltip(priceTag, caption + " · " + f_prPrice(price))
+
+f_prZone(box zone, int left, int right, float first, float second, color ink) =>
+    box.set_lefttop(zone, left, math.max(first, second))
+    box.set_rightbottom(zone, right, math.min(first, second))
+    box.set_bgcolor(zone, ink)
+
+if prDraw
+    if prLines.size() == 0
+        for index = 0 to 6
+            prLines.push(line.new(bar_index, na, bar_index, na))
+            prTags.push(label.new(bar_index, na, style=label.style_label_left, size=9,
+              text_font_family=font.family_monospace))
+        prRiskBox := box.new(left=bar_index, top=na, right=bar_index, bottom=na, border_width=0)
+        prRewardBox := box.new(left=bar_index, top=na, right=bar_index, bottom=na, border_width=0)
+    int horizon = gpEntryMethod == "Next-open market" ? 1 : GP_PENDING_BARS
+    bool showClosed = prNativeClosed and prShowClosed and not na(prViewClosedAt) and bar_index - prViewClosedAt <= prClosedAge
+    int planStart = prHasPlan ? prViewPlan.expiryBar - horizon : na
+    bool visiblePlan = prShowLevels and (prCurrentPlan or showClosed) and
+      not na(planStart) and planStart <= bar_index and bar_index - planStart < 9500
+    int left = visiblePlan ? planStart : bar_index
+    int right = not visiblePlan ? bar_index : showClosed ? prViewClosedAt : bar_index + (prMobile ? 1 : 3)
+    float planned = visiblePlan ? prViewPlan.entry : na
+    float executed = visiblePlan ? prViewFill : na
+    float initial = visiblePlan ? prViewPlan.stop : na
+    float stop = visiblePlan ? prViewStop : na
+    float targetOne = visiblePlan ? prViewPlan.tp1 : na
+    float targetTwo = visiblePlan ? prViewPlan.tp2 : na
+    float targetThree = visiblePlan ? prViewPlan.tp3 : na
+    bool moved = not na(stop) and math.abs(stop - initial) >= gpTick * 0.5
+    int fillAt = visiblePlan and not na(executed) ? math.max(left, nz(prViewFillAt, left)) : left
+    int stopAt = moved ? math.max(left, nz(prViewStopAt, right)) : left
+    float minSpacing = math.max(nz(v22ATR, gpTick) * 0.17, gpTick * 3)
+    bool splitFill = not na(executed) and math.abs(executed - planned) > minSpacing
+    bool splitStop = moved and math.abs(stop - initial) > minSpacing
+    color entryInk = color.new(prChartNeutral, showClosed ? 43 : 5)
+    color lossInk = color.new(prChartSell, showClosed ? 44 : 12)
+    color goalInk = color.new(prChartTarget, showClosed ? 42 : 10)
+    color protectedInk = color.new(prChartBuy, showClosed ? 40 : 10)
+    bool protect = moved and not na(executed) and (stop - executed) * prPlanSide >= 0
+    bool tags = prShowTags and not prMinimal and not prMobile and not showClosed
+    bool targetOneTag = tags and math.abs(targetOne - targetTwo) > minSpacing and math.abs(targetOne - stop) > minSpacing
+    bool targetTwoTag = tags and math.abs(targetTwo - targetThree) > minSpacing and math.abs(targetTwo - stop) > minSpacing
+    f_prLevel(0, left, right, planned, "Plan", entryInk, line.style_dashed, tags and (na(executed) or splitFill))
+    f_prLevel(1, fillAt, right, executed, "Sim fill", entryInk, line.style_solid, tags, splitFill ? 1 : 0)
+    f_prLevel(2, left, right, moved ? initial : na, "Initial SL", color.new(lossInk, showClosed ? 62 : 45),
+      line.style_dotted, tags and splitStop, 1)
+    f_prLevel(3, stopAt, right, stop, protect ? prProtection : "SL", protect ? protectedInk : lossInk, line.style_solid, tags)
+    f_prLevel(4, left, right, targetOne, "TP1" + (prHitOne ? " ✓" : ""), prHitOne ? protectedInk : goalInk,
+      prHitOne ? line.style_solid : line.style_dotted, targetOneTag)
+    f_prLevel(5, left, right, targetTwo, "TP2" + (prHitTwo ? " ✓" : ""), prHitTwo ? protectedInk : goalInk,
+      prHitTwo ? line.style_solid : line.style_dotted, targetTwoTag, 1)
+    f_prLevel(6, left, right, targetThree, "TP3" + (prHitThree ? " ✓" : ""), prHitThree ? protectedInk : goalInk,
+      line.style_solid, tags and math.abs(targetThree - stop) > minSpacing)
+    bool zones = prShowZones and visiblePlan and not showClosed and not prMinimal and not prMobile
+    float basis = na(executed) ? planned : executed
+    bool showRisk = zones and not protect
+    f_prZone(prRiskBox, math.max(fillAt, stopAt), right, showRisk ? basis : na, showRisk ? stop : na,
+      color.new(prChartSell, 93))
+    f_prZone(prRewardBox, fillAt, right, zones ? basis : na, zones ? targetThree : na, color.new(prChartTarget, 94))
+
+bool prStructure = prFull and prShowStructure and gpClosedBar
+bool prSessionLevels = prFull and prShowSessions
+bool prLiquidity = prFull and prShowLiquidity and gpClosedBar
+plot(prStructure ? v22PriorHigh : na, "Confirmed resistance", color.new(prChartSell, 43), 1, plot.style_linebr, display=display.pane)
+plot(prStructure ? v22PriorLow : na, "Confirmed support", color.new(prChartBuy, 43), 1, plot.style_linebr, display=display.pane)
+plot(prSessionLevels and gpSessionComplete ? gpSessionHigh : na, "Session high", color.new(prChartTarget, 48), 1, plot.style_linebr, display=display.pane)
+plot(prSessionLevels and gpSessionComplete ? gpSessionLow : na, "Session low", color.new(prChartTarget, 48), 1, plot.style_linebr, display=display.pane)
+plot(prSessionLevels and gpD1Known <= time ? gpD1High : na, "Prior day high", color.new(prChartNeutral, 53), 1, plot.style_linebr, display=display.pane)
+plot(prSessionLevels and gpD1Known <= time ? gpD1Low : na, "Prior day low", color.new(prChartNeutral, 53), 1, plot.style_linebr, display=display.pane)
+plot(prLiquidity and gpEqualHighs ? v22PriorHigh : na, "Estimated equal highs", color.new(prChartSell, 42), 2, plot.style_linebr, display=display.pane)
+plot(prLiquidity and gpEqualLows ? v22PriorLow : na, "Estimated equal lows", color.new(prChartBuy, 42), 2, plot.style_linebr, display=display.pane)
+plotshape(prLiquidity and gpBullFVG, "Bullish FVG observation", shape.diamond, location.belowbar, color.new(prChartBuy, 45), size=size.tiny, display=display.pane)
+plotshape(prLiquidity and gpBearFVG, "Bearish FVG observation", shape.diamond, location.abovebar, color.new(prChartSell, 45), size=size.tiny, display=display.pane)
+plotshape(prStructure and v22BOS == 1, "Bullish BOS/MSS", shape.square, location.belowbar, prChartBuy, size=size.tiny, display=display.pane)
+plotshape(prStructure and v22BOS == -1, "Bearish BOS/MSS", shape.square, location.abovebar, prChartSell, size=size.tiny, display=display.pane)
