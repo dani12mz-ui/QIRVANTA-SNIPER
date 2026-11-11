@@ -1,0 +1,1764 @@
+{
+  "source": {
+    "status": "MATCH",
+    "baseline_commit": "203f9d8a88a8c4b51a5dc646fc0f1752a596ba1f",
+    "baseline_sha256": "91fba94db0d71d2dd25fcaf72aedf34a7d7cb955d4362996b086ca07c05163d0",
+    "initial_release_commit": "6fe621fc22052c0c745e97feb2f1575c41abd85c",
+    "initial_release_sha256": "2c3376623c168768260f61cc2475a9949439fa81d26a43dcd76881aba3115ce2",
+    "unified_sha256": "03150c89a587cc81559d8712118f8c0179eaf66496e61e0ec8689dba79c2c588",
+    "verified_differences": [
+      "header comments",
+      "indicator title and shorttitle",
+      "default shadow visibility",
+      "dashboard title"
+    ],
+    "rc2_audit_sha256": "4ba04321a9ef5456e8fc61aa2b5b3ab6c44398a62b18e31b3041d9dda530d42b",
+    "forward_seal_sha256": "09181ecaf9e30cde62c5203b524cb458d808a07c24029e961e32bb25c474afd1"
+  },
+  "archived": {
+    "scope": "Recorded native executions of the pinned prior sources. Separate from fresh Unified runs.",
+    "visibility_archive_sha256": "a70e6713446e64d3fcd87a0a6279225de05e7b60d5f202e9448dc78a430755a8",
+    "rc2_archive_sha256": "a058bd9789bf9f5d258a08316217f3bebc8b9951460ee0c499aae848c761813a",
+    "frames": {
+      "M5": {
+        "visibility": {
+          "s5_rc2_paper_and_alerts": {
+            "status": "MATCH",
+            "baseline": {
+              "file": "baseline-M5.csv",
+              "sha256": "458b4b16366d0cb398250109e603c79519f9d6d65a75551975e4b06e5692ae38",
+              "closed_bars": 211,
+              "first_loaded_open_utc": "2026-11-05T11:10:00Z",
+              "first_exported_open_utc": "2026-11-10T23:55:00Z",
+              "last_exported_close_utc": "2026-11-11T17:30:00Z",
+              "status": "VERIFIED",
+              "s5_alerts": 44,
+              "early_observations": 0,
+              "early_alerts": 0,
+              "filter_rejected": 0
+            },
+            "visibility": {
+              "file": "visibility-M5.csv",
+              "sha256": "b7e3132b06c01f455f3613e4899cce97ea6d426680fa1f901dce5a4485eb9a22",
+              "closed_bars": 211,
+              "first_loaded_open_utc": "2026-11-05T11:10:00Z",
+              "first_exported_open_utc": "2026-11-10T23:55:00Z",
+              "last_exported_close_utc": "2026-11-11T17:30:00Z",
+              "status": "VERIFIED",
+              "s5_alerts": 44,
+              "early_observations": 0,
+              "early_alerts": 0,
+              "filter_rejected": 0
+            },
+            "core_ready_and_compatibility": {
+              "status": "MATCH",
+              "coverage": "BOUNDED_WINDOW",
+              "rows": {
+                "core": 42,
+                "ready": 6,
+                "alerts": 44
+              }
+            },
+            "rc2_native_streams": {
+              "status": "MATCH",
+              "mismatched_streams": [],
+              "rows": {
+                "RC2_ALERT": 38,
+                "RC2_EARLY": 0,
+                "RC2_FILTER": 0
+              }
+            },
+            "s5_raw_paper": {
+              "status": "MATCH",
+              "mismatched_streams": [],
+              "ledger_snapshots": 211,
+              "execution_events": 32,
+              "last_close": "2026-11-11T17:30:00Z",
+              "final_ledger_r": {
+                "entered": 10,
+                "closed": 10,
+                "capacity_skipped": 1,
+                "net": "-2.00237566",
+                "gross": "-1.11024449",
+                "costs": "0.89213117",
+                "gains": "4.55480455",
+                "losses": "6.55718021",
+                "drawdown": "3.29956814"
+              },
+              "scope": "Native indicator RAW PAPER events and ledger. P&L and drawdown are in R."
+            }
+          },
+          "shadow_timeline": {
+            "status": "MATCH",
+            "common_bars": 1199,
+            "events": 532,
+            "repeat_file": "visibility-M5.csv",
+            "repeat_sha256": "b7e3132b06c01f455f3613e4899cce97ea6d426680fa1f901dce5a4485eb9a22",
+            "baseline_events": 532,
+            "visibility_events": 532,
+            "baseline_first_open_utc": "2026-11-05T11:10:00Z",
+            "visibility_first_open_utc": "2026-11-05T11:10:00Z"
+          },
+          "directional_state": {
+            "status": "VERIFIED",
+            "file": "visibility-M5.csv",
+            "closed_bar_snapshots": 211,
+            "review": {
+              "status": "NO_REVIEW_JOURNAL",
+              "rows": 0
+            },
+            "observational_alert": {
+              "status": "INTENT_VERIFIED",
+              "rows": 7,
+              "delivery": "NOT_VERIFIED_BY_PINE_LOGS"
+            },
+            "case_status": "NOT_M15",
+            "case_timeline": {}
+          }
+        },
+        "strategy_audits": {
+          "scope": "Original RC2 Strategy Tester exports for both stop policies",
+          "s5_signal_and_ready": {
+            "status": "MATCH",
+            "rows": {
+              "context": 1116,
+              "core": 74,
+              "ready": 10
+            },
+            "shared_first_open_ms": 1793854800000,
+            "shared_last_close_ms": 1794376800000,
+            "left_chart_first_open_ms": 1793854800000,
+            "right_chart_first_open_ms": 1793854800000,
+            "left_minus_right_bar_index": 0,
+            "loaded_warmup_origins_differ": false,
+            "left_context_outside_overlap": 0,
+            "right_context_outside_overlap": 0,
+            "shared_gap_count": 4
+          },
+          "runs": {
+            "fixed": {
+              "csv_sha256": "4bb25148457313ff4f72e641c0b7352d421b38f1c10b194aa721977843fa8cd7",
+              "context": {
+                "file": "fixed_M5.csv",
+                "csv_sha256": "4bb25148457313ff4f72e641c0b7352d421b38f1c10b194aa721977843fa8cd7",
+                "context_sha256": "8b1699a75810d7147c833082b192e1682ddc2f23325ba08b989f0c7459af5f5d",
+                "bars": 1116,
+                "chart_first_open_ms": 1793854800000,
+                "first_logged_bar_index": 0,
+                "first_logged_open_ms": 1793854800000,
+                "last_logged_bar_index": 1115,
+                "last_logged_close_ms": 1794376800000,
+                "starts_at_first_loaded_bar": true,
+                "end_marker_present": true,
+                "events": {
+                  "core": {
+                    "WATCH": 37,
+                    "EXPIRED": 6,
+                    "CANCELLED": 18,
+                    "CONFIRMED": 10,
+                    "REJECTED": 3
+                  },
+                  "ready": {
+                    "SELL": 7,
+                    "BUY": 3
+                  },
+                  "native": {
+                    "NATIVE_ADMITTED": 9,
+                    "NATIVE_SUBMITTED": 9,
+                    "NATIVE_ENTRY": 9,
+                    "NATIVE_EXIT_0": 1,
+                    "NATIVE_EXIT_1": 1,
+                    "NATIVE_EXIT_2": 1,
+                    "NATIVE_CLOSED": 8,
+                    "NATIVE_EXIT_3": 1,
+                    "NATIVE_BLOCKED": 1,
+                    "NATIVE_EXIT_4": 1,
+                    "NATIVE_EXIT_5": 1,
+                    "NATIVE_EXIT_6": 1,
+                    "NATIVE_EXIT_7": 1,
+                    "NATIVE_EXIT_8": 1,
+                    "NATIVE_EXIT_9": 1,
+                    "NATIVE_EXIT_10": 1,
+                    "NATIVE_EXIT_11": 1,
+                    "NATIVE_DIVERGENCE": 1,
+                    "NATIVE_EXIT_12": 1,
+                    "NATIVE_EXIT_13": 1,
+                    "NATIVE_EXIT_14": 1,
+                    "NATIVE_EXIT_15": 1,
+                    "NATIVE_EXIT_16": 1,
+                    "NATIVE_EXIT_17": 1,
+                    "NATIVE_EXIT_18": 1,
+                    "NATIVE_EXIT_19": 1,
+                    "NATIVE_EXIT_20": 1,
+                    "NATIVE_EXIT_21": 1,
+                    "NATIVE_EXIT_22": 1,
+                    "NATIVE_EXIT_23": 1
+                  },
+                  "alerts": {}
+                }
+              },
+              "status": "VERIFIED",
+              "states": {
+                "ENTRY": 9,
+                "TP1": 5,
+                "SL": 11,
+                "EXIT": 8,
+                "TP2": 4,
+                "TP3": 3
+              },
+              "native_strategy_properties": {
+                "mode": "RC2 Fixed SL",
+                "symbol": "OANDA:XAUUSD",
+                "timeframe": "5",
+                "last_close_ms": 1794376800000,
+                "first_open_ms": 1793854800000,
+                "currency": "USD",
+                "initial_capital": 100000,
+                "netprofit": 56.411,
+                "openprofit": 0.474,
+                "grossprofit": 103.924,
+                "grossloss": 47.513,
+                "max_drawdown": 31.044,
+                "position_size": -3,
+                "closed_parts": 24,
+                "win_parts": 13,
+                "loss_parts": 11,
+                "campaign_count": 8
+              },
+              "actual_partial_commission_usd": 8.399999999999999,
+              "mean_emulator_partial_runup_usd": 6.013916666666667,
+              "mean_emulator_partial_drawdown_usd": 2.941,
+              "native_lifecycle_anomalies": []
+            },
+            "parity": {
+              "csv_sha256": "e2b20337c58433335a784b5d893d9d2c8d3661959f7209d634b1ce74a05bbd0d",
+              "context": {
+                "file": "parity_M5.csv",
+                "csv_sha256": "e2b20337c58433335a784b5d893d9d2c8d3661959f7209d634b1ce74a05bbd0d",
+                "context_sha256": "8b1699a75810d7147c833082b192e1682ddc2f23325ba08b989f0c7459af5f5d",
+                "bars": 1116,
+                "chart_first_open_ms": 1793854800000,
+                "first_logged_bar_index": 0,
+                "first_logged_open_ms": 1793854800000,
+                "last_logged_bar_index": 1115,
+                "last_logged_close_ms": 1794376800000,
+                "starts_at_first_loaded_bar": true,
+                "end_marker_present": true,
+                "events": {
+                  "core": {
+                    "WATCH": 37,
+                    "EXPIRED": 6,
+                    "CANCELLED": 18,
+                    "CONFIRMED": 10,
+                    "REJECTED": 3
+                  },
+                  "ready": {
+                    "SELL": 7,
+                    "BUY": 3
+                  },
+                  "native": {
+                    "NATIVE_ADMITTED": 9,
+                    "NATIVE_SUBMITTED": 9,
+                    "NATIVE_ENTRY": 9,
+                    "NATIVE_EXIT_0": 1,
+                    "NATIVE_STOP_SCHEDULED": 5,
+                    "NATIVE_EXIT_1": 1,
+                    "NATIVE_EXIT_2": 1,
+                    "NATIVE_CLOSED": 8,
+                    "NATIVE_EXIT_3": 1,
+                    "NATIVE_BLOCKED": 1,
+                    "NATIVE_EXIT_4": 1,
+                    "NATIVE_EXIT_5": 1,
+                    "NATIVE_EXIT_6": 1,
+                    "NATIVE_EXIT_7": 1,
+                    "NATIVE_EXIT_8": 1,
+                    "NATIVE_EXIT_9": 1,
+                    "NATIVE_EXIT_10": 1,
+                    "NATIVE_EXIT_11": 1,
+                    "NATIVE_DIVERGENCE": 1,
+                    "NATIVE_EXIT_12": 1,
+                    "NATIVE_EXIT_13": 1,
+                    "NATIVE_EXIT_14": 1,
+                    "NATIVE_EXIT_15": 1,
+                    "NATIVE_EXIT_16": 1,
+                    "NATIVE_EXIT_17": 1,
+                    "NATIVE_EXIT_18": 1,
+                    "NATIVE_EXIT_19": 1,
+                    "NATIVE_EXIT_20": 1,
+                    "NATIVE_EXIT_21": 1,
+                    "NATIVE_EXIT_22": 1,
+                    "NATIVE_EXIT_23": 1
+                  },
+                  "alerts": {}
+                }
+              },
+              "status": "VERIFIED",
+              "states": {
+                "ENTRY": 9,
+                "TP1": 5,
+                "PROFIT_LOCK": 5,
+                "SL": 13,
+                "EXIT": 8,
+                "TP2": 3,
+                "TP3": 2
+              },
+              "native_strategy_properties": {
+                "mode": "S5 RAW Parity",
+                "symbol": "OANDA:XAUUSD",
+                "timeframe": "5",
+                "last_close_ms": 1794376800000,
+                "first_open_ms": 1793854800000,
+                "currency": "USD",
+                "initial_capital": 100000,
+                "netprofit": 32.294,
+                "openprofit": 0.474,
+                "grossprofit": 71.123,
+                "grossloss": 38.829,
+                "max_drawdown": 31.044,
+                "position_size": -3,
+                "closed_parts": 24,
+                "win_parts": 11,
+                "loss_parts": 13,
+                "campaign_count": 8
+              },
+              "actual_partial_commission_usd": 8.399999999999999,
+              "mean_emulator_partial_runup_usd": 5.417458333333333,
+              "mean_emulator_partial_drawdown_usd": 2.85475,
+              "native_lifecycle_anomalies": []
+            }
+          }
+        }
+      },
+      "M15": {
+        "visibility": {
+          "s5_rc2_paper_and_alerts": {
+            "status": "MATCH",
+            "baseline": {
+              "file": "baseline-M15.csv",
+              "sha256": "14f76b76eff97c05fd8d3edbe28d77a8929723872d85addf9ba9355a315a70d9",
+              "closed_bars": 71,
+              "first_loaded_open_utc": "2026-10-23T17:15:00Z",
+              "first_exported_open_utc": "2026-11-10T23:45:00Z",
+              "last_exported_close_utc": "2026-11-11T17:30:00Z",
+              "status": "VERIFIED",
+              "s5_alerts": 19,
+              "early_observations": 0,
+              "early_alerts": 0,
+              "filter_rejected": 0
+            },
+            "visibility": {
+              "file": "visibility-M15.csv",
+              "sha256": "58575cb1d8e77d900d90b91d19eb1cc7e23cef574dc15f66aad6508e6831ee94",
+              "closed_bars": 71,
+              "first_loaded_open_utc": "2026-10-23T17:15:00Z",
+              "first_exported_open_utc": "2026-11-10T23:45:00Z",
+              "last_exported_close_utc": "2026-11-11T17:30:00Z",
+              "status": "VERIFIED",
+              "s5_alerts": 19,
+              "early_observations": 0,
+              "early_alerts": 0,
+              "filter_rejected": 0
+            },
+            "core_ready_and_compatibility": {
+              "status": "MATCH",
+              "coverage": "BOUNDED_WINDOW",
+              "rows": {
+                "core": 20,
+                "ready": 2,
+                "alerts": 19
+              }
+            },
+            "rc2_native_streams": {
+              "status": "MATCH",
+              "mismatched_streams": [],
+              "rows": {
+                "RC2_ALERT": 17,
+                "RC2_EARLY": 0,
+                "RC2_FILTER": 0
+              }
+            },
+            "s5_raw_paper": {
+              "status": "MATCH",
+              "mismatched_streams": [],
+              "ledger_snapshots": 71,
+              "execution_events": 6,
+              "last_close": "2026-11-11T17:30:00Z",
+              "final_ledger_r": {
+                "entered": 2,
+                "closed": 2,
+                "capacity_skipped": 1,
+                "net": "-0.04255369",
+                "gross": "0.01124957",
+                "costs": "0.05380326",
+                "gains": "0.98827449",
+                "losses": "1.03082818",
+                "drawdown": "1.03082818"
+              },
+              "scope": "Native indicator RAW PAPER events and ledger. P&L and drawdown are in R."
+            }
+          },
+          "shadow_timeline": {
+            "status": "MATCH",
+            "common_bars": 1199,
+            "events": 499,
+            "repeat_file": "visibility-M15.csv",
+            "repeat_sha256": "58575cb1d8e77d900d90b91d19eb1cc7e23cef574dc15f66aad6508e6831ee94",
+            "baseline_events": 499,
+            "visibility_events": 499,
+            "baseline_first_open_utc": "2026-10-23T17:15:00Z",
+            "visibility_first_open_utc": "2026-10-23T17:15:00Z"
+          },
+          "directional_state": {
+            "status": "VERIFIED",
+            "file": "visibility-M15.csv",
+            "closed_bar_snapshots": 71,
+            "review": {
+              "status": "MATCH",
+              "rows": 1,
+              "file": "visibility-review-M15.csv",
+              "sha256": "6ee28a8bea34ce6af54a7ab2e1a527f7747ac1ea3189f1ffce9863cd19375da2",
+              "selected_closes_utc": [
+                "2026-11-11T12:30:00Z"
+              ]
+            },
+            "observational_alert": {
+              "status": "INTENT_VERIFIED",
+              "rows": 12,
+              "delivery": "NOT_VERIFIED_BY_PINE_LOGS"
+            },
+            "case_status": "VERIFIED",
+            "case_timeline": {
+              "bullish_retest": {
+                "status": "VERIFIED",
+                "known_utc": "2026-11-11T00:15:00Z",
+                "symbol": "OANDA:XAUUSD",
+                "frame": "15",
+                "open_ms": 1794355200000,
+                "known_ms": 1794356100000,
+                "as_of_ms": 1794356100000,
+                "direction": "BUY BREAKOUT CONFIRMED",
+                "signals": [
+                  {
+                    "source": "DT RETEST",
+                    "model": "RETEST_CONTINUATION",
+                    "side": 1,
+                    "stage": "BREAKOUT CONFIRMED",
+                    "known_ms": 1794356100000,
+                    "expires_ms": 1794357000000,
+                    "reason": "RETEST_CONFIRMED · RESEARCH ENTRY CANDIDATE",
+                    "research": true
+                  }
+                ],
+                "permission": "WAIT",
+                "permission_source": "S5 · RC2",
+                "permission_known_ms": 1794356100000,
+                "permission_reason": "Нарушена структура",
+                "permission_freshness": "AT CLOSE",
+                "plan_visible": false,
+                "paper_phase": 0,
+                "paper_plan_id": "",
+                "paper_capacity": false,
+                "s5_stage": "INVALIDATED",
+                "review": false
+              },
+              "quiet": {
+                "status": "VERIFIED",
+                "known_utc": "2026-11-11T11:30:00Z",
+                "symbol": "OANDA:XAUUSD",
+                "frame": "15",
+                "open_ms": 1794395700000,
+                "known_ms": 1794396600000,
+                "as_of_ms": 1794396600000,
+                "direction": "NONE",
+                "signals": [],
+                "permission": "WAIT",
+                "permission_source": "S5 · RC2",
+                "permission_known_ms": 1794396600000,
+                "permission_reason": "Няма нов потвърден S5 план.",
+                "permission_freshness": "AT CLOSE",
+                "plan_visible": false,
+                "paper_phase": 0,
+                "paper_plan_id": "",
+                "paper_capacity": false,
+                "s5_stage": "NO SETUP",
+                "review": false
+              },
+              "sell_watch": {
+                "status": "VERIFIED",
+                "known_utc": "2026-11-11T11:45:00Z",
+                "symbol": "OANDA:XAUUSD",
+                "frame": "15",
+                "open_ms": 1794396600000,
+                "known_ms": 1794397500000,
+                "as_of_ms": 1794397500000,
+                "direction": "SELL WATCH",
+                "signals": [
+                  {
+                    "source": "DT STRUCTURE",
+                    "model": "STRUCTURAL_BREAK",
+                    "side": -1,
+                    "stage": "WATCH",
+                    "known_ms": 1794397500000,
+                    "expires_ms": 1794403800000,
+                    "reason": "APPROACHING_LEVEL",
+                    "research": false
+                  }
+                ],
+                "permission": "WAIT",
+                "permission_source": "S5 · RC2",
+                "permission_known_ms": 1794397500000,
+                "permission_reason": "Няма нов потвърден S5 план.",
+                "permission_freshness": "AT CLOSE",
+                "plan_visible": false,
+                "paper_phase": 0,
+                "paper_plan_id": "",
+                "paper_capacity": false,
+                "s5_stage": "NO SETUP",
+                "review": false
+              },
+              "sell_break_s5_buy_watch": {
+                "status": "VERIFIED",
+                "known_utc": "2026-11-11T12:00:00Z",
+                "symbol": "OANDA:XAUUSD",
+                "frame": "15",
+                "open_ms": 1794397500000,
+                "known_ms": 1794398400000,
+                "as_of_ms": 1794398400000,
+                "direction": "CONFLICT",
+                "signals": [
+                  {
+                    "source": "DT STRUCTURE",
+                    "model": "STRUCTURAL_BREAK",
+                    "side": -1,
+                    "stage": "BREAKOUT CONFIRMED",
+                    "known_ms": 1794398400000,
+                    "expires_ms": 1794404700000,
+                    "reason": "CONFIRMED_CLOSE_CROSS · RESEARCH REJECTED: INSUFFICIENT_NET_ROOM",
+                    "research": false
+                  },
+                  {
+                    "source": "S5",
+                    "model": "S5_RECLAIM",
+                    "side": 1,
+                    "stage": "WATCH",
+                    "known_ms": 1794398400000,
+                    "expires_ms": 1794402000000,
+                    "reason": "Противоположен пробив; чака връщане отвъд нивото",
+                    "research": false
+                  }
+                ],
+                "permission": "WAIT",
+                "permission_source": "S5 · RC2",
+                "permission_known_ms": 1794398400000,
+                "permission_reason": "Чака връщане отвъд нивото със затворена свещ.",
+                "permission_freshness": "AT CLOSE",
+                "plan_visible": false,
+                "paper_phase": 0,
+                "paper_plan_id": "",
+                "paper_capacity": false,
+                "s5_stage": "WATCH",
+                "review": false
+              },
+              "sell_retest_research": {
+                "status": "VERIFIED",
+                "known_utc": "2026-11-11T12:30:00Z",
+                "symbol": "OANDA:XAUUSD",
+                "frame": "15",
+                "open_ms": 1794399300000,
+                "known_ms": 1794400200000,
+                "as_of_ms": 1794400200000,
+                "direction": "SELL BREAKOUT CONFIRMED",
+                "signals": [
+                  {
+                    "source": "DT RETEST",
+                    "model": "RETEST_CONTINUATION",
+                    "side": -1,
+                    "stage": "BREAKOUT CONFIRMED",
+                    "known_ms": 1794400200000,
+                    "expires_ms": 1794401100000,
+                    "reason": "RETEST_CONFIRMED · RESEARCH ENTRY CANDIDATE",
+                    "research": true
+                  }
+                ],
+                "permission": "WAIT",
+                "permission_source": "S5 · RC2",
+                "permission_known_ms": 1794400200000,
+                "permission_reason": "Няма нов потвърден S5 план.",
+                "permission_freshness": "AT CLOSE",
+                "plan_visible": false,
+                "paper_phase": 0,
+                "paper_plan_id": "",
+                "paper_capacity": false,
+                "s5_stage": "NO SETUP",
+                "review": false
+              },
+              "sell_consolidation_s5_buy_watch": {
+                "status": "VERIFIED",
+                "known_utc": "2026-11-11T13:30:00Z",
+                "symbol": "OANDA:XAUUSD",
+                "frame": "15",
+                "open_ms": 1794402900000,
+                "known_ms": 1794403800000,
+                "as_of_ms": 1794403800000,
+                "direction": "CONFLICT",
+                "signals": [
+                  {
+                    "source": "DT CONSOLIDATION",
+                    "model": "CONSOLIDATION_BREAK",
+                    "side": -1,
+                    "stage": "BREAKOUT CONFIRMED",
+                    "known_ms": 1794403800000,
+                    "expires_ms": 1794410100000,
+                    "reason": "CONFIRMED_CLOSE_CROSS · RESEARCH ENTRY CANDIDATE",
+                    "research": true
+                  },
+                  {
+                    "source": "S5",
+                    "model": "S5_RECLAIM",
+                    "side": 1,
+                    "stage": "WATCH",
+                    "known_ms": 1794403800000,
+                    "expires_ms": 1794407400000,
+                    "reason": "Противоположен пробив; чака връщане отвъд нивото",
+                    "research": false
+                  }
+                ],
+                "permission": "WAIT",
+                "permission_source": "S5 · RC2",
+                "permission_known_ms": 1794403800000,
+                "permission_reason": "Чака връщане отвъд нивото със затворена свещ.",
+                "permission_freshness": "AT CLOSE",
+                "plan_visible": false,
+                "paper_phase": 0,
+                "paper_plan_id": "",
+                "paper_capacity": false,
+                "s5_stage": "WATCH",
+                "review": false
+              }
+            },
+            "quiet_counterexample_market_window": {
+              "status": "VERIFIED",
+              "from_utc": "2026-11-11T10:30:00Z",
+              "through_utc": "2026-11-11T11:30:00Z",
+              "bars": 4,
+              "range": "9.64",
+              "net_change": "3.32",
+              "net_to_range": "0.3443983402489626556016597510"
+            }
+          }
+        },
+        "strategy_audits": {
+          "scope": "Original RC2 Strategy Tester exports for both stop policies",
+          "s5_signal_and_ready": {
+            "status": "MATCH",
+            "rows": {
+              "context": 1172,
+              "core": 54,
+              "ready": 3
+            },
+            "shared_first_open_ms": 1792753200000,
+            "shared_last_close_ms": 1794376800000,
+            "left_chart_first_open_ms": 1792753200000,
+            "right_chart_first_open_ms": 1792753200000,
+            "left_minus_right_bar_index": 0,
+            "loaded_warmup_origins_differ": false,
+            "left_context_outside_overlap": 0,
+            "right_context_outside_overlap": 0,
+            "shared_gap_count": 13
+          },
+          "runs": {
+            "fixed": {
+              "csv_sha256": "7aa6420a3095a4b4cf35755c5856cd43a9e3c3472ecbff32a0c9d34662a96249",
+              "context": {
+                "file": "fixed_M15.csv",
+                "csv_sha256": "7aa6420a3095a4b4cf35755c5856cd43a9e3c3472ecbff32a0c9d34662a96249",
+                "context_sha256": "22da0f8d28d17c3eb78a61872119d8796cca46ff9d44f71fd63be5dec104225b",
+                "bars": 1172,
+                "chart_first_open_ms": 1792753200000,
+                "first_logged_bar_index": 0,
+                "first_logged_open_ms": 1792753200000,
+                "last_logged_bar_index": 1171,
+                "last_logged_close_ms": 1794376800000,
+                "starts_at_first_loaded_bar": true,
+                "end_marker_present": true,
+                "events": {
+                  "core": {
+                    "WATCH": 27,
+                    "CANCELLED": 19,
+                    "REJECTED": 4,
+                    "CONFIRMED": 3,
+                    "EXPIRED": 1
+                  },
+                  "ready": {
+                    "SELL": 2,
+                    "BUY": 1
+                  },
+                  "native": {
+                    "NATIVE_ADMITTED": 2,
+                    "NATIVE_SUBMITTED": 2,
+                    "NATIVE_ENTRY": 2,
+                    "NATIVE_EXIT_0": 1,
+                    "NATIVE_EXIT_1": 1,
+                    "NATIVE_BLOCKED": 1,
+                    "NATIVE_EXIT_2": 1,
+                    "NATIVE_CLOSED": 2,
+                    "NATIVE_EXIT_3": 1,
+                    "NATIVE_EXIT_4": 1,
+                    "NATIVE_EXIT_5": 1
+                  },
+                  "alerts": {}
+                }
+              },
+              "status": "VERIFIED",
+              "states": {
+                "ENTRY": 2,
+                "TP1": 1,
+                "TP2": 1,
+                "EXIT": 2,
+                "SL": 3
+              },
+              "native_strategy_properties": {
+                "mode": "RC2 Fixed SL",
+                "symbol": "OANDA:XAUUSD",
+                "timeframe": "15",
+                "last_close_ms": 1794376800000,
+                "first_open_ms": 1792753200000,
+                "currency": "USD",
+                "initial_capital": 100000,
+                "netprofit": 12.33,
+                "openprofit": 0,
+                "grossprofit": 47.841,
+                "grossloss": 35.511,
+                "max_drawdown": 38.661,
+                "position_size": 0,
+                "closed_parts": 6,
+                "win_parts": 3,
+                "loss_parts": 3,
+                "campaign_count": 2
+              },
+              "actual_partial_commission_usd": 2.0999999999999996,
+              "mean_emulator_partial_runup_usd": 14.606166666666667,
+              "mean_emulator_partial_drawdown_usd": 12.2745,
+              "native_lifecycle_anomalies": []
+            },
+            "parity": {
+              "csv_sha256": "c64d2fb2b809837b6244ebce42b526d9ae5c1eba9e5a880549c59ae89de37ff0",
+              "context": {
+                "file": "parity_M15.csv",
+                "csv_sha256": "c64d2fb2b809837b6244ebce42b526d9ae5c1eba9e5a880549c59ae89de37ff0",
+                "context_sha256": "22da0f8d28d17c3eb78a61872119d8796cca46ff9d44f71fd63be5dec104225b",
+                "bars": 1172,
+                "chart_first_open_ms": 1792753200000,
+                "first_logged_bar_index": 0,
+                "first_logged_open_ms": 1792753200000,
+                "last_logged_bar_index": 1171,
+                "last_logged_close_ms": 1794376800000,
+                "starts_at_first_loaded_bar": true,
+                "end_marker_present": true,
+                "events": {
+                  "core": {
+                    "WATCH": 27,
+                    "CANCELLED": 19,
+                    "REJECTED": 4,
+                    "CONFIRMED": 3,
+                    "EXPIRED": 1
+                  },
+                  "ready": {
+                    "SELL": 2,
+                    "BUY": 1
+                  },
+                  "native": {
+                    "NATIVE_ADMITTED": 2,
+                    "NATIVE_SUBMITTED": 2,
+                    "NATIVE_ENTRY": 2,
+                    "NATIVE_EXIT_0": 1,
+                    "NATIVE_STOP_SCHEDULED": 1,
+                    "NATIVE_EXIT_1": 1,
+                    "NATIVE_BLOCKED": 1,
+                    "NATIVE_EXIT_2": 1,
+                    "NATIVE_CLOSED": 2,
+                    "NATIVE_EXIT_3": 1,
+                    "NATIVE_EXIT_4": 1,
+                    "NATIVE_EXIT_5": 1
+                  },
+                  "alerts": {}
+                }
+              },
+              "status": "VERIFIED",
+              "states": {
+                "ENTRY": 2,
+                "TP1": 1,
+                "PROFIT_LOCK": 1,
+                "TP2": 1,
+                "SL": 4,
+                "EXIT": 2
+              },
+              "native_strategy_properties": {
+                "mode": "S5 RAW Parity",
+                "symbol": "OANDA:XAUUSD",
+                "timeframe": "15",
+                "last_close_ms": 1794376800000,
+                "first_open_ms": 1792753200000,
+                "currency": "USD",
+                "initial_capital": 100000,
+                "netprofit": 10.177,
+                "openprofit": 0,
+                "grossprofit": 45.688,
+                "grossloss": 35.511,
+                "max_drawdown": 38.661,
+                "position_size": 0,
+                "closed_parts": 6,
+                "win_parts": 3,
+                "loss_parts": 3,
+                "campaign_count": 2
+              },
+              "actual_partial_commission_usd": 2.0999999999999996,
+              "mean_emulator_partial_runup_usd": 14.606166666666667,
+              "mean_emulator_partial_drawdown_usd": 12.2745,
+              "native_lifecycle_anomalies": []
+            }
+          }
+        }
+      },
+      "M30": {
+        "visibility": {
+          "s5_rc2_paper_and_alerts": {
+            "status": "MATCH",
+            "baseline": {
+              "file": "baseline-M30.csv",
+              "sha256": "4d062b4ade687b4ee3cd534d54780ad924762e2df30c0ed3b866f8b53f763f14",
+              "closed_bars": 36,
+              "first_loaded_open_utc": "2026-10-06T16:30:00Z",
+              "first_exported_open_utc": "2026-11-10T23:30:00Z",
+              "last_exported_close_utc": "2026-11-11T17:30:00Z",
+              "status": "NO_EXAMPLES",
+              "s5_alerts": 0,
+              "early_observations": 0,
+              "early_alerts": 0,
+              "filter_rejected": 0
+            },
+            "visibility": {
+              "file": "visibility-M30.csv",
+              "sha256": "89a6ba3999df9066ba62d8e8343ad10342bff0fb512267a7f7d2068eb5ec87e3",
+              "closed_bars": 36,
+              "first_loaded_open_utc": "2026-10-06T16:30:00Z",
+              "first_exported_open_utc": "2026-11-10T23:30:00Z",
+              "last_exported_close_utc": "2026-11-11T17:30:00Z",
+              "status": "NO_EXAMPLES",
+              "s5_alerts": 0,
+              "early_observations": 0,
+              "early_alerts": 0,
+              "filter_rejected": 0
+            },
+            "core_ready_and_compatibility": {
+              "status": "MATCH",
+              "coverage": "BOUNDED_WINDOW",
+              "rows": {
+                "core": 0,
+                "ready": 0,
+                "alerts": 0
+              }
+            },
+            "rc2_native_streams": {
+              "status": "MATCH",
+              "mismatched_streams": [],
+              "rows": {
+                "RC2_ALERT": 0,
+                "RC2_EARLY": 0,
+                "RC2_FILTER": 0
+              }
+            },
+            "s5_raw_paper": {
+              "status": "MATCH",
+              "mismatched_streams": [],
+              "ledger_snapshots": 36,
+              "execution_events": 0,
+              "last_close": "2026-11-11T17:30:00Z",
+              "final_ledger_r": {
+                "entered": 0,
+                "closed": 0,
+                "capacity_skipped": 0,
+                "net": 0,
+                "gross": 0,
+                "costs": 0,
+                "gains": 0,
+                "losses": 0,
+                "drawdown": 0
+              },
+              "scope": "Native indicator RAW PAPER events and ledger. P&L and drawdown are in R."
+            }
+          },
+          "shadow_timeline": {
+            "status": "MATCH",
+            "common_bars": 1199,
+            "events": 493,
+            "repeat_file": "visibility-M30.csv",
+            "repeat_sha256": "89a6ba3999df9066ba62d8e8343ad10342bff0fb512267a7f7d2068eb5ec87e3",
+            "baseline_events": 493,
+            "visibility_events": 493,
+            "baseline_first_open_utc": "2026-10-06T16:30:00Z",
+            "visibility_first_open_utc": "2026-10-06T16:30:00Z"
+          },
+          "directional_state": {
+            "status": "VERIFIED",
+            "file": "visibility-M30.csv",
+            "closed_bar_snapshots": 36,
+            "review": {
+              "status": "NO_REVIEW_JOURNAL",
+              "rows": 0
+            },
+            "observational_alert": {
+              "status": "INTENT_VERIFIED",
+              "rows": 1,
+              "delivery": "NOT_VERIFIED_BY_PINE_LOGS"
+            },
+            "case_status": "NOT_M15",
+            "case_timeline": {}
+          }
+        },
+        "strategy_audits": {
+          "scope": "Original RC2 Strategy Tester exports for both stop policies",
+          "s5_signal_and_ready": {
+            "status": "MATCH",
+            "rows": {
+              "context": 1186,
+              "core": 0,
+              "ready": 0
+            },
+            "shared_first_open_ms": 1791280800000,
+            "shared_last_close_ms": 1794376800000,
+            "left_chart_first_open_ms": 1791280800000,
+            "right_chart_first_open_ms": 1791280800000,
+            "left_minus_right_bar_index": 0,
+            "loaded_warmup_origins_differ": false,
+            "left_context_outside_overlap": 0,
+            "right_context_outside_overlap": 0,
+            "shared_gap_count": 26
+          },
+          "runs": {
+            "fixed": {
+              "csv_sha256": "0941c03b1d7f96b6d421762c67fb28882ac063ec0097ff90cf4c9ddeb8317303",
+              "context": {
+                "file": "fixed_M30.csv",
+                "csv_sha256": "0941c03b1d7f96b6d421762c67fb28882ac063ec0097ff90cf4c9ddeb8317303",
+                "context_sha256": "2c24b37bf2a7edc1512d6f397bf2220d24ad1c5b49eea0af5eed9f0f1fc8a911",
+                "bars": 1186,
+                "chart_first_open_ms": 1791280800000,
+                "first_logged_bar_index": 0,
+                "first_logged_open_ms": 1791280800000,
+                "last_logged_bar_index": 1185,
+                "last_logged_close_ms": 1794376800000,
+                "starts_at_first_loaded_bar": true,
+                "end_marker_present": true,
+                "events": {
+                  "core": {},
+                  "ready": {},
+                  "native": {},
+                  "alerts": {}
+                }
+              },
+              "status": "NO_EXAMPLES",
+              "states": {},
+              "native_strategy_properties": {
+                "mode": "RC2 Fixed SL",
+                "symbol": "OANDA:XAUUSD",
+                "timeframe": "30",
+                "last_close_ms": 1794376800000,
+                "first_open_ms": 1791280800000,
+                "currency": "USD",
+                "initial_capital": 100000,
+                "netprofit": 0,
+                "openprofit": 0,
+                "grossprofit": 0,
+                "grossloss": 0,
+                "max_drawdown": 0,
+                "position_size": 0,
+                "closed_parts": 0,
+                "win_parts": 0,
+                "loss_parts": 0,
+                "campaign_count": 0
+              },
+              "actual_partial_commission_usd": 0,
+              "mean_emulator_partial_runup_usd": null,
+              "mean_emulator_partial_drawdown_usd": null,
+              "native_lifecycle_anomalies": []
+            },
+            "parity": {
+              "csv_sha256": "b479e5052ec2816b30efc886d8d72b7e2a4c6ca02306f0d9b8e72f80d5d680e4",
+              "context": {
+                "file": "parity_M30.csv",
+                "csv_sha256": "b479e5052ec2816b30efc886d8d72b7e2a4c6ca02306f0d9b8e72f80d5d680e4",
+                "context_sha256": "2c24b37bf2a7edc1512d6f397bf2220d24ad1c5b49eea0af5eed9f0f1fc8a911",
+                "bars": 1186,
+                "chart_first_open_ms": 1791280800000,
+                "first_logged_bar_index": 0,
+                "first_logged_open_ms": 1791280800000,
+                "last_logged_bar_index": 1185,
+                "last_logged_close_ms": 1794376800000,
+                "starts_at_first_loaded_bar": true,
+                "end_marker_present": true,
+                "events": {
+                  "core": {},
+                  "ready": {},
+                  "native": {},
+                  "alerts": {}
+                }
+              },
+              "status": "NO_EXAMPLES",
+              "states": {},
+              "native_strategy_properties": {
+                "mode": "S5 RAW Parity",
+                "symbol": "OANDA:XAUUSD",
+                "timeframe": "30",
+                "last_close_ms": 1794376800000,
+                "first_open_ms": 1791280800000,
+                "currency": "USD",
+                "initial_capital": 100000,
+                "netprofit": 0,
+                "openprofit": 0,
+                "grossprofit": 0,
+                "grossloss": 0,
+                "max_drawdown": 0,
+                "position_size": 0,
+                "closed_parts": 0,
+                "win_parts": 0,
+                "loss_parts": 0,
+                "campaign_count": 0
+              },
+              "actual_partial_commission_usd": 0,
+              "mean_emulator_partial_runup_usd": null,
+              "mean_emulator_partial_drawdown_usd": null,
+              "native_lifecycle_anomalies": []
+            }
+          }
+        }
+      }
+    }
+  },
+  "fresh": {
+    "M5": {
+      "indicator": {
+        "s5_rc2_paper_and_alerts": {
+          "status": "MATCH",
+          "baseline": {
+            "file": "baseline-M5.csv",
+            "sha256": "e22f352b224e756f71dd692be8ff64c16acf2ffa627aa89afa68317318eb8ebe",
+            "closed_bars": 211,
+            "first_loaded_open_utc": "2026-11-05T13:50:00Z",
+            "first_exported_open_utc": "2026-11-10T23:55:00Z",
+            "last_exported_close_utc": "2026-11-11T17:30:00Z",
+            "status": "VERIFIED",
+            "s5_alerts": 44,
+            "early_observations": 0,
+            "early_alerts": 0,
+            "filter_rejected": 0
+          },
+          "visibility": {
+            "file": "unified-M5.csv",
+            "sha256": "e22f352b224e756f71dd692be8ff64c16acf2ffa627aa89afa68317318eb8ebe",
+            "closed_bars": 211,
+            "first_loaded_open_utc": "2026-11-05T13:50:00Z",
+            "first_exported_open_utc": "2026-11-10T23:55:00Z",
+            "last_exported_close_utc": "2026-11-11T17:30:00Z",
+            "status": "VERIFIED",
+            "s5_alerts": 44,
+            "early_observations": 0,
+            "early_alerts": 0,
+            "filter_rejected": 0
+          },
+          "core_ready_and_compatibility": {
+            "status": "MATCH",
+            "coverage": "BOUNDED_WINDOW",
+            "rows": {
+              "core": 42,
+              "ready": 6,
+              "alerts": 44
+            }
+          },
+          "rc2_native_streams": {
+            "status": "MATCH",
+            "mismatched_streams": [],
+            "rows": {
+              "RC2_ALERT": 38,
+              "RC2_EARLY": 0,
+              "RC2_FILTER": 0
+            }
+          },
+          "s5_raw_paper": {
+            "status": "MATCH",
+            "mismatched_streams": [],
+            "ledger_snapshots": 211,
+            "execution_events": 32,
+            "last_close": "2026-11-11T17:30:00Z",
+            "final_ledger_r": {
+              "entered": 10,
+              "closed": 10,
+              "capacity_skipped": 1,
+              "net": "-2.00237566",
+              "gross": "-1.11024449",
+              "costs": "0.89213117",
+              "gains": "4.55480455",
+              "losses": "6.55718021",
+              "drawdown": "3.29956814"
+            },
+            "scope": "Native indicator RAW PAPER events and ledger. P&L and drawdown are in R."
+          }
+        },
+        "shadow_timeline": {
+          "status": "MATCH",
+          "common_bars": 1199,
+          "events": 530,
+          "repeat_file": "unified-M5.csv",
+          "repeat_sha256": "e22f352b224e756f71dd692be8ff64c16acf2ffa627aa89afa68317318eb8ebe",
+          "baseline_events": 530,
+          "visibility_events": 530,
+          "baseline_first_open_utc": "2026-11-05T13:50:00Z",
+          "visibility_first_open_utc": "2026-11-05T13:50:00Z"
+        },
+        "directional_state": {
+          "status": "VERIFIED",
+          "file": "unified-M5.csv",
+          "closed_bar_snapshots": 211,
+          "review": {
+            "status": "NO_REVIEW_JOURNAL",
+            "rows": 0
+          },
+          "observational_alert": {
+            "status": "INTENT_VERIFIED",
+            "rows": 7,
+            "delivery": "NOT_VERIFIED_BY_PINE_LOGS"
+          },
+          "case_status": "NOT_M15",
+          "case_timeline": {}
+        }
+      },
+      "pressure": {
+        "independent_replay": {
+          "baseline": {
+            "status": "VERIFIED",
+            "file": "baseline-M5.csv",
+            "sha256": "e22f352b224e756f71dd692be8ff64c16acf2ffa627aa89afa68317318eb8ebe",
+            "bars": 211,
+            "end_marker_present": true,
+            "settings": {
+              "lookback": 10,
+              "weighted": false,
+              "comparison": false
+            },
+            "frame_counts": {
+              "5": {
+                "verification": {
+                  "SOURCE_WARMUP_NOT_OBSERVED": 9,
+                  "CALCULATION_VERIFIED": 202
+                },
+                "modes": {
+                  "OHLC": 211
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 211
+                }
+              }
+            }
+          },
+          "unified": {
+            "status": "VERIFIED",
+            "file": "unified-M5.csv",
+            "sha256": "e22f352b224e756f71dd692be8ff64c16acf2ffa627aa89afa68317318eb8ebe",
+            "bars": 211,
+            "end_marker_present": true,
+            "settings": {
+              "lookback": 10,
+              "weighted": false,
+              "comparison": false
+            },
+            "frame_counts": {
+              "5": {
+                "verification": {
+                  "SOURCE_WARMUP_NOT_OBSERVED": 9,
+                  "CALCULATION_VERIFIED": 202
+                },
+                "modes": {
+                  "OHLC": 211
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 211
+                }
+              }
+            }
+          }
+        },
+        "repeated_native_values": {
+          "status": "MATCH",
+          "samples": 211,
+          "original_sha256": "e22f352b224e756f71dd692be8ff64c16acf2ffa627aa89afa68317318eb8ebe",
+          "repeat_sha256": "e22f352b224e756f71dd692be8ff64c16acf2ffa627aa89afa68317318eb8ebe"
+        }
+      },
+      "strategy_audits": {
+        "paired_fixed_sl": {
+          "status": "MISSING_EVIDENCE",
+          "files": [
+            "baseline-audit-M5.csv",
+            "unified-audit-M5.csv"
+          ]
+        },
+        "original_audits": {}
+      }
+    },
+    "M15": {
+      "indicator": {
+        "s5_rc2_paper_and_alerts": {
+          "status": "MATCH",
+          "baseline": {
+            "file": "baseline-M15.csv",
+            "sha256": "b51d251280824d5b57d739f501b408935a28a8aa0c76111bc470e8df857c8342",
+            "closed_bars": 71,
+            "first_loaded_open_utc": "2026-10-23T20:00:00Z",
+            "first_exported_open_utc": "2026-11-10T23:45:00Z",
+            "last_exported_close_utc": "2026-11-11T17:30:00Z",
+            "status": "VERIFIED",
+            "s5_alerts": 19,
+            "early_observations": 0,
+            "early_alerts": 0,
+            "filter_rejected": 0
+          },
+          "visibility": {
+            "file": "unified-M15.csv",
+            "sha256": "b51d251280824d5b57d739f501b408935a28a8aa0c76111bc470e8df857c8342",
+            "closed_bars": 71,
+            "first_loaded_open_utc": "2026-10-23T20:00:00Z",
+            "first_exported_open_utc": "2026-11-10T23:45:00Z",
+            "last_exported_close_utc": "2026-11-11T17:30:00Z",
+            "status": "VERIFIED",
+            "s5_alerts": 19,
+            "early_observations": 0,
+            "early_alerts": 0,
+            "filter_rejected": 0
+          },
+          "core_ready_and_compatibility": {
+            "status": "MATCH",
+            "coverage": "BOUNDED_WINDOW",
+            "rows": {
+              "core": 20,
+              "ready": 2,
+              "alerts": 19
+            }
+          },
+          "rc2_native_streams": {
+            "status": "MATCH",
+            "mismatched_streams": [],
+            "rows": {
+              "RC2_ALERT": 17,
+              "RC2_EARLY": 0,
+              "RC2_FILTER": 0
+            }
+          },
+          "s5_raw_paper": {
+            "status": "MATCH",
+            "mismatched_streams": [],
+            "ledger_snapshots": 71,
+            "execution_events": 6,
+            "last_close": "2026-11-11T17:30:00Z",
+            "final_ledger_r": {
+              "entered": 2,
+              "closed": 2,
+              "capacity_skipped": 1,
+              "net": "-0.04255369",
+              "gross": "0.01124957",
+              "costs": "0.05380326",
+              "gains": "0.98827449",
+              "losses": "1.03082818",
+              "drawdown": "1.03082818"
+            },
+            "scope": "Native indicator RAW PAPER events and ledger. P&L and drawdown are in R."
+          }
+        },
+        "shadow_timeline": {
+          "status": "MATCH",
+          "common_bars": 1199,
+          "events": 502,
+          "repeat_file": "unified-M15.csv",
+          "repeat_sha256": "b51d251280824d5b57d739f501b408935a28a8aa0c76111bc470e8df857c8342",
+          "baseline_events": 502,
+          "visibility_events": 502,
+          "baseline_first_open_utc": "2026-10-23T20:00:00Z",
+          "visibility_first_open_utc": "2026-10-23T20:00:00Z"
+        },
+        "directional_state": {
+          "status": "VERIFIED",
+          "file": "unified-M15.csv",
+          "closed_bar_snapshots": 71,
+          "review": {
+            "status": "NO_REVIEW_JOURNAL",
+            "rows": 0
+          },
+          "observational_alert": {
+            "status": "INTENT_VERIFIED",
+            "rows": 12,
+            "delivery": "NOT_VERIFIED_BY_PINE_LOGS"
+          },
+          "case_status": "VERIFIED",
+          "case_timeline": {
+            "bullish_retest": {
+              "status": "VERIFIED",
+              "known_utc": "2026-11-11T00:15:00Z",
+              "symbol": "OANDA:XAUUSD",
+              "frame": "15",
+              "open_ms": 1794355200000,
+              "known_ms": 1794356100000,
+              "as_of_ms": 1794356100000,
+              "direction": "BUY BREAKOUT CONFIRMED",
+              "signals": [
+                {
+                  "source": "DT RETEST",
+                  "model": "RETEST_CONTINUATION",
+                  "side": 1,
+                  "stage": "BREAKOUT CONFIRMED",
+                  "known_ms": 1794356100000,
+                  "expires_ms": 1794357000000,
+                  "reason": "RETEST_CONFIRMED · RESEARCH ENTRY CANDIDATE",
+                  "research": true
+                }
+              ],
+              "permission": "WAIT",
+              "permission_source": "S5 · RC2",
+              "permission_known_ms": 1794356100000,
+              "permission_reason": "Нарушена структура",
+              "permission_freshness": "AT CLOSE",
+              "plan_visible": false,
+              "paper_phase": 0,
+              "paper_plan_id": "",
+              "paper_capacity": false,
+              "s5_stage": "INVALIDATED",
+              "review": false
+            },
+            "quiet": {
+              "status": "VERIFIED",
+              "known_utc": "2026-11-11T11:30:00Z",
+              "symbol": "OANDA:XAUUSD",
+              "frame": "15",
+              "open_ms": 1794395700000,
+              "known_ms": 1794396600000,
+              "as_of_ms": 1794396600000,
+              "direction": "NONE",
+              "signals": [],
+              "permission": "WAIT",
+              "permission_source": "S5 · RC2",
+              "permission_known_ms": 1794396600000,
+              "permission_reason": "Няма нов потвърден S5 план.",
+              "permission_freshness": "AT CLOSE",
+              "plan_visible": false,
+              "paper_phase": 0,
+              "paper_plan_id": "",
+              "paper_capacity": false,
+              "s5_stage": "NO SETUP",
+              "review": false
+            },
+            "sell_watch": {
+              "status": "VERIFIED",
+              "known_utc": "2026-11-11T11:45:00Z",
+              "symbol": "OANDA:XAUUSD",
+              "frame": "15",
+              "open_ms": 1794396600000,
+              "known_ms": 1794397500000,
+              "as_of_ms": 1794397500000,
+              "direction": "SELL WATCH",
+              "signals": [
+                {
+                  "source": "DT STRUCTURE",
+                  "model": "STRUCTURAL_BREAK",
+                  "side": -1,
+                  "stage": "WATCH",
+                  "known_ms": 1794397500000,
+                  "expires_ms": 1794403800000,
+                  "reason": "APPROACHING_LEVEL",
+                  "research": false
+                }
+              ],
+              "permission": "WAIT",
+              "permission_source": "S5 · RC2",
+              "permission_known_ms": 1794397500000,
+              "permission_reason": "Няма нов потвърден S5 план.",
+              "permission_freshness": "AT CLOSE",
+              "plan_visible": false,
+              "paper_phase": 0,
+              "paper_plan_id": "",
+              "paper_capacity": false,
+              "s5_stage": "NO SETUP",
+              "review": false
+            },
+            "sell_break_s5_buy_watch": {
+              "status": "VERIFIED",
+              "known_utc": "2026-11-11T12:00:00Z",
+              "symbol": "OANDA:XAUUSD",
+              "frame": "15",
+              "open_ms": 1794397500000,
+              "known_ms": 1794398400000,
+              "as_of_ms": 1794398400000,
+              "direction": "CONFLICT",
+              "signals": [
+                {
+                  "source": "DT STRUCTURE",
+                  "model": "STRUCTURAL_BREAK",
+                  "side": -1,
+                  "stage": "BREAKOUT CONFIRMED",
+                  "known_ms": 1794398400000,
+                  "expires_ms": 1794404700000,
+                  "reason": "CONFIRMED_CLOSE_CROSS · RESEARCH REJECTED: INSUFFICIENT_NET_ROOM",
+                  "research": false
+                },
+                {
+                  "source": "S5",
+                  "model": "S5_RECLAIM",
+                  "side": 1,
+                  "stage": "WATCH",
+                  "known_ms": 1794398400000,
+                  "expires_ms": 1794402000000,
+                  "reason": "Противоположен пробив; чака връщане отвъд нивото",
+                  "research": false
+                }
+              ],
+              "permission": "WAIT",
+              "permission_source": "S5 · RC2",
+              "permission_known_ms": 1794398400000,
+              "permission_reason": "Чака връщане отвъд нивото със затворена свещ.",
+              "permission_freshness": "AT CLOSE",
+              "plan_visible": false,
+              "paper_phase": 0,
+              "paper_plan_id": "",
+              "paper_capacity": false,
+              "s5_stage": "WATCH",
+              "review": false
+            },
+            "sell_retest_research": {
+              "status": "VERIFIED",
+              "known_utc": "2026-11-11T12:30:00Z",
+              "symbol": "OANDA:XAUUSD",
+              "frame": "15",
+              "open_ms": 1794399300000,
+              "known_ms": 1794400200000,
+              "as_of_ms": 1794400200000,
+              "direction": "SELL BREAKOUT CONFIRMED",
+              "signals": [
+                {
+                  "source": "DT RETEST",
+                  "model": "RETEST_CONTINUATION",
+                  "side": -1,
+                  "stage": "BREAKOUT CONFIRMED",
+                  "known_ms": 1794400200000,
+                  "expires_ms": 1794401100000,
+                  "reason": "RETEST_CONFIRMED · RESEARCH ENTRY CANDIDATE",
+                  "research": true
+                }
+              ],
+              "permission": "WAIT",
+              "permission_source": "S5 · RC2",
+              "permission_known_ms": 1794400200000,
+              "permission_reason": "Няма нов потвърден S5 план.",
+              "permission_freshness": "AT CLOSE",
+              "plan_visible": false,
+              "paper_phase": 0,
+              "paper_plan_id": "",
+              "paper_capacity": false,
+              "s5_stage": "NO SETUP",
+              "review": false
+            },
+            "sell_consolidation_s5_buy_watch": {
+              "status": "VERIFIED",
+              "known_utc": "2026-11-11T13:30:00Z",
+              "symbol": "OANDA:XAUUSD",
+              "frame": "15",
+              "open_ms": 1794402900000,
+              "known_ms": 1794403800000,
+              "as_of_ms": 1794403800000,
+              "direction": "CONFLICT",
+              "signals": [
+                {
+                  "source": "DT CONSOLIDATION",
+                  "model": "CONSOLIDATION_BREAK",
+                  "side": -1,
+                  "stage": "BREAKOUT CONFIRMED",
+                  "known_ms": 1794403800000,
+                  "expires_ms": 1794410100000,
+                  "reason": "CONFIRMED_CLOSE_CROSS · RESEARCH ENTRY CANDIDATE",
+                  "research": true
+                },
+                {
+                  "source": "S5",
+                  "model": "S5_RECLAIM",
+                  "side": 1,
+                  "stage": "WATCH",
+                  "known_ms": 1794403800000,
+                  "expires_ms": 1794407400000,
+                  "reason": "Противоположен пробив; чака връщане отвъд нивото",
+                  "research": false
+                }
+              ],
+              "permission": "WAIT",
+              "permission_source": "S5 · RC2",
+              "permission_known_ms": 1794403800000,
+              "permission_reason": "Чака връщане отвъд нивото със затворена свещ.",
+              "permission_freshness": "AT CLOSE",
+              "plan_visible": false,
+              "paper_phase": 0,
+              "paper_plan_id": "",
+              "paper_capacity": false,
+              "s5_stage": "WATCH",
+              "review": false
+            }
+          },
+          "quiet_counterexample_market_window": {
+            "status": "VERIFIED",
+            "from_utc": "2026-11-11T10:30:00Z",
+            "through_utc": "2026-11-11T11:30:00Z",
+            "bars": 4,
+            "range": "9.64",
+            "net_change": "3.32",
+            "net_to_range": "0.3443983402489626556016597510"
+          }
+        }
+      },
+      "pressure": {
+        "independent_replay": {
+          "baseline": {
+            "status": "VERIFIED",
+            "file": "baseline-M15.csv",
+            "sha256": "b51d251280824d5b57d739f501b408935a28a8aa0c76111bc470e8df857c8342",
+            "bars": 71,
+            "end_marker_present": true,
+            "settings": {
+              "lookback": 10,
+              "weighted": false,
+              "comparison": false
+            },
+            "frame_counts": {
+              "15": {
+                "verification": {
+                  "SOURCE_WARMUP_NOT_OBSERVED": 9,
+                  "CALCULATION_VERIFIED": 62
+                },
+                "modes": {
+                  "OHLC": 71
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 71
+                }
+              }
+            }
+          },
+          "unified": {
+            "status": "VERIFIED",
+            "file": "unified-M15.csv",
+            "sha256": "b51d251280824d5b57d739f501b408935a28a8aa0c76111bc470e8df857c8342",
+            "bars": 71,
+            "end_marker_present": true,
+            "settings": {
+              "lookback": 10,
+              "weighted": false,
+              "comparison": false
+            },
+            "frame_counts": {
+              "15": {
+                "verification": {
+                  "SOURCE_WARMUP_NOT_OBSERVED": 9,
+                  "CALCULATION_VERIFIED": 62
+                },
+                "modes": {
+                  "OHLC": 71
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 71
+                }
+              }
+            }
+          }
+        },
+        "repeated_native_values": {
+          "status": "MATCH",
+          "samples": 71,
+          "original_sha256": "b51d251280824d5b57d739f501b408935a28a8aa0c76111bc470e8df857c8342",
+          "repeat_sha256": "b51d251280824d5b57d739f501b408935a28a8aa0c76111bc470e8df857c8342"
+        }
+      },
+      "strategy_audits": {
+        "paired_fixed_sl": {
+          "status": "MISSING_EVIDENCE",
+          "files": [
+            "baseline-audit-M15.csv",
+            "unified-audit-M15.csv"
+          ]
+        },
+        "original_audits": {}
+      }
+    },
+    "M30": {
+      "indicator": {
+        "s5_rc2_paper_and_alerts": {
+          "status": "MATCH",
+          "baseline": {
+            "file": "baseline-M30.csv",
+            "sha256": "065fd74c4b3285d32ea75be4a7109efea5ed9e2e6f6348ac4c8bf02e48e303e6",
+            "closed_bars": 36,
+            "first_loaded_open_utc": "2026-10-06T19:00:00Z",
+            "first_exported_open_utc": "2026-11-10T23:30:00Z",
+            "last_exported_close_utc": "2026-11-11T17:30:00Z",
+            "status": "NO_EXAMPLES",
+            "s5_alerts": 0,
+            "early_observations": 0,
+            "early_alerts": 0,
+            "filter_rejected": 0
+          },
+          "visibility": {
+            "file": "unified-M30.csv",
+            "sha256": "065fd74c4b3285d32ea75be4a7109efea5ed9e2e6f6348ac4c8bf02e48e303e6",
+            "closed_bars": 36,
+            "first_loaded_open_utc": "2026-10-06T19:00:00Z",
+            "first_exported_open_utc": "2026-11-10T23:30:00Z",
+            "last_exported_close_utc": "2026-11-11T17:30:00Z",
+            "status": "NO_EXAMPLES",
+            "s5_alerts": 0,
+            "early_observations": 0,
+            "early_alerts": 0,
+            "filter_rejected": 0
+          },
+          "core_ready_and_compatibility": {
+            "status": "MATCH",
+            "coverage": "BOUNDED_WINDOW",
+            "rows": {
+              "core": 0,
+              "ready": 0,
+              "alerts": 0
+            }
+          },
+          "rc2_native_streams": {
+            "status": "MATCH",
+            "mismatched_streams": [],
+            "rows": {
+              "RC2_ALERT": 0,
+              "RC2_EARLY": 0,
+              "RC2_FILTER": 0
+            }
+          },
+          "s5_raw_paper": {
+            "status": "MATCH",
+            "mismatched_streams": [],
+            "ledger_snapshots": 36,
+            "execution_events": 0,
+            "last_close": "2026-11-11T17:30:00Z",
+            "final_ledger_r": {
+              "entered": 0,
+              "closed": 0,
+              "capacity_skipped": 0,
+              "net": 0,
+              "gross": 0,
+              "costs": 0,
+              "gains": 0,
+              "losses": 0,
+              "drawdown": 0
+            },
+            "scope": "Native indicator RAW PAPER events and ledger. P&L and drawdown are in R."
+          }
+        },
+        "shadow_timeline": {
+          "status": "MATCH",
+          "common_bars": 1199,
+          "events": 483,
+          "repeat_file": "unified-M30.csv",
+          "repeat_sha256": "065fd74c4b3285d32ea75be4a7109efea5ed9e2e6f6348ac4c8bf02e48e303e6",
+          "baseline_events": 483,
+          "visibility_events": 483,
+          "baseline_first_open_utc": "2026-10-06T19:00:00Z",
+          "visibility_first_open_utc": "2026-10-06T19:00:00Z"
+        },
+        "directional_state": {
+          "status": "VERIFIED",
+          "file": "unified-M30.csv",
+          "closed_bar_snapshots": 36,
+          "review": {
+            "status": "NO_REVIEW_JOURNAL",
+            "rows": 0
+          },
+          "observational_alert": {
+            "status": "INTENT_VERIFIED",
+            "rows": 1,
+            "delivery": "NOT_VERIFIED_BY_PINE_LOGS"
+          },
+          "case_status": "NOT_M15",
+          "case_timeline": {}
+        }
+      },
+      "pressure": {
+        "independent_replay": {
+          "baseline": {
+            "status": "VERIFIED",
+            "file": "baseline-M30.csv",
+            "sha256": "065fd74c4b3285d32ea75be4a7109efea5ed9e2e6f6348ac4c8bf02e48e303e6",
+            "bars": 36,
+            "end_marker_present": true,
+            "settings": {
+              "lookback": 10,
+              "weighted": false,
+              "comparison": false
+            },
+            "frame_counts": {
+              "30": {
+                "verification": {
+                  "SOURCE_WARMUP_NOT_OBSERVED": 9,
+                  "CALCULATION_VERIFIED": 27
+                },
+                "modes": {
+                  "OHLC": 36
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 36
+                }
+              }
+            }
+          },
+          "unified": {
+            "status": "VERIFIED",
+            "file": "unified-M30.csv",
+            "sha256": "065fd74c4b3285d32ea75be4a7109efea5ed9e2e6f6348ac4c8bf02e48e303e6",
+            "bars": 36,
+            "end_marker_present": true,
+            "settings": {
+              "lookback": 10,
+              "weighted": false,
+              "comparison": false
+            },
+            "frame_counts": {
+              "30": {
+                "verification": {
+                  "SOURCE_WARMUP_NOT_OBSERVED": 9,
+                  "CALCULATION_VERIFIED": 27
+                },
+                "modes": {
+                  "OHLC": 36
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 36
+                }
+              }
+            }
+          }
+        },
+        "repeated_native_values": {
+          "status": "MATCH",
+          "samples": 36,
+          "original_sha256": "065fd74c4b3285d32ea75be4a7109efea5ed9e2e6f6348ac4c8bf02e48e303e6",
+          "repeat_sha256": "065fd74c4b3285d32ea75be4a7109efea5ed9e2e6f6348ac4c8bf02e48e303e6"
+        }
+      },
+      "strategy_audits": {
+        "paired_fixed_sl": {
+          "status": "MISSING_EVIDENCE",
+          "files": [
+            "baseline-audit-M30.csv",
+            "unified-audit-M30.csv"
+          ]
+        },
+        "original_audits": {}
+      }
+    }
+  }
+}

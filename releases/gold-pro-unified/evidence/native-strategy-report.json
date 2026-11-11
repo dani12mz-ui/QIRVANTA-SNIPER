@@ -1,0 +1,91 @@
+{
+  "symbol": "OANDA:XAUUSD",
+  "candles": "standard",
+  "capture_date_utc": "2026-11-11",
+  "source": "../gold-pro-rc2/QIRVANTA_GOLD_PRO_RC2_AUDIT.pine",
+  "sha256": "4ba04321a9ef5456e8fc61aa2b5b3ab6c44398a62b18e31b3041d9dda530d42b",
+  "evidence_type": "TradingView Strategy Report summary, default detail, rounded as displayed",
+  "settings_from_source": {
+    "initial_capital_usd": 100000,
+    "commission_cash_per_contract_per_side_usd": 0.175,
+    "slippage_ticks": 2,
+    "bar_magnifier": false,
+    "orders_on_close": false,
+    "calc_bars_count": 1200
+  },
+  "trade_count_scope": "TradingView closed trades, including partial exit legs, not deduplicated campaigns",
+  "runs": [
+    {
+      "timeframe": "M5",
+      "mode": "RC2 Fixed SL",
+      "display_range_start": "2026-11-05",
+      "display_range_end": "2026-11-11",
+      "pnl_usd": -14.3,
+      "max_drawdown_usd": 76.43,
+      "profit_factor": 0.878,
+      "profitable_closed": 13,
+      "closed_report_trades": 36,
+      "screenshot": "screenshots/M5-audit-fixed.jpg"
+    },
+    {
+      "timeframe": "M5",
+      "mode": "S5 RAW Parity",
+      "display_range_start": "2026-11-05",
+      "display_range_end": "2026-11-11",
+      "pnl_usd": -39.49,
+      "max_drawdown_usd": 68.78,
+      "profit_factor": 0.641,
+      "profitable_closed": 11,
+      "closed_report_trades": 36,
+      "screenshot": "screenshots/M5-audit-s5-raw.jpg"
+    },
+    {
+      "timeframe": "M15",
+      "mode": "RC2 Fixed SL",
+      "display_range_start": "2026-10-23",
+      "display_range_end": "2026-11-11",
+      "pnl_usd": -11.55,
+      "max_drawdown_usd": 59.39,
+      "profit_factor": 0.805,
+      "profitable_closed": 3,
+      "closed_report_trades": 10,
+      "screenshot": "screenshots/M15-audit-fixed.jpg"
+    },
+    {
+      "timeframe": "M15",
+      "mode": "S5 RAW Parity",
+      "display_range_start": "2026-10-23",
+      "display_range_end": "2026-11-11",
+      "pnl_usd": -13.71,
+      "max_drawdown_usd": 59.39,
+      "profit_factor": 0.769,
+      "profitable_closed": 3,
+      "closed_report_trades": 10,
+      "screenshot": "screenshots/M15-audit-s5-raw.jpg"
+    },
+    {
+      "timeframe": "M30",
+      "mode": "RC2 Fixed SL",
+      "display_range_start": "2026-10-06",
+      "display_range_end": "2026-11-11",
+      "pnl_usd": null,
+      "max_drawdown_usd": null,
+      "profit_factor": null,
+      "profitable_closed": 0,
+      "closed_report_trades": 0,
+      "screenshot": "screenshots/M30-audit-fixed.jpg"
+    },
+    {
+      "timeframe": "M30",
+      "mode": "S5 RAW Parity",
+      "display_range_start": "2026-10-06",
+      "display_range_end": "2026-11-11",
+      "pnl_usd": null,
+      "max_drawdown_usd": null,
+      "profit_factor": null,
+      "profitable_closed": 0,
+      "closed_report_trades": 0,
+      "screenshot": "screenshots/M30-audit-s5-raw.jpg"
+    }
+  ]
+}

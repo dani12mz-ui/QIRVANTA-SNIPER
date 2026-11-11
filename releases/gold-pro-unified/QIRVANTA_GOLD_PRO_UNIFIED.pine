@@ -3363,7 +3363,7 @@ if rcViewRefresh
         table.cell(rcViewTable, col, 21, "", width=rcViewColumn / 2, height=0.01,
              bgcolor=color.new(rcViewGraphite, 100), text_size=1)
     string chartName = rcSupported ? syminfo.tickerid + " · " + timeframe.period + "m" : "OANDA:XAUUSD · M5 / M15 / M30"
-    f_rcViewCell(0, 0, "  QIRVANTA GOLD PRO RC2", rcViewGold, rcViewGraphite, rcViewTitle, text.align_left, true)
+    f_rcViewCell(0, 0, "  QIRVANTA GOLD PRO UNIFIED", rcViewGold, rcViewGraphite, rcViewTitle, text.align_left, true)
     f_rcViewCell(0, 1, f_dvContextLine(chartName), rcViewMuted, rcViewGraphite, rcViewSmall, text.align_left)
     f_dvDashboard()
     f_dvBiasRow()

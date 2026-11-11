@@ -1,0 +1,41 @@
+{
+  "scope": "Local originals of the fresh paired runs; hashes certify exact equality. Market-data exports are not mirrored in this release.",
+  "files": [
+    {
+      "name": "baseline-M5.csv",
+      "origin": "TradingView Pine Logs / Download logs",
+      "bytes": 1053467,
+      "sha256": "e22f352b224e756f71dd692be8ff64c16acf2ffa627aa89afa68317318eb8ebe"
+    },
+    {
+      "name": "unified-M5.csv",
+      "origin": "TradingView Pine Logs / Download logs",
+      "bytes": 1053467,
+      "sha256": "e22f352b224e756f71dd692be8ff64c16acf2ffa627aa89afa68317318eb8ebe"
+    },
+    {
+      "name": "baseline-M15.csv",
+      "origin": "TradingView Pine Logs / Download logs",
+      "bytes": 694895,
+      "sha256": "b51d251280824d5b57d739f501b408935a28a8aa0c76111bc470e8df857c8342"
+    },
+    {
+      "name": "unified-M15.csv",
+      "origin": "TradingView Pine Logs / Download logs",
+      "bytes": 694895,
+      "sha256": "b51d251280824d5b57d739f501b408935a28a8aa0c76111bc470e8df857c8342"
+    },
+    {
+      "name": "baseline-M30.csv",
+      "origin": "TradingView Pine Logs / Download logs",
+      "bytes": 545904,
+      "sha256": "065fd74c4b3285d32ea75be4a7109efea5ed9e2e6f6348ac4c8bf02e48e303e6"
+    },
+    {
+      "name": "unified-M30.csv",
+      "origin": "TradingView Pine Logs / Download logs",
+      "bytes": 545904,
+      "sha256": "065fd74c4b3285d32ea75be4a7109efea5ed9e2e6f6348ac4c8bf02e48e303e6"
+    }
+  ]
+}
