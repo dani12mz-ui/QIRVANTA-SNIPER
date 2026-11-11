@@ -1,0 +1,108 @@
+bool gpSecondChance = input.bool(true, "Track second-chance observations", group="Gold Pro opportunities")
+bool gpAlertEarly = input.bool(false, "Early directional alerts", group="Gold Pro alerts")
+bool gpAlertEntry = input.bool(true, "Valid entry alerts", group="Gold Pro alerts")
+bool gpAlertSecond = input.bool(true, "Second-chance alerts", group="Gold Pro alerts")
+const int GP_OPPORTUNITY_BARS = 24
+
+type GoldOpportunity
+    int side = 0
+    int startedBar = na
+    int waitBar = na
+    int retestBar = na
+    int watchedAt = na
+    float level = na
+    float retestTrigger = na
+    float retestStop = na
+    string id = ""
+    string state = ""
+    string reason = ""
+
+var GoldOpportunity gpBuyOpportunity = GoldOpportunity.new()
+var GoldOpportunity gpSellOpportunity = GoldOpportunity.new()
+var int gpOpportunityAt = na
+var string gpOpportunityText = "WAIT"
+
+f_gpStartOpportunity(GoldOpportunity tracker, int side, float level, string cause) =>
+    tracker.side := side
+    tracker.startedBar := bar_index
+    tracker.watchedAt := time_close
+    tracker.waitBar := na
+    tracker.retestBar := na
+    tracker.level := level
+    tracker.retestTrigger := na
+    tracker.retestStop := na
+    tracker.id := "O-" + f_gpDirection(side) + "-" + str.tostring(time_close)
+    tracker.state := f_gpDirection(side) + " WATCH"
+    tracker.reason := cause
+
+f_gpWaitOpportunity(GoldOpportunity tracker, int side, float level, string cause) =>
+    if gpSecondChance and not na(level) and (tracker.state != "WAIT FOR PULLBACK" or na(tracker.waitBar))
+        if tracker.state == "" or tracker.state == "OPPORTUNITY EXPIRED" or tracker.state == "SECOND CHANCE"
+            f_gpStartOpportunity(tracker, side, level, cause)
+        tracker.state := "WAIT FOR PULLBACK"
+        tracker.reason := cause
+        tracker.level := level
+        tracker.waitBar := bar_index
+        tracker.retestBar := na
+
+f_gpFollowOpportunity(GoldOpportunity tracker, int side, bool early, bool confirmed, float structure) =>
+    bool changed = false
+    bool expired = not na(tracker.startedBar) and bar_index - tracker.startedBar > GP_OPPORTUNITY_BARS
+    bool active = tracker.state != "" and tracker.state != "OPPORTUNITY EXPIRED" and tracker.state != "SECOND CHANCE"
+    if active and (expired or v22BOS == -side)
+        tracker.state := "OPPORTUNITY EXPIRED"
+        tracker.reason := expired ? "MAXIMUM_AGE" : "OPPOSITE_STRUCTURE_BREAK"
+        changed := true
+    else if early and not active and not na(structure)
+        f_gpStartOpportunity(tracker, side, structure, "DIRECTIONAL_STRUCTURE_AND_MOMENTUM")
+        changed := true
+    if confirmed and tracker.state == f_gpDirection(side) + " WATCH"
+        tracker.state := "TREND CONFIRMED"
+        tracker.reason := "CAUSAL_STRUCTURE_BREAK"
+        changed := true
+    if tracker.state == "WAIT FOR PULLBACK" and bar_index > tracker.waitBar
+        bool touched = side == 1 ? low <= tracker.level + 0.20 * v22ATR : high >= tracker.level - 0.20 * v22ATR
+        if na(tracker.retestBar) and touched and (close - tracker.level) * side >= -0.50 * v22ATR
+            tracker.retestBar := bar_index
+            tracker.retestTrigger := side == 1 ? high : low
+            tracker.retestStop := side == 1 ? low : high
+        if not na(tracker.retestBar) and bar_index > tracker.retestBar
+            tracker.retestStop := side == 1 ? math.min(tracker.retestStop, low) : math.max(tracker.retestStop, high)
+        bool retest = not na(tracker.retestBar) and bar_index > tracker.retestBar and (close - tracker.retestTrigger) * side > 0
+        float freshRange = v22BoxHigh[1] - v22BoxLow[1]
+        bool compression = v22NarrowBox[1] and freshRange <= 1.50 * v22ATR and
+          (close - (side == 1 ? v22BoxHigh[1] : v22BoxLow[1])) * side > 0
+        bool continuation = v22Trend == side and v22Trend[1] == side and v22Extension <= 1.25 and
+          gpMomentumChange * side > 0 and (close - (side == 1 ? gpContinuationHigh : gpContinuationLow)) * side > 0
+        bool qualified = (retest or compression or continuation) and v22Body * side > 0 and v22Trend != -side
+        if qualified
+            float stopBase = retest ? tracker.retestStop : compression ? (side == 1 ? v22BoxLow[1] : v22BoxHigh[1]) :
+              side == 1 ? gpContinuationLow : gpContinuationHigh
+            string method = retest ? "FRESH_RETEST" : compression ? "FRESH_COMPRESSION" : "FRESH_CONTINUATION"
+            string newId = "R-" + method + "-" + f_gpDirection(side) + "-" + str.tostring(time_close)
+            array.push(v22Candidates, V22Candidate.new("R", side, newId, time_close, time_close, tracker.level, close,
+              stopBase, f_v22Barrier(side), v22ATR, v22Extension, v22Spike, gpH1Side == -side or gpH4Side == -side))
+            array.push(v22Observations, V22Observation.new("R", side, newId, time_close, "CONFIRMED", method, close))
+            tracker.state := "SECOND CHANCE"
+            tracker.reason := method
+            changed := true
+    changed
+
+bool gpOpportunityBuyChanged = false
+bool gpOpportunitySellChanged = false
+if gpClosedBar and v22Ready
+    bool buyEarly = v22Trend == 1 and v22Momentum >= 0.60 and v22Extension <= 2.50
+    bool sellEarly = v22Trend == -1 and v22Momentum <= -0.60 and v22Extension <= 2.50
+    gpOpportunityBuyChanged := f_gpFollowOpportunity(gpBuyOpportunity, 1, buyEarly, v22BOS == 1, v22PriorHigh)
+    gpOpportunitySellChanged := f_gpFollowOpportunity(gpSellOpportunity, -1, sellEarly, v22BOS == -1, v22PriorLow)
+    for tracker in array.from(gpBuyOpportunity, gpSellOpportunity)
+        if tracker.startedBar == bar_index and tracker.state != "OPPORTUNITY EXPIRED"
+            int side = tracker.side
+            float stopBase = side == 1 ? gpContinuationLow : gpContinuationHigh
+            string fastId = "Q-" + f_gpDirection(side) + "-" + str.tostring(time_close)
+            array.push(v22Candidates, V22Candidate.new("Q", side, fastId, time_close, time_close, tracker.level, close,
+              stopBase, f_v22Barrier(side), v22ATR, v22Extension, v22Spike, gpH1Side == -side or gpH4Side == -side))
+    if gpOpportunityBuyChanged or gpOpportunitySellChanged
+        gpOpportunityAt := time_close
+        gpOpportunityText := gpOpportunityBuyChanged and gpOpportunitySellChanged ? "CONFLICT" :
+          gpOpportunityBuyChanged ? gpBuyOpportunity.state : gpSellOpportunity.state

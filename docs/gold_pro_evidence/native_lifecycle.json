@@ -1,0 +1,799 @@
+{
+  "clock": "known_at is chart close; emulator fill was first observed on the later chart bar.",
+  "delivery": "TradingView alert delivery was not exercised.",
+  "runs": [
+    {
+      "duplicate_alert_eligible_keys": [],
+      "earliest_logged_close": 1794269100000,
+      "event_clock_checks": 351,
+      "examples": [
+        {
+          "direction": "BUY",
+          "model": "O",
+          "reason": "OPPOSITE_STRUCTURE_BREAK",
+          "state": "OPPORTUNITY EXPIRED",
+          "time_utc": "2026-11-10T00:05:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "O",
+          "reason": "DIRECTIONAL_STRUCTURE_AND_MOMENTUM",
+          "state": "SELL WATCH",
+          "time_utc": "2026-11-10T01:00:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "O",
+          "reason": "OPPOSITE_STRUCTURE_BREAK",
+          "state": "OPPORTUNITY EXPIRED",
+          "time_utc": "2026-11-10T01:05:00+00:00"
+        },
+        {
+          "direction": "BUY",
+          "model": "E",
+          "reason": "VOLATILITY_SPIKE",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T01:05:00+00:00"
+        },
+        {
+          "direction": "BUY",
+          "model": "O",
+          "reason": "DIRECTIONAL_STRUCTURE_AND_MOMENTUM",
+          "state": "BUY WATCH",
+          "time_utc": "2026-11-10T01:15:00+00:00"
+        },
+        {
+          "direction": "BUY",
+          "model": "A",
+          "reason": "OVERSIZED_STOP",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T01:30:00+00:00"
+        },
+        {
+          "direction": "BUY",
+          "model": "O",
+          "reason": "OPPOSITE_STRUCTURE_BREAK",
+          "state": "OPPORTUNITY EXPIRED",
+          "time_utc": "2026-11-10T01:50:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "O",
+          "reason": "DIRECTIONAL_STRUCTURE_AND_MOMENTUM",
+          "state": "SELL WATCH",
+          "time_utc": "2026-11-10T02:50:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "A",
+          "reason": "HTF_CONFLICT",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T03:45:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "C",
+          "reason": "HTF_CONFLICT",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T03:45:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "F",
+          "reason": "HTF_CONFLICT",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T03:50:00+00:00"
+        },
+        {
+          "direction": "BUY",
+          "model": "E",
+          "reason": "INSUFFICIENT_NET_ROOM",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T04:20:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "O",
+          "reason": "FRESH_COMPRESSION",
+          "state": "SECOND CHANCE",
+          "time_utc": "2026-11-10T04:50:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "R",
+          "reason": "HTF_CONFLICT",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T04:50:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "E",
+          "reason": "HTF_CONFLICT",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T05:55:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "O",
+          "reason": "OPPOSITE_STRUCTURE_BREAK",
+          "state": "OPPORTUNITY EXPIRED",
+          "time_utc": "2026-11-10T06:35:00+00:00"
+        }
+      ],
+      "latest_logged_close": 1794379200000,
+      "matched_native_campaigns": [
+        {
+          "close_reason": "SL",
+          "closed_at": 1794317700000,
+          "direction": "SELL",
+          "entry_price": 4070.128,
+          "exit_legs": [
+            {
+              "observed_at": 1794317700000,
+              "price": 4080.231,
+              "state": "STOP_FILLED"
+            },
+            {
+              "observed_at": 1794317700000,
+              "price": 4080.231,
+              "state": "STOP_FILLED"
+            },
+            {
+              "observed_at": 1794317700000,
+              "price": 4080.231,
+              "state": "STOP_FILLED"
+            }
+          ],
+          "fill_bar_open": 1794317100000,
+          "fill_observed_at": 1794317400000,
+          "id": "A-SELL-1794316800000|1794317100000",
+          "initial_stop": 4080.229,
+          "net_usd_reconstructed": -31.359,
+          "next_contiguous_bar": true,
+          "submitted_at": 1794317100000
+        },
+        {
+          "close_reason": "TP3",
+          "closed_at": 1794327900000,
+          "direction": "SELL",
+          "entry_price": 4045.908,
+          "exit_legs": [
+            {
+              "observed_at": 1794326100000,
+              "price": 4038.649,
+              "state": "TP1_FILLED"
+            },
+            {
+              "observed_at": 1794327900000,
+              "price": 4031.488,
+              "state": "TP2_FILLED"
+            },
+            {
+              "observed_at": 1794327900000,
+              "price": 4024.327,
+              "state": "TP3_FILLED"
+            }
+          ],
+          "fill_bar_open": 1794325500000,
+          "fill_observed_at": 1794325800000,
+          "id": "A-SELL-1794325500000|1794325500000",
+          "initial_stop": 4052.971,
+          "net_usd_reconstructed": 42.21,
+          "next_contiguous_bar": true,
+          "submitted_at": 1794325500000
+        }
+      ],
+      "minutes": 5,
+      "policy": "confirmed",
+      "rejection_reasons": {
+        "EXCESSIVE_EXTENSION": 9,
+        "HTF_CONFLICT": 29,
+        "INSUFFICIENT_NET_ROOM": 7,
+        "OVERSIZED_STOP": 1,
+        "VOLATILITY_SPIKE": 1
+      },
+      "sha256": "0ab91182d31e98f79b0acc041db6729905664ff61b8a6de7f3e4468c568ee382",
+      "states": {
+        "BUY WATCH": 3,
+        "CONFIRMED": 53,
+        "ENTRY_REJECTED": 47,
+        "ENTRY_VALID": 6,
+        "EXPIRED": 14,
+        "INVALIDATED": 28,
+        "OPPORTUNITY EXPIRED": 12,
+        "POSITION_CLOSED": 2,
+        "SECOND CHANCE": 12,
+        "SELL WATCH": 6,
+        "SETUP_FORMING": 67,
+        "SIMULATED_FILLED": 2,
+        "STOP_FILLED": 3,
+        "SUBMITTED": 2,
+        "TP1_FILLED": 1,
+        "TP2_FILLED": 1,
+        "TP3_FILLED": 1,
+        "TREND CONFIRMED": 6,
+        "WATCH": 85
+      }
+    },
+    {
+      "duplicate_alert_eligible_keys": [],
+      "earliest_logged_close": 1794268800000,
+      "event_clock_checks": 97,
+      "examples": [
+        {
+          "direction": "BUY",
+          "model": "O",
+          "reason": "OPPOSITE_STRUCTURE_BREAK",
+          "state": "OPPORTUNITY EXPIRED",
+          "time_utc": "2026-11-10T00:30:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "E",
+          "reason": "HTF_CONFLICT",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T00:30:00+00:00"
+        },
+        {
+          "direction": "BUY",
+          "model": "O",
+          "reason": "DIRECTIONAL_STRUCTURE_AND_MOMENTUM",
+          "state": "BUY WATCH",
+          "time_utc": "2026-11-10T01:30:00+00:00"
+        },
+        {
+          "direction": "BUY",
+          "model": "O",
+          "reason": "OPPOSITE_STRUCTURE_BREAK",
+          "state": "OPPORTUNITY EXPIRED",
+          "time_utc": "2026-11-10T02:45:00+00:00"
+        },
+        {
+          "direction": "BUY",
+          "model": "E",
+          "reason": "INSUFFICIENT_NET_ROOM",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T04:30:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "O",
+          "reason": "OPPOSITE_STRUCTURE_BREAK",
+          "state": "OPPORTUNITY EXPIRED",
+          "time_utc": "2026-11-10T05:30:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "O",
+          "reason": "DIRECTIONAL_STRUCTURE_AND_MOMENTUM",
+          "state": "SELL WATCH",
+          "time_utc": "2026-11-10T07:45:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "B",
+          "reason": "HTF_CONFLICT",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T09:30:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "O",
+          "reason": "OPPOSITE_STRUCTURE_BREAK",
+          "state": "OPPORTUNITY EXPIRED",
+          "time_utc": "2026-11-10T13:00:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "O",
+          "reason": "DIRECTIONAL_STRUCTURE_AND_MOMENTUM",
+          "state": "SELL WATCH",
+          "time_utc": "2026-11-10T13:30:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "E",
+          "reason": "EXCESSIVE_EXTENSION",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T13:30:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "A",
+          "reason": "VOLATILITY_SPIKE",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T13:45:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "O",
+          "reason": "FRESH_RETEST",
+          "state": "SECOND CHANCE",
+          "time_utc": "2026-11-10T15:00:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "R",
+          "reason": "EXCESSIVE_EXTENSION",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T15:00:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "O",
+          "reason": "DIRECTIONAL_STRUCTURE_AND_MOMENTUM",
+          "state": "SELL WATCH",
+          "time_utc": "2026-11-10T16:00:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "A",
+          "reason": "EXCESSIVE_EXTENSION",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T16:30:00+00:00"
+        }
+      ],
+      "latest_logged_close": 1794363300000,
+      "matched_native_campaigns": [],
+      "minutes": 15,
+      "policy": "confirmed",
+      "rejection_reasons": {
+        "EXCESSIVE_EXTENSION": 4,
+        "HTF_CONFLICT": 3,
+        "INSUFFICIENT_NET_ROOM": 2,
+        "VOLATILITY_SPIKE": 1
+      },
+      "sha256": "ba3cb6eba9ddab6f3b09f3ecbe57639f8e6351f7ee76f18da74fe6fdd979ff07",
+      "states": {
+        "BUY WATCH": 1,
+        "CONFIRMED": 10,
+        "ENTRY_REJECTED": 10,
+        "EXPIRED": 4,
+        "INVALIDATED": 15,
+        "OPPORTUNITY EXPIRED": 6,
+        "SECOND CHANCE": 1,
+        "SELL WATCH": 4,
+        "SETUP_FORMING": 19,
+        "TREND CONFIRMED": 2,
+        "WATCH": 25
+      }
+    },
+    {
+      "duplicate_alert_eligible_keys": [],
+      "earliest_logged_close": 1794270600000,
+      "event_clock_checks": 39,
+      "examples": [
+        {
+          "direction": "BUY",
+          "model": "O",
+          "reason": "OPPOSITE_STRUCTURE_BREAK",
+          "state": "OPPORTUNITY EXPIRED",
+          "time_utc": "2026-11-10T00:30:00+00:00"
+        },
+        {
+          "direction": "BUY",
+          "model": "B",
+          "reason": "INSUFFICIENT_NET_ROOM",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T01:30:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "F",
+          "reason": "EXCESSIVE_EXTENSION",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T11:00:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "O",
+          "reason": "FRESH_RETEST",
+          "state": "SECOND CHANCE",
+          "time_utc": "2026-11-10T13:30:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "R",
+          "reason": "EXCESSIVE_EXTENSION",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T13:30:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "A",
+          "reason": "VOLATILITY_SPIKE",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T14:00:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "F",
+          "reason": "EXCESSIVE_EXTENSION",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T17:00:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "O",
+          "reason": "OPPOSITE_STRUCTURE_BREAK",
+          "state": "OPPORTUNITY EXPIRED",
+          "time_utc": "2026-11-10T20:30:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "B",
+          "reason": "INSUFFICIENT_NET_ROOM",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-11T01:00:00+00:00"
+        }
+      ],
+      "latest_logged_close": 1794362400000,
+      "matched_native_campaigns": [],
+      "minutes": 30,
+      "policy": "confirmed",
+      "rejection_reasons": {
+        "EXCESSIVE_EXTENSION": 3,
+        "INSUFFICIENT_NET_ROOM": 2,
+        "VOLATILITY_SPIKE": 1
+      },
+      "sha256": "959081fc9724bf71e9debd7c7b66d8277f98e0e3c878fcea0517094216643312",
+      "states": {
+        "CONFIRMED": 6,
+        "ENTRY_REJECTED": 6,
+        "INVALIDATED": 6,
+        "OPPORTUNITY EXPIRED": 2,
+        "SECOND CHANCE": 1,
+        "SETUP_FORMING": 7,
+        "WATCH": 11
+      }
+    },
+    {
+      "duplicate_alert_eligible_keys": [],
+      "earliest_logged_close": 1794269100000,
+      "event_clock_checks": 297,
+      "examples": [
+        {
+          "direction": "BUY",
+          "model": "O",
+          "reason": "OPPOSITE_STRUCTURE_BREAK",
+          "state": "OPPORTUNITY EXPIRED",
+          "time_utc": "2026-11-10T00:05:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "O",
+          "reason": "DIRECTIONAL_STRUCTURE_AND_MOMENTUM",
+          "state": "SELL WATCH",
+          "time_utc": "2026-11-10T01:00:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "Q",
+          "reason": "HTF_CONFLICT",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T01:00:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "O",
+          "reason": "OPPOSITE_STRUCTURE_BREAK",
+          "state": "OPPORTUNITY EXPIRED",
+          "time_utc": "2026-11-10T01:05:00+00:00"
+        },
+        {
+          "direction": "BUY",
+          "model": "O",
+          "reason": "DIRECTIONAL_STRUCTURE_AND_MOMENTUM",
+          "state": "BUY WATCH",
+          "time_utc": "2026-11-10T01:15:00+00:00"
+        },
+        {
+          "direction": "BUY",
+          "model": "Q",
+          "reason": "INSUFFICIENT_NET_ROOM",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T01:15:00+00:00"
+        },
+        {
+          "direction": "BUY",
+          "model": "O",
+          "reason": "OPPOSITE_STRUCTURE_BREAK",
+          "state": "OPPORTUNITY EXPIRED",
+          "time_utc": "2026-11-10T01:50:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "O",
+          "reason": "DIRECTIONAL_STRUCTURE_AND_MOMENTUM",
+          "state": "SELL WATCH",
+          "time_utc": "2026-11-10T02:50:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "Q",
+          "reason": "HTF_CONFLICT",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T02:50:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "O",
+          "reason": "FRESH_COMPRESSION",
+          "state": "SECOND CHANCE",
+          "time_utc": "2026-11-10T03:45:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "O",
+          "reason": "DIRECTIONAL_STRUCTURE_AND_MOMENTUM",
+          "state": "SELL WATCH",
+          "time_utc": "2026-11-10T03:50:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "Q",
+          "reason": "HTF_CONFLICT",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T03:50:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "O",
+          "reason": "FRESH_COMPRESSION",
+          "state": "SECOND CHANCE",
+          "time_utc": "2026-11-10T04:50:00+00:00"
+        },
+        {
+          "direction": "BUY",
+          "model": "Q",
+          "reason": "INSUFFICIENT_NET_ROOM",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T06:35:00+00:00"
+        },
+        {
+          "direction": "BUY",
+          "model": "O",
+          "reason": "OPPOSITE_STRUCTURE_BREAK",
+          "state": "OPPORTUNITY EXPIRED",
+          "time_utc": "2026-11-10T06:50:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "Q",
+          "reason": "HTF_CONFLICT",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T07:45:00+00:00"
+        }
+      ],
+      "latest_logged_close": 1794379500000,
+      "matched_native_campaigns": [
+        {
+          "close_reason": "SL",
+          "closed_at": 1794312300000,
+          "direction": "SELL",
+          "entry_price": 4072.883,
+          "exit_legs": [
+            {
+              "observed_at": 1794312300000,
+              "price": 4077.082,
+              "state": "STOP_FILLED"
+            },
+            {
+              "observed_at": 1794312300000,
+              "price": 4077.082,
+              "state": "STOP_FILLED"
+            },
+            {
+              "observed_at": 1794312300000,
+              "price": 4077.082,
+              "state": "STOP_FILLED"
+            }
+          ],
+          "fill_bar_open": 1794310200000,
+          "fill_observed_at": 1794310500000,
+          "id": "Q-SELL-1794310200000|1794310200000",
+          "initial_stop": 4077.08,
+          "net_usd_reconstructed": -13.647,
+          "next_contiguous_bar": true,
+          "submitted_at": 1794310200000
+        }
+      ],
+      "minutes": 5,
+      "policy": "fast",
+      "rejection_reasons": {
+        "EXCESSIVE_EXTENSION": 1,
+        "HTF_CONFLICT": 8,
+        "INSUFFICIENT_NET_ROOM": 5
+      },
+      "sha256": "0532fba4fe8ce79569f966d3f665d09559344498b7ea03c024a9c706014dd8db",
+      "states": {
+        "BUY WATCH": 4,
+        "CONFIRMED": 47,
+        "ENTRY_REJECTED": 14,
+        "ENTRY_VALID": 1,
+        "EXPIRED": 15,
+        "INVALIDATED": 28,
+        "OPPORTUNITY EXPIRED": 10,
+        "POSITION_CLOSED": 1,
+        "SECOND CHANCE": 6,
+        "SELL WATCH": 8,
+        "SETUP_FORMING": 67,
+        "SIMULATED_FILLED": 1,
+        "STOP_FILLED": 3,
+        "SUBMITTED": 1,
+        "TREND CONFIRMED": 6,
+        "WATCH": 85
+      }
+    },
+    {
+      "duplicate_alert_eligible_keys": [],
+      "earliest_logged_close": 1794268800000,
+      "event_clock_checks": 91,
+      "examples": [
+        {
+          "direction": "BUY",
+          "model": "O",
+          "reason": "OPPOSITE_STRUCTURE_BREAK",
+          "state": "OPPORTUNITY EXPIRED",
+          "time_utc": "2026-11-10T00:30:00+00:00"
+        },
+        {
+          "direction": "BUY",
+          "model": "O",
+          "reason": "DIRECTIONAL_STRUCTURE_AND_MOMENTUM",
+          "state": "BUY WATCH",
+          "time_utc": "2026-11-10T01:30:00+00:00"
+        },
+        {
+          "direction": "BUY",
+          "model": "Q",
+          "reason": "INSUFFICIENT_NET_ROOM",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T01:30:00+00:00"
+        },
+        {
+          "direction": "BUY",
+          "model": "O",
+          "reason": "OPPOSITE_STRUCTURE_BREAK",
+          "state": "OPPORTUNITY EXPIRED",
+          "time_utc": "2026-11-10T02:45:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "O",
+          "reason": "DIRECTIONAL_STRUCTURE_AND_MOMENTUM",
+          "state": "SELL WATCH",
+          "time_utc": "2026-11-10T07:45:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "Q",
+          "reason": "HTF_CONFLICT",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T07:45:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "O",
+          "reason": "FRESH_CONTINUATION",
+          "state": "SECOND CHANCE",
+          "time_utc": "2026-11-10T08:00:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "O",
+          "reason": "DIRECTIONAL_STRUCTURE_AND_MOMENTUM",
+          "state": "SELL WATCH",
+          "time_utc": "2026-11-10T13:30:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "Q",
+          "reason": "EXCESSIVE_EXTENSION",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T13:30:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "O",
+          "reason": "FRESH_RETEST",
+          "state": "SECOND CHANCE",
+          "time_utc": "2026-11-10T15:00:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "O",
+          "reason": "DIRECTIONAL_STRUCTURE_AND_MOMENTUM",
+          "state": "SELL WATCH",
+          "time_utc": "2026-11-10T16:00:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "Q",
+          "reason": "EXCESSIVE_EXTENSION",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-10T16:00:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "O",
+          "reason": "FRESH_RETEST",
+          "state": "SECOND CHANCE",
+          "time_utc": "2026-11-10T16:30:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "O",
+          "reason": "DIRECTIONAL_STRUCTURE_AND_MOMENTUM",
+          "state": "SELL WATCH",
+          "time_utc": "2026-11-11T01:15:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "Q",
+          "reason": "INSUFFICIENT_NET_ROOM",
+          "state": "ENTRY_REJECTED",
+          "time_utc": "2026-11-11T01:15:00+00:00"
+        },
+        {
+          "direction": "SELL",
+          "model": "O",
+          "reason": "OPPOSITE_STRUCTURE_BREAK",
+          "state": "OPPORTUNITY EXPIRED",
+          "time_utc": "2026-11-11T01:45:00+00:00"
+        }
+      ],
+      "latest_logged_close": 1794363300000,
+      "matched_native_campaigns": [],
+      "minutes": 15,
+      "policy": "fast",
+      "rejection_reasons": {
+        "EXCESSIVE_EXTENSION": 2,
+        "HTF_CONFLICT": 1,
+        "INSUFFICIENT_NET_ROOM": 2
+      },
+      "sha256": "f11425fa5697b8b9dac7808497d9431beb1a03af534d127a7cf423a1497241fa",
+      "states": {
+        "BUY WATCH": 1,
+        "CONFIRMED": 12,
+        "ENTRY_REJECTED": 5,
+        "EXPIRED": 4,
+        "INVALIDATED": 15,
+        "OPPORTUNITY EXPIRED": 3,
+        "SECOND CHANCE": 3,
+        "SELL WATCH": 4,
+        "SETUP_FORMING": 19,
+        "WATCH": 25
+      }
+    },
+    {
+      "duplicate_alert_eligible_keys": [],
+      "earliest_logged_close": 1794270600000,
+      "event_clock_checks": 30,
+      "examples": [
+        {
+          "direction": "BUY",
+          "model": "O",
+          "reason": "OPPOSITE_STRUCTURE_BREAK",
+          "state": "OPPORTUNITY EXPIRED",
+          "time_utc": "2026-11-10T00:30:00+00:00"
+        }
+      ],
+      "latest_logged_close": 1794362400000,
+      "matched_native_campaigns": [],
+      "minutes": 30,
+      "policy": "fast",
+      "rejection_reasons": {},
+      "sha256": "d0c88c20087b66d44703294ea70cbe36ac7053471bce146d4921fcce7182b7c0",
+      "states": {
+        "CONFIRMED": 5,
+        "INVALIDATED": 6,
+        "OPPORTUNITY EXPIRED": 1,
+        "SETUP_FORMING": 7,
+        "WATCH": 11
+      }
+    }
+  ],
+  "scope": "Pine logs, fixed three-unit Next-open market simulations. CONFIRMED uses model A.",
+  "status": "VERIFIED_NATIVE_BOUNDED_LIFECYCLE"
+}

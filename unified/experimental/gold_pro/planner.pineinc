@@ -1,0 +1,236 @@
+string gpEntryMethod = input.string("Next-open market", "Entry policy",
+  options=["Next-open market", "Pullback limit", "Breakout stop"], group="Gold Pro research risk")
+string gpSizeMethod = input.string("Reference size", "Simulation size", options=["Reference size", "Fixed risk"],
+  group="Gold Pro research risk", tooltip="Reference size uses three TradingView units for comparison. The risk and exposure caps still apply.")
+float gpEquityInput = input.float(100000.0, "Research equity (USD)", minval=1, group="Gold Pro research risk")
+float gpRiskPct = input.float(0.25, "Initial risk cap (%)", minval=0.01, maxval=1, step=0.05, group="Gold Pro research risk")
+float gpExposurePct = input.float(100, "Maximum position notional (%)", minval=1, maxval=100, group="Gold Pro research risk")
+float gpSpreadInput = input.float(0.35, "Estimated round-trip spread (price)", minval=0, step=0.05, group="Gold Pro research risk")
+float gpMinNetRR = input.float(0.70, "Minimum estimated net reward/risk", minval=0.1, maxval=0.95, step=0.05, group="Gold Pro research risk")
+float gpCostCap = input.float(0.30, "Maximum cost/stop distance", minval=0.01, maxval=0.50, step=0.05, group="Gold Pro research risk")
+bool gpRequireNews = input.bool(false, "Require verified news source to clear risk", group="Gold Pro research risk")
+string gpStudyModel = input.string("A", "Independent simulation model", options=["A", "B", "C", "D", "E", "F", "R"],
+  group="Gold Pro research risk")
+string gpTiming = input.string("CONFIRMED", "Research entry timing", options=["FAST", "CONFIRMED"],
+  group="Gold Pro research risk", tooltip="FAST tests the first directional opportunity. CONFIRMED uses the selected independent model.")
+bool gpAlertEnabled = input.bool(false, "Enable informational alerts", group="Gold Pro alerts")
+bool gpAlertWatches = input.bool(false, "Include watch alerts", group="Gold Pro alerts")
+bool gpAuditSignals = input.bool(false, "Log analytical lifecycle", group="Gold Pro evidence")
+int gpSignalLogFrom = input.time(timestamp("10 Nov 2026 00:00 +0000"), "Lifecycle log from (UTC)", group="Gold Pro evidence")
+int gpSignalLogUntil = input.time(timestamp("12 Nov 2026 00:00 +0000"), "Lifecycle log through (UTC)", group="Gold Pro evidence")
+
+const float GP_NATIVE_FEE = 0.175
+const int GP_NATIVE_SLIPPAGE = 2
+const int GP_PENDING_BARS = 3
+const string GP_NEWS_STATE = "NEWS DATA UNAVAILABLE"
+float gpTick = syminfo.mintick
+float gpPoint = syminfo.pointvalue
+float gpUnitStep = syminfo.mincontract
+bool gpContract = gpSupported and syminfo.currency == "USD" and gpPoint > 0 and gpTick > 0 and gpUnitStep > 0
+float gpCostPrice = gpContract ? gpSpreadInput + 2.0 * GP_NATIVE_FEE / gpPoint + 2.0 * GP_NATIVE_SLIPPAGE * gpTick : na
+bool gpEmitLogs = gpAuditSignals and gpClosedBar and time_close >= gpSignalLogFrom and time_close <= gpSignalLogUntil
+
+type GoldPlan
+    string id = ""
+    string model = ""
+    string reason = ""
+    int side = 0
+    int knownAt = na
+    int watchedAt = na
+    int expiryBar = na
+    float entry = na
+    float invalidation = na
+    float structure = na
+    float stop = na
+    float tp1 = na
+    float tp2 = na
+    float tp3 = na
+    float grossRR = na
+    float netRR = na
+    float qty = na
+    float leg = na
+    float riskCash = na
+    float costCash = na
+    float atr = na
+    float extension = na
+
+f_gpStopPrice(float price, int side) =>
+    side > 0 ? math.floor(price / gpTick + 1e-8) * gpTick : math.ceil(price / gpTick - 1e-8) * gpTick
+
+f_gpTargetPrice(float price, int side) =>
+    f_gpStopPrice(price, -side)
+
+f_gpPlan(V22Candidate candidate) =>
+    GoldPlan plan = GoldPlan.new()
+    plan.id := candidate.setupId + "|" + str.tostring(candidate.knownAt)
+    plan.model := candidate.model
+    plan.side := candidate.side
+    plan.knownAt := candidate.knownAt
+    plan.watchedAt := candidate.watchedAt
+    plan.expiryBar := bar_index + (gpEntryMethod == "Next-open market" ? 1 : GP_PENDING_BARS)
+    plan.atr := candidate.atr
+    plan.extension := candidate.extension
+    plan.invalidation := candidate.stopBase
+    plan.structure := candidate.level
+    float offset = gpEntryMethod == "Pullback limit" ? -0.25 * candidate.atr : gpEntryMethod == "Breakout stop" ? gpTick : 0.0
+    plan.entry := math.round_to_mintick(candidate.reference + candidate.side * offset)
+    plan.stop := f_gpStopPrice(candidate.stopBase - candidate.side * 0.10 * candidate.atr, candidate.side)
+    float distance = (plan.entry - plan.stop) * candidate.side
+    if not na(distance) and distance >= gpTick * (1 - 1e-7) and gpContract
+        plan.tp1 := f_gpTargetPrice(plan.entry + candidate.side * distance, candidate.side)
+        plan.tp2 := f_gpTargetPrice(plan.entry + candidate.side * 2.0 * distance, candidate.side)
+        plan.tp3 := f_gpTargetPrice(plan.entry + candidate.side * 3.0 * distance, candidate.side)
+        float firstTargetRoom = (plan.tp1 - plan.entry) * candidate.side
+        float room = na(candidate.barrier) ? firstTargetRoom : math.max(0, math.min(firstTargetRoom, (candidate.barrier - plan.entry) * candidate.side))
+        plan.grossRR := room / distance
+        plan.netRR := (room - gpCostPrice) / (distance + gpCostPrice)
+        float unitRisk = (distance + gpCostPrice) * gpPoint
+        float riskBudget = gpEquityInput * gpRiskPct * 0.01
+        float exposureBudget = gpEquityInput * gpExposurePct * 0.01
+        float qtyLimit = math.min(riskBudget / unitRisk, exposureBudget / (plan.entry * gpPoint))
+        float quantity = gpSizeMethod == "Reference size" ? 3 : qtyLimit
+        plan.leg := math.floor(quantity / (3 * gpUnitStep) + 1e-8) * gpUnitStep
+        plan.qty := 3 * plan.leg
+        plan.riskCash := plan.qty * unitRisk
+        plan.costCash := plan.qty * gpCostPrice * gpPoint
+        if plan.leg < gpUnitStep * (1 - 1e-7) or plan.riskCash > riskBudget + 1e-7 or plan.qty * plan.entry * gpPoint > exposureBudget + 1e-7
+            plan.reason := "RISK_OR_EXPOSURE_CAP"
+    if not gpContract
+        plan.reason := "CONTRACT_UNSUPPORTED"
+    else if not gpContextReady
+        plan.reason := "HTF_UNKNOWN"
+    else if gpRequireNews
+        plan.reason := "NEWS_DATA_UNAVAILABLE"
+    else if na(distance) or distance < gpTick * (1 - 1e-7)
+        plan.reason := "STRUCTURE_INVALID"
+    else if candidate.spike
+        plan.reason := "VOLATILITY_SPIKE"
+    else if gpH1Side == -plan.side or gpH4Side == -plan.side
+        plan.reason := "HTF_CONFLICT"
+    else if candidate.extension > 1.75
+        plan.reason := "EXCESSIVE_EXTENSION"
+    else if distance > 3.0 * candidate.atr
+        plan.reason := "OVERSIZED_STOP"
+    else if gpCostPrice > gpCostCap * distance
+        plan.reason := "COST_TOO_HIGH"
+    else if plan.netRR < gpMinNetRR
+        plan.reason := "INSUFFICIENT_NET_ROOM"
+    plan
+
+f_gpNumber(float value) =>
+    na(value) ? "null" : str.tostring(value, "#.########")
+
+f_gpEvent(string model, string id, int side, string state, string reason, float reference, float stop, float tp1, float tp2, float tp3, bool alertable) =>
+    string message = '{"schema":"qirvanta.goldpro.event.v1","symbol":"' + syminfo.tickerid +
+      '","timeframe":"' + timeframe.period + '","known_at":' + str.tostring(time_close) +
+      ',"model":"' + model + '","id":"' + id + '","direction":"' + f_gpDirection(side) +
+      '","state":"' + state + '","reason":"' + reason + '","reference":' + f_gpNumber(reference) +
+      ',"stop":' + f_gpNumber(stop) + ',"tp1":' + f_gpNumber(tp1) + ',"tp2":' + f_gpNumber(tp2) +
+      ',"tp3":' + f_gpNumber(tp3) + ',"informational":true}'
+    if gpEmitLogs
+        log.info(message)
+    if alertable and gpAlertEnabled and barstate.isrealtime
+        alert(message, alert.freq_all)
+
+var string gpLastWatch = "—"
+var string gpLastConfirmation = "—"
+var string gpLastState = "WAIT"
+var string gpLastReason = ""
+var string gpLastQuality = "NO TRADE"
+var bool gpLastConflict = false
+var GoldPlan gpLastPlan = na
+var int gpPlanValidThrough = na
+bool gpBuyWatch = false
+bool gpSellWatch = false
+bool gpBuyConfirmed = false
+bool gpSellConfirmed = false
+bool gpExpiryMark = false
+GoldPlan gpSelected = na
+
+if gpClosedBar
+    if not na(gpPlanValidThrough) and bar_index >= gpPlanValidThrough
+        if gpOpportunityText == "ENTRY AVAILABLE" or gpOpportunityText == "SECOND CHANCE"
+            gpOpportunityText := "OPPORTUNITY EXPIRED"
+            gpOpportunityAt := time_close
+        if gpLastState == "ENTRY_VALID"
+            gpLastState := "EXPIRED"
+            gpLastReason := "PLAN_VALIDITY_ENDED"
+        gpPlanValidThrough := na
+    if gpOpportunityBuyChanged and (gpEmitLogs or gpAlertEnabled and gpAlertEarly)
+        f_gpEvent("O", gpBuyOpportunity.id, 1, gpBuyOpportunity.state, gpBuyOpportunity.reason, gpBuyOpportunity.level, na, na, na, na, gpAlertEarly and gpBuyOpportunity.state != "SECOND CHANCE")
+    if gpOpportunitySellChanged and (gpEmitLogs or gpAlertEnabled and gpAlertEarly)
+        f_gpEvent("O", gpSellOpportunity.id, -1, gpSellOpportunity.state, gpSellOpportunity.reason, gpSellOpportunity.level, na, na, na, na, gpAlertEarly and gpSellOpportunity.state != "SECOND CHANCE")
+    for obs in v22Observations
+        bool watch = obs.state == "WATCH"
+        bool confirmed = obs.state == "CONFIRMED"
+        bool invalidated = obs.state == "INVALIDATED"
+        if watch
+            gpLastWatch := obs.model + " " + f_gpDirection(obs.side)
+            gpBuyWatch := gpBuyWatch or obs.side > 0
+            gpSellWatch := gpSellWatch or obs.side < 0
+        if confirmed
+            gpLastConfirmation := obs.model + " " + f_gpDirection(obs.side)
+            gpBuyConfirmed := gpBuyConfirmed or obs.side > 0
+            gpSellConfirmed := gpSellConfirmed or obs.side < 0
+        if obs.state != "REGIME_TRANSITION"
+            gpLastState := obs.state == "CONFIRMING" ? "SETUP_FORMING" : obs.state
+            gpLastReason := obs.reason
+            gpExpiryMark := gpExpiryMark or obs.state == "EXPIRED"
+            if not confirmed
+                gpLastQuality := watch or obs.state == "CONFIRMING" or obs.state == "SETUP_FORMING" ? "LOW CONFLUENCE" : "NO TRADE"
+            if gpEmitLogs or gpAlertEnabled and (confirmed or invalidated or watch and gpAlertWatches)
+                f_gpEvent(obs.model, obs.setupId, obs.side, gpLastState, obs.reason, obs.level, na, na, na, na,
+                  confirmed or invalidated or watch and gpAlertWatches)
+
+    bool candidateBuy = false
+    bool candidateSell = false
+    for candidate in v22Candidates
+        if (gpTiming == "FAST") == (candidate.model == "Q")
+            candidateBuy := candidateBuy or candidate.side > 0
+            candidateSell := candidateSell or candidate.side < 0
+    bool opposed = gpBuyConfirmed and gpSellConfirmed or candidateBuy and candidateSell
+    if array.size(v22Candidates) > 0
+        gpLastConflict := opposed
+    GoldPlan featured = na
+    bool featuredInLane = false
+    for candidate in v22Candidates
+        GoldPlan plan = f_gpPlan(candidate)
+        if opposed
+            plan.reason := "OPPOSING_CONFIRMED_SIGNALS"
+        bool timingSelected = (gpTiming == "FAST") == (candidate.model == "Q")
+        if gpEmitLogs
+            log.info("GOLD_PLAN|" + plan.id + "|" + gpTiming + "|" + str.tostring(timingSelected) + "|" +
+              str.tostring(plan.knownAt - plan.watchedAt) + "|" + f_gpNumber(plan.extension) + "|" +
+              f_gpNumber(plan.grossRR) + "|" + f_gpNumber(plan.netRR) + "|" + plan.reason)
+        if not timingSelected
+            continue
+        bool valid = plan.reason == ""
+        string planState = valid ? "ENTRY_VALID" : "ENTRY_REJECTED"
+        bool inLane = candidate.model == gpStudyModel or gpTiming == "FAST"
+        if na(featured) or inLane and not featuredInLane or inLane == featuredInLane and valid and featured.reason != ""
+            featured := plan
+            featuredInLane := inLane
+        if valid and inLane and na(gpSelected)
+            gpSelected := plan
+        bool waitForNew = candidate.model != "R" and (plan.reason == "EXCESSIVE_EXTENSION" or plan.reason == "OVERSIZED_STOP" or plan.reason == "HTF_CONFLICT")
+        if waitForNew
+            GoldOpportunity tracker = plan.side > 0 ? gpBuyOpportunity : gpSellOpportunity
+            f_gpWaitOpportunity(tracker, plan.side, plan.structure, plan.reason)
+        bool entryAlert = valid and (candidate.model == "R" ? gpAlertSecond : gpAlertEntry)
+        if gpEmitLogs or gpAlertEnabled and (entryAlert or opposed or plan.reason == "HTF_CONFLICT")
+            f_gpEvent(plan.model, plan.id, plan.side, planState, plan.reason, plan.entry, plan.stop, plan.tp1, plan.tp2, plan.tp3,
+              entryAlert or opposed or plan.reason == "HTF_CONFLICT")
+    if not na(featured)
+        bool valid = featured.reason == ""
+        bool aligned = gpH1Side == featured.side and gpH4Side == featured.side
+        gpLastPlan := featured
+        gpLastState := valid ? "ENTRY_VALID" : "ENTRY_REJECTED"
+        gpLastReason := featured.reason
+        gpLastQuality := opposed or featured.reason == "HTF_CONFLICT" ? "CONFLICT" : not valid ? "NO TRADE" :
+          aligned and v22Trend == featured.side and v22ADX >= 22 ? "HIGH CONFLUENCE" : "MODERATE CONFLUENCE"
+        gpOpportunityAt := time_close
+        gpPlanValidThrough := valid ? featured.expiryBar : na
+        GoldOpportunity tracker = featured.side > 0 ? gpBuyOpportunity : gpSellOpportunity
+        bool recoverable = featured.reason == "EXCESSIVE_EXTENSION" or featured.reason == "OVERSIZED_STOP" or featured.reason == "HTF_CONFLICT"
+        gpOpportunityText := valid ? (featured.model == "R" ? "SECOND CHANCE" : "ENTRY AVAILABLE") :
+          recoverable and tracker.state == "WAIT FOR PULLBACK" ? "WAIT FOR PULLBACK" : "RISK REJECTED"

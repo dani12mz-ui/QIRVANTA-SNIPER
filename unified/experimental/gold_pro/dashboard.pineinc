@@ -1,0 +1,106 @@
+string gpView = input.string("COMPACT", "Dashboard preset", options=["MINIMAL", "COMPACT", "PROFESSIONAL", "MOBILE"], group="Gold Pro display")
+bool gpShowDashboard = input.bool(true, "Show dashboard", group="Gold Pro display")
+bool gpOverlayWatch = input.bool(false, "Watch markers", group="Gold Pro display")
+bool gpOverlayConfirm = input.bool(true, "Confirmation markers", group="Gold Pro display")
+bool gpOverlayStructure = input.bool(false, "Structure levels and BOS / MSS", group="Gold Pro display")
+bool gpOverlaySession = input.bool(false, "Session and prior day levels", group="Gold Pro display")
+bool gpOverlayLiquidity = input.bool(false, "Estimated liquidity and FVG", group="Gold Pro display")
+bool gpOverlayEntry = input.bool(true, "Native simulation and risk levels", group="Gold Pro display")
+bool gpOverlayOutcome = input.bool(true, "Simulation close markers", group="Gold Pro display")
+bool gpOverlayExpiry = input.bool(false, "Opportunity expiry markers", group="Gold Pro display")
+
+color gpInk = color.rgb(229, 237, 241)
+color gpMuted = color.rgb(165, 181, 193)
+color gpGraphite = color.rgb(17, 24, 32)
+color gpHead = color.rgb(27, 40, 52)
+color gpEmerald = color.rgb(81, 218, 169)
+color gpRed = color.rgb(255, 122, 130)
+color gpCyan = color.rgb(115, 219, 250)
+color gpAmber = color.rgb(255, 205, 111)
+bool gpMobile = gpView == "MOBILE"
+bool gpMinimal = gpView == "MINIMAL"
+bool gpFull = gpView == "PROFESSIONAL"
+string gpFont = gpMobile ? size.tiny : size.small
+var table gpPanel = table.new(gpMobile ? position.bottom_right : position.top_right, 2, 23, bgcolor=gpGraphite,
+  frame_color=color.new(gpCyan, 60), frame_width=1)
+
+f_gpPrice(float price) =>
+    na(price) ? "—" : str.tostring(price, format.mintick)
+
+f_gpPair(float left, float right) =>
+    f_gpPrice(left) + " / " + f_gpPrice(right)
+
+f_gpCell(int row, string label, string value, color ink) =>
+    color background = row == 0 ? gpHead : row % 2 == 0 ? gpGraphite : color.rgb(20, 29, 38)
+    table.cell(gpPanel, 0, row, label, bgcolor=background, text_color=row == 0 ? gpCyan : gpMuted, text_size=gpFont, text_halign=text.align_left)
+    table.cell(gpPanel, 1, row, value, bgcolor=background, text_color=ink, text_size=gpFont, text_halign=text.align_right)
+
+f_gpReason(string reason) =>
+    reason == "" ? "—" : str.replace_all(reason, "_", " ")
+
+bool gpPanelReady = not na(gpH1Side) and not na(gpH4Side)
+bool gpDrawBoard = gpShowDashboard and (barstate.islastconfirmedhistory or barstate.islast and barstate.isconfirmed)
+if gpDrawBoard
+    bool hasPlan = not na(gpVisiblePlan)
+    color directionalInk = not hasPlan ? gpMuted : gpVisiblePlan.side == 1 ? gpEmerald : gpRed
+    string planName = not hasPlan ? "—" : gpMobile ? gpVisiblePlan.model + " " + f_gpDirection(gpVisiblePlan.side) :
+      f_gpModel(gpVisiblePlan.model) + " · " + f_gpDirection(gpVisiblePlan.side)
+    string status = not gpSupported ? "OANDA:XAUUSD M5/M15/M30 REQUIRED" : gpExecutionState
+    f_gpCell(0, "QIRVANTA GOLD PRO", syminfo.ticker + " · " + timeframe.period + "m", gpCyan)
+    f_gpCell(1, "Mode", gpPresentationMode, gpCyan)
+    f_gpCell(2, "Regime", gpRegime, gpPanelReady ? gpInk : gpAmber)
+    f_gpCell(3, "H1 / H4", f_gpDirection(gpH1Side) + " / " + f_gpDirection(gpH4Side), gpPanelReady ? gpInk : gpAmber)
+    f_gpCell(4, "Opportunity", gpOpportunityText, gpOpportunityText == "RISK REJECTED" ? gpAmber : gpCyan)
+    f_gpCell(5, "Risk", gpExecutionRisk, gpAmber)
+    if not gpMinimal
+        f_gpCell(6, "Structure", v22Structure, gpInk)
+        f_gpCell(7, "Watch / confirmed", gpLastWatch + " / " + gpLastConfirmation, gpInk)
+        f_gpCell(8, "Decision", gpLastState + (gpLastReason == "" or gpMobile ? "" : " · " + f_gpReason(gpLastReason)), gpLastConflict ? gpAmber : gpInk)
+        f_gpCell(9, "Quality", gpLastQuality, gpLastConflict ? gpAmber : gpMuted)
+        f_gpCell(10, "Position", status, directionalInk)
+        f_gpCell(11, "Plan / fill", hasPlan ? f_gpPair(gpVisiblePlan.entry, gpVisibleFill) : "—", gpCyan)
+        f_gpCell(12, "Initial / current SL", hasPlan ? f_gpPair(gpVisiblePlan.stop, gpVisibleStop) : "—", gpRed)
+        string targets = hasPlan ? f_gpPrice(gpVisiblePlan.tp1) + " / " + f_gpPrice(gpVisiblePlan.tp2) + " / " + f_gpPrice(gpVisiblePlan.tp3) : "—"
+        f_gpCell(13, "TP1 / TP2 / TP3", targets, gpCyan)
+        f_gpCell(14, "Last closed", gpLastClosedText, gpMuted)
+        if gpMobile
+            f_gpCell(15, "Reason", f_gpReason(gpLastReason), gpAmber)
+    if gpFull
+        f_gpCell(15, "Model / side", planName, directionalInk)
+        f_gpCell(16, "D1 / session", f_gpDirection(gpD1Side) + " / " + gpSession, gpMuted)
+        f_gpCell(17, "Momentum / prior ATR", str.tostring(v22Momentum, "#.00") + " / " + f_gpPrice(v22ATR), gpMuted)
+        f_gpCell(18, "Gross / net R:R", hasPlan ? str.tostring(gpVisiblePlan.grossRR, "#.00") + " / " + str.tostring(gpVisiblePlan.netRR, "#.00") : "—", gpCyan)
+        f_gpCell(19, "Units / SL budget", hasPlan ? str.tostring(gpVisiblePlan.qty, "#.##") + " / $" + str.tostring(gpVisiblePlan.riskCash, "#.##") : "—", gpMuted)
+        f_gpCell(20, "Entry / costs", gpEntryMethod + (hasPlan ? " · $" + str.tostring(gpVisiblePlan.costCash, "#.##") : ""), gpMuted)
+        f_gpCell(21, "Known UTC / validity", hasPlan ? str.format_time(gpVisiblePlan.knownAt, "dd MMM HH:mm", "UTC") + " / " +
+          str.tostring(gpEntryMethod == "Next-open market" ? 1 : GP_PENDING_BARS) + " bars" : "—", gpMuted)
+        f_gpCell(22, "News", GP_NEWS_STATE, gpAmber)
+
+bool gpDrawNative = gpOverlayEntry and gpShowNativePlan and not na(gpVisiblePlan)
+gpEntryPlot = plot(gpDrawNative ? (na(gpVisibleFill) ? gpVisiblePlan.entry : gpVisibleFill) : na, "Simulated entry / fill", gpCyan, 2, plot.style_linebr)
+gpStopPlot = plot(gpDrawNative ? gpVisibleStop : na, "Current stop", gpRed, 2, plot.style_linebr)
+plot(gpDrawNative and gpVisibleStop != gpVisiblePlan.stop ? gpVisiblePlan.stop : na, "Initial stop", color.new(gpRed, 45), 1, plot.style_linebr)
+plot(gpDrawNative ? gpVisiblePlan.tp1 : na, "TP1", color.new(gpCyan, 35), 1, plot.style_linebr)
+plot(gpDrawNative ? gpVisiblePlan.tp2 : na, "TP2", color.new(gpCyan, 20), 1, plot.style_linebr)
+gpTargetPlot = plot(gpDrawNative ? gpVisiblePlan.tp3 : na, "TP3", gpCyan, 1, plot.style_linebr)
+fill(gpEntryPlot, gpStopPlot, color.new(gpRed, 90), "Risk area", fillgaps=false)
+fill(gpEntryPlot, gpTargetPlot, color.new(gpCyan, 92), "Reward area", fillgaps=false)
+
+plot(gpOverlayStructure and gpClosedBar ? v22PriorHigh : na, "Confirmed resistance", color.new(gpRed, 35), 1, plot.style_linebr)
+plot(gpOverlayStructure and gpClosedBar ? v22PriorLow : na, "Confirmed support", color.new(gpEmerald, 35), 1, plot.style_linebr)
+plot(gpOverlaySession and gpSessionComplete ? gpSessionHigh : na, "Session high", color.new(gpCyan, 45), 1, plot.style_linebr)
+plot(gpOverlaySession and gpSessionComplete ? gpSessionLow : na, "Session low", color.new(gpCyan, 45), 1, plot.style_linebr)
+plot(gpOverlaySession and gpD1Known <= time ? gpD1High : na, "Prior day high", color.new(gpMuted, 55), 1, plot.style_linebr)
+plot(gpOverlaySession and gpD1Known <= time ? gpD1Low : na, "Prior day low", color.new(gpMuted, 55), 1, plot.style_linebr)
+plot(gpOverlayLiquidity and gpEqualHighs and gpClosedBar ? v22PriorHigh : na, "Estimated equal-high zone", color.new(gpRed, 50), 2, plot.style_linebr)
+plot(gpOverlayLiquidity and gpEqualLows and gpClosedBar ? v22PriorLow : na, "Estimated equal-low zone", color.new(gpEmerald, 50), 2, plot.style_linebr)
+plotshape(gpOverlayLiquidity and gpClosedBar and gpBullFVG, "Bullish FVG observation", shape.diamond, location.belowbar, color.new(gpEmerald, 40), size=size.tiny)
+plotshape(gpOverlayLiquidity and gpClosedBar and gpBearFVG, "Bearish FVG observation", shape.diamond, location.abovebar, color.new(gpRed, 40), size=size.tiny)
+plotshape(gpOverlayStructure and gpClosedBar and v22BOS == 1, "Bullish BOS/MSS", shape.square, location.belowbar, gpEmerald, size=size.tiny)
+plotshape(gpOverlayStructure and gpClosedBar and v22BOS == -1, "Bearish BOS/MSS", shape.square, location.abovebar, gpRed, size=size.tiny)
+plotshape(gpOverlayWatch and gpBuyWatch and not gpBuyConfirmed, "BUY watch", shape.circle, location.belowbar, color.new(gpEmerald, 55), size=size.tiny)
+plotshape(gpOverlayWatch and gpSellWatch and not gpSellConfirmed, "SELL watch", shape.circle, location.abovebar, color.new(gpRed, 55), size=size.tiny)
+plotshape(gpOverlayConfirm and gpBuyConfirmed, "BUY confirmed", shape.triangleup, location.belowbar, gpEmerald, size=size.tiny)
+plotshape(gpOverlayConfirm and gpSellConfirmed, "SELL confirmed", shape.triangledown, location.abovebar, gpRed, size=size.tiny)
+plotshape(gpOverlayOutcome and gpClosedMark, "Simulated campaign closed", shape.xcross, location.abovebar, gpCyan, size=size.tiny)
+plotshape(gpOverlayExpiry and gpClosedBar and (gpExpiryMark or gpOpportunityAt == time_close and gpOpportunityText == "OPPORTUNITY EXPIRED"), "Observation expired", shape.xcross, location.belowbar, gpAmber, size=size.tiny)

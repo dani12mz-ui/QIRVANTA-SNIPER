@@ -1,0 +1,238 @@
+bool gpSimEnabled = input.bool(false, "Enable experimental TradingView simulation", group="Gold Pro simulation")
+int gpSimulationFrom = input.time(timestamp("01 Jan 2026 00:00 +0000"), "Simulate from (UTC)", group="Gold Pro simulation")
+int gpSimulationUntil = input.time(timestamp("01 Jan 2035 00:00 +0000"), "Simulate until (UTC, exclusive)", group="Gold Pro simulation")
+string gpManagement = input.string("Fixed", "Exit policy", options=["Fixed", "Cost-adjusted BE", "Profit lock",
+  "ATR trail", "Structure trail", "Momentum exit", "Stalled exit", "Time exit"], group="Gold Pro simulation")
+float gpDayLossPct = input.float(0.75, "Daily loss cap (%)", minval=0.10, maxval=3, step=0.05, group="Gold Pro simulation")
+float gpDrawdownPct = input.float(4, "Drawdown halt (%)", minval=0.25, maxval=15, step=0.25, group="Gold Pro simulation")
+int gpCooldownLosses = input.int(3, "Losses before cooldown", minval=1, maxval=10, group="Gold Pro simulation")
+int gpCooldownBars = input.int(24, "Cooldown length (bars)", minval=1, maxval=300, group="Gold Pro simulation")
+float gpRsi = ta.rsi(close, 14)
+
+type GoldCampaign
+    GoldPlan plan = na
+    int submittedBar = na
+    int fillBar = na
+    int fillTime = na
+    float filled = na
+    float workingStop = na
+    float effectiveStop = na
+    int stopScheduled = na
+    float realized = 0
+    float closedQty = 0
+    bool legOneClosed = false
+    bool legTwoClosed = false
+    bool legThreeClosed = false
+    bool firstTarget = false
+    bool exitRequested = false
+    string status = "SUBMITTED"
+    string exitReason = ""
+    int previousExitBar = na
+    string previousExitReason = ""
+
+var GoldCampaign gpActiveCampaign = na
+var GoldCampaign gpLastCampaign = na
+var int gpClosedSeen = 0
+var float gpDayStartEquity = na
+var float gpPreviousEquity = na
+var float gpPeakEquity = na
+var int gpLosses = 0
+var int gpCooldownUntil = na
+var bool gpDrawdownHalt = false
+bool gpClosedMark = false
+
+f_gpSimEvent(GoldCampaign campaign, string state, string reason, float price, bool notify) =>
+    GoldPlan plan = campaign.plan
+    if gpEmitLogs or gpAlertEnabled and notify
+        f_gpEvent(plan.model, plan.id, plan.side, state, reason, price, campaign.effectiveStop, plan.tp1, plan.tp2, plan.tp3, notify)
+
+f_gpSimBrackets(GoldCampaign campaign) =>
+    GoldPlan plan = campaign.plan
+    if not campaign.legOneClosed
+        strategy.exit(plan.id + "|1", from_entry=plan.id, qty=plan.leg, stop=campaign.workingStop, limit=plan.tp1,
+          oca_name=plan.id + "|T1", comment_profit="TP1", comment_loss="SL", disable_alert=true)
+    if not campaign.legTwoClosed
+        strategy.exit(plan.id + "|2", from_entry=plan.id, qty=plan.leg, stop=campaign.workingStop, limit=plan.tp2,
+          oca_name=plan.id + "|T2", comment_profit="TP2", comment_loss="SL", disable_alert=true)
+    if not campaign.legThreeClosed
+        strategy.exit(plan.id + "|3", from_entry=plan.id, qty=plan.leg, stop=campaign.workingStop, limit=plan.tp3,
+          oca_name=plan.id + "|T3", comment_profit="TP3", comment_loss="SL", disable_alert=true)
+
+f_gpSimCancel(GoldPlan plan) =>
+    strategy.cancel(plan.id)
+    strategy.cancel(plan.id + "|1")
+    strategy.cancel(plan.id + "|2")
+    strategy.cancel(plan.id + "|3")
+
+f_gpSimFill(GoldCampaign campaign, float price, int fillBar, int fillTime) =>
+    campaign.filled := price
+    campaign.fillBar := fillBar
+    campaign.fillTime := fillTime
+    campaign.status := "SIMULATED_FILLED"
+    f_gpSimEvent(campaign, campaign.status, "NATIVE_EMULATOR", price, false)
+
+f_gpSimStop(GoldCampaign campaign) =>
+    GoldPlan plan = campaign.plan
+    float risk = (campaign.filled - plan.stop) * plan.side
+    float candidate = na
+    if risk > 0
+        if gpManagement == "Cost-adjusted BE" and campaign.firstTarget
+            candidate := f_gpTargetPrice(campaign.filled + plan.side * gpCostPrice, plan.side)
+        else if gpManagement == "Profit lock" and campaign.firstTarget
+            candidate := f_gpStopPrice(campaign.filled + plan.side * 0.05 * risk, plan.side)
+        else if gpManagement == "ATR trail"
+            candidate := f_gpStopPrice(close - plan.side * 2 * v22ATR, plan.side)
+        else if gpManagement == "Structure trail"
+            int known = plan.side == 1 ? v22LastLowKnown : v22LastHighKnown
+            float swing = plan.side == 1 ? v22LastLow : v22LastHigh
+            if not na(known) and known > campaign.fillTime
+                candidate := f_gpStopPrice(swing - plan.side * 0.10 * v22ATR, plan.side)
+    candidate
+
+f_gpSimExitReason(GoldCampaign campaign, bool emergency) =>
+    GoldPlan plan = campaign.plan
+    int held = bar_index - campaign.fillBar
+    float stopDistance = (campaign.filled - plan.stop) * plan.side
+    float cashRisk = (stopDistance + gpCostPrice) * plan.qty * gpPoint
+    bool gapRisk = stopDistance <= 0 or stopDistance > 3.0 * plan.atr or
+      (campaign.filled - plan.entry) * plan.side > 0.60 * plan.atr or (plan.tp1 - campaign.filled) * plan.side <= 0 or
+      cashRisk > math.min(gpEquityInput, strategy.equity) * gpRiskPct * 0.01 + 1e-7 or
+      campaign.filled * plan.qty * gpPoint > math.min(gpEquityInput, strategy.equity) * gpExposurePct * 0.01 + 1e-7
+    bool momentum = gpManagement == "Momentum exit" and held > 0 and time == time_close[1] and
+      (close - campaign.filled) * plan.side < 0 and (close[1] - campaign.filled) * plan.side < 0 and (gpRsi - 50) * plan.side < 0
+    bool stalled = gpManagement == "Stalled exit" and held >= 24 and not campaign.firstTarget
+    bool timeExit = held >= (gpManagement == "Time exit" ? 32 : 60)
+    emergency ? "EMERGENCY_DRAWDOWN" : gapRisk ? "FILL_RISK_EXCEEDED" : momentum ? "MOMENTUM_EXIT" :
+      stalled ? "STALLED_EXIT" : timeExit ? "TIME_EXIT" : ""
+
+string gpSimulationGate = "SIMULATION OFF"
+if gpClosedBar and gpSimEnabled
+    if na(gpDayStartEquity) or gpTradingDay != gpTradingDay[1]
+        gpDayStartEquity := nz(gpPreviousEquity, strategy.initial_capital)
+    gpPeakEquity := math.max(nz(gpPeakEquity, strategy.initial_capital), strategy.equity)
+    gpDrawdownHalt := gpDrawdownHalt or strategy.equity <= gpPeakEquity * (1 - gpDrawdownPct * 0.01)
+    float dailyRoom = math.max(0, strategy.equity - gpDayStartEquity * (1 - gpDayLossPct * 0.01))
+    float drawdownRoom = math.max(0, strategy.equity - gpPeakEquity * (1 - gpDrawdownPct * 0.01))
+
+    if not na(gpActiveCampaign) and not na(gpActiveCampaign.stopScheduled) and bar_index > gpActiveCampaign.stopScheduled
+        gpActiveCampaign.effectiveStop := gpActiveCampaign.workingStop
+        gpActiveCampaign.stopScheduled := na
+    if not na(gpActiveCampaign) and na(gpActiveCampaign.filled) and strategy.opentrades > 0
+        f_gpSimFill(gpActiveCampaign, strategy.opentrades.entry_price(0), strategy.opentrades.entry_bar_index(0), strategy.opentrades.entry_time(0))
+
+    if strategy.closedtrades > gpClosedSeen
+        int first = nz(strategy.closedtrades.first_index, 0)
+        for tradeIndex = math.max(gpClosedSeen, first) to strategy.closedtrades - 1
+            if not na(gpActiveCampaign) and strategy.closedtrades.entry_id(tradeIndex) == gpActiveCampaign.plan.id
+                string exitId = strategy.closedtrades.exit_id(tradeIndex)
+                string exitComment = strategy.closedtrades.exit_comment(tradeIndex)
+                string note = na(exitComment) ? "SIMULATED_EXIT" : exitComment
+                float fill = strategy.closedtrades.entry_price(tradeIndex)
+                float price = strategy.closedtrades.exit_price(tradeIndex)
+                float signedQuantity = strategy.closedtrades.size(tradeIndex)
+                int exitBar = strategy.closedtrades.exit_bar_index(tradeIndex)
+                if na(gpActiveCampaign.filled)
+                    f_gpSimFill(gpActiveCampaign, fill, strategy.closedtrades.entry_bar_index(tradeIndex), strategy.closedtrades.entry_time(tradeIndex))
+                gpActiveCampaign.realized += (price - fill) * signedQuantity * gpPoint - strategy.closedtrades.commission(tradeIndex)
+                gpActiveCampaign.closedQty += math.abs(signedQuantity)
+                gpActiveCampaign.legOneClosed := gpActiveCampaign.legOneClosed or exitId == gpActiveCampaign.plan.id + "|1"
+                gpActiveCampaign.legTwoClosed := gpActiveCampaign.legTwoClosed or exitId == gpActiveCampaign.plan.id + "|2"
+                gpActiveCampaign.legThreeClosed := gpActiveCampaign.legThreeClosed or exitId == gpActiveCampaign.plan.id + "|3"
+                gpActiveCampaign.firstTarget := gpActiveCampaign.firstTarget or note == "TP1"
+                bool mixed = gpActiveCampaign.previousExitBar == exitBar and
+                  (note == "SL" and str.startswith(gpActiveCampaign.previousExitReason, "TP") or gpActiveCampaign.previousExitReason == "SL" and str.startswith(note, "TP"))
+                if mixed
+                    f_gpSimEvent(gpActiveCampaign, "INTRABAR_AMBIGUITY", "EMULATOR_PATH", price, false)
+                gpActiveCampaign.previousExitBar := exitBar
+                gpActiveCampaign.previousExitReason := note
+                gpActiveCampaign.exitReason := note
+                f_gpSimEvent(gpActiveCampaign, note == "SL" ? "STOP_FILLED" : note + "_FILLED", note, price, false)
+        gpClosedSeen := strategy.closedtrades
+
+    if not na(gpActiveCampaign) and strategy.position_size == 0 and bar_index > gpActiveCampaign.submittedBar
+        GoldPlan plan = gpActiveCampaign.plan
+        if not na(gpActiveCampaign.filled)
+            bool complete = math.abs(gpActiveCampaign.closedQty - plan.qty) <= 1e-7
+            gpActiveCampaign.status := "SIMULATED_CLOSED"
+            gpActiveCampaign.exitReason := complete ? gpActiveCampaign.exitReason : "INCOMPLETE_LEDGER"
+            gpClosedMark := true
+            if complete
+                gpLosses := gpActiveCampaign.realized < 0 ? gpLosses + 1 : 0
+                if gpLosses >= gpCooldownLosses
+                    gpCooldownUntil := bar_index + gpCooldownBars
+                    gpLosses := 0
+            if gpActiveCampaign.exitReason == "SL" and plan.model != "R"
+                GoldOpportunity tracker = plan.side == 1 ? gpBuyOpportunity : gpSellOpportunity
+                f_gpWaitOpportunity(tracker, plan.side, plan.structure, "STOP_FILLED")
+                if tracker.state == "WAIT FOR PULLBACK"
+                    gpOpportunityText := tracker.state
+                    gpOpportunityAt := time_close
+            f_gpSimEvent(gpActiveCampaign, "POSITION_CLOSED", gpActiveCampaign.exitReason, gpActiveCampaign.filled, true)
+        else if bar_index >= plan.expiryBar or (close - plan.invalidation) * plan.side < 0 or gpDrawdownHalt or dailyRoom <= 0 or time_close >= gpSimulationUntil
+            gpActiveCampaign.status := bar_index >= plan.expiryBar ? "EXPIRED" : "INVALIDATED"
+            gpActiveCampaign.exitReason := bar_index >= plan.expiryBar ? "ORDER_EXPIRED_UNFILLED" : "PENDING_RISK_OR_STRUCTURE"
+            f_gpSimEvent(gpActiveCampaign, gpActiveCampaign.status, gpActiveCampaign.exitReason, na, gpActiveCampaign.status == "INVALIDATED")
+        if gpActiveCampaign.status == "SIMULATED_CLOSED" or gpActiveCampaign.status == "EXPIRED" or gpActiveCampaign.status == "INVALIDATED"
+            f_gpSimCancel(plan)
+            if gpActiveCampaign.status == "SIMULATED_CLOSED"
+                gpLastCampaign := gpActiveCampaign
+            gpActiveCampaign := na
+
+    if not na(gpActiveCampaign) and strategy.position_size != 0 and not gpActiveCampaign.exitRequested
+        string exitReason = f_gpSimExitReason(gpActiveCampaign, gpDrawdownHalt)
+        if exitReason != ""
+            strategy.close(gpActiveCampaign.plan.id, comment=exitReason, disable_alert=true)
+            gpActiveCampaign.exitRequested := true
+            f_gpSimEvent(gpActiveCampaign, "EXIT_SCHEDULED", exitReason, na, false)
+        else
+            float stop = f_gpSimStop(gpActiveCampaign)
+            int side = gpActiveCampaign.plan.side
+            if not na(stop) and (stop - gpActiveCampaign.workingStop) * side >= gpTick * 0.5 and (close - stop) * side >= gpTick * 0.5
+                gpActiveCampaign.workingStop := stop
+                gpActiveCampaign.stopScheduled := bar_index
+                f_gpSimBrackets(gpActiveCampaign)
+                f_gpSimEvent(gpActiveCampaign, "STOP_SCHEDULED", "NEXT_AVAILABLE_TICK", stop, false)
+
+    bool cooling = not na(gpCooldownUntil) and bar_index < gpCooldownUntil
+    bool permittedTime = time_close >= gpSimulationFrom and time_close < gpSimulationUntil
+    gpSimulationGate := not gpContextReady ? "HTF UNKNOWN" : gpRequireNews ? "NEWS SOURCE REQUIRED" :
+      gpDrawdownHalt ? "DRAWDOWN HALT" : dailyRoom <= 0 ? "DAILY LOSS CAP" : cooling ? "LOSS COOLDOWN" :
+      not permittedTime ? "OUTSIDE WINDOW" : not na(gpActiveCampaign) ? "POSITION OCCUPIED" : "RISK MONITORING"
+    if not na(gpSelected)
+        float notional = gpSelected.qty * gpSelected.entry * gpPoint
+        float equityCap = math.min(gpEquityInput, strategy.equity)
+        string reject = gpSimulationGate != "RISK MONITORING" ? gpSimulationGate : gpSelected.riskCash > math.min(dailyRoom, drawdownRoom) or
+          gpSelected.riskCash > equityCap * gpRiskPct * 0.01 or notional > equityCap * gpExposurePct * 0.01 ? "PORTFOLIO RISK CAP" : ""
+        if reject == "" and strategy.position_size == 0
+            GoldCampaign campaign = GoldCampaign.new()
+            campaign.plan := gpSelected
+            campaign.submittedBar := bar_index
+            campaign.workingStop := gpSelected.stop
+            campaign.effectiveStop := gpSelected.stop
+            gpActiveCampaign := campaign
+            float limitPrice = gpEntryMethod == "Pullback limit" ? gpSelected.entry : na
+            float stopPrice = gpEntryMethod == "Breakout stop" ? gpSelected.entry : na
+            strategy.entry(gpSelected.id, gpSelected.side > 0 ? strategy.long : strategy.short, qty=gpSelected.qty,
+              limit=limitPrice, stop=stopPrice, comment=gpSelected.model, disable_alert=true)
+            f_gpSimBrackets(campaign)
+            f_gpSimEvent(campaign, "SUBMITTED", gpEntryMethod, gpSelected.entry, false)
+        else if gpEmitLogs or gpAlertEnabled
+            f_gpEvent(gpSelected.model, gpSelected.id, gpSelected.side, "RISK_BLOCKED", reject,
+              gpSelected.entry, gpSelected.stop, gpSelected.tp1, gpSelected.tp2, gpSelected.tp3, true)
+    gpPreviousEquity := strategy.equity
+
+string gpPresentationMode = gpSimEnabled ? "SIMULATION" : "RESEARCH"
+GoldCampaign gpViewCampaign = na(gpActiveCampaign) ? gpLastCampaign : gpActiveCampaign
+GoldPlan gpVisiblePlan = na(gpViewCampaign) ? gpLastPlan : gpViewCampaign.plan
+string gpExecutionState = na(gpActiveCampaign) ? (na(gpLastCampaign) ? "FLAT" : "LAST SIMULATED CLOSED") : gpActiveCampaign.status
+string gpExecutionRisk = gpSimulationGate
+float gpVisibleFill = na(gpViewCampaign) ? na : gpViewCampaign.filled
+float gpVisibleStop = na(gpViewCampaign) ? (na(gpVisiblePlan) ? na : gpVisiblePlan.stop) : gpViewCampaign.effectiveStop
+string gpLastClosedText = "—"
+if not na(gpLastCampaign)
+    GoldPlan previous = gpLastCampaign.plan
+    float initialRisk = ((gpLastCampaign.filled - previous.stop) * previous.side + gpCostPrice) * previous.qty * gpPoint
+    gpLastClosedText := gpLastCampaign.exitReason == "INCOMPLETE_LEDGER" ? "INCOMPLETE LEDGER" :
+      previous.model + " · $" + str.tostring(gpLastCampaign.realized, "#.##") +
+      (initialRisk > 0 ? " / " + str.tostring(gpLastCampaign.realized / initialRisk, "#.##") + "R" : "")
+bool gpShowNativePlan = not na(gpActiveCampaign)

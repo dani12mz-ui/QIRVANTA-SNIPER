@@ -1,0 +1,9 @@
+string gpPresentationMode = "MARKET OBSERVATION"
+GoldPlan gpVisiblePlan = gpLastPlan
+string gpExecutionState = "RESEARCH"
+string gpExecutionRisk = "OBSERVATION ONLY"
+float gpVisibleFill = na
+float gpVisibleStop = not na(gpVisiblePlan) ? gpVisiblePlan.stop : na
+string gpLastClosedText = "—"
+bool gpShowNativePlan = false
+bool gpClosedMark = false

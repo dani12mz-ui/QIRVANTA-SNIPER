@@ -1,0 +1,102 @@
+{
+  "forward_end_ms": 1799625600000,
+  "forward_start_ms": 1794787200000,
+  "lanes": [
+    {
+      "axis": "reference",
+      "cost_model_id": "OANDA_2_TICKS_0175_COMMISSION_035_SPREAD_WITH_STRESS",
+      "data_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "id": "S5",
+      "parameters": {},
+      "risk_policy_id": "THREE_UNIT_CEILING_100K_025_PERCENT_RISK_ONE_SLOT",
+      "source_sha256": "bc7bf16cd988fa23832f75ff22ee421b198cafb95614c9445622ce7bc4cfe1c3"
+    },
+    {
+      "axis": "opportunity",
+      "cost_model_id": "OANDA_2_TICKS_0175_COMMISSION_035_SPREAD_WITH_STRESS",
+      "data_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "id": "FAST",
+      "parameters": {
+        "models": null,
+        "policy": "FAST"
+      },
+      "risk_policy_id": "THREE_UNIT_CEILING_100K_025_PERCENT_RISK_ONE_SLOT",
+      "source_sha256": "aaa39fae7fb53d62b9bc18e34485596c7f05861fccf3d2abf1eda130ae223513"
+    },
+    {
+      "axis": "opportunity",
+      "cost_model_id": "OANDA_2_TICKS_0175_COMMISSION_035_SPREAD_WITH_STRESS",
+      "data_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "id": "CONFIRMED",
+      "parameters": {
+        "models": null,
+        "policy": "CONFIRMED"
+      },
+      "risk_policy_id": "THREE_UNIT_CEILING_100K_025_PERCENT_RISK_ONE_SLOT",
+      "source_sha256": "aaa39fae7fb53d62b9bc18e34485596c7f05861fccf3d2abf1eda130ae223513"
+    },
+    {
+      "axis": "opportunity_overlay",
+      "cost_model_id": "OANDA_2_TICKS_0175_COMMISSION_035_SPREAD_WITH_STRESS",
+      "data_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "id": "S5_PLUS_FAST",
+      "parameters": {
+        "S5_same_bar_priority": true,
+        "policy": "FAST"
+      },
+      "risk_policy_id": "THREE_UNIT_CEILING_100K_025_PERCENT_RISK_ONE_SLOT",
+      "source_sha256": "aaa39fae7fb53d62b9bc18e34485596c7f05861fccf3d2abf1eda130ae223513"
+    },
+    {
+      "axis": "opportunity_overlay",
+      "cost_model_id": "OANDA_2_TICKS_0175_COMMISSION_035_SPREAD_WITH_STRESS",
+      "data_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "id": "S5_PLUS_CONFIRMED",
+      "parameters": {
+        "S5_same_bar_priority": true,
+        "policy": "CONFIRMED"
+      },
+      "risk_policy_id": "THREE_UNIT_CEILING_100K_025_PERCENT_RISK_ONE_SLOT",
+      "source_sha256": "aaa39fae7fb53d62b9bc18e34485596c7f05861fccf3d2abf1eda130ae223513"
+    }
+  ],
+  "study": {
+    "alpha": 0.05,
+    "bootstrap_repetitions": 2000,
+    "bootstrap_seed": 20261111,
+    "bootstrap_weeks": 2,
+    "cost_model_id": "OANDA_2_TICKS_0175_COMMISSION_035_SPREAD_WITH_STRESS",
+    "data_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "embargo_ms": 3600000,
+    "end_ms": 1799625600000,
+    "event_duration_ms": 3600000,
+    "fold_days": 7,
+    "forward": null,
+    "last_inspected_ms": 1794380196000,
+    "max_campaign_risk_cash": 250.0,
+    "max_drawdown_ratio": 1.0,
+    "max_off_event_losses_ratio": 1.0,
+    "max_tail_loss_r_degradation": 0.05,
+    "min_actionable_recall_ratio": 1.0,
+    "min_campaigns": 30,
+    "min_event_capture_ratio": 1.0,
+    "min_event_fill_recall_ratio": 1.0,
+    "min_expectancy_lift_r": 0.05,
+    "min_forward_weeks": 8,
+    "min_frequency_ratio": 0.65,
+    "primary": true,
+    "reference_id": "S5",
+    "registered_at_ms": 1794380196000,
+    "registered_candidate_ids": [
+      "FAST",
+      "CONFIRMED",
+      "S5_PLUS_FAST",
+      "S5_PLUS_CONFIRMED"
+    ],
+    "risk_policy_id": "THREE_UNIT_CEILING_100K_025_PERCENT_RISK_ONE_SLOT",
+    "rules_sha256": "aaa39fae7fb53d62b9bc18e34485596c7f05861fccf3d2abf1eda130ae223513",
+    "start_ms": 1791756000000,
+    "study_id": "gold-pro-M5-opportunity",
+    "validation_start_ms": 1793146500000
+  }
+}

@@ -1,0 +1,81 @@
+// Three additional research models. Each has its own setup ID and cooldown.
+bool gpTrendModel = input.bool(true, "D · Trend continuation", group="Gold Pro models", display=display.none)
+bool gpSweepModel = input.bool(true, "E · Liquidity sweep reversal", group="Gold Pro models", display=display.none)
+bool gpMomentumModel = input.bool(true, "F · Momentum breakout", group="Gold Pro models", display=display.none)
+
+float gpEMA200 = ta.ema(close, 200)
+float gpEfficiencyPath = math.sum(math.abs(ta.change(close)), 20)
+float gpEfficiency = gpEfficiencyPath > 0 ? math.abs(close - close[20]) / gpEfficiencyPath : 0
+float gpMomentumChange = v22Momentum - v22Momentum[1]
+float gpPriorRangeHigh = ta.highest(high, 10)[1]
+float gpPriorRangeLow = ta.lowest(low, 10)[1]
+float gpContinuationHigh = ta.highest(high, 3)[1]
+float gpContinuationLow = ta.lowest(low, 3)[1]
+bool gpEqualHighs = not na(v22EarlierHigh) and math.abs(v22PriorHigh - v22EarlierHigh) <= 0.15 * v22ATR
+bool gpEqualLows = not na(v22EarlierLow) and math.abs(v22PriorLow - v22EarlierLow) <= 0.15 * v22ATR
+bool gpBullSweep = v22Ready and low < v22PriorLow - syminfo.mintick and close > v22PriorLow
+bool gpBearSweep = v22Ready and high > v22PriorHigh + syminfo.mintick and close < v22PriorHigh
+bool gpBullFVG = low > high[2] and v22BullDisplacement[1]
+bool gpBearFVG = high < low[2] and v22BearDisplacement[1]
+
+var V22Setup gpTrendSetup = V22Setup.new()
+var V22Setup gpSweepSetup = V22Setup.new()
+var V22Setup gpMomentumSetup = V22Setup.new()
+
+// A new setup is disclosed on its trigger bar. Its confirmation can first
+// occur on the following close, through the frozen trigger.
+f_gpAdditionalModel(string code, V22Setup setup, bool enabled, int side, float level, float trigger, float stopBase, string reason) =>
+    if enabled
+        if setup.side != 0
+            int age = bar_index - setup.started
+            if age > 5
+                f_v22Cancel(code, setup, "EXPIRED", "EXPIRED")
+            else if (close - setup.stopBase) * setup.side <= 0 or (code != "E" and v22Trend == -setup.side)
+                f_v22Cancel(code, setup, "INVALIDATED", "STRUCTURE_INVALID")
+            else if age > 0
+                bool aligned = code == "E" ? v22Trend != -setup.side : v22Trend == setup.side
+                if aligned and (close - setup.trigger) * setup.side > 0 and v22Body * setup.side > 0
+                    f_v22Confirm(code, setup, "CLOSE_THROUGH_FROZEN_TRIGGER")
+                else if age == 1
+                    f_v22Emit(code, setup, "SETUP_FORMING", "WAIT_FOR_FROZEN_TRIGGER")
+        if setup.side == 0 and side != 0 and f_v22Cooled(setup) and not na(stopBase)
+            f_v22Watch(code, setup, side, level, trigger, stopBase, na, reason)
+
+if gpClosedBar and v22Ready
+    bool priorTrend = v22Trend != 0 and v22Trend == v22Trend[1] and (close - gpEMA200) * v22Trend > 0
+    int continuationSide = priorTrend and v22Extension <= 1.50 and gpEfficiency >= 0.25 and
+      v22Momentum * v22Trend >= 0.40 and gpMomentumChange * v22Trend > 0 ? v22Trend : 0
+    f_gpAdditionalModel("D", gpTrendSetup, gpTrendModel, continuationSide, v22EMA21,
+      continuationSide > 0 ? gpContinuationHigh : gpContinuationLow,
+      continuationSide > 0 ? gpContinuationLow : gpContinuationHigh, "TREND_REACCELERATION")
+
+    int sweepSide = gpBullSweep == gpBearSweep ? 0 : gpBullSweep ? 1 : -1
+    bool equalPool = sweepSide > 0 ? gpEqualLows : gpEqualHighs
+    f_gpAdditionalModel("E", gpSweepSetup, gpSweepModel, sweepSide,
+      sweepSide > 0 ? v22PriorLow : v22PriorHigh, sweepSide > 0 ? high : low,
+      sweepSide > 0 ? low : high, equalPool ? "EQUAL_LEVEL_SWEEP_RECLAIM" : "SWING_SWEEP_RECLAIM")
+
+    int momentumSide = v22Trend == 1 and v22BullDisplacement and close > gpPriorRangeHigh and gpMomentumChange > 0 ? 1 :
+      v22Trend == -1 and v22BearDisplacement and close < gpPriorRangeLow and gpMomentumChange < 0 ? -1 : 0
+    f_gpAdditionalModel("F", gpMomentumSetup, gpMomentumModel, momentumSide,
+      momentumSide > 0 ? gpPriorRangeHigh : gpPriorRangeLow, momentumSide > 0 ? high : low,
+      momentumSide > 0 ? low : high, "DISPLACEMENT_RANGE_BREAK")
+
+string gpRegime = not gpContextReady or not v22Ready ? "UNCERTAIN" : v22Spike ? "VOLATILITY SHOCK" :
+  v22MSS ? "REVERSAL WATCH" : v22Exhausted ? "EXHAUSTION" : v22BOS != 0 ? "BREAKOUT" :
+  v22Compression ? "COMPRESSION" : v22Trend == 1 ? "TRENDING UP" : v22Trend == -1 ? "TRENDING DOWN" : "RANGING"
+
+f_gpModel(string code) =>
+    switch code
+        "A" => "Structural breakout"
+        "B" => "Smart pullback"
+        "C" => "Compression expansion"
+        "D" => "Trend continuation"
+        "E" => "Liquidity sweep reversal"
+        "F" => "Momentum breakout"
+        "R" => "Second chance"
+        "Q" => "Fast opportunity"
+        => "Market regime"
+
+f_gpDirection(int side) =>
+    na(side) ? "UNKNOWN" : f_v22Direction(side)

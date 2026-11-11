@@ -1,0 +1,88 @@
+{
+  "frames": {
+    "15": {
+      "bars": 613,
+      "daily_ranges_recomputed": 0,
+      "eligible_bars": 592,
+      "fingerprints_recomputed": 414,
+      "first_open_utc_ms": 1793576700000,
+      "htf": {
+        "1440": {
+          "finite_ema_checks": 0,
+          "ready_bars": 613
+        },
+        "240": {
+          "finite_ema_checks": 0,
+          "ready_bars": 592
+        },
+        "60": {
+          "finite_ema_checks": 45,
+          "ready_bars": 608
+        }
+      },
+      "indicator_sha256": "fa8be5242e7ee908df23f2ee85118aaf7876615f33817de2e654644d3e7da5ee",
+      "last_close_utc_ms": 1794322800000,
+      "session_labels_checked": 613,
+      "session_ranges_recomputed": 613,
+      "strategy_sha256": "fa8be5242e7ee908df23f2ee85118aaf7876615f33817de2e654644d3e7da5ee",
+      "unknown_context_bars": 21
+    },
+    "30": {
+      "bars": 307,
+      "daily_ranges_recomputed": 0,
+      "eligible_bars": 296,
+      "fingerprints_recomputed": 108,
+      "first_open_utc_ms": 1793575800000,
+      "htf": {
+        "1440": {
+          "finite_ema_checks": 0,
+          "ready_bars": 307
+        },
+        "240": {
+          "finite_ema_checks": 0,
+          "ready_bars": 296
+        },
+        "60": {
+          "finite_ema_checks": 45,
+          "ready_bars": 304
+        }
+      },
+      "indicator_sha256": "6cbf0740cbf199757e316c9dc4cce5b197580e3d2e42d5b55f8eda880d3c06f5",
+      "last_close_utc_ms": 1794322800000,
+      "session_labels_checked": 307,
+      "session_ranges_recomputed": 307,
+      "strategy_sha256": "6cbf0740cbf199757e316c9dc4cce5b197580e3d2e42d5b55f8eda880d3c06f5",
+      "unknown_context_bars": 11
+    },
+    "5": {
+      "bars": 1837,
+      "daily_ranges_recomputed": 0,
+      "eligible_bars": 1776,
+      "fingerprints_recomputed": 1638,
+      "first_open_utc_ms": 1793577300000,
+      "htf": {
+        "1440": {
+          "finite_ema_checks": 0,
+          "ready_bars": 1837
+        },
+        "240": {
+          "finite_ema_checks": 0,
+          "ready_bars": 1776
+        },
+        "60": {
+          "finite_ema_checks": 45,
+          "ready_bars": 1824
+        }
+      },
+      "indicator_sha256": "04d0cc99a71046787995f2946e556bda1843181acdf1f9867e5224be361d6552",
+      "last_close_utc_ms": 1794322800000,
+      "session_labels_checked": 1837,
+      "session_ranges_recomputed": 1837,
+      "strategy_sha256": "04d0cc99a71046787995f2946e556bda1843181acdf1f9867e5224be361d6552",
+      "unknown_context_bars": 61
+    }
+  },
+  "scope": "Equality of exported confirmed market context. Finite EMA counts require 110 visible source closes.",
+  "status": "VERIFIED_NATIVE_CONTEXT",
+  "symbol": "OANDA:XAUUSD"
+}

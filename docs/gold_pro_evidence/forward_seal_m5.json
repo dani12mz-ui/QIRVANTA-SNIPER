@@ -1,0 +1,10 @@
+{
+  "forward_end_ms": 1799625600000,
+  "forward_start_ms": 1794787200000,
+  "operator_action": "Record this seal with an independent timestamp before data access.",
+  "protocol_sha256": "484d8e28a6f5e729593b7d6c31f2ccf623e906d1334f72d9b80f3e49083a73b3",
+  "registered_at_ms": 1794380196000,
+  "rules_sha256": "aaa39fae7fb53d62b9bc18e34485596c7f05861fccf3d2abf1eda130ae223513",
+  "schema": "qirvanta.gold-pro.forward-seal.v1",
+  "study_id": "gold-pro-M5-opportunity"
+}

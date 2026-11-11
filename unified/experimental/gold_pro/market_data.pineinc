@@ -1,0 +1,141 @@
+// Shared source for both GOLD PRO Pine scripts.
+const int GP_HTF_WINDOW = 110
+const int GP_FINGERPRINT_WINDOW = 200
+const int GP_H1_MAX_AGE = 7200000
+const int GP_H4_MAX_AGE = 28800000
+const int GP_D1_MAX_AGE = 345600000
+const int GP_PRIME_ONE = 1000000007
+const int GP_PRIME_TWO = 1000000009
+const string GP_TOKYO = "Asia/Tokyo"
+const string GP_LONDON = "Europe/London"
+const string GP_NEW_YORK = "America/New_York"
+
+bool gpAuditContext = input.bool(false, "Log confirmed market context", group="GOLD PRO / EVIDENCE")
+int gpAuditFrom = input.time(timestamp("10 Nov 2026 00:00 +0000"), "Context log start", group="GOLD PRO / EVIDENCE")
+int gpAuditUntil = input.time(timestamp("11 Nov 2026 23:55 +0000"), "Context log cutoff", group="GOLD PRO / EVIDENCE")
+bool gpSupported = syminfo.tickerid == "OANDA:XAUUSD" and chart.is_standard and (timeframe.period == "5" or timeframe.period == "15" or timeframe.period == "30") and syminfo.mintick > 0
+bool gpClosedBar = gpSupported and barstate.isconfirmed
+
+// Run in the requested context. Start from the oldest of exactly 110 completed closes.
+f_gpConfirmedContext() =>
+    float fast = close[GP_HTF_WINDOW]
+    float slow = fast
+    if not na(fast)
+        for ago = GP_HTF_WINDOW - 1 to 1
+            fast += (close[ago] - fast) * (2.0 / 22.0)
+            slow += (close[ago] - slow) * (2.0 / 56.0)
+    [time[1], time_close[1], open[1], high[1], low[1], close[1], fast, slow]
+
+[gpH1OpenAt, gpH1Known, gpH1Open, gpH1High, gpH1Low, gpH1Close, gpH1Fast, gpH1Slow] = request.security(
+     syminfo.tickerid, "60", f_gpConfirmedContext(), gaps=barmerge.gaps_off, lookahead=barmerge.lookahead_on)
+[gpH4OpenAt, gpH4Known, gpH4Open, gpH4High, gpH4Low, gpH4Close, gpH4Fast, gpH4Slow] = request.security(
+     syminfo.tickerid, "240", f_gpConfirmedContext(), gaps=barmerge.gaps_off, lookahead=barmerge.lookahead_on)
+[gpD1OpenAt, gpD1Known, gpD1Open, gpD1High, gpD1Low, gpD1Close, gpD1Fast, gpD1Slow] = request.security(
+     syminfo.tickerid, "1D", f_gpConfirmedContext(), gaps=barmerge.gaps_off, lookahead=barmerge.lookahead_on)
+
+f_gpHtfSide(float lastClose, float fast, float slow, int known, int maxAge) =>
+    int side = na
+    if gpSupported and not na(known) and known <= time and time - known <= maxAge and not na(lastClose) and not na(fast) and not na(slow)
+        int closeMicros = math.round(lastClose * 1000000.0)
+        int fastMicros = math.round(fast * 1000000.0)
+        int slowMicros = math.round(slow * 1000000.0)
+        side := closeMicros > fastMicros and fastMicros > slowMicros ? 1 : closeMicros < fastMicros and fastMicros < slowMicros ? -1 : 0
+    side
+
+int gpH1Side = f_gpHtfSide(gpH1Close, gpH1Fast, gpH1Slow, gpH1Known, GP_H1_MAX_AGE)
+int gpH4Side = f_gpHtfSide(gpH4Close, gpH4Fast, gpH4Slow, gpH4Known, GP_H4_MAX_AGE)
+int gpD1Side = f_gpHtfSide(gpD1Close, gpD1Fast, gpD1Slow, gpD1Known, GP_D1_MAX_AGE)
+bool gpContextReady = gpClosedBar and not na(gpH1Side) and not na(gpH4Side)
+
+// Rolling fingerprints require the same latest 200 chart OHLC bars and timestamps.
+int gpOpenTicks = math.round(open / syminfo.mintick)
+int gpHighTicks = math.round(high / syminfo.mintick)
+int gpLowTicks = math.round(low / syminfo.mintick)
+int gpCloseTicks = math.round(close / syminfo.mintick)
+int gpOpenSeconds = int(time / 1000)
+int gpCloseSeconds = int(time_close / 1000)
+int gpFingerprintTokenOne = (gpOpenSeconds + 3 * gpCloseSeconds + 5 * gpOpenTicks + 7 * gpHighTicks + 11 * gpLowTicks + 13 * gpCloseTicks) % GP_PRIME_ONE
+int gpTimeFactor = 1 + gpOpenSeconds % 65521
+int gpFingerprintTokenTwo = (gpCloseSeconds + gpTimeFactor * (17 * gpOpenTicks + 19 * gpHighTicks + 23 * gpLowTicks + 29 * gpCloseTicks)) % GP_PRIME_TWO
+float gpFingerprintSumOne = math.sum(gpFingerprintTokenOne, GP_FINGERPRINT_WINDOW)
+float gpFingerprintSumTwo = math.sum(gpFingerprintTokenTwo, GP_FINGERPRINT_WINDOW)
+bool gpFingerprintReady = gpClosedBar and not na(gpFingerprintTokenOne[GP_FINGERPRINT_WINDOW - 1])
+int gpFingerprint1 = gpFingerprintReady ? int(gpFingerprintSumOne) % GP_PRIME_ONE : na
+int gpFingerprint2 = gpFingerprintReady ? int(gpFingerprintSumTwo) % GP_PRIME_TWO : na
+
+f_gpDateKey(string tz) =>
+    10000 * year(time, tz) + 100 * month(time, tz) + dayofmonth(time, tz)
+
+f_gpSessionRange(bool inSession, int dateKey, bool atStart) =>
+    var float observedHigh = na
+    var float observedLow = na
+    var int startedAt = na
+    var bool observedComplete = false
+    if gpClosedBar and inSession
+        if not inSession[1] or dateKey != dateKey[1]
+            observedHigh := high
+            observedLow := low
+            startedAt := time
+            observedComplete := atStart
+        else
+            observedHigh := math.max(observedHigh, high)
+            observedLow := math.min(observedLow, low)
+            observedComplete := observedComplete and time == time_close[1]
+    [observedHigh, observedLow, startedAt, observedComplete]
+
+bool gpInAsia = not na(time(timeframe.period, "0900-1800:23456", GP_TOKYO))
+bool gpInLondon = not na(time(timeframe.period, "0800-1700:23456", GP_LONDON))
+bool gpInNewYork = not na(time(timeframe.period, "0800-1700:23456", GP_NEW_YORK))
+bool gpInOverlap = gpInLondon and gpInNewYork
+bool gpAtAsiaOpen = hour(time, GP_TOKYO) == 9 and minute(time, GP_TOKYO) == 0
+bool gpAtLondonOpen = hour(time, GP_LONDON) == 8 and minute(time, GP_LONDON) == 0
+bool gpAtNewYorkOpen = hour(time, GP_NEW_YORK) == 8 and minute(time, GP_NEW_YORK) == 0
+[gpAsiaHigh, gpAsiaLow, gpAsiaSince, gpAsiaComplete] = f_gpSessionRange(gpInAsia, f_gpDateKey(GP_TOKYO), gpAtAsiaOpen)
+[gpLondonHigh, gpLondonLow, gpLondonSince, gpLondonComplete] = f_gpSessionRange(gpInLondon, f_gpDateKey(GP_LONDON), gpAtLondonOpen)
+[gpNewYorkHigh, gpNewYorkLow, gpNewYorkSince, gpNewYorkComplete] = f_gpSessionRange(gpInNewYork, f_gpDateKey(GP_NEW_YORK), gpAtNewYorkOpen)
+[gpOverlapHigh, gpOverlapLow, gpOverlapSince, gpOverlapComplete] = f_gpSessionRange(gpInOverlap, f_gpDateKey(GP_NEW_YORK), gpAtNewYorkOpen)
+
+string gpSession = not gpSupported ? "UNKNOWN" : gpInOverlap ? "LONDON–NEW YORK" : gpInNewYork ? "NEW YORK" : gpInLondon ? "LONDON" : gpInAsia ? "ASIA" : "OFF SESSION"
+float gpSessionHigh = gpInOverlap ? gpOverlapHigh : gpInNewYork ? gpNewYorkHigh : gpInLondon ? gpLondonHigh : gpInAsia ? gpAsiaHigh : na
+float gpSessionLow = gpInOverlap ? gpOverlapLow : gpInNewYork ? gpNewYorkLow : gpInLondon ? gpLondonLow : gpInAsia ? gpAsiaLow : na
+int gpSessionSince = gpInOverlap ? gpOverlapSince : gpInNewYork ? gpNewYorkSince : gpInLondon ? gpLondonSince : gpInAsia ? gpAsiaSince : na
+bool gpSessionComplete = gpInOverlap ? gpOverlapComplete : gpInNewYork ? gpNewYorkComplete : gpInLondon ? gpLondonComplete : gpInAsia ? gpAsiaComplete : false
+
+// The symbol's native daily timestamp defines the observed current session.
+int gpTradingDay = time("1D")
+var float gpDayOpen = na
+var float gpDayHigh = na
+var float gpDayLow = na
+var bool gpDayComplete = false
+if gpClosedBar
+    if na(gpTradingDay[1]) or gpTradingDay != gpTradingDay[1]
+        gpDayOpen := open
+        gpDayHigh := high
+        gpDayLow := low
+        gpDayComplete := time == gpTradingDay
+    else
+        gpDayHigh := math.max(gpDayHigh, high)
+        gpDayLow := math.min(gpDayLow, low)
+        gpDayComplete := gpDayComplete and time == time_close[1]
+
+f_gpCtxNum(float value) =>
+    na(value) ? "-" : str.tostring(value, "#.#########")
+f_gpCtxInt(int value) =>
+    na(value) ? "-" : str.tostring(value)
+f_gpCtxBool(bool value) =>
+    value ? "1" : "0"
+f_gpHtfLog(int firstAt, int known, float lastClose, float fast, float slow, int side) =>
+    "|" + f_gpCtxInt(firstAt) + "|" + f_gpCtxInt(known) + "|" + f_gpCtxNum(lastClose) + "|" +
+      f_gpCtxNum(fast) + "|" + f_gpCtxNum(slow) + "|" + f_gpCtxInt(side)
+
+if gpAuditContext and gpClosedBar and time_close >= gpAuditFrom and time_close <= gpAuditUntil
+    log.info("GOLD_CTX|1|" + syminfo.tickerid + "|" + timeframe.period + "|" + f_gpCtxNum(syminfo.mintick) +
+      "|" + f_gpCtxInt(time) + "|" + f_gpCtxInt(time_close) + "|" + f_gpCtxNum(open) + "|" + f_gpCtxNum(high) +
+      "|" + f_gpCtxNum(low) + "|" + f_gpCtxNum(close) + "|" + f_gpCtxInt(gpFingerprint1) +
+      "|" + f_gpCtxInt(gpFingerprint2) + "|" + f_gpCtxBool(gpContextReady) + "|" + gpSession +
+      "|" + f_gpCtxNum(gpSessionHigh) + "|" + f_gpCtxNum(gpSessionLow) + "|" + f_gpCtxInt(gpSessionSince) +
+      "|" + f_gpCtxBool(gpSessionComplete) + "|" + f_gpCtxInt(gpTradingDay) + "|" + f_gpCtxNum(gpDayOpen) +
+      "|" + f_gpCtxNum(gpDayHigh) + "|" + f_gpCtxNum(gpDayLow) + "|" + f_gpCtxBool(gpDayComplete) +
+      f_gpHtfLog(gpH1OpenAt, gpH1Known, gpH1Close, gpH1Fast, gpH1Slow, gpH1Side) +
+      f_gpHtfLog(gpH4OpenAt, gpH4Known, gpH4Close, gpH4Fast, gpH4Slow, gpH4Side) +
+      f_gpHtfLog(gpD1OpenAt, gpD1Known, gpD1Close, gpD1Fast, gpD1Slow, gpD1Side))

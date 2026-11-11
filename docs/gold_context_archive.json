@@ -1,0 +1,78 @@
+{
+  "frames": {
+    "15": {
+      "bar_sha256": "6c89015105a406c2a0c1567f0e9a5e445cb31ee7604a985d727f26892d8ba4b7",
+      "chart_bars": 6445,
+      "eligible_bars": 4617,
+      "first_eligible_close_utc_ms": 1785719700000,
+      "m30_warmup_bars": 6869,
+      "native_v22_log_sha256": "35e911e9ed53f57d4550bea601ec6653217254d83422dcf2d3eb63cf824b2252",
+      "overlapping_native_v22_chart_rows": 3404,
+      "source_comparison": {
+        "h1": {
+          "compared": 3399,
+          "conservatively_unknown": 5
+        },
+        "h4": {
+          "compared": 3235,
+          "conservatively_unknown": 169
+        }
+      },
+      "unchanged_prefix_lengths": [
+        3222,
+        4833
+      ],
+      "unknown_h1_or_h4_bars": 1828
+    },
+    "30": {
+      "bar_sha256": "1b31dc5dad532b9362c5340511211fbc13a33c64983d4a49485c7442a269c5d5",
+      "chart_bars": 10091,
+      "eligible_bars": 5996,
+      "first_eligible_close_utc_ms": 1770964200000,
+      "m30_warmup_bars": 0,
+      "native_v22_log_sha256": "d4097d7adacec54a9b61ad663dbdc0edd12731625eb20d532af8f0c1762900a7",
+      "overlapping_native_v22_chart_rows": 3501,
+      "source_comparison": {
+        "h1": {
+          "compared": 3496,
+          "conservatively_unknown": 5
+        },
+        "h4": {
+          "compared": 3332,
+          "conservatively_unknown": 169
+        }
+      },
+      "unchanged_prefix_lengths": [
+        5045,
+        7568
+      ],
+      "unknown_h1_or_h4_bars": 4095
+    },
+    "5": {
+      "bar_sha256": "44971f52b0008fefc4b61dda51c71043f08e4a2e3bc6d08121380e95232ace1d",
+      "chart_bars": 5565,
+      "eligible_bars": 5385,
+      "first_eligible_close_utc_ms": 1791767100000,
+      "m30_warmup_bars": 9164,
+      "native_v22_log_sha256": "fc88437df919a0b4fabebdc1d03d048e7c1c814fd4315a4ca7d559c1290b8385",
+      "overlapping_native_v22_chart_rows": 3013,
+      "source_comparison": {
+        "h1": {
+          "compared": 2997,
+          "conservatively_unknown": 16
+        },
+        "h4": {
+          "compared": 2805,
+          "conservatively_unknown": 208
+        }
+      },
+      "unchanged_prefix_lengths": [
+        2782,
+        4173
+      ],
+      "unknown_h1_or_h4_bars": 180
+    }
+  },
+  "scope": "Pinned observed chart bars, reconstructed HTF source closes, finite EMA causality and UNKNOWN coverage. GOLD PRO native parity uses separate exports.",
+  "status": "VERIFIED_ARCHIVED_CONTEXT"
+}

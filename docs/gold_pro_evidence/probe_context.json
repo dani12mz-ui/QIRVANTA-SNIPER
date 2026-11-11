@@ -1,0 +1,102 @@
+{
+  "final_script_parity": "NOT_ESTABLISHED_BY_PROBE",
+  "frames": {
+    "15": {
+      "bars": 337,
+      "daily_ranges_recomputed": 0,
+      "eligible_bars": 325,
+      "fingerprints_recomputed": 138,
+      "first_open_utc_ms": 1793835900000,
+      "htf": {
+        "1440": {
+          "finite_ema_checks": 0,
+          "ready_bars": 337
+        },
+        "240": {
+          "finite_ema_checks": 0,
+          "ready_bars": 325
+        },
+        "60": {
+          "finite_ema_checks": 0,
+          "ready_bars": 333
+        }
+      },
+      "indicator_sha256": "478c8ac588c4e72f18199f5c934a5edd6c718cab6b6ec8cc9c80b25ec9b9640d",
+      "last_close_utc_ms": 1794322800000,
+      "session_labels_checked": 337,
+      "session_ranges_recomputed": 337,
+      "strategy_sha256": "478c8ac588c4e72f18199f5c934a5edd6c718cab6b6ec8cc9c80b25ec9b9640d",
+      "unknown_context_bars": 12
+    },
+    "30": {
+      "bars": 169,
+      "daily_ranges_recomputed": 0,
+      "eligible_bars": 163,
+      "fingerprints_recomputed": 0,
+      "first_open_utc_ms": 1793835000000,
+      "htf": {
+        "1440": {
+          "finite_ema_checks": 0,
+          "ready_bars": 169
+        },
+        "240": {
+          "finite_ema_checks": 0,
+          "ready_bars": 163
+        },
+        "60": {
+          "finite_ema_checks": 0,
+          "ready_bars": 167
+        }
+      },
+      "indicator_sha256": "f371ef7e4374849e2be74fabeefa71c977cfa201e01f81661a026dc02437394e",
+      "last_close_utc_ms": 1794322800000,
+      "session_labels_checked": 169,
+      "session_ranges_recomputed": 169,
+      "strategy_sha256": "f371ef7e4374849e2be74fabeefa71c977cfa201e01f81661a026dc02437394e",
+      "unknown_context_bars": 6
+    },
+    "5": {
+      "bars": 1009,
+      "daily_ranges_recomputed": 0,
+      "eligible_bars": 973,
+      "fingerprints_recomputed": 810,
+      "first_open_utc_ms": 1793836500000,
+      "htf": {
+        "1440": {
+          "finite_ema_checks": 0,
+          "ready_bars": 1009
+        },
+        "240": {
+          "finite_ema_checks": 0,
+          "ready_bars": 973
+        },
+        "60": {
+          "finite_ema_checks": 0,
+          "ready_bars": 997
+        }
+      },
+      "indicator_sha256": "b7a947fa578a25a74637c965eee1c806cda93fe7f9ad6bafcf71407c3364a9dc",
+      "last_close_utc_ms": 1794322800000,
+      "session_labels_checked": 1009,
+      "session_ranges_recomputed": 1009,
+      "strategy_sha256": "b7a947fa578a25a74637c965eee1c806cda93fe7f9ad6bafcf71407c3364a9dc",
+      "unknown_context_bars": 36
+    }
+  },
+  "probe_source_sha256": {
+    "indicator": "9f593e0193d37c9cfb023a90972af0c913064195ebc81ca16f6e735b81a05c66",
+    "strategy": "cc4538718f9a6d4cbf51953dfa36100fa57d8cd23dd1005f127fdecabd201416"
+  },
+  "scope": "TradingView compiled context-only strategy and indicator probes. Final generated product parity is a separate gate. Raw per-bar CSVs stay local.",
+  "status": "VERIFIED_NATIVE_CONTEXT_PROBE",
+  "symbol": "OANDA:XAUUSD",
+  "totals": {
+    "bars": 1515,
+    "daily_ranges_recomputed": 0,
+    "eligible_bars": 1461,
+    "fingerprints_recomputed": 948,
+    "session_labels_checked": 1515,
+    "session_ranges_recomputed": 1515,
+    "unknown_context_bars": 54
+  }
+}
