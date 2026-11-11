@@ -1,0 +1,40 @@
+bool rcAlertWatch = input.bool(true, "WATCH", group="ALERTS", display=display.none)
+bool rcAlertConfirmed = input.bool(true, "CONFIRMED", group="ALERTS", display=display.none)
+bool rcAlertReady = input.bool(true, "READY", group="ALERTS", display=display.none)
+bool rcAlertLifecycle = input.bool(true, "INVALIDATED / EXPIRED", group="ALERTS", display=display.none)
+bool rcAlertEarly = input.bool(false, "EARLY WATCH (research)", group="ALERTS", display=display.none)
+varip int rcLastAlertClose = na
+
+f_rc2Append(string batch, string item) => batch == "" ? item : batch + "," + item
+f_rc2EarlyPayload() =>
+    string source = syminfo.tickerid + "|" + timeframe.period + "|RC2_EARLY|" + f_rcSide(rcEarlySide) + "|" + f_int(time_close)
+    string utc = str.format_time(time_close, "yyyy-MM-dd'T'HH:mm:ss'Z'", "UTC")
+    '{"event_id":' + f_q(source + "|WATCH") + ',"source_id":' + f_q(source) +
+     ',"model":"RC2_EARLY","symbol":' + f_q(syminfo.tickerid) + ',"timeframe":' + f_q(timeframe.period) +
+     ',"direction":' + f_q(f_rcSide(rcEarlySide)) + ',"state":"WATCH","confirmed_ms":' + f_int(time_close) +
+     ',"confirmation_utc":' + f_q(utc) + ',"entry":null,"sl":null,"tp1":null,"tp2":null,"tp3":null' +
+     ',"reason":"Confirmed range break and displacement; observational only","provisional":true}'
+
+// Preserve the stable S5 source keys. Execution events belong to the separate Audit script.
+if rcCanDrawBar and (rcQaBar or barstate.isrealtime)
+    string batch = ""
+    for e in events
+        if f_rcCore(e)
+            int stage = f_rcStage(e.kind)
+            bool include = (stage == RC_WATCH and rcAlertWatch) or (stage == RC_CONFIRMED and rcAlertConfirmed) or
+                 ((stage == RC_INVALIDATED or stage == RC_EXPIRED) and rcAlertLifecycle)
+            if include
+                batch := f_rc2Append(batch, f_rcPayload(e, f_rcStageText(stage), na, e.reason))
+    if rcAlertReady and rcReadyPayload != "" and not rc2Blocked
+        batch := f_rc2Append(batch, rcReadyPayload)
+    if rcQaBar and not rc2FilterActive and batch != ""
+        log.info('RC1_ALERT|{"schema":"qirvanta.gold-pro.rc1.v1","events":[' + batch + "]}")
+    if rcAlertEarly and rcEarlyMarker
+        batch := f_rc2Append(batch, f_rc2EarlyPayload())
+    if batch != ""
+        string message = '{"schema":"qirvanta.gold-pro.rc2.v1","events":[' + batch + "]}"
+        if rcQaBar
+            log.info("RC2_ALERT|" + message)
+        if barstate.isrealtime and (na(rcLastAlertClose) or rcLastAlertClose != time_close)
+            rcLastAlertClose := time_close
+            alert(message, alert.freq_once_per_bar_close)

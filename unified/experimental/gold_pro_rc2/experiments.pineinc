@@ -1,0 +1,9 @@
+// Preregistered, opt-in signal experiments. S5 candidates and risk levels are immutable.
+const float RC2_RANGE_ATR_LIMIT = 1.75
+const string RC2_FILTER_REASON = "RC2 experimental range filter: signal bar exceeds 1.75 ATR"
+bool rc2FilterOpt = input.bool(false, "Experimental range filter", group="RC2 RESEARCH",
+     tooltip="Rejects a READY plan when the confirmed signal bar exceeds 1.75 ATR. Ignored in the S5 RAW parity lane.", display=display.none)
+bool rc2FilterActive = rc2FilterOpt and not rc2Parity
+
+f_rc2FilterPass(Plan p) =>
+    not rc2FilterActive or na(p) or barRange <= RC2_RANGE_ATR_LIMIT * p.atrValue

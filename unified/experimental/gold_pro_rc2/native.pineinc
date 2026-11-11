@@ -1,0 +1,137 @@
+// Read-only audit postlude. The broker-emulator adapter above owns every order and fill.
+bool rc2AuditAlerts = input.bool(true, "Simulated execution alerts", group="RC2 AUDIT",
+     tooltip="Use alert() function calls only. Notifications come from observed Strategy Tester events at bar close.", display=display.none)
+
+f_rc2AuditUtc(int stamp) =>
+    na(stamp) ? "null" : f_q(str.format_time(stamp, "yyyy-MM-dd'T'HH:mm:ss'Z'", "UTC"))
+
+f_rc2AuditPayload(Event e, string id, string state, string leg, string reason, float entry, float stop, bool scheduled) =>
+    int stamp = scheduled ? e.knownTime : e.effectiveTime
+    '{"event_id":' + f_q(id) + ',"source_id":' + f_q(e.id) + ',"plan_id":' + f_q(e.planId) +
+     ',"symbol":' + f_q(syminfo.tickerid) + ',"timeframe":' + f_q(timeframe.period) + ',"mode":' + f_q(rc2AuditLane) +
+     ',"direction":' + f_q(f_rcSide(e.side)) + ',"state":' + f_q(state) + ',"event_ms":' + f_int(stamp) +
+     ',"event_utc":' + f_rc2AuditUtc(stamp) + ',"known_ms":' + f_int(e.knownTime) + ',"known_utc":' + f_rc2AuditUtc(e.knownTime) +
+     ',"entry":' + f_num(entry) + ',"entry_reference":' + f_num(e.reference) + ',"sl":' + f_num(stop) +
+     ',"initial_sl":' + f_num(e.stop) + ',"tp1":' + f_num(e.tp1) + ',"tp2":' + f_num(e.tp2) + ',"tp3":' + f_num(e.tp3) +
+     ',"event_price":' + f_num(e.price) + ',"leg":' + (leg == "" ? "null" : f_q(leg)) + ',"reason":' + f_q(reason) +
+     ',"simulated":true,"applies_from_next_tick":' + (scheduled ? "true" : "false") + '}'
+
+f_rc2AuditPart(Event e, int j, string exitId) =>
+    '{"plan_id":' + f_q(e.planId) + ',"source_id":' + f_q(e.id) + ',"mode":' + f_q(rc2AuditLane) +
+     ',"exit_order_id":' + f_q(exitId) + ',"entry_ms":' + f_int(strategy.closedtrades.entry_time(j)) +
+     ',"exit_ms":' + f_int(strategy.closedtrades.exit_time(j)) + ',"entry_price":' + f_num(strategy.closedtrades.entry_price(j)) +
+     ',"exit_price":' + f_num(strategy.closedtrades.exit_price(j)) + ',"signed_qty":' + f_num(strategy.closedtrades.size(j)) +
+     ',"commission":' + f_num(strategy.closedtrades.commission(j)) + ',"max_runup_cash":' + f_num(strategy.closedtrades.max_runup(j)) +
+     ',"max_drawdown_cash":' + f_num(strategy.closedtrades.max_drawdown(j)) + '}'
+
+f_rc2AuditSummary() =>
+    '{"mode":' + f_q(rc2AuditLane) + ',"symbol":' + f_q(syminfo.tickerid) + ',"timeframe":' + f_q(timeframe.period) +
+     ',"last_close_ms":' + f_int(time_close) + ',"first_open_ms":' + f_int(rcFirstOpen) +
+     ',"currency":' + f_q(strategy.account_currency) + ',"initial_capital":' + f_num(strategy.initial_capital) +
+     ',"netprofit":' + f_num(strategy.netprofit) + ',"openprofit":' + f_num(strategy.openprofit) +
+     ',"grossprofit":' + f_num(strategy.grossprofit) + ',"grossloss":' + f_num(strategy.grossloss) +
+     ',"max_drawdown":' + f_num(strategy.max_drawdown) + ',"position_size":' + f_num(strategy.position_size) +
+     ',"closed_parts":' + f_int(strategy.closedtrades) + ',"win_parts":' + f_int(strategy.wintrades) +
+     ',"loss_parts":' + f_int(strategy.losstrades) + ',"campaign_count":' + f_int(nativeClosedCampaigns) + '}'
+
+var string rc2AuditTrackedPlan = ""
+var float rc2AuditEntry = na
+var float rc2AuditStop = na
+var bool rc2AuditStopped = false
+// Only keys for the current campaign are retained. Native entry, legs and closure have fixed identities.
+var array<string> rc2AuditKeys = array.new<string>()
+varip int rc2AuditSentClose = na
+var string rc2AuditSnapshot = ""
+var bool rc2AuditSnapshotEmitted = false
+
+if rcCanDrawBar and (rcQa or rc2AuditAlerts)
+    string batch = ""
+    for e in events
+        if e.strategyKey == "S5" and e.book == "NATIVE"
+            if rcQaBar
+                log.info("RC1_NATIVE|" + f_json(e))
+            string state = ""
+            string leg = ""
+            string anomaly = ""
+            string reason = e.reason
+            bool scheduled = false
+            bool closed = e.kind == "NATIVE_CLOSED"
+            if e.kind == "NATIVE_ENTRY"
+                anomaly := rc2AuditTrackedPlan != "" ? "ENTRY_WHILE_TRACKING_POSITION" : ""
+                if anomaly == ""
+                    rc2AuditTrackedPlan := e.planId
+                    rc2AuditEntry := e.price
+                    rc2AuditStop := e.stop
+                    rc2AuditStopped := false
+                    array.clear(rc2AuditKeys)
+                    state := "ENTRY"
+            else if str.startswith(e.kind, "NATIVE_EXIT_")
+                int j = int(str.tonumber(str.substring(e.kind, str.length("NATIVE_EXIT_"))))
+                bool hasTrade = not na(j) and j >= nz(strategy.closedtrades.first_index, 0) and j < strategy.closedtrades and
+                     strategy.closedtrades.entry_id(j) == e.planId
+                string exitId = hasTrade ? strategy.closedtrades.exit_id(j) : ""
+                if rcQaBar and hasTrade
+                    log.info("RC2_NATIVE_PART|" + f_rc2AuditPart(e, j, exitId))
+                leg := str.startswith(exitId, e.planId + "|") ? str.substring(exitId, str.length(e.planId) + 1) : ""
+                bool target = e.reason == "TP1" or e.reason == "TP2" or e.reason == "TP3"
+                if not hasTrade or rc2AuditTrackedPlan != e.planId
+                    anomaly := "EXIT_WITHOUT_TRACKED_NATIVE_TRADE"
+                else if target and rc2AuditStopped
+                    anomaly := "TP_AFTER_SL"
+                else if target and leg != "T" + str.substring(e.reason, 2)
+                    anomaly := "TARGET_ORDER_ID_MISMATCH"
+                else if target
+                    state := e.reason
+                else if e.reason == "SL"
+                    if leg == "T1" or leg == "T2" or leg == "T3"
+                        rc2AuditStopped := true
+                        state := "SL"
+                    else
+                        anomaly := "STOP_ORDER_ID_MISMATCH"
+            else if e.kind == "NATIVE_STOP_SCHEDULED"
+                if rc2AuditTrackedPlan != e.planId or na(rc2AuditStop) or na(e.price) or
+                     (e.price - rc2AuditStop) * e.side < syminfo.mintick * 0.5
+                    anomaly := "STOP_NOT_TIGHTENED_ON_TRACKED_PLAN"
+                else
+                    rc2AuditStop := e.price
+                    scheduled := true
+                    state := rc2AuditLane == RC2_AUDIT_BE ? "BE" : "PROFIT_LOCK"
+                    reason := state == "BE" ? "Break-even stop scheduled for the next available tick. Trading costs remain." :
+                         "Profit-lock stop scheduled for the next available tick."
+            else if closed
+                if rc2AuditTrackedPlan != e.planId or e.riskBasis == "INCOMPLETE_TRADE_LOG"
+                    anomaly := "CAMPAIGN_CLOSURE_WITHOUT_COMPLETE_LEDGER"
+                else
+                    state := "EXIT"
+            if state != ""
+                string key = e.planId + "|RC2|" + rc2AuditLane + "|" + state + (leg == "" ? "" : "|" + leg)
+                if array.includes(rc2AuditKeys, key)
+                    anomaly := "DUPLICATE_LIFECYCLE_KEY"
+                else if na(e.knownTime) or (not scheduled and na(e.effectiveTime))
+                    anomaly := "MISSING_EVENT_TIME"
+                else
+                    array.push(rc2AuditKeys, key)
+                    if rcQaBar or barstate.isrealtime
+                        string payload = f_rc2AuditPayload(e, key, state, leg, reason, rc2AuditEntry, rc2AuditStop, scheduled)
+                        batch := batch == "" ? payload : batch + "," + payload
+            if anomaly != "" and rcQaBar
+                log.info('RC2_NATIVE_ANOMALY|{"source_id":' + f_q(e.id) + ',"plan_id":' + f_q(e.planId) + ',"code":' + f_q(anomaly) + '}')
+            if closed
+                rc2AuditTrackedPlan := ""
+                rc2AuditEntry := na
+                rc2AuditStop := na
+                rc2AuditStopped := false
+    if batch != ""
+        string message = '{"schema":"qirvanta.gold-pro.rc2.audit.v1","events":[' + batch + "]}"
+        if rcQaBar
+            log.info("RC2_NATIVE_ALERT|" + message)
+        if rc2AuditAlerts and barstate.isrealtime and (na(rc2AuditSentClose) or rc2AuditSentClose != time_close)
+            rc2AuditSentClose := time_close
+            alert(message, alert.freq_once_per_bar_close)
+
+// Strategy properties below cover loaded history through the final observed QA bar.
+if rcQaBar
+    rc2AuditSnapshot := f_rc2AuditSummary()
+else if rcCanDrawBar and rcQa and not rc2AuditSnapshotEmitted and rc2AuditSnapshot != "" and time_close > rcQaEnd
+    rc2AuditSnapshotEmitted := true
+    log.info("RC2_AUDIT_SUMMARY|" + rc2AuditSnapshot)
