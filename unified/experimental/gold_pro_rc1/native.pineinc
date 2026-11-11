@@ -1,0 +1,5 @@
+// Native audit only. Orders above use the original broker-emulator adapter.
+if rcQaBar
+    for e in events
+        if e.strategyKey == "S5" and e.book == "NATIVE"
+            log.info("RC1_NATIVE|" + f_json(e))

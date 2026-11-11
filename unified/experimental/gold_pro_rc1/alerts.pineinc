@@ -1,0 +1,26 @@
+bool rcAlertWatch = input.bool(true, "WATCH", group="ALERTS", display=display.none)
+bool rcAlertConfirmed = input.bool(true, "CONFIRMED", group="ALERTS", display=display.none)
+bool rcAlertReady = input.bool(true, "READY", group="ALERTS", display=display.none)
+bool rcAlertLifecycle = input.bool(true, "INVALIDATED / EXPIRED", group="ALERTS", display=display.none)
+var int rcLastAlertClose = na
+
+// TradingView receives one batch per confirmed bar even when multiple S5 events share it.
+if rcCanDrawBar and (rcQaBar or barstate.isrealtime)
+    string batch = ""
+    for e in events
+        if f_rcCore(e)
+            int stage = f_rcStage(e.kind)
+            bool include = (stage == RC_WATCH and rcAlertWatch) or (stage == RC_CONFIRMED and rcAlertConfirmed) or
+                 ((stage == RC_INVALIDATED or stage == RC_EXPIRED) and rcAlertLifecycle)
+            if include
+                string payload = f_rcPayload(e, f_rcStageText(stage), na, e.reason)
+                batch := batch == "" ? payload : batch + "," + payload
+    if rcAlertReady and rcReadyPayload != ""
+        batch := batch == "" ? rcReadyPayload : batch + "," + rcReadyPayload
+    if batch != ""
+        string message = '{"schema":"qirvanta.gold-pro.rc1.v1","events":[' + batch + "]}"
+        if rcQaBar
+            log.info("RC1_ALERT|" + message)
+        if barstate.isrealtime and (na(rcLastAlertClose) or rcLastAlertClose != time_close)
+            rcLastAlertClose := time_close
+            alert(message, alert.freq_once_per_bar_close)

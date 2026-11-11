@@ -1,0 +1,95 @@
+string rcPreset = input.string("LIVE PREMIUM", "Изглед", options=["LIVE PREMIUM", "COMPACT", "MOBILE", "FULL AUDIT"], group="GOLD PRO RC1", display=display.none)
+string rcCorner = input.string("Auto", "Място на таблото", options=["Auto", "Top right", "Top left", "Bottom right", "Bottom left"], group="GOLD PRO RC1", display=display.none)
+bool rcShowWick = input.bool(true, "Wick формации", group="GOLD PRO RC1", display=display.none)
+bool rcReviewEnabled = input.bool(false, "Исторически преглед", group="FULL AUDIT", display=display.none)
+int rcReviewAt = input.time(timestamp("10 Nov 2026 14:30 +0000"), "Затваряне за преглед", group="FULL AUDIT", display=display.none)
+bool rcReview = rcPreset == "FULL AUDIT" and rcReviewEnabled
+
+type RcDecision
+    int stage = 0
+    int direction = 0
+    int bias = 0
+    int known = na
+    int closed = na
+    int expiry = na
+    string reason = ""
+    Plan plan = na
+
+var RcDecision rcCurrent = RcDecision.new()
+var RcDecision rcArchive = RcDecision.new()
+var string rcLast = ""
+var bool rcReviewFound = false
+int rcMarkerStage = na(rcPrimaryEvent) ? RC_NONE : f_rcStage(rcPrimaryEvent.kind)
+int rcMarkerSide = na(rcPrimaryEvent) ? 0 : rcPrimaryEvent.side
+if rcCanDrawBar
+    int stage = rcReadyPayload != "" ? RC_READY : rcMarkerStage
+    int side = rcMarkerSide
+    int known = na(rcPrimaryEvent) ? na : rcPrimaryEvent.knownTime
+    int expiry = time_close + tfSeconds * 1000
+    string reason = na(rcPrimaryEvent) ? "Няма нов потвърден S5 план." : rcPrimaryEvent.reason
+    if not na(rcPrimaryEvent)
+        rcLast := f_rcSide(side) + " " + f_rcStageText(stage) + " · " + str.format_time(known, "MM-dd HH:mm", "UTC") + " UTC"
+    if stage == RC_NONE or stage == RC_WATCH
+        TvCandidateState buyWatch = array.get(tvCandidateStates, 0)
+        TvCandidateState sellWatch = array.get(tvCandidateStates, 1)
+        bool watchingBuy = buyWatch.phase != 0
+        bool watchingSell = sellWatch.phase != 0
+        if watchingBuy or watchingSell
+            stage := RC_WATCH
+            side := watchingBuy == watchingSell ? 0 : watchingBuy ? 1 : -1
+            known := side == 0 ? math.max(buyWatch.bornTime, sellWatch.bornTime) : side == 1 ? buyWatch.bornTime : sellWatch.bornTime
+            expiry := known + 4 * tfSeconds * 1000
+            reason := side == 0 ? "Двупосочно наблюдение. Изчакай потвърждение." : "Чака връщане отвъд нивото със затворена свещ."
+    if stage == RC_CONFIRMED
+        reason := na(rcSelected) ? "Противоположни потвърждения; няма единен план." : "Планът не премина ценовата проверка или минималното количество."
+    if stage == RC_READY
+        reason := RC_READY_REASON
+    int bias = tvH1Bias == tvH4Bias ? tvH1Bias : 0
+    rcCurrent := RcDecision.new(stage, side, bias, known, time_close, expiry, reason, stage == RC_READY ? rcBarPlan.copy() : na)
+    if rcReview and time_close == rcReviewAt
+        rcReviewFound := true
+        rcArchive := rcCurrent.copy()
+
+RcDecision rcView = rcReview ? rcArchive : rcCurrent
+int rcStage = rcView.stage
+int rcDirection = rcView.direction
+int rcBias = rcView.bias
+int rcKnownAt = rcView.known
+int rcExpiresAt = rcView.expiry
+string rcReason = rcView.reason
+Plan rcShownPlan = rcView.plan
+if not rcReview and rcStage != RC_NONE
+    if timenow >= rcExpiresAt
+        rcStage := rcStage == RC_READY or rcStage == RC_CONFIRMED or rcStage == RC_WATCH ? RC_EXPIRED : RC_NONE
+        rcReason := "Срокът на последното събитие изтече. Изчакай ново затваряне."
+    else if rcStage == RC_READY and time > rcShownPlan.signalTime
+        rcStage := RC_EXPIRED
+        rcReason := "Пропуснато отваряне на следващия бар."
+    else if rcStage == RC_READY and not barstate.isconfirmed and bar_index > rcShownPlan.signalBar
+        string openingReason = f_openRejection(rcShownPlan, open, time)
+        if time != rcShownPlan.signalTime or openingReason != ""
+            rcStage := RC_INVALIDATED
+            rcReason := time != rcShownPlan.signalTime ? "Прекъсване преди следващото отваряне." : openingReason
+if rcStage != RC_READY
+    rcShownPlan := na
+if not rcSupported
+    rcReason := "Избери OANDA:XAUUSD, стандартни свещи, M5, M15 или M30."
+else if rcReview and not rcReviewFound
+    rcReason := "Избери точния UTC час на затварянето в заредената история."
+else if na(rcView.closed)
+    rcReason := "Изчаква се затворена свещ."
+string rcMarket = not rcSupported or na(rcView.closed) ? "—" : rcBias == 1 ? "BULLISH" : rcBias == -1 ? "BEARISH" : "MIXED"
+string rcModel = "S5"
+string rcStatus = (rcStage == RC_READY or rcStage == RC_CONFIRMED or rcStage == RC_WATCH) and rcDirection != 0 ?
+     f_rcSide(rcDirection) + " " + f_rcStageText(rcStage) : f_rcStageText(rcStage)
+string rcAction = rcStage == RC_READY ? (rcReview ? "PLAN REVIEW" : rcStatus) : "WAIT"
+
+int rcWickKnownAt = na(wfActive) ? na : wfActive.knownAt
+int rcWickSide = na(wfActive) ? 0 : wfActive.side
+float rcWickTop = na(wfActive) ? na : wfActive.top
+float rcWickBottom = na(wfActive) ? na : wfActive.bottom
+int rcWickAt = rcCurrent.closed
+int rcWickExpiry = na(wfActive) ? na : na(wfActive.breakoutAt) ?
+     wfActive.knownAt + WF_WATCH_BARS * wfInterval : wfActive.breakoutAt + WF_RETEST_BARS * wfInterval
+bool rcWickVisible = rcSupported and not rcReview and not na(rcWickExpiry) and timenow < rcWickExpiry
+string rcWick = rcWickVisible ? wfState : ""

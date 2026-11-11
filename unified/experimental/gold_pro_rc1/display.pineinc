@@ -1,0 +1,229 @@
+// Release presentation consumes S5 state and Wick observations without updating either engine.
+bool rcViewMobile = rcPreset == "MOBILE"
+bool rcViewCompact = rcPreset == "COMPACT" or rcViewMobile
+bool rcViewAudit = rcPreset == "FULL AUDIT"
+bool rcViewLight = color.r(chart.bg_color) * 0.2126 + color.g(chart.bg_color) * 0.7152 +
+     color.b(chart.bg_color) * 0.0722 > 145
+color rcViewGraphite = #0D1520
+color rcViewPanel = #172435
+color rcViewRaised = #20324A
+color rcViewText = #E8EDF3
+color rcViewMuted = #A7B6C8
+color rcViewBuy = #12C9A7
+color rcViewSell = #F05265
+color rcViewCyan = #39BED5
+color rcViewAmber = #E9B65D
+color rcViewChartBuy = rcViewLight ? #007969 : rcViewBuy
+color rcViewChartSell = rcViewLight ? #AE3048 : rcViewSell
+color rcViewChartCyan = rcViewLight ? #0C6980 : rcViewCyan
+color rcViewChartAmber = rcViewLight ? #885907 : rcViewAmber
+color rcViewTagBg = rcViewLight ? #F3F7FA : rcViewGraphite
+string rcViewPosition = switch rcCorner
+    "Top right" => position.top_right
+    "Bottom right" => position.bottom_right
+    "Bottom left" => position.bottom_left
+    "Top left" => position.top_left
+    => rcViewMobile ? position.bottom_right : position.top_right
+
+f_rcViewPrice(float value) =>
+    na(value) ? "—" : str.tostring(value, format.mintick)
+
+f_rcViewUtc(int value) =>
+    na(value) ? "—" : str.format_time(value, "yyyy-MM-dd HH:mm", "UTC") + " UTC"
+
+f_rcViewClip(string value, int limit) =>
+    str.length(value) > limit ? str.substring(value, 0, limit - 1) + "…" : value
+
+// Labels are added only on their availability bar. Older badges are discarded first.
+var array<label> rcViewMarkers = array.new<label>()
+bool rcViewConfirmedMarker = rcMarkerStage == RC_CONFIRMED or rcMarkerStage == RC_READY
+bool rcViewAuditMarker = rcViewAudit and (rcMarkerStage == RC_WATCH or rcMarkerStage == RC_REJECTED or
+     rcMarkerStage == RC_INVALIDATED or rcMarkerStage == RC_EXPIRED)
+if rcCanDrawBar and rcMarkerSide != 0 and (rcViewConfirmedMarker or rcViewAuditMarker)
+    bool isBuy = rcMarkerSide > 0
+    string side = isBuy ? "BUY" : "SELL"
+    string stage = switch rcMarkerStage
+        RC_WATCH => "WATCH"
+        RC_REJECTED => "RISK REJECTED"
+        RC_INVALIDATED => "INVALIDATED"
+        RC_EXPIRED => "EXPIRED"
+        => "CONFIRMED"
+    string caption = rcViewConfirmedMarker ? side : stage == "WATCH" ? side + " WATCH" : stage
+    color directionInk = isBuy ? rcViewChartBuy : rcViewChartSell
+    color paper = rcViewConfirmedMarker ? directionInk : rcViewTagBg
+    color ink = rcViewConfirmedMarker ? (rcViewLight ? color.white : rcViewGraphite) : rcViewChartAmber
+    int capacity = rcViewAudit ? 28 : rcViewCompact ? 4 : 6
+    if array.size(rcViewMarkers) >= capacity
+        label.delete(array.shift(rcViewMarkers))
+    array.push(rcViewMarkers, label.new(bar_index, isBuy ? low : high, caption,
+         xloc=xloc.bar_index, yloc=isBuy ? yloc.belowbar : yloc.abovebar,
+         style=isBuy ? label.style_label_up : label.style_label_down, color=paper,
+         textcolor=ink, size=size.tiny, tooltip="S5 · " + side + " " + stage + "\n" + f_rcViewUtc(time_close)))
+
+// Only one plan can have geometry. Its left edge is the original availability time.
+var array<line> rcViewPlanLines = array.new<line>()
+var array<label> rcViewPlanTags = array.new<label>()
+var box rcViewLoss = na
+var box rcViewReward = na
+var box rcViewWick = na
+
+f_rcViewPlanLevel(int slot, int left, int right, float price, string caption, color ink, string stroke, bool tag) =>
+    line rail = array.get(rcViewPlanLines, slot)
+    label badge = array.get(rcViewPlanTags, slot)
+    line.set_xy1(rail, left, price)
+    line.set_xy2(rail, right, price)
+    line.set_style(rail, stroke)
+    line.set_color(rail, ink)
+    label.set_xy(badge, right, tag ? price : na)
+    label.set_color(badge, rcViewTagBg)
+    label.set_textcolor(badge, ink)
+    label.set_text(badge, caption + "  " + f_rcViewPrice(price))
+    label.set_tooltip(badge, caption + " · " + f_rcViewPrice(price))
+
+f_rcViewZone(box zone, int left, int right, float first, float second, color fill) =>
+    box.set_lefttop(zone, left, math.max(first, second))
+    box.set_rightbottom(zone, right, math.min(first, second))
+    box.set_bgcolor(zone, fill)
+
+bool rcViewRefresh = barstate.islast or barstate.islastconfirmedhistory
+bool rcViewHasPlan = rcSupported and rcStage == RC_READY and not na(rcShownPlan) and not na(rcKnownAt)
+if rcViewRefresh
+    if rcViewHasPlan
+        if array.size(rcViewPlanLines) == 0
+            for i = 0 to 4
+                array.push(rcViewPlanLines, line.new(time, na, time, na, xloc=xloc.bar_time))
+                array.push(rcViewPlanTags, label.new(time, na, xloc=xloc.bar_time, yloc=yloc.price,
+                     style=label.style_label_left, size=size.tiny, text_font_family=font.family_monospace))
+            rcViewLoss := box.new(time, na, time, na, xloc=xloc.bar_time, border_width=0)
+            rcViewReward := box.new(time, na, time, na, xloc=xloc.bar_time, border_width=0)
+        Plan p = rcShownPlan
+        int right = math.max(rcKnownAt + 1, nz(rcExpiresAt, rcKnownAt + timeframe.in_seconds() * 1000))
+        float gap = math.max(syminfo.mintick * 5.0, p.atrValue * 0.37)
+        bool tags = not rcViewMobile
+        bool tag2 = tags and math.abs(p.tp2 - p.tp3) >= gap and math.abs(p.tp2 - p.reference) >= gap
+        bool tag1 = tags and math.abs(p.tp1 - p.reference) >= gap and math.abs(p.tp1 - (tag2 ? p.tp2 : p.tp3)) >= gap
+        f_rcViewPlanLevel(0, rcKnownAt, right, p.reference, "ENTRY REF.", rcViewChartCyan, line.style_solid, tags)
+        f_rcViewPlanLevel(1, rcKnownAt, right, p.initialStop, "INITIAL SL", rcViewChartSell, line.style_dashed,
+             tags and math.abs(p.initialStop - p.reference) >= gap)
+        f_rcViewPlanLevel(2, rcKnownAt, right, p.tp1, "TP1", rcViewChartBuy, line.style_dotted, tag1)
+        f_rcViewPlanLevel(3, rcKnownAt, right, p.tp2, "TP2", rcViewChartBuy, line.style_dotted, tag2)
+        f_rcViewPlanLevel(4, rcKnownAt, right, p.tp3, "TP3", rcViewChartBuy, line.style_solid,
+             tags and math.abs(p.tp3 - p.reference) >= gap)
+        f_rcViewZone(rcViewLoss, rcKnownAt, right, p.reference, p.initialStop, color.new(rcViewChartSell, 92))
+        f_rcViewZone(rcViewReward, rcKnownAt, right, p.reference, p.tp3, color.new(rcViewChartBuy, 95))
+    else if array.size(rcViewPlanLines) > 0
+        for i = 0 to 4
+            line.delete(array.get(rcViewPlanLines, i))
+            label.delete(array.get(rcViewPlanTags, i))
+        array.clear(rcViewPlanLines)
+        array.clear(rcViewPlanTags)
+        box.delete(rcViewLoss)
+        box.delete(rcViewReward)
+        rcViewLoss := na
+        rcViewReward := na
+
+    if rcShowWick and rcWickVisible and not na(rcWickKnownAt) and not na(rcWickTop) and not na(rcWickBottom)
+        if na(rcViewWick)
+            rcViewWick := box.new(time, na, time, na, xloc=xloc.bar_time, border_style=line.style_dotted,
+                 text_size=size.tiny, text_halign=text.align_left, text_valign=text.align_top)
+        color wickInk = rcWickSide > 0 ? rcViewChartBuy : rcWickSide < 0 ? rcViewChartSell : rcViewChartCyan
+        f_rcViewZone(rcViewWick, rcWickKnownAt, math.max(rcWickKnownAt + 1, nz(rcWickAt, rcWickKnownAt + 1)),
+             rcWickTop, rcWickBottom, color.new(wickInk, 95))
+        box.set_border_color(rcViewWick, color.new(wickInk, 52))
+        box.set_text(rcViewWick, rcViewMobile ? "" : " WICK · OBS")
+        box.set_text_color(rcViewWick, wickInk)
+    else if not na(rcViewWick)
+        box.delete(rcViewWick)
+        rcViewWick := na
+
+// A single six-column table aligns the two- and three-column groups.
+int rcViewSmall = rcViewMobile ? 9 : 10
+int rcViewBody = rcViewMobile ? 10 : 12
+int rcViewHero = rcViewMobile ? 14 : rcViewCompact ? 16 : 20
+var table rcViewTable = table.new(rcViewPosition, 6, 20, bgcolor=color.new(rcViewGraphite, 100), force_overlay=true)
+
+f_rcViewCell(int col, int row, string value, color ink, color paper, int fontSize,
+             string align=text.align_center, bool bold=false, string tip="", bool numeric=false) =>
+    table.cell(rcViewTable, col, row, value, text_color=ink, bgcolor=paper, text_halign=align,
+         text_valign=text.align_center, text_size=fontSize, tooltip=tip,
+         text_font_family=numeric ? font.family_monospace : font.family_default,
+         text_formatting=bold ? text.format_bold : text.format_none)
+
+if barstate.isfirst
+    for row in array.from(0, 1, 2, 3, 7, 8, 13, 14, 15, 16, 17, 18)
+        table.merge_cells(rcViewTable, 0, row, 5, row)
+    for row in array.from(4, 5, 6, 9, 10)
+        table.merge_cells(rcViewTable, 0, row, 2, row)
+        table.merge_cells(rcViewTable, 3, row, 5, row)
+    for row in array.from(11, 12)
+        for col = 0 to 4 by 2
+            table.merge_cells(rcViewTable, col, row, col + 1, row)
+
+if rcViewRefresh
+    for col = 0 to 5
+        table.cell(rcViewTable, col, 19, "", width=rcViewMobile ? 10.8 : rcViewCompact ? 3.6 : 4.2,
+             height=0.01, bgcolor=color.new(rcViewCyan, 100), text_size=1)
+    string chartName = rcSupported ? "OANDA:XAUUSD · M" + timeframe.period : "OANDA:XAUUSD · M5 / M15 / M30"
+    color actionInk = rcStage == RC_READY or rcStage == RC_CONFIRMED ? (rcDirection > 0 ? rcViewBuy : rcViewSell) :
+         rcStage == RC_WATCH or rcStage == RC_REJECTED ? rcViewAmber : rcViewCyan
+    color actionPaper = rcStage == RC_READY or rcStage == RC_CONFIRMED ? (rcDirection > 0 ? #153B34 : #41282F) :
+         rcStage == RC_WATCH or rcStage == RC_REJECTED ? #3C3324 : #153543
+    color biasInk = rcBias > 0 ? rcViewBuy : rcBias < 0 ? rcViewSell : rcViewMuted
+    string heroTitle = rcReview ? "HISTORICAL REVIEW" : "CURRENT ACTION"
+    string hero = rcReview and not rcReviewFound ? "WAIT" : rcAction
+    f_rcViewCell(0, 0, "  QIRVANTA GOLD PRO", rcViewText, rcViewGraphite, rcViewMobile ? 13 : 17,
+         text.align_left, true)
+    f_rcViewCell(0, 1, "  " + chartName + " · RC1", rcViewMuted, rcViewGraphite, rcViewSmall,
+         text.align_left, false, "Indicator · chart analysis")
+    f_rcViewCell(0, 2, heroTitle, rcViewText, actionPaper, rcViewSmall, text.align_center, true)
+    f_rcViewCell(0, 3, hero, actionInk, actionPaper, rcViewHero, text.align_center, true, rcReason)
+    f_rcViewCell(0, 4, "MARKET BIAS", rcViewMuted, rcViewPanel, rcViewSmall)
+    f_rcViewCell(3, 4, "OPPORTUNITY STATE", rcViewMuted, rcViewPanel, rcViewSmall)
+    f_rcViewCell(0, 5, rcMarket, biasInk, rcViewPanel, rcViewBody, text.align_center, true,
+         "Bias from confirmed higher-timeframe context")
+    f_rcViewCell(3, 5, f_rcViewClip(rcStatus, rcViewCompact ? 20 : 28), rcViewText, rcViewPanel, rcViewBody,
+         text.align_center, true, rcStatus)
+    f_rcViewCell(0, 6, "MODEL · " + rcModel, rcViewCyan, rcViewGraphite, rcViewSmall)
+    f_rcViewCell(3, 6, "CHART ANALYSIS", rcViewMuted, rcViewGraphite, rcViewSmall, text.align_center, false,
+         "The separate audit strategy records simulated fills")
+    if rcShowWick and rcWick != ""
+        f_rcViewCell(0, 7, "  WICK · OBS  " + f_rcViewClip(rcWick, rcViewMobile ? 23 : 38), rcViewMuted,
+             rcViewPanel, rcViewSmall, text.align_left, false, rcWick)
+    else
+        table.clear(rcViewTable, 0, 7, 5, 7)
+
+    if rcViewHasPlan
+        Plan p = rcShownPlan
+        string planTitle = rcReview ? "  S5 PLAN · HISTORICAL" : "  S5 PLAN · NEXT TICK"
+        f_rcViewCell(0, 8, planTitle, rcReview ? rcViewAmber : rcViewCyan, rcViewRaised, rcViewSmall,
+             text.align_left, true)
+        f_rcViewCell(0, 9, "ENTRY REF.", rcViewMuted, rcViewPanel, rcViewSmall)
+        f_rcViewCell(3, 9, "INITIAL SL", rcViewMuted, rcViewPanel, rcViewSmall)
+        f_rcViewCell(0, 10, f_rcViewPrice(p.reference), rcViewCyan, rcViewPanel, rcViewBody, text.align_center,
+             true, "Planned reference price. Next-tick execution can differ.", true)
+        f_rcViewCell(3, 10, f_rcViewPrice(p.initialStop), rcViewSell, rcViewPanel, rcViewBody, text.align_center,
+             true, "Initial structural invalidation price", true)
+        for col = 0 to 4 by 2
+            int target = int(col / 2) + 1
+            float price = target == 1 ? p.tp1 : target == 2 ? p.tp2 : p.tp3
+            f_rcViewCell(col, 11, "TP" + str.tostring(target), rcViewMuted, rcViewPanel, rcViewSmall)
+            f_rcViewCell(col, 12, f_rcViewPrice(price), rcViewBuy, rcViewPanel, rcViewBody, text.align_center,
+                 true, p.targetBasis == "STRUCTURE" ? "Planned structural target" : "Projected target based on initial risk", true)
+        string targetBasis = p.targetBasis == "STRUCTURE" ? "STRUCTURAL TARGETS" : "TARGETS · R PROJECTION"
+        f_rcViewCell(0, 13, "  " + targetBasis, rcViewMuted, rcViewGraphite, rcViewSmall, text.align_left)
+        f_rcViewCell(0, 14, "  " + (rcReview ? "KNOWN " : "WINDOW ENDS ") + f_rcViewUtc(rcReview ? rcKnownAt : rcExpiresAt),
+             rcViewMuted, rcViewGraphite, rcViewSmall, text.align_left)
+    else
+        table.clear(rcViewTable, 0, 8, 5, 14)
+
+    if rcLast != "" and not rcReview
+        f_rcViewCell(0, 15, "  LAST S5 EVENT  " + f_rcViewClip(rcLast, rcViewMobile ? 23 : 40), rcViewMuted,
+             rcViewGraphite, rcViewSmall, text.align_left, false, rcLast)
+    else
+        table.clear(rcViewTable, 0, 15, 5, 15)
+    if rcViewAudit
+        f_rcViewCell(0, 16, "  FULL AUDIT", rcViewAmber, rcViewRaised, rcViewSmall, text.align_left, true)
+        f_rcViewCell(0, 17, "  KNOWN  " + f_rcViewUtc(rcKnownAt), rcViewMuted, rcViewPanel, rcViewSmall,
+             text.align_left)
+        f_rcViewCell(0, 18, "  REASON  " + f_rcViewClip(rcReason, 55), rcViewText, rcViewPanel, rcViewSmall,
+             text.align_left, false, rcReason)

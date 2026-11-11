@@ -1,0 +1,694 @@
+{
+  "status": "PARTIALLY_COMPLETE",
+  "baseline": {
+    "path": "unified/experimental/QIRVANTA_SNIPER_PREMIUM_V2.pine",
+    "sha256": "a920f15370b536f19def0205b21915e1a3d2e4ed4c76c80bd22f5e8aa6bf7c10",
+    "core_sha256": "0d12e94769569a5af6c70061ae1ea4ff5cf4b41b1d8e0867abf739c70710c1d6"
+  },
+  "release_sources_on_disk": {
+    "releases\\gold-pro-rc1\\QIRVANTA_GOLD_PRO_RC1.pine": "e51308df4be72827dfdf4dc875a3dbea5b679a6bb859fe179909ba24c85e975f",
+    "releases\\gold-pro-rc1\\QIRVANTA_GOLD_PRO_RC1_AUDIT.pine": "dfb154e407d32cbfc90ac957788b54cfa5b4e2034421b4b3ac26abf039d59278"
+  },
+  "frames": {
+    "M5": {
+      "exports": {
+        "indicator": {
+          "status": "PARSED",
+          "file": "indicator_M5.csv",
+          "csv_sha256": "3c99230dfbe3e237a9e9d53db8e61cfd5bee04e8dea8485ea4c2966636199e36",
+          "context_sha256": "7f28bb86d2af4ac46be54a2405b8a47dc9bac91d5749782018b2c143e765ab98",
+          "bars": 1124,
+          "chart_first_open_ms": 1793852400000,
+          "first_logged_bar_index": 0,
+          "first_logged_open_ms": 1793852400000,
+          "last_logged_bar_index": 1123,
+          "last_logged_close_ms": 1794376800000,
+          "starts_at_first_loaded_bar": true,
+          "end_marker_present": true,
+          "events": {
+            "core": {
+              "WATCH": 37,
+              "EXPIRED": 6,
+              "CANCELLED": 18,
+              "CONFIRMED": 10,
+              "REJECTED": 3
+            },
+            "ready": {
+              "SELL": 7,
+              "BUY": 3
+            },
+            "native": {},
+            "alerts": {
+              "SELL WATCH": 20,
+              "SELL EXPIRED": 2,
+              "SELL INVALIDATED": 10,
+              "SELL CONFIRMED": 7,
+              "SELL READY": 7,
+              "BUY WATCH": 17,
+              "BUY INVALIDATED": 8,
+              "BUY EXPIRED": 4,
+              "BUY CONFIRMED": 3,
+              "BUY READY": 3
+            }
+          }
+        },
+        "audit": {
+          "status": "PARSED",
+          "file": "audit_M5.csv",
+          "csv_sha256": "3f6b3c4c9c9e0239854fcbfa214c9a91e7f8e28f96ff249a11724ecd6a3351a8",
+          "context_sha256": "7f28bb86d2af4ac46be54a2405b8a47dc9bac91d5749782018b2c143e765ab98",
+          "bars": 1124,
+          "chart_first_open_ms": 1793852400000,
+          "first_logged_bar_index": 0,
+          "first_logged_open_ms": 1793852400000,
+          "last_logged_bar_index": 1123,
+          "last_logged_close_ms": 1794376800000,
+          "starts_at_first_loaded_bar": true,
+          "end_marker_present": true,
+          "events": {
+            "core": {
+              "WATCH": 37,
+              "EXPIRED": 6,
+              "CANCELLED": 18,
+              "CONFIRMED": 10,
+              "REJECTED": 3
+            },
+            "ready": {
+              "SELL": 7,
+              "BUY": 3
+            },
+            "native": {
+              "NATIVE_ADMITTED": 9,
+              "NATIVE_SUBMITTED": 9,
+              "NATIVE_ENTRY": 9,
+              "NATIVE_EXIT_0": 1,
+              "NATIVE_STOP_SCHEDULED": 5,
+              "NATIVE_EXIT_1": 1,
+              "NATIVE_EXIT_2": 1,
+              "NATIVE_CLOSED": 8,
+              "NATIVE_EXIT_3": 1,
+              "NATIVE_BLOCKED": 1,
+              "NATIVE_EXIT_4": 1,
+              "NATIVE_EXIT_5": 1,
+              "NATIVE_EXIT_6": 1,
+              "NATIVE_EXIT_7": 1,
+              "NATIVE_EXIT_8": 1,
+              "NATIVE_EXIT_9": 1,
+              "NATIVE_EXIT_10": 1,
+              "NATIVE_EXIT_11": 1,
+              "NATIVE_DIVERGENCE": 1,
+              "NATIVE_EXIT_12": 1,
+              "NATIVE_EXIT_13": 1,
+              "NATIVE_EXIT_14": 1,
+              "NATIVE_EXIT_15": 1,
+              "NATIVE_EXIT_16": 1,
+              "NATIVE_EXIT_17": 1,
+              "NATIVE_EXIT_18": 1,
+              "NATIVE_EXIT_19": 1,
+              "NATIVE_EXIT_20": 1,
+              "NATIVE_EXIT_21": 1,
+              "NATIVE_EXIT_22": 1,
+              "NATIVE_EXIT_23": 1
+            },
+            "alerts": {}
+          }
+        },
+        "reference": {
+          "status": "PARSED",
+          "file": "reference_M5.csv",
+          "csv_sha256": "3f6b3c4c9c9e0239854fcbfa214c9a91e7f8e28f96ff249a11724ecd6a3351a8",
+          "context_sha256": "7f28bb86d2af4ac46be54a2405b8a47dc9bac91d5749782018b2c143e765ab98",
+          "bars": 1124,
+          "chart_first_open_ms": 1793852400000,
+          "first_logged_bar_index": 0,
+          "first_logged_open_ms": 1793852400000,
+          "last_logged_bar_index": 1123,
+          "last_logged_close_ms": 1794376800000,
+          "starts_at_first_loaded_bar": true,
+          "end_marker_present": true,
+          "events": {
+            "core": {
+              "WATCH": 37,
+              "EXPIRED": 6,
+              "CANCELLED": 18,
+              "CONFIRMED": 10,
+              "REJECTED": 3
+            },
+            "ready": {
+              "SELL": 7,
+              "BUY": 3
+            },
+            "native": {
+              "NATIVE_ADMITTED": 9,
+              "NATIVE_SUBMITTED": 9,
+              "NATIVE_ENTRY": 9,
+              "NATIVE_EXIT_0": 1,
+              "NATIVE_STOP_SCHEDULED": 5,
+              "NATIVE_EXIT_1": 1,
+              "NATIVE_EXIT_2": 1,
+              "NATIVE_CLOSED": 8,
+              "NATIVE_EXIT_3": 1,
+              "NATIVE_BLOCKED": 1,
+              "NATIVE_EXIT_4": 1,
+              "NATIVE_EXIT_5": 1,
+              "NATIVE_EXIT_6": 1,
+              "NATIVE_EXIT_7": 1,
+              "NATIVE_EXIT_8": 1,
+              "NATIVE_EXIT_9": 1,
+              "NATIVE_EXIT_10": 1,
+              "NATIVE_EXIT_11": 1,
+              "NATIVE_DIVERGENCE": 1,
+              "NATIVE_EXIT_12": 1,
+              "NATIVE_EXIT_13": 1,
+              "NATIVE_EXIT_14": 1,
+              "NATIVE_EXIT_15": 1,
+              "NATIVE_EXIT_16": 1,
+              "NATIVE_EXIT_17": 1,
+              "NATIVE_EXIT_18": 1,
+              "NATIVE_EXIT_19": 1,
+              "NATIVE_EXIT_20": 1,
+              "NATIVE_EXIT_21": 1,
+              "NATIVE_EXIT_22": 1,
+              "NATIVE_EXIT_23": 1
+            },
+            "alerts": {}
+          }
+        }
+      },
+      "indicator_vs_audit": {
+        "status": "MATCH",
+        "coverage": "LOADED_HISTORY_TO_CUTOFF",
+        "rows": {
+          "core": 74,
+          "ready": 10
+        }
+      },
+      "indicator_vs_reference": {
+        "status": "MATCH",
+        "coverage": "LOADED_HISTORY_TO_CUTOFF",
+        "rows": {
+          "core": 74,
+          "ready": 10
+        }
+      },
+      "audit_vs_reference": {
+        "status": "MATCH",
+        "coverage": "LOADED_HISTORY_TO_CUTOFF",
+        "rows": {
+          "core": 74,
+          "ready": 10,
+          "native": 66
+        }
+      },
+      "alert_payloads": {
+        "status": "PAYLOADS_VERIFIED",
+        "rows": 81
+      },
+      "native_execution_examples": 9,
+      "strategy_report_metrics": "NOT_VALIDATED_BY_PINE_LOGS"
+    },
+    "M15": {
+      "exports": {
+        "indicator": {
+          "status": "PARSED",
+          "file": "indicator_M15.csv",
+          "csv_sha256": "d871a5a38aa51d56193b0165181e483daa1b32376b1c9ee2ce766528f8ea87fa",
+          "context_sha256": "3fa299086c28edfbb7219b38ed0834539108020f51478178e5cb69ddc4bcf8c8",
+          "bars": 1174,
+          "chart_first_open_ms": 1792751400000,
+          "first_logged_bar_index": 0,
+          "first_logged_open_ms": 1792751400000,
+          "last_logged_bar_index": 1173,
+          "last_logged_close_ms": 1794376800000,
+          "starts_at_first_loaded_bar": true,
+          "end_marker_present": true,
+          "events": {
+            "core": {
+              "WATCH": 27,
+              "CANCELLED": 19,
+              "REJECTED": 4,
+              "CONFIRMED": 3,
+              "EXPIRED": 1
+            },
+            "ready": {
+              "SELL": 2,
+              "BUY": 1
+            },
+            "native": {},
+            "alerts": {
+              "BUY WATCH": 14,
+              "BUY INVALIDATED": 9,
+              "SELL WATCH": 13,
+              "SELL INVALIDATED": 10,
+              "SELL CONFIRMED": 2,
+              "SELL READY": 2,
+              "BUY CONFIRMED": 1,
+              "BUY READY": 1,
+              "BUY EXPIRED": 1
+            }
+          }
+        },
+        "audit": {
+          "status": "PARSED",
+          "file": "audit_M15.csv",
+          "csv_sha256": "99d14cae1463e1634470036078338f99e7506993f7f35c20b11b9120cdc7ebb0",
+          "context_sha256": "3fa299086c28edfbb7219b38ed0834539108020f51478178e5cb69ddc4bcf8c8",
+          "bars": 1174,
+          "chart_first_open_ms": 1792751400000,
+          "first_logged_bar_index": 0,
+          "first_logged_open_ms": 1792751400000,
+          "last_logged_bar_index": 1173,
+          "last_logged_close_ms": 1794376800000,
+          "starts_at_first_loaded_bar": true,
+          "end_marker_present": true,
+          "events": {
+            "core": {
+              "WATCH": 27,
+              "CANCELLED": 19,
+              "REJECTED": 4,
+              "CONFIRMED": 3,
+              "EXPIRED": 1
+            },
+            "ready": {
+              "SELL": 2,
+              "BUY": 1
+            },
+            "native": {
+              "NATIVE_ADMITTED": 2,
+              "NATIVE_SUBMITTED": 2,
+              "NATIVE_ENTRY": 2,
+              "NATIVE_EXIT_0": 1,
+              "NATIVE_STOP_SCHEDULED": 1,
+              "NATIVE_EXIT_1": 1,
+              "NATIVE_BLOCKED": 1,
+              "NATIVE_EXIT_2": 1,
+              "NATIVE_CLOSED": 2,
+              "NATIVE_EXIT_3": 1,
+              "NATIVE_EXIT_4": 1,
+              "NATIVE_EXIT_5": 1
+            },
+            "alerts": {}
+          }
+        },
+        "reference": {
+          "status": "PARSED",
+          "file": "reference_M15.csv",
+          "csv_sha256": "99d14cae1463e1634470036078338f99e7506993f7f35c20b11b9120cdc7ebb0",
+          "context_sha256": "3fa299086c28edfbb7219b38ed0834539108020f51478178e5cb69ddc4bcf8c8",
+          "bars": 1174,
+          "chart_first_open_ms": 1792751400000,
+          "first_logged_bar_index": 0,
+          "first_logged_open_ms": 1792751400000,
+          "last_logged_bar_index": 1173,
+          "last_logged_close_ms": 1794376800000,
+          "starts_at_first_loaded_bar": true,
+          "end_marker_present": true,
+          "events": {
+            "core": {
+              "WATCH": 27,
+              "CANCELLED": 19,
+              "REJECTED": 4,
+              "CONFIRMED": 3,
+              "EXPIRED": 1
+            },
+            "ready": {
+              "SELL": 2,
+              "BUY": 1
+            },
+            "native": {
+              "NATIVE_ADMITTED": 2,
+              "NATIVE_SUBMITTED": 2,
+              "NATIVE_ENTRY": 2,
+              "NATIVE_EXIT_0": 1,
+              "NATIVE_STOP_SCHEDULED": 1,
+              "NATIVE_EXIT_1": 1,
+              "NATIVE_BLOCKED": 1,
+              "NATIVE_EXIT_2": 1,
+              "NATIVE_CLOSED": 2,
+              "NATIVE_EXIT_3": 1,
+              "NATIVE_EXIT_4": 1,
+              "NATIVE_EXIT_5": 1
+            },
+            "alerts": {}
+          }
+        }
+      },
+      "indicator_vs_audit": {
+        "status": "MATCH",
+        "coverage": "LOADED_HISTORY_TO_CUTOFF",
+        "rows": {
+          "core": 54,
+          "ready": 3
+        }
+      },
+      "indicator_vs_reference": {
+        "status": "MATCH",
+        "coverage": "LOADED_HISTORY_TO_CUTOFF",
+        "rows": {
+          "core": 54,
+          "ready": 3
+        }
+      },
+      "audit_vs_reference": {
+        "status": "MATCH",
+        "coverage": "LOADED_HISTORY_TO_CUTOFF",
+        "rows": {
+          "core": 54,
+          "ready": 3,
+          "native": 16
+        }
+      },
+      "alert_payloads": {
+        "status": "PAYLOADS_VERIFIED",
+        "rows": 53
+      },
+      "native_execution_examples": 2,
+      "strategy_report_metrics": "NOT_VALIDATED_BY_PINE_LOGS"
+    },
+    "M30": {
+      "exports": {
+        "indicator": {
+          "status": "PARSED",
+          "file": "indicator_M30.csv",
+          "csv_sha256": "0239251139592ea06ee83a55a0c8b6a6e653c7bb23e3ef646d79039ebf715864",
+          "context_sha256": "bccd2f336e7c875d85f8114010659f3e9e84cd882b034923ad2b8d1efdabdbd6",
+          "bars": 1187,
+          "chart_first_open_ms": 1791279000000,
+          "first_logged_bar_index": 0,
+          "first_logged_open_ms": 1791279000000,
+          "last_logged_bar_index": 1186,
+          "last_logged_close_ms": 1794376800000,
+          "starts_at_first_loaded_bar": true,
+          "end_marker_present": true,
+          "events": {
+            "core": {},
+            "ready": {},
+            "native": {},
+            "alerts": {}
+          }
+        },
+        "audit": {
+          "status": "PARSED",
+          "file": "audit_M30.csv",
+          "csv_sha256": "0239251139592ea06ee83a55a0c8b6a6e653c7bb23e3ef646d79039ebf715864",
+          "context_sha256": "bccd2f336e7c875d85f8114010659f3e9e84cd882b034923ad2b8d1efdabdbd6",
+          "bars": 1187,
+          "chart_first_open_ms": 1791279000000,
+          "first_logged_bar_index": 0,
+          "first_logged_open_ms": 1791279000000,
+          "last_logged_bar_index": 1186,
+          "last_logged_close_ms": 1794376800000,
+          "starts_at_first_loaded_bar": true,
+          "end_marker_present": true,
+          "events": {
+            "core": {},
+            "ready": {},
+            "native": {},
+            "alerts": {}
+          }
+        },
+        "reference": {
+          "status": "PARSED",
+          "file": "reference_M30.csv",
+          "csv_sha256": "0239251139592ea06ee83a55a0c8b6a6e653c7bb23e3ef646d79039ebf715864",
+          "context_sha256": "bccd2f336e7c875d85f8114010659f3e9e84cd882b034923ad2b8d1efdabdbd6",
+          "bars": 1187,
+          "chart_first_open_ms": 1791279000000,
+          "first_logged_bar_index": 0,
+          "first_logged_open_ms": 1791279000000,
+          "last_logged_bar_index": 1186,
+          "last_logged_close_ms": 1794376800000,
+          "starts_at_first_loaded_bar": true,
+          "end_marker_present": true,
+          "events": {
+            "core": {},
+            "ready": {},
+            "native": {},
+            "alerts": {}
+          }
+        }
+      },
+      "indicator_vs_audit": {
+        "status": "MATCH",
+        "coverage": "LOADED_HISTORY_TO_CUTOFF",
+        "rows": {
+          "core": 0,
+          "ready": 0
+        }
+      },
+      "indicator_vs_reference": {
+        "status": "MATCH",
+        "coverage": "LOADED_HISTORY_TO_CUTOFF",
+        "rows": {
+          "core": 0,
+          "ready": 0
+        }
+      },
+      "audit_vs_reference": {
+        "status": "MATCH",
+        "coverage": "LOADED_HISTORY_TO_CUTOFF",
+        "rows": {
+          "core": 0,
+          "ready": 0,
+          "native": 0
+        }
+      },
+      "alert_payloads": {
+        "status": "NO_EXAMPLES"
+      },
+      "native_execution_examples": 0,
+      "strategy_report_metrics": "NOT_VALIDATED_BY_PINE_LOGS"
+    }
+  },
+  "scope": "Supplied TradingView exports only. No compilation, alert delivery or Strategy Report metric is inferred.",
+  "visual_recheck": {
+    "M5": {
+      "status": "MATCH",
+      "rows": {
+        "context": 1121,
+        "core": 74,
+        "ready": 10,
+        "alerts": 81
+      },
+      "strict": {
+        "file": "indicator_M5.csv",
+        "csv_sha256": "3c99230dfbe3e237a9e9d53db8e61cfd5bee04e8dea8485ea4c2966636199e36",
+        "context_sha256": "7f28bb86d2af4ac46be54a2405b8a47dc9bac91d5749782018b2c143e765ab98",
+        "bars": 1124,
+        "chart_first_open_ms": 1793852400000,
+        "first_logged_bar_index": 0,
+        "first_logged_open_ms": 1793852400000,
+        "last_logged_bar_index": 1123,
+        "last_logged_close_ms": 1794376800000,
+        "starts_at_first_loaded_bar": true,
+        "end_marker_present": true,
+        "events": {
+          "core": {
+            "WATCH": 37,
+            "EXPIRED": 6,
+            "CANCELLED": 18,
+            "CONFIRMED": 10,
+            "REJECTED": 3
+          },
+          "ready": {
+            "SELL": 7,
+            "BUY": 3
+          },
+          "native": {},
+          "alerts": {
+            "SELL WATCH": 20,
+            "SELL EXPIRED": 2,
+            "SELL INVALIDATED": 10,
+            "SELL CONFIRMED": 7,
+            "SELL READY": 7,
+            "BUY WATCH": 17,
+            "BUY INVALIDATED": 8,
+            "BUY EXPIRED": 4,
+            "BUY CONFIRMED": 3,
+            "BUY READY": 3
+          }
+        }
+      },
+      "final": {
+        "file": "indicator_M5.csv",
+        "csv_sha256": "00e60bad90ebaae608282c8283650bb822d026af5c304c9b47afd0df36bea514",
+        "context_sha256": "cdd459fe3e001299243dfbe461f15697f6bae53111b36a6dfc9f2730cfbb7dbb",
+        "bars": 1121,
+        "chart_first_open_ms": 1793853300000,
+        "first_logged_bar_index": 0,
+        "first_logged_open_ms": 1793853300000,
+        "last_logged_bar_index": 1120,
+        "last_logged_close_ms": 1794376800000,
+        "starts_at_first_loaded_bar": true,
+        "end_marker_present": true,
+        "events": {
+          "core": {
+            "WATCH": 37,
+            "EXPIRED": 6,
+            "CANCELLED": 18,
+            "CONFIRMED": 10,
+            "REJECTED": 3
+          },
+          "ready": {
+            "SELL": 7,
+            "BUY": 3
+          },
+          "native": {},
+          "alerts": {
+            "SELL WATCH": 20,
+            "SELL EXPIRED": 2,
+            "SELL INVALIDATED": 10,
+            "SELL CONFIRMED": 7,
+            "SELL READY": 7,
+            "BUY WATCH": 17,
+            "BUY INVALIDATED": 8,
+            "BUY EXPIRED": 4,
+            "BUY CONFIRMED": 3,
+            "BUY READY": 3
+          }
+        }
+      },
+      "overlap_first_open_ms": 1793853300000,
+      "overlap_last_close_ms": 1794376800000,
+      "final_minus_strict_bar_index": -3
+    },
+    "M15": {
+      "status": "MATCH",
+      "rows": {
+        "context": 1173,
+        "core": 54,
+        "ready": 3,
+        "alerts": 53
+      },
+      "strict": {
+        "file": "indicator_M15.csv",
+        "csv_sha256": "d871a5a38aa51d56193b0165181e483daa1b32376b1c9ee2ce766528f8ea87fa",
+        "context_sha256": "3fa299086c28edfbb7219b38ed0834539108020f51478178e5cb69ddc4bcf8c8",
+        "bars": 1174,
+        "chart_first_open_ms": 1792751400000,
+        "first_logged_bar_index": 0,
+        "first_logged_open_ms": 1792751400000,
+        "last_logged_bar_index": 1173,
+        "last_logged_close_ms": 1794376800000,
+        "starts_at_first_loaded_bar": true,
+        "end_marker_present": true,
+        "events": {
+          "core": {
+            "WATCH": 27,
+            "CANCELLED": 19,
+            "REJECTED": 4,
+            "CONFIRMED": 3,
+            "EXPIRED": 1
+          },
+          "ready": {
+            "SELL": 2,
+            "BUY": 1
+          },
+          "native": {},
+          "alerts": {
+            "BUY WATCH": 14,
+            "BUY INVALIDATED": 9,
+            "SELL WATCH": 13,
+            "SELL INVALIDATED": 10,
+            "SELL CONFIRMED": 2,
+            "SELL READY": 2,
+            "BUY CONFIRMED": 1,
+            "BUY READY": 1,
+            "BUY EXPIRED": 1
+          }
+        }
+      },
+      "final": {
+        "file": "indicator_M15.csv",
+        "csv_sha256": "9a54908cbad59e919f6a4d273378ff0f0e5141429f16d2a2def186dcbddf3193",
+        "context_sha256": "9fec2b932513401fa6fc66038208e12029ad46b53f9a02831ea1a5c25043b5af",
+        "bars": 1173,
+        "chart_first_open_ms": 1792752300000,
+        "first_logged_bar_index": 0,
+        "first_logged_open_ms": 1792752300000,
+        "last_logged_bar_index": 1172,
+        "last_logged_close_ms": 1794376800000,
+        "starts_at_first_loaded_bar": true,
+        "end_marker_present": true,
+        "events": {
+          "core": {
+            "WATCH": 27,
+            "CANCELLED": 19,
+            "REJECTED": 4,
+            "CONFIRMED": 3,
+            "EXPIRED": 1
+          },
+          "ready": {
+            "SELL": 2,
+            "BUY": 1
+          },
+          "native": {},
+          "alerts": {
+            "BUY WATCH": 14,
+            "BUY INVALIDATED": 9,
+            "SELL WATCH": 13,
+            "SELL INVALIDATED": 10,
+            "SELL CONFIRMED": 2,
+            "SELL READY": 2,
+            "BUY CONFIRMED": 1,
+            "BUY READY": 1,
+            "BUY EXPIRED": 1
+          }
+        }
+      },
+      "overlap_first_open_ms": 1792752300000,
+      "overlap_last_close_ms": 1794376800000,
+      "final_minus_strict_bar_index": -1
+    },
+    "M30": {
+      "status": "MATCH",
+      "rows": {
+        "context": 1186,
+        "core": 0,
+        "ready": 0,
+        "alerts": 0
+      },
+      "strict": {
+        "file": "indicator_M30.csv",
+        "csv_sha256": "0239251139592ea06ee83a55a0c8b6a6e653c7bb23e3ef646d79039ebf715864",
+        "context_sha256": "bccd2f336e7c875d85f8114010659f3e9e84cd882b034923ad2b8d1efdabdbd6",
+        "bars": 1187,
+        "chart_first_open_ms": 1791279000000,
+        "first_logged_bar_index": 0,
+        "first_logged_open_ms": 1791279000000,
+        "last_logged_bar_index": 1186,
+        "last_logged_close_ms": 1794376800000,
+        "starts_at_first_loaded_bar": true,
+        "end_marker_present": true,
+        "events": {
+          "core": {},
+          "ready": {},
+          "native": {},
+          "alerts": {}
+        }
+      },
+      "final": {
+        "file": "indicator_M30.csv",
+        "csv_sha256": "6fa054ff9dd7933cb06575d5c210c3a69a8f112b4b88dce47b3e08053513cfb5",
+        "context_sha256": "2c24b37bf2a7edc1512d6f397bf2220d24ad1c5b49eea0af5eed9f0f1fc8a911",
+        "bars": 1186,
+        "chart_first_open_ms": 1791280800000,
+        "first_logged_bar_index": 0,
+        "first_logged_open_ms": 1791280800000,
+        "last_logged_bar_index": 1185,
+        "last_logged_close_ms": 1794376800000,
+        "starts_at_first_loaded_bar": true,
+        "end_marker_present": true,
+        "events": {
+          "core": {},
+          "ready": {},
+          "native": {},
+          "alerts": {}
+        }
+      },
+      "overlap_first_open_ms": 1791280800000,
+      "overlap_last_close_ms": 1794376800000,
+      "final_minus_strict_bar_index": -1
+    }
+  }
+}

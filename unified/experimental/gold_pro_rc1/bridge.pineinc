@@ -1,0 +1,85 @@
+// Read-only bridge from the pinned engine. READY means a valid plan at decision time.
+const int RC_NONE = 0
+const int RC_WATCH = 1
+const int RC_CONFIRMED = 2
+const int RC_READY = 3
+const int RC_REJECTED = 4
+const int RC_INVALIDATED = 5
+const int RC_EXPIRED = 6
+bool rcSupported = syminfo.tickerid == "OANDA:XAUUSD" and tvEntryFrame
+bool rcCanDrawBar = rcSupported and processBar
+bool rcQa = input.bool(false, "Export RC1 QA journal", group="NATIVE QA", display=display.none)
+int rcQaStart = input.time(timestamp("01 Oct 2026 00:00 +0000"), "QA start UTC", group="NATIVE QA", display=display.none)
+int rcQaEnd = input.time(timestamp("11 Nov 2026 06:00 +0000"), "QA end UTC", group="NATIVE QA", display=display.none)
+bool rcQaBar = rcQa and rcCanDrawBar and time_close >= rcQaStart and time_close <= rcQaEnd
+var int rcFirstOpen = time
+var int rcQaLastIndex = na
+var int rcQaLastClose = na
+var bool rcQaEnded = false
+
+f_rcSide(int side) => side == 1 ? "BUY" : side == -1 ? "SELL" : ""
+f_rcStage(string kind) =>
+    switch kind
+        "WATCH" => RC_WATCH
+        "CONFIRMED" => RC_CONFIRMED
+        "REJECTED" => RC_REJECTED
+        "CANCELLED" => RC_INVALIDATED
+        "EXPIRED" => RC_EXPIRED
+        => RC_NONE
+f_rcStageText(int stage) =>
+    switch stage
+        RC_WATCH => "WATCH"
+        RC_CONFIRMED => "CONFIRMED"
+        RC_READY => "READY"
+        RC_REJECTED => "RISK REJECTED"
+        RC_INVALIDATED => "INVALIDATED"
+        RC_EXPIRED => "EXPIRED"
+        => "NO SETUP"
+f_rcCore(Event e) => e.strategyKey == "S5" and e.book == "CORE" and f_rcStage(e.kind) != RC_NONE
+f_rcPayload(Event e, string state, Plan p, string reason) =>
+    string utc = str.format_time(e.knownTime, "yyyy-MM-dd'T'HH:mm:ss'Z'", "UTC")
+    string ids = '"event_id":' + f_q(e.id + "|RC1|" + state) + ',"source_id":' + f_q(e.id)
+    string context = ',"model":"S5","symbol":' + f_q(syminfo.tickerid) + ',"timeframe":' + f_q(timeframe.period)
+    string decision = ',"direction":' + f_q(f_rcSide(e.side)) + ',"state":' + f_q(state) +
+         ',"confirmed_ms":' + f_int(e.knownTime) + ',"confirmation_utc":' + f_q(utc)
+    string levels = ',"entry":' + f_num(na(p) ? na : p.reference) + ',"sl":' + f_num(na(p) ? na : p.initialStop) +
+         ',"tp1":' + f_num(na(p) ? na : p.tp1) + ',"tp2":' + f_num(na(p) ? na : p.tp2) + ',"tp3":' + f_num(na(p) ? na : p.tp3)
+    "{" + ids + context + decision + levels + ',"reason":' + f_q(reason) +
+         ',"provisional":' + (state == "WATCH" ? "true" : "false") + "}"
+
+Plan rcSelected = rcCanDrawBar ? f_pick(candidates, 0, false) : na
+Plan rcBarPlan = na
+if not na(rcSelected)
+    if rcSelected.strategyKey == "S5" and f_validPlan(rcSelected) and f_tvQtyOnGrid(1.0)
+        rcBarPlan := rcSelected
+Event rcPrimaryEvent = na
+int rcEventRank = 0
+string rcReadyPayload = ""
+const string RC_READY_REASON = "Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа."
+
+if rcQaBar
+    rcQaLastIndex := bar_index
+    rcQaLastClose := time_close
+    string ctx = "RC1_CTX|1|" + syminfo.tickerid + "|" + timeframe.period + "|" + f_int(rcFirstOpen) +
+         "|" + f_int(bar_index) + "|" + f_int(time) + "|" + f_int(time_close)
+    log.info(ctx + "|" + f_num(open) + "|" + f_num(high) + "|" + f_num(low) + "|" + f_num(close) +
+         "|" + f_int(uiH1ClosedAt) + "|" + f_int(uiH4ClosedAt))
+else if rcQa and rcCanDrawBar and not rcQaEnded and not na(rcQaLastIndex) and time_close > rcQaEnd
+    rcQaEnded := true
+    log.info("RC1_END|1|" + syminfo.tickerid + "|" + timeframe.period + "|" + f_int(rcQaLastIndex) + "|" + f_int(rcQaLastClose))
+
+if rcCanDrawBar
+    for e in events
+        if f_rcCore(e)
+            int stage = f_rcStage(e.kind)
+            bool ready = stage == RC_CONFIRMED and not na(rcBarPlan) and e.planId == rcBarPlan.id
+            int rank = ready ? 4 : stage == RC_CONFIRMED ? 3 : stage == RC_WATCH ? 1 : 2
+            if rank > rcEventRank
+                rcEventRank := rank
+                rcPrimaryEvent := e
+            if rcQaBar
+                log.info("RC1_CORE|" + f_json(e))
+            if ready
+                rcReadyPayload := f_rcPayload(e, "READY", rcBarPlan, RC_READY_REASON)
+                if rcQaBar
+                    log.info("RC1_READY|" + rcReadyPayload)
