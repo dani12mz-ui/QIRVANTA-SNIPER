@@ -1,0 +1,163 @@
+// Presentation. Directional observations do not supply trade permission.
+f_dvPresent(DvSignal signal) =>
+    not na(signal) and signal.rank > 0
+
+f_dvChoose(DvSignal preferred, DvSignal other) =>
+    if not f_dvPresent(preferred)
+        other
+    else if f_dvPresent(other) and (other.rank > preferred.rank or (other.rank == preferred.rank and other.known > preferred.known))
+        other
+    else
+        preferred
+
+f_dvState(DvSignal signal) =>
+    not f_dvPresent(signal) ? "NONE" :
+         (signal.side > 0 ? "BUY " : "SELL ") + (signal.rank == 2 ? "BREAKOUT CONFIRMED" : "WATCH")
+
+f_dvChooseOpportunity(DvView view, int side) =>
+    DvSignal shadow = side > 0 ? view.shadowBuy : view.shadowSell
+    DvSignal s5 = side > 0 ? view.s5Buy : view.s5Sell
+    // Keep the confirmed shadow direction visible. S5 READY has its own card.
+    DvSignal primary = f_dvPresent(shadow) and shadow.rank == 2 ? shadow : f_dvChoose(shadow, s5)
+    f_dvPresent(view.early) and view.early.side == side ? f_dvChoose(primary, view.early) : primary
+
+f_dvOpportunityState(DvSignal buy, DvSignal sell) =>
+    bool hasBuy = f_dvPresent(buy)
+    bool hasSell = f_dvPresent(sell)
+    hasBuy and hasSell ? "CONFLICT" : hasBuy ? f_dvState(buy) : f_dvState(sell)
+
+DvSignal dvOpportunityBuy = f_dvChooseOpportunity(dvView, 1)
+DvSignal dvOpportunitySell = f_dvChooseOpportunity(dvView, -1)
+bool dvHasBuy = f_dvPresent(dvOpportunityBuy)
+bool dvHasSell = f_dvPresent(dvOpportunitySell)
+bool dvConflict = dvHasBuy and dvHasSell
+string dvOpportunity = f_dvOpportunityState(dvOpportunityBuy, dvOpportunitySell)
+int dvOpportunityAsOfMs = dvView.asOf
+
+f_dvAge(int known) =>
+    if na(known) or na(dvOpportunityAsOfMs)
+        "—"
+    else
+        int minutes = int(math.max(0, (dvOpportunityAsOfMs - known) / 60000))
+        minutes < 60 ? str.tostring(minutes) + "m" : str.tostring(int(minutes / 60)) + "h " + str.tostring(minutes % 60) + "m"
+
+f_dvClockAge(int known) =>
+    na(known) ? "—" : f_rcViewClock(known) + " · " + f_dvAge(known)
+
+f_dvCountertrend(DvSignal signal) =>
+    f_dvPresent(signal) and signal.source == "S5" and signal.rank == 1 and signal.side * dvView.bias == -1
+
+f_dvReasonLabel(string code) =>
+    switch code
+        "APPROACHING_LEVEL" => "Приближава нивото"
+        "FIRST_OBSERVED_ON_BREAK" => "Наблюдение при пробив"
+        "CONFIRMED_CLOSE_CROSS" => "Затваряне отвъд нивото"
+        "RETEST_CONFIRMED" => "Потвърден ретест"
+        "CONFIRMED_BREAK_LEVEL" => "Чака ретест на пробива"
+        "DIAGNOSTIC_ONLY" => "Изследователски кандидат"
+        "INSUFFICIENT_NET_ROOM" => "Недостатъчно нетно място"
+        "STOP_TOO_SMALL" => "Прекалено тесен стоп"
+        "STOP_TOO_WIDE" => "Прекалено широк стоп"
+        "LATE_EXTENSION" => "Късно разтягане"
+        "COST_TOO_HIGH" => "Високи разходи"
+        "CASH_RISK_LIMIT" => "Лимит на паричния риск"
+        "OVERLAP_SAME_BAR" => "Друг кандидат в същия бар"
+        => code == "" ? "—" : code
+
+f_dvObservationReason(string reason) =>
+    string rejection = " · RESEARCH REJECTED: "
+    if reason == ""
+        "—"
+    else if str.contains(reason, rejection)
+        f_dvReasonLabel(array.get(str.split(reason, rejection), 1))
+    else
+        f_dvReasonLabel(array.get(str.split(reason, " · "), 0))
+
+f_dvSourceLine(DvSignal signal) =>
+    string source = str.startswith(signal.source, "DT ") ? "DT SHADOW" :
+         signal.source == "RC2 EARLY WATCH" ? "RC2 EARLY" : signal.source
+    source + " · " + f_dvClockAge(signal.known)
+
+f_dvSignalTip(DvSignal signal) =>
+    not f_dvPresent(signal) ? "" : "\n\n" + f_dvState(signal) + " · " + signal.source +
+         (signal.research ? " · RESEARCH" : "") + (f_dvCountertrend(signal) ? " · COUNTERTREND" : "") +
+         "\nИзвестно при " + f_rcViewUtc(signal.known) + " · възраст " + f_dvAge(signal.known) +
+         "\nВалидно до " + f_rcViewUtc(signal.expiry) + "\n" + signal.reason
+
+f_dvConflictLines(DvSignal sell, DvSignal buy) =>
+    string sellState = f_dvState(sell)
+    string buyState = f_dvState(buy)
+    if rcViewMobile
+        sellState := sell.rank == 2 ? "SELL BREAKOUT ✓" : sellState
+        buyState := buy.rank == 2 ? "BUY BREAKOUT ✓" : buyState
+    string sellDetails = sellState + "\n" + f_dvSourceLine(sell)
+    string buyDetails = buyState + "\n" + f_dvSourceLine(buy)
+    if f_dvCountertrend(sell)
+        sellDetails += "\nCOUNTERTREND"
+    if f_dvCountertrend(buy)
+        buyDetails += "\nCOUNTERTREND"
+    if sell.research or buy.research
+        sellDetails += sell.research ? "\nSELL · RESEARCH" : ""
+        buyDetails += buy.research ? "\nBUY · RESEARCH" : ""
+    sellDetails + "\n" + buyDetails
+
+f_dvContextLine(string chartName) =>
+    string viewMode = rcReview ? "HISTORICAL REVIEW" : rcPreset + (dvPermissionFresh ? " · LIVE" : " · LAST CLOSE")
+    "  " + chartName + "  ·  " + viewMode
+
+f_dvDashboard() =>
+    DvSignal lead = dvHasSell ? dvOpportunitySell : dvOpportunityBuy
+    bool hasDirection = dvHasBuy or dvHasSell
+    bool confirmedSell = dvHasSell and dvOpportunitySell.rank == 2
+    bool confirmedBuy = dvHasBuy and dvOpportunityBuy.rank == 2
+    string detected = confirmedSell and confirmedBuy ? "BUY + SELL DETECTED" :
+         confirmedSell ? "SELL DETECTED" : confirmedBuy ? "BUY DETECTED" : ""
+    int reasonLimit = rcViewMobile ? 20 : 28
+    string directionFace = dvConflict ? "CONFLICT" + (detected == "" ? "" : "\n" + detected) :
+         not hasDirection ? "NONE" : lead.rank == 2 ? (lead.side > 0 ? "BUY" : "SELL") + " BREAKOUT\nCONFIRMED" : dvOpportunity
+    string directionMeta = dtShow ? "S5 · DT SHADOW" : "S5"
+    if dvConflict
+        directionMeta := f_dvConflictLines(dvOpportunitySell, dvOpportunityBuy)
+    else if hasDirection
+        directionMeta := f_dvSourceLine(lead)
+        if detected != ""
+            directionMeta := detected + (lead.research ? " · RESEARCH" : "") + "\n" + directionMeta
+        else if f_dvCountertrend(lead)
+            directionMeta += "\nCOUNTERTREND"
+    string directionReason = "Няма активно наблюдение"
+    if dvConflict
+        directionReason := "SELL · " + f_rcViewClip(f_dvObservationReason(dvOpportunitySell.reason), reasonLimit - 7) +
+             "\nBUY · " + f_rcViewClip(f_dvObservationReason(dvOpportunityBuy.reason), reasonLimit - 6)
+    else if hasDirection
+        directionReason := f_rcViewClip(f_dvObservationReason(lead.reason), reasonLimit)
+    string directionTip = dvOpportunity + "\nКъм " + f_rcViewUtc(dvOpportunityAsOfMs) +
+         f_dvSignalTip(dvView.shadowSell) + f_dvSignalTip(dvView.s5Sell) +
+         f_dvSignalTip(dvView.shadowBuy) + f_dvSignalTip(dvView.s5Buy) + f_dvSignalTip(dvView.early)
+    color directionInk = dvConflict ? rcViewGold : dvHasSell ? rcViewSell : dvHasBuy ? rcViewBuy : rcViewMuted
+    color directionPaper = dvConflict ? #403523 : dvHasSell ? #41262F : dvHasBuy ? #153A34 : rcViewPanel
+
+    bool permissionReady = dvPermission == "BUY READY" or dvPermission == "SELL READY"
+    bool permissionBlocked = dvPermission == "RISK REJECTED" or dvPermission == "POSITION OCCUPIED"
+    color permissionInk = permissionReady ? (dvPermissionSide > 0 ? rcViewBuy : rcViewSell) :
+         permissionBlocked ? rcViewGold : rcViewCyan
+    color permissionPaper = permissionReady ? (dvPermissionSide > 0 ? #153A34 : #41262F) :
+         permissionBlocked ? #403523 : #183647
+    string permissionFace = rcViewMobile and dvPermission == "POSITION OCCUPIED" ? "POSITION\nOCCUPIED" : dvPermission
+    string permissionMeta = dvPermissionSource + "\n" + f_rcViewClock(dvPermissionKnownMs) + " · " + dvPermissionFreshness
+    string permissionTip = dvPermission + " · " + dvPermissionSource +
+         "\nИзвестно при " + f_rcViewUtc(dvPermissionKnownMs) + " · " + dvPermissionFreshness + "\n" + dvPermissionReason
+
+    f_rcViewCell(0, 2, "DIRECTIONAL OPPORTUNITY", rcViewText, directionPaper, rcViewSmall, text.align_center, true, directionTip)
+    f_rcViewCell(3, 2, "TRADE PERMISSION", rcViewText, permissionPaper, rcViewSmall, text.align_center, true, permissionTip)
+    f_rcViewCell(0, 3, directionFace, directionInk, directionPaper, rcViewBody + 1, text.align_center, true, directionTip)
+    f_rcViewCell(3, 3, permissionFace, permissionInk, permissionPaper, rcViewBody + 1, text.align_center, true, permissionTip)
+    f_rcViewCell(0, 4, directionMeta, rcViewText, directionPaper, rcViewSmall, text.align_center, false, directionTip)
+    f_rcViewCell(3, 4, permissionMeta, rcViewText, permissionPaper, rcViewSmall, text.align_center, false, permissionTip)
+    f_rcViewCell(0, 5, directionReason, directionInk, directionPaper, rcViewSmall, text.align_center, false, directionTip)
+    f_rcViewCell(3, 5, f_rcViewClip(dvPermissionReason, reasonLimit), permissionInk, permissionPaper,
+         rcViewSmall, text.align_center, false, permissionTip)
+
+f_dvBiasRow() =>
+    color ink = rcBias > 0 ? rcViewBuy : rcBias < 0 ? rcViewSell : rcViewMuted
+    f_rcViewCell(0, 6, "MARKET BIAS  ·  " + rcMarket, ink, rcViewRaised, rcViewSmall, text.align_center, true,
+         "Контекст от затворени H1/H4 барове")

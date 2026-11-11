@@ -1,0 +1,60 @@
+// Presentation reads the existing S5 decision and the existing RAW Paper ledger.
+type DvPermission
+    string state = "WAIT"
+    string source = "S5"
+    int known = na
+    int side = 0
+    string reason = ""
+    bool planVisible = false
+
+f_dvReadPermission(int stage, int side, int known, int checked, string reason, Plan plan,
+     int paperPhase, string paperPlanId, bool capacity) =>
+    bool ready = stage == RC_READY and not na(plan)
+    if stage == RC_REJECTED
+        DvPermission.new("RISK REJECTED", reason == RC2_FILTER_REASON ? "RC2 FILTER" : "S5", nz(known, checked), side, reason, false)
+    else if paperPhase == 2 or capacity
+        string held = "Виртуалният RAW Paper слот е зает."
+        string detail = ready ? "S5 READY при затварянето. " + held : held
+        DvPermission.new("POSITION OCCUPIED", "S5 RAW · PAPER", checked, 0,
+             detail + (paperPlanId == "" ? "" : " План " + paperPlanId), false)
+    else if ready
+        DvPermission.new(f_rcSide(side) + " READY", "S5 · RC2", nz(known, checked), side, reason, true)
+    else
+        DvPermission.new("WAIT", "S5 · RC2", checked, 0, reason, false)
+
+var DvPermission dvClosedPermission = DvPermission.new()
+var DvPermission dvHistoricalPermission = DvPermission.new()
+var int dvPaperPhase = 0
+var string dvPaperPlanId = ""
+var bool dvPaperCapacity = false
+if rcCanDrawBar
+    Paper paper = array.get(books, 3)
+    dvPaperPhase := paper.phase
+    dvPaperPlanId := paper.phase == 0 or na(paper.p) ? "" : paper.p.id
+    dvPaperCapacity := false
+    if not na(rcCurrent.plan)
+        for e in events
+            if e.book == "RAW" and e.kind == "CAPACITY" and e.knownTime == time_close and e.planId == rcCurrent.plan.id
+                dvPaperCapacity := true
+    dvClosedPermission := f_dvReadPermission(rcCurrent.stage, rcCurrent.direction, rcCurrent.known,
+         rcCurrent.closed, rcCurrent.reason, rcCurrent.plan, dvPaperPhase, dvPaperPlanId, dvPaperCapacity)
+    if rcReview and time_close == rcReviewAt
+        dvHistoricalPermission := dvClosedPermission
+
+bool dvPermissionFresh = not na(rcView.closed) and
+     (rcReview or (time <= rcView.closed and timenow < rcView.closed + tfSeconds * 1000))
+DvPermission dvVisiblePermission = rcReview and rcReviewFound ? dvHistoricalPermission :
+     f_dvReadPermission(rcStage, rcDirection, rcKnownAt, rcView.closed, rcReason, rcShownPlan,
+          dvPermissionFresh ? dvPaperPhase : 0, dvPermissionFresh ? dvPaperPlanId : "",
+          dvPermissionFresh and dvPaperCapacity)
+string dvPermission = dvVisiblePermission.state
+string dvPermissionSource = dvVisiblePermission.source
+int dvPermissionKnownMs = dvVisiblePermission.known
+string dvPermissionReason = dvVisiblePermission.reason
+int dvPermissionSide = dvVisiblePermission.side
+bool dvPlanVisible = dvVisiblePermission.planVisible
+int dvPermissionClock = rcReview ? rcView.closed : timenow
+int dvPermissionAgeMinutes = na(dvPermissionKnownMs) ? na :
+     int(math.max(0, dvPermissionClock - dvPermissionKnownMs) / 60000)
+string dvPermissionFreshness = na(dvPermissionAgeMinutes) ? "—" :
+     (rcReview ? "AT CLOSE" : dvPermissionFresh ? "FRESH" : "STALE") + " · " + str.tostring(dvPermissionAgeMinutes) + "m"

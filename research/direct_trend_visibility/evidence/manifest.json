@@ -1,0 +1,153 @@
+{
+  "base_commit": "bcda58bedf20d6dd626e49849b48c613746167f1",
+  "tested_utc": "2026-11-11",
+  "source": "TradingView Pine Logs and original built-in browser screenshots",
+  "instrument": "OANDA:XAUUSD",
+  "chart_type": "standard candles",
+  "layout_saved": false,
+  "alert_created": false,
+  "live_orders": false,
+  "native_compile": {
+    "sha256": "91fba94db0d71d2dd25fcaf72aedf34a7d7cb955d4362996b086ca07c05163d0",
+    "result": "Compiled; Added to chart",
+    "screenshot": "screenshots/native-compile.jpg"
+  },
+  "byte_identical": {
+    "canonical_core_sha256": "257253ac09126c303c4f37f5d01b1d61fa0fe4f71be62aa6d2752ddb803ae656",
+    "legacy_alerts_sha256": "f2cda1e2b23491e3c4f10f5e88620f5438ab95922ef45a639105ce2043ea0027",
+    "fixed_sl_audit_sha256": "4ba04321a9ef5456e8fc61aa2b5b3ab6c44398a62b18e31b3041d9dda530d42b",
+    "forward_seal_sha256": "09181ecaf9e30cde62c5203b524cb458d808a07c24029e961e32bb25c474afd1"
+  },
+  "native_csv_sha256": {
+    "baseline-M15.csv": "14f76b76eff97c05fd8d3edbe28d77a8929723872d85addf9ba9355a315a70d9",
+    "baseline-M30.csv": "4d062b4ade687b4ee3cd534d54780ad924762e2df30c0ed3b866f8b53f763f14",
+    "baseline-M5.csv": "458b4b16366d0cb398250109e603c79519f9d6d65a75551975e4b06e5692ae38",
+    "visibility-M15.csv": "58575cb1d8e77d900d90b91d19eb1cc7e23cef574dc15f66aad6508e6831ee94",
+    "visibility-M30.csv": "89a6ba3999df9066ba62d8e8343ad10342bff0fb512267a7f7d2068eb5ec87e3",
+    "visibility-M5.csv": "b7e3132b06c01f455f3613e4899cce97ea6d426680fa1f901dce5a4485eb9a22",
+    "visibility-review-M15.csv": "6ee28a8bea34ce6af54a7ab2e1a527f7747ac1ea3189f1ffce9863cd19375da2"
+  },
+  "screenshots": {
+    "screenshots/live-M15-premium.jpg": {
+      "sha256": "c22054f2ad694dba7de67a8db0c95b78907b3b01583d192518b14e1c0aa85c11",
+      "dimensions": [
+        1304,
+        883
+      ]
+    },
+    "screenshots/live-M30-premium.jpg": {
+      "sha256": "4c604207991769c11f9daf6b685a617c67bc59060e1cf0d3a41bedae05cafc1c",
+      "dimensions": [
+        1304,
+        883
+      ]
+    },
+    "screenshots/live-M30-sell-detected-wait.jpg": {
+      "sha256": "b1734b39fced2c8911a763fbc6b20d7c92a96951fe87b22836989a01be78ea89",
+      "dimensions": [
+        1304,
+        883
+      ]
+    },
+    "screenshots/live-M5-premium.jpg": {
+      "sha256": "4ab7405fd178dd46eab4ba883244b3e297dcfba30f018fb98fef839e1c21503c",
+      "dimensions": [
+        1304,
+        883
+      ]
+    },
+    "screenshots/M15-0015-buy-detected-wait.jpg": {
+      "sha256": "caeda270be6114f5ca1e145e12ca32f31fbed1e60228980ff9239ec24710e6d7",
+      "dimensions": [
+        1304,
+        883
+      ]
+    },
+    "screenshots/M15-0230-paper-occupied.jpg": {
+      "sha256": "5b2e0e62ee2102ba2b20366b4e85540ddc11067eb4d5a9dbccf9f55fb3fd621d",
+      "dimensions": [
+        1304,
+        883
+      ]
+    },
+    "screenshots/M15-1130-sideways-none-wait.jpg": {
+      "sha256": "5148c33c0c798b400860ab8a6f5eee3332d18aa432fc35e292130a2582cc4550",
+      "dimensions": [
+        1304,
+        883
+      ]
+    },
+    "screenshots/M15-1145-sell-watch-wait.jpg": {
+      "sha256": "d32c497a76c2dc57e43491ab24c9eefab1308368b32350a5d836a0c4f9e5edbd",
+      "dimensions": [
+        1304,
+        883
+      ]
+    },
+    "screenshots/M15-1200-conflict-sell-detected-wait.jpg": {
+      "sha256": "e230a334ad7093c03e317cbeb62dff645da681bb4776f141502d78b66f624d82",
+      "dimensions": [
+        1304,
+        883
+      ]
+    },
+    "screenshots/M15-1215-valid-buy-plan.jpg": {
+      "sha256": "f3727f9fde5824f14ab472eb29e6417264db2ffd6183123fe0698fc8a6f2805a",
+      "dimensions": [
+        1304,
+        883
+      ]
+    },
+    "screenshots/M15-1230-sell-detected-wait.jpg": {
+      "sha256": "c2c2f95cd80529c0736dac1478ee408601a03e8f2acc08f566bb5f700f293714",
+      "dimensions": [
+        1304,
+        883
+      ]
+    },
+    "screenshots/M15-1300-s5-risk-rejected.jpg": {
+      "sha256": "d1f550bfbf06f113580fe4f8c093bbd0e5427f92aed747dcd0da9223cad88964",
+      "dimensions": [
+        1304,
+        883
+      ]
+    },
+    "screenshots/M15-1330-conflict-sell-detected-wait.jpg": {
+      "sha256": "622f8317e5f021ace8005e92f2fdb4087b397607f4a89faa3adf661a2130cb6b",
+      "dimensions": [
+        1304,
+        883
+      ]
+    },
+    "screenshots/M15-1530-bearish-countertrend-conflict.jpg": {
+      "sha256": "ae61ec3f10f474958345941ebaa0fdf313469a8d586639d15700750629b6764e",
+      "dimensions": [
+        1304,
+        883
+      ]
+    },
+    "screenshots/native-compile.jpg": {
+      "sha256": "de3047cdc2b819d4f45aff503b07847888b1fe410bdb8cee73c7ac44d44a0a18",
+      "dimensions": [
+        1304,
+        883
+      ]
+    },
+    "screenshots/observational-alert-conditions.jpg": {
+      "sha256": "97b0b64063180c1b134d97e6b86e86a714676bb18026ce6a417bc0a975db9f38",
+      "dimensions": [
+        1304,
+        883
+      ]
+    },
+    "screenshots/observational-sell-alert-template.jpg": {
+      "sha256": "46b9e16e2e077a0feab7095023755eb57a869ec40443c51a124e17b564659424",
+      "dimensions": [
+        1304,
+        883
+      ]
+    }
+  },
+  "native_archive_sha256": "a70e6713446e64d3fcd87a0a6279225de05e7b60d5f202e9448dc78a430755a8",
+  "native_report_sha256": "116a581843a579a6432da74f0e8ca3e11fcaf766daba2d80e04788ab21236835"
+}

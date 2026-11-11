@@ -1,0 +1,144 @@
+// Read-only display observer. The shadow engine retains ownership of all lifecycle decisions.
+type DvSignal
+    string source = ""
+    string model = ""
+    int side = 0
+    int rank = 0
+    int known = na
+    int expiry = na
+    string reason = ""
+    bool research = false
+    int originTime = na
+    float level = na
+
+type DvView
+    DvSignal shadowBuy
+    DvSignal shadowSell
+    DvSignal s5Buy
+    DvSignal s5Sell
+    DvSignal early
+    int asOf = na
+    int closed = na
+    bool review = false
+    int bias = 0
+
+var array<DvSignal> dvShadowBreaks = array.new<DvSignal>(6, na)
+
+f_dvShadowSource(string model) =>
+    switch model
+        DT_STRUCTURAL => "DT STRUCTURE"
+        DT_CONSOLIDATION => "DT CONSOLIDATION"
+        => "DT RETEST"
+
+f_dvBreakIndex(int side, string model) =>
+    (side == 1 ? 0 : 3) + (model == DT_RETEST ? 0 : model == DT_STRUCTURAL ? 1 : 2)
+
+f_dvShadowEvent(DtSetup setup, string state, string reason) =>
+    int slot = f_dvBreakIndex(setup.side, setup.model)
+    if state == "BREAKOUT CONFIRMED"
+        DvSignal signal = DvSignal.new(f_dvShadowSource(setup.model), setup.model, setup.side, 2,
+             time_close, time_close + tfSeconds * 1000, reason, false, setup.sourceMs, setup.level)
+        array.set(dvShadowBreaks, slot, signal)
+    else if state == "ENTRY CANDIDATE" or state == "REJECTED"
+        DvSignal signal = array.get(dvShadowBreaks, slot)
+        if not na(signal) and signal.known == time_close and signal.originTime == setup.sourceMs and signal.level == setup.level
+            if state == "ENTRY CANDIDATE"
+                signal.research := true
+                signal.reason := signal.reason + " · RESEARCH ENTRY CANDIDATE"
+            else
+                signal.reason := signal.reason + " · RESEARCH REJECTED: " + reason
+    true
+
+// DIRECTIONAL VISIBILITY SNAPSHOT
+f_dvEmptyView(int asOf, bool review) =>
+    DvView.new(DvSignal.new(), DvSignal.new(), DvSignal.new(), DvSignal.new(), DvSignal.new(), asOf, na, review)
+
+f_dvActive(DvSignal signal, int stamp) =>
+    not na(signal) and not na(stamp) and signal.rank > 0 and signal.known <= stamp and stamp < signal.expiry
+
+f_dvFresh(DvSignal signal, int stamp) =>
+    f_dvActive(signal, stamp) ? signal : DvSignal.new()
+
+f_dvShadowAtClose(int side) =>
+    int sideSlot = side == 1 ? 0 : 1
+    DtSetup retest = array.get(dtRetests, sideSlot)
+    DvSignal best = DvSignal.new()
+    for offset = 0 to 2
+        int slot = sideSlot * 3 + offset
+        DvSignal breakout = array.get(dvShadowBreaks, slot)
+        if not na(breakout)
+            // Once the original retest closes, invalidates or expires, its origin
+            // ceases to be active. A fresh confirmation without a linked retest
+            // is visible for its own confirmed-bar snapshot.
+            bool linked = not na(retest) and retest.originModel == breakout.model and
+                 retest.breakoutMs == breakout.known and retest.sourceMs == breakout.originTime and
+                 retest.level == breakout.level
+            if linked or breakout.known == time_close
+                if best.rank == 0 or breakout.known > best.known
+                    best := breakout.copy()
+                    if linked
+                        // The existing expiry rule is age > 6, so the seventh
+                        // close is the first excluded timestamp.
+                        best.expiry := retest.firstMs + 7 * tfSeconds * 1000
+            else
+                array.set(dvShadowBreaks, slot, na)
+    if best.rank == 0
+        for offset = 0 to 1
+            DtSetup watch = array.get(dtWatches, sideSlot * 2 + offset)
+            if not na(watch) and (best.rank == 0 or watch.firstMs > best.known)
+                best := DvSignal.new(f_dvShadowSource(watch.model), watch.model, side, 1, watch.firstMs,
+                     watch.firstMs + 7 * tfSeconds * 1000, "APPROACHING_LEVEL", false, watch.sourceMs, watch.level)
+    f_dvFresh(best, time_close)
+
+f_dvS5AtClose(int side) =>
+    DvSignal signal = DvSignal.new()
+    if tvStrategyMode == "S5"
+        TvCandidateState watch = array.get(tvCandidateStates, side == 1 ? 0 : 1)
+        if watch.phase != 0
+            signal := DvSignal.new("S5", "S5_RECLAIM", side, 1, watch.bornTime,
+                 watch.bornTime + 4 * tfSeconds * 1000, "Противоположен пробив; чака връщане отвъд нивото")
+    f_dvFresh(signal, time_close)
+
+f_dvEarlyAtClose() =>
+    DvSignal signal = DvSignal.new()
+    if rcEarlyEnabled and not na(rcEarlyLastAt) and rcEarlyLastSide != 0
+        signal := DvSignal.new("RC2 EARLY WATCH", "RC2_EARLY_WATCH", rcEarlyLastSide, 1, rcEarlyLastAt,
+             rcEarlyLastAt + 2 * tfSeconds * 1000, "Затворена свещ отвъд предходния 12-баров диапазон")
+    f_dvFresh(signal, time_close)
+
+f_dvFreshView(DvView view, int stamp) =>
+    DvView.new(f_dvFresh(view.shadowBuy, stamp), f_dvFresh(view.shadowSell, stamp),
+         f_dvFresh(view.s5Buy, stamp), f_dvFresh(view.s5Sell, stamp), f_dvFresh(view.early, stamp),
+         stamp, view.closed, view.review, view.bias)
+
+f_dvSignalJson(DvSignal signal) =>
+    signal.rank == 0 ? "null" : '{"source":' + f_q(signal.source) + ',"model":' + f_q(signal.model) +
+         ',"side":' + f_int(signal.side) + ',"stage":' + f_q(signal.rank == 2 ? "BREAKOUT CONFIRMED" : "WATCH") +
+         ',"known_ms":' + f_int(signal.known) + ',"expires_ms":' + f_int(signal.expiry) +
+         ',"reason":' + f_q(signal.reason) + ',"research":' + (signal.research ? "true" : "false") + '}'
+
+f_dvSignalsJson(DvView view) =>
+    array<string> signals = array.new<string>()
+    for signal in array.from(view.shadowBuy, view.shadowSell, view.s5Buy, view.s5Sell, view.early)
+        if signal.rank > 0
+            array.push(signals, f_dvSignalJson(signal))
+    "[" + array.join(signals, ",") + "]"
+
+var DvView dvClosedView = f_dvEmptyView(na, false)
+var DvView dvReviewView = f_dvEmptyView(rcReviewAt, true)
+if rcCanDrawBar
+    DvSignal shadowBuy = dtShow and dtSupported ? f_dvShadowAtClose(1) : DvSignal.new()
+    DvSignal shadowSell = dtShow and dtSupported ? f_dvShadowAtClose(-1) : DvSignal.new()
+    dvClosedView := DvView.new(shadowBuy, shadowSell, f_dvS5AtClose(1), f_dvS5AtClose(-1),
+         f_dvEarlyAtClose(), time_close, time_close, false, rcCurrent.bias)
+    if rcReview and time_close == rcReviewAt
+        dvReviewView := dvClosedView.copy()
+        dvReviewView.review := true
+
+DvView dvView = rcReview ? dvReviewView : f_dvFreshView(dvClosedView, timenow)
+DvSignal dvShadowBuyEvent = dvClosedView.shadowBuy
+DvSignal dvShadowSellEvent = dvClosedView.shadowSell
+bool dvShadowBuyConfirmedNow = rcCanDrawBar and dtShow and dtSupported and not rcReview and
+     dvShadowBuyEvent.rank == 2 and dvShadowBuyEvent.known == time_close
+bool dvShadowSellConfirmedNow = rcCanDrawBar and dtShow and dtSupported and not rcReview and
+     dvShadowSellEvent.rank == 2 and dvShadowSellEvent.known == time_close

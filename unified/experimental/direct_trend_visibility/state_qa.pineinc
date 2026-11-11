@@ -1,0 +1,18 @@
+// Journal the same view used by the dashboard without changing its live freshness clock.
+f_dvJournalState(DvView view, DvPermission permission, bool review, int asOf, string freshness) =>
+    DvSignal buy = f_dvChooseOpportunity(view, 1)
+    DvSignal sell = f_dvChooseOpportunity(view, -1)
+    '{"symbol":' + f_q(syminfo.tickerid) + ',"frame":' + f_q(timeframe.period) +
+         ',"open_ms":' + f_int(time) + ',"known_ms":' + f_int(time_close) + ',"as_of_ms":' + f_int(asOf) +
+         ',"direction":' + f_q(f_dvOpportunityState(buy, sell)) + ',"signals":' + f_dvSignalsJson(view) +
+         ',"permission":' + f_q(permission.state) + ',"permission_source":' + f_q(permission.source) +
+         ',"permission_known_ms":' + f_int(permission.known) + ',"permission_reason":' + f_q(permission.reason) +
+         ',"permission_freshness":' + f_q(freshness) + ',"plan_visible":' + str.tostring(permission.planVisible) +
+         ',"paper_phase":' + f_int(dvPaperPhase) + ',"paper_plan_id":' + f_q(dvPaperPlanId) +
+         ',"paper_capacity":' + str.tostring(dvPaperCapacity) + ',"s5_stage":' + f_q(f_rcStageText(rcCurrent.stage)) +
+         ',"review":' + str.tostring(review) + '}'
+
+if rcQaBar
+    log.info("DTV_STATE|" + f_dvJournalState(dvClosedView, dvClosedPermission, false, time_close, "AT CLOSE"))
+    if rcReview and time_close == rcReviewAt and rcReviewFound
+        log.info("DTV_REVIEW|" + f_dvJournalState(dvView, dvVisiblePermission, true, dvView.asOf, dvPermissionFreshness))

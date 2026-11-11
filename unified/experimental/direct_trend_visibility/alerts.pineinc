@@ -1,0 +1,17 @@
+// Separate selectable research alert conditions. The RC2 alert() stream above is unchanged.
+bool dvNotify = input.bool(false, "Известия за потвърден shadow пробив", group="DIRECTIONAL OBSERVATIONS",
+     tooltip="Включва отделните условия RESEARCH BUY и RESEARCH SELL в Create Alert.", display=display.none)
+bool dvNotifyBuy = dvNotify and dtShow and dvShadowBuyConfirmedNow and barstate.isconfirmed
+bool dvNotifySell = dvNotify and dtShow and dvShadowSellConfirmedNow and barstate.isconfirmed
+plot(dvNotifyBuy or dvNotifySell ? time_close : na, "QIRVANTA observation close UTC ms", display=display.none, precision=0)
+alertcondition(dvNotifyBuy and barstate.isrealtime and not rcReview, "RESEARCH · BUY BREAKOUT CONFIRMED",
+     'QIRVANTA OBSERVATION | {{exchange}}:{{ticker}} {{interval}} | Direct Trend Shadow BUY BREAKOUT CONFIRMED | Close UTC ms {{plot("QIRVANTA observation close UTC ms")}} | Research only')
+alertcondition(dvNotifySell and barstate.isrealtime and not rcReview, "RESEARCH · SELL BREAKOUT CONFIRMED",
+     'QIRVANTA OBSERVATION | {{exchange}}:{{ticker}} {{interval}} | Direct Trend Shadow SELL BREAKOUT CONFIRMED | Close UTC ms {{plot("QIRVANTA observation close UTC ms")}} | Research only')
+
+if rcQaBar and (dvNotifyBuy or dvNotifySell)
+    for side in array.from(1, -1)
+        if side == 1 ? dvNotifyBuy : dvNotifySell
+            log.info('DTV_ALERT|{"symbol":' + f_q(syminfo.tickerid) + ',"frame":' + f_q(timeframe.period) +
+                 ',"known_ms":' + f_int(time_close) + ',"side":' + f_q(f_rcSide(side)) +
+                 ',"source":"DT SHADOW","observation_only":true}')

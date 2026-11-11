@@ -1,0 +1,15 @@
+// Optional audit of the unchanged in-indicator RAW Paper stream, distinct from Strategy Tester.
+if rcQaBar
+    Paper dvQaPaper = array.get(books, 3)
+    Ledger dvQaLedger = array.get(ledgers, 3)
+    string dvQaPlan = dvQaPaper.phase == 0 or na(dvQaPaper.p) ? "" : dvQaPaper.p.id
+    log.info('DTV_LEDGER|{"symbol":' + f_q(syminfo.tickerid) + ',"frame":' + f_q(timeframe.period) +
+         ',"known_ms":' + f_int(time_close) + ',"phase":' + f_int(dvQaPaper.phase) + ',"plan_id":' + f_q(dvQaPlan) +
+         ',"entered":' + f_int(dvQaLedger.entered) + ',"closed":' + f_int(dvQaLedger.closed) +
+         ',"net":' + f_num(dvQaLedger.net) + ',"gross":' + f_num(dvQaLedger.gross) +
+         ',"costs":' + f_num(dvQaLedger.costs) + ',"gains":' + f_num(dvQaLedger.gains) +
+         ',"losses":' + f_num(dvQaLedger.losses) + ',"drawdown":' + f_num(dvQaLedger.drawdown) +
+         ',"capacity_skipped":' + f_int(dvQaLedger.capacitySkipped) + '}')
+    for e in events
+        if e.book == "RAW"
+            log.info("DTV_PAPER|" + f_json(e))
