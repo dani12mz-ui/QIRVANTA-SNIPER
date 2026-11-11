@@ -1,0 +1,773 @@
+{
+  "bounded_calculation_M5": {
+    "calculated_bars": 500,
+    "first_open_ms": 1794237900000,
+    "full_first_open_ms": 1794182100000,
+    "htf_fields_unavailable": {
+      "h1_side": 349,
+      "h4_close_time": 25,
+      "h4_side": 349
+    },
+    "matched_rows": 486,
+    "price_and_no_context_decisions_equal": true,
+    "sha256": "6357a40658f3529296d89895bdaf4016f18008ca8ea2808e8160b485a50901b5"
+  },
+  "extended_confirmed_prefix": {
+    "equal": true,
+    "extended_last_close_ms": 1794393000000,
+    "extra_context_bars": 54,
+    "sha256": "8ce607c79d21e4548d384949a701d51e353a68704f6583f31e91ea4ab9ff8191"
+  },
+  "frames": {
+    "15": {
+      "first_example": {
+        "BREAKOUT_PENDING": [
+          1794371400000,
+          "WF:-1:1794370500000",
+          "EXTREME_WITHOUT_CLOSE"
+        ],
+        "BUY_BREAKOUT_CONFIRMED": [
+          1794288600000,
+          "WF:1:1794287700000",
+          "DIRECTIONAL_CLOSE"
+        ],
+        "BUY_WATCH": [
+          1794287700000,
+          "WF:1:1794287700000",
+          "WICK_CLUSTER_CONFIRMED"
+        ],
+        "ENTRY_VALID": [
+          1794288600000,
+          "WF:1:1794287700000",
+          "PRICE_AND_RISK_VALID"
+        ],
+        "FALSE_BREAKOUT": [
+          1794367800000,
+          "WF:1:1794366000000",
+          "CLOSE_BACK_INSIDE"
+        ],
+        "FORMATION_BUILDING": [
+          1794271500000,
+          "NA",
+          "FIRST_REJECTION"
+        ],
+        "FORMATION_EXPIRED": [
+          1794294900000,
+          "WF:1:1794287700000",
+          "RETEST_WINDOW_EXPIRED"
+        ],
+        "RETEST_WATCH": [
+          1794288600000,
+          "WF:1:1794287700000",
+          "BREAKOUT_EDGE_KNOWN"
+        ],
+        "RISK_REJECTED": [
+          1794366900000,
+          "WF:1:1794366000000",
+          "INSUFFICIENT_NET_ROOM"
+        ],
+        "SELL_WATCH": [
+          1794370500000,
+          "WF:-1:1794370500000",
+          "WICK_CLUSTER_CONFIRMED"
+        ]
+      },
+      "first_open_ms": 1794181500000,
+      "indicator_counts": {
+        "WICK_CTX": 209,
+        "WICK_EVT": 59,
+        "WICK_PLAN": 5
+      },
+      "indicator_sha256": "a1319c7f48cb5fda4cf8af7735eb89e6a241a7c6dc7acaaa4c9296c0064acfd8",
+      "last_close_ms": 1794376800000,
+      "local_parity": {
+        "lifecycle_diff_sample": null,
+        "lifecycle_equal": true,
+        "local_lifecycle_count": 40,
+        "matched_risk_assessments": 4,
+        "native_lifecycle_count": 40,
+        "risk_issue_count": 0,
+        "risk_issue_sample": []
+      },
+      "native_execution": [
+        {
+          "fill": [
+            1794288600000,
+            4123.592,
+            3.0
+          ],
+          "id": "WICK_BREAKOUT:1:1794287700000:1794288600000",
+          "net_usd": -44.316,
+          "parts": [
+            [
+              1794301200000,
+              4109.52,
+              1.0,
+              "SL",
+              -14.772
+            ],
+            [
+              1794301200000,
+              4109.52,
+              1.0,
+              "SL",
+              -14.772
+            ],
+            [
+              1794301200000,
+              4109.52,
+              1.0,
+              "SL",
+              -14.772
+            ]
+          ],
+          "submitted": 1794288600000
+        },
+        {
+          "fill": [
+            1794336300000,
+            4032.857,
+            3.0
+          ],
+          "id": "WICK_BREAKOUT:1:1794332700000:1794336300000",
+          "net_usd": null,
+          "parts": [
+            [
+              1794373200000,
+              4053.023,
+              1.0,
+              "TP1",
+              19.466
+            ]
+          ],
+          "submitted": 1794336300000
+        }
+      ],
+      "role_parity": true,
+      "scored_lifecycle": {
+        "BREAKOUT_PENDING": 1,
+        "BUY_BREAKOUT_CONFIRMED": 3,
+        "BUY_WATCH": 5,
+        "ENTRY_VALID": 3,
+        "FALSE_BREAKOUT": 1,
+        "FORMATION_BUILDING": 17,
+        "FORMATION_EXPIRED": 5,
+        "RETEST_WATCH": 3,
+        "RISK_REJECTED": 1,
+        "SELL_WATCH": 1
+      },
+      "strategy_counts": {
+        "WICK_CTX": 209,
+        "WICK_EVT": 59,
+        "WICK_EXEC": 9,
+        "WICK_PLAN": 5
+      },
+      "strategy_sha256": "ba27f49f8ca7a9246c93c72d2d3e4dec2ab5dcadf65cff09a4488c8ac4d121cf"
+    },
+    "30": {
+      "first_example": {
+        "BREAKOUT_PENDING": [
+          1794337200000,
+          "WF:1:1794335400000",
+          "EXTREME_WITHOUT_CLOSE"
+        ],
+        "BUY_BREAKOUT_CONFIRMED": [
+          1794342600000,
+          "WF:1:1794335400000",
+          "DIRECTIONAL_CLOSE"
+        ],
+        "BUY_WATCH": [
+          1794335400000,
+          "WF:1:1794335400000",
+          "WICK_CLUSTER_CONFIRMED"
+        ],
+        "ENTRY_VALID": [
+          1794342600000,
+          "WF:1:1794335400000",
+          "PRICE_AND_RISK_VALID"
+        ],
+        "FORMATION_BUILDING": [
+          1794277800000,
+          "NA",
+          "FIRST_REJECTION"
+        ],
+        "FORMATION_EXPIRED": [
+          1794270600000,
+          "WF:1:1794261600000",
+          "OPPOSITE_EDGE_CLOSE"
+        ],
+        "RETEST_WATCH": [
+          1794303000000,
+          "WF:-1:1794299400000",
+          "BREAKOUT_EDGE_KNOWN"
+        ],
+        "RISK_REJECTED": [
+          1794303000000,
+          "WF:-1:1794299400000",
+          "OVERSIZED_STOP"
+        ],
+        "SELL_BREAKOUT_CONFIRMED": [
+          1794303000000,
+          "WF:-1:1794299400000",
+          "DIRECTIONAL_CLOSE"
+        ],
+        "SELL_WATCH": [
+          1794299400000,
+          "WF:-1:1794299400000",
+          "WICK_CLUSTER_CONFIRMED"
+        ]
+      },
+      "first_open_ms": 1794180600000,
+      "indicator_counts": {
+        "WICK_CTX": 105,
+        "WICK_EVT": 38,
+        "WICK_PLAN": 5
+      },
+      "indicator_sha256": "8492927151bd4ec95d3064288ad2c4b10c01215440c8954b78a4f345f530e860",
+      "last_close_ms": 1794376800000,
+      "local_parity": {
+        "lifecycle_diff_sample": null,
+        "lifecycle_equal": true,
+        "local_lifecycle_count": 23,
+        "matched_risk_assessments": 3,
+        "native_lifecycle_count": 23,
+        "risk_issue_count": 0,
+        "risk_issue_sample": []
+      },
+      "native_execution": [
+        {
+          "fill": [
+            1794342600000,
+            4035.362,
+            3.0
+          ],
+          "id": "WICK_BREAKOUT:1:1794335400000:1794342600000",
+          "net_usd": null,
+          "parts": [
+            [
+              1794373200000,
+              4058.902,
+              1.0,
+              "TP1",
+              22.84
+            ]
+          ],
+          "submitted": 1794342600000
+        }
+      ],
+      "role_parity": true,
+      "scored_lifecycle": {
+        "BREAKOUT_PENDING": 1,
+        "BUY_BREAKOUT_CONFIRMED": 1,
+        "BUY_WATCH": 1,
+        "ENTRY_VALID": 2,
+        "FORMATION_BUILDING": 10,
+        "FORMATION_EXPIRED": 3,
+        "RETEST_WATCH": 2,
+        "RISK_REJECTED": 1,
+        "SELL_BREAKOUT_CONFIRMED": 1,
+        "SELL_WATCH": 1
+      },
+      "strategy_counts": {
+        "WICK_CTX": 105,
+        "WICK_EVT": 38,
+        "WICK_EXEC": 3,
+        "WICK_PLAN": 5
+      },
+      "strategy_sha256": "6dd914dd8260c877a1624a63cf0358ac028add5dbc5f779414ff5b85650380af"
+    },
+    "5": {
+      "first_example": {
+        "BREAKOUT_PENDING": [
+          1794294300000,
+          "WF:1:1794294000000",
+          "EXTREME_WITHOUT_CLOSE"
+        ],
+        "BUY_BREAKOUT_CONFIRMED": [
+          1794335400000,
+          "WF:1:1794334500000",
+          "DIRECTIONAL_CLOSE"
+        ],
+        "BUY_WATCH": [
+          1794275700000,
+          "WF:1:1794275700000",
+          "WICK_CLUSTER_CONFIRMED"
+        ],
+        "ENTRY_VALID": [
+          1794296100000,
+          "WF:-1:1794295800000",
+          "PRICE_AND_RISK_VALID"
+        ],
+        "FALSE_BREAKOUT": [
+          1794286800000,
+          "WF:-1:1794285900000",
+          "CLOSE_BACK_INSIDE"
+        ],
+        "FORMATION_BUILDING": [
+          1794268800000,
+          "NA",
+          "OPPOSING_REJECTIONS"
+        ],
+        "FORMATION_EXPIRED": [
+          1794274200000,
+          "WF:-1:1794273900000",
+          "OPPOSITE_EDGE_CLOSE"
+        ],
+        "RETEST_WATCH": [
+          1794286200000,
+          "WF:-1:1794285900000",
+          "BREAKOUT_EDGE_KNOWN"
+        ],
+        "RISK_REJECTED": [
+          1794286200000,
+          "WF:-1:1794285900000",
+          "INSUFFICIENT_NET_ROOM"
+        ],
+        "SELL_BREAKOUT_CONFIRMED": [
+          1794286200000,
+          "WF:-1:1794285900000",
+          "DIRECTIONAL_CLOSE"
+        ],
+        "SELL_WATCH": [
+          1794273900000,
+          "WF:-1:1794273900000",
+          "WICK_CLUSTER_CONFIRMED"
+        ]
+      },
+      "first_open_ms": 1794182100000,
+      "indicator_counts": {
+        "WICK_CTX": 625,
+        "WICK_EVT": 207,
+        "WICK_PLAN": 16
+      },
+      "indicator_sha256": "c9b0983c78a55c8e64dfbdfcdc037d8aed85de7dd375846e226585aff5503843",
+      "last_close_ms": 1794376800000,
+      "local_parity": {
+        "lifecycle_diff_sample": null,
+        "lifecycle_equal": true,
+        "local_lifecycle_count": 127,
+        "matched_risk_assessments": 10,
+        "native_lifecycle_count": 127,
+        "risk_issue_count": 0,
+        "risk_issue_sample": []
+      },
+      "native_execution": [
+        {
+          "fill": [
+            1794296100000,
+            4114.863,
+            -3.0
+          ],
+          "id": "WICK_BREAKOUT:-1:1794295800000:1794296100000",
+          "net_usd": -21.075,
+          "parts": [
+            [
+              1794298500000,
+              4121.188,
+              -1.0,
+              "SL",
+              -7.025
+            ],
+            [
+              1794298500000,
+              4121.188,
+              -1.0,
+              "SL",
+              -7.025
+            ],
+            [
+              1794298500000,
+              4121.188,
+              -1.0,
+              "SL",
+              -7.025
+            ]
+          ],
+          "submitted": 1794296100000
+        },
+        {
+          "fill": [
+            1794309000000,
+            4070.553,
+            -3.0
+          ],
+          "id": "WICK_BREAKOUT:-1:1794308100000:1794309000000",
+          "net_usd": -27.78,
+          "parts": [
+            [
+              1794314700000,
+              4079.113,
+              -1.0,
+              "SL",
+              -9.26
+            ],
+            [
+              1794314700000,
+              4079.113,
+              -1.0,
+              "SL",
+              -9.26
+            ],
+            [
+              1794314700000,
+              4079.113,
+              -1.0,
+              "SL",
+              -9.26
+            ]
+          ],
+          "submitted": 1794309000000
+        },
+        {
+          "fill": [
+            1794325800000,
+            4042.678,
+            -3.0
+          ],
+          "id": "WICK_BREAKOUT:-1:1794324900000:1794325800000",
+          "net_usd": 45.536,
+          "parts": [
+            [
+              1794327600000,
+              4030.587,
+              -1.0,
+              "TP1",
+              11.391
+            ],
+            [
+              1794329100000,
+              4018.479,
+              -1.0,
+              "TP2",
+              23.499
+            ],
+            [
+              1794347400000,
+              4031.332,
+              -1.0,
+              "TIME_EXIT",
+              10.646
+            ]
+          ],
+          "submitted": 1794325800000
+        },
+        {
+          "fill": [
+            1794363000000,
+            4041.353,
+            -3.0
+          ],
+          "id": "WICK_BREAKOUT:-1:1794362700000:1794363000000",
+          "net_usd": -34.491,
+          "parts": [
+            [
+              1794373500000,
+              4052.15,
+              -1.0,
+              "SL",
+              -11.497
+            ],
+            [
+              1794373500000,
+              4052.15,
+              -1.0,
+              "SL",
+              -11.497
+            ],
+            [
+              1794373500000,
+              4052.15,
+              -1.0,
+              "SL",
+              -11.497
+            ]
+          ],
+          "submitted": 1794363000000
+        }
+      ],
+      "role_parity": true,
+      "scored_lifecycle": {
+        "BREAKOUT_PENDING": 8,
+        "BUY_BREAKOUT_CONFIRMED": 1,
+        "BUY_WATCH": 7,
+        "ENTRY_VALID": 5,
+        "FALSE_BREAKOUT": 5,
+        "FORMATION_BUILDING": 61,
+        "FORMATION_EXPIRED": 11,
+        "RETEST_WATCH": 8,
+        "RISK_REJECTED": 5,
+        "SELL_BREAKOUT_CONFIRMED": 7,
+        "SELL_WATCH": 9
+      },
+      "strategy_counts": {
+        "WICK_CTX": 625,
+        "WICK_EVT": 207,
+        "WICK_EXEC": 25,
+        "WICK_PLAN": 16
+      },
+      "strategy_sha256": "1ab2d55f5202f250d6ab0200b54197da3997f9b6af791539d468eeb915eb5e4b"
+    }
+  },
+  "native_variants_M5": {
+    "retest": {
+      "counts": {
+        "WICK_CTX": 625,
+        "WICK_EVT": 207,
+        "WICK_EXEC": 6,
+        "WICK_PLAN": 16
+      },
+      "native_execution": [
+        {
+          "fill": [
+            1794326400000,
+            4042.333,
+            -3.0
+          ],
+          "id": "WICK_RETEST:-1:1794324900000:1794326400000",
+          "net_usd": 18.723,
+          "parts": [
+            [
+              1794327000000,
+              4038.891,
+              -1.0,
+              "TP1",
+              2.742
+            ],
+            [
+              1794327300000,
+              4035.392,
+              -1.0,
+              "TP2",
+              6.241
+            ],
+            [
+              1794327600000,
+              4031.893,
+              -1.0,
+              "TP3",
+              9.74
+            ]
+          ],
+          "submitted": 1794326400000
+        }
+      ],
+      "observation_parity": true,
+      "selection_in_scored_window": {
+        "COST_TOO_HIGH": 1,
+        "OK": 1,
+        "POLICY_NOT_SELECTED": 8
+      },
+      "sha256": "604bf58c72b0733ac8ad11ec90eaaf5e74f0cdaeed4b502cec5a7df5545e34e7"
+    },
+    "volume_B": {
+      "counts": {
+        "WICK_CTX": 625,
+        "WICK_EVT": 207,
+        "WICK_EXEC": 25,
+        "WICK_PLAN": 16
+      },
+      "native_execution": [
+        {
+          "fill": [
+            1794296100000,
+            4114.863,
+            -3.0
+          ],
+          "id": "WICK_BREAKOUT:-1:1794295800000:1794296100000",
+          "net_usd": -21.075,
+          "parts": [
+            [
+              1794298500000,
+              4121.188,
+              -1.0,
+              "SL",
+              -7.025
+            ],
+            [
+              1794298500000,
+              4121.188,
+              -1.0,
+              "SL",
+              -7.025
+            ],
+            [
+              1794298500000,
+              4121.188,
+              -1.0,
+              "SL",
+              -7.025
+            ]
+          ],
+          "submitted": 1794296100000
+        },
+        {
+          "fill": [
+            1794309000000,
+            4070.553,
+            -3.0
+          ],
+          "id": "WICK_BREAKOUT:-1:1794308100000:1794309000000",
+          "net_usd": -27.78,
+          "parts": [
+            [
+              1794314700000,
+              4079.113,
+              -1.0,
+              "SL",
+              -9.26
+            ],
+            [
+              1794314700000,
+              4079.113,
+              -1.0,
+              "SL",
+              -9.26
+            ],
+            [
+              1794314700000,
+              4079.113,
+              -1.0,
+              "SL",
+              -9.26
+            ]
+          ],
+          "submitted": 1794309000000
+        },
+        {
+          "fill": [
+            1794325800000,
+            4042.678,
+            -3.0
+          ],
+          "id": "WICK_BREAKOUT:-1:1794324900000:1794325800000",
+          "net_usd": 45.536,
+          "parts": [
+            [
+              1794327600000,
+              4030.587,
+              -1.0,
+              "TP1",
+              11.391
+            ],
+            [
+              1794329100000,
+              4018.479,
+              -1.0,
+              "TP2",
+              23.499
+            ],
+            [
+              1794347400000,
+              4031.332,
+              -1.0,
+              "TIME_EXIT",
+              10.646
+            ]
+          ],
+          "submitted": 1794325800000
+        },
+        {
+          "fill": [
+            1794363000000,
+            4041.353,
+            -3.0
+          ],
+          "id": "WICK_BREAKOUT:-1:1794362700000:1794363000000",
+          "net_usd": -34.491,
+          "parts": [
+            [
+              1794373500000,
+              4052.15,
+              -1.0,
+              "SL",
+              -11.497
+            ],
+            [
+              1794373500000,
+              4052.15,
+              -1.0,
+              "SL",
+              -11.497
+            ],
+            [
+              1794373500000,
+              4052.15,
+              -1.0,
+              "SL",
+              -11.497
+            ]
+          ],
+          "submitted": 1794363000000
+        }
+      ],
+      "observation_parity": true,
+      "selection_in_scored_window": {
+        "INSUFFICIENT_NET_ROOM": 4,
+        "OK": 4,
+        "POLICY_NOT_SELECTED": 2
+      },
+      "sha256": "1ab2d55f5202f250d6ab0200b54197da3997f9b6af791539d468eeb915eb5e4b"
+    },
+    "volume_C": {
+      "counts": {
+        "WICK_CTX": 625,
+        "WICK_EVT": 207,
+        "WICK_EXEC": 6,
+        "WICK_PLAN": 16
+      },
+      "native_execution": [
+        {
+          "fill": [
+            1794309000000,
+            4070.553,
+            -3.0
+          ],
+          "id": "WICK_BREAKOUT:-1:1794308100000:1794309000000",
+          "net_usd": -27.78,
+          "parts": [
+            [
+              1794314700000,
+              4079.113,
+              -1.0,
+              "SL",
+              -9.26
+            ],
+            [
+              1794314700000,
+              4079.113,
+              -1.0,
+              "SL",
+              -9.26
+            ],
+            [
+              1794314700000,
+              4079.113,
+              -1.0,
+              "SL",
+              -9.26
+            ]
+          ],
+          "submitted": 1794309000000
+        }
+      ],
+      "observation_parity": true,
+      "selection_in_scored_window": {
+        "INSUFFICIENT_NET_ROOM": 4,
+        "LOW_RELATIVE_ACTIVITY": 3,
+        "OK": 1,
+        "POLICY_NOT_SELECTED": 2
+      },
+      "sha256": "78c44fb38ba3a4f2ac0c1b56a709f53c87482147d85b35945b9a70128b452e02"
+    }
+  },
+  "pine_sources_sha256": {
+    "indicator": "497e4973bdb707660547ede81cb36eb377cceb267970aae6d1d5599e59a8de6e",
+    "strategy": "680dff2860c16d116a80029722948366099ee5d838ea837170217e634be681d9"
+  },
+  "score_close_ms": [
+    1794268800000,
+    1794376800000
+  ],
+  "status": "VERIFIED",
+  "symbol": "OANDA:XAUUSD"
+}

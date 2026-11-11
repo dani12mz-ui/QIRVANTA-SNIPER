@@ -1,0 +1,96 @@
+bool wfSim = input.bool(false, "Enable TradingView research simulation", group="Simulated execution")
+int wfSimStart = input.time(timestamp("10 Nov 2026 00:00 +0000"), "Simulation start", group="Simulated execution")
+int wfSimEnd = input.time(timestamp("11 Nov 2026 06:00 +0000"), "Simulation end", group="Simulated execution")
+bool wfExitOnReclaim = input.bool(false, "Exit on confirmed reclaim · isolated experiment", group="Simulated execution")
+
+var WickPlan wfCampaign = na
+var int wfClosedCount = 0
+var bool wfFillRecorded = false
+var bool wfMarketExit = false
+var float wfCampaignPnl = 0.0
+var string wfLastTrade = "—"
+
+f_wfExec(string event, WickPlan plan, int executedAt, float price, float quantity, string reason, float net) =>
+    if wfAuditBar
+        log.info("WICK_EXEC|1|" + f_wfInt(time_close) + "|" + event + "|" + f_wfLogId(plan.id) + "|" +
+             f_wfInt(executedAt) + "|" + f_wfNumber(price) + "|" + f_wfNumber(quantity) + "|" + reason + "|" +
+             f_wfNumber(net))
+
+f_wfOrders(WickPlan plan) =>
+    strategy.exit(plan.id + ":1", from_entry=plan.id, qty=1, stop=plan.stop, limit=plan.tp1,
+         comment_profit="TP1", comment_loss="SL", disable_alert=true)
+    strategy.exit(plan.id + ":2", from_entry=plan.id, qty=1, stop=plan.stop, limit=plan.tp2,
+         comment_profit="TP2", comment_loss="SL", disable_alert=true)
+    strategy.exit(plan.id + ":3", from_entry=plan.id, qty=1, stop=plan.stop, limit=plan.tp3,
+         comment_profit="TP3", comment_loss="SL", disable_alert=true)
+
+if wfConfirmed and wfSim
+    bool closedThisBar = false
+    if strategy.closedtrades > wfClosedCount
+        int firstTrade = math.max(wfClosedCount, nz(strategy.closedtrades.first_index, 0))
+        if firstTrade < strategy.closedtrades
+            for tradeIndex = firstTrade to strategy.closedtrades - 1
+                if not na(wfCampaign) and strategy.closedtrades.entry_id(tradeIndex) == wfCampaign.id
+                    float fill = strategy.closedtrades.entry_price(tradeIndex)
+                    float price = strategy.closedtrades.exit_price(tradeIndex)
+                    float quantity = strategy.closedtrades.size(tradeIndex)
+                    if not wfFillRecorded
+                        f_wfExec("FILLED", wfCampaign, strategy.closedtrades.entry_time(tradeIndex), fill,
+                             wfCampaign.side * 3, "NATIVE_FILL", na)
+                        wfFillRecorded := true
+                    string exitReason = strategy.closedtrades.exit_comment(tradeIndex)
+                    float net = (price - fill) * quantity * syminfo.pointvalue - strategy.closedtrades.commission(tradeIndex)
+                    wfCampaignPnl += net
+                    f_wfExec("EXIT_PART", wfCampaign, strategy.closedtrades.exit_time(tradeIndex), price, quantity,
+                         na(exitReason) ? "UNKNOWN" : exitReason, net)
+                    closedThisBar := true
+        wfClosedCount := strategy.closedtrades
+    if not na(wfCampaign)
+        if strategy.position_size == 0 and closedThisBar
+            f_wfExec("CLOSED", wfCampaign, time_close, na, 0, "CAMPAIGN", wfCampaignPnl)
+            wfLastTrade := f_wfSide(wfCampaign.side) + " · " + str.tostring(wfCampaignPnl, "#.00") + " USD"
+            wfCampaign := na
+        else if strategy.opentrades > 0 and strategy.position_size != 0
+            float fill = strategy.opentrades.entry_price(0)
+            bool firstObservation = not wfFillRecorded
+            if firstObservation
+                f_wfExec("FILLED", wfCampaign, strategy.opentrades.entry_time(0), fill, wfCampaign.side * 3,
+                     "NATIVE_FILL", na)
+                wfFillRecorded := true
+            int held = bar_index - strategy.opentrades.entry_bar_index(0) + 1
+            float actualRisk = wfCampaign.side * (fill - wfCampaign.stop)
+            bool invalidFill = held == 1 and (actualRisk < wfTick or actualRisk > 3.0 * wfCampaign.atr or
+                 math.abs(fill - wfCampaign.entry) > 0.60 * wfCampaign.atr or wfCampaign.side * (wfCampaign.tp1 - fill) <= 0)
+            bool reclaimed = wfExitOnReclaim and wfFalseBreakout and not na(wfEventFormation) and
+                 wfCampaign.formationId == wfEventFormation.id
+            string marketReason = invalidFill ? "GAP_OR_FILL_INVALID" : reclaimed ? "RECLAIM" : held >= 72 ? "TIME_EXIT" : ""
+            if not wfMarketExit and marketReason != ""
+                strategy.close(wfCampaign.id, comment=marketReason, disable_alert=true)
+                wfMarketExit := true
+                f_wfExec("EXIT_REQUEST", wfCampaign, time_close, close, strategy.position_size, marketReason, na)
+
+    if not na(wfSelectedPlan) and time_close >= wfSimStart and time_close <= wfSimEnd
+        if na(wfCampaign) and strategy.position_size == 0
+            wfCampaign := wfSelectedPlan
+            wfFillRecorded := false
+            wfMarketExit := false
+            wfCampaignPnl := 0.0
+            strategy.entry(wfCampaign.id, wfCampaign.side > 0 ? strategy.long : strategy.short, qty=3,
+                 comment=wfCampaign.model, disable_alert=true)
+            f_wfOrders(wfCampaign)
+            f_wfExec("SUBMITTED", wfCampaign, time_close, wfCampaign.entry, wfCampaign.side * 3,
+                 wfCampaign.model, na)
+        else
+            f_wfExec("REJECTED", wfSelectedPlan, time_close, wfSelectedPlan.entry, 0, "POSITION_OCCUPIED", na)
+
+string wfTradeState = not wfSim ? "OBSERVATION" : not na(wfCampaign) ?
+     (strategy.position_size == 0 ? "SIM ORDER PENDING" : "SIM POSITION OPEN") :
+     (wfLastTrade == "—" ? "SIM FLAT" : "CLOSED · " + wfLastTrade)
+bool wfExecutionPending = not na(wfCampaign) and strategy.position_size == 0
+bool wfPositionOpen = not na(wfCampaign) and strategy.position_size != 0
+int wfActiveSide = not na(wfCampaign) ? wfCampaign.side : 0
+float wfActiveStop = not na(wfCampaign) ? wfCampaign.stop : na
+float wfActiveEntry = not na(wfCampaign) ? wfCampaign.entry : na
+float wfActiveFirstTarget = not na(wfCampaign) ? wfCampaign.tp1 : na
+float wfActiveSecondTarget = not na(wfCampaign) ? wfCampaign.tp2 : na
+float wfActiveThirdTarget = not na(wfCampaign) ? wfCampaign.tp3 : na

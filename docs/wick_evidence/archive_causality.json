@@ -1,0 +1,412 @@
+{
+  "cost_settings": {
+    "commission": 0.175,
+    "extra_commission": 0.5,
+    "extra_slip": 0.1,
+    "extra_spread": 0.3,
+    "pointvalue": 1.0,
+    "spread": 0.35,
+    "tick": 0.001,
+    "ticks": 2
+  },
+  "frames": {
+    "5": {
+      "bar_sha256": "44971f52b0008fefc4b61dda51c71043f08e4a2e3bc6d08121380e95232ace1d",
+      "chart_bars": 5565,
+      "earlier_m30_bars": 9164,
+      "last_close_utc_ms": 1794192300000,
+      "later_starts": [
+        {
+          "chart_bars_removed": 20,
+          "chart_warmup_bars": 40,
+          "confirmed_context_equal": true,
+          "equal": true,
+          "first_compared_close_utc_ms": 1791774300000,
+          "recalculated_counts": {
+            "events": 1877,
+            "features": 5505,
+            "plans": 71
+          },
+          "recalculated_sha256": "65e72be71c8f54cedb705c85f10e5ec49a3e5e9b96aa87834c822887cd7e3439",
+          "reference_counts": {
+            "events": 1877,
+            "features": 5505,
+            "plans": 71
+          },
+          "reference_sha256": "65e72be71c8f54cedb705c85f10e5ec49a3e5e9b96aa87834c822887cd7e3439"
+        },
+        {
+          "chart_bars_removed": 100,
+          "chart_warmup_bars": 40,
+          "confirmed_context_equal": true,
+          "equal": true,
+          "first_compared_close_utc_ms": 1791798300000,
+          "recalculated_counts": {
+            "events": 1852,
+            "features": 5425,
+            "plans": 71
+          },
+          "recalculated_sha256": "ba1375a95758fbe01e7251ec7a50fd6306d0a886602f627fec0e2771ad308831",
+          "reference_counts": {
+            "events": 1852,
+            "features": 5425,
+            "plans": 71
+          },
+          "reference_sha256": "ba1375a95758fbe01e7251ec7a50fd6306d0a886602f627fec0e2771ad308831"
+        },
+        {
+          "chart_bars_removed": 250,
+          "chart_warmup_bars": 40,
+          "confirmed_context_equal": true,
+          "equal": true,
+          "first_compared_close_utc_ms": 1791846900000,
+          "recalculated_counts": {
+            "events": 1804,
+            "features": 5275,
+            "plans": 70
+          },
+          "recalculated_sha256": "7169064a475f9f0c3be070457b778a490751e6b60165f508ef26ffafa0d445de",
+          "reference_counts": {
+            "events": 1804,
+            "features": 5275,
+            "plans": 70
+          },
+          "reference_sha256": "7169064a475f9f0c3be070457b778a490751e6b60165f508ef26ffafa0d445de"
+        },
+        {
+          "chart_bars_removed": 1000,
+          "chart_warmup_bars": 40,
+          "confirmed_context_equal": true,
+          "equal": true,
+          "first_compared_close_utc_ms": 1792079100000,
+          "recalculated_counts": {
+            "events": 1509,
+            "features": 4525,
+            "plans": 60
+          },
+          "recalculated_sha256": "eb3481b0fccfbfcf52d17901fb83737eb6ae793ab910354f649cdad7430c8468",
+          "reference_counts": {
+            "events": 1509,
+            "features": 4525,
+            "plans": 60
+          },
+          "reference_sha256": "eb3481b0fccfbfcf52d17901fb83737eb6ae793ab910354f649cdad7430c8468"
+        }
+      ],
+      "prefixes": [
+        {
+          "chart_bars": 2782,
+          "confirmed_context_equal": true,
+          "equal": true,
+          "last_close_utc_ms": 1792972200000,
+          "recalculated_counts": {
+            "events": 957,
+            "features": 2782,
+            "plans": 37
+          },
+          "recalculated_sha256": "e4ea78b026a8dc198885b3d15809a1cc405a78713c8410a2d6bd245904947ff2",
+          "reference_counts": {
+            "events": 957,
+            "features": 2782,
+            "plans": 37
+          },
+          "reference_sha256": "e4ea78b026a8dc198885b3d15809a1cc405a78713c8410a2d6bd245904947ff2"
+        },
+        {
+          "chart_bars": 4173,
+          "confirmed_context_equal": true,
+          "equal": true,
+          "last_close_utc_ms": 1793583900000,
+          "recalculated_counts": {
+            "events": 1426,
+            "features": 4173,
+            "plans": 53
+          },
+          "recalculated_sha256": "c7c94142b4c0bd4db136e3f1ea754693cd02d64e2619268a2e8dbb3f6f94a82b",
+          "reference_counts": {
+            "events": 1426,
+            "features": 4173,
+            "plans": 53
+          },
+          "reference_sha256": "c7c94142b4c0bd4db136e3f1ea754693cd02d64e2619268a2e8dbb3f6f94a82b"
+        }
+      ]
+    },
+    "15": {
+      "bar_sha256": "6c89015105a406c2a0c1567f0e9a5e445cb31ee7604a985d727f26892d8ba4b7",
+      "chart_bars": 6445,
+      "earlier_m30_bars": 6869,
+      "last_close_utc_ms": 1794192300000,
+      "later_starts": [
+        {
+          "chart_bars_removed": 20,
+          "chart_warmup_bars": 40,
+          "confirmed_context_equal": true,
+          "equal": true,
+          "first_compared_close_utc_ms": 1785762900000,
+          "recalculated_counts": {
+            "events": 2007,
+            "features": 6385,
+            "plans": 75
+          },
+          "recalculated_sha256": "67293decd9b13c61c47b6b630d8dbee49929a281f037592e71a9cc2ccc086a3f",
+          "reference_counts": {
+            "events": 2007,
+            "features": 6385,
+            "plans": 75
+          },
+          "reference_sha256": "67293decd9b13c61c47b6b630d8dbee49929a281f037592e71a9cc2ccc086a3f"
+        },
+        {
+          "chart_bars_removed": 100,
+          "chart_warmup_bars": 40,
+          "confirmed_context_equal": true,
+          "equal": true,
+          "first_compared_close_utc_ms": 1785838500000,
+          "recalculated_counts": {
+            "events": 1974,
+            "features": 6305,
+            "plans": 73
+          },
+          "recalculated_sha256": "f0b319d985ed144d1ee0c91d3d2eb7a766c3179e55584bdfe3926033921a5e96",
+          "reference_counts": {
+            "events": 1974,
+            "features": 6305,
+            "plans": 73
+          },
+          "reference_sha256": "f0b319d985ed144d1ee0c91d3d2eb7a766c3179e55584bdfe3926033921a5e96"
+        },
+        {
+          "chart_bars_removed": 250,
+          "chart_warmup_bars": 40,
+          "confirmed_context_equal": true,
+          "equal": true,
+          "first_compared_close_utc_ms": 1785980700000,
+          "recalculated_counts": {
+            "events": 1925,
+            "features": 6155,
+            "plans": 71
+          },
+          "recalculated_sha256": "814792677a1c3c52f9ff2adb4799ced9a18ff07c051e812b538d720feb943366",
+          "reference_counts": {
+            "events": 1925,
+            "features": 6155,
+            "plans": 71
+          },
+          "reference_sha256": "814792677a1c3c52f9ff2adb4799ced9a18ff07c051e812b538d720feb943366"
+        },
+        {
+          "chart_bars_removed": 1000,
+          "chart_warmup_bars": 40,
+          "confirmed_context_equal": true,
+          "equal": true,
+          "first_compared_close_utc_ms": 1787030100000,
+          "recalculated_counts": {
+            "events": 1718,
+            "features": 5405,
+            "plans": 67
+          },
+          "recalculated_sha256": "8bf1558e32b2046939753163a314f4e522b291b93f78934f00f0b91ec95608d5",
+          "reference_counts": {
+            "events": 1718,
+            "features": 5405,
+            "plans": 67
+          },
+          "reference_sha256": "8bf1558e32b2046939753163a314f4e522b291b93f78934f00f0b91ec95608d5"
+        }
+      ],
+      "prefixes": [
+        {
+          "chart_bars": 3222,
+          "confirmed_context_equal": true,
+          "equal": true,
+          "last_close_utc_ms": 1789952400000,
+          "recalculated_counts": {
+            "events": 991,
+            "features": 3222,
+            "plans": 36
+          },
+          "recalculated_sha256": "47c63b967fe324c3912ed86dde4afdf7baa425b7fd9aeb9686f01fd07686290a",
+          "reference_counts": {
+            "events": 991,
+            "features": 3222,
+            "plans": 36
+          },
+          "reference_sha256": "47c63b967fe324c3912ed86dde4afdf7baa425b7fd9aeb9686f01fd07686290a"
+        },
+        {
+          "chart_bars": 4833,
+          "confirmed_context_equal": true,
+          "equal": true,
+          "last_close_utc_ms": 1791981900000,
+          "recalculated_counts": {
+            "events": 1543,
+            "features": 4833,
+            "plans": 61
+          },
+          "recalculated_sha256": "c10a44296d87582957a938730ffee1a68b006bfda207878312f4c4eda50f0ff9",
+          "reference_counts": {
+            "events": 1543,
+            "features": 4833,
+            "plans": 61
+          },
+          "reference_sha256": "c10a44296d87582957a938730ffee1a68b006bfda207878312f4c4eda50f0ff9"
+        }
+      ]
+    },
+    "30": {
+      "bar_sha256": "1b31dc5dad532b9362c5340511211fbc13a33c64983d4a49485c7442a269c5d5",
+      "chart_bars": 10091,
+      "earlier_m30_bars": 0,
+      "last_close_utc_ms": 1794191400000,
+      "later_starts": [
+        {
+          "chart_bars_removed": 20,
+          "chart_warmup_bars": 40,
+          "confirmed_context_equal": true,
+          "equal": true,
+          "first_compared_close_utc_ms": 1767594600000,
+          "recalculated_counts": {
+            "events": 3060,
+            "features": 10031,
+            "plans": 106
+          },
+          "recalculated_sha256": "b956ab6206eab52e9f0d4ef8b966ea42265bedc3d971ce661266b8db25041811",
+          "reference_counts": {
+            "events": 3060,
+            "features": 10031,
+            "plans": 106
+          },
+          "reference_sha256": "b956ab6206eab52e9f0d4ef8b966ea42265bedc3d971ce661266b8db25041811"
+        },
+        {
+          "chart_bars_removed": 100,
+          "chart_warmup_bars": 40,
+          "confirmed_context_equal": true,
+          "equal": true,
+          "first_compared_close_utc_ms": 1767745800000,
+          "recalculated_counts": {
+            "events": 3029,
+            "features": 9951,
+            "plans": 106
+          },
+          "recalculated_sha256": "9c905a3f1d7bb0fbfaf40d89aaa1ff99a18ea2503226de50c43cdc52d4752761",
+          "reference_counts": {
+            "events": 3029,
+            "features": 9951,
+            "plans": 106
+          },
+          "reference_sha256": "9c905a3f1d7bb0fbfaf40d89aaa1ff99a18ea2503226de50c43cdc52d4752761"
+        },
+        {
+          "chart_bars_removed": 250,
+          "chart_warmup_bars": 40,
+          "confirmed_context_equal": true,
+          "equal": true,
+          "first_compared_close_utc_ms": 1768199400000,
+          "recalculated_counts": {
+            "events": 2991,
+            "features": 9801,
+            "plans": 106
+          },
+          "recalculated_sha256": "3f1dd1833e8b04864a8941f660fa6284441c74b482c3e175b501f68bf0737f0a",
+          "reference_counts": {
+            "events": 2991,
+            "features": 9801,
+            "plans": 106
+          },
+          "reference_sha256": "3f1dd1833e8b04864a8941f660fa6284441c74b482c3e175b501f68bf0737f0a"
+        },
+        {
+          "chart_bars_removed": 1000,
+          "chart_warmup_bars": 40,
+          "confirmed_context_equal": true,
+          "equal": true,
+          "first_compared_close_utc_ms": 1770134400000,
+          "recalculated_counts": {
+            "events": 2772,
+            "features": 9051,
+            "plans": 103
+          },
+          "recalculated_sha256": "2d8e251185b5d14aaa939d913931612d6b42f82e38e6f6e8571f690561d0c8cb",
+          "reference_counts": {
+            "events": 2772,
+            "features": 9051,
+            "plans": 103
+          },
+          "reference_sha256": "2d8e251185b5d14aaa939d913931612d6b42f82e38e6f6e8571f690561d0c8cb"
+        }
+      ],
+      "prefixes": [
+        {
+          "chart_bars": 5045,
+          "confirmed_context_equal": true,
+          "equal": true,
+          "last_close_utc_ms": 1780693200000,
+          "recalculated_counts": {
+            "events": 1552,
+            "features": 5045,
+            "plans": 40
+          },
+          "recalculated_sha256": "6fd6b0ae4d2eaf5c21a25536f2ce5cede4729256764754f88f507cdd9e3a25cc",
+          "reference_counts": {
+            "events": 1552,
+            "features": 5045,
+            "plans": 40
+          },
+          "reference_sha256": "6fd6b0ae4d2eaf5c21a25536f2ce5cede4729256764754f88f507cdd9e3a25cc"
+        },
+        {
+          "chart_bars": 7568,
+          "confirmed_context_equal": true,
+          "equal": true,
+          "last_close_utc_ms": 1787538600000,
+          "recalculated_counts": {
+            "events": 2328,
+            "features": 7568,
+            "plans": 80
+          },
+          "recalculated_sha256": "f96fa1814e4acf1bcb3194faa45f3d01ef0c447d1cd055981378956b53773710",
+          "reference_counts": {
+            "events": 2328,
+            "features": 7568,
+            "plans": 80
+          },
+          "reference_sha256": "f96fa1814e4acf1bcb3194faa45f3d01ef0c447d1cd055981378956b53773710"
+        }
+      ]
+    }
+  },
+  "gold_archive_registration_sha256": "4a416187bbce040f977d8e68efc4aaff8d8e7e0d922bf06fecaaa49a72c6476c",
+  "scope": "Archived confirmed-bar comparison of every wick event, plan geometry and feature, with local bar indices normalized to UTC. Higher-timeframe prehistory is retained for later-start cases.",
+  "status": "VERIFIED",
+  "symbol": "OANDA:XAUUSD",
+  "wick_settings": {
+    "activity_min": 1.25,
+    "atr_bars": 14,
+    "breakout_body_atr": 0.35,
+    "breakout_clearance_atr": 0.05,
+    "breakout_window": 8,
+    "cash_risk_fraction": 0.0025,
+    "dominance_min": 0.65,
+    "formation_bars": 4,
+    "max_friction_r": 0.3,
+    "max_height_atr": 2.0,
+    "max_hold": 72,
+    "maximum_risk_atr": 2.75,
+    "min_net_room_r": 0.7,
+    "min_range_atr": 0.5,
+    "min_rejections": 2,
+    "minimum_risk_atr": 0.25,
+    "opposing_wick_fraction": 0.3,
+    "retest_hold_atr": 0.1,
+    "retest_touch_atr": 0.15,
+    "retest_window": 6,
+    "stop_buffer_atr": 0.1,
+    "structure_bars": 20,
+    "structure_proximity_atr": 0.4,
+    "units": 3.0,
+    "volume_bars": 20,
+    "wick_fraction": 0.45
+  }
+}

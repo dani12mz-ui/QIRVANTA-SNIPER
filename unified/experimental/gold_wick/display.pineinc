@@ -1,0 +1,139 @@
+string wfMode = input.string("Live Analysis", "Presentation", options=["Live Analysis", "Strategy Audit"], group="Display")
+string wfPreset = input.string("Desktop", "Layout", options=["Desktop", "Compact", "Mobile"], group="Display")
+string wfPanelCorner = input.string("Auto", "Panel corner",
+     options=["Auto", "Top right", "Bottom right", "Bottom left", "Top left"], group="Display")
+bool wfShowPanel = input.bool(true, "Show formation panel", group="Display")
+bool wfShowRange = input.bool(true, "Draw formation ranges", group="Display")
+bool wfShowBadges = input.bool(true, "Draw close-confirmed badges", group="Display")
+bool wfShowRisk = input.bool(false, "Draw selected plan or simulation levels", group="Display")
+
+bool wfFullAudit = wfMode == "Strategy Audit"
+bool wfMobile = wfPreset == "Mobile"
+bool wfCompact = wfPreset != "Desktop"
+color wfSlate = #A8B5C5
+color wfPaper = #EDF2F7
+color wfGraphite = #101722
+color wfSurface = #172431
+color wfTeal = #42D8B6
+color wfRose = #FF8090
+color wfAmber = #EFC174
+color wfBlue = #62CAE2
+bool wfBright = (color.r(chart.bg_color) * 0.2126 + color.g(chart.bg_color) * 0.7152 +
+     color.b(chart.bg_color) * 0.0722) > 145
+color wfChartBuy = wfBright ? #087766 : wfTeal
+color wfChartSell = wfBright ? #A5243D : wfRose
+color wfChartWarn = wfBright ? #855207 : wfAmber
+color wfChartNeutral = wfBright ? #394D62 : wfSlate
+
+f_wfChartSide(int side) =>
+    side > 0 ? wfChartBuy : side < 0 ? wfChartSell : wfChartNeutral
+
+var box wfCurrentBox = na
+var array<box> wfBoxHistory = array.new<box>()
+var array<label> wfBadgeHistory = array.new<label>()
+if wfConfirmed and wfShowRange
+    if wfNewFormation and not na(wfActive)
+        color lineInk = f_wfChartSide(wfActive.side)
+        wfCurrentBox := box.new(wfActive.knownAt, wfActive.top, time_close + wfInterval, wfActive.bottom,
+             xloc=xloc.bar_time, border_color=color.new(lineInk, 35), bgcolor=color.new(lineInk, 93))
+        if wfFullAudit
+            array.push(wfBoxHistory, wfCurrentBox)
+            if array.size(wfBoxHistory) > 18
+                box.delete(array.shift(wfBoxHistory))
+    else if not na(wfCurrentBox)
+        box.set_right(wfCurrentBox, time_close)
+        if wfFalseBreakout or wfExpired
+            if wfFullAudit
+                box.set_border_color(wfCurrentBox, color.new(wfFalseBreakout ? wfChartWarn : wfChartNeutral, 65))
+                box.set_bgcolor(wfCurrentBox, color.new(wfChartNeutral, 97))
+            else
+                box.delete(wfCurrentBox)
+            wfCurrentBox := na
+
+if wfConfirmed and wfShowBadges and (not na(wfEventFormation) or wfFullAudit and wfBuildingEvent)
+    string marker = wfBreakout ? (wfStateSide > 0 ? "B" : "S") :
+         wfFullAudit and wfNewRetest ? "R" : wfFullAudit and wfFalseBreakout ? "×" :
+         wfFullAudit and wfExpired ? "·" : wfFullAudit and wfProbeEvent ? "?" :
+         wfFullAudit and wfNewFormation ? "W" : wfFullAudit and wfBuildingEvent ? "…" : ""
+    if marker != ""
+        bool buy = wfStateSide > 0
+        color markerInk = wfFalseBreakout or wfProbeEvent ? wfChartWarn :
+             wfExpired or wfBuildingEvent ? wfChartNeutral : f_wfChartSide(wfStateSide)
+        string hint = wfBreakout ? "Breakout confirmed at this bar close" : wfNewRetest ? "Confirmed edge retest" :
+             wfFalseBreakout ? "Confirmed reclaim of the breakout edge" : wfExpired ? "Formation expired" :
+             wfProbeEvent ? "High/low probe observed at this close" : wfBuildingEvent ? "Wick cluster forming" :
+             "Formation first recognized at this close"
+        float markerY = buy ? low - 0.12 * wfPriorAtr : high + 0.12 * wfPriorAtr
+        label mark = label.new(time, markerY, marker, xloc=xloc.bar_time, yloc=yloc.price,
+             color=markerInk, style=buy ? label.style_label_up : label.style_label_down,
+             textcolor=wfBright ? color.white : wfGraphite, size=size.tiny,
+             tooltip=hint + " · " + str.format_time(time_close, "dd MMM HH:mm", "UTC") + " UTC")
+        array.push(wfBadgeHistory, mark)
+        int markerCap = wfFullAudit ? 42 : wfMobile ? 3 : wfCompact ? 4 : 7
+        if array.size(wfBadgeHistory) > markerCap
+            label.delete(array.shift(wfBadgeHistory))
+
+bool wfHasPlan = not na(wfSelectedPlan)
+float wfDrawEntry = wfActiveSide != 0 ? wfActiveEntry : wfHasPlan ? wfSelectedPlan.entry : na
+float wfDrawStop = wfActiveSide != 0 ? wfActiveStop : wfHasPlan ? wfSelectedPlan.stop : na
+float wfDrawTP1 = wfActiveSide != 0 ? wfActiveFirstTarget : wfHasPlan ? wfSelectedPlan.tp1 : na
+float wfDrawTP2 = wfActiveSide != 0 ? wfActiveSecondTarget : wfHasPlan ? wfSelectedPlan.tp2 : na
+float wfDrawTP3 = wfActiveSide != 0 ? wfActiveThirdTarget : wfHasPlan ? wfSelectedPlan.tp3 : na
+plot(wfShowRisk and not wfMobile ? wfDrawEntry : na, "Planned entry", wfChartNeutral, 1, plot.style_linebr, display=display.pane)
+plot(wfShowRisk and not wfMobile ? wfDrawStop : na, "Structural stop", wfChartSell, 1, plot.style_linebr, display=display.pane)
+plot(wfShowRisk and not wfMobile ? wfDrawTP1 : na, "Target 1R", wfChartBuy, 1, plot.style_linebr, display=display.pane)
+plot(wfShowRisk and not wfMobile ? wfDrawTP2 : na, "Target 2R", wfChartBuy, 1, plot.style_linebr, display=display.pane)
+plot(wfShowRisk and not wfMobile ? wfDrawTP3 : na, "Target 3R", wfChartBuy, 1, plot.style_linebr, display=display.pane)
+
+string wfPanelPosition = switch wfPanelCorner
+    "Top right" => position.top_right
+    "Bottom right" => position.bottom_right
+    "Bottom left" => position.bottom_left
+    "Top left" => position.top_left
+    => wfMobile ? position.bottom_right : position.top_right
+var table wfPanel = table.new(position.top_right, 2, 10, bgcolor=wfGraphite, frame_color=wfSurface, frame_width=1)
+
+f_wfPanelRow(int row, string title, string value, color valueInk, bool emphasized) =>
+    color shade = row % 2 == 0 ? wfGraphite : wfSurface
+    int labelSize = wfMobile ? 9 : wfCompact ? 10 : 11
+    table.cell(wfPanel, 0, row, title, text_color=emphasized ? wfPaper : wfSlate,
+         text_size=emphasized ? labelSize + 1 : labelSize, bgcolor=shade, text_halign=text.align_left)
+    table.cell(wfPanel, 1, row, value, text_color=valueInk,
+         text_size=emphasized ? labelSize + 1 : labelSize, bgcolor=shade, text_halign=text.align_right)
+
+f_wfPx(float price) =>
+    na(price) ? "—" : str.tostring(price, format.mintick)
+
+if (barstate.islast or barstate.islastconfirmedhistory) and wfShowPanel
+    table.set_position(wfPanel, wfPanelPosition)
+    table.clear(wfPanel, 0, 0, 1, 9)
+    string activeState = wfIntrabarPending ? "BREAKOUT PENDING" : wfState
+    int direction = wfIntrabarPending ? wfActive.side : wfStateSide
+    string action = not wfSupported ? "USE OANDA XAUUSD" : wfPositionOpen ? "POSITION OPEN" :
+         wfExecutionPending ? "ORDER PENDING" : wfHasPlan ? f_wfSide(direction) + " PLAN" :
+         activeState == "RISK REJECTED" ? "RISK REJECTED" : "WAIT"
+    color actionInk = action == "BUY PLAN" ? wfTeal : action == "SELL PLAN" ? wfRose :
+         activeState == "RISK REJECTED" ? wfAmber : wfPaper
+    color stateInk = direction > 0 ? wfTeal : direction < 0 ? wfRose : wfSlate
+    f_wfPanelRow(0, wfMobile ? "WICK" : "GOLD PRO · WICK", wfSupported ? "XAUUSD · M" + timeframe.period : "M5 / M15 / M30", wfSlate, false)
+    f_wfPanelRow(1, wfMobile ? "SETUP" : "ACTIONABLE SETUP", action, actionInk, true)
+    f_wfPanelRow(2, "FORMATION", wfSupported ? activeState : "STANDARD CANDLES", stateInk, false)
+    f_wfPanelRow(3, wfMobile ? "MODE" : "TRADE STATUS", wfTradeState, wfBlue, false)
+    int nextRow = 4
+    if not na(wfDrawEntry)
+        f_wfPanelRow(nextRow, "ENTRY / SL", f_wfPx(wfDrawEntry) + " / " + f_wfPx(wfDrawStop), wfPaper, false)
+        nextRow += 1
+        f_wfPanelRow(nextRow, "TP1 / TP2 / TP3", f_wfPx(wfDrawTP1) + " / " + f_wfPx(wfDrawTP2) + " / " + f_wfPx(wfDrawTP3), wfTeal, false)
+        nextRow += 1
+    if wfFullAudit
+        f_wfPanelRow(nextRow, "LAST FORMATION", wfLastClosed, wfSlate, false)
+        nextRow += 1
+        f_wfPanelRow(nextRow, wfMobile ? "CTX / VOL" : "H1 / H4 · VOLUME", f_wfSide(wfH1Side) + " / " + f_wfSide(wfH4Side) +
+             " · " + (wfVolumeKnown ? syminfo.volumetype : "NA"), wfSlate, false)
+        nextRow += 1
+        if not wfCompact and not na(wfActive)
+            f_wfPanelRow(nextRow, "RANGE / AGE", f_wfPx(wfActive.bottom) + "–" + f_wfPx(wfActive.top) +
+                 " · " + str.tostring(bar_index - wfActive.knownIndex), wfBlue, false)
+            nextRow += 1
+        if wfReason != ""
+            f_wfPanelRow(nextRow, "REASON", wfReason, wfAmber, false)
