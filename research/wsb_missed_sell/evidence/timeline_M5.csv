@@ -1,0 +1,134 @@
+UTC_CLOSE,WSB,S5,RC2,QIRVANTA_WICK,PRICE,REASON,RC2_AUDIT
+2026-11-11T05:00:00Z,,Няма суров trigger,NO SETUP,WAIT,4046.39,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T05:05:00Z,RESOLUTION [VOLUME_MISMATCH],WATCH SELL [Противоположен пробив; чака връщане отвъд нивото],WATCH SELL [Противоположен пробив; чака връщане отвъд нивото],WAIT,4050.13,Чака отделна потвърждаваща свещ | Чака връщане отвъд нивото със затворена свещ.,WATCH SELL [Противоположен пробив; чака връщане отвъд нивото]
+2026-11-11T05:10:00Z,,CANCELLED SELL [Нарушена структура],CANCELLED SELL [Нарушена структура],WAIT,4051.93,Нарушена структура | Нарушена структура,CANCELLED SELL [Нарушена структура]
+2026-11-11T05:15:00Z,,WATCH SELL [Противоположен пробив; чака връщане отвъд нивото],WATCH SELL [Противоположен пробив; чака връщане отвъд нивото],WAIT,4053.3,Чака отделна потвърждаваща свещ | Чака връщане отвъд нивото със затворена свещ.,WATCH SELL [Противоположен пробив; чака връщане отвъд нивото]
+2026-11-11T05:20:00Z,,CANCELLED SELL [Нарушена структура],CANCELLED SELL [Нарушена структура],WAIT,4055.375,Нарушена структура | Нарушена структура,CANCELLED SELL [Нарушена структура]
+2026-11-11T05:25:00Z,,WATCH SELL [Противоположен пробив; чака връщане отвъд нивото],WATCH SELL [Противоположен пробив; чака връщане отвъд нивото],WAIT,4057.98,Чака отделна потвърждаваща свещ | Чака връщане отвъд нивото със затворена свещ.,WATCH SELL [Противоположен пробив; чака връщане отвъд нивото]
+2026-11-11T05:30:00Z,,CANCELLED SELL [Нарушена структура],CANCELLED SELL [Нарушена структура],WAIT,4058.375,Нарушена структура | Нарушена структура,CANCELLED SELL [Нарушена структура]
+2026-11-11T05:35:00Z,,WATCH SELL [Противоположен пробив; чака връщане отвъд нивото],WATCH SELL [Противоположен пробив; чака връщане отвъд нивото],FORMATION_BUILDING SELL [FIRST_REJECTION],4061.235,Чака отделна потвърждаваща свещ | Чака връщане отвъд нивото със затворена свещ.,WATCH SELL [Противоположен пробив; чака връщане отвъд нивото]
+2026-11-11T05:40:00Z,,"CONFIRMED SELL [Техническите правила са изпълнени; НЕ е препоръка за поръчка] | READY SELL [Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.] | NATIVE_ADMITTED SELL [Избран за RAW; още няма изпълнение] | NATIVE_SUBMITTED SELL [Само Strategy Tester; симулиран план]","CONFIRMED SELL [Техническите правила са изпълнени; НЕ е препоръка за поръчка] | READY SELL [Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.]",FORMATION BUILDING,4058.79,"УСЛОВИЯТА СА ИЗПЪЛНЕНИ | Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.","CONFIRMED SELL [Техническите правила са изпълнени; НЕ е препоръка за поръчка] | READY SELL [Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.] | NATIVE_ADMITTED SELL [Избран за RAW; още няма изпълнение] | NATIVE_SUBMITTED SELL [Само Strategy Tester; симулиран план]"
+2026-11-11T05:45:00Z,,NATIVE_ENTRY SELL [Native market fill; няма pre-open rejection],NO SETUP,FORMATION_BUILDING SELL [RANGE_TOO_WIDE],4060.775,Няма суров trigger | Няма нов потвърден S5 план.,NATIVE_ENTRY SELL [Native market fill; няма pre-open rejection]
+2026-11-11T05:50:00Z,,Няма суров trigger,NO SETUP,FORMATION BUILDING,4062.33,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T05:55:00Z,,Няма суров trigger,NO SETUP,FORMATION BUILDING,4058.085,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T06:00:00Z,,Няма суров trigger,NO SETUP,FORMATION BUILDING,4058.64,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T06:05:00Z,,Няма суров trigger,NO SETUP,WAIT,4055.625,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T06:10:00Z,,Няма суров trigger,NO SETUP,FORMATION_BUILDING SELL [FIRST_REJECTION],4056.39,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T06:15:00Z,,Няма суров trigger,NO SETUP,FORMATION BUILDING,4056.51,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T06:20:00Z,FORMATION,Няма суров trigger,NO SETUP,FORMATION BUILDING,4056.73,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T06:25:00Z,,Няма суров trigger,NO SETUP,SELL_WATCH SELL [WICK_CLUSTER_CONFIRMED],4056.255,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T06:30:00Z,,Няма суров trigger,NO SETUP,BREAKOUT_PENDING SELL [EXTREME_WITHOUT_CLOSE],4055.355,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T06:35:00Z,,Няма суров trigger,NO SETUP,SELL WATCH,4055.545,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T06:40:00Z,,Няма суров trigger,NO SETUP,SELL WATCH,4054.815,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T06:45:00Z,,Няма суров trigger,NO SETUP,SELL WATCH,4054.81,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T06:50:00Z,,Няма суров trigger,NO SETUP,SELL WATCH,4058.895,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T06:55:00Z,,Няма суров trigger,NO SETUP,SELL WATCH,4059.34,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T07:00:00Z,FORMATION,Няма суров trigger,NO SETUP,FORMATION_EXPIRED SELL [OPPOSITE_EDGE_CLOSE],4060.035,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T07:05:00Z,RESOLUTION BUY [SIGNAL] | RESOLUTION [VOLUME_MISMATCH] | PLAN BUY,Няма суров trigger,NO SETUP,FORMATION BUILDING,4063.835,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T07:10:00Z,FORMATION,Няма суров trigger,NO SETUP,FORMATION BUILDING,4063.22,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T07:15:00Z,,Няма суров trigger,NO SETUP,FORMATION BUILDING,4061.2,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T07:20:00Z,,Няма суров trigger,NO SETUP,WAIT,4064.02,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T07:25:00Z,RESOLUTION BUY [SIGNAL] | PLAN BUY,WATCH SELL [Противоположен пробив; чака връщане отвъд нивото] | NATIVE_EXIT_21 SELL [SL] | NATIVE_EXIT_22 SELL [SL] | NATIVE_EXIT_23 SELL [SL] | NATIVE_CLOSED SELL [SL],WATCH SELL [Противоположен пробив; чака връщане отвъд нивото],WAIT,4065.82,Чака отделна потвърждаваща свещ | Чака връщане отвъд нивото със затворена свещ.,WATCH SELL [Противоположен пробив; чака връщане отвъд нивото] | NATIVE_EXIT_21 SELL [SL] | NATIVE_EXIT_22 SELL [SL] | NATIVE_EXIT_23 SELL [SL] | NATIVE_CLOSED SELL [SL]
+2026-11-11T07:30:00Z,,REJECTED SELL [Няма потвърждаваща свещ],REJECTED SELL [Няма потвърждаваща свещ],WAIT,4065.365,Няма потвърждаваща свещ | Няма потвърждаваща свещ,REJECTED SELL [Няма потвърждаваща свещ]
+2026-11-11T07:35:00Z,,Няма суров trigger,NO SETUP,FORMATION_BUILDING BUY [FIRST_REJECTION],4064.09,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T07:40:00Z,,Няма суров trigger,NO SETUP,FORMATION_BUILDING [OPPOSING_REJECTIONS],4062.655,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T07:45:00Z,,Няма суров trigger,NO SETUP,FORMATION BUILDING,4061.825,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T07:50:00Z,,Няма суров trigger,NO SETUP,FORMATION BUILDING,4059.87,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T07:55:00Z,,Няма суров trigger,NO SETUP,FORMATION BUILDING,4059.925,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T08:00:00Z,,Няма суров trigger,NO SETUP,FORMATION_BUILDING SELL [FIRST_REJECTION],4059.32,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T08:05:00Z,,Няма суров trigger,NO SETUP,FORMATION BUILDING,4058.565,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T08:10:00Z,,Няма суров trigger,NO SETUP,FORMATION_BUILDING [OPPOSING_REJECTIONS],4059.045,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T08:15:00Z,,Няма суров trigger,NO SETUP,FORMATION BUILDING,4059.125,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T08:20:00Z,FORMATION,Няма суров trigger,NO SETUP,FORMATION_BUILDING [OPPOSING_REJECTIONS],4057.48,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T08:25:00Z,,Няма суров trigger,NO SETUP,FORMATION_BUILDING [OPPOSING_REJECTIONS],4057.115,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T08:30:00Z,FORMATION | RESOLUTION SELL [SIGNAL] | PLAN SELL,Няма суров trigger,NO SETUP,SELL_WATCH SELL [WICK_CLUSTER_CONFIRMED],4056.155,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T08:35:00Z,,Няма суров trigger,NO SETUP,SELL WATCH,4059.85,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T08:40:00Z,,Няма суров trigger,NO SETUP,SELL WATCH,4059.835,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T08:45:00Z,,Няма суров trigger,NO SETUP,SELL WATCH,4060.42,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T08:50:00Z,,Няма суров trigger,NO SETUP,SELL WATCH,4058.285,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T08:55:00Z,,Няма суров trigger,NO SETUP,SELL WATCH,4056.14,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T09:00:00Z,,Няма суров trigger,NO SETUP,BREAKOUT_PENDING SELL [EXTREME_WITHOUT_CLOSE],4059.125,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T09:05:00Z,RESOLUTION SELL [SIGNAL] | PLAN SELL,Няма суров trigger,NO SETUP,SELL_BREAKOUT_CONFIRMED SELL [DIRECTIONAL_CLOSE] | RISK_REJECTED SELL [INSUFFICIENT_NET_ROOM] | RETEST_WATCH SELL [BREAKOUT_EDGE_KNOWN] | RISK_REJECTED SELL [INSUFFICIENT_NET_ROOM],4055.14,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T09:10:00Z,,Няма суров trigger,NO SETUP,FALSE_BREAKOUT SELL [CLOSE_BACK_INSIDE],4057.08,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T09:15:00Z,,WATCH BUY [Противоположен пробив; чака връщане отвъд нивото],WATCH BUY [Противоположен пробив; чака връщане отвъд нивото],WAIT,4053.66,Няма суров trigger | Чака връщане отвъд нивото със затворена свещ.,WATCH BUY [Противоположен пробив; чака връщане отвъд нивото]
+2026-11-11T09:20:00Z,,CANCELLED BUY [Нарушена структура],CANCELLED BUY [Нарушена структура],WAIT,4050.29,Няма суров trigger | Нарушена структура,CANCELLED BUY [Нарушена структура]
+2026-11-11T09:25:00Z,,Няма суров trigger,NO SETUP,WAIT,4049.645,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T09:30:00Z,,Няма суров trigger,NO SETUP,WAIT,4049.57,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T09:35:00Z,,Няма суров trigger,NO SETUP,FORMATION_BUILDING BUY [FIRST_REJECTION],4049.365,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T09:40:00Z,,WATCH BUY [Противоположен пробив; чака връщане отвъд нивото],WATCH BUY [Противоположен пробив; чака връщане отвъд нивото],FORMATION BUILDING,4047.03,Няма суров trigger | Чака връщане отвъд нивото със затворена свещ.,WATCH BUY [Противоположен пробив; чака връщане отвъд нивото]
+2026-11-11T09:45:00Z,,"CONFIRMED BUY [Техническите правила са изпълнени; НЕ е препоръка за поръчка] | READY BUY [Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.] | NATIVE_ADMITTED BUY [Избран за RAW; още няма изпълнение] | NATIVE_SUBMITTED BUY [Само Strategy Tester; симулиран план]","CONFIRMED BUY [Техническите правила са изпълнени; НЕ е препоръка за поръчка] | READY BUY [Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.]",FORMATION BUILDING,4049.745,"Няма суров trigger | Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.","CONFIRMED BUY [Техническите правила са изпълнени; НЕ е препоръка за поръчка] | READY BUY [Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.] | NATIVE_ADMITTED BUY [Избран за RAW; още няма изпълнение] | NATIVE_SUBMITTED BUY [Само Strategy Tester; симулиран план]"
+2026-11-11T09:50:00Z,,NATIVE_ENTRY BUY [Native market fill; няма pre-open rejection],NO SETUP,FORMATION BUILDING,4051.845,Няма суров trigger | Няма нов потвърден S5 план.,NATIVE_ENTRY BUY [Native market fill; няма pre-open rejection]
+2026-11-11T09:55:00Z,,Няма суров trigger,NO SETUP,WAIT,4048.935,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T10:00:00Z,,Няма суров trigger,NO SETUP,WAIT,4050.62,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T10:05:00Z,,NATIVE_EXIT_24 BUY [TP1] | NATIVE_STOP_SCHEDULED BUY [Стопът е променен на това затваряне; не се прилага назад върху вече изминалата свещ],NO SETUP,WAIT,4054.92,Няма суров trigger | Няма нов потвърден S5 план.,NATIVE_EXIT_24 BUY [TP1]
+2026-11-11T10:10:00Z,,Няма суров trigger,NO SETUP,WAIT,4052.575,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T10:15:00Z,,Няма суров trigger,NO SETUP,FORMATION_BUILDING BUY [FIRST_REJECTION],4052.335,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T10:20:00Z,,NATIVE_EXIT_25 BUY [SL] | NATIVE_EXIT_26 BUY [SL] | NATIVE_CLOSED BUY [SL],NO SETUP,FORMATION BUILDING,4048.665,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T10:25:00Z,,Няма суров trigger,NO SETUP,FORMATION BUILDING,4049.15,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T10:30:00Z,,Няма суров trigger,NO SETUP,FORMATION BUILDING,4050.39,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T10:35:00Z,FORMATION,Няма суров trigger,NO SETUP,FORMATION_BUILDING SELL [FIRST_REJECTION],4049.655,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T10:40:00Z,,Няма суров trigger,NO SETUP,FORMATION BUILDING,4048.08,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T10:45:00Z,,Няма суров trigger,NO SETUP,FORMATION BUILDING,4049.105,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T10:50:00Z,,Няма суров trigger,NO SETUP,SELL_WATCH SELL [WICK_CLUSTER_CONFIRMED],4050.745,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T10:55:00Z,,Няма суров trigger,NO SETUP,SELL WATCH,4049.495,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T11:00:00Z,,Няма суров trigger,NO SETUP,SELL WATCH,4050.9,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T11:05:00Z,,Няма суров trigger,NO SETUP,SELL WATCH,4052.32,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T11:10:00Z,,Няма суров trigger,NO SETUP,SELL WATCH,4051.43,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T11:15:00Z,RESOLUTION BUY [SIGNAL] | PLAN BUY,Няма суров trigger,NO SETUP,FORMATION_EXPIRED SELL [OPPOSITE_EDGE_CLOSE],4053.735,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T11:20:00Z,,Няма суров trigger,NO SETUP,FORMATION BUILDING,4055.07,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T11:25:00Z,,Няма суров trigger,NO SETUP,FORMATION BUILDING,4054.965,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T11:30:00Z,,Няма суров trigger,NO SETUP,WAIT,4053.79,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T11:35:00Z,,Няма суров trigger,NO SETUP,WAIT,4051.665,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T11:40:00Z,,Няма суров trigger,NO SETUP,WAIT,4051.07,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T11:45:00Z,,Няма суров trigger,NO SETUP,WAIT,4047.65,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T11:50:00Z,,Няма суров trigger,NO SETUP,WAIT,4049.395,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T11:55:00Z,,Няма суров trigger,NO SETUP,WAIT,4048.01,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T12:00:00Z,,WATCH BUY [Противоположен пробив; чака връщане отвъд нивото],WATCH BUY [Противоположен пробив; чака връщане отвъд нивото],WAIT,4044.53,Няма суров trigger | Чака връщане отвъд нивото със затворена свещ.,WATCH BUY [Противоположен пробив; чака връщане отвъд нивото] | NATIVE_EXIT_25 BUY [SL] | NATIVE_EXIT_26 BUY [SL] | NATIVE_CLOSED BUY [SL]
+2026-11-11T12:05:00Z,,CANCELLED BUY [Нарушена структура],CANCELLED BUY [Нарушена структура],FORMATION_BUILDING SELL [FIRST_REJECTION],4043.72,Няма суров trigger | Нарушена структура,CANCELLED BUY [Нарушена структура]
+2026-11-11T12:10:00Z,,Няма суров trigger,NO SETUP,FORMATION BUILDING,4045.75,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T12:15:00Z,,Няма суров trigger,NO SETUP,FORMATION BUILDING,4046.645,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T12:20:00Z,,Няма суров trigger,NO SETUP,FORMATION BUILDING,4044.07,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T12:25:00Z,,Няма суров trigger,NO SETUP,FORMATION_BUILDING SELL [FIRST_REJECTION],4044.555,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T12:30:00Z,,Няма суров trigger,NO SETUP,FORMATION BUILDING,4044.89,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T12:35:00Z,,Няма суров trigger,NO SETUP,FORMATION_BUILDING [OPPOSING_REJECTIONS],4044.42,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T12:40:00Z,,Няма суров trigger,NO SETUP,FORMATION BUILDING,4042.165,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T12:45:00Z,,WATCH BUY [Противоположен пробив; чака връщане отвъд нивото],WATCH BUY [Противоположен пробив; чака връщане отвъд нивото],FORMATION BUILDING,4041.3,Няма суров trigger | Чака връщане отвъд нивото със затворена свещ.,WATCH BUY [Противоположен пробив; чака връщане отвъд нивото]
+2026-11-11T12:50:00Z,,"CONFIRMED BUY [Техническите правила са изпълнени; НЕ е препоръка за поръчка] | READY BUY [Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.] | NATIVE_ADMITTED BUY [Избран за RAW; още няма изпълнение] | NATIVE_SUBMITTED BUY [Само Strategy Tester; симулиран план]","CONFIRMED BUY [Техническите правила са изпълнени; НЕ е препоръка за поръчка] | READY BUY [Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.]",FORMATION BUILDING,4043.01,"Няма суров trigger | Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.","CONFIRMED BUY [Техническите правила са изпълнени; НЕ е препоръка за поръчка] | READY BUY [Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.] | NATIVE_ADMITTED BUY [Избран за RAW; още няма изпълнение] | NATIVE_SUBMITTED BUY [Само Strategy Tester; симулиран план]"
+2026-11-11T12:55:00Z,,WATCH BUY [Противоположен пробив; чака връщане отвъд нивото] | NATIVE_ENTRY BUY [Native market fill; няма pre-open rejection],WATCH BUY [Противоположен пробив; чака връщане отвъд нивото],WAIT,4040.94,Няма суров trigger | Чака връщане отвъд нивото със затворена свещ.,WATCH BUY [Противоположен пробив; чака връщане отвъд нивото] | NATIVE_ENTRY BUY [Native market fill; няма pre-open rejection]
+2026-11-11T13:00:00Z,,REJECTED BUY [Пауза след потвърден модел] | NATIVE_EXIT_27 BUY [SL] | NATIVE_EXIT_28 BUY [SL] | NATIVE_EXIT_29 BUY [SL] | NATIVE_CLOSED BUY [SL],REJECTED BUY [Пауза след потвърден модел],WAIT,4044.135,Няма суров trigger | Пауза след потвърден модел,REJECTED BUY [Пауза след потвърден модел] | NATIVE_EXIT_27 BUY [SL] | NATIVE_EXIT_28 BUY [SL] | NATIVE_EXIT_29 BUY [SL] | NATIVE_CLOSED BUY [SL]
+2026-11-11T13:05:00Z,,Няма суров trigger,NO SETUP,WAIT,4042.37,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T13:10:00Z,,Няма суров trigger,NO SETUP,FORMATION_BUILDING BUY [FIRST_REJECTION],4041.635,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T13:15:00Z,,Няма суров trigger,NO SETUP,FORMATION BUILDING,4044.105,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T13:20:00Z,,Няма суров trigger,NO SETUP,FORMATION_BUILDING [OPPOSING_REJECTIONS],4043.66,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T13:25:00Z,,Няма суров trigger,NO SETUP,FORMATION BUILDING,4040.135,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T13:30:00Z,FORMATION,WATCH BUY [Противоположен пробив; чака връщане отвъд нивото],WATCH BUY [Противоположен пробив; чака връщане отвъд нивото],FORMATION_BUILDING [OPPOSING_REJECTIONS],4038.78,Няма суров trigger | Чака връщане отвъд нивото със затворена свещ.,WATCH BUY [Противоположен пробив; чака връщане отвъд нивото]
+2026-11-11T13:35:00Z,,Няма суров trigger,WATCH,FORMATION_BUILDING [OPPOSING_REJECTIONS],4037.88,Няма суров trigger | Чака връщане отвъд нивото със затворена свещ.,
+2026-11-11T13:40:00Z,RESOLUTION SELL [SIGNAL] | PLAN SELL,CANCELLED BUY [Нарушена структура],CANCELLED BUY [Нарушена структура],FORMATION BUILDING,4035.08,Няма суров trigger | Нарушена структура,CANCELLED BUY [Нарушена структура]
+2026-11-11T13:45:00Z,,WATCH BUY [Противоположен пробив; чака връщане отвъд нивото],WATCH BUY [Противоположен пробив; чака връщане отвъд нивото],FORMATION BUILDING,4033.055,Няма суров trigger | Чака връщане отвъд нивото със затворена свещ.,WATCH BUY [Противоположен пробив; чака връщане отвъд нивото]
+2026-11-11T13:50:00Z,FORMATION,Няма суров trigger,WATCH,FORMATION_BUILDING SELL [RANGE_TOO_WIDE],4034.54,Няма суров trigger | Чака връщане отвъд нивото със затворена свещ.,
+2026-11-11T13:55:00Z,,Няма суров trigger,WATCH,FORMATION BUILDING,4032.735,Няма суров trigger | Чака връщане отвъд нивото със затворена свещ.,
+2026-11-11T14:00:00Z,,"CONFIRMED BUY [Техническите правила са изпълнени; НЕ е препоръка за поръчка] | READY BUY [Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.] | NATIVE_ADMITTED BUY [Избран за RAW; още няма изпълнение] | NATIVE_SUBMITTED BUY [Само Strategy Tester; симулиран план]","CONFIRMED BUY [Техническите правила са изпълнени; НЕ е препоръка за поръчка] | READY BUY [Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.]",FORMATION BUILDING,4038.075,"Няма суров trigger | Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.","CONFIRMED BUY [Техническите правила са изпълнени; НЕ е препоръка за поръчка] | READY BUY [Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.] | NATIVE_ADMITTED BUY [Избран за RAW; още няма изпълнение] | NATIVE_SUBMITTED BUY [Само Strategy Tester; симулиран план]"
+2026-11-11T14:05:00Z,,NATIVE_ENTRY BUY [Native entry и exit в една свещ] | NATIVE_EXIT_30 BUY [SL] | NATIVE_EXIT_31 BUY [SL] | NATIVE_EXIT_32 BUY [SL] | NATIVE_CLOSED BUY [SL],NO SETUP,FORMATION BUILDING,4032.475,Няма суров trigger | Няма нов потвърден S5 план.,NATIVE_ENTRY BUY [Native entry и exit в една свещ] | NATIVE_EXIT_30 BUY [SL] | NATIVE_EXIT_31 BUY [SL] | NATIVE_EXIT_32 BUY [SL] | NATIVE_CLOSED BUY [SL]
+2026-11-11T14:10:00Z,RESOLUTION SELL [SIGNAL] | PLAN SELL,WATCH BUY [Противоположен пробив; чака връщане отвъд нивото],WATCH BUY [Противоположен пробив; чака връщане отвъд нивото],WAIT,4029.965,Няма суров trigger | Чака връщане отвъд нивото със затворена свещ.,WATCH BUY [Противоположен пробив; чака връщане отвъд нивото]
+2026-11-11T14:15:00Z,,REJECTED BUY [Няма потвърждаваща свещ],REJECTED BUY [Няма потвърждаваща свещ],FORMATION_BUILDING BUY [FIRST_REJECTION],4030.705,Няма суров trigger | Няма потвърждаваща свещ,REJECTED BUY [Няма потвърждаваща свещ]
+2026-11-11T14:20:00Z,,Няма суров trigger,NO SETUP,FORMATION BUILDING,4029.22,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T14:25:00Z,,Няма суров trigger,NO SETUP,FORMATION_BUILDING [OPPOSING_REJECTIONS],4029.485,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T14:30:00Z,,Няма суров trigger,NO SETUP,FORMATION BUILDING,4031.035,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T14:35:00Z,,WATCH BUY [Противоположен пробив; чака връщане отвъд нивото],WATCH BUY [Противоположен пробив; чака връщане отвъд нивото],FORMATION BUILDING,4021.715,Няма суров trigger | Чака връщане отвъд нивото със затворена свещ.,WATCH BUY [Противоположен пробив; чака връщане отвъд нивото]
+2026-11-11T14:40:00Z,,CANCELLED BUY [Нарушена структура],CANCELLED BUY [Нарушена структура],FORMATION_BUILDING [OPPOSING_REJECTIONS],4018.77,Няма суров trigger | Нарушена структура,CANCELLED BUY [Нарушена структура]
+2026-11-11T14:45:00Z,FORMATION,Няма суров trigger,NO SETUP,FORMATION_BUILDING [OPPOSING_REJECTIONS],4016.145,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T14:50:00Z,,Няма суров trigger,NO SETUP,FORMATION BUILDING,4015.925,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T14:55:00Z,,Няма суров trigger,NO SETUP,FORMATION_BUILDING [OPPOSING_REJECTIONS],4014.61,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T15:00:00Z,FORMATION,Няма суров trigger,NO SETUP,SELL_WATCH SELL [WICK_CLUSTER_CONFIRMED],4015.375,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T15:05:00Z,,Няма суров trigger,NO SETUP,SELL WATCH,4014.55,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T15:10:00Z,,Няма суров trigger,NO SETUP,SELL WATCH,4016.43,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T15:15:00Z,,Няма суров trigger,NO SETUP,SELL WATCH,4018.42,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T15:20:00Z,,Няма суров trigger,NO SETUP,SELL WATCH,4014.075,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T15:25:00Z,RESOLUTION SELL [SIGNAL] | RESOLUTION SELL [SIGNAL] | PLAN SELL,WATCH BUY [Противоположен пробив; чака връщане отвъд нивото],WATCH BUY [Противоположен пробив; чака връщане отвъд нивото],SELL_BREAKOUT_CONFIRMED SELL [DIRECTIONAL_CLOSE] | RISK_REJECTED SELL [OVERSIZED_STOP] | RETEST_WATCH SELL [BREAKOUT_EDGE_KNOWN] | RISK_REJECTED SELL [OVERSIZED_STOP],4007.4,Няма суров trigger | Чака връщане отвъд нивото със затворена свещ.,WATCH BUY [Противоположен пробив; чака връщане отвъд нивото]
+2026-11-11T15:30:00Z,,CANCELLED BUY [Нарушена структура],CANCELLED BUY [Нарушена структура],RETEST WATCH,4006.48,Няма суров trigger | Нарушена структура,CANCELLED BUY [Нарушена структура]
+2026-11-11T15:35:00Z,,Няма суров trigger,NO SETUP,RETEST WATCH,4007.445,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T15:40:00Z,,Няма суров trigger,NO SETUP,RETEST WATCH,4007.675,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T15:45:00Z,FORMATION,Няма суров trigger,NO SETUP,RETEST WATCH,4005.735,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T15:50:00Z,,Няма суров trigger,NO SETUP,RETEST WATCH,4002.34,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T15:55:00Z,FORMATION,Няма суров trigger,NO SETUP,RETEST WATCH,4001.72,Няма суров trigger | Няма нов потвърден S5 план.,
+2026-11-11T16:00:00Z,,Няма суров trigger,NO SETUP,FORMATION_EXPIRED SELL [RETEST_WINDOW_EXPIRED],4005.125,Няма суров trigger | Няма нов потвърден S5 план.,

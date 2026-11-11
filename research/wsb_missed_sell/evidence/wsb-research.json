@@ -1,0 +1,4385 @@
+{
+  "schema": "qirvanta.wsb.forensic.v1",
+  "public_source": "https://www.tradingview.com/script/D6AvF0jw-Wick-Sequence-Breakout/",
+  "reference_levels": [
+    "4049.570",
+    "4058.231",
+    "4040.909",
+    "4032.248",
+    "4023.588"
+  ],
+  "settings": {
+    "count": 3,
+    "window": 5,
+    "bear_upper": 0.45,
+    "bear_lower": 0.25,
+    "bull_lower": 0.45,
+    "bull_upper": 0.25,
+    "wait_bars": 100,
+    "close_breakout": true,
+    "minimum_range": false,
+    "minimum_range_atr": 0.3,
+    "filter_atr_length": 14,
+    "breakout_size_filter": false,
+    "breakout_size_multiple": 1.5,
+    "breakout_size_length": 20,
+    "absorption": true,
+    "volume_length": 20,
+    "absorption_volume_multiple": 1.1,
+    "absorption_max_atr": 0.6,
+    "absorption_close": 0.6,
+    "concurrent": 2,
+    "mixed": true,
+    "allow_buy": true,
+    "allow_sell": true,
+    "show_targets": true,
+    "use_atr_sl": true,
+    "stop_atr_length": 14,
+    "stop_atr_multiple": 1.5,
+    "stop_percent": 1.0,
+    "target_r": [
+      1.0,
+      2.0,
+      3.0
+    ]
+  },
+  "native": {
+    "M5": {
+      "capture_sha256": "ffd31c3e276943582f46f92cfe1a400e1d4b7995ad875e3cd6dd42290a118a2b",
+      "reconstruction_seed_complete": true,
+      "frame_minutes": 5,
+      "native_settings_match_public_defaults": true,
+      "native_settings": {
+        "version": 1,
+        "min_count": 3,
+        "window": 5,
+        "bear_upper": 45,
+        "bear_lower": 25,
+        "bull_lower": 45,
+        "bull_upper": 25,
+        "close_break": true,
+        "wait_bars": 100,
+        "range_filter": false,
+        "range_atr": 0.3,
+        "atr_len": 14,
+        "size_filter": false,
+        "size_mult": 1.5,
+        "size_len": 20,
+        "bear_signals": true,
+        "bull_signals": true,
+        "absorption": true,
+        "vol_len": 20,
+        "vol_mult": 1.1,
+        "abs_max_atr": 0.6,
+        "abs_close_pct": 60,
+        "concurrent": 2,
+        "mixed": true,
+        "show_targets": true,
+        "sl_atr": true,
+        "tp_atr_len": 14,
+        "sl_atr_mult": 1.5,
+        "sl_pct": 1,
+        "rr1": 1,
+        "rr2": 2,
+        "rr3": 3
+      },
+      "bars": 1198,
+      "first_open_utc": "2026-11-05T08:10:00Z",
+      "last_close_utc": "2026-11-11T16:00:00Z",
+      "comparison_first_utc": "2026-11-05T08:15:00Z",
+      "source_plan_count": 42,
+      "native_warmup_plans_without_levels": 1,
+      "replay_plan_count": 42,
+      "plan_mismatches": [],
+      "close_only_matches": [
+        {
+          "open_ms": 1794389100000,
+          "close_ms": 1794389400000,
+          "atr_tp": 3.3549452422,
+          "bear_signal": false,
+          "bull_signal": false,
+          "open_utc": "2026-11-11T09:25:00Z",
+          "close_utc": "2026-11-11T09:30:00Z"
+        }
+      ],
+      "context_mismatches": [],
+      "events": {
+        "formations": {
+          "native": 63,
+          "reconstructed": 63,
+          "mismatches": []
+        },
+        "resolutions": {
+          "native": 61,
+          "reconstructed": 61,
+          "mismatches": []
+        }
+      },
+      "exact_native_reference_matches": [],
+      "exact_python_reference_matches": [],
+      "case_setting_sensitivities": {},
+      "alert_scope": "Historical alert condition only. Delivery and actual fills are unobserved."
+    },
+    "M15": {
+      "capture_sha256": "8f197158209b30d1cb6bfd93f25e7f05b6d0e4c803a6d9d640cc760ada99baa9",
+      "reconstruction_seed_complete": true,
+      "frame_minutes": 15,
+      "native_settings_match_public_defaults": true,
+      "native_settings": {
+        "version": 1,
+        "min_count": 3,
+        "window": 5,
+        "bear_upper": 45,
+        "bear_lower": 25,
+        "bull_lower": 45,
+        "bull_upper": 25,
+        "close_break": true,
+        "wait_bars": 100,
+        "range_filter": false,
+        "range_atr": 0.3,
+        "atr_len": 14,
+        "size_filter": false,
+        "size_mult": 1.5,
+        "size_len": 20,
+        "bear_signals": true,
+        "bull_signals": true,
+        "absorption": true,
+        "vol_len": 20,
+        "vol_mult": 1.1,
+        "abs_max_atr": 0.6,
+        "abs_close_pct": 60,
+        "concurrent": 2,
+        "mixed": true,
+        "show_targets": true,
+        "sl_atr": true,
+        "tp_atr_len": 14,
+        "sl_atr_mult": 1.5,
+        "sl_pct": 1,
+        "rr1": 1,
+        "rr2": 2,
+        "rr3": 3
+      },
+      "bars": 1199,
+      "first_open_utc": "2026-10-23T14:15:00Z",
+      "last_close_utc": "2026-11-11T16:00:00Z",
+      "comparison_first_utc": "2026-10-23T14:30:00Z",
+      "source_plan_count": 40,
+      "native_warmup_plans_without_levels": 0,
+      "replay_plan_count": 40,
+      "plan_mismatches": [],
+      "close_only_matches": [
+        {
+          "open_ms": 1794388500000,
+          "close_ms": 1794389400000,
+          "atr_tp": 5.773839754,
+          "bear_signal": true,
+          "bull_signal": false,
+          "open_utc": "2026-11-11T09:15:00Z",
+          "close_utc": "2026-11-11T09:30:00Z"
+        }
+      ],
+      "context_mismatches": [],
+      "events": {
+        "formations": {
+          "native": 63,
+          "reconstructed": 63,
+          "mismatches": []
+        },
+        "resolutions": {
+          "native": 63,
+          "reconstructed": 63,
+          "mismatches": []
+        }
+      },
+      "exact_native_reference_matches": [
+        {
+          "index": 1172,
+          "open_ms": 1794388500000,
+          "close_ms": 1794389400000,
+          "direction": "SELL",
+          "entry": 4049.57,
+          "sl": 4058.2307596311,
+          "tp1": 4040.9092403689,
+          "tp2": 4032.2484807379,
+          "tp3": 4023.5877211068,
+          "risk": 8.6607596311
+        }
+      ],
+      "exact_python_reference_matches": [
+        {
+          "open_utc": "2026-11-11T09:15:00Z",
+          "known_utc": "2026-11-11T09:30:00Z",
+          "signal_ohlcv": {
+            "time": 1794388500000,
+            "time_close": 1794389400000,
+            "open": 4053.89,
+            "high": 4053.94,
+            "low": 4048.465,
+            "close": 4049.57,
+            "volume": 4820
+          },
+          "plan": {
+            "id": "WSB|-1|1794389400000",
+            "model": "WSB",
+            "side": -1,
+            "bar": 1172,
+            "reference": 4049.57,
+            "stop": 4058.2307596310684,
+            "targets": [
+              4040.909240368932,
+              4032.2484807378637,
+              4023.587721106795
+            ],
+            "atr": 5.773839754045546,
+            "max_hold": 72,
+            "units": 3,
+            "regime": null
+          },
+          "displayed": [
+            "4049.570",
+            "4058.231",
+            "4040.909",
+            "4032.248",
+            "4023.588"
+          ],
+          "formation_resolutions": [
+            {
+              "state": "SIGNAL",
+              "bar": 1172,
+              "known_ms": 1794389400000,
+              "side": -1,
+              "formation_bar": 1160,
+              "window_left_bar": 1156,
+              "formation_side": 0,
+              "top": 4066.08,
+              "bottom": 4052.4,
+              "buy_weight": 30005.03923552493,
+              "sell_weight": 41780.960764475065,
+              "crossed_buy": false,
+              "crossed_sell": true,
+              "breakout_range": 5.474999999999909,
+              "prior_average_range": 5.65925000000002,
+              "formed_utc": "2026-11-11T06:30:00Z",
+              "window_left_utc": "2026-11-11T05:15:00Z",
+              "creation_event": {
+                "state": "FORMED",
+                "bar": 1160,
+                "known_ms": 1794378600000,
+                "side": 0,
+                "formation_bar": 1160,
+                "window_left_bar": 1156,
+                "formation_side": 0,
+                "top": 4066.08,
+                "bottom": 4052.4,
+                "buy_weight": 10796.8108525936,
+                "sell_weight": 14132.189147406401,
+                "buy_count": 1,
+                "sell_count": 2,
+                "any_count": 3
+              },
+              "formation_window": [
+                {
+                  "open_utc": "2026-11-11T05:15:00Z",
+                  "close_utc": "2026-11-11T05:30:00Z",
+                  "ohlcv": {
+                    "open": 4053.295,
+                    "high": 4059.295,
+                    "low": 4052.4,
+                    "close": 4058.375,
+                    "volume": 3621
+                  },
+                  "bear_wick": false,
+                  "bull_wick": false,
+                  "bear_abs": false,
+                  "bull_abs": false
+                },
+                {
+                  "open_utc": "2026-11-11T05:30:00Z",
+                  "close_utc": "2026-11-11T05:45:00Z",
+                  "ohlcv": {
+                    "open": 4058.4,
+                    "high": 4066.08,
+                    "low": 4057.76,
+                    "close": 4060.775,
+                    "volume": 7601
+                  },
+                  "bear_wick": true,
+                  "bull_wick": false,
+                  "bear_abs": false,
+                  "bull_abs": false
+                },
+                {
+                  "open_utc": "2026-11-11T05:45:00Z",
+                  "close_utc": "2026-11-11T06:00:00Z",
+                  "ohlcv": {
+                    "open": 4060.785,
+                    "high": 4063.025,
+                    "low": 4056.095,
+                    "close": 4058.64,
+                    "volume": 5217
+                  },
+                  "bear_wick": false,
+                  "bull_wick": false,
+                  "bear_abs": false,
+                  "bull_abs": false
+                },
+                {
+                  "open_utc": "2026-11-11T06:00:00Z",
+                  "close_utc": "2026-11-11T06:15:00Z",
+                  "ohlcv": {
+                    "open": 4058.59,
+                    "high": 4058.915,
+                    "low": 4054.1,
+                    "close": 4056.51,
+                    "volume": 3920
+                  },
+                  "bear_wick": false,
+                  "bull_wick": true,
+                  "bear_abs": false,
+                  "bull_abs": false
+                },
+                {
+                  "open_utc": "2026-11-11T06:15:00Z",
+                  "close_utc": "2026-11-11T06:30:00Z",
+                  "ohlcv": {
+                    "open": 4056.52,
+                    "high": 4059.825,
+                    "low": 4054.06,
+                    "close": 4055.355,
+                    "volume": 4570
+                  },
+                  "bear_wick": true,
+                  "bull_wick": false,
+                  "bear_abs": false,
+                  "bull_abs": false
+                }
+              ],
+              "breakout_clearance": 2.8299999999999272,
+              "dominant_volume_share": 0.5820210175309262
+            }
+          ],
+          "next_bar_open_utc": "2026-11-11T09:30:00Z",
+          "next_bar_open": 4049.44,
+          "next_open_delay_ms": 0,
+          "modeled_fill": 4049.438,
+          "model_outcome": "CLOSED",
+          "model_scope": "Isolated plan with no prior position. Actual broker liquidity and fills are unavailable.",
+          "modeled_exit_parts": [
+            {
+              "bar": 1186,
+              "price": 4040.909240368932,
+              "units": 1.0,
+              "reason": "TP1",
+              "commission": 0.35,
+              "net": 7.82875963106817,
+              "bar_open_utc": "2026-11-11T12:45:00Z",
+              "bar_close_utc": "2026-11-11T13:00:00Z"
+            },
+            {
+              "bar": 1189,
+              "price": 4032.2484807378637,
+              "units": 1.0,
+              "reason": "TP2",
+              "commission": 0.35,
+              "net": 16.489519262136398,
+              "bar_open_utc": "2026-11-11T13:30:00Z",
+              "bar_close_utc": "2026-11-11T13:45:00Z"
+            },
+            {
+              "bar": 1193,
+              "price": 4023.587721106795,
+              "units": 1.0,
+              "reason": "TP3",
+              "commission": 0.35,
+              "net": 25.150278893205083,
+              "bar_open_utc": "2026-11-11T14:30:00Z",
+              "bar_close_utc": "2026-11-11T14:45:00Z"
+            }
+          ],
+          "model_net_usd": 49.46855778640965,
+          "model_net_r": 1.8753519889105763,
+          "excursion": {
+            "cutoff_utc": "2026-11-11T16:00:00Z",
+            "observed_bars": 26,
+            "mae_from_reference": 6.599999999999909,
+            "mfe_from_reference": 48.815000000000055,
+            "mae_bar_open_utc": "2026-11-11T11:15:00Z",
+            "mfe_bar_open_utc": "2026-11-11T15:45:00Z",
+            "stop_first_touch": null,
+            "target_first_touches": [
+              {
+                "bar_open_utc": "2026-11-11T12:45:00Z",
+                "bar_close_utc": "2026-11-11T13:00:00Z",
+                "minutes_since_confirmation_at_bar_open": 195.0,
+                "minutes_since_confirmation_at_bar_close": 210.0
+              },
+              {
+                "bar_open_utc": "2026-11-11T13:30:00Z",
+                "bar_close_utc": "2026-11-11T13:45:00Z",
+                "minutes_since_confirmation_at_bar_open": 240.0,
+                "minutes_since_confirmation_at_bar_close": 255.0
+              },
+              {
+                "bar_open_utc": "2026-11-11T14:30:00Z",
+                "bar_close_utc": "2026-11-11T14:45:00Z",
+                "minutes_since_confirmation_at_bar_open": 300.0,
+                "minutes_since_confirmation_at_bar_close": 315.0
+              }
+            ],
+            "mae_from_modeled_fill": 6.731999999999971,
+            "mfe_from_modeled_fill": 48.68299999999999
+          },
+          "runner": {
+            "scope": "Price room after TP3. Original three-part model has no remaining position.",
+            "completed_bars_after_tp3": 5,
+            "additional_favorable_quote_move": 22.832721106794907,
+            "new_runner_executable_exit": null
+          },
+          "standalone_one_slot_portfolio": {
+            "scope": "Standalone WSB next-open shadow portfolio on the captured prefix, one slot and 100,000 USD equity.",
+            "admitted": false,
+            "rejection": "POSITION_OCCUPIED",
+            "held_at_case_confirmation": [
+              {
+                "id": "WSB|-1|1794388500000",
+                "known_utc": "2026-11-11T09:15:00Z",
+                "side": -1,
+                "entry_reference": 4053.66,
+                "modeled_entry_utc": "2026-11-11T09:15:00Z",
+                "modeled_entry": 4053.888,
+                "remaining_units_at_case_confirmation": 3,
+                "modeled_exit_bar_close_utc": "2026-11-11T14:45:00Z",
+                "modeled_net_usd": 50.75544684690284
+              }
+            ]
+          }
+        }
+      ],
+      "case_setting_sensitivities": {
+        "mixed_boxes_disabled": [
+          {
+            "known_utc": "2026-11-11T09:30:00Z",
+            "same_direction_signal": false,
+            "same_displayed_plan": false,
+            "resolution_events": []
+          }
+        ],
+        "absorption_disabled": [
+          {
+            "known_utc": "2026-11-11T09:30:00Z",
+            "same_direction_signal": true,
+            "same_displayed_plan": true,
+            "resolution_events": [
+              {
+                "state": "SIGNAL",
+                "bar": 1172,
+                "known_ms": 1794389400000,
+                "side": -1,
+                "formation_bar": 1160,
+                "window_left_bar": 1156,
+                "formation_side": 0,
+                "top": 4066.08,
+                "bottom": 4052.4,
+                "buy_weight": 30005.03923552493,
+                "sell_weight": 41780.960764475065,
+                "crossed_buy": false,
+                "crossed_sell": true,
+                "breakout_range": 5.474999999999909,
+                "prior_average_range": 5.65925000000002
+              }
+            ]
+          }
+        ],
+        "default_threshold_breakout_size_filter_enabled": [
+          {
+            "known_utc": "2026-11-11T09:30:00Z",
+            "same_direction_signal": false,
+            "same_displayed_plan": false,
+            "resolution_events": [
+              {
+                "state": "BREAKOUT_SIZE",
+                "bar": 1172,
+                "known_ms": 1794389400000,
+                "side": -1,
+                "formation_bar": 1160,
+                "window_left_bar": 1156,
+                "formation_side": 0,
+                "top": 4066.08,
+                "bottom": 4052.4,
+                "buy_weight": 30005.03923552493,
+                "sell_weight": 41780.960764475065,
+                "crossed_buy": false,
+                "crossed_sell": true,
+                "breakout_range": 5.474999999999909,
+                "prior_average_range": 5.65925000000002
+              }
+            ]
+          }
+        ]
+      },
+      "alert_scope": "Historical alert condition only. Delivery and actual fills are unobserved."
+    }
+  },
+  "archival_research": {
+    "feed": "OANDA:XAUUSD",
+    "frame_minutes": 5,
+    "bars": 5565,
+    "bars_sha256": "44971f52b0008fefc4b61dda51c71043f08e4a2e3bc6d08121380e95232ace1d",
+    "native_s5_sha256": "b629dc4c3b1b624b5fc4632016ed1d568fbd65a83d26a17a8ee5aa909a7f0ef4",
+    "windows_utc": {
+      "full": {
+        "start": "2026-10-12T19:00:00Z",
+        "end_exclusive": "2026-11-09T02:30:00.001000Z"
+      },
+      "development": {
+        "start": "2026-10-12T19:00:00Z",
+        "end_exclusive": "2026-10-28T00:15:00Z"
+      },
+      "later_archive": {
+        "start": "2026-10-28T01:15:00Z",
+        "end_exclusive": "2026-11-09T02:30:00.001000Z"
+      }
+    },
+    "modeled_execution": {
+      "units": 3,
+      "max_hold_bars_for_wsb": 72,
+      "equity_usd": 100000,
+      "method": "Next chart open plus adverse slippage, fixed three-part brackets, stop first on ambiguous bars.",
+      "invalidation": "Registered OHLC deviation/gap handling and risk/position occupancy apply equally to replay arms.",
+      "costs": {
+        "tick": 0.001,
+        "pointvalue": 1,
+        "commission": 0.175,
+        "ticks": 2,
+        "spread": 0.35,
+        "extra_spread": 0.3,
+        "extra_slip": 0.1,
+        "extra_commission": 0.5
+      }
+    },
+    "independent_test": false,
+    "holdout_used": false,
+    "arms": {
+      "S5_ARCHIVED_NATIVE": {
+        "method": "Recorded S5, only originally admitted offers",
+        "metrics_by_window_and_side": {
+          "full": {
+            "all": {
+              "base": {
+                "n": 98,
+                "wins": 57,
+                "losses": 41,
+                "breakeven": 0,
+                "net_cash": 1.6310000000000273,
+                "mean_cash": 0.01664285714285742,
+                "profit_factor": 1.002208796997878,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5816326530612245,
+                "win_rate_wilson95": [
+                  0.48269880400178744,
+                  0.6744081363865095
+                ],
+                "campaign_close_drawdown": 145.759,
+                "max_consecutive_losses": 4,
+                "p05_cash": -29.550300000000004,
+                "small_n": false,
+                "net_r": 0.017681266094201238,
+                "expectancy_r": 0.0001804210825938902,
+                "mean_win_usd": 12.98319298245614,
+                "mean_loss_usd": -18.010024390243903
+              },
+              "stress": {
+                "n": 98,
+                "wins": 47,
+                "losses": 51,
+                "breakeven": 0,
+                "net_cash": -196.81899999999993,
+                "mean_cash": -2.008357142857142,
+                "profit_factor": 0.7630764823143075,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.47959183673469385,
+                "win_rate_wilson95": [
+                  0.3833313279110928,
+                  0.5773919369918329
+                ],
+                "campaign_close_drawdown": 215.00900000000001,
+                "max_consecutive_losses": 4,
+                "p05_cash": -31.575300000000002,
+                "small_n": false,
+                "net_r": -15.233728542902321,
+                "expectancy_r": -0.15544620962145225,
+                "mean_win_usd": 13.487425531914894,
+                "mean_loss_usd": -16.28878431372549
+              }
+            },
+            "BUY": {
+              "base": {
+                "n": 55,
+                "wins": 34,
+                "losses": 21,
+                "breakeven": 0,
+                "net_cash": 91.38900000000001,
+                "mean_cash": 1.661618181818182,
+                "profit_factor": 1.2651561969587508,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.6181818181818182,
+                "win_rate_wilson95": [
+                  0.4860922023248993,
+                  0.7348404574110621
+                ],
+                "campaign_close_drawdown": 91.561,
+                "max_consecutive_losses": 4,
+                "p05_cash": -23.952899999999996,
+                "small_n": false,
+                "net_r": 1.9043678040784264,
+                "expectancy_r": 0.0346248691650623,
+                "mean_win_usd": 12.825,
+                "mean_loss_usd": -16.41242857142857
+              },
+              "stress": {
+                "n": 55,
+                "wins": 28,
+                "losses": 27,
+                "breakeven": 0,
+                "net_cash": -19.985999999999965,
+                "mean_cash": -0.3633818181818176,
+                "profit_factor": 0.9492916150770294,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.509090909090909,
+                "win_rate_wilson95": [
+                  0.380762598469722,
+                  0.6362322215099672
+                ],
+                "campaign_close_drawdown": 135.97799999999998,
+                "max_consecutive_losses": 4,
+                "p05_cash": -25.977899999999995,
+                "small_n": false,
+                "net_r": -7.367155228106906,
+                "expectancy_r": -0.13394827687467104,
+                "mean_win_usd": 13.3625,
+                "mean_loss_usd": -14.597629629629628
+              }
+            },
+            "SELL": {
+              "base": {
+                "n": 43,
+                "wins": 23,
+                "losses": 20,
+                "breakeven": 0,
+                "net_cash": -89.75799999999998,
+                "mean_cash": -2.087395348837209,
+                "profit_factor": 0.7720431746031746,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5348837209302325,
+                "win_rate_wilson95": [
+                  0.38915640472313967,
+                  0.6748894229587816
+                ],
+                "campaign_close_drawdown": 131.424,
+                "max_consecutive_losses": 4,
+                "p05_cash": -29.671799999999998,
+                "small_n": false,
+                "net_r": -1.886686537984225,
+                "expectancy_r": -0.04387643111591221,
+                "mean_win_usd": 13.21704347826087,
+                "mean_loss_usd": -19.6875
+              },
+              "stress": {
+                "n": 43,
+                "wins": 19,
+                "losses": 24,
+                "breakeven": 0,
+                "net_cash": -176.83299999999994,
+                "mean_cash": -4.112395348837208,
+                "profit_factor": 0.5949696742038334,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.4418604651162791,
+                "win_rate_wilson95": [
+                  0.30433309839170514,
+                  0.5889238554717591
+                ],
+                "campaign_close_drawdown": 176.83299999999997,
+                "max_consecutive_losses": 5,
+                "p05_cash": -31.696799999999996,
+                "small_n": false,
+                "net_r": -7.866573314795414,
+                "expectancy_r": -0.18294356546035848,
+                "mean_win_usd": 13.671526315789475,
+                "mean_loss_usd": -18.191333333333333
+              }
+            }
+          },
+          "development": {
+            "all": {
+              "base": {
+                "n": 64,
+                "wins": 37,
+                "losses": 27,
+                "breakeven": 0,
+                "net_cash": 24.831000000000017,
+                "mean_cash": 0.38798437500000027,
+                "profit_factor": 1.0591916129124535,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.578125,
+                "win_rate_wilson95": [
+                  0.456100315400829,
+                  0.6913021752565451
+                ],
+                "campaign_close_drawdown": 111.00099999999999,
+                "max_consecutive_losses": 4,
+                "p05_cash": -23.240999999999996,
+                "small_n": false,
+                "net_r": -0.767756037342102,
+                "expectancy_r": -0.011996188083470343,
+                "mean_win_usd": 12.009,
+                "mean_loss_usd": -15.53711111111111
+              },
+              "stress": {
+                "n": 64,
+                "wins": 30,
+                "losses": 34,
+                "breakeven": 0,
+                "net_cash": -104.76899999999995,
+                "mean_cash": -1.6370156249999992,
+                "profit_factor": 0.7823162750109083,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.46875,
+                "win_rate_wilson95": [
+                  0.35175987425176036,
+                  0.5892791294852899
+                ],
+                "campaign_close_drawdown": 162.971,
+                "max_consecutive_losses": 4,
+                "p05_cash": -25.265999999999995,
+                "small_n": false,
+                "net_r": -11.409152730318397,
+                "expectancy_r": -0.17826801141122495,
+                "mean_win_usd": 12.5507,
+                "mean_loss_usd": -14.155588235294116
+              }
+            },
+            "BUY": {
+              "base": {
+                "n": 39,
+                "wins": 25,
+                "losses": 14,
+                "breakeven": 0,
+                "net_cash": 109.361,
+                "mean_cash": 2.8041282051282055,
+                "profit_factor": 1.5143664780610782,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.6410256410256411,
+                "win_rate_wilson95": [
+                  0.4841814855954854,
+                  0.7725791454100714
+                ],
+                "campaign_close_drawdown": 55.100999999999985,
+                "max_consecutive_losses": 4,
+                "p05_cash": -23.496299999999998,
+                "small_n": false,
+                "net_r": 4.434694186915252,
+                "expectancy_r": 0.11371010735680132,
+                "mean_win_usd": 12.87896,
+                "mean_loss_usd": -15.186642857142857
+              },
+              "stress": {
+                "n": 39,
+                "wins": 21,
+                "losses": 18,
+                "breakeven": 0,
+                "net_cash": 30.386000000000024,
+                "mean_cash": 0.7791282051282057,
+                "profit_factor": 1.1236137892878355,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5384615384615384,
+                "win_rate_wilson95": [
+                  0.3856944827051576,
+                  0.6843311439327215
+                ],
+                "campaign_close_drawdown": 78.99499999999999,
+                "max_consecutive_losses": 4,
+                "p05_cash": -25.521299999999997,
+                "small_n": false,
+                "net_r": -2.3490495100200985,
+                "expectancy_r": -0.06023203871846407,
+                "mean_win_usd": 13.152380952380954,
+                "mean_loss_usd": -13.656333333333333
+              }
+            },
+            "SELL": {
+              "base": {
+                "n": 25,
+                "wins": 12,
+                "losses": 13,
+                "breakeven": 0,
+                "net_cash": -84.52999999999999,
+                "mean_cash": -3.3811999999999998,
+                "profit_factor": 0.591423420288174,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.48,
+                "win_rate_wilson95": [
+                  0.30031285954112974,
+                  0.6650148304964322
+                ],
+                "campaign_close_drawdown": 121.97300000000001,
+                "max_consecutive_losses": 4,
+                "p05_cash": -22.8108,
+                "small_n": true,
+                "net_r": -5.202450224257353,
+                "expectancy_r": -0.20809800897029412,
+                "mean_win_usd": 10.196583333333333,
+                "mean_loss_usd": -15.914538461538461
+              },
+              "stress": {
+                "n": 25,
+                "wins": 9,
+                "losses": 16,
+                "breakeven": 0,
+                "net_cash": -135.15499999999997,
+                "mean_cash": -5.406199999999999,
+                "profit_factor": 0.4260349250029728,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.36,
+                "win_rate_wilson95": [
+                  0.20247880774458224,
+                  0.5548150225183514
+                ],
+                "campaign_close_drawdown": 148.29799999999997,
+                "max_consecutive_losses": 5,
+                "p05_cash": -24.8358,
+                "small_n": true,
+                "net_r": -9.060103220298299,
+                "expectancy_r": -0.36240412881193196,
+                "mean_win_usd": 11.146777777777778,
+                "mean_loss_usd": -14.717249999999998
+              }
+            }
+          },
+          "later_archive": {
+            "all": {
+              "base": {
+                "n": 34,
+                "wins": 20,
+                "losses": 14,
+                "breakeven": 0,
+                "net_cash": -23.19999999999999,
+                "mean_cash": -0.6823529411764703,
+                "profit_factor": 0.9272519747012471,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5882352941176471,
+                "win_rate_wilson95": [
+                  0.42221593878812513,
+                  0.7363403163612884
+                ],
+                "campaign_close_drawdown": 145.75900000000001,
+                "max_consecutive_losses": 2,
+                "p05_cash": -30.6696,
+                "small_n": false,
+                "net_r": 0.7854373034363031,
+                "expectancy_r": 0.023101097159891268,
+                "mean_win_usd": 14.78545,
+                "mean_loss_usd": -22.779214285714286
+              },
+              "stress": {
+                "n": 34,
+                "wins": 17,
+                "losses": 17,
+                "breakeven": 0,
+                "net_cash": -92.04999999999997,
+                "mean_cash": -2.70735294117647,
+                "profit_factor": 0.7365770179545442,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5,
+                "win_rate_wilson95": [
+                  0.34069325645682497,
+                  0.659306743543175
+                ],
+                "campaign_close_drawdown": 163.98399999999998,
+                "max_consecutive_losses": 3,
+                "p05_cash": -32.6946,
+                "small_n": false,
+                "net_r": -3.8245758125839244,
+                "expectancy_r": -0.11248752389952718,
+                "mean_win_usd": 15.140470588235294,
+                "mean_loss_usd": -20.555176470588233
+              }
+            },
+            "BUY": {
+              "base": {
+                "n": 16,
+                "wins": 9,
+                "losses": 7,
+                "breakeven": 0,
+                "net_cash": -17.971999999999994,
+                "mean_cash": -1.1232499999999996,
+                "profit_factor": 0.8638979764933964,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5625,
+                "win_rate_wilson95": [
+                  0.331785563988119,
+                  0.7690134759450765
+                ],
+                "campaign_close_drawdown": 82.149,
+                "max_consecutive_losses": 4,
+                "p05_cash": -30.155249999999995,
+                "small_n": true,
+                "net_r": -2.530326382836825,
+                "expectancy_r": -0.15814539892730156,
+                "mean_win_usd": 12.67511111111111,
+                "mean_loss_usd": -18.864
+              },
+              "stress": {
+                "n": 16,
+                "wins": 7,
+                "losses": 9,
+                "breakeven": 0,
+                "net_cash": -50.371999999999986,
+                "mean_cash": -3.148249999999999,
+                "profit_factor": 0.6603875352274107,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.4375,
+                "win_rate_wilson95": [
+                  0.23098652405492354,
+                  0.6682144360118811
+                ],
+                "campaign_close_drawdown": 108.47399999999999,
+                "max_consecutive_losses": 4,
+                "p05_cash": -32.180249999999994,
+                "small_n": true,
+                "net_r": -5.018105718086808,
+                "expectancy_r": -0.3136316073804255,
+                "mean_win_usd": 13.992857142857144,
+                "mean_loss_usd": -16.48022222222222
+              }
+            },
+            "SELL": {
+              "base": {
+                "n": 18,
+                "wins": 11,
+                "losses": 7,
+                "breakeven": 0,
+                "net_cash": -5.227999999999994,
+                "mean_cash": -0.29044444444444417,
+                "profit_factor": 0.9720219842556768,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.6111111111111112,
+                "win_rate_wilson95": [
+                  0.3861904160223791,
+                  0.7969475342783638
+                ],
+                "campaign_close_drawdown": 131.424,
+                "max_consecutive_losses": 2,
+                "p05_cash": -30.302400000000002,
+                "small_n": true,
+                "net_r": 3.315763686273128,
+                "expectancy_r": 0.18420909368184046,
+                "mean_win_usd": 16.512090909090908,
+                "mean_loss_usd": -26.69442857142857
+              },
+              "stress": {
+                "n": 18,
+                "wins": 10,
+                "losses": 8,
+                "breakeven": 0,
+                "net_cash": -41.67799999999998,
+                "mean_cash": -2.3154444444444433,
+                "profit_factor": 0.7927663636906066,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5555555555555556,
+                "win_rate_wilson95": [
+                  0.33716415642042774,
+                  0.7544048187299437
+                ],
+                "campaign_close_drawdown": 153.699,
+                "max_consecutive_losses": 2,
+                "p05_cash": -32.3274,
+                "small_n": true,
+                "net_r": 1.1935299055028834,
+                "expectancy_r": 0.06630721697238241,
+                "mean_win_usd": 15.943800000000001,
+                "mean_loss_usd": -25.139499999999998
+              }
+            }
+          }
+        },
+        "off_event_fills": 96,
+        "off_event_closed_losses": 41,
+        "directional_hours": {
+          "all": {
+            "eligible": 33,
+            "missed_with_no_fill": 31,
+            "detected": 2,
+            "actionable": 2,
+            "filled": 2,
+            "median_watch_delay_minutes": null,
+            "median_confirmed_delay_minutes": null,
+            "median_executable_delay_minutes": 7.5,
+            "median_fill_delay_minutes": 7.5
+          },
+          "BUY": {
+            "eligible": 21,
+            "missed_with_no_fill": 19,
+            "detected": 2,
+            "actionable": 2,
+            "filled": 2,
+            "median_watch_delay_minutes": null,
+            "median_confirmed_delay_minutes": null,
+            "median_executable_delay_minutes": 7.5,
+            "median_fill_delay_minutes": 7.5
+          },
+          "SELL": {
+            "eligible": 12,
+            "missed_with_no_fill": 12,
+            "detected": 0,
+            "actionable": 0,
+            "filled": 0,
+            "median_watch_delay_minutes": null,
+            "median_confirmed_delay_minutes": null,
+            "median_executable_delay_minutes": null,
+            "median_fill_delay_minutes": null
+          }
+        },
+        "offer_rejections": {}
+      },
+      "S5_ADMITTED_OHLC": {
+        "method": "Fixed stop-first OHLC replay",
+        "metrics_by_window_and_side": {
+          "full": {
+            "all": {
+              "base": {
+                "n": 93,
+                "wins": 42,
+                "losses": 51,
+                "breakeven": 0,
+                "net_cash": 62.70699999992783,
+                "mean_cash": 0.674268817203525,
+                "profit_factor": 1.0769755780195096,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.45161290322580644,
+                "win_rate_wilson95": [
+                  0.35439761353554855,
+                  0.5526669834913936
+                ],
+                "campaign_close_drawdown": 141.59300000003688,
+                "max_consecutive_losses": 7,
+                "p05_cash": -29.590800000002307,
+                "small_n": false,
+                "net_r": 4.458175761068747,
+                "expectancy_r": 0.04793737377493277,
+                "mean_win_usd": 20.88909523809499,
+                "mean_loss_usd": -15.973235294118856
+              },
+              "stress": {
+                "n": 93,
+                "wins": 41,
+                "losses": 52,
+                "breakeven": 0,
+                "net_cash": -125.61800000007213,
+                "mean_cash": -1.3507311827964745,
+                "profit_factor": 0.8634285608671656,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.44086021505376344,
+                "win_rate_wilson95": [
+                  0.34429385129378526,
+                  0.5421184339613663
+                ],
+                "campaign_close_drawdown": 238.5980000000659,
+                "max_consecutive_losses": 7,
+                "p05_cash": -31.615800000002306,
+                "small_n": false,
+                "net_r": -10.093334571206773,
+                "expectancy_r": -0.10853047926028789,
+                "mean_win_usd": 19.370219512194858,
+                "mean_loss_usd": -17.688403846155026
+              }
+            },
+            "BUY": {
+              "base": {
+                "n": 53,
+                "wins": 25,
+                "losses": 28,
+                "breakeven": 0,
+                "net_cash": 158.5439999999596,
+                "mean_cash": 2.9913962264143317,
+                "profit_factor": 1.4048858845129986,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.4716981132075472,
+                "win_rate_wilson95": [
+                  0.3438224347819615,
+                  0.603399187212937
+                ],
+                "campaign_close_drawdown": 111.23199999999949,
+                "max_consecutive_losses": 4,
+                "p05_cash": -24.18120000000117,
+                "small_n": false,
+                "net_r": 4.744633446521165,
+                "expectancy_r": 0.08952138578341821,
+                "mean_win_usd": 22.004839999999678,
+                "mean_loss_usd": -13.984892857144011
+              },
+              "stress": {
+                "n": 53,
+                "wins": 24,
+                "losses": 29,
+                "breakeven": 0,
+                "net_cash": 51.2189999999596,
+                "mean_cash": 0.9663962264143321,
+                "profit_factor": 1.1137785340452722,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.4528301886792453,
+                "win_rate_wilson95": [
+                  0.3265757915292224,
+                  0.5854602451289419
+                ],
+                "campaign_close_drawdown": 170.71400000002768,
+                "max_consecutive_losses": 5,
+                "p05_cash": -26.206200000001168,
+                "small_n": false,
+                "net_r": -4.326441776964287,
+                "expectancy_r": -0.08163097692385447,
+                "mean_win_usd": 20.890958333332986,
+                "mean_loss_usd": -15.522896551725243
+              }
+            },
+            "SELL": {
+              "base": {
+                "n": 40,
+                "wins": 17,
+                "losses": 23,
+                "breakeven": 0,
+                "net_cash": -95.83700000003176,
+                "mean_cash": -2.395925000000794,
+                "profit_factor": 0.7734660495723397,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.425,
+                "win_rate_wilson95": [
+                  0.28509392559950375,
+                  0.5780493145800892
+                ],
+                "campaign_close_drawdown": 130.37000000000995,
+                "max_consecutive_losses": 6,
+                "p05_cash": -29.70495000000237,
+                "small_n": false,
+                "net_r": -0.2864576854524176,
+                "expectancy_r": -0.007161442136310441,
+                "mean_win_usd": 19.248294117646918,
+                "mean_loss_usd": -18.393826086957798
+              },
+              "stress": {
+                "n": 40,
+                "wins": 17,
+                "losses": 23,
+                "breakeven": 0,
+                "net_cash": -176.83700000003174,
+                "mean_cash": -4.420925000000794,
+                "profit_factor": 0.6234570398587393,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.425,
+                "win_rate_wilson95": [
+                  0.28509392559950375,
+                  0.5780493145800892
+                ],
+                "campaign_close_drawdown": 176.8370000000318,
+                "max_consecutive_losses": 6,
+                "p05_cash": -31.72995000000237,
+                "small_n": false,
+                "net_r": -5.766892794242486,
+                "expectancy_r": -0.14417231985606216,
+                "mean_win_usd": 17.223294117646915,
+                "mean_loss_usd": -20.418826086957797
+              }
+            }
+          },
+          "development": {
+            "all": {
+              "base": {
+                "n": 59,
+                "wins": 23,
+                "losses": 36,
+                "breakeven": 0,
+                "net_cash": -81.92600000006755,
+                "mean_cash": -1.3885762711875855,
+                "profit_factor": 0.8307737115306756,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.3898305084745763,
+                "win_rate_wilson95": [
+                  0.2757936183396798,
+                  0.5173365819458838
+                ],
+                "campaign_close_drawdown": 136.04300000003872,
+                "max_consecutive_losses": 7,
+                "p05_cash": -23.49630000000038,
+                "small_n": false,
+                "net_r": -7.453045328778693,
+                "expectancy_r": -0.1263228021826897,
+                "mean_win_usd": 17.486739130434344,
+                "mean_loss_usd": -13.447805555557151
+              },
+              "stress": {
+                "n": 59,
+                "wins": 22,
+                "losses": 37,
+                "breakeven": 0,
+                "net_cash": -201.4010000000675,
+                "mean_cash": -3.413576271187585,
+                "profit_factor": 0.6396526798685169,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.3728813559322034,
+                "win_rate_wilson95": [
+                  0.2608399879232115,
+                  0.5004640893293619
+                ],
+                "campaign_close_drawdown": 226.9730000000677,
+                "max_consecutive_losses": 7,
+                "p05_cash": -25.52130000000038,
+                "small_n": false,
+                "net_r": -17.394542545033975,
+                "expectancy_r": -0.29482275500057586,
+                "mean_win_usd": 16.25031818181771,
+                "mean_loss_usd": -15.105621621623166
+              }
+            },
+            "BUY": {
+              "base": {
+                "n": 37,
+                "wins": 16,
+                "losses": 21,
+                "breakeven": 0,
+                "net_cash": 38.12399999995552,
+                "mean_cash": 1.0303783783771763,
+                "profit_factor": 1.147827031051084,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.43243243243243246,
+                "win_rate_wilson95": [
+                  0.28671719277157315,
+                  0.5908581890983192
+                ],
+                "campaign_close_drawdown": 73.5670000000018,
+                "max_consecutive_losses": 4,
+                "p05_cash": -23.724600000000645,
+                "small_n": false,
+                "net_r": -0.690552408451284,
+                "expectancy_r": -0.018663578606791457,
+                "mean_win_usd": 18.5012499999994,
+                "mean_loss_usd": -12.280761904763564
+              },
+              "stress": {
+                "n": 37,
+                "wins": 15,
+                "losses": 22,
+                "breakeven": 0,
+                "net_cash": -36.80100000004447,
+                "mean_cash": -0.9946216216228234,
+                "profit_factor": 0.8782665361153515,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.40540540540540543,
+                "win_rate_wilson95": [
+                  0.26346518192014284,
+                  0.5651403526977063
+                ],
+                "campaign_close_drawdown": 122.92400000002998,
+                "max_consecutive_losses": 5,
+                "p05_cash": -25.749600000000644,
+                "small_n": false,
+                "net_r": -7.273848296686746,
+                "expectancy_r": -0.1965904945050472,
+                "mean_win_usd": 17.700466666666006,
+                "mean_loss_usd": -13.741272727274298
+              }
+            },
+            "SELL": {
+              "base": {
+                "n": 22,
+                "wins": 7,
+                "losses": 15,
+                "breakeven": 0,
+                "net_cash": -120.05000000002306,
+                "mean_cash": -5.45681818181923,
+                "profit_factor": 0.4693336280251473,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.3181818181818182,
+                "win_rate_wilson95": [
+                  0.1636059318135624,
+                  0.5268140225895723
+                ],
+                "campaign_close_drawdown": 126.91700000002325,
+                "max_consecutive_losses": 6,
+                "p05_cash": -23.018700000002806,
+                "small_n": true,
+                "net_r": -6.762492920327409,
+                "expectancy_r": -0.307386041833064,
+                "mean_win_usd": 15.16785714285708,
+                "mean_loss_usd": -15.081666666668175
+              },
+              "stress": {
+                "n": 22,
+                "wins": 7,
+                "losses": 15,
+                "breakeven": 0,
+                "net_cash": -164.60000000002304,
+                "mean_cash": -7.4818181818192295,
+                "profit_factor": 0.35853468433355984,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.3181818181818182,
+                "win_rate_wilson95": [
+                  0.1636059318135624,
+                  0.5268140225895723
+                ],
+                "campaign_close_drawdown": 164.60000000002307,
+                "max_consecutive_losses": 6,
+                "p05_cash": -25.043700000002804,
+                "small_n": true,
+                "net_r": -10.12069424834723,
+                "expectancy_r": -0.4600315567430559,
+                "mean_win_usd": 13.14285714285708,
+                "mean_loss_usd": -17.106666666668175
+              }
+            }
+          },
+          "later_archive": {
+            "all": {
+              "base": {
+                "n": 34,
+                "wins": 19,
+                "losses": 15,
+                "breakeven": 0,
+                "net_cash": 144.63299999999538,
+                "mean_cash": 4.253911764705746,
+                "profit_factor": 1.437600222683437,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5588235294117647,
+                "win_rate_wilson95": [
+                  0.3945389925620307,
+                  0.7111651775375785
+                ],
+                "campaign_close_drawdown": 127.16300000000899,
+                "max_consecutive_losses": 2,
+                "p05_cash": -30.66960000000067,
+                "small_n": false,
+                "net_r": 11.91122108984744,
+                "expectancy_r": 0.3503300320543365,
+                "mean_win_usd": 25.007736842105242,
+                "mean_loss_usd": -22.034266666666948
+              },
+              "stress": {
+                "n": 34,
+                "wins": 19,
+                "losses": 15,
+                "breakeven": 0,
+                "net_cash": 75.78299999999538,
+                "mean_cash": 2.228911764705747,
+                "profit_factor": 1.2099897752494382,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5588235294117647,
+                "win_rate_wilson95": [
+                  0.3945389925620307,
+                  0.7111651775375785
+                ],
+                "campaign_close_drawdown": 145.38800000000901,
+                "max_consecutive_losses": 2,
+                "p05_cash": -32.694600000000676,
+                "small_n": false,
+                "net_r": 7.3012079738272035,
+                "expectancy_r": 0.21474141099491775,
+                "mean_win_usd": 22.98273684210524,
+                "mean_loss_usd": -24.059266666666947
+              }
+            },
+            "BUY": {
+              "base": {
+                "n": 16,
+                "wins": 9,
+                "losses": 7,
+                "breakeven": 0,
+                "net_cash": 120.42000000000407,
+                "mean_cash": 7.526250000000254,
+                "profit_factor": 1.9008011609728106,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5625,
+                "win_rate_wilson95": [
+                  0.331785563988119,
+                  0.7690134759450765
+                ],
+                "campaign_close_drawdown": 55.1279999999998,
+                "max_consecutive_losses": 4,
+                "p05_cash": -30.15524999999943,
+                "small_n": true,
+                "net_r": 5.435185854972449,
+                "expectancy_r": 0.33969911593577806,
+                "mean_win_usd": 28.23344444444462,
+                "mean_loss_usd": -19.097285714285356
+              },
+              "stress": {
+                "n": 16,
+                "wins": 9,
+                "losses": 7,
+                "breakeven": 0,
+                "net_cash": 88.02000000000407,
+                "mean_cash": 5.501250000000255,
+                "profit_factor": 1.5953089492479546,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5625,
+                "win_rate_wilson95": [
+                  0.331785563988119,
+                  0.7690134759450765
+                ],
+                "campaign_close_drawdown": 59.75699999999824,
+                "max_consecutive_losses": 4,
+                "p05_cash": -32.18024999999943,
+                "small_n": true,
+                "net_r": 2.9474065197224597,
+                "expectancy_r": 0.18421290748265373,
+                "mean_win_usd": 26.20844444444462,
+                "mean_loss_usd": -21.122285714285358
+              }
+            },
+            "SELL": {
+              "base": {
+                "n": 18,
+                "wins": 10,
+                "losses": 8,
+                "breakeven": 0,
+                "net_cash": 24.21299999999131,
+                "mean_cash": 1.345166666666184,
+                "profit_factor": 1.123012909420628,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5555555555555556,
+                "win_rate_wilson95": [
+                  0.33716415642042774,
+                  0.7544048187299437
+                ],
+                "campaign_close_drawdown": 130.37000000000992,
+                "max_consecutive_losses": 3,
+                "p05_cash": -30.302400000000624,
+                "small_n": true,
+                "net_r": 6.476035234874991,
+                "expectancy_r": 0.35977973527083285,
+                "mean_win_usd": 22.104599999999802,
+                "mean_loss_usd": -24.60412500000084
+              },
+              "stress": {
+                "n": 18,
+                "wins": 10,
+                "losses": 8,
+                "breakeven": 0,
+                "net_cash": -12.23700000000868,
+                "mean_cash": -0.6798333333338156,
+                "profit_factor": 0.9425581952091541,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.5555555555555556,
+                "win_rate_wilson95": [
+                  0.33716415642042774,
+                  0.7544048187299437
+                ],
+                "campaign_close_drawdown": 152.64500000000996,
+                "max_consecutive_losses": 3,
+                "p05_cash": -32.32740000000062,
+                "small_n": true,
+                "net_r": 4.353801454104744,
+                "expectancy_r": 0.24187785856137464,
+                "mean_win_usd": 20.079599999999804,
+                "mean_loss_usd": -26.629125000000837
+              }
+            }
+          }
+        },
+        "off_event_fills": 91,
+        "off_event_closed_losses": 51,
+        "directional_hours": {
+          "all": {
+            "eligible": 33,
+            "missed_with_no_fill": 31,
+            "detected": 2,
+            "actionable": 2,
+            "filled": 2,
+            "median_watch_delay_minutes": null,
+            "median_confirmed_delay_minutes": null,
+            "median_executable_delay_minutes": 7.5,
+            "median_fill_delay_minutes": 7.5
+          },
+          "BUY": {
+            "eligible": 21,
+            "missed_with_no_fill": 19,
+            "detected": 2,
+            "actionable": 2,
+            "filled": 2,
+            "median_watch_delay_minutes": null,
+            "median_confirmed_delay_minutes": null,
+            "median_executable_delay_minutes": 7.5,
+            "median_fill_delay_minutes": 7.5
+          },
+          "SELL": {
+            "eligible": 12,
+            "missed_with_no_fill": 12,
+            "detected": 0,
+            "actionable": 0,
+            "filled": 0,
+            "median_watch_delay_minutes": null,
+            "median_confirmed_delay_minutes": null,
+            "median_executable_delay_minutes": null,
+            "median_fill_delay_minutes": null
+          }
+        },
+        "offer_rejections": {
+          "POSITION_OCCUPIED": 5
+        }
+      },
+      "QIRVANTA_WICK_A_OHLC": {
+        "method": "Fixed stop-first OHLC replay",
+        "metrics_by_window_and_side": {
+          "full": {
+            "all": {
+              "base": {
+                "n": 50,
+                "wins": 11,
+                "losses": 39,
+                "breakeven": 0,
+                "net_cash": -471.57100000003896,
+                "mean_cash": -9.431420000000779,
+                "profit_factor": 0.5137611178820055,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.22,
+                "win_rate_wilson95": [
+                  0.1275391597021442,
+                  0.3524154958125367
+                ],
+                "campaign_close_drawdown": 564.74400000003,
+                "max_consecutive_losses": 7,
+                "p05_cash": -43.12875000000239,
+                "small_n": false,
+                "net_r": -21.110903395021147,
+                "expectancy_r": -0.42221806790042293,
+                "mean_win_usd": 45.296636363635805,
+                "mean_loss_usd": -24.867538461539304
+              },
+              "stress": {
+                "n": 50,
+                "wins": 11,
+                "losses": 39,
+                "breakeven": 0,
+                "net_cash": -572.8210000000389,
+                "mean_cash": -11.45642000000078,
+                "profit_factor": 0.4538366852305605,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.22,
+                "win_rate_wilson95": [
+                  0.1275391597021442,
+                  0.3524154958125367
+                ],
+                "campaign_close_drawdown": 653.8440000000296,
+                "max_consecutive_losses": 7,
+                "p05_cash": -45.15375000000239,
+                "small_n": false,
+                "net_r": -25.560427762289777,
+                "expectancy_r": -0.5112085552457956,
+                "mean_win_usd": 43.27163636363581,
+                "mean_loss_usd": -26.892538461539303
+              }
+            },
+            "BUY": {
+              "base": {
+                "n": 14,
+                "wins": 2,
+                "losses": 12,
+                "breakeven": 0,
+                "net_cash": -286.268000000009,
+                "mean_cash": -20.44771428571493,
+                "profit_factor": 0.1665972814584235,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.14285714285714285,
+                "win_rate_wilson95": [
+                  0.040093921271464966,
+                  0.39941379496970353
+                ],
+                "campaign_close_drawdown": 293.42400000000276,
+                "max_consecutive_losses": 6,
+                "p05_cash": -54.31080000000145,
+                "small_n": true,
+                "net_r": -9.891992715774895,
+                "expectancy_r": -0.7065709082696354,
+                "mean_win_usd": 28.612499999999862,
+                "mean_loss_usd": -28.624416666667393
+              },
+              "stress": {
+                "n": 14,
+                "wins": 2,
+                "losses": 12,
+                "breakeven": 0,
+                "net_cash": -314.61800000000903,
+                "mean_cash": -22.47271428571493,
+                "profit_factor": 0.14457860807573408,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.14285714285714285,
+                "win_rate_wilson95": [
+                  0.040093921271464966,
+                  0.39941379496970353
+                ],
+                "campaign_close_drawdown": 315.6990000000028,
+                "max_consecutive_losses": 6,
+                "p05_cash": -56.33580000000145,
+                "small_n": true,
+                "net_r": -11.08039335520875,
+                "expectancy_r": -0.7914566682291964,
+                "mean_win_usd": 26.587499999999864,
+                "mean_loss_usd": -30.649416666667396
+              }
+            },
+            "SELL": {
+              "base": {
+                "n": 36,
+                "wins": 9,
+                "losses": 27,
+                "breakeven": 0,
+                "net_cash": -185.30300000002998,
+                "mean_cash": -5.147305555556388,
+                "profit_factor": 0.7041499758118616,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.25,
+                "win_rate_wilson95": [
+                  0.13750477662994837,
+                  0.4107045376672835
+                ],
+                "campaign_close_drawdown": 298.1880000000263,
+                "max_consecutive_losses": 6,
+                "p05_cash": -38.015250000000464,
+                "small_n": false,
+                "net_r": -11.21891067924625,
+                "expectancy_r": -0.31163640775684026,
+                "mean_win_usd": 49.00422222222157,
+                "mean_loss_usd": -23.197814814815708
+              },
+              "stress": {
+                "n": 36,
+                "wins": 9,
+                "losses": 27,
+                "breakeven": 0,
+                "net_cash": -258.20300000002993,
+                "mean_cash": -7.172305555556387,
+                "profit_factor": 0.6208561913376179,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.25,
+                "win_rate_wilson95": [
+                  0.13750477662994837,
+                  0.4107045376672835
+                ],
+                "campaign_close_drawdown": 367.03800000002633,
+                "max_consecutive_losses": 6,
+                "p05_cash": -40.04025000000046,
+                "small_n": false,
+                "net_r": -14.480034407081028,
+                "expectancy_r": -0.40222317797447305,
+                "mean_win_usd": 46.97922222222157,
+                "mean_loss_usd": -25.222814814815706
+              }
+            }
+          },
+          "development": {
+            "all": {
+              "base": {
+                "n": 29,
+                "wins": 5,
+                "losses": 24,
+                "breakeven": 0,
+                "net_cash": -306.81700000004173,
+                "mean_cash": -10.579896551725577,
+                "profit_factor": 0.45375124626117674,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.1724137931034483,
+                "win_rate_wilson95": [
+                  0.07597857252891227,
+                  0.34548439890195237
+                ],
+                "campaign_close_drawdown": 342.17400000003227,
+                "max_consecutive_losses": 7,
+                "p05_cash": -35.15939999999954,
+                "small_n": true,
+                "net_r": -15.505778098202622,
+                "expectancy_r": -0.5346820033862973,
+                "mean_win_usd": 50.97259999999878,
+                "mean_loss_usd": -23.403333333334817
+              },
+              "stress": {
+                "n": 29,
+                "wins": 5,
+                "losses": 24,
+                "breakeven": 0,
+                "net_cash": -365.5420000000417,
+                "mean_cash": -12.604896551725576,
+                "profit_factor": 0.401025758668119,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.1724137931034483,
+                "win_rate_wilson95": [
+                  0.07597857252891227,
+                  0.34548439890195237
+                ],
+                "campaign_close_drawdown": 392.7990000000322,
+                "max_consecutive_losses": 7,
+                "p05_cash": -37.18439999999954,
+                "small_n": true,
+                "net_r": -18.07582523984862,
+                "expectancy_r": -0.6233043186154695,
+                "mean_win_usd": 48.94759999999878,
+                "mean_loss_usd": -25.428333333334816
+              }
+            },
+            "BUY": {
+              "base": {
+                "n": 8,
+                "wins": 1,
+                "losses": 7,
+                "breakeven": 0,
+                "net_cash": -102.17300000000958,
+                "mean_cash": -12.771625000001197,
+                "profit_factor": 0.30744255405677934,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.125,
+                "win_rate_wilson95": [
+                  0.02241749145005667,
+                  0.4708881822128535
+                ],
+                "campaign_close_drawdown": 109.32900000000335,
+                "max_consecutive_losses": 5,
+                "p05_cash": -27.016500000001724,
+                "small_n": true,
+                "net_r": -5.107361793336253,
+                "expectancy_r": -0.6384202241670316,
+                "mean_win_usd": 45.356999999999424,
+                "mean_loss_usd": -21.075714285715573
+              },
+              "stress": {
+                "n": 8,
+                "wins": 1,
+                "losses": 7,
+                "breakeven": 0,
+                "net_cash": -118.37300000000957,
+                "mean_cash": -14.796625000001196,
+                "profit_factor": 0.2679694505426364,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.125,
+                "win_rate_wilson95": [
+                  0.02241749145005667,
+                  0.4708881822128535
+                ],
+                "campaign_close_drawdown": 119.45400000000336,
+                "max_consecutive_losses": 5,
+                "p05_cash": -29.041500000001722,
+                "small_n": true,
+                "net_r": -5.879920941872779,
+                "expectancy_r": -0.7349901177340974,
+                "mean_win_usd": 43.331999999999425,
+                "mean_loss_usd": -23.100714285715572
+              }
+            },
+            "SELL": {
+              "base": {
+                "n": 21,
+                "wins": 4,
+                "losses": 17,
+                "breakeven": 0,
+                "net_cash": -204.64400000003212,
+                "mean_cash": -9.744952380953912,
+                "profit_factor": 0.5058698539176169,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.19047619047619047,
+                "win_rate_wilson95": [
+                  0.07667565052761793,
+                  0.40000564690204926
+                ],
+                "campaign_close_drawdown": 232.84500000002885,
+                "max_consecutive_losses": 6,
+                "p05_cash": -37.61699999999982,
+                "small_n": true,
+                "net_r": -10.39841630486637,
+                "expectancy_r": -0.49516268118411283,
+                "mean_win_usd": 52.37649999999862,
+                "mean_loss_usd": -24.361764705883918
+              },
+              "stress": {
+                "n": 21,
+                "wins": 4,
+                "losses": 17,
+                "breakeven": 0,
+                "net_cash": -247.1690000000321,
+                "mean_cash": -11.76995238095391,
+                "profit_factor": 0.44899069274922265,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.19047619047619047,
+                "win_rate_wilson95": [
+                  0.07667565052761793,
+                  0.40000564690204926
+                ],
+                "campaign_close_drawdown": 273.3450000000289,
+                "max_consecutive_losses": 6,
+                "p05_cash": -39.64199999999982,
+                "small_n": true,
+                "net_r": -12.195904297975838,
+                "expectancy_r": -0.580757347522659,
+                "mean_win_usd": 50.35149999999862,
+                "mean_loss_usd": -26.386764705883916
+              }
+            }
+          },
+          "later_archive": {
+            "all": {
+              "base": {
+                "n": 21,
+                "wins": 6,
+                "losses": 15,
+                "breakeven": 0,
+                "net_cash": -164.75399999999726,
+                "mean_cash": -7.8454285714284415,
+                "profit_factor": 0.5963435369982938,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.2857142857142857,
+                "win_rate_wilson95": [
+                  0.1381386295212213,
+                  0.49956380716085597
+                ],
+                "campaign_close_drawdown": 259.9530000000002,
+                "max_consecutive_losses": 5,
+                "p05_cash": -49.34400000000015,
+                "small_n": true,
+                "net_r": -5.605125296818524,
+                "expectancy_r": -0.2669107284199297,
+                "mean_win_usd": 40.56666666666666,
+                "mean_loss_usd": -27.210266666666485
+              },
+              "stress": {
+                "n": 21,
+                "wins": 6,
+                "losses": 15,
+                "breakeven": 0,
+                "net_cash": -207.27899999999727,
+                "mean_cash": -9.870428571428441,
+                "profit_factor": 0.5273311457167061,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.2857142857142857,
+                "win_rate_wilson95": [
+                  0.1381386295212213,
+                  0.49956380716085597
+                ],
+                "campaign_close_drawdown": 286.27800000000025,
+                "max_consecutive_losses": 5,
+                "p05_cash": -51.36900000000015,
+                "small_n": true,
+                "net_r": -7.484602522441161,
+                "expectancy_r": -0.35640964392576957,
+                "mean_win_usd": 38.541666666666664,
+                "mean_loss_usd": -29.235266666666483
+              }
+            },
+            "BUY": {
+              "base": {
+                "n": 6,
+                "wins": 1,
+                "losses": 5,
+                "breakeven": 0,
+                "net_cash": -184.09499999999943,
+                "mean_cash": -30.682499999999905,
+                "profit_factor": 0.06056245311615111,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.16666666666666666,
+                "win_rate_wilson95": [
+                  0.030053369748306635,
+                  0.5635028221864702
+                ],
+                "campaign_close_drawdown": 184.09499999999943,
+                "max_consecutive_losses": 4,
+                "p05_cash": -63.42600000000037,
+                "small_n": true,
+                "net_r": -4.784630922438644,
+                "expectancy_r": -0.7974384870731073,
+                "mean_win_usd": 11.868000000000304,
+                "mean_loss_usd": -39.19259999999995
+              },
+              "stress": {
+                "n": 6,
+                "wins": 1,
+                "losses": 5,
+                "breakeven": 0,
+                "net_cash": -196.24499999999944,
+                "mean_cash": -32.707499999999904,
+                "profit_factor": 0.04776115057645431,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.16666666666666666,
+                "win_rate_wilson95": [
+                  0.030053369748306635,
+                  0.5635028221864702
+                ],
+                "campaign_close_drawdown": 196.24499999999944,
+                "max_consecutive_losses": 4,
+                "p05_cash": -65.45100000000038,
+                "small_n": true,
+                "net_r": -5.20047241333597,
+                "expectancy_r": -0.8667454022226617,
+                "mean_win_usd": 9.843000000000304,
+                "mean_loss_usd": -41.21759999999995
+              }
+            },
+            "SELL": {
+              "base": {
+                "n": 15,
+                "wins": 5,
+                "losses": 10,
+                "breakeven": 0,
+                "net_cash": 19.341000000002158,
+                "mean_cash": 1.2894000000001438,
+                "profit_factor": 1.0911490119750713,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.3333333333333333,
+                "win_rate_wilson95": [
+                  0.1517632443971473,
+                  0.5828645226148023
+                ],
+                "campaign_close_drawdown": 118.72799999999916,
+                "max_consecutive_losses": 4,
+                "p05_cash": -33.77039999999979,
+                "small_n": true,
+                "net_r": -0.8204943743798804,
+                "expectancy_r": -0.05469962495865869,
+                "mean_win_usd": 46.30639999999993,
+                "mean_loss_usd": -21.219099999999752
+              },
+              "stress": {
+                "n": 15,
+                "wins": 5,
+                "losses": 10,
+                "breakeven": 0,
+                "net_cash": -11.033999999997835,
+                "mean_cash": -0.7355999999998557,
+                "profit_factor": 0.9525298893052518,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.3333333333333333,
+                "win_rate_wilson95": [
+                  0.1517632443971473,
+                  0.5828645226148023
+                ],
+                "campaign_close_drawdown": 138.97799999999916,
+                "max_consecutive_losses": 4,
+                "p05_cash": -35.79539999999979,
+                "small_n": true,
+                "net_r": -2.284130109105191,
+                "expectancy_r": -0.1522753406070127,
+                "mean_win_usd": 44.281399999999934,
+                "mean_loss_usd": -23.24409999999975
+              }
+            }
+          }
+        },
+        "off_event_fills": 49,
+        "off_event_closed_losses": 39,
+        "directional_hours": {
+          "all": {
+            "eligible": 33,
+            "missed_with_no_fill": 31,
+            "detected": 8,
+            "actionable": 2,
+            "filled": 2,
+            "median_watch_delay_minutes": 12.5,
+            "median_confirmed_delay_minutes": 22.5,
+            "median_executable_delay_minutes": 7.5,
+            "median_fill_delay_minutes": 7.5
+          },
+          "BUY": {
+            "eligible": 21,
+            "missed_with_no_fill": 21,
+            "detected": 4,
+            "actionable": 0,
+            "filled": 0,
+            "median_watch_delay_minutes": 10.0,
+            "median_confirmed_delay_minutes": 20.0,
+            "median_executable_delay_minutes": null,
+            "median_fill_delay_minutes": null
+          },
+          "SELL": {
+            "eligible": 12,
+            "missed_with_no_fill": 10,
+            "detected": 4,
+            "actionable": 2,
+            "filled": 2,
+            "median_watch_delay_minutes": 25.0,
+            "median_confirmed_delay_minutes": 35.0,
+            "median_executable_delay_minutes": 7.5,
+            "median_fill_delay_minutes": 7.5
+          }
+        },
+        "offer_rejections": {
+          "POSITION_OCCUPIED": 10
+        }
+      },
+      "WSB_DEFAULT": {
+        "method": "Closed-bar WSB reconstruction with fixed stop-first OHLC execution",
+        "metrics_by_window_and_side": {
+          "full": {
+            "all": {
+              "base": {
+                "n": 111,
+                "wins": 31,
+                "losses": 80,
+                "breakeven": 0,
+                "net_cash": -565.6517159447949,
+                "mean_cash": -5.095961404908062,
+                "profit_factor": 0.6012375162365147,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.27927927927927926,
+                "win_rate_wilson95": [
+                  0.2042765697416089,
+                  0.36904825124916796
+                ],
+                "campaign_close_drawdown": 620.7758386570222,
+                "max_consecutive_losses": 10,
+                "p05_cash": -29.145081980142184,
+                "small_n": false,
+                "net_r": -31.08638454700806,
+                "expectancy_r": -0.28005751844151405,
+                "mean_win_usd": 27.51181197451754,
+                "mean_loss_usd": -17.73147358943548
+              },
+              "stress": {
+                "n": 111,
+                "wins": 31,
+                "losses": 80,
+                "breakeven": 0,
+                "net_cash": -790.4267159447948,
+                "mean_cash": -7.120961404908061,
+                "profit_factor": 0.49989384975093354,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.27927927927927926,
+                "win_rate_wilson95": [
+                  0.2042765697416089,
+                  0.36904825124916796
+                ],
+                "campaign_close_drawdown": 835.4258386570204,
+                "max_consecutive_losses": 10,
+                "p05_cash": -31.170081980142182,
+                "small_n": false,
+                "net_r": -44.609117320979685,
+                "expectancy_r": -0.4018839398286458,
+                "mean_win_usd": 25.48681197451754,
+                "mean_loss_usd": -19.75647358943548
+              }
+            },
+            "BUY": {
+              "base": {
+                "n": 51,
+                "wins": 12,
+                "losses": 39,
+                "breakeven": 0,
+                "net_cash": -413.36711694429005,
+                "mean_cash": -8.105237587142943,
+                "profit_factor": 0.44473331027202234,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.23529411764705882,
+                "win_rate_wilson95": [
+                  0.14004948834462844,
+                  0.3676222516016529
+                ],
+                "campaign_close_drawdown": 424.84098891566117,
+                "max_consecutive_losses": 14,
+                "p05_cash": -30.27076351975379,
+                "small_n": false,
+                "net_r": -19.843947083767226,
+                "expectancy_r": -0.38909700164249467,
+                "mean_win_usd": 27.59006462976942,
+                "mean_loss_usd": -19.088407500039054
+              },
+              "stress": {
+                "n": 51,
+                "wins": 12,
+                "losses": 39,
+                "breakeven": 0,
+                "net_cash": -516.64211694429,
+                "mean_cash": -10.130237587142942,
+                "profit_factor": 0.37256770287895,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.23529411764705882,
+                "win_rate_wilson95": [
+                  0.14004948834462844,
+                  0.3676222516016529
+                ],
+                "campaign_close_drawdown": 526.0909889156605,
+                "max_consecutive_losses": 14,
+                "p05_cash": -32.29576351975379,
+                "small_n": false,
+                "net_r": -25.828343933181497,
+                "expectancy_r": -0.5064381163368921,
+                "mean_win_usd": 25.56506462976942,
+                "mean_loss_usd": -21.113407500039052
+              }
+            },
+            "SELL": {
+              "base": {
+                "n": 60,
+                "wins": 19,
+                "losses": 41,
+                "breakeven": 0,
+                "net_cash": -152.28459900050476,
+                "mean_cash": -2.5380766500084126,
+                "profit_factor": 0.7740819199661497,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.31666666666666665,
+                "win_rate_wilson95": [
+                  0.21305867552366523,
+                  0.44233767026176773
+                ],
+                "campaign_close_drawdown": 237.11334964144902,
+                "max_consecutive_losses": 8,
+                "p05_cash": -28.329459397855768,
+                "small_n": false,
+                "net_r": -11.242437463240833,
+                "expectancy_r": -0.18737395772068055,
+                "mean_win_usd": 27.462389244884776,
+                "mean_loss_usd": -16.440731576910135
+              },
+              "stress": {
+                "n": 60,
+                "wins": 19,
+                "losses": 41,
+                "breakeven": 0,
+                "net_cash": -273.7845990005047,
+                "mean_cash": -4.563076650008412,
+                "profit_factor": 0.6383748394402282,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.31666666666666665,
+                "win_rate_wilson95": [
+                  0.21305867552366523,
+                  0.44233767026176773
+                ],
+                "campaign_close_drawdown": 348.2425210475689,
+                "max_consecutive_losses": 8,
+                "p05_cash": -30.354459397855766,
+                "small_n": false,
+                "net_r": -18.780773387798185,
+                "expectancy_r": -0.31301288979663644,
+                "mean_win_usd": 25.437389244884773,
+                "mean_loss_usd": -18.465731576910134
+              }
+            }
+          },
+          "development": {
+            "all": {
+              "base": {
+                "n": 64,
+                "wins": 14,
+                "losses": 50,
+                "breakeven": 0,
+                "net_cash": -511.27916053837845,
+                "mean_cash": -7.988736883412163,
+                "profit_factor": 0.4139588601885677,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.21875,
+                "win_rate_wilson95": [
+                  0.13502319406719474,
+                  0.3343278395662582
+                ],
+                "campaign_close_drawdown": 511.27916053837936,
+                "max_consecutive_losses": 10,
+                "p05_cash": -28.852296378169353,
+                "small_n": false,
+                "net_r": -28.077838229588146,
+                "expectancy_r": -0.4387162223373148,
+                "mean_win_usd": 25.79640186581148,
+                "mean_loss_usd": -17.448575733194783
+              },
+              "stress": {
+                "n": 64,
+                "wins": 14,
+                "losses": 50,
+                "breakeven": 0,
+                "net_cash": -640.8791605383784,
+                "mean_cash": -10.013736883412163,
+                "profit_factor": 0.34179611457187936,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.21875,
+                "win_rate_wilson95": [
+                  0.13502319406719474,
+                  0.3343278395662582
+                ],
+                "campaign_close_drawdown": 640.8791605383785,
+                "max_consecutive_losses": 10,
+                "p05_cash": -30.87729637816935,
+                "small_n": false,
+                "net_r": -36.56685699359103,
+                "expectancy_r": -0.5713571405248599,
+                "mean_win_usd": 23.77140186581148,
+                "mean_loss_usd": -19.47357573319478
+              }
+            },
+            "BUY": {
+              "base": {
+                "n": 30,
+                "wins": 4,
+                "losses": 26,
+                "breakeven": 0,
+                "net_cash": -382.94729950201094,
+                "mean_cash": -12.764909983400365,
+                "profit_factor": 0.24292803164231186,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.13333333333333333,
+                "win_rate_wilson95": [
+                  0.053096554840547455,
+                  0.296813266820363
+                ],
+                "campaign_close_drawdown": 382.94729950201116,
+                "max_consecutive_losses": 14,
+                "p05_cash": -30.501587657065123,
+                "small_n": false,
+                "net_r": -20.722597167083638,
+                "expectancy_r": -0.690753238902788,
+                "mean_win_usd": 30.71987789105733,
+                "mean_loss_usd": -19.454877348701547
+              },
+              "stress": {
+                "n": 30,
+                "wins": 4,
+                "losses": 26,
+                "breakeven": 0,
+                "net_cash": -443.69729950201094,
+                "mean_cash": -14.789909983400364,
+                "profit_factor": 0.20552243045703733,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.13333333333333333,
+                "win_rate_wilson95": [
+                  0.053096554840547455,
+                  0.296813266820363
+                ],
+                "campaign_close_drawdown": 443.697299502011,
+                "max_consecutive_losses": 14,
+                "p05_cash": -32.52658765706512,
+                "small_n": false,
+                "net_r": -24.523594675800616,
+                "expectancy_r": -0.8174531558600205,
+                "mean_win_usd": 28.69487789105733,
+                "mean_loss_usd": -21.47987734870155
+              }
+            },
+            "SELL": {
+              "base": {
+                "n": 34,
+                "wins": 10,
+                "losses": 24,
+                "breakeven": 0,
+                "net_cash": -128.33186103636748,
+                "mean_cash": -3.774466501069632,
+                "profit_factor": 0.6499422545974864,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.29411764705882354,
+                "win_rate_wilson95": [
+                  0.1683463067042242,
+                  0.4616890979471443
+                ],
+                "campaign_close_drawdown": 159.97089726485345,
+                "max_consecutive_losses": 8,
+                "p05_cash": -28.444096508554047,
+                "small_n": false,
+                "net_r": -7.355241062504506,
+                "expectancy_r": -0.21633061948542665,
+                "mean_win_usd": 23.827011455713137,
+                "mean_loss_usd": -15.275082316395785
+              },
+              "stress": {
+                "n": 34,
+                "wins": 10,
+                "losses": 24,
+                "breakeven": 0,
+                "net_cash": -197.18186103636745,
+                "mean_cash": -5.799466501069631,
+                "profit_factor": 0.5250941165332574,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.29411764705882354,
+                "win_rate_wilson95": [
+                  0.1683463067042242,
+                  0.4616890979471443
+                ],
+                "campaign_close_drawdown": 198.44589726485353,
+                "max_consecutive_losses": 8,
+                "p05_cash": -30.469096508554045,
+                "small_n": false,
+                "net_r": -12.043262317790413,
+                "expectancy_r": -0.35421359758207094,
+                "mean_win_usd": 21.80201145571314,
+                "mean_loss_usd": -17.300082316395784
+              }
+            }
+          },
+          "later_archive": {
+            "all": {
+              "base": {
+                "n": 47,
+                "wins": 17,
+                "losses": 30,
+                "breakeven": 0,
+                "net_cash": -54.37255540641641,
+                "mean_cash": -1.1568628809875832,
+                "profit_factor": 0.900432813331889,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.3617021276595745,
+                "win_rate_wilson95": [
+                  0.23966213245714155,
+                  0.5046410346520489
+                ],
+                "campaign_close_drawdown": 168.8838802138485,
+                "max_consecutive_losses": 7,
+                "p05_cash": -28.289976347210903,
+                "small_n": false,
+                "net_r": -3.008546317419916,
+                "expectancy_r": -0.06401162377489182,
+                "mean_win_usd": 28.92450265227547,
+                "mean_loss_usd": -18.202970016503315
+              },
+              "stress": {
+                "n": 47,
+                "wins": 17,
+                "losses": 30,
+                "breakeven": 0,
+                "net_cash": -149.54755540641636,
+                "mean_cash": -3.181862880987582,
+                "profit_factor": 0.753563085693711,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.3617021276595745,
+                "win_rate_wilson95": [
+                  0.23966213245714155,
+                  0.5046410346520489
+                ],
+                "campaign_close_drawdown": 240.90264228113526,
+                "max_consecutive_losses": 7,
+                "p05_cash": -30.3149763472109,
+                "small_n": false,
+                "net_r": -8.042260327388652,
+                "expectancy_r": -0.17111192185933305,
+                "mean_win_usd": 26.899502652275473,
+                "mean_loss_usd": -20.227970016503313
+              }
+            },
+            "BUY": {
+              "base": {
+                "n": 21,
+                "wins": 8,
+                "losses": 13,
+                "breakeven": 0,
+                "net_cash": -30.41981744227913,
+                "mean_cash": -1.448562735346625,
+                "profit_factor": 0.8725183154006894,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.38095238095238093,
+                "win_rate_wilson95": [
+                  0.20751011368564493,
+                  0.5912134622488425
+                ],
+                "campaign_close_drawdown": 162.6765198714072,
+                "max_consecutive_losses": 8,
+                "p05_cash": -29.40966414744989,
+                "small_n": true,
+                "net_r": 0.8786500833164115,
+                "expectancy_r": 0.041840480157924353,
+                "mean_win_usd": 26.02515799912546,
+                "mean_loss_usd": -18.355467802714063
+              },
+              "stress": {
+                "n": 21,
+                "wins": 8,
+                "losses": 13,
+                "breakeven": 0,
+                "net_cash": -72.94481744227912,
+                "mean_cash": -3.4735627353466247,
+                "profit_factor": 0.7246805197226628,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.38095238095238093,
+                "win_rate_wilson95": [
+                  0.20751011368564493,
+                  0.5912134622488425
+                ],
+                "campaign_close_drawdown": 178.87651987140725,
+                "max_consecutive_losses": 8,
+                "p05_cash": -31.43466414744989,
+                "small_n": true,
+                "net_r": -1.30474925738088,
+                "expectancy_r": -0.06213091701813715,
+                "mean_win_usd": 24.000157999125463,
+                "mean_loss_usd": -20.380467802714065
+              }
+            },
+            "SELL": {
+              "base": {
+                "n": 26,
+                "wins": 9,
+                "losses": 17,
+                "breakeven": 0,
+                "net_cash": -23.95273796413728,
+                "mean_cash": -0.9212591524668186,
+                "profit_factor": 0.9220968150203701,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.34615384615384615,
+                "win_rate_wilson95": [
+                  0.1941223032294052,
+                  0.5377942881118918
+                ],
+                "campaign_close_drawdown": 136.8828437222766,
+                "max_consecutive_losses": 5,
+                "p05_cash": -25.27990272452539,
+                "small_n": true,
+                "net_r": -3.887196400736327,
+                "expectancy_r": -0.14950755387447412,
+                "mean_win_usd": 31.501697899519925,
+                "mean_loss_usd": -18.086354062342153
+              },
+              "stress": {
+                "n": 26,
+                "wins": 9,
+                "losses": 17,
+                "breakeven": 0,
+                "net_cash": -76.60273796413726,
+                "mean_cash": -2.9462591524668174,
+                "profit_factor": 0.7759452995712233,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.34615384615384615,
+                "win_rate_wilson95": [
+                  0.1941223032294052,
+                  0.5377942881118918
+                ],
+                "campaign_close_drawdown": 177.1370151283963,
+                "max_consecutive_losses": 5,
+                "p05_cash": -27.304902724525387,
+                "small_n": true,
+                "net_r": -6.7375110700077725,
+                "expectancy_r": -0.2591350411541451,
+                "mean_win_usd": 29.476697899519927,
+                "mean_loss_usd": -20.11135406234215
+              }
+            }
+          }
+        },
+        "off_event_fills": 106,
+        "off_event_closed_losses": 77,
+        "directional_hours": {
+          "all": {
+            "eligible": 33,
+            "missed_with_no_fill": 27,
+            "detected": 7,
+            "actionable": 7,
+            "filled": 6,
+            "median_watch_delay_minutes": 12.5,
+            "median_confirmed_delay_minutes": 30.0,
+            "median_executable_delay_minutes": 30.0,
+            "median_fill_delay_minutes": 32.5
+          },
+          "BUY": {
+            "eligible": 21,
+            "missed_with_no_fill": 16,
+            "detected": 5,
+            "actionable": 5,
+            "filled": 5,
+            "median_watch_delay_minutes": 5.0,
+            "median_confirmed_delay_minutes": 30.0,
+            "median_executable_delay_minutes": 30.0,
+            "median_fill_delay_minutes": 30.0
+          },
+          "SELL": {
+            "eligible": 12,
+            "missed_with_no_fill": 11,
+            "detected": 2,
+            "actionable": 2,
+            "filled": 1,
+            "median_watch_delay_minutes": 50.0,
+            "median_confirmed_delay_minutes": 30.0,
+            "median_executable_delay_minutes": 30.0,
+            "median_fill_delay_minutes": 55.0
+          }
+        },
+        "offer_rejections": {
+          "POSITION_OCCUPIED": 58
+        },
+        "settings": {
+          "count": 3,
+          "window": 5,
+          "bear_upper": 0.45,
+          "bear_lower": 0.25,
+          "bull_lower": 0.45,
+          "bull_upper": 0.25,
+          "wait_bars": 100,
+          "close_breakout": true,
+          "minimum_range": false,
+          "minimum_range_atr": 0.3,
+          "filter_atr_length": 14,
+          "breakout_size_filter": false,
+          "breakout_size_multiple": 1.5,
+          "breakout_size_length": 20,
+          "absorption": true,
+          "volume_length": 20,
+          "absorption_volume_multiple": 1.1,
+          "absorption_max_atr": 0.6,
+          "absorption_close": 0.6,
+          "concurrent": 2,
+          "mixed": true,
+          "allow_buy": true,
+          "allow_sell": true,
+          "show_targets": true,
+          "use_atr_sl": true,
+          "stop_atr_length": 14,
+          "stop_atr_multiple": 1.5,
+          "stop_percent": 1.0,
+          "target_r": [
+            1.0,
+            2.0,
+            3.0
+          ]
+        },
+        "scope": "Publication-default reconstruction or declared setting sensitivity.",
+        "false_breakouts": {
+          "BUY": {
+            "complete_three_bar_signals": 75,
+            "all_supporting_edges_reclaimed": 38,
+            "first_examples": [
+              {
+                "known_utc": "2026-10-13T22:55:00Z",
+                "reclaim_utc": "2026-10-13T23:00:00Z",
+                "entry_reference": 4162.365,
+                "reclaim_close": 4161.27,
+                "box_top": 4162.07,
+                "box_bottom": 4157.925,
+                "model_outcome": "CLOSED",
+                "net_usd": -9.774055929561293
+              },
+              {
+                "known_utc": "2026-10-14T02:55:00Z",
+                "reclaim_utc": "2026-10-14T03:05:00Z",
+                "entry_reference": 4164.5,
+                "reclaim_close": 4163.85,
+                "box_top": 4164.08,
+                "box_bottom": 4146.655,
+                "model_outcome": "CLOSED",
+                "net_usd": -23.346725677311586
+              },
+              {
+                "known_utc": "2026-10-14T15:25:00Z",
+                "reclaim_utc": "2026-10-14T15:30:00Z",
+                "entry_reference": 4094.19,
+                "reclaim_close": 4092.785,
+                "box_top": 4093.99,
+                "box_bottom": 4083.4,
+                "model_outcome": "CLOSED",
+                "net_usd": -36.48602853353995
+              }
+            ]
+          },
+          "SELL": {
+            "complete_three_bar_signals": 93,
+            "all_supporting_edges_reclaimed": 45,
+            "first_examples": [
+              {
+                "known_utc": "2026-10-13T00:55:00Z",
+                "reclaim_utc": "2026-10-13T01:05:00Z",
+                "entry_reference": 4157.96,
+                "reclaim_close": 4161.035,
+                "box_top": 4168.535,
+                "box_bottom": 4160.87,
+                "model_outcome": "CLOSED",
+                "net_usd": -18.017897150117822
+              },
+              {
+                "known_utc": "2026-10-13T10:25:00Z",
+                "reclaim_utc": "2026-10-13T10:30:00Z",
+                "entry_reference": 4182.385,
+                "reclaim_close": 4182.725,
+                "box_top": 4188.095,
+                "box_bottom": 4182.65,
+                "model_outcome": "CLOSED",
+                "net_usd": -14.924049538241523
+              },
+              {
+                "known_utc": "2026-10-13T10:45:00Z",
+                "reclaim_utc": "2026-10-13T10:55:00Z",
+                "entry_reference": 4180.245,
+                "reclaim_close": 4180.89,
+                "box_top": 4186.525,
+                "box_bottom": 4180.625,
+                "model_outcome": "NOT_ADMITTED",
+                "net_usd": null
+              }
+            ]
+          }
+        }
+      },
+      "WSB_WITHOUT_ABSORPTION": {
+        "method": "Closed-bar WSB reconstruction with fixed stop-first OHLC execution",
+        "metrics_by_window_and_side": {
+          "full": {
+            "all": {
+              "base": {
+                "n": 108,
+                "wins": 29,
+                "losses": 79,
+                "breakeven": 0,
+                "net_cash": -628.5648769362157,
+                "mean_cash": -5.820045156816812,
+                "profit_factor": 0.5475787710948687,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.26851851851851855,
+                "win_rate_wilson95": [
+                  0.19394901389668973,
+                  0.35898957857856817
+                ],
+                "campaign_close_drawdown": 683.6889996484429,
+                "max_consecutive_losses": 10,
+                "p05_cash": -29.224456630334497,
+                "small_n": false,
+                "net_r": -33.66432570270231,
+                "expectancy_r": -0.31170671946946577,
+                "mean_win_usd": 26.233469963918232,
+                "mean_loss_usd": -17.58652539101069
+              },
+              "stress": {
+                "n": 108,
+                "wins": 29,
+                "losses": 79,
+                "breakeven": 0,
+                "net_cash": -847.2648769362156,
+                "mean_cash": -7.845045156816811,
+                "profit_factor": 0.4531342337670458,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.26851851851851855,
+                "win_rate_wilson95": [
+                  0.19394901389668973,
+                  0.35898957857856817
+                ],
+                "campaign_close_drawdown": 892.2639996484413,
+                "max_consecutive_losses": 10,
+                "p05_cash": -31.249456630334496,
+                "small_n": false,
+                "net_r": -46.960060645504235,
+                "expectancy_r": -0.4348153763472615,
+                "mean_win_usd": 24.208469963918233,
+                "mean_loss_usd": -19.611525391010687
+              }
+            },
+            "BUY": {
+              "base": {
+                "n": 48,
+                "wins": 10,
+                "losses": 38,
+                "breakeven": 0,
+                "net_cash": -469.8425842952895,
+                "mean_cash": -9.788387172818531,
+                "profit_factor": 0.3431214326508765,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.20833333333333334,
+                "win_rate_wilson95": [
+                  0.11730272957905595,
+                  0.34258901272617925
+                ],
+                "campaign_close_drawdown": 481.3164562666605,
+                "max_consecutive_losses": 18,
+                "p05_cash": -30.529093331444958,
+                "small_n": false,
+                "net_r": -22.59260091830744,
+                "expectancy_r": -0.47067918579807166,
+                "mean_win_usd": 24.542292694123944,
+                "mean_loss_usd": -18.822776611487605
+              },
+              "stress": {
+                "n": 48,
+                "wins": 10,
+                "losses": 38,
+                "breakeven": 0,
+                "net_cash": -567.0425842952894,
+                "mean_cash": -11.81338717281853,
+                "profit_factor": 0.28423190880190985,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.20833333333333334,
+                "win_rate_wilson95": [
+                  0.11730272957905595,
+                  0.34258901272617925
+                ],
+                "campaign_close_drawdown": 576.49145626666,
+                "max_consecutive_losses": 18,
+                "p05_cash": -32.55409333144496,
+                "small_n": false,
+                "net_r": -28.324977423848484,
+                "expectancy_r": -0.5901036963301768,
+                "mean_win_usd": 22.517292694123945,
+                "mean_loss_usd": -20.847776611487603
+              }
+            },
+            "SELL": {
+              "base": {
+                "n": 60,
+                "wins": 19,
+                "losses": 41,
+                "breakeven": 0,
+                "net_cash": -158.7222926409262,
+                "mean_cash": -2.645371544015437,
+                "profit_factor": 0.7645314375363058,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.31666666666666665,
+                "win_rate_wilson95": [
+                  0.21305867552366523,
+                  0.44233767026176773
+                ],
+                "campaign_close_drawdown": 243.55104328187048,
+                "max_consecutive_losses": 8,
+                "p05_cash": -28.329459397855768,
+                "small_n": false,
+                "net_r": -11.071724784394865,
+                "expectancy_r": -0.1845287464065811,
+                "mean_win_usd": 27.12356326380996,
+                "mean_loss_usd": -16.440731576910135
+              },
+              "stress": {
+                "n": 60,
+                "wins": 19,
+                "losses": 41,
+                "breakeven": 0,
+                "net_cash": -280.2222926409262,
+                "mean_cash": -4.6703715440154365,
+                "profit_factor": 0.6298716876747495,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.31666666666666665,
+                "win_rate_wilson95": [
+                  0.21305867552366523,
+                  0.44233767026176773
+                ],
+                "campaign_close_drawdown": 354.6802146879904,
+                "max_consecutive_losses": 8,
+                "p05_cash": -30.354459397855766,
+                "small_n": false,
+                "net_r": -18.635083221655755,
+                "expectancy_r": -0.3105847203609292,
+                "mean_win_usd": 25.09856326380996,
+                "mean_loss_usd": -18.465731576910134
+              }
+            }
+          },
+          "development": {
+            "all": {
+              "base": {
+                "n": 62,
+                "wins": 13,
+                "losses": 49,
+                "breakeven": 0,
+                "net_cash": -514.8033583798966,
+                "mean_cash": -8.3032799738693,
+                "profit_factor": 0.38949830667952373,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.20967741935483872,
+                "win_rate_wilson95": [
+                  0.1268398928951199,
+                  0.3263921489701932
+                ],
+                "campaign_close_drawdown": 514.8033583798973,
+                "max_consecutive_losses": 10,
+                "p05_cash": -28.8710986679461,
+                "small_n": false,
+                "net_r": -28.716135088927366,
+                "expectancy_r": -0.46316346917624784,
+                "mean_win_usd": 25.26484977037295,
+                "mean_loss_usd": -17.209110314178467
+              },
+              "stress": {
+                "n": 62,
+                "wins": 13,
+                "losses": 49,
+                "breakeven": 0,
+                "net_cash": -640.3533583798966,
+                "mean_cash": -10.328279973869298,
+                "profit_factor": 0.3205593774893459,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.20967741935483872,
+                "win_rate_wilson95": [
+                  0.1268398928951199,
+                  0.3263921489701932
+                ],
+                "campaign_close_drawdown": 640.3533583798967,
+                "max_consecutive_losses": 10,
+                "p05_cash": -30.8960986679461,
+                "small_n": false,
+                "net_r": -37.044292547670345,
+                "expectancy_r": -0.597488589478554,
+                "mean_win_usd": 23.239849770372953,
+                "mean_loss_usd": -19.23411031417847
+              }
+            },
+            "BUY": {
+              "base": {
+                "n": 28,
+                "wins": 3,
+                "losses": 25,
+                "breakeven": 0,
+                "net_cash": -380.03380370310765,
+                "mean_cash": -13.572635846539558,
+                "profit_factor": 0.20268909077238917,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.10714285714285714,
+                "win_rate_wilson95": [
+                  0.03711836682929999,
+                  0.27195851548672156
+                ],
+                "campaign_close_drawdown": 380.0338037031078,
+                "max_consecutive_losses": 18,
+                "p05_cash": -30.796330901470693,
+                "small_n": true,
+                "net_r": -21.53160670526883,
+                "expectancy_r": -0.7689859537596011,
+                "mean_win_usd": 32.20354203271281,
+                "mean_loss_usd": -19.065777192049843
+              },
+              "stress": {
+                "n": 28,
+                "wins": 3,
+                "losses": 25,
+                "breakeven": 0,
+                "net_cash": -436.73380370310764,
+                "mean_cash": -15.597635846539559,
+                "profit_factor": 0.17170657159521993,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.10714285714285714,
+                "win_rate_wilson95": [
+                  0.03711836682929999,
+                  0.27195851548672156
+                ],
+                "campaign_close_drawdown": 436.7338037031077,
+                "max_consecutive_losses": 18,
+                "p05_cash": -32.821330901470695,
+                "small_n": true,
+                "net_r": -25.146720396022367,
+                "expectancy_r": -0.8980971570007988,
+                "mean_win_usd": 30.178542032712812,
+                "mean_loss_usd": -21.090777192049842
+              }
+            },
+            "SELL": {
+              "base": {
+                "n": 34,
+                "wins": 10,
+                "losses": 24,
+                "breakeven": 0,
+                "net_cash": -134.76955467678894,
+                "mean_cash": -3.963810431670263,
+                "profit_factor": 0.6323818101127033,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.29411764705882354,
+                "win_rate_wilson95": [
+                  0.1683463067042242,
+                  0.4616890979471443
+                ],
+                "campaign_close_drawdown": 159.97089726485345,
+                "max_consecutive_losses": 8,
+                "p05_cash": -28.444096508554047,
+                "small_n": false,
+                "net_r": -7.184528383658538,
+                "expectancy_r": -0.21130965834289817,
+                "mean_win_usd": 23.18324209167099,
+                "mean_loss_usd": -15.275082316395785
+              },
+              "stress": {
+                "n": 34,
+                "wins": 10,
+                "losses": 24,
+                "breakeven": 0,
+                "net_cash": -203.6195546767889,
+                "mean_cash": -5.988810431670262,
+                "profit_factor": 0.5095891478220194,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.29411764705882354,
+                "win_rate_wilson95": [
+                  0.1683463067042242,
+                  0.4616890979471443
+                ],
+                "campaign_close_drawdown": 203.61955467678897,
+                "max_consecutive_losses": 8,
+                "p05_cash": -30.469096508554045,
+                "small_n": false,
+                "net_r": -11.897572151647982,
+                "expectancy_r": -0.34992859269552884,
+                "mean_win_usd": 21.158242091670992,
+                "mean_loss_usd": -17.300082316395784
+              }
+            }
+          },
+          "later_archive": {
+            "all": {
+              "base": {
+                "n": 46,
+                "wins": 16,
+                "losses": 30,
+                "breakeven": 0,
+                "net_cash": -113.7615185563191,
+                "mean_cash": -2.4730764903547633,
+                "profit_factor": 0.7916795657463593,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.34782608695652173,
+                "win_rate_wilson95": [
+                  0.22680993370754338,
+                  0.49229941157937235
+                ],
+                "campaign_close_drawdown": 219.29160543103788,
+                "max_consecutive_losses": 7,
+                "p05_cash": -28.476590980584067,
+                "small_n": false,
+                "net_r": -4.948190613774939,
+                "expectancy_r": -0.1075693611690204,
+                "mean_win_usd": 27.02047387117377,
+                "mean_loss_usd": -18.202970016503315
+              },
+              "stress": {
+                "n": 46,
+                "wins": 16,
+                "losses": 30,
+                "breakeven": 0,
+                "net_cash": -206.91151855631907,
+                "mean_cash": -4.498076490354762,
+                "profit_factor": 0.6590339706398171,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.34782608695652173,
+                "win_rate_wilson95": [
+                  0.22680993370754338,
+                  0.49229941157937235
+                ],
+                "campaign_close_drawdown": 298.266605431038,
+                "max_consecutive_losses": 7,
+                "p05_cash": -30.501590980584066,
+                "small_n": false,
+                "net_r": -9.915768097833888,
+                "expectancy_r": -0.21556017603986713,
+                "mean_win_usd": 24.995473871173772,
+                "mean_loss_usd": -20.227970016503313
+              }
+            },
+            "BUY": {
+              "base": {
+                "n": 20,
+                "wins": 7,
+                "losses": 13,
+                "breakeven": 0,
+                "net_cash": -89.80878059218182,
+                "mean_cash": -4.4904390296090915,
+                "profit_factor": 0.6236343408889498,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.35,
+                "win_rate_wilson95": [
+                  0.18119182410108206,
+                  0.5671457233147638
+                ],
+                "campaign_close_drawdown": 162.6765198714072,
+                "max_consecutive_losses": 8,
+                "p05_cash": -29.49577408468028,
+                "small_n": true,
+                "net_r": -1.060994213038611,
+                "expectancy_r": -0.05304971065193055,
+                "mean_win_usd": 21.258900120443002,
+                "mean_loss_usd": -18.355467802714063
+              },
+              "stress": {
+                "n": 20,
+                "wins": 7,
+                "losses": 13,
+                "breakeven": 0,
+                "net_cash": -130.30878059218182,
+                "mean_cash": -6.515439029609091,
+                "profit_factor": 0.5081686813925883,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.35,
+                "win_rate_wilson95": [
+                  0.18119182410108206,
+                  0.5671457233147638
+                ],
+                "campaign_close_drawdown": 178.87651987140725,
+                "max_consecutive_losses": 8,
+                "p05_cash": -31.52077408468028,
+                "small_n": true,
+                "net_r": -3.178257027826116,
+                "expectancy_r": -0.1589128513913058,
+                "mean_win_usd": 19.233900120443003,
+                "mean_loss_usd": -20.380467802714065
+              }
+            },
+            "SELL": {
+              "base": {
+                "n": 26,
+                "wins": 9,
+                "losses": 17,
+                "breakeven": 0,
+                "net_cash": -23.95273796413728,
+                "mean_cash": -0.9212591524668186,
+                "profit_factor": 0.9220968150203701,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.34615384615384615,
+                "win_rate_wilson95": [
+                  0.1941223032294052,
+                  0.5377942881118918
+                ],
+                "campaign_close_drawdown": 136.8828437222766,
+                "max_consecutive_losses": 5,
+                "p05_cash": -25.27990272452539,
+                "small_n": true,
+                "net_r": -3.887196400736327,
+                "expectancy_r": -0.14950755387447412,
+                "mean_win_usd": 31.501697899519925,
+                "mean_loss_usd": -18.086354062342153
+              },
+              "stress": {
+                "n": 26,
+                "wins": 9,
+                "losses": 17,
+                "breakeven": 0,
+                "net_cash": -76.60273796413726,
+                "mean_cash": -2.9462591524668174,
+                "profit_factor": 0.7759452995712233,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.34615384615384615,
+                "win_rate_wilson95": [
+                  0.1941223032294052,
+                  0.5377942881118918
+                ],
+                "campaign_close_drawdown": 177.1370151283963,
+                "max_consecutive_losses": 5,
+                "p05_cash": -27.304902724525387,
+                "small_n": true,
+                "net_r": -6.7375110700077725,
+                "expectancy_r": -0.2591350411541451,
+                "mean_win_usd": 29.476697899519927,
+                "mean_loss_usd": -20.11135406234215
+              }
+            }
+          }
+        },
+        "off_event_fills": 104,
+        "off_event_closed_losses": 76,
+        "directional_hours": {
+          "all": {
+            "eligible": 33,
+            "missed_with_no_fill": 28,
+            "detected": 6,
+            "actionable": 6,
+            "filled": 5,
+            "median_watch_delay_minutes": 12.5,
+            "median_confirmed_delay_minutes": 30.0,
+            "median_executable_delay_minutes": 30.0,
+            "median_fill_delay_minutes": 30.0
+          },
+          "BUY": {
+            "eligible": 21,
+            "missed_with_no_fill": 17,
+            "detected": 4,
+            "actionable": 4,
+            "filled": 4,
+            "median_watch_delay_minutes": 5.0,
+            "median_confirmed_delay_minutes": 30.0,
+            "median_executable_delay_minutes": 30.0,
+            "median_fill_delay_minutes": 30.0
+          },
+          "SELL": {
+            "eligible": 12,
+            "missed_with_no_fill": 11,
+            "detected": 2,
+            "actionable": 2,
+            "filled": 1,
+            "median_watch_delay_minutes": 50.0,
+            "median_confirmed_delay_minutes": 30.0,
+            "median_executable_delay_minutes": 30.0,
+            "median_fill_delay_minutes": 55.0
+          }
+        },
+        "offer_rejections": {
+          "POSITION_OCCUPIED": 55
+        },
+        "settings": {
+          "count": 3,
+          "window": 5,
+          "bear_upper": 0.45,
+          "bear_lower": 0.25,
+          "bull_lower": 0.45,
+          "bull_upper": 0.25,
+          "wait_bars": 100,
+          "close_breakout": true,
+          "minimum_range": false,
+          "minimum_range_atr": 0.3,
+          "filter_atr_length": 14,
+          "breakout_size_filter": false,
+          "breakout_size_multiple": 1.5,
+          "breakout_size_length": 20,
+          "absorption": false,
+          "volume_length": 20,
+          "absorption_volume_multiple": 1.1,
+          "absorption_max_atr": 0.6,
+          "absorption_close": 0.6,
+          "concurrent": 2,
+          "mixed": true,
+          "allow_buy": true,
+          "allow_sell": true,
+          "show_targets": true,
+          "use_atr_sl": true,
+          "stop_atr_length": 14,
+          "stop_atr_multiple": 1.5,
+          "stop_percent": 1.0,
+          "target_r": [
+            1.0,
+            2.0,
+            3.0
+          ]
+        },
+        "scope": "Publication-default reconstruction or declared setting sensitivity.",
+        "false_breakouts": {
+          "BUY": {
+            "complete_three_bar_signals": 70,
+            "all_supporting_edges_reclaimed": 35,
+            "first_examples": [
+              {
+                "known_utc": "2026-10-13T22:55:00Z",
+                "reclaim_utc": "2026-10-13T23:00:00Z",
+                "entry_reference": 4162.365,
+                "reclaim_close": 4161.27,
+                "box_top": 4162.07,
+                "box_bottom": 4157.925,
+                "model_outcome": "CLOSED",
+                "net_usd": -9.774055929561293
+              },
+              {
+                "known_utc": "2026-10-14T02:55:00Z",
+                "reclaim_utc": "2026-10-14T03:05:00Z",
+                "entry_reference": 4164.5,
+                "reclaim_close": 4163.85,
+                "box_top": 4164.08,
+                "box_bottom": 4146.655,
+                "model_outcome": "CLOSED",
+                "net_usd": -23.346725677311586
+              },
+              {
+                "known_utc": "2026-10-14T15:25:00Z",
+                "reclaim_utc": "2026-10-14T15:30:00Z",
+                "entry_reference": 4094.19,
+                "reclaim_close": 4092.785,
+                "box_top": 4093.99,
+                "box_bottom": 4083.4,
+                "model_outcome": "CLOSED",
+                "net_usd": -36.48602853353995
+              }
+            ]
+          },
+          "SELL": {
+            "complete_three_bar_signals": 92,
+            "all_supporting_edges_reclaimed": 44,
+            "first_examples": [
+              {
+                "known_utc": "2026-10-13T00:55:00Z",
+                "reclaim_utc": "2026-10-13T01:05:00Z",
+                "entry_reference": 4157.96,
+                "reclaim_close": 4161.035,
+                "box_top": 4168.535,
+                "box_bottom": 4160.87,
+                "model_outcome": "CLOSED",
+                "net_usd": -18.017897150117822
+              },
+              {
+                "known_utc": "2026-10-13T10:25:00Z",
+                "reclaim_utc": "2026-10-13T10:30:00Z",
+                "entry_reference": 4182.385,
+                "reclaim_close": 4182.725,
+                "box_top": 4188.095,
+                "box_bottom": 4182.65,
+                "model_outcome": "CLOSED",
+                "net_usd": -14.924049538241523
+              },
+              {
+                "known_utc": "2026-10-13T10:45:00Z",
+                "reclaim_utc": "2026-10-13T10:55:00Z",
+                "entry_reference": 4180.245,
+                "reclaim_close": 4180.89,
+                "box_top": 4186.525,
+                "box_bottom": 4180.625,
+                "model_outcome": "NOT_ADMITTED",
+                "net_usd": null
+              }
+            ]
+          }
+        }
+      },
+      "WSB_HIGH_LOW_SENSITIVITY": {
+        "method": "Closed-bar WSB reconstruction with fixed stop-first OHLC execution",
+        "metrics_by_window_and_side": {
+          "full": {
+            "all": {
+              "base": {
+                "n": 128,
+                "wins": 28,
+                "losses": 100,
+                "breakeven": 0,
+                "net_cash": -1054.2295959237968,
+                "mean_cash": -8.236168718154662,
+                "profit_factor": 0.3888096165154167,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.21875,
+                "win_rate_wilson95": [
+                  0.15590524094938307,
+                  0.29798429695446543
+                ],
+                "campaign_close_drawdown": 1140.3148346619573,
+                "max_consecutive_losses": 16,
+                "p05_cash": -29.25390906064406,
+                "small_n": false,
+                "net_r": -57.473761792976426,
+                "expectancy_r": -0.4490137640076283,
+                "mean_win_usd": 23.95177252143593,
+                "mean_loss_usd": -17.24879226524003
+              },
+              "stress": {
+                "n": 128,
+                "wins": 28,
+                "losses": 100,
+                "breakeven": 0,
+                "net_cash": -1313.4295959237968,
+                "mean_cash": -10.261168718154662,
+                "profit_factor": 0.3185411683135416,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.21875,
+                "win_rate_wilson95": [
+                  0.15590524094938307,
+                  0.29798429695446543
+                ],
+                "campaign_close_drawdown": 1389.389834661956,
+                "max_consecutive_losses": 16,
+                "p05_cash": -31.278909060644057,
+                "small_n": false,
+                "net_r": -73.05157188511895,
+                "expectancy_r": -0.5707154053524918,
+                "mean_win_usd": 21.926772521435932,
+                "mean_loss_usd": -19.27379226524003
+              }
+            },
+            "BUY": {
+              "base": {
+                "n": 61,
+                "wins": 14,
+                "losses": 47,
+                "breakeven": 0,
+                "net_cash": -538.4813529796143,
+                "mean_cash": -8.827563163600233,
+                "profit_factor": 0.3892100617841283,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.22950819672131148,
+                "win_rate_wilson95": [
+                  0.1419323035287129,
+                  0.34913405123584
+                ],
+                "campaign_close_drawdown": 572.1328401452652,
+                "max_consecutive_losses": 12,
+                "p05_cash": -30.076071756468625,
+                "small_n": false,
+                "net_r": -26.59499210289243,
+                "expectancy_r": -0.4359834770965972,
+                "mean_win_usd": 24.50952067497923,
+                "mean_loss_usd": -18.757758349560074
+              },
+              "stress": {
+                "n": 61,
+                "wins": 14,
+                "losses": 47,
+                "breakeven": 0,
+                "net_cash": -662.0063529796142,
+                "mean_cash": -10.852563163600234,
+                "profit_factor": 0.3222631319746878,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.22950819672131148,
+                "win_rate_wilson95": [
+                  0.1419323035287129,
+                  0.34913405123584
+                ],
+                "campaign_close_drawdown": 689.5828401452644,
+                "max_consecutive_losses": 12,
+                "p05_cash": -32.10107175646863,
+                "small_n": false,
+                "net_r": -33.673042177470855,
+                "expectancy_r": -0.5520170848765713,
+                "mean_win_usd": 22.484520674979226,
+                "mean_loss_usd": -20.782758349560073
+              }
+            },
+            "SELL": {
+              "base": {
+                "n": 67,
+                "wins": 14,
+                "losses": 53,
+                "breakeven": 0,
+                "net_cash": -515.7482429441826,
+                "mean_cash": -7.697734969316158,
+                "profit_factor": 0.3883909597627834,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.208955223880597,
+                "win_rate_wilson95": [
+                  0.12875685189029118,
+                  0.3207180650688247
+                ],
+                "campaign_close_drawdown": 580.1808672196352,
+                "max_consecutive_losses": 15,
+                "p05_cash": -27.787945284542864,
+                "small_n": false,
+                "net_r": -30.878769690083995,
+                "expectancy_r": -0.46087715955349245,
+                "mean_win_usd": 23.394024367892637,
+                "mean_loss_usd": -15.910652530088292
+              },
+              "stress": {
+                "n": 67,
+                "wins": 14,
+                "losses": 53,
+                "breakeven": 0,
+                "net_cash": -651.4232429441826,
+                "mean_cash": -9.722734969316157,
+                "profit_factor": 0.3147166202493333,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.208955223880597,
+                "win_rate_wilson95": [
+                  0.12875685189029118,
+                  0.3207180650688247
+                ],
+                "campaign_close_drawdown": 699.8069945166916,
+                "max_consecutive_losses": 15,
+                "p05_cash": -29.812945284542863,
+                "small_n": false,
+                "net_r": -39.37852970764809,
+                "expectancy_r": -0.587739249367882,
+                "mean_win_usd": 21.36902436789264,
+                "mean_loss_usd": -17.93565253008829
+              }
+            }
+          },
+          "development": {
+            "all": {
+              "base": {
+                "n": 77,
+                "wins": 11,
+                "losses": 66,
+                "breakeven": 0,
+                "net_cash": -861.594651220697,
+                "mean_cash": -11.189540924944117,
+                "profit_factor": 0.21165511278004204,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.14285714285714285,
+                "win_rate_wilson95": [
+                  0.0816833163991473,
+                  0.23797270165973414
+                ],
+                "campaign_close_drawdown": 861.5946512206982,
+                "max_consecutive_losses": 15,
+                "p05_cash": -29.537306142353188,
+                "small_n": false,
+                "net_r": -48.969112144051415,
+                "expectancy_r": -0.6359624953772911,
+                "mean_win_usd": 21.029203199939143,
+                "mean_loss_usd": -16.55933161242466
+              },
+              "stress": {
+                "n": 77,
+                "wins": 11,
+                "losses": 66,
+                "breakeven": 0,
+                "net_cash": -1017.5196512206969,
+                "mean_cash": -13.214540924944115,
+                "profit_factor": 0.1704321288516126,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.14285714285714285,
+                "win_rate_wilson95": [
+                  0.0816833163991473,
+                  0.23797270165973414
+                ],
+                "campaign_close_drawdown": 1017.519651220697,
+                "max_consecutive_losses": 15,
+                "p05_cash": -31.562306142353187,
+                "small_n": false,
+                "net_r": -58.96205995356557,
+                "expectancy_r": -0.7657410383579945,
+                "mean_win_usd": 19.004203199939145,
+                "mean_loss_usd": -18.58433161242466
+              }
+            },
+            "BUY": {
+              "base": {
+                "n": 38,
+                "wins": 5,
+                "losses": 33,
+                "breakeven": 0,
+                "net_cash": -481.29916503493837,
+                "mean_cash": -12.66576750091943,
+                "profit_factor": 0.1957857915312847,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.13157894736842105,
+                "win_rate_wilson95": [
+                  0.05753867690120133,
+                  0.2732685944229131
+                ],
+                "campaign_close_drawdown": 481.2991650349386,
+                "max_consecutive_losses": 12,
+                "p05_cash": -31.997099326698567,
+                "small_n": false,
+                "net_r": -26.54928808704118,
+                "expectancy_r": -0.6986654759747679,
+                "mean_win_usd": 23.434437491258905,
+                "mean_loss_usd": -18.13549553003736
+              },
+              "stress": {
+                "n": 38,
+                "wins": 5,
+                "losses": 33,
+                "breakeven": 0,
+                "net_cash": -558.2491650349383,
+                "mean_cash": -14.69076750091943,
+                "profit_factor": 0.1609015096136502,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.13157894736842105,
+                "win_rate_wilson95": [
+                  0.05753867690120133,
+                  0.2732685944229131
+                ],
+                "campaign_close_drawdown": 558.2491650349383,
+                "max_consecutive_losses": 12,
+                "p05_cash": -34.02209932669857,
+                "small_n": false,
+                "net_r": -31.215359647065146,
+                "expectancy_r": -0.8214568328175038,
+                "mean_win_usd": 21.409437491258906,
+                "mean_loss_usd": -20.16049553003736
+              }
+            },
+            "SELL": {
+              "base": {
+                "n": 39,
+                "wins": 6,
+                "losses": 33,
+                "breakeven": 0,
+                "net_cash": -380.29548618575865,
+                "mean_cash": -9.75116631245535,
+                "profit_factor": 0.2308632008448388,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.15384615384615385,
+                "win_rate_wilson95": [
+                  0.07247472376982099,
+                  0.29729463648926696
+                ],
+                "campaign_close_drawdown": 380.29548618575876,
+                "max_consecutive_losses": 14,
+                "p05_cash": -28.719694184932177,
+                "small_n": false,
+                "net_r": -22.419824057010235,
+                "expectancy_r": -0.5748672835130829,
+                "mean_win_usd": 19.02484129050601,
+                "mean_loss_usd": -14.98316769481196
+              },
+              "stress": {
+                "n": 39,
+                "wins": 6,
+                "losses": 33,
+                "breakeven": 0,
+                "net_cash": -459.2704861857586,
+                "mean_cash": -11.77616631245535,
+                "profit_factor": 0.18172917213065076,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.15384615384615385,
+                "win_rate_wilson95": [
+                  0.07247472376982099,
+                  0.29729463648926696
+                ],
+                "campaign_close_drawdown": 459.27048618575867,
+                "max_consecutive_losses": 14,
+                "p05_cash": -30.744694184932175,
+                "small_n": false,
+                "net_r": -27.746700306500426,
+                "expectancy_r": -0.7114538540128313,
+                "mean_win_usd": 16.99984129050601,
+                "mean_loss_usd": -17.00816769481196
+              }
+            }
+          },
+          "later_archive": {
+            "all": {
+              "base": {
+                "n": 51,
+                "wins": 17,
+                "losses": 34,
+                "breakeven": 0,
+                "net_cash": -192.63494470309982,
+                "mean_cash": -3.7771557784921534,
+                "profit_factor": 0.6951801908772017,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.3333333333333333,
+                "win_rate_wilson95": [
+                  0.21969931853588517,
+                  0.47031622143029195
+                ],
+                "campaign_close_drawdown": 314.88829582118944,
+                "max_consecutive_losses": 12,
+                "p05_cash": -27.543517813718243,
+                "small_n": false,
+                "net_r": -8.504649648925009,
+                "expectancy_r": -0.16675783625343155,
+                "mean_win_usd": 25.842846788286796,
+                "mean_loss_usd": -18.587157061881626
+              },
+              "stress": {
+                "n": 51,
+                "wins": 17,
+                "losses": 34,
+                "breakeven": 0,
+                "net_cash": -295.90994470309977,
+                "mean_cash": -5.8021557784921525,
+                "profit_factor": 0.577762111863913,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.3333333333333333,
+                "win_rate_wilson95": [
+                  0.21969931853588517,
+                  0.47031622143029195
+                ],
+                "campaign_close_drawdown": 401.96329582118955,
+                "max_consecutive_losses": 12,
+                "p05_cash": -29.56851781371824,
+                "small_n": false,
+                "net_r": -14.089511931553375,
+                "expectancy_r": -0.2762649398343799,
+                "mean_win_usd": 23.817846788286797,
+                "mean_loss_usd": -20.612157061881625
+              }
+            },
+            "BUY": {
+              "base": {
+                "n": 23,
+                "wins": 9,
+                "losses": 14,
+                "breakeven": 0,
+                "net_cash": -57.18218794467592,
+                "mean_cash": -2.486182084551127,
+                "profit_factor": 0.7980450535939636,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.391304347826087,
+                "win_rate_wilson95": [
+                  0.22157622792477952,
+                  0.592144776086183
+                ],
+                "campaign_close_drawdown": 152.19847175431204,
+                "max_consecutive_losses": 7,
+                "p05_cash": -28.98061269719255,
+                "small_n": true,
+                "net_r": -0.04570401585124789,
+                "expectancy_r": -0.0019871311239672996,
+                "mean_win_usd": 25.106789110379406,
+                "mean_loss_usd": -20.22452070986361
+              },
+              "stress": {
+                "n": 23,
+                "wins": 9,
+                "losses": 14,
+                "breakeven": 0,
+                "net_cash": -103.7571879446759,
+                "mean_cash": -4.511182084551126,
+                "profit_factor": 0.6669039388768289,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.391304347826087,
+                "win_rate_wilson95": [
+                  0.22157622792477952,
+                  0.592144776086183
+                ],
+                "campaign_close_drawdown": 166.37347175431202,
+                "max_consecutive_losses": 7,
+                "p05_cash": -31.00561269719255,
+                "small_n": true,
+                "net_r": -2.4576825304057053,
+                "expectancy_r": -0.1068557621915524,
+                "mean_win_usd": 23.081789110379408,
+                "mean_loss_usd": -22.24952070986361
+              }
+            },
+            "SELL": {
+              "base": {
+                "n": 28,
+                "wins": 8,
+                "losses": 20,
+                "breakeven": 0,
+                "net_cash": -135.4527567584239,
+                "mean_cash": -4.8375984556579965,
+                "profit_factor": 0.6116829961637583,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.2857142857142857,
+                "win_rate_wilson95": [
+                  0.1525399605666909,
+                  0.47059288433295715
+                ],
+                "campaign_close_drawdown": 213.7488843685081,
+                "max_consecutive_losses": 6,
+                "p05_cash": -24.962055038899255,
+                "small_n": true,
+                "net_r": -8.45894563307376,
+                "expectancy_r": -0.30210520118120576,
+                "mean_win_usd": 26.670911675932608,
+                "mean_loss_usd": -17.44100250829424
+              },
+              "stress": {
+                "n": 28,
+                "wins": 8,
+                "losses": 20,
+                "breakeven": 0,
+                "net_cash": -192.1527567584239,
+                "mean_cash": -6.862598455657996,
+                "profit_factor": 0.506440121240738,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.2857142857142857,
+                "win_rate_wilson95": [
+                  0.1525399605666909,
+                  0.47059288433295715
+                ],
+                "campaign_close_drawdown": 250.350011665565,
+                "max_consecutive_losses": 6,
+                "p05_cash": -26.987055038899253,
+                "small_n": true,
+                "net_r": -11.63182940114767,
+                "expectancy_r": -0.41542247861241677,
+                "mean_win_usd": 24.64591167593261,
+                "mean_loss_usd": -19.46600250829424
+              }
+            }
+          }
+        },
+        "off_event_fills": 124,
+        "off_event_closed_losses": 97,
+        "directional_hours": {
+          "all": {
+            "eligible": 33,
+            "missed_with_no_fill": 28,
+            "detected": 6,
+            "actionable": 6,
+            "filled": 5,
+            "median_watch_delay_minutes": 12.5,
+            "median_confirmed_delay_minutes": 27.5,
+            "median_executable_delay_minutes": 27.5,
+            "median_fill_delay_minutes": 30.0
+          },
+          "BUY": {
+            "eligible": 21,
+            "missed_with_no_fill": 17,
+            "detected": 5,
+            "actionable": 5,
+            "filled": 4,
+            "median_watch_delay_minutes": 5.0,
+            "median_confirmed_delay_minutes": 25.0,
+            "median_executable_delay_minutes": 25.0,
+            "median_fill_delay_minutes": 27.5
+          },
+          "SELL": {
+            "eligible": 12,
+            "missed_with_no_fill": 11,
+            "detected": 1,
+            "actionable": 1,
+            "filled": 1,
+            "median_watch_delay_minutes": 50.0,
+            "median_confirmed_delay_minutes": 55.0,
+            "median_executable_delay_minutes": 55.0,
+            "median_fill_delay_minutes": 55.0
+          }
+        },
+        "offer_rejections": {
+          "POSITION_OCCUPIED": 68
+        },
+        "settings": {
+          "count": 3,
+          "window": 5,
+          "bear_upper": 0.45,
+          "bear_lower": 0.25,
+          "bull_lower": 0.45,
+          "bull_upper": 0.25,
+          "wait_bars": 100,
+          "close_breakout": false,
+          "minimum_range": false,
+          "minimum_range_atr": 0.3,
+          "filter_atr_length": 14,
+          "breakout_size_filter": false,
+          "breakout_size_multiple": 1.5,
+          "breakout_size_length": 20,
+          "absorption": true,
+          "volume_length": 20,
+          "absorption_volume_multiple": 1.1,
+          "absorption_max_atr": 0.6,
+          "absorption_close": 0.6,
+          "concurrent": 2,
+          "mixed": true,
+          "allow_buy": true,
+          "allow_sell": true,
+          "show_targets": true,
+          "use_atr_sl": true,
+          "stop_atr_length": 14,
+          "stop_atr_multiple": 1.5,
+          "stop_percent": 1.0,
+          "target_r": [
+            1.0,
+            2.0,
+            3.0
+          ]
+        },
+        "scope": "Publication-default reconstruction or declared setting sensitivity.",
+        "false_breakouts": {
+          "BUY": {
+            "complete_three_bar_signals": 88,
+            "all_supporting_edges_reclaimed": 64,
+            "first_examples": [
+              {
+                "known_utc": "2026-10-13T10:10:00Z",
+                "reclaim_utc": "2026-10-13T10:15:00Z",
+                "entry_reference": 4186.015,
+                "reclaim_close": 4183.37,
+                "box_top": 4188.095,
+                "box_bottom": 4182.65,
+                "model_outcome": "CLOSED",
+                "net_usd": -15.423936246212723
+              },
+              {
+                "known_utc": "2026-10-13T12:10:00Z",
+                "reclaim_utc": "2026-10-13T12:15:00Z",
+                "entry_reference": 4188.995,
+                "reclaim_close": 4186.57,
+                "box_top": 4189.185,
+                "box_bottom": 4183.42,
+                "model_outcome": "CLOSED",
+                "net_usd": -14.24489543926629
+              },
+              {
+                "known_utc": "2026-10-13T22:10:00Z",
+                "reclaim_utc": "2026-10-13T22:15:00Z",
+                "entry_reference": 4161.865,
+                "reclaim_close": 4160.03,
+                "box_top": 4162.07,
+                "box_bottom": 4157.925,
+                "model_outcome": "CLOSED",
+                "net_usd": -10.821925504559296
+              }
+            ]
+          },
+          "SELL": {
+            "complete_three_bar_signals": 107,
+            "all_supporting_edges_reclaimed": 65,
+            "first_examples": [
+              {
+                "known_utc": "2026-10-13T00:50:00Z",
+                "reclaim_utc": "2026-10-13T01:05:00Z",
+                "entry_reference": 4163.165,
+                "reclaim_close": 4161.035,
+                "box_top": 4168.535,
+                "box_bottom": 4160.87,
+                "model_outcome": "CLOSED",
+                "net_usd": -7.3228861564526575
+              },
+              {
+                "known_utc": "2026-10-13T10:45:00Z",
+                "reclaim_utc": "2026-10-13T10:55:00Z",
+                "entry_reference": 4180.245,
+                "reclaim_close": 4180.89,
+                "box_top": 4184.75,
+                "box_bottom": 4180.625,
+                "model_outcome": "CLOSED",
+                "net_usd": -14.338544652272137
+              },
+              {
+                "known_utc": "2026-10-13T16:00:00Z",
+                "reclaim_utc": "2026-10-13T16:10:00Z",
+                "entry_reference": 4159.295,
+                "reclaim_close": 4159.12,
+                "box_top": 4164.74,
+                "box_bottom": 4158.275,
+                "model_outcome": "CLOSED",
+                "net_usd": 9.595747191692137
+              }
+            ]
+          }
+        }
+      },
+      "WSB_MIXED_ONLY_POST_CASE": {
+        "method": "Closed-bar WSB reconstruction with fixed stop-first OHLC execution",
+        "metrics_by_window_and_side": {
+          "full": {
+            "all": {
+              "base": {
+                "n": 91,
+                "wins": 24,
+                "losses": 67,
+                "breakeven": 0,
+                "net_cash": -483.1505358470035,
+                "mean_cash": -5.30934654776927,
+                "profit_factor": 0.5699348654424059,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.26373626373626374,
+                "win_rate_wilson95": [
+                  0.1841059871821194,
+                  0.36250579489416473
+                ],
+                "campaign_close_drawdown": 526.4869252452932,
+                "max_consecutive_losses": 12,
+                "p05_cash": -28.436199252240474,
+                "small_n": false,
+                "net_r": -26.935709213427305,
+                "expectancy_r": -0.2959968045431572,
+                "mean_win_usd": 26.67854951006958,
+                "mean_loss_usd": -16.767697374457814
+              },
+              "stress": {
+                "n": 91,
+                "wins": 24,
+                "losses": 67,
+                "breakeven": 0,
+                "net_cash": -667.4255358470034,
+                "mean_cash": -7.334346547769268,
+                "profit_factor": 0.4699230789809398,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.26373626373626374,
+                "win_rate_wilson95": [
+                  0.1841059871821194,
+                  0.36250579489416473
+                ],
+                "campaign_close_drawdown": 691.9494913385088,
+                "max_consecutive_losses": 12,
+                "p05_cash": -30.461199252240473,
+                "small_n": false,
+                "net_r": -38.25874111686335,
+                "expectancy_r": -0.42042572655893784,
+                "mean_win_usd": 24.65354951006958,
+                "mean_loss_usd": -18.792697374457813
+              }
+            },
+            "BUY": {
+              "base": {
+                "n": 43,
+                "wins": 10,
+                "losses": 33,
+                "breakeven": 0,
+                "net_cash": -317.1101769314339,
+                "mean_cash": -7.374655277475206,
+                "profit_factor": 0.4647418885184018,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.23255813953488372,
+                "win_rate_wilson95": [
+                  0.1315367847938448,
+                  0.37744520297809003
+                ],
+                "campaign_close_drawdown": 328.5840489028047,
+                "max_consecutive_losses": 11,
+                "p05_cash": -28.810441990492425,
+                "small_n": false,
+                "net_r": -16.126040650084963,
+                "expectancy_r": -0.37502420116476654,
+                "mean_win_usd": 27.533330057826834,
+                "mean_loss_usd": -17.952832651809157
+              },
+              "stress": {
+                "n": 43,
+                "wins": 10,
+                "losses": 33,
+                "breakeven": 0,
+                "net_cash": -404.18517693143383,
+                "mean_cash": -9.399655277475206,
+                "profit_factor": 0.38691869743539253,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.23255813953488372,
+                "win_rate_wilson95": [
+                  0.1315367847938448,
+                  0.37744520297809003
+                ],
+                "campaign_close_drawdown": 413.63404890280435,
+                "max_consecutive_losses": 11,
+                "p05_cash": -30.835441990492424,
+                "small_n": false,
+                "net_r": -21.223357261879816,
+                "expectancy_r": -0.4935664479506934,
+                "mean_win_usd": 25.508330057826836,
+                "mean_loss_usd": -19.97783265180916
+              }
+            },
+            "SELL": {
+              "base": {
+                "n": 48,
+                "wins": 14,
+                "losses": 34,
+                "breakeven": 0,
+                "net_cash": -166.0403589155696,
+                "mean_cash": -3.459174144074367,
+                "profit_factor": 0.6873017261827844,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.2916666666666667,
+                "win_rate_wilson95": [
+                  0.18241578926516536,
+                  0.431792598095717
+                ],
+                "campaign_close_drawdown": 218.67777133403524,
+                "max_consecutive_losses": 9,
+                "p05_cash": -24.962055038899255,
+                "small_n": false,
+                "net_r": -10.809668563342345,
+                "expectancy_r": -0.2252014284029655,
+                "mean_win_usd": 26.06799197595726,
+                "mean_loss_usd": -15.617419017028565
+              },
+              "stress": {
+                "n": 48,
+                "wins": 14,
+                "losses": 34,
+                "breakeven": 0,
+                "net_cash": -263.2403589155696,
+                "mean_cash": -5.484174144074366,
+                "profit_factor": 0.5611506851728338,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.2916666666666667,
+                "win_rate_wilson95": [
+                  0.18241578926516536,
+                  0.431792598095717
+                ],
+                "campaign_close_drawdown": 292.50045963858014,
+                "max_consecutive_losses": 9,
+                "p05_cash": -26.987055038899253,
+                "small_n": false,
+                "net_r": -17.03538385498353,
+                "expectancy_r": -0.3549038303121569,
+                "mean_win_usd": 24.04299197595726,
+                "mean_loss_usd": -17.642419017028566
+              }
+            }
+          },
+          "development": {
+            "all": {
+              "base": {
+                "n": 56,
+                "wins": 13,
+                "losses": 43,
+                "breakeven": 0,
+                "net_cash": -386.93910220369435,
+                "mean_cash": -6.9096268250659705,
+                "profit_factor": 0.4760309390069176,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.23214285714285715,
+                "win_rate_wilson95": [
+                  0.1409937910920862,
+                  0.35768153215010856
+                ],
+                "campaign_close_drawdown": 386.93910220369474,
+                "max_consecutive_losses": 9,
+                "p05_cash": -29.617357923848406,
+                "small_n": false,
+                "net_r": -20.68435998864967,
+                "expectancy_r": -0.369363571225887,
+                "mean_win_usd": 27.041377039648435,
+                "mean_loss_usd": -17.17388380742149
+              },
+              "stress": {
+                "n": 56,
+                "wins": 13,
+                "losses": 43,
+                "breakeven": 0,
+                "net_cash": -500.3391022036943,
+                "mean_cash": -8.934626825065969,
+                "profit_factor": 0.3939338770305695,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.23214285714285715,
+                "win_rate_wilson95": [
+                  0.1409937910920862,
+                  0.35768153215010856
+                ],
+                "campaign_close_drawdown": 500.33910220369444,
+                "max_consecutive_losses": 9,
+                "p05_cash": -31.642357923848405,
+                "small_n": false,
+                "net_r": -28.161386425877215,
+                "expectancy_r": -0.5028819004620931,
+                "mean_win_usd": 25.016377039648432,
+                "mean_loss_usd": -19.19888380742149
+              }
+            },
+            "BUY": {
+              "base": {
+                "n": 26,
+                "wins": 4,
+                "losses": 22,
+                "breakeven": 0,
+                "net_cash": -304.40338213083584,
+                "mean_cash": -11.707822389647532,
+                "profit_factor": 0.2875835035228992,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.15384615384615385,
+                "win_rate_wilson95": [
+                  0.06150033723578355,
+                  0.3353119932821348
+                ],
+                "campaign_close_drawdown": 304.4033821308359,
+                "max_consecutive_losses": 11,
+                "p05_cash": -31.091074145876266,
+                "small_n": true,
+                "net_r": -16.226782167416893,
+                "expectancy_r": -0.6241070064391113,
+                "mean_win_usd": 30.71987789105733,
+                "mean_loss_usd": -19.42194971341205
+              },
+              "stress": {
+                "n": 26,
+                "wins": 4,
+                "losses": 22,
+                "breakeven": 0,
+                "net_cash": -357.0533821308358,
+                "mean_cash": -13.73282238964753,
+                "profit_factor": 0.24326305583605348,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.15384615384615385,
+                "win_rate_wilson95": [
+                  0.06150033723578355,
+                  0.3353119932821348
+                ],
+                "campaign_close_drawdown": 357.05338213083587,
+                "max_consecutive_losses": 11,
+                "p05_cash": -33.11607414587627,
+                "small_n": true,
+                "net_r": -19.551034484146893,
+                "expectancy_r": -0.7519628647748805,
+                "mean_win_usd": 28.69487789105733,
+                "mean_loss_usd": -21.446949713412053
+              }
+            },
+            "SELL": {
+              "base": {
+                "n": 30,
+                "wins": 9,
+                "losses": 21,
+                "breakeven": 0,
+                "net_cash": -82.53572007285852,
+                "mean_cash": -2.7511906690952843,
+                "profit_factor": 0.7347773707334062,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.3,
+                "win_rate_wilson95": [
+                  0.16664748268243793,
+                  0.47875787458714947
+                ],
+                "campaign_close_drawdown": 133.93705518287823,
+                "max_consecutive_losses": 7,
+                "p05_cash": -25.517288354719717,
+                "small_n": false,
+                "net_r": -4.457577821232777,
+                "expectancy_r": -0.14858592737442589,
+                "mean_win_usd": 25.40648777235559,
+                "mean_loss_usd": -14.818767144002802
+              },
+              "stress": {
+                "n": 30,
+                "wins": 9,
+                "losses": 21,
+                "breakeven": 0,
+                "net_cash": -143.2857200728585,
+                "mean_cash": -4.776190669095284,
+                "profit_factor": 0.5949166555826948,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.3,
+                "win_rate_wilson95": [
+                  0.16664748268243793,
+                  0.47875787458714947
+                ],
+                "campaign_close_drawdown": 161.76912573562,
+                "max_consecutive_losses": 7,
+                "p05_cash": -27.542288354719716,
+                "small_n": false,
+                "net_r": -8.61035194173032,
+                "expectancy_r": -0.28701173139101066,
+                "mean_win_usd": 23.38148777235559,
+                "mean_loss_usd": -16.8437671440028
+              }
+            }
+          },
+          "later_archive": {
+            "all": {
+              "base": {
+                "n": 35,
+                "wins": 11,
+                "losses": 24,
+                "breakeven": 0,
+                "net_cash": -96.21143364330915,
+                "mean_cash": -2.7488981040945473,
+                "profit_factor": 0.750073375267486,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.3142857142857143,
+                "win_rate_wilson95": [
+                  0.18550844674265818,
+                  0.4797976361206918
+                ],
+                "campaign_close_drawdown": 189.74966615898254,
+                "max_consecutive_losses": 12,
+                "p05_cash": -25.059450876397975,
+                "small_n": false,
+                "net_r": -6.251349224777637,
+                "expectancy_r": -0.1786099778507896,
+                "mean_win_usd": 26.24975333874912,
+                "mean_loss_usd": -16.03994668206456
+              },
+              "stress": {
+                "n": 35,
+                "wins": 11,
+                "losses": 24,
+                "breakeven": 0,
+                "net_cash": -167.08643364330914,
+                "mean_cash": -4.773898104094546,
+                "profit_factor": 0.6146163696098862,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.3142857142857143,
+                "win_rate_wilson95": [
+                  0.18550844674265818,
+                  0.4797976361206918
+                ],
+                "campaign_close_drawdown": 237.7622322521988,
+                "max_consecutive_losses": 12,
+                "p05_cash": -27.084450876397973,
+                "small_n": false,
+                "net_r": -10.097354690986132,
+                "expectancy_r": -0.2884958483138895,
+                "mean_win_usd": 24.22475333874912,
+                "mean_loss_usd": -18.064946682064562
+              }
+            },
+            "BUY": {
+              "base": {
+                "n": 17,
+                "wins": 6,
+                "losses": 11,
+                "breakeven": 0,
+                "net_cash": -12.70679480059805,
+                "mean_cash": -0.7474585176822383,
+                "profit_factor": 0.9230639992477919,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.35294117647058826,
+                "win_rate_wilson95": [
+                  0.17309720397243744,
+                  0.5869963651478132
+                ],
+                "campaign_close_drawdown": 102.13499283189965,
+                "max_consecutive_losses": 6,
+                "p05_cash": -25.050922480901043,
+                "small_n": true,
+                "net_r": 0.1007415173319316,
+                "expectancy_r": 0.005925971607760682,
+                "mean_win_usd": 25.408964835673167,
+                "mean_loss_usd": -15.014598528603369
+              },
+              "stress": {
+                "n": 17,
+                "wins": 6,
+                "losses": 11,
+                "breakeven": 0,
+                "net_cash": -47.13179480059804,
+                "mean_cash": -2.7724585176822374,
+                "profit_factor": 0.7485440392833377,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.35294117647058826,
+                "win_rate_wilson95": [
+                  0.17309720397243744,
+                  0.5869963651478132
+                ],
+                "campaign_close_drawdown": 114.28499283189966,
+                "max_consecutive_losses": 6,
+                "p05_cash": -27.075922480901042,
+                "small_n": true,
+                "net_r": -1.672322777732922,
+                "expectancy_r": -0.0983719281019366,
+                "mean_win_usd": 23.38396483567317,
+                "mean_loss_usd": -17.039598528603367
+              }
+            },
+            "SELL": {
+              "base": {
+                "n": 18,
+                "wins": 5,
+                "losses": 13,
+                "breakeven": 0,
+                "net_cash": -83.5046388427111,
+                "mean_cash": -4.639146602372839,
+                "profit_factor": 0.6200848644508455,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.2777777777777778,
+                "win_rate_wilson95": [
+                  0.12499753379553993,
+                  0.5087265656029746
+                ],
+                "campaign_close_drawdown": 153.0160946829165,
+                "max_consecutive_losses": 9,
+                "p05_cash": -23.940174408774485,
+                "small_n": true,
+                "net_r": -6.352090742109568,
+                "expectancy_r": -0.3528939301171982,
+                "mean_win_usd": 27.25869954244026,
+                "mean_loss_usd": -16.907548965762494
+              },
+              "stress": {
+                "n": 18,
+                "wins": 5,
+                "losses": 13,
+                "breakeven": 0,
+                "net_cash": -119.95463884271108,
+                "mean_cash": -6.6641466023728375,
+                "profit_factor": 0.5126234757050234,
+                "profit_factor_status": "DEFINED",
+                "win_rate": 0.2777777777777778,
+                "win_rate_wilson95": [
+                  0.12499753379553993,
+                  0.5087265656029746
+                ],
+                "campaign_close_drawdown": 175.2910946829165,
+                "max_consecutive_losses": 9,
+                "p05_cash": -25.965174408774484,
+                "small_n": true,
+                "net_r": -8.42503191325321,
+                "expectancy_r": -0.46805732851406723,
+                "mean_win_usd": 25.233699542440263,
+                "mean_loss_usd": -18.932548965762493
+              }
+            }
+          }
+        },
+        "off_event_fills": 88,
+        "off_event_closed_losses": 65,
+        "directional_hours": {
+          "all": {
+            "eligible": 33,
+            "missed_with_no_fill": 29,
+            "detected": 5,
+            "actionable": 5,
+            "filled": 4,
+            "median_watch_delay_minutes": null,
+            "median_confirmed_delay_minutes": 35.0,
+            "median_executable_delay_minutes": 35.0,
+            "median_fill_delay_minutes": 37.5
+          },
+          "BUY": {
+            "eligible": 21,
+            "missed_with_no_fill": 17,
+            "detected": 4,
+            "actionable": 4,
+            "filled": 4,
+            "median_watch_delay_minutes": null,
+            "median_confirmed_delay_minutes": 37.5,
+            "median_executable_delay_minutes": 37.5,
+            "median_fill_delay_minutes": 37.5
+          },
+          "SELL": {
+            "eligible": 12,
+            "missed_with_no_fill": 12,
+            "detected": 1,
+            "actionable": 1,
+            "filled": 0,
+            "median_watch_delay_minutes": null,
+            "median_confirmed_delay_minutes": 5.0,
+            "median_executable_delay_minutes": 5.0,
+            "median_fill_delay_minutes": null
+          }
+        },
+        "offer_rejections": {
+          "POSITION_OCCUPIED": 30
+        },
+        "settings": {
+          "count": 3,
+          "window": 5,
+          "bear_upper": 0.45,
+          "bear_lower": 0.25,
+          "bull_lower": 0.45,
+          "bull_upper": 0.25,
+          "wait_bars": 100,
+          "close_breakout": true,
+          "minimum_range": false,
+          "minimum_range_atr": 0.3,
+          "filter_atr_length": 14,
+          "breakout_size_filter": false,
+          "breakout_size_multiple": 1.5,
+          "breakout_size_length": 20,
+          "absorption": true,
+          "volume_length": 20,
+          "absorption_volume_multiple": 1.1,
+          "absorption_max_atr": 0.6,
+          "absorption_close": 0.6,
+          "concurrent": 2,
+          "mixed": true,
+          "allow_buy": true,
+          "allow_sell": true,
+          "show_targets": true,
+          "use_atr_sl": true,
+          "stop_atr_length": 14,
+          "stop_atr_multiple": 1.5,
+          "stop_percent": 1.0,
+          "target_r": [
+            1.0,
+            2.0,
+            3.0
+          ]
+        },
+        "scope": "Post-case observation hypothesis. A mixed WATCH stays neutral until the close and volume confirm direction. Only mixed-supported signals are eligible in this standalone shadow replay.",
+        "false_breakouts": {
+          "BUY": {
+            "complete_three_bar_signals": 53,
+            "all_supporting_edges_reclaimed": 26,
+            "first_examples": [
+              {
+                "known_utc": "2026-10-13T22:55:00Z",
+                "reclaim_utc": "2026-10-13T23:00:00Z",
+                "entry_reference": 4162.365,
+                "reclaim_close": 4161.27,
+                "box_top": 4162.07,
+                "box_bottom": 4157.925,
+                "model_outcome": "CLOSED",
+                "net_usd": -9.774055929561293
+              },
+              {
+                "known_utc": "2026-10-14T02:55:00Z",
+                "reclaim_utc": "2026-10-14T03:05:00Z",
+                "entry_reference": 4164.5,
+                "reclaim_close": 4163.85,
+                "box_top": 4164.08,
+                "box_bottom": 4146.655,
+                "model_outcome": "CLOSED",
+                "net_usd": -23.346725677311586
+              },
+              {
+                "known_utc": "2026-10-14T15:25:00Z",
+                "reclaim_utc": "2026-10-14T15:30:00Z",
+                "entry_reference": 4094.19,
+                "reclaim_close": 4092.785,
+                "box_top": 4093.99,
+                "box_bottom": 4083.4,
+                "model_outcome": "CLOSED",
+                "net_usd": -36.48602853353995
+              }
+            ]
+          },
+          "SELL": {
+            "complete_three_bar_signals": 67,
+            "all_supporting_edges_reclaimed": 32,
+            "first_examples": [
+              {
+                "known_utc": "2026-10-13T00:55:00Z",
+                "reclaim_utc": "2026-10-13T01:05:00Z",
+                "entry_reference": 4157.96,
+                "reclaim_close": 4161.035,
+                "box_top": 4168.535,
+                "box_bottom": 4160.87,
+                "model_outcome": "CLOSED",
+                "net_usd": -18.017897150117822
+              },
+              {
+                "known_utc": "2026-10-13T10:45:00Z",
+                "reclaim_utc": "2026-10-13T10:55:00Z",
+                "entry_reference": 4180.245,
+                "reclaim_close": 4180.89,
+                "box_top": 4186.525,
+                "box_bottom": 4180.625,
+                "model_outcome": "CLOSED",
+                "net_usd": -14.338544652272137
+              },
+              {
+                "known_utc": "2026-10-13T16:05:00Z",
+                "reclaim_utc": "2026-10-13T16:10:00Z",
+                "entry_reference": 4156.455,
+                "reclaim_close": 4159.12,
+                "box_top": 4164.74,
+                "box_bottom": 4158.275,
+                "model_outcome": "CLOSED",
+                "net_usd": -7.6344183390025115
+              }
+            ]
+          }
+        },
+        "neutral_mixed_watches": 167
+      }
+    }
+  }
+}

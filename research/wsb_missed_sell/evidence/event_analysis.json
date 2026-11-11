@@ -1,0 +1,582 @@
+{
+  "schema": "qirvanta.wsb-missed-sell.event.v2",
+  "symbol_under_test": "OANDA:XAUUSD",
+  "reconciled_signal_timeframe_minutes": 15,
+  "status": "NATIVE_HISTORICAL_REPRODUCTION",
+  "native_wsb_signal_identity": "NATIVE_HISTORICAL_REPRODUCTION",
+  "native_wsb_matching_plans": [
+    {
+      "index": 1172,
+      "open_ms": 1794388500000,
+      "close_ms": 1794389400000,
+      "direction": "SELL",
+      "entry": "4049.57",
+      "sl": "4058.2307596311",
+      "tp1": "4040.9092403689",
+      "tp2": "4032.2484807379",
+      "tp3": "4023.5877211068",
+      "risk": "8.6607596311",
+      "bar_open_utc": "2026-11-11T09:15:00Z",
+      "bar_close_utc": "2026-11-11T09:30:00Z",
+      "timeframe_minutes": 15,
+      "log_file": "original_M15.csv",
+      "matches_visual_open_anchor": true
+    }
+  ],
+  "screenshot": {
+    "sha256": "eb7456c22e8bc9985c5c5af1fc09d06d4ab77ee30f5756c19fe80d2da5c32e28",
+    "source_verified_against_hash": true,
+    "filesystem_capture_utc": "2026-11-11T15:55:30+00:00",
+    "displayed_countdown_seconds": 272,
+    "displayed_live_price": "4001.910",
+    "entry": "4049.570",
+    "stop": "4058.231",
+    "targets": [
+      "4040.909",
+      "4032.248",
+      "4023.588"
+    ],
+    "displayed_risk_distance": "8.661",
+    "displayed_reference_to_live_move": "47.660",
+    "displayed_reference_to_live_r_multiple": "5.502828772659046299503521533",
+    "visual_intervals_from_arrow_to_current_candle": 26,
+    "candle_body_direction_offsets": {
+      "0": -1,
+      "1": 1,
+      "2": 1,
+      "5": -1,
+      "6": 1,
+      "7": 1,
+      "9": -1,
+      "10": -1,
+      "11": 1,
+      "12": -1,
+      "13": -1,
+      "14": 1,
+      "16": -1,
+      "17": -1,
+      "18": 1,
+      "19": -1,
+      "21": -1,
+      "22": -1,
+      "23": 1,
+      "24": -1,
+      "25": -1
+    },
+    "tested_timeframe_interpretations": [
+      {
+        "timeframe_minutes": 5,
+        "inferred_current_bar_open_utc": "2026-11-11T15:55:00Z",
+        "inferred_signal_bar_open_utc": "2026-11-11T13:45:00Z",
+        "inferred_signal_bar_close_utc": "2026-11-11T13:50:00Z"
+      },
+      {
+        "timeframe_minutes": 15,
+        "inferred_current_bar_open_utc": "2026-11-11T15:45:00Z",
+        "inferred_signal_bar_open_utc": "2026-11-11T09:15:00Z",
+        "inferred_signal_bar_close_utc": "2026-11-11T09:30:00Z"
+      }
+    ],
+    "limitations": "The image crop omits the time axis, symbol/provider, script version and inputs."
+  },
+  "sources": [
+    {
+      "file": "original_M5.csv",
+      "sha256": "ffd31c3e276943582f46f92cfe1a400e1d4b7995ad875e3cd6dd42290a118a2b",
+      "bars": 1198,
+      "timeframe_minutes": 5,
+      "first_open_utc": "2026-11-05T08:10:00Z",
+      "last_close_utc": "2026-11-11T16:00:00Z",
+      "exact_ohlc_overlap_with_previous_same_frame_sources": 0
+    },
+    {
+      "file": "original_M15.csv",
+      "sha256": "8f197158209b30d1cb6bfd93f25e7f05b6d0e4c803a6d9d640cc760ada99baa9",
+      "bars": 1199,
+      "timeframe_minutes": 15,
+      "first_open_utc": "2026-10-23T14:15:00Z",
+      "last_close_utc": "2026-11-11T16:00:00Z",
+      "exact_ohlc_overlap_with_previous_same_frame_sources": 0
+    }
+  ],
+  "m15_ohlc_cross_check": {
+    "aggregate_source": "Three complete consecutive OANDA M5 bars per M15 bar",
+    "aggregate_bars": 399,
+    "native_m15_overlap": 399,
+    "native_m15_ohlc_disagreements": []
+  },
+  "candidates": [
+    {
+      "open_utc": "2026-11-11T09:25:00Z",
+      "close_utc": "2026-11-11T09:30:00Z",
+      "timeframe_minutes": 5,
+      "open": "4049.64",
+      "high": "4050.87",
+      "low": "4049.04",
+      "close": "4049.57",
+      "price_equals_displayed_entry": true,
+      "opening_equals_screenshot_spacing_anchor": false,
+      "candle_body_match_count": 12,
+      "candle_body_conflict_offsets": [
+        1,
+        2,
+        12,
+        14,
+        16,
+        19,
+        21,
+        22,
+        23
+      ],
+      "candle_body_unavailable_offsets": [],
+      "classification": "PRICE_OR_VISUAL_ANCHOR_ONLY"
+    },
+    {
+      "open_utc": "2026-11-11T13:45:00Z",
+      "close_utc": "2026-11-11T13:50:00Z",
+      "timeframe_minutes": 5,
+      "open": "4033.02",
+      "high": "4038.085",
+      "low": "4032.82",
+      "close": "4034.54",
+      "price_equals_displayed_entry": false,
+      "opening_equals_screenshot_spacing_anchor": true,
+      "candle_body_match_count": 10,
+      "candle_body_conflict_offsets": [
+        0,
+        1,
+        5,
+        6,
+        11,
+        16,
+        17,
+        18,
+        21,
+        22,
+        23
+      ],
+      "candle_body_unavailable_offsets": [],
+      "classification": "PRICE_OR_VISUAL_ANCHOR_ONLY"
+    },
+    {
+      "open_utc": "2026-11-11T09:15:00Z",
+      "close_utc": "2026-11-11T09:30:00Z",
+      "timeframe_minutes": 15,
+      "open": "4053.89",
+      "high": "4053.94",
+      "low": "4048.465",
+      "close": "4049.57",
+      "price_equals_displayed_entry": true,
+      "opening_equals_screenshot_spacing_anchor": true,
+      "candle_body_match_count": 21,
+      "candle_body_conflict_offsets": [],
+      "candle_body_unavailable_offsets": [],
+      "classification": "MARKET_CANDLE_MATCH"
+    }
+  ],
+  "case_execution": {
+    "status": "CONDITIONAL_NEXT_OPEN_REPLAY",
+    "execution_timeframe_minutes": 5,
+    "level_basis": "Observed tick-rounded stop and target prices",
+    "confirmation_assumed_utc": "2026-11-11T09:30:00Z",
+    "next_open_utc": "2026-11-11T09:30:00Z",
+    "close_to_next_open_clock_seconds": 0,
+    "last_completed_close_utc": "2026-11-11T15:55:00Z",
+    "completed_bars_after_confirmation": 77,
+    "lowest_bar": {
+      "open_utc": "2026-11-11T15:50:00Z",
+      "close_utc": "2026-11-11T15:55:00Z",
+      "timeframe_minutes": 5,
+      "open": "4002.29",
+      "high": "4002.595",
+      "low": "4000.755",
+      "close": "4001.72"
+    },
+    "highest_bar": {
+      "open_utc": "2026-11-11T11:15:00Z",
+      "close_utc": "2026-11-11T11:20:00Z",
+      "timeframe_minutes": 5,
+      "open": "4053.715",
+      "high": "4056.17",
+      "low": "4053.03",
+      "close": "4055.07"
+    },
+    "raw_market_mfe_from_reference": "48.815",
+    "raw_market_mae_from_reference": "6.600",
+    "raw_market_mfe_from_next_open": "48.685",
+    "raw_market_mae_from_next_open": "6.73",
+    "raw_stop_touch": null,
+    "raw_target_touches": [
+      {
+        "threshold": "4040.909",
+        "bar_open_utc": "2026-11-11T12:50:00Z",
+        "bar_close_utc": "2026-11-11T12:55:00Z",
+        "known_at_open": false,
+        "observable_from_open_or_closed_ohlc_utc": "2026-11-11T12:55:00Z",
+        "exact_intrabar_timestamp": null
+      },
+      {
+        "threshold": "4032.248",
+        "bar_open_utc": "2026-11-11T13:40:00Z",
+        "bar_close_utc": "2026-11-11T13:45:00Z",
+        "known_at_open": false,
+        "observable_from_open_or_closed_ohlc_utc": "2026-11-11T13:45:00Z",
+        "exact_intrabar_timestamp": null
+      },
+      {
+        "threshold": "4023.588",
+        "bar_open_utc": "2026-11-11T14:30:00Z",
+        "bar_close_utc": "2026-11-11T14:35:00Z",
+        "known_at_open": false,
+        "observable_from_open_or_closed_ohlc_utc": "2026-11-11T14:35:00Z",
+        "exact_intrabar_timestamp": null
+      }
+    ],
+    "raw_stop_and_target_same_bar": [],
+    "three_equal_legs": [
+      {
+        "name": "baseline",
+        "runner": false,
+        "spread": "0.350",
+        "slippage_per_market_or_stop_execution": "0.002",
+        "commission_per_side_per_unit": "0.175",
+        "next_open_utc": "2026-11-11T09:30:00Z",
+        "next_open_mid_proxy": "4049.44",
+        "modeled_market_fill": "4049.263",
+        "risk_per_unit_at_fill": "8.968",
+        "status": "ALL_LEGS_CLOSED",
+        "fills": [
+          {
+            "leg": 1,
+            "reason": "TP1",
+            "price": "4040.909",
+            "quantity": "1",
+            "bar_open_utc": "2026-11-11T12:55:00Z",
+            "bar_close_utc": "2026-11-11T13:00:00Z",
+            "known_at_open": false,
+            "net_usd_per_unit": "8.004",
+            "net_usd": "8.004"
+          },
+          {
+            "leg": 2,
+            "reason": "TP2",
+            "price": "4032.248",
+            "quantity": "1",
+            "bar_open_utc": "2026-11-11T14:00:00Z",
+            "bar_close_utc": "2026-11-11T14:05:00Z",
+            "known_at_open": false,
+            "net_usd_per_unit": "16.665",
+            "net_usd": "16.665"
+          },
+          {
+            "leg": 3,
+            "reason": "TP3",
+            "price": "4023.588",
+            "quantity": "1",
+            "bar_open_utc": "2026-11-11T14:30:00Z",
+            "bar_close_utc": "2026-11-11T14:35:00Z",
+            "known_at_open": false,
+            "net_usd_per_unit": "25.325",
+            "net_usd": "25.325"
+          }
+        ],
+        "allocated_units": "3",
+        "realized_net_usd": "49.994",
+        "realized_net_r": "1.858236693428486470413321439",
+        "commissions_on_closed_legs": "1.050",
+        "entry_commission_on_open_legs": "0.000",
+        "ambiguity_stop_first_bar_opens": [],
+        "unclosed_legs": []
+      },
+      {
+        "name": "zero_spread_sensitivity",
+        "runner": false,
+        "spread": "0",
+        "slippage_per_market_or_stop_execution": "0.002",
+        "commission_per_side_per_unit": "0.175",
+        "next_open_utc": "2026-11-11T09:30:00Z",
+        "next_open_mid_proxy": "4049.44",
+        "modeled_market_fill": "4049.438",
+        "risk_per_unit_at_fill": "8.793",
+        "status": "ALL_LEGS_CLOSED",
+        "fills": [
+          {
+            "leg": 1,
+            "reason": "TP1",
+            "price": "4040.909",
+            "quantity": "1",
+            "bar_open_utc": "2026-11-11T12:50:00Z",
+            "bar_close_utc": "2026-11-11T12:55:00Z",
+            "known_at_open": false,
+            "net_usd_per_unit": "8.179",
+            "net_usd": "8.179"
+          },
+          {
+            "leg": 2,
+            "reason": "TP2",
+            "price": "4032.248",
+            "quantity": "1",
+            "bar_open_utc": "2026-11-11T13:40:00Z",
+            "bar_close_utc": "2026-11-11T13:45:00Z",
+            "known_at_open": false,
+            "net_usd_per_unit": "16.840",
+            "net_usd": "16.840"
+          },
+          {
+            "leg": 3,
+            "reason": "TP3",
+            "price": "4023.588",
+            "quantity": "1",
+            "bar_open_utc": "2026-11-11T14:30:00Z",
+            "bar_close_utc": "2026-11-11T14:35:00Z",
+            "known_at_open": false,
+            "net_usd_per_unit": "25.500",
+            "net_usd": "25.500"
+          }
+        ],
+        "allocated_units": "3",
+        "realized_net_usd": "50.519",
+        "realized_net_r": "1.915121877250843473975510823",
+        "commissions_on_closed_legs": "1.050",
+        "entry_commission_on_open_legs": "0.000",
+        "ambiguity_stop_first_bar_opens": [],
+        "unclosed_legs": []
+      },
+      {
+        "name": "wider_spread_and_slippage",
+        "runner": false,
+        "spread": "0.700",
+        "slippage_per_market_or_stop_execution": "0.005",
+        "commission_per_side_per_unit": "0.175",
+        "next_open_utc": "2026-11-11T09:30:00Z",
+        "next_open_mid_proxy": "4049.44",
+        "modeled_market_fill": "4049.085",
+        "risk_per_unit_at_fill": "9.146",
+        "status": "ALL_LEGS_CLOSED",
+        "fills": [
+          {
+            "leg": 1,
+            "reason": "TP1",
+            "price": "4040.909",
+            "quantity": "1",
+            "bar_open_utc": "2026-11-11T12:55:00Z",
+            "bar_close_utc": "2026-11-11T13:00:00Z",
+            "known_at_open": false,
+            "net_usd_per_unit": "7.826",
+            "net_usd": "7.826"
+          },
+          {
+            "leg": 2,
+            "reason": "TP2",
+            "price": "4032.248",
+            "quantity": "1",
+            "bar_open_utc": "2026-11-11T14:00:00Z",
+            "bar_close_utc": "2026-11-11T14:05:00Z",
+            "known_at_open": false,
+            "net_usd_per_unit": "16.487",
+            "net_usd": "16.487"
+          },
+          {
+            "leg": 3,
+            "reason": "TP3",
+            "price": "4023.588",
+            "quantity": "1",
+            "bar_open_utc": "2026-11-11T14:30:00Z",
+            "bar_close_utc": "2026-11-11T14:35:00Z",
+            "known_at_open": false,
+            "net_usd_per_unit": "25.147",
+            "net_usd": "25.147"
+          }
+        ],
+        "allocated_units": "3",
+        "realized_net_usd": "49.460",
+        "realized_net_r": "1.802609519644288942342736351",
+        "commissions_on_closed_legs": "1.050",
+        "entry_commission_on_open_legs": "0.000",
+        "ambiguity_stop_first_bar_opens": [],
+        "unclosed_legs": []
+      }
+    ],
+    "separate_runner_four_equal_legs": [
+      {
+        "name": "baseline",
+        "runner": true,
+        "spread": "0.350",
+        "slippage_per_market_or_stop_execution": "0.002",
+        "commission_per_side_per_unit": "0.175",
+        "next_open_utc": "2026-11-11T09:30:00Z",
+        "next_open_mid_proxy": "4049.44",
+        "modeled_market_fill": "4049.263",
+        "risk_per_unit_at_fill": "8.968",
+        "status": "OPEN_AT_CUTOFF",
+        "fills": [
+          {
+            "leg": 1,
+            "reason": "TP1",
+            "price": "4040.909",
+            "quantity": "0.75",
+            "bar_open_utc": "2026-11-11T12:55:00Z",
+            "bar_close_utc": "2026-11-11T13:00:00Z",
+            "known_at_open": false,
+            "net_usd_per_unit": "8.004",
+            "net_usd": "6.00300"
+          },
+          {
+            "leg": 2,
+            "reason": "TP2",
+            "price": "4032.248",
+            "quantity": "0.75",
+            "bar_open_utc": "2026-11-11T14:00:00Z",
+            "bar_close_utc": "2026-11-11T14:05:00Z",
+            "known_at_open": false,
+            "net_usd_per_unit": "16.665",
+            "net_usd": "12.49875"
+          },
+          {
+            "leg": 3,
+            "reason": "TP3",
+            "price": "4023.588",
+            "quantity": "0.75",
+            "bar_open_utc": "2026-11-11T14:30:00Z",
+            "bar_close_utc": "2026-11-11T14:35:00Z",
+            "known_at_open": false,
+            "net_usd_per_unit": "25.325",
+            "net_usd": "18.99375"
+          }
+        ],
+        "allocated_units": "3",
+        "realized_net_usd": "37.49550",
+        "realized_net_r": "1.393677520071364852809991079",
+        "commissions_on_closed_legs": "0.78750",
+        "entry_commission_on_open_legs": "0.13125",
+        "ambiguity_stop_first_bar_opens": [],
+        "unclosed_legs": [
+          4
+        ],
+        "mark_only_exit_price": "4001.897",
+        "marked_total_net_usd": "72.75750",
+        "marked_total_net_r": "2.704337644959857270294380018"
+      },
+      {
+        "name": "zero_spread_sensitivity",
+        "runner": true,
+        "spread": "0",
+        "slippage_per_market_or_stop_execution": "0.002",
+        "commission_per_side_per_unit": "0.175",
+        "next_open_utc": "2026-11-11T09:30:00Z",
+        "next_open_mid_proxy": "4049.44",
+        "modeled_market_fill": "4049.438",
+        "risk_per_unit_at_fill": "8.793",
+        "status": "OPEN_AT_CUTOFF",
+        "fills": [
+          {
+            "leg": 1,
+            "reason": "TP1",
+            "price": "4040.909",
+            "quantity": "0.75",
+            "bar_open_utc": "2026-11-11T12:50:00Z",
+            "bar_close_utc": "2026-11-11T12:55:00Z",
+            "known_at_open": false,
+            "net_usd_per_unit": "8.179",
+            "net_usd": "6.13425"
+          },
+          {
+            "leg": 2,
+            "reason": "TP2",
+            "price": "4032.248",
+            "quantity": "0.75",
+            "bar_open_utc": "2026-11-11T13:40:00Z",
+            "bar_close_utc": "2026-11-11T13:45:00Z",
+            "known_at_open": false,
+            "net_usd_per_unit": "16.840",
+            "net_usd": "12.63000"
+          },
+          {
+            "leg": 3,
+            "reason": "TP3",
+            "price": "4023.588",
+            "quantity": "0.75",
+            "bar_open_utc": "2026-11-11T14:30:00Z",
+            "bar_close_utc": "2026-11-11T14:35:00Z",
+            "known_at_open": false,
+            "net_usd_per_unit": "25.500",
+            "net_usd": "19.12500"
+          }
+        ],
+        "allocated_units": "3",
+        "realized_net_usd": "37.88925",
+        "realized_net_r": "1.436341407938132605481633117",
+        "commissions_on_closed_legs": "0.78750",
+        "entry_commission_on_open_legs": "0.13125",
+        "ambiguity_stop_first_bar_opens": [],
+        "unclosed_legs": [
+          4
+        ],
+        "mark_only_exit_price": "4001.722",
+        "marked_total_net_usd": "73.41375",
+        "marked_total_net_r": "2.783037643580120550437848288"
+      },
+      {
+        "name": "wider_spread_and_slippage",
+        "runner": true,
+        "spread": "0.700",
+        "slippage_per_market_or_stop_execution": "0.005",
+        "commission_per_side_per_unit": "0.175",
+        "next_open_utc": "2026-11-11T09:30:00Z",
+        "next_open_mid_proxy": "4049.44",
+        "modeled_market_fill": "4049.085",
+        "risk_per_unit_at_fill": "9.146",
+        "status": "OPEN_AT_CUTOFF",
+        "fills": [
+          {
+            "leg": 1,
+            "reason": "TP1",
+            "price": "4040.909",
+            "quantity": "0.75",
+            "bar_open_utc": "2026-11-11T12:55:00Z",
+            "bar_close_utc": "2026-11-11T13:00:00Z",
+            "known_at_open": false,
+            "net_usd_per_unit": "7.826",
+            "net_usd": "5.86950"
+          },
+          {
+            "leg": 2,
+            "reason": "TP2",
+            "price": "4032.248",
+            "quantity": "0.75",
+            "bar_open_utc": "2026-11-11T14:00:00Z",
+            "bar_close_utc": "2026-11-11T14:05:00Z",
+            "known_at_open": false,
+            "net_usd_per_unit": "16.487",
+            "net_usd": "12.36525"
+          },
+          {
+            "leg": 3,
+            "reason": "TP3",
+            "price": "4023.588",
+            "quantity": "0.75",
+            "bar_open_utc": "2026-11-11T14:30:00Z",
+            "bar_close_utc": "2026-11-11T14:35:00Z",
+            "known_at_open": false,
+            "net_usd_per_unit": "25.147",
+            "net_usd": "18.86025"
+          }
+        ],
+        "allocated_units": "3",
+        "realized_net_usd": "37.09500",
+        "realized_net_r": "1.351957139733216706757052263",
+        "commissions_on_closed_legs": "0.78750",
+        "entry_commission_on_open_legs": "0.13125",
+        "ambiguity_stop_first_bar_opens": [],
+        "unclosed_legs": [
+          4
+        ],
+        "mark_only_exit_price": "4002.075",
+        "marked_total_net_usd": "72.09000",
+        "marked_total_net_r": "2.627378088781981193964574677"
+      }
+    ],
+    "observability": "OHLC spans cannot verify the tick timestamp or a broker fill.",
+    "runner_rule": "After TP3, when ask close is below TP2, tighten the remaining leg to TP2 next bar. Open residual at cutoff is marked only."
+  }
+}
