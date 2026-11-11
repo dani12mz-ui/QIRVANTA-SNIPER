@@ -1,0 +1,15 @@
+# Direct Trend Breakout research protocol
+
+The research compares a fixed set of three symmetric trigger hypotheses. The November 11 selloff is a forensic case. It is excluded from the historical comparison, and no threshold is selected on the forensic result.
+
+| Hypothesis | Geometry fixed before evaluation |
+| --- | --- |
+| Structural break | Strict 2-left/2-right pivots. On a close, use pivots already known before that bar. A sell breaks the last defended low while the last two known highs are falling. Reverse every condition for a buy. |
+| Consolidation continuation | Prior four contiguous bars span at most 1.50 × prior ATR14. Prior price and the change of the prior EMA20 over three bars agree with the direction. A close crosses the box boundary. |
+| Fresh retest | After the first qualifying origin break, a later bar within six bars reaches within 0.20 × prior ATR of the frozen level on its adverse side. Its close is at least 0.10 ATR beyond the level and its directional body is at least 0.15 ATR. A close more than 0.10 ATR back through the level invalidates it. |
+
+The two origin triggers require a close crossing 0.05 × prior ATR beyond the level, a directional body at least 0.50 × prior ATR and a close in the favorable 35% of the bar. WATCH can occur while price approaches from within 0.30 × prior ATR on the defended side. A confirmed break can create its first WATCH at the same close. Expiry follows six bars or six elapsed chart intervals. Data gaps expire observations. Retests use a frozen level and a later bar. When both origin models confirm at one close, the structural model supplies the retest anchor. The combined lane prioritizes a qualifying retest, then structure, then consolidation for same-close same-side candidates.
+
+Plan geometry uses the adverse extreme of the confirmed bar and up to two prior contiguous bars for structure, four for consolidation and one for retest, plus 0.10 × prior ATR. Stop and 1R, 2R and 3R targets round outward to the price tick. A diagnostic candidate needs 0.25–2.50 × prior ATR risk, at most 1.00 ATR extension, estimated friction at most 0.30R, at least 0.70R net room against the nearest of eight already known directional pivots and at most USD 250 modeled cash risk for three units. A confirmation can be rejected on multiple gates. Only confirmed-close inputs feed these decisions.
+
+Common execution models the next contiguous bar open, three equal parts, one occupied position per lane, 0.350 USD spread, two 0.001 ticks of adverse slippage and USD 0.175 commission per unit per execution. Stress uses 0.700 spread, five adverse ticks and USD 0.2625 commission. Same-bar stop and target conflicts resolve to the stop first. Native S5 RAW and RC2 results are reported separately from common simulations. Opportunity labels use price outcomes offline. No future label is available to the trigger. All negative, sideways and reversing observations remain in the sample. The sealed November 16, 2026–January 11, 2027 protocol remains outside this research.

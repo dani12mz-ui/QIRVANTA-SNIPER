@@ -1,0 +1,54 @@
+{
+  "status": "MATCH",
+  "file": "shadow-M5.csv",
+  "sha256": "04253909d582d4aa785269721c15207845898aba0dbbe1c994d1b5aec1564720",
+  "timeframe": 5,
+  "bars": 1199,
+  "first_index": 0,
+  "first_open_utc": "2026-11-05T10:05:00Z",
+  "last_close_utc": "2026-11-11T18:00:00Z",
+  "historical_end_index": 1198,
+  "repeated_identical_confirmed_batches": [],
+  "native_events": 531,
+  "python_events": 531,
+  "diagnostic_candidates": 15,
+  "native_states": {
+    "WATCH": 137,
+    "BREAKOUT CONFIRMED": 91,
+    "REJECTED": 120,
+    "RETEST WATCH": 61,
+    "INVALIDATED": 86,
+    "EXPIRED": 21,
+    "ENTRY CANDIDATE": 15
+  },
+  "buy_states": {
+    "WATCH": 47,
+    "BREAKOUT CONFIRMED": 41,
+    "REJECTED": 48,
+    "RETEST WATCH": 27,
+    "INVALIDATED": 27,
+    "ENTRY CANDIDATE": 6,
+    "EXPIRED": 6
+  },
+  "sell_states": {
+    "WATCH": 90,
+    "BREAKOUT CONFIRMED": 50,
+    "REJECTED": 72,
+    "RETEST WATCH": 34,
+    "INVALIDATED": 59,
+    "EXPIRED": 15,
+    "ENTRY CANDIDATE": 9
+  },
+  "first_difference": null,
+  "python_prefix_consistency": {
+    "status": "MATCH",
+    "tested_prefixes": 282
+  },
+  "native_repeat": {
+    "status": "MATCH",
+    "common_bars": 1199,
+    "events": 531,
+    "repeat_file": "shadow-repeat-M5.csv",
+    "repeat_sha256": "04253909d582d4aa785269721c15207845898aba0dbbe1c994d1b5aec1564720"
+  }
+}

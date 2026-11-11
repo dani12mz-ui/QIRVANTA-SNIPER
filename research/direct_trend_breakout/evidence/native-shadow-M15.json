@@ -1,0 +1,56 @@
+{
+  "status": "MATCH",
+  "file": "shadow-M15.csv",
+  "sha256": "96f751630e51aaeb28feb5adf7ef06832bc0fee19f50c35da474f7e8797e942a",
+  "timeframe": 15,
+  "bars": 1200,
+  "first_index": 0,
+  "first_open_utc": "2026-10-23T16:00:00Z",
+  "last_close_utc": "2026-11-11T18:00:00Z",
+  "historical_end_index": 1198,
+  "repeated_identical_confirmed_batches": [
+    {
+      "index": 1199,
+      "time_close": 1794420000000,
+      "events": 6
+    }
+  ],
+  "native_events": 505,
+  "python_events": 505,
+  "diagnostic_candidates": 37,
+  "native_states": {
+    "WATCH": 127,
+    "EXPIRED": 25,
+    "BREAKOUT CONFIRMED": 92,
+    "REJECTED": 93,
+    "RETEST WATCH": 61,
+    "INVALIDATED": 70,
+    "ENTRY CANDIDATE": 37
+  },
+  "buy_states": {
+    "WATCH": 62,
+    "BREAKOUT CONFIRMED": 37,
+    "REJECTED": 43,
+    "RETEST WATCH": 26,
+    "INVALIDATED": 40,
+    "EXPIRED": 11,
+    "ENTRY CANDIDATE": 12
+  },
+  "sell_states": {
+    "WATCH": 65,
+    "EXPIRED": 14,
+    "REJECTED": 50,
+    "BREAKOUT CONFIRMED": 55,
+    "RETEST WATCH": 35,
+    "INVALIDATED": 30,
+    "ENTRY CANDIDATE": 25
+  },
+  "first_difference": null,
+  "python_prefix_consistency": {
+    "status": "MATCH",
+    "tested_prefixes": 262
+  },
+  "native_repeat": {
+    "status": "NONIDENTICAL_CONTEXT"
+  }
+}

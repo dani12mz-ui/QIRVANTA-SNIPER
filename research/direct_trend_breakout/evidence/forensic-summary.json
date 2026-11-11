@@ -1,0 +1,183 @@
+{
+  "source_commit": "72e0e3cdcd0ae6c8b31e4abaff304f9c5ad309f0",
+  "source_archive_sha256": "ccffc719d8b3b2b9bba1e56ba5c04894df813175f9e2faaf4964d3b6a476307b",
+  "forensic_commit": "2a3463db4c8595bc049681d9922d8a927044b8f2",
+  "forensic_archive_sha256": "23282ff59fd4c2cb1b2fbad116b4d8de304b331c8902b6994d608674f8771dfc",
+  "symbol": "OANDA:XAUUSD",
+  "chart": "standard M15 candles",
+  "timeline": {
+    "first_close_utc": "2026-11-11T09:00:00Z",
+    "last_close_utc": "2026-11-11T16:30:00Z",
+    "bars": 31
+  },
+  "matched_old_and_base_ohlcv": {
+    "M15": 157,
+    "M5": 469
+  },
+  "m5_aggregated_ohlc_matches": 31,
+  "m5_volume_sum_differences": [
+    {
+      "known_utc": "2026-11-11T10:45:00Z",
+      "m15": 4638,
+      "m5_sum": 4633
+    },
+    {
+      "known_utc": "2026-11-11T11:45:00Z",
+      "m15": 2561,
+      "m5_sum": 2540
+    }
+  ],
+  "native_wsb_replay_bars": 45,
+  "matched_warmup_open_utc": "2026-10-23T14:15:00Z",
+  "native_state_cutoff_utc": "2026-11-11T16:00:00Z",
+  "decision_parity": "Exact CORE and READY for prior S5, RC2 indicator, RC2 audit and pressure within native replay scope",
+  "notes": {
+    "timestamps": "UTC. Rows use decision time at chart-bar close. Tick-level low time is unavailable.",
+    "early": "Only reconstructed condition and edge with native geometry parity; actual EARLY WATCH disabled.",
+    "swing": "Strict 3+3 local price pivot. Fast swings use 2+2. A pivot is known only at its right-side confirmation close.",
+    "alerts": "Native Pine Logs contain generated payloads. External delivery was not observed.",
+    "post_cutoff": "The two final M15 rows use pressure native core/alerts; dashboard state inferred from the lifecycle."
+  },
+  "target_lows": {
+    "4001.000": {
+      "M5": [
+        {
+          "open_utc": "2026-11-11T15:30:00Z",
+          "close_utc": "2026-11-11T15:35:00Z",
+          "open": "4006.58",
+          "high": "4009.34",
+          "low": 4001,
+          "close": "4007.445"
+        }
+      ],
+      "M15": [
+        {
+          "open_utc": "2026-11-11T15:30:00Z",
+          "close_utc": "2026-11-11T15:45:00Z",
+          "open": "4006.58",
+          "high": 4010,
+          "low": 4001,
+          "close": "4005.735"
+        }
+      ]
+    },
+    "4000.755": {
+      "M5": [
+        {
+          "open_utc": "2026-11-11T15:50:00Z",
+          "close_utc": "2026-11-11T15:55:00Z",
+          "open": "4002.29",
+          "high": "4002.595",
+          "low": "4000.755",
+          "close": "4001.72"
+        }
+      ],
+      "M15": [
+        {
+          "open_utc": "2026-11-11T15:45:00Z",
+          "close_utc": "2026-11-11T16:00:00Z",
+          "open": "4005.725",
+          "high": "4007.15",
+          "low": "4000.755",
+          "close": "4005.125"
+        }
+      ]
+    }
+  },
+  "early_if_enabled": [
+    {
+      "known_utc": "2026-11-11T13:30:00Z",
+      "direction": "SELL",
+      "close": "4038.78",
+      "previous_boundary": "4039.735",
+      "next_open_reference_only": "4038.83"
+    },
+    {
+      "known_utc": "2026-11-11T14:15:00Z",
+      "direction": "SELL",
+      "close": "4030.705",
+      "previous_boundary": "4032.175",
+      "next_open_reference_only": "4030.77"
+    },
+    {
+      "known_utc": "2026-11-11T14:45:00Z",
+      "direction": "SELL",
+      "close": "4016.145",
+      "previous_boundary": "4028.465",
+      "next_open_reference_only": "4016.095"
+    },
+    {
+      "known_utc": "2026-11-11T15:30:00Z",
+      "direction": "SELL",
+      "close": "4006.48",
+      "previous_boundary": "4010.79",
+      "next_open_reference_only": "4006.58"
+    }
+  ],
+  "core_events": {
+    "BUY WATCH": 5,
+    "BUY CONFIRMED": 1,
+    "BUY READY": 1,
+    "BUY REJECTED": 1,
+    "BUY CANCELLED": 3
+  },
+  "buy_watches": [
+    {
+      "known_utc": "2026-11-11T12:00:00Z",
+      "watch_boundary": "4046.515",
+      "anchor_low": "4044.325",
+      "close": "4044.53",
+      "h1": "DOWN",
+      "h4": "UP"
+    },
+    {
+      "known_utc": "2026-11-11T12:45:00Z",
+      "watch_boundary": "4043.305",
+      "anchor_low": "4041.085",
+      "close": "4041.3",
+      "h1": "DOWN",
+      "h4": "UP"
+    },
+    {
+      "known_utc": "2026-11-11T13:30:00Z",
+      "watch_boundary": "4039.735",
+      "anchor_low": "4037.37",
+      "close": "4038.78",
+      "h1": "DOWN",
+      "h4": "UP"
+    },
+    {
+      "known_utc": "2026-11-11T14:15:00Z",
+      "watch_boundary": "4032.175",
+      "anchor_low": "4028.495",
+      "close": "4030.705",
+      "h1": "DOWN",
+      "h4": "DOWN"
+    },
+    {
+      "known_utc": "2026-11-11T15:30:00Z",
+      "watch_boundary": "4010.79",
+      "anchor_low": "4004.33",
+      "close": "4006.48",
+      "h1": "DOWN",
+      "h4": "DOWN"
+    }
+  ],
+  "buy_watch_cancellations_below_anchor": [
+    {
+      "known_utc": "2026-11-11T13:45:00Z",
+      "anchor": "4037.37",
+      "close": "4033.055"
+    },
+    {
+      "known_utc": "2026-11-11T14:45:00Z",
+      "anchor": "4028.495",
+      "close": "4016.145"
+    },
+    {
+      "known_utc": "2026-11-11T16:15:00Z",
+      "anchor": "4004.33",
+      "close": "4004.305"
+    }
+  ]
+}

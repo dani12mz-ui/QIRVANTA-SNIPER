@@ -1,0 +1,287 @@
+// Direct Trend Breakout observational probe. Keep these rules aligned with the Python research scan.
+const string DT_GROUP = "DIRECT TREND BREAKOUT · SHADOW"
+const string DT_STRUCTURAL = "STRUCTURAL_BREAK"
+const string DT_CONSOLIDATION = "CONSOLIDATION_BREAK"
+const string DT_RETEST = "RETEST_CONTINUATION"
+bool dtShow = input.bool(false, "Покажи наблюдение", group=DT_GROUP, display=display.none)
+bool dtQa = input.bool(false, "Export Direct Trend Breakout QA journal", group=DT_GROUP, display=display.none)
+
+type DtPivot
+    float price
+    int sourceMs
+    int knownMs
+
+type DtSetup
+    string model
+    int side
+    float level
+    int levelKnownMs
+    int sourceMs
+    int firstBar
+    int firstMs
+    int breakoutMs = na
+    string originModel = ""
+
+type DtGeometry
+    string planId
+    float stop
+    float risk
+    float riskCash
+    float extension
+    float frictionR
+    float room
+    float obstacle
+    float tp1
+    float tp2
+    float tp3
+    string reasons
+
+type DtObservation
+    string state = "—"
+    int side = 0
+    int knownMs = na
+    string reason = ""
+    float level = na
+    int rank = 0
+
+var array<DtPivot> dtHighs = array.new<DtPivot>()
+var array<DtPivot> dtLows = array.new<DtPivot>()
+var array<DtSetup> dtWatches = array.new<DtSetup>(4, na)
+var array<DtSetup> dtRetests = array.new<DtSetup>(2, na)
+var map<string, bool> dtConsumed = map.new<string, bool>()
+var array<DtObservation> dtObservation = array.new<DtObservation>(1, DtObservation.new())
+var int dtSegment = 0
+var float dtEma = na
+float dtEmaSeed = ta.sma(close, 20)
+dtEma := na(dtEma[1]) ? dtEmaSeed : dtEma[1] + (2.0 / 21.0) * (close - dtEma[1])
+float dtPriorAtr = ta.rma(ta.tr(true), 14)[1]
+int dtMinutes = timeframe.isminutes ? timeframe.multiplier : 0
+bool dtSupported = syminfo.tickerid == "OANDA:XAUUSD" and chart.is_standard and
+     (dtMinutes == 5 or dtMinutes == 15 or dtMinutes == 30)
+
+f_dtNumber(float value) =>
+    na(value) ? "null" : str.tostring(value, "0.#########")
+
+f_dtInt(int value) =>
+    na(value) ? "null" : str.tostring(value)
+
+f_dtString(string value) =>
+    value == "" ? "null" : '"' + value + '"'
+
+f_dtIdentity(DtSetup setup) =>
+    setup.model + "|" + str.tostring(setup.side) + "|" + str.tostring(setup.sourceMs) + "|" + f_dtNumber(setup.level)
+
+f_dtReasons(string reasons) =>
+    reasons == "" ? "[]" : '["' + str.replace_all(reasons, "|", '","') + '"]'
+
+f_dtAddReason(string reasons, string reason) =>
+    reasons == "" ? reason : reasons + "|" + reason
+
+f_dtRoundAway(float price, int side) =>
+    float scale = price / .001
+    float rounded = side == 1 ? math.ceil(scale - .00000001) : math.floor(scale + .00000001)
+    math.round(rounded * 1000000.0) / 1000000000.0
+
+f_dtRank(string state) =>
+    switch state
+        "ENTRY CANDIDATE" => 6
+        "REJECTED" => 5
+        "BREAKOUT CONFIRMED" => 4
+        "RETEST WATCH" => 3
+        "WATCH" => 2
+        => 1
+
+f_dtEmit(DtSetup setup, string state, string reason, DtGeometry geometry=na, string extraReasons="") =>
+    DtObservation latest = array.get(dtObservation, 0)
+    int rank = f_dtRank(state)
+    if na(latest.knownMs) or latest.knownMs < time_close or (latest.knownMs == time_close and rank > latest.rank)
+        array.set(dtObservation, 0, DtObservation.new(state, setup.side, time_close, reason, setup.level, rank))
+    if dtQa
+        string details = ""
+        if not na(geometry)
+            string targets = na(geometry.tp1) ? "[]" : "[" + f_dtNumber(geometry.tp1) + "," +
+                 f_dtNumber(geometry.tp2) + "," + f_dtNumber(geometry.tp3) + "]"
+            details := ',"plan_id":' + f_dtString(geometry.planId) + ',"reference":' + f_dtNumber(close) +
+                 ',"stop":' + f_dtNumber(geometry.stop) + ',"targets":' + targets + ',"risk":' + f_dtNumber(geometry.risk) +
+                 ',"risk_cash":' + f_dtNumber(geometry.riskCash) + ',"extension_atr":' + f_dtNumber(geometry.extension) +
+                 ',"friction_r":' + f_dtNumber(geometry.frictionR) + ',"net_room_r":' + f_dtNumber(geometry.room) +
+                 ',"obstacle":' + f_dtNumber(geometry.obstacle) + ',"reasons":' + f_dtReasons(geometry.reasons)
+        else if extraReasons != ""
+            details := ',"reasons":' + f_dtReasons(extraReasons)
+        log.info('DT_SHADOW|{"time_ms":' + f_dtInt(time_close) + ',"bar":' + f_dtInt(bar_index) +
+             ',"side":' + f_dtInt(setup.side) + ',"model":' + f_dtString(setup.model) + ',"state":' + f_dtString(state) +
+             ',"reason":' + f_dtString(reason) + ',"level":' + f_dtNumber(setup.level) +
+             ',"level_known_ms":' + f_dtInt(setup.levelKnownMs) + ',"source_ms":' + f_dtInt(setup.sourceMs) +
+             ',"watch_ms":' + f_dtInt(setup.firstMs) + ',"breakout_ms":' + f_dtInt(setup.breakoutMs) +
+             ',"origin_model":' + f_dtString(setup.originModel) + ',"prior_atr":' + f_dtNumber(dtPriorAtr) +
+             ',"close":' + f_dtNumber(close) + details + '}')
+    true
+
+f_dtGeometry(DtSetup setup, bool alreadyClaimed) =>
+    int side = setup.side
+    int anchorBars = setup.model == DT_STRUCTURAL ? 3 : setup.model == DT_CONSOLIDATION ? 5 : 2
+    float stopBase = side == 1 ? low : high
+    for offset = 0 to math.min(anchorBars, dtSegment) - 1
+        stopBase := side == 1 ? math.min(stopBase, low[offset]) : math.max(stopBase, high[offset])
+    float stop = f_dtRoundAway(stopBase - side * .10 * dtPriorAtr, -side)
+    float risk = math.round(side * (close - stop) * 1000000000.0) / 1000000000.0
+    float extension = math.max(0.0, side * (close - setup.level) / dtPriorAtr)
+    const float friction = .704
+    array<DtPivot> obstacles = side == 1 ? dtHighs : dtLows
+    float remaining = na
+    for pivot in obstacles
+        float roomToPivot = side * (pivot.price - close)
+        if roomToPivot > 0
+            remaining := na(remaining) ? roomToPivot : math.min(remaining, roomToPivot)
+    float room = risk > 0 ? ((na(remaining) ? risk : math.min(risk, remaining)) - friction) / risk : na
+    float riskCash = (risk + friction) * 3
+    string reasons = ""
+    if risk < math.max(.001, .25 * dtPriorAtr)
+        reasons := f_dtAddReason(reasons, "STOP_TOO_SMALL")
+    if risk > 2.50 * dtPriorAtr
+        reasons := f_dtAddReason(reasons, "STOP_TOO_WIDE")
+    if extension > 1.00
+        reasons := f_dtAddReason(reasons, "LATE_EXTENSION")
+    if risk > 0 and friction > .30 * risk
+        reasons := f_dtAddReason(reasons, "COST_TOO_HIGH")
+    if not na(room) and room < .70
+        reasons := f_dtAddReason(reasons, "INSUFFICIENT_NET_ROOM")
+    if riskCash > 250.0
+        reasons := f_dtAddReason(reasons, "CASH_RISK_LIMIT")
+    if reasons == "" and alreadyClaimed
+        reasons := "OVERLAP_SAME_BAR"
+    float tp1 = risk > 0 ? f_dtRoundAway(close + side * risk, side) : na
+    float tp2 = risk > 0 ? f_dtRoundAway(close + side * 2 * risk, side) : na
+    float tp3 = risk > 0 ? f_dtRoundAway(close + side * 3 * risk, side) : na
+    string id = "DT|" + setup.model + "|" + str.tostring(side) + "|" + str.tostring(time_close)
+    DtGeometry geometry = DtGeometry.new(id, stop, risk, riskCash, extension, risk > 0 ? friction / risk : na,
+         room, na(remaining) ? na : close + side * remaining, tp1, tp2, tp3, reasons)
+    bool valid = reasons == ""
+    string firstReason = valid ? "DIAGNOSTIC_ONLY" : array.get(str.split(reasons, "|"), 0)
+    f_dtEmit(setup, valid ? "ENTRY CANDIDATE" : "REJECTED", firstReason, geometry)
+    valid
+
+f_dtOffer(string model, int side) =>
+    DtSetup result = na
+    if model == DT_STRUCTURAL
+        array<DtPivot> defended = side == 1 ? dtHighs : dtLows
+        array<DtPivot> directional = side == 1 ? dtLows : dtHighs
+        int size = array.size(directional)
+        if array.size(defended) > 0 and size >= 2
+            DtPivot last = array.get(directional, size - 1)
+            DtPivot previous = array.get(directional, size - 2)
+            if side * (last.price - previous.price) > 0
+                DtPivot pivot = array.last(defended)
+                result := DtSetup.new(model, side, pivot.price, pivot.knownMs, pivot.sourceMs, bar_index, time_close)
+    else if dtSegment > 4 and not na(dtEma[4])
+        if math.min(side * (close[1] - dtEma[1]), side * (dtEma[1] - dtEma[4])) > 0
+            float boxHigh = high[4]
+            float boxLow = low[4]
+            int highSource = time[4]
+            int lowSource = time[4]
+            int offset = 3
+            while offset >= 1
+                if high[offset] > boxHigh
+                    boxHigh := high[offset]
+                    highSource := time[offset]
+                if low[offset] < boxLow
+                    boxLow := low[offset]
+                    lowSource := time[offset]
+                offset -= 1
+            if boxHigh - boxLow <= 1.50 * dtPriorAtr
+                result := DtSetup.new(model, side, side == 1 ? boxHigh : boxLow, time_close[1],
+                     side == 1 ? highSource : lowSource, bar_index, time_close)
+    result
+
+f_dtExpired(DtSetup setup) =>
+    bar_index - setup.firstBar > 6 or time_close - setup.firstMs > 6 * (time_close - time)
+
+f_dtRemember(array<DtPivot> pivots, float price) =>
+    array.push(pivots, DtPivot.new(price, time[2], time_close))
+    if array.size(pivots) > 8
+        array.shift(pivots)
+    true
+
+if barstate.isconfirmed and dtSupported and (dtShow or dtQa)
+    dtSegment := na(time_close[1]) or time != time_close[1] ? 1 : dtSegment + 1
+    if dtQa
+        log.info('DT_MARKET|{"symbol":' + f_dtString(syminfo.tickerid) + ',"timeframe":' + f_dtInt(dtMinutes) +
+             ',"index":' + f_dtInt(bar_index) + ',"time":' + f_dtInt(time) + ',"time_close":' + f_dtInt(time_close) +
+             ',"open":' + f_dtNumber(open) + ',"high":' + f_dtNumber(high) + ',"low":' + f_dtNumber(low) +
+             ',"close":' + f_dtNumber(close) + '}')
+    if not na(dtPriorAtr) and dtPriorAtr > 0 and not na(close[1])
+        for sideSlot = 0 to 1
+            int side = sideSlot == 0 ? 1 : -1
+            bool claimed = false
+            DtSetup retest = array.get(dtRetests, sideSlot)
+            if not na(retest)
+                if dtSegment == 1 or f_dtExpired(retest)
+                    f_dtEmit(retest, "EXPIRED", dtSegment == 1 ? "DATA_GAP" : "RETEST_WINDOW_EXPIRED")
+                    array.set(dtRetests, sideSlot, na)
+                else if side * (close - retest.level) < -.10 * dtPriorAtr
+                    f_dtEmit(retest, "INVALIDATED", "CLOSE_BACK_THROUGH_BREAK_LEVEL")
+                    array.set(dtRetests, sideSlot, na)
+                else if (math.abs((side == 1 ? low : high) - retest.level) <= .20 * dtPriorAtr and
+                     side * (close - retest.level) >= .10 * dtPriorAtr and side * (close - open) >= .15 * dtPriorAtr)
+                    f_dtEmit(retest, "BREAKOUT CONFIRMED", "RETEST_CONFIRMED")
+                    claimed := f_dtGeometry(retest, false)
+                    array.set(dtRetests, sideSlot, na)
+
+            for modelSlot = 0 to 1
+                string model = modelSlot == 0 ? DT_STRUCTURAL : DT_CONSOLIDATION
+                int slot = sideSlot * 2 + modelSlot
+                DtSetup setup = dtSegment > 1 ? f_dtOffer(model, side) : na
+                DtSetup watch = array.get(dtWatches, slot)
+                if not na(watch)
+                    bool expired = dtSegment == 1 or f_dtExpired(watch)
+                    bool changed = na(setup) or f_dtIdentity(setup) != f_dtIdentity(watch)
+                    if expired or changed
+                        string reason = expired ? (dtSegment == 1 ? "DATA_GAP" : "WATCH_WINDOW_EXPIRED") : "STRUCTURE_CHANGED"
+                        f_dtEmit(watch, expired ? "EXPIRED" : "INVALIDATED", reason)
+                        map.put(dtConsumed, f_dtIdentity(watch), true)
+                        array.set(dtWatches, slot, na)
+                        watch := na
+                if not na(setup) and not map.contains(dtConsumed, f_dtIdentity(setup))
+                    float proximity = side * (setup.level - close)
+                    bool approaching = proximity >= 0 and proximity <= .30 * dtPriorAtr and side * (close - close[1]) > 0
+                    bool crossed = side * (close[1] - setup.level) <= .05 * dtPriorAtr and
+                         .05 * dtPriorAtr < side * (close - setup.level)
+                    float favorableWick = side == 1 ? high - close : close - low
+                    bool displacement = side * (close - open) >= .50 * dtPriorAtr and favorableWick <= .35 * (high - low)
+                    if na(watch) and (approaching or (crossed and displacement))
+                        watch := setup
+                        array.set(dtWatches, slot, watch)
+                        f_dtEmit(watch, "WATCH", approaching ? "APPROACHING_LEVEL" : "FIRST_OBSERVED_ON_BREAK")
+                    if crossed
+                        if not displacement
+                            f_dtEmit(na(watch) ? setup : watch, "REJECTED", "INSUFFICIENT_DISPLACEMENT", na, "INSUFFICIENT_DISPLACEMENT")
+                        else
+                            DtSetup confirmed = watch.copy()
+                            confirmed.breakoutMs := time_close
+                            f_dtEmit(confirmed, "BREAKOUT CONFIRMED", "CONFIRMED_CLOSE_CROSS")
+                            bool valid = f_dtGeometry(confirmed, claimed)
+                            claimed := claimed or valid
+                            map.put(dtConsumed, f_dtIdentity(confirmed), true)
+                            array.set(dtWatches, slot, na)
+                            if na(array.get(dtRetests, sideSlot))
+                                DtSetup newRetest = confirmed.copy()
+                                newRetest.model := DT_RETEST
+                                newRetest.firstBar := bar_index
+                                newRetest.firstMs := time_close
+                                newRetest.originModel := model
+                                array.set(dtRetests, sideSlot, newRetest)
+                                f_dtEmit(newRetest, "RETEST WATCH", "CONFIRMED_BREAK_LEVEL")
+    if dtSegment > 4
+        if high[2] > high[4] and high[2] > high[3] and high[2] > high[1] and high[2] > high
+            f_dtRemember(dtHighs, high[2])
+        if low[2] < low[4] and low[2] < low[3] and low[2] < low[1] and low[2] < low
+            f_dtRemember(dtLows, low[2])
+    if dtQa and barstate.islastconfirmedhistory
+        log.info('DT_END|{"index":' + f_dtInt(bar_index) + ',"time_close":' + f_dtInt(time_close) + '}')
+
+DtObservation dtCurrent = array.get(dtObservation, 0)
+string dtShadowState = dtCurrent.state
+int dtShadowSide = dtCurrent.side
+int dtShadowKnownMs = dtCurrent.knownMs
+string dtShadowReason = dtCurrent.reason
+float dtShadowLevel = dtCurrent.level

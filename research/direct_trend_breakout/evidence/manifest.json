@@ -1,0 +1,127 @@
+{
+  "base_commit": "72e0e3cdcd0ae6c8b31e4abaff304f9c5ad309f0",
+  "forensic_reference": "2a3463db4c8595bc049681d9922d8a927044b8f2",
+  "tested_utc": "2026-11-11",
+  "instrument": "OANDA:XAUUSD",
+  "chart": "standard candles",
+  "capture": "TradingView Pine Logs and original screenshots from a separate test tab",
+  "layout_saved": false,
+  "live_orders": false,
+  "native_compile": {
+    "source": "QIRVANTA_GOLD_PRO_DIRECT_TREND_SHADOW.pine",
+    "sha256": "275332fdaf66fefb286bb1d2902eec4cf03792af9b4e4368c79e9541cd5f79bf",
+    "result": "Compiled; Added to chart",
+    "image": "screenshots/native-shadow-compile.jpg"
+  },
+  "archives": {
+    "base-native-logs.zip": "60ee8e06a5a54d2871903fd8eb33cd79d980be4b7ada386cef316fdc631d9a68",
+    "shadow-native-logs.zip": "4e0641e23af98f658322fabec42097ea4f84e08cf3bd961f5b4fd86db239743c"
+  },
+  "reports": {
+    "base-native.json": "3d79ccd8109a8aa5f8c6214623d067889a51262019ff6686d08c0988f94b1604",
+    "forensic-summary.json": "05ef48d2ea1bcf815b36a3cdd74e629de187029defa89a9f5b02c85a6dd1adcc",
+    "forensic-timeline-M15.csv": "b5773bb4c69e265cf06043eb352abe2158ecf48a4353f4804574061ec68d264f",
+    "historical_replay.json.gz": "732a893c5d525b467b206965127415c6f941ad9cb1ecfd1dae34842de7fd5f76",
+    "historical_summary.json": "4a9c715c2b623e8f6e1e28b5045a5c1ac0020e06c1acf35e9cb6655793dbb6b3",
+    "native-shadow-M15-repeat.json": "a2235b92cb484fe92d2a77f1a5801ca7f5f9ebce29639a0c22548e934dcf9de7",
+    "native-shadow-M15.json": "b6f93b7fc1610a022eee7f3470cfdf44aead7cd844359ac44220fb6874e63915",
+    "native-shadow-M5.json": "08dac90d0ff0fa9ce0ad4bce332bde3422a60a818a30631938b50921b522ca1d",
+    "registered_m15_warmup_prefix.json": "e519925e61eaa80001ada52153a28511a28cd2ff999e4c5b5178004551760852"
+  },
+  "screenshots": {
+    "screenshots/native-rc2-audit-compile.jpg": {
+      "sha256": "54b6c763d5bb4da86b6b85bd19628da2eb0f4f0ee0042041b25500cc52521b41",
+      "dimensions": [
+        1304,
+        883
+      ]
+    },
+    "screenshots/native-shadow-compile.jpg": {
+      "sha256": "97e2de265195c4f24b5d01b07baa99754291c12146b2e71b6c5bf2a00e634bad",
+      "dimensions": [
+        1304,
+        883
+      ]
+    },
+    "screenshots/rc2-M15-buy-ready-1215.jpg": {
+      "sha256": "5e6eb1d4241564f59d921e87f3760f2048b01783ba54f961432c0406f4c74154",
+      "dimensions": [
+        1304,
+        883
+      ]
+    },
+    "screenshots/rc2-M15-review-1545.jpg": {
+      "sha256": "890977a9c5f964db3ca2037951b8ab1ffb79eff7f08b353caaefaf5b2a875890",
+      "dimensions": [
+        1304,
+        883
+      ]
+    },
+    "screenshots/rc2-M15-review-1630.jpg": {
+      "sha256": "b994dd926642c4e27ed56519d3b3011177ee2b257af889889a2eac14ac3feff7",
+      "dimensions": [
+        1304,
+        883
+      ]
+    },
+    "screenshots/shadow-M15-buy-invalidated-0400.jpg": {
+      "sha256": "6ccd3641b26e45f006920eb5de9d8203668f213deebc1d49485ca7d7aec0689b",
+      "dimensions": [
+        1304,
+        883
+      ]
+    },
+    "screenshots/shadow-M15-buy-rejected-0145.jpg": {
+      "sha256": "652f4088ce44fba63b1a5874bc0759b4797e60ebc511da1c98afcca94813a84d",
+      "dimensions": [
+        1304,
+        883
+      ]
+    },
+    "screenshots/shadow-M15-buy-retest-0015.jpg": {
+      "sha256": "2884f2b7995a9e839039efd13204cdbcf31e3c7d410576a2e94ad32b87a70664",
+      "dimensions": [
+        1304,
+        883
+      ]
+    },
+    "screenshots/shadow-M15-sell-break-1530.jpg": {
+      "sha256": "52f803eee1aaf44d71691cec6e8ec14deb8dd42ded79e4176a0822f6a98e2dc7",
+      "dimensions": [
+        1304,
+        883
+      ]
+    },
+    "screenshots/shadow-M15-sell-consolidation-1330.jpg": {
+      "sha256": "48788be189088a64e770f2dbdc0ed898fb81d3a8b056289db97238ffa62f5482",
+      "dimensions": [
+        1304,
+        883
+      ]
+    },
+    "screenshots/shadow-M15-sell-retest-1230.jpg": {
+      "sha256": "90226b3d3c77a935bd878fdb50dc5175f9e447e16389c0f08c999b320ab65de5",
+      "dimensions": [
+        1304,
+        883
+      ]
+    }
+  },
+  "native_csv_sha256": {
+    "audit-fixed-M15.csv": "9386389b84928235d98a97323bd0668098751010a559b8501133ef87584e3a6a",
+    "audit-fixed-M5.csv": "576b57747821306f2f6e7aee08db603ad1af8ff6b73dc81c5bb272e4b2bc2f9f",
+    "audit-s5-M15.csv": "7526ff3596b1f8d6a051de419a88f7497d4ac1b459aec81fcaae3193c3e10d39",
+    "audit-s5-M5.csv": "c788d94e043bc762e5ffd87e973bcce174a4a83b253d28893ebc71db891c4858",
+    "indicator-default-M15.csv": "954ea13e18f60f051c84904850f29fce48c2c7680a7fc7ee0513f21c86aa2b94",
+    "indicator-default-M5.csv": "e30e468ddcb335b625b4902d23ab7409b45355aebba073ee80790e7e03f88867",
+    "indicator-early-M15.csv": "f6585d7602ed4d8eee5f8b00eb3ee7e4de2d0c2efab9b476c2e3b5c7d61fb6a9",
+    "indicator-early-M5.csv": "dfc9636bcd04e1f5b699d4542dc63f7145ede45489381ee7555ce2f6c01190f0",
+    "shadow-M15.csv": "96f751630e51aaeb28feb5adf7ef06832bc0fee19f50c35da474f7e8797e942a",
+    "shadow-M5.csv": "04253909d582d4aa785269721c15207845898aba0dbbe1c994d1b5aec1564720",
+    "shadow-off-M15.csv": "c14167f615183f7ef982421f4dacc677dcf916ff9b67f35f7af35298d459d205",
+    "shadow-off-M5.csv": "95d7471947cfc78fedee0adac568e8130410ad54beec5f346a080a486893088e",
+    "shadow-repeat-M15.csv": "4e1d0ade81381aea6727334d8cf0a9957e298157b0e6ebeeafd1a152ed6c0bb8",
+    "shadow-repeat-M5.csv": "04253909d582d4aa785269721c15207845898aba0dbbe1c994d1b5aec1564720",
+    "shadow-repeat-same-origin-M15.csv": "17c3c97a6d0a1385bb204da01bdcf76d9971e627d01c1e30ea48a7a38871d740"
+  }
+}
