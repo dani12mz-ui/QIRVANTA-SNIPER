@@ -1,0 +1,166 @@
+// Display-only experimental proxy. It never feeds RC2 decisions or alerts.
+const string RC_PRESSURE_GROUP = "PRESSURE METER · EXPERIMENTAL"
+bool rcPressureShow = input.bool(true, "Покажи BUY / SELL Pressure", group=RC_PRESSURE_GROUP,
+     tooltip="OHLC proxy за положението на цената на затваряне. Не измерва потока на поръчките.", display=display.none)
+int rcPressureLookback = input.int(10, "Затворени свещи", minval=1, maxval=100,
+     group=RC_PRESSURE_GROUP, display=display.none)
+bool rcPressureWeighted = input.bool(false, "Тегла по tick volume", group=RC_PRESSURE_GROUP,
+     tooltip="При липса на валиден tick volume целият прозорец се изчислява без тегла.", display=display.none)
+bool rcPressureCompare = input.bool(false, "Сравни M5 / M15 / H1", group=RC_PRESSURE_GROUP,
+     tooltip="Сравнява последните налични потвърдени стойности от всеки интервал.", display=display.none)
+bool rcPressureQa = input.bool(false, "Export pressure QA journal", group="NATIVE QA",
+     tooltip="Използва същите начална и крайна UTC дата. За сурови H1 данни избери H1.", display=display.none)
+
+const int RC_PRESSURE_ABSENT = 0
+const int RC_PRESSURE_WARMUP = 1
+const int RC_PRESSURE_INVALID_OHLC = 2
+const int RC_PRESSURE_OHLC = 3
+const int RC_PRESSURE_TICK = 4
+const int RC_PRESSURE_NON_TICK = 5
+const int RC_PRESSURE_INVALID_VOLUME = 6
+const int RC_PRESSURE_ZERO_VOLUME = 7
+
+type RcPressureReading
+    float buy = na
+    int closed = na
+    string mode = "UNAVAILABLE"
+    string reason = "SOURCE_UNAVAILABLE"
+
+type RcPressureSnapshot
+    RcPressureReading main
+    RcPressureReading m5
+    RcPressureReading m15
+    RcPressureReading h1
+
+f_rcPressureRaw() =>
+    bool validOhlc = not na(open) and not na(high) and not na(low) and not na(close) and
+         high >= low and open >= low and open <= high and close >= low and close <= high
+    bool validVolume = not na(volume) and volume >= 0
+    // Use non-na rolling inputs so math.sum never skips a bar in a window.
+    float fraction = validOhlc and high > low ? (close - low) / (high - low) : 0.5
+    float weight = validVolume ? volume : 0.0
+    float unweighted = math.sum(fraction, rcPressureLookback)
+    float weighted = math.sum(fraction * weight, rcPressureLookback)
+    float totalWeight = math.sum(weight, rcPressureLookback)
+    float invalidOhlcCount = math.sum(validOhlc ? 0 : 1, rcPressureLookback)
+    float invalidVolumeCount = math.sum(validVolume ? 0 : 1, rcPressureLookback)
+    int state = switch
+        bar_index + 1 < rcPressureLookback or na(unweighted) => RC_PRESSURE_WARMUP
+        invalidOhlcCount > 0 => RC_PRESSURE_INVALID_OHLC
+        not rcPressureWeighted => RC_PRESSURE_OHLC
+        syminfo.volumetype != "tick" => RC_PRESSURE_NON_TICK
+        invalidVolumeCount > 0 => RC_PRESSURE_INVALID_VOLUME
+        totalWeight <= 0 => RC_PRESSURE_ZERO_VOLUME
+        => RC_PRESSURE_TICK
+    float buy = state >= RC_PRESSURE_OHLC ?
+         100.0 * math.max(0.0, math.min(1.0, state == RC_PRESSURE_TICK ? weighted / totalWeight : unweighted / rcPressureLookback)) : na
+    [time_close, buy, state]
+
+f_rcPressurePrevious() =>
+    [stamp, buy, state] = f_rcPressureRaw()
+    [stamp[1], buy[1], state[1]]
+
+f_rcPressureFrame(simple string frame, int localClosed, float localBuy, int localState) =>
+    int seconds = timeframe.in_seconds(frame)
+    if not rcPressureCompare or not rcSupported or not chart.is_standard
+        [int(na), float(na), RC_PRESSURE_ABSENT]
+    else if seconds == tfSeconds
+        [localClosed, localBuy, localState]
+    else if seconds > tfSeconds
+        // Offset the whole source result. Its bar was closed at the chart bar's open.
+        [stamp, buy, state] = request.security(syminfo.tickerid, frame, f_rcPressurePrevious(),
+             lookahead=barmerge.lookahead_on)
+        bool valid = not na(stamp) and stamp <= time
+        [valid ? stamp : na, valid ? buy : na, valid ? state : RC_PRESSURE_ABSENT]
+    else
+        [stamps, buyers, states] = request.security_lower_tf(syminfo.tickerid, frame, f_rcPressureRaw())
+        int last = array.size(stamps) - 1
+        while last >= 0 and (na(array.get(stamps, last)) or array.get(stamps, last) > time_close)
+            last -= 1
+        [last >= 0 ? array.get(stamps, last) : na, last >= 0 ? array.get(buyers, last) : na,
+             last >= 0 ? array.get(states, last) : RC_PRESSURE_ABSENT]
+
+f_rcPressureReading(int stamp, float buy, int state) =>
+    string mode = switch
+        state == RC_PRESSURE_WARMUP => "WARMUP"
+        state == RC_PRESSURE_OHLC => "OHLC"
+        state == RC_PRESSURE_TICK => "TICK"
+        state >= RC_PRESSURE_NON_TICK => "FALLBACK"
+        => "UNAVAILABLE"
+    string reason = switch state
+        RC_PRESSURE_WARMUP => "INSUFFICIENT_HISTORY"
+        RC_PRESSURE_INVALID_OHLC => "INVALID_OHLC"
+        RC_PRESSURE_OHLC => "OHLC_SELECTED"
+        RC_PRESSURE_TICK => "TICK_WEIGHTED"
+        RC_PRESSURE_NON_TICK => "NON_TICK_SOURCE"
+        RC_PRESSURE_INVALID_VOLUME => "INVALID_TICK_VOLUME"
+        RC_PRESSURE_ZERO_VOLUME => "ZERO_TICK_VOLUME"
+        => "SOURCE_UNAVAILABLE"
+    RcPressureReading.new(buy, stamp, mode, reason)
+
+f_rcPressureNum(float value) => na(value) ? "null" : str.tostring(value, "0.########")
+
+f_rcPressureLog(simple string frame, RcPressureReading reading) =>
+    int seconds = timeframe.in_seconds(frame)
+    string relation = seconds == tfSeconds ? "LOCAL" : seconds > tfSeconds ? "HTF" : "LTF"
+    log.info('PR_SAMPLE|{"chart":' + f_q(timeframe.period) + ',"frame":' + f_q(frame) +
+         ',"index":' + f_int(bar_index) + ',"decision_ms":' + f_int(time_close) + ',"chart_open_ms":' + f_int(time) +
+         ',"source_ms":' + f_int(reading.closed) + ',"buy":' + f_rcPressureNum(reading.buy) +
+         ',"sell":' + f_rcPressureNum(100.0 - reading.buy) +
+         ',"mode":' + f_q(reading.mode) + ',"reason":' + f_q(reading.reason) + ',"lookback":' + f_int(rcPressureLookback) +
+         ',"weighted":' + (rcPressureWeighted ? "true" : "false") + ',"comparison":' + (rcPressureCompare ? "true" : "false") +
+         ',"relation":' + f_q(relation) + '}')
+
+[rcPressureBarClosed, rcPressureBarBuy, rcPressureBarState] = f_rcPressureRaw()
+[rcPressureM5Closed, rcPressureM5Buy, rcPressureM5State] =
+     f_rcPressureFrame("5", rcPressureBarClosed, rcPressureBarBuy, rcPressureBarState)
+[rcPressureM15Closed, rcPressureM15Buy, rcPressureM15State] =
+     f_rcPressureFrame("15", rcPressureBarClosed, rcPressureBarBuy, rcPressureBarState)
+[rcPressureH1Closed, rcPressureH1Buy, rcPressureH1State] =
+     f_rcPressureFrame("60", rcPressureBarClosed, rcPressureBarBuy, rcPressureBarState)
+
+var RcPressureReading rcPressureEmpty = RcPressureReading.new()
+var RcPressureSnapshot rcPressureCurrent = RcPressureSnapshot.new(rcPressureEmpty, rcPressureEmpty, rcPressureEmpty, rcPressureEmpty)
+var RcPressureSnapshot rcPressureArchive = rcPressureCurrent
+bool rcPressureQaChart = rcPressureQa and syminfo.tickerid == "OANDA:XAUUSD" and chart.is_standard and
+     (rcSupported or tfSeconds == 3600)
+bool rcPressureQaBar = rcPressureQaChart and barstate.isconfirmed and time_close >= rcQaStart and time_close <= rcQaEnd
+var int rcPressureQaLastIndex = na
+var int rcPressureQaLastClose = na
+var bool rcPressureQaEnded = false
+if rcPressureQaBar
+    rcPressureQaLastIndex := bar_index
+    rcPressureQaLastClose := time_close
+    log.info('PR_CTX|{"symbol":' + f_q(syminfo.tickerid) + ',"timeframe":' + f_q(timeframe.period) +
+         ',"index":' + f_int(bar_index) + ',"first_open_ms":' + f_int(rcFirstOpen) +
+         ',"open_ms":' + f_int(time) + ',"close_ms":' + f_int(time_close) + ',"open":' + f_rcPressureNum(open) +
+         ',"high":' + f_rcPressureNum(high) + ',"low":' + f_rcPressureNum(low) + ',"close":' + f_rcPressureNum(close) +
+         ',"volume":' + f_rcPressureNum(volume) + ',"volume_type":' + f_q(syminfo.volumetype) + '}')
+else if rcPressureQaChart and barstate.isconfirmed and not rcPressureQaEnded and not na(rcPressureQaLastIndex) and time_close > rcQaEnd
+    rcPressureQaEnded := true
+    log.info('PR_END|{"symbol":' + f_q(syminfo.tickerid) + ',"timeframe":' + f_q(timeframe.period) +
+         ',"index":' + f_int(rcPressureQaLastIndex) + ',"close_ms":' + f_int(rcPressureQaLastClose) + '}')
+
+if rcCanDrawBar and chart.is_standard and (rcPressureShow or rcPressureQaBar)
+    RcPressureReading main = f_rcPressureReading(rcPressureBarClosed, rcPressureBarBuy, rcPressureBarState)
+    RcPressureReading m5 = rcPressureCompare ? f_rcPressureReading(rcPressureM5Closed, rcPressureM5Buy, rcPressureM5State) : rcPressureEmpty
+    RcPressureReading m15 = rcPressureCompare ? f_rcPressureReading(rcPressureM15Closed, rcPressureM15Buy, rcPressureM15State) : rcPressureEmpty
+    RcPressureReading h1 = rcPressureCompare ? f_rcPressureReading(rcPressureH1Closed, rcPressureH1Buy, rcPressureH1State) : rcPressureEmpty
+    rcPressureCurrent := RcPressureSnapshot.new(main, m5, m15, h1)
+    // Each snapshot is immutable so review stays fixed as new bars arrive.
+    if rcReview and time_close == rcReviewAt
+        rcPressureArchive := rcPressureCurrent
+    if rcPressureQaBar
+        f_rcPressureLog(timeframe.period, main)
+        if rcPressureCompare
+            if tfSeconds != 300
+                f_rcPressureLog("5", m5)
+            if tfSeconds != 900
+                f_rcPressureLog("15", m15)
+            f_rcPressureLog("60", h1)
+
+RcPressureSnapshot rcPressureSnapshot = rcReview ? rcPressureArchive : rcPressureCurrent
+RcPressureReading rcPressureView = rcPressureSnapshot.main
+RcPressureReading rcPressureViewM5 = rcPressureSnapshot.m5
+RcPressureReading rcPressureViewM15 = rcPressureSnapshot.m15
+RcPressureReading rcPressureViewH1 = rcPressureSnapshot.h1

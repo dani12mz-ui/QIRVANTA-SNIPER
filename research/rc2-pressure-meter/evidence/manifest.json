@@ -1,0 +1,100 @@
+{
+  "reference_commit": "cb848e1e4d6d2686c524ac1a9136804748e9f577",
+  "source": "TradingView Pine Logs and original built-in browser screenshots",
+  "instrument": "OANDA:XAUUSD",
+  "chart": "standard candles",
+  "tested_utc": "2026-11-11",
+  "live_orders": false,
+  "layout_saved": false,
+  "native_compile": {
+    "result": "Compiled; Added to chart",
+    "reported_local_time": "18:54:54 Europe/Sofia",
+    "editor_sha256": "e27f5a5adc00124d085ebca6d0d6372ef9e099708ff93edcbd7bcf312841f0c4",
+    "file": "screenshots/native-compile.jpg"
+  },
+  "hashes": {
+    "../QIRVANTA_GOLD_PRO_RC2_PRESSURE.pine": "e27f5a5adc00124d085ebca6d0d6372ef9e099708ff93edcbd7bcf312841f0c4",
+    "native-logs.zip": "ccffc719d8b3b2b9bba1e56ba5c04894df813175f9e2faaf4964d3b6a476307b",
+    "native-qa.json": "5e50b877ec96b0a5fb56d4752ac31eab621884c56c0b0d527f355b42f9cb8386",
+    "s5-raw-qa.json": "79b952fff32342e2686dd4aecec4e0078d1f9301ea1bcb54e0a013a0104afae5"
+  },
+  "screenshots": {
+    "screenshots/audit-baseline-M5.jpg": {
+      "sha256": "d626820aa0be9c5d5ba12c1a83358ef1f823212b362f1461adff4cc826e9f087",
+      "width": 1304,
+      "height": 883
+    },
+    "screenshots/M15-premium-dark-compare.jpg": {
+      "sha256": "db488b3a2a574fbfcabcee952310ab1f0f9af2816d64348bcfd80681c2c621fb",
+      "width": 1304,
+      "height": 883
+    },
+    "screenshots/M30-compact-dark.jpg": {
+      "sha256": "70001420ebc25c4dd0b7f254e058ebf9a4f850f693ba79b5a8f599acfbb3800a",
+      "width": 1304,
+      "height": 883
+    },
+    "screenshots/M30-full-audit-tick-dark.jpg": {
+      "sha256": "b0e914f7d7879ad559f74ad5c550ca5e6a3a5e99cbe86092d93f226210f026bb",
+      "width": 1304,
+      "height": 883
+    },
+    "screenshots/M5-mobile-390-dark.jpg": {
+      "sha256": "8392e4a347c6108ff61afcbe71c3e291f86e005da36073fe2b2058b4b031c966",
+      "width": 390,
+      "height": 844
+    },
+    "screenshots/M5-mobile-390-light-same-candle.jpg": {
+      "sha256": "3973c1d3b7db7e92194be6715e84d619d64ad029c02ad626119d1c56f619a096",
+      "width": 390,
+      "height": 844
+    },
+    "screenshots/M5-mobile-390-light.jpg": {
+      "sha256": "1bf1b8aa7fd16624cacee624578b6b7b20516bc04062a9f3ba80c88db42668d9",
+      "width": 390,
+      "height": 844
+    },
+    "screenshots/M5-premium-dark-final.jpg": {
+      "sha256": "f402c34e69384758d8f10be330d71e60cdfbe09519ac3632ef6c27fd338627b8",
+      "width": 1304,
+      "height": 883
+    },
+    "screenshots/M5-premium-light.jpg": {
+      "sha256": "a80f7da2a88ec38a12ed1e13cc30c7e19b8b56a7b49ebca1194ed4a4371a92c3",
+      "width": 1304,
+      "height": 883
+    },
+    "screenshots/native-compile.jpg": {
+      "sha256": "8dc16da55d73c7db2380e03bb19a9486a25e4c0f52be8c868c21714a93160af8",
+      "width": 1304,
+      "height": 883
+    },
+    "screenshots/working-layout-before-width-fix.jpg": {
+      "sha256": "ae4a9e6a55d7b16181d9276b67ce54f2c62cc4c8cca7246b637a871512797a35",
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "native_csv_sha256": {
+    "rc2/baseline_audit_M15.csv": "7100f230b9f368ce90771891d95003e25ec142aa0ef6765bc5555b9824885acb",
+    "rc2/baseline_audit_M30.csv": "36ccdbcce2b01360fd0b83beddf8186625ea002b2aeded2ba7d91ec7520c7415",
+    "rc2/baseline_audit_M5.csv": "87b9649a039e955a28a2a3c09d483298e59498f6d0367a9660abb3b175a0e22c",
+    "rc2/baseline_indicator_M15.csv": "45ab1fa9ac3807c58147f976b7b8e3bfb4be7f3dcb9d068980eea77588ddee94",
+    "rc2/baseline_indicator_M30.csv": "2a25286d985b17dc8ab6dd58fb4483f72bfc826063886a4026917554ef887eb2",
+    "rc2/baseline_indicator_M5.csv": "d69dc5cc3791b43b492764815cf1390cfc8d1686f37943911a61aa8a50de5f9a",
+    "rc2/feature_audit_M15.csv": "7100f230b9f368ce90771891d95003e25ec142aa0ef6765bc5555b9824885acb",
+    "rc2/feature_audit_M30.csv": "36ccdbcce2b01360fd0b83beddf8186625ea002b2aeded2ba7d91ec7520c7415",
+    "rc2/feature_audit_M5.csv": "87b9649a039e955a28a2a3c09d483298e59498f6d0367a9660abb3b175a0e22c",
+    "rc2/feature_indicator_M15.csv": "ac90745b6f06c3fd0fb3b536fcf2f1243fd98afc035922572ef36c62083f3817",
+    "rc2/feature_indicator_M30.csv": "4325013227fff7b259abd0ab72360c237a89f471ba5f3e1d39e1e71b2898319c",
+    "rc2/feature_indicator_M5.csv": "233af3a4524929e876eba229e416f741e6e28440e0df9205af2078545ac8c9da",
+    "rc2/pressure_context_H1.csv": "19008529dd78cfe76ce844e7fb5fb5af6f665dcdc3fc0f0088ffe6f8f5dd39d8",
+    "rc2/pressure_repeat_M30.csv": "4325013227fff7b259abd0ab72360c237a89f471ba5f3e1d39e1e71b2898319c",
+    "rc2/pressure_repeat_M5.csv": "0934f582bbab72e7a71e9eaa94b583c121a65298707702927b238a11b8420cee",
+    "rc2/pressure_tick_M15.csv": "a8c8501dc9387650431a2c916bb062d1220c631fdfefa136c7e3827379abe2b3",
+    "rc2/pressure_tick_M30.csv": "9f584055922f39599e2cd1e609c8c49e6821611c72ae49e3d201e91ca30915b8",
+    "rc2/pressure_tick_M5.csv": "ad5647192fa69f741e6f3cb119dd0a73a33ead7308c107ed461a65f7958ab4ae",
+    "s5/baseline_audit_M5.csv": "96a0552d6fb7efe361e7d95507693fe1b72b93841e9a80b9e679f0225ca3577f",
+    "s5/feature_audit_M5.csv": "96a0552d6fb7efe361e7d95507693fe1b72b93841e9a80b9e679f0225ca3577f"
+  }
+}

@@ -1,0 +1,63 @@
+// Presentation only. The RC2 grid retains six logical columns, each spanning two strip segments.
+f_rcPressureWidgetLayout() =>
+    for row in array.from(22, 24)
+        for col = 0 to 8 by 4
+            table.merge_cells(rcViewTable, col, row, col + 3, row)
+    table.merge_cells(rcViewTable, 0, 25, 11, 25)
+
+f_rcPressureTenths(float buy) =>
+    int(math.round(buy * 10.0))
+
+f_rcPressurePercent(int tenths) =>
+    na(tenths) ? "—" : str.tostring(tenths / 10.0, "0.0") + "%"
+
+f_rcPressureCaption(string mode) =>
+    switch mode
+        "TICK" => "TICK VOL"
+        "FALLBACK" => "PROXY*"
+        "WARMUP" => "WARMUP"
+        "UNAVAILABLE" => "NO DATA"
+        => "PROXY"
+
+f_rcPressureTooltip(RcPressureReading reading) =>
+    string detail = switch reading.mode
+        "TICK" => "Tick-volume-weighted directional proxy"
+        "FALLBACK" => "OHLC directional proxy\nTick volume is unavailable or invalid in this window"
+        "WARMUP" => "Waiting for " + str.tostring(rcPressureLookback) + " closed source bars"
+        "UNAVAILABLE" => "Closed source data unavailable"
+        => "OHLC directional proxy"
+    detail + "\n" + f_rcViewUtc(reading.closed)
+
+f_rcPressureComparison(int col, string frame, RcPressureReading reading) =>
+    int buyTenths = f_rcPressureTenths(reading.buy)
+    string labelText = frame + " B" + f_rcPressurePercent(buyTenths) + (reading.mode == "FALLBACK" ? "*" : "")
+    string tip = "BUY " + f_rcPressurePercent(buyTenths) + "  ·  SELL " +
+         f_rcPressurePercent(1000 - buyTenths) + "\n" + f_rcPressureTooltip(reading)
+    f_rcViewCell(col, 24, labelText, rcViewMuted, rcViewGraphite, rcViewSmall, text.align_center, false, tip)
+
+f_rcPressureWidget() =>
+    int buyTenths = f_rcPressureTenths(rcPressureView.buy)
+    bool available = not na(buyTenths)
+    string tip = f_rcPressureTooltip(rcPressureView)
+    f_rcViewCell(0, 22, "BUY " + f_rcPressurePercent(buyTenths), available ? rcViewBuy : rcViewMuted,
+         rcViewPanel, rcViewSmall, text.align_center, true, tip, true)
+    f_rcViewCell(2, 22, f_rcPressureCaption(rcPressureView.mode), available ? rcViewGold : rcViewMuted,
+         rcViewRaised, rcViewSmall, text.align_center, true, tip)
+    f_rcViewCell(4, 22, "SELL " + f_rcPressurePercent(1000 - buyTenths), available ? rcViewSell : rcViewMuted,
+         rcViewPanel, rcViewSmall, text.align_center, true, tip, true)
+    int buySegments = int(math.round(rcPressureView.buy * 12 / 100.0))
+    for col = 0 to 11
+        color segmentColor = not available ? rcViewRaised : col < buySegments ? rcViewBuy : rcViewSell
+        table.cell(rcViewTable, col, 23, "", width=rcViewColumn / 2, height=0.65, bgcolor=segmentColor, text_size=1, tooltip=tip)
+    if rcPressureCompare
+        f_rcPressureComparison(0, "M5", rcPressureViewM5)
+        f_rcPressureComparison(2, "M15", rcPressureViewM15)
+        f_rcPressureComparison(4, "H1", rcPressureViewH1)
+    if rcViewAudit
+        string weighting = rcPressureView.mode == "TICK" ? "Tick volume weighted" : "Equal weight"
+        string method = "  EXPERIMENTAL · " + str.tostring(rcPressureLookback) + " CLOSED BARS\n" +
+             "  Close in high–low range · " + weighting
+        string auditTip = "Mean of (close − low) / (high − low). A flat bar contributes 50%.\n" +
+             "Tick weighting falls back to equal weights if the window lacks valid tick volume.\n" +
+             "M5/M15/H1 row shows BUY pressure. These values are directional proxies."
+        f_rcViewCell(0, 25, method, rcViewMuted, rcViewGraphite, rcViewSmall, text.align_left, false, auditTip)

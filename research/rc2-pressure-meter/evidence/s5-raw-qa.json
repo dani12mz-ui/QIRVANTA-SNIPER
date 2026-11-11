@@ -1,0 +1,382 @@
+{
+  "status": "PARTIALLY_COMPLETE",
+  "baseline_source_commit": "cb848e1e4d6d2686c524ac1a9136804748e9f577",
+  "audit_mode": "S5 RAW Parity",
+  "frames": {
+    "M5": {
+      "exports": {
+        "baseline_indicator": {
+          "status": "MISSING_EVIDENCE",
+          "file": "baseline_indicator_M5.csv"
+        },
+        "feature_indicator": {
+          "status": "MISSING_EVIDENCE",
+          "file": "feature_indicator_M5.csv"
+        },
+        "baseline_audit": {
+          "status": "PARSED",
+          "file": "baseline_audit_M5.csv",
+          "csv_sha256": "96a0552d6fb7efe361e7d95507693fe1b72b93841e9a80b9e679f0225ca3577f",
+          "context_sha256": "a256a4c6afc921a11c91a1dca186b178c69025c43965df06573b2d592245516f",
+          "bars": 1027,
+          "chart_first_open_ms": 1793870700000,
+          "first_logged_bar_index": 162,
+          "first_logged_open_ms": 1793922900000,
+          "last_logged_bar_index": 1188,
+          "last_logged_close_ms": 1794414600000,
+          "starts_at_first_loaded_bar": false,
+          "end_marker_present": true,
+          "events": {
+            "core": {
+              "WATCH": 45,
+              "CANCELLED": 22,
+              "REJECTED": 6,
+              "EXPIRED": 5,
+              "CONFIRMED": 12
+            },
+            "ready": {
+              "SELL": 6,
+              "BUY": 6
+            },
+            "native": {
+              "NATIVE_ADMITTED": 11,
+              "NATIVE_SUBMITTED": 11,
+              "NATIVE_ENTRY": 11,
+              "NATIVE_EXIT_0": 1,
+              "NATIVE_STOP_SCHEDULED": 5,
+              "NATIVE_BLOCKED": 1,
+              "NATIVE_EXIT_1": 1,
+              "NATIVE_EXIT_2": 1,
+              "NATIVE_CLOSED": 11,
+              "NATIVE_EXIT_3": 1,
+              "NATIVE_EXIT_4": 1,
+              "NATIVE_EXIT_5": 1,
+              "NATIVE_EXIT_6": 1,
+              "NATIVE_EXIT_7": 1,
+              "NATIVE_EXIT_8": 1,
+              "NATIVE_DIVERGENCE": 1,
+              "NATIVE_EXIT_9": 1,
+              "NATIVE_EXIT_10": 1,
+              "NATIVE_EXIT_11": 1,
+              "NATIVE_EXIT_12": 1,
+              "NATIVE_EXIT_13": 1,
+              "NATIVE_EXIT_14": 1,
+              "NATIVE_EXIT_15": 1,
+              "NATIVE_EXIT_16": 1,
+              "NATIVE_EXIT_17": 1,
+              "NATIVE_EXIT_18": 1,
+              "NATIVE_EXIT_19": 1,
+              "NATIVE_EXIT_20": 1,
+              "NATIVE_EXIT_21": 1,
+              "NATIVE_EXIT_22": 1,
+              "NATIVE_EXIT_23": 1,
+              "NATIVE_EXIT_24": 1,
+              "NATIVE_EXIT_25": 1,
+              "NATIVE_EXIT_26": 1,
+              "NATIVE_EXIT_27": 1,
+              "NATIVE_EXIT_28": 1,
+              "NATIVE_EXIT_29": 1,
+              "NATIVE_EXIT_30": 1,
+              "NATIVE_EXIT_31": 1,
+              "NATIVE_EXIT_32": 1
+            },
+            "alerts": {}
+          },
+          "rc2": {
+            "status": "VERIFIED",
+            "states": {
+              "ENTRY": 11,
+              "TP1": 5,
+              "PROFIT_LOCK": 5,
+              "SL": 22,
+              "EXIT": 11,
+              "TP2": 3,
+              "TP3": 2
+            },
+            "native_strategy_properties": {
+              "mode": "S5 RAW Parity",
+              "symbol": "OANDA:XAUUSD",
+              "timeframe": "5",
+              "last_close_ms": 1794414600000,
+              "first_open_ms": 1793870700000,
+              "currency": "USD",
+              "initial_capital": 100000,
+              "netprofit": -19.888,
+              "openprofit": 0,
+              "grossprofit": 70.582,
+              "grossloss": 90.47,
+              "max_drawdown": 49.176,
+              "position_size": 0,
+              "closed_parts": 33,
+              "win_parts": 11,
+              "loss_parts": 22,
+              "campaign_count": 11
+            },
+            "actual_partial_commission_usd": 11.549999999999999,
+            "mean_emulator_partial_runup_usd": 4.345606060606061,
+            "mean_emulator_partial_drawdown_usd": 3.4277272727272727,
+            "native_lifecycle_anomalies": []
+          }
+        },
+        "feature_audit": {
+          "status": "PARSED",
+          "file": "feature_audit_M5.csv",
+          "csv_sha256": "96a0552d6fb7efe361e7d95507693fe1b72b93841e9a80b9e679f0225ca3577f",
+          "context_sha256": "a256a4c6afc921a11c91a1dca186b178c69025c43965df06573b2d592245516f",
+          "bars": 1027,
+          "chart_first_open_ms": 1793870700000,
+          "first_logged_bar_index": 162,
+          "first_logged_open_ms": 1793922900000,
+          "last_logged_bar_index": 1188,
+          "last_logged_close_ms": 1794414600000,
+          "starts_at_first_loaded_bar": false,
+          "end_marker_present": true,
+          "events": {
+            "core": {
+              "WATCH": 45,
+              "CANCELLED": 22,
+              "REJECTED": 6,
+              "EXPIRED": 5,
+              "CONFIRMED": 12
+            },
+            "ready": {
+              "SELL": 6,
+              "BUY": 6
+            },
+            "native": {
+              "NATIVE_ADMITTED": 11,
+              "NATIVE_SUBMITTED": 11,
+              "NATIVE_ENTRY": 11,
+              "NATIVE_EXIT_0": 1,
+              "NATIVE_STOP_SCHEDULED": 5,
+              "NATIVE_BLOCKED": 1,
+              "NATIVE_EXIT_1": 1,
+              "NATIVE_EXIT_2": 1,
+              "NATIVE_CLOSED": 11,
+              "NATIVE_EXIT_3": 1,
+              "NATIVE_EXIT_4": 1,
+              "NATIVE_EXIT_5": 1,
+              "NATIVE_EXIT_6": 1,
+              "NATIVE_EXIT_7": 1,
+              "NATIVE_EXIT_8": 1,
+              "NATIVE_DIVERGENCE": 1,
+              "NATIVE_EXIT_9": 1,
+              "NATIVE_EXIT_10": 1,
+              "NATIVE_EXIT_11": 1,
+              "NATIVE_EXIT_12": 1,
+              "NATIVE_EXIT_13": 1,
+              "NATIVE_EXIT_14": 1,
+              "NATIVE_EXIT_15": 1,
+              "NATIVE_EXIT_16": 1,
+              "NATIVE_EXIT_17": 1,
+              "NATIVE_EXIT_18": 1,
+              "NATIVE_EXIT_19": 1,
+              "NATIVE_EXIT_20": 1,
+              "NATIVE_EXIT_21": 1,
+              "NATIVE_EXIT_22": 1,
+              "NATIVE_EXIT_23": 1,
+              "NATIVE_EXIT_24": 1,
+              "NATIVE_EXIT_25": 1,
+              "NATIVE_EXIT_26": 1,
+              "NATIVE_EXIT_27": 1,
+              "NATIVE_EXIT_28": 1,
+              "NATIVE_EXIT_29": 1,
+              "NATIVE_EXIT_30": 1,
+              "NATIVE_EXIT_31": 1,
+              "NATIVE_EXIT_32": 1
+            },
+            "alerts": {}
+          },
+          "rc2": {
+            "status": "VERIFIED",
+            "states": {
+              "ENTRY": 11,
+              "TP1": 5,
+              "PROFIT_LOCK": 5,
+              "SL": 22,
+              "EXIT": 11,
+              "TP2": 3,
+              "TP3": 2
+            },
+            "native_strategy_properties": {
+              "mode": "S5 RAW Parity",
+              "symbol": "OANDA:XAUUSD",
+              "timeframe": "5",
+              "last_close_ms": 1794414600000,
+              "first_open_ms": 1793870700000,
+              "currency": "USD",
+              "initial_capital": 100000,
+              "netprofit": -19.888,
+              "openprofit": 0,
+              "grossprofit": 70.582,
+              "grossloss": 90.47,
+              "max_drawdown": 49.176,
+              "position_size": 0,
+              "closed_parts": 33,
+              "win_parts": 11,
+              "loss_parts": 22,
+              "campaign_count": 11
+            },
+            "actual_partial_commission_usd": 11.549999999999999,
+            "mean_emulator_partial_runup_usd": 4.345606060606061,
+            "mean_emulator_partial_drawdown_usd": 3.4277272727272727,
+            "native_lifecycle_anomalies": []
+          }
+        }
+      },
+      "parity": {
+        "indicator": {
+          "status": "MISSING_EVIDENCE"
+        },
+        "audit": {
+          "status": "MATCH",
+          "coverage": "BOUNDED_WINDOW",
+          "rows": {
+            "core": 90,
+            "ready": 12,
+            "native": 84,
+            "RC2_NATIVE_PART": 33,
+            "RC2_NATIVE_ALERT": 27,
+            "RC2_AUDIT_SUMMARY": 1
+          },
+          "native_strategy_summary": {
+            "mode": "S5 RAW Parity",
+            "symbol": "OANDA:XAUUSD",
+            "timeframe": "5",
+            "last_close_ms": 1794414600000,
+            "first_open_ms": 1793870700000,
+            "currency": "USD",
+            "initial_capital": 100000,
+            "netprofit": "-19.888",
+            "openprofit": 0,
+            "grossprofit": "70.582",
+            "grossloss": "90.47",
+            "max_drawdown": "49.176",
+            "position_size": 0,
+            "closed_parts": 33,
+            "win_parts": 11,
+            "loss_parts": 22,
+            "campaign_count": 11
+          },
+          "exported_partial_cash_pnl_usd": "-19.888",
+          "native_profit_factor": "0.7801702221730960539405327733"
+        }
+      },
+      "pressure": {
+        "default": {
+          "status": "MISSING_EVIDENCE",
+          "file": "feature_indicator_M5.csv"
+        },
+        "compare": {
+          "status": "MISSING_EVIDENCE",
+          "file": "pressure_compare_M5.csv"
+        },
+        "tick": {
+          "status": "MISSING_EVIDENCE",
+          "file": "pressure_tick_M5.csv"
+        }
+      },
+      "repeat": {
+        "status": "MISSING_EVIDENCE",
+        "file": "pressure_repeat_M5.csv"
+      }
+    },
+    "M15": {
+      "exports": {
+        "baseline_indicator": {
+          "status": "MISSING_EVIDENCE",
+          "file": "baseline_indicator_M15.csv"
+        },
+        "feature_indicator": {
+          "status": "MISSING_EVIDENCE",
+          "file": "feature_indicator_M15.csv"
+        },
+        "baseline_audit": {
+          "status": "MISSING_EVIDENCE",
+          "file": "baseline_audit_M15.csv"
+        },
+        "feature_audit": {
+          "status": "MISSING_EVIDENCE",
+          "file": "feature_audit_M15.csv"
+        }
+      },
+      "parity": {
+        "indicator": {
+          "status": "MISSING_EVIDENCE"
+        },
+        "audit": {
+          "status": "MISSING_EVIDENCE"
+        }
+      },
+      "pressure": {
+        "default": {
+          "status": "MISSING_EVIDENCE",
+          "file": "feature_indicator_M15.csv"
+        },
+        "compare": {
+          "status": "MISSING_EVIDENCE",
+          "file": "pressure_compare_M15.csv"
+        },
+        "tick": {
+          "status": "MISSING_EVIDENCE",
+          "file": "pressure_tick_M15.csv"
+        }
+      },
+      "repeat": {
+        "status": "MISSING_EVIDENCE",
+        "file": "pressure_repeat_M15.csv"
+      }
+    },
+    "M30": {
+      "exports": {
+        "baseline_indicator": {
+          "status": "MISSING_EVIDENCE",
+          "file": "baseline_indicator_M30.csv"
+        },
+        "feature_indicator": {
+          "status": "MISSING_EVIDENCE",
+          "file": "feature_indicator_M30.csv"
+        },
+        "baseline_audit": {
+          "status": "MISSING_EVIDENCE",
+          "file": "baseline_audit_M30.csv"
+        },
+        "feature_audit": {
+          "status": "MISSING_EVIDENCE",
+          "file": "feature_audit_M30.csv"
+        }
+      },
+      "parity": {
+        "indicator": {
+          "status": "MISSING_EVIDENCE"
+        },
+        "audit": {
+          "status": "MISSING_EVIDENCE"
+        }
+      },
+      "pressure": {
+        "default": {
+          "status": "MISSING_EVIDENCE",
+          "file": "feature_indicator_M30.csv"
+        },
+        "compare": {
+          "status": "MISSING_EVIDENCE",
+          "file": "pressure_compare_M30.csv"
+        },
+        "tick": {
+          "status": "MISSING_EVIDENCE",
+          "file": "pressure_tick_M30.csv"
+        }
+      },
+      "repeat": {
+        "status": "MISSING_EVIDENCE",
+        "file": "pressure_repeat_M30.csv"
+      }
+    }
+  },
+  "independent_h1_context": {
+    "status": "MISSING_EVIDENCE",
+    "file": "pressure_context_H1.csv"
+  },
+  "scope": "Pine Logs verify exported history, source availability and emulator events. Repeat compares separately supplied exports of the same bounded chart context. Screenshots, alert delivery and intrabar display require separate observations."
+}
