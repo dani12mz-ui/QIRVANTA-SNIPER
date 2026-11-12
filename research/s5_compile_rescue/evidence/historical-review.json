@@ -1,0 +1,29 @@
+{
+  "status": "MATCH",
+  "scope": "DTV_REVIEW payload and H4 display screenshots",
+  "rows": 1,
+  "payload": {
+    "symbol": "OANDA:XAUUSD",
+    "frame": "5",
+    "open_ms": 1794390000000,
+    "known_ms": 1794390300000,
+    "as_of_ms": 1794390300000,
+    "direction": "NONE",
+    "signals": [],
+    "permission": "BUY READY",
+    "permission_source": "S5 · RC2",
+    "permission_known_ms": 1794390300000,
+    "permission_reason": "Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.",
+    "permission_freshness": "AT CLOSE · 0m",
+    "plan_visible": true,
+    "paper_phase": 1,
+    "paper_plan_id": "S5|OANDA:XAUUSD|5|2|1|1794390000000|1794390300000",
+    "paper_capacity": false,
+    "s5_stage": "READY",
+    "review": true
+  },
+  "csv_sha256": {
+    "M5-5528556-review.csv": "2bec7e864099ec26cc9c95fef6c8ccca40ee49d2714d3d861c7ed21f49a24f2c",
+    "M5-slim-review.csv": "abe89689f4cc4c662d50f21037101126c13ff8b7970d4ad61521a07fbc43a5fc"
+  }
+}

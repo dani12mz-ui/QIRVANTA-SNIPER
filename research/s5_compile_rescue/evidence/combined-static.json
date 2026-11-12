@@ -1,0 +1,24 @@
+{
+  "status": "STATIC_CHECKS_PASSED",
+  "slim_sha256": "96c06840e856a079ed6a45840967ee0e1ec25ed5a9f86cf24bf83b9b9cb7de4a",
+  "combined_sha256": "023c9eaf8a0e0085fd187b4bf9b5f76eb48017dd187c5e5b04cb8e542ff852ce",
+  "only_core_change": "drawing quotas 42/16/6 to 60/26/12; all other core bytes identical",
+  "slim_lines": 2646,
+  "combined_lines": 2805,
+  "zone_lines": 159,
+  "slim_lexical_tokens": 25492,
+  "combined_lexical_tokens": 27269,
+  "combined_calls": {
+    "alert": 1,
+    "alertcondition": 2,
+    "indicator": 1,
+    "input.bool": 25,
+    "input.int": 2,
+    "input.string": 3,
+    "input.time": 3,
+    "plot": 1,
+    "request.security": 6,
+    "request.security_lower_tf": 2
+  },
+  "forward_seal_sha256": "09181ecaf9e30cde62c5203b524cb458d808a07c24029e961e32bb25c474afd1"
+}

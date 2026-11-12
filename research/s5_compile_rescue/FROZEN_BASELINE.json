@@ -1,0 +1,147 @@
+{
+  "baseline_commit": "5528556584910faa75f1b76d2d96f14d3852e6e7",
+  "baseline_sha256": "a9955a1ed3f402f1b8674b3ef2fabfc3d6578bb20f61d8a7d12ade5f527353a2",
+  "archive": "research/final_htf_data_integrity/evidence/native-pairs.zip",
+  "archive_sha256": "33a526caaa71c401b21547f3dff9fa1080ac775bfb2b030e75beb91faae886d4",
+  "archive_members_sha256": {
+    "baseline-M5.csv": "ca14454c68c1d8bdd1c0261992b8ef6ec42370d1818a45cd17b0c675345ca5e0",
+    "candidate-M5.csv": "ca14454c68c1d8bdd1c0261992b8ef6ec42370d1818a45cd17b0c675345ca5e0",
+    "baseline-M15.csv": "a98ca52272bfce6e9da494d7febdc302e1eb704e03a9a9c253b023143e891676",
+    "candidate-M15.csv": "a98ca52272bfce6e9da494d7febdc302e1eb704e03a9a9c253b023143e891676",
+    "baseline-M30.csv": "cd689cb884bc23ae343e6eb9ddb32a5eea944c8e92e36d8937c25a28e4a71ebd",
+    "candidate-M30.csv": "cd689cb884bc23ae343e6eb9ddb32a5eea944c8e92e36d8937c25a28e4a71ebd"
+  },
+  "symbol": "OANDA:XAUUSD",
+  "chart_type": "standard candles",
+  "timezone": "UTC",
+  "first_target_close": "2026-11-11T00:00:00Z",
+  "last_target_close": "2026-11-11T17:30:00Z",
+  "calc_bars_count": 1200,
+  "max_bars_back": 1000,
+  "frames": {
+    "M5": {
+      "first_loaded_open_utc": "2026-11-06T00:20:00Z",
+      "expected_closes": 211,
+      "raw_paper_events": 32,
+      "core_ready_compatibility": {
+        "core": 42,
+        "ready": 6,
+        "alerts": 44
+      },
+      "shadow_prefix_confirmed_bars": 1199,
+      "settings": {
+        "pressure": {
+          "lookback": 10,
+          "weighted": false,
+          "comparison": false
+        }
+      },
+      "normalized_stream_rows": {
+        "DTV_ALERT": 7,
+        "DTV_LEDGER": 211,
+        "DTV_PAPER": 32,
+        "DTV_STATE": 211,
+        "PR_CTX": 211,
+        "PR_END": 1,
+        "PR_SAMPLE": 211,
+        "RC1_ALERT": 38,
+        "RC1_CORE": 42,
+        "RC1_CTX": 211,
+        "RC1_END": 1,
+        "RC1_READY": 6,
+        "RC2_ALERT": 38,
+        "RC2_EARLY": 17
+      },
+      "last_loaded_confirmed_close_utc": "2026-11-12T08:15:00Z"
+    },
+    "M15": {
+      "first_loaded_open_utc": "2026-10-26T06:30:00Z",
+      "expected_closes": 71,
+      "raw_paper_events": 6,
+      "core_ready_compatibility": {
+        "core": 20,
+        "ready": 2,
+        "alerts": 19
+      },
+      "shadow_prefix_confirmed_bars": 1199,
+      "settings": {
+        "pressure": {
+          "lookback": 10,
+          "weighted": false,
+          "comparison": false
+        }
+      },
+      "normalized_stream_rows": {
+        "DTV_ALERT": 12,
+        "DTV_LEDGER": 71,
+        "DTV_PAPER": 6,
+        "DTV_STATE": 71,
+        "PR_CTX": 71,
+        "PR_END": 1,
+        "PR_SAMPLE": 71,
+        "RC1_ALERT": 17,
+        "RC1_CORE": 20,
+        "RC1_CTX": 71,
+        "RC1_END": 1,
+        "RC1_READY": 2,
+        "RC2_ALERT": 17,
+        "RC2_EARLY": 6
+      },
+      "last_loaded_confirmed_close_utc": "2026-11-12T08:15:00Z"
+    },
+    "M30": {
+      "first_loaded_open_utc": "2026-10-07T05:30:00Z",
+      "expected_closes": 36,
+      "raw_paper_events": 0,
+      "core_ready_compatibility": {
+        "core": 0,
+        "ready": 0,
+        "alerts": 0
+      },
+      "shadow_prefix_confirmed_bars": 1199,
+      "settings": {
+        "pressure": {
+          "lookback": 10,
+          "weighted": false,
+          "comparison": false
+        }
+      },
+      "normalized_stream_rows": {
+        "DTV_ALERT": 1,
+        "DTV_LEDGER": 36,
+        "DTV_STATE": 36,
+        "PR_CTX": 36,
+        "PR_END": 1,
+        "PR_SAMPLE": 36,
+        "RC1_CTX": 36,
+        "RC1_END": 1,
+        "RC2_EARLY": 5
+      },
+      "last_loaded_confirmed_close_utc": "2026-11-12T08:00:00Z"
+    }
+  },
+  "comparison": "Exact full RC1/RC2 CORE, READY, geometry, IDs, eligibility, risk, RAW PAPER execution/occupancy/P&L and DD, Shadow and Early Watch, Pressure, H4/Review. Require frozen contexts before reporting parity. Preserve original exports in place. Reference outputs are not rescue results.",
+  "reference_csv_role": "candidate-M*.csv from the original H4 display QA contains exact 5528556 outputs. The older baseline-M*.csv happens to be byte-identical; use the files for 5528556 as the frozen reference.",
+  "common_parity_overrides": {
+    "Export RC2 QA journal": true,
+    "QA start UTC": "2026-11-11T00:00:00Z",
+    "QA end UTC": "2026-11-11T17:30:00Z",
+    "Experimental range filter": false,
+    "Experimental EARLY WATCH": true,
+    "EARLY WATCH (research) alert": false,
+    "WATCH": true,
+    "CONFIRMED": true,
+    "READY": true,
+    "INVALIDATED / EXPIRED": true,
+    "Export pressure QA journal": true,
+    "Покажи BUY / SELL Pressure": true,
+    "Затворени свещи": 10,
+    "Тегла по tick volume": false,
+    "Сравни M5 / M15 / H1": false,
+    "Export Direct Trend Breakout QA journal": true,
+    "Покажи наблюдение": true,
+    "Известия за потвърден shadow пробив": true,
+    "Исторически преглед": false
+  },
+  "settings_rule": "Replay inputs above are evidenced by streams in the reference CSV; use pinned source defaults for other inputs and verify the actually observed session. Archive has no DTV_REVIEW rows. Exercise historical review independently with matching settings, known-at times and warmup; do not substitute source defaults for observations."
+}

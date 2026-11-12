@@ -1,0 +1,4188 @@
+{
+  "status": "STATIC_CHECKS_PASSED",
+  "baseline_commit": "5528556584910faa75f1b76d2d96f14d3852e6e7",
+  "baseline": {
+    "sha256": "a9955a1ed3f402f1b8674b3ef2fabfc3d6578bb20f61d8a7d12ade5f527353a2",
+    "lines": 3593,
+    "bytes": 206579,
+    "lexical_tokens": 36330,
+    "loop_sites": {
+      "for": 45,
+      "while": 2
+    },
+    "function_declarations": 164,
+    "functions_reachable_from_global": 135,
+    "unreachable_functions_syntactically": [
+      "f_alertSide",
+      "f_allowedUnifiedEvent",
+      "f_biasSymbol",
+      "f_clockUtc",
+      "f_eventTitle",
+      "f_humanReason",
+      "f_isRiskEvent",
+      "f_model",
+      "f_nativeMessage",
+      "f_price",
+      "f_readableEvent",
+      "f_short",
+      "f_side",
+      "f_tvFamily",
+      "f_tvManagePlan",
+      "f_tvManagedStop",
+      "f_tvManagementCloseReason",
+      "f_tvManagementQty",
+      "f_tvNativeOpenRejection",
+      "f_tvNextStructure",
+      "f_tvPendingReason",
+      "f_tvProtection",
+      "f_tvProtectionBoundary",
+      "f_tvQualityLabel",
+      "f_tvR",
+      "f_tvRegimeLabel",
+      "f_tvStrategyName",
+      "f_tvTargets",
+      "f_tvTighten"
+    ],
+    "function_lines": {
+      "f_addClosed": 1297,
+      "f_alertSide": 1685,
+      "f_allowedUnifiedEvent": 1711,
+      "f_biasSymbol": 1687,
+      "f_capture": 802,
+      "f_clear": 741,
+      "f_clockUtc": 1686,
+      "f_cooldown": 799,
+      "f_day": 614,
+      "f_dtAddReason": 2472,
+      "f_dtEmit": 2541,
+      "f_dtExpired": 2644,
+      "f_dtGeometry": 2568,
+      "f_dtIdentity": 2466,
+      "f_dtInt": 2460,
+      "f_dtNumber": 2457,
+      "f_dtOffer": 2612,
+      "f_dtRank": 2532,
+      "f_dtReasons": 2469,
+      "f_dtRemember": 2647,
+      "f_dtRoundAway": 2475,
+      "f_dtString": 2463,
+      "f_dvActive": 2741,
+      "f_dvAge": 3183,
+      "f_dvBiasRow": 3335,
+      "f_dvBreakIndex": 2512,
+      "f_dvChoose": 3151,
+      "f_dvChooseOpportunity": 3163,
+      "f_dvClockAge": 3190,
+      "f_dvConflictLines": 3237,
+      "f_dvContextLine": 3254,
+      "f_dvCountertrend": 3193,
+      "f_dvDashboard": 3267,
+      "f_dvEarlyAtClose": 2787,
+      "f_dvEmptyView": 2738,
+      "f_dvFresh": 2744,
+      "f_dvFreshView": 2794,
+      "f_dvJournalState": 3577,
+      "f_dvObservationReason": 3217,
+      "f_dvOpportunityState": 3170,
+      "f_dvPresent": 3148,
+      "f_dvReadPermission": 2840,
+      "f_dvReasonLabel": 3196,
+      "f_dvS5AtClose": 2778,
+      "f_dvShadowAtClose": 2747,
+      "f_dvShadowEvent": 2515,
+      "f_dvShadowSource": 2506,
+      "f_dvSignalJson": 2799,
+      "f_dvSignalTip": 3231,
+      "f_dvSignalsJson": 2805,
+      "f_dvSourceLine": 3226,
+      "f_dvState": 3159,
+      "f_emit": 630,
+      "f_enabled": 606,
+      "f_escape": 611,
+      "f_eventTitle": 1702,
+      "f_fast": 872,
+      "f_finish": 1334,
+      "f_gate": 1464,
+      "f_humanReason": 1689,
+      "f_id": 613,
+      "f_int": 609,
+      "f_isRiskEvent": 1709,
+      "f_json": 677,
+      "f_makePlan": 705,
+      "f_model": 605,
+      "f_nativeMessage": 1704,
+      "f_nearest": 617,
+      "f_num": 608,
+      "f_openRejection": 1353,
+      "f_pick": 1481,
+      "f_planEvent": 654,
+      "f_policyReason": 737,
+      "f_price": 607,
+      "f_q": 612,
+      "f_queue": 1454,
+      "f_rc2Append": 3508,
+      "f_rc2EarlyPayload": 3509,
+      "f_rc2FilterPass": 1736,
+      "f_rc2Session": 2075,
+      "f_rc2Trend": 2063,
+      "f_rc2TrendText": 2074,
+      "f_rc2TrendValue": 2056,
+      "f_rcCore": 1776,
+      "f_rcPayload": 1777,
+      "f_rcPressureCaption": 3353,
+      "f_rcPressureComparison": 3370,
+      "f_rcPressureFrame": 2291,
+      "f_rcPressureLog": 2331,
+      "f_rcPressureNum": 2329,
+      "f_rcPressurePercent": 3350,
+      "f_rcPressurePrevious": 2287,
+      "f_rcPressureRaw": 2263,
+      "f_rcPressureReading": 2311,
+      "f_rcPressureTenths": 3347,
+      "f_rcPressureTooltip": 3361,
+      "f_rcPressureWidget": 3377,
+      "f_rcPressureWidgetLayout": 3341,
+      "f_rcSide": 1758,
+      "f_rcStage": 1759,
+      "f_rcStageText": 1767,
+      "f_rcViewCell": 3140,
+      "f_rcViewClip": 2937,
+      "f_rcViewClock": 2934,
+      "f_rcViewPlanLevel": 3046,
+      "f_rcViewPrice": 2928,
+      "f_rcViewRemember": 2940,
+      "f_rcViewSignal": 2945,
+      "f_rcViewStructureLine": 3064,
+      "f_rcViewUtc": 2931,
+      "f_rcViewZone": 3059,
+      "f_readableEvent": 1721,
+      "f_realize": 1315,
+      "f_reason": 624,
+      "f_recordDecision": 780,
+      "f_retest": 811,
+      "f_reversal": 905,
+      "f_short": 610,
+      "f_side": 604,
+      "f_sqAlignment": 2955,
+      "f_sqClass": 2958,
+      "f_start": 754,
+      "f_step": 1378,
+      "f_stopRound": 615,
+      "f_takeTargets": 1361,
+      "f_targetRoom": 734,
+      "f_targetRound": 616,
+      "f_tvCandidate": 1071,
+      "f_tvClear": 1042,
+      "f_tvCommonReason": 1068,
+      "f_tvFamily": 680,
+      "f_tvFastGate": 1190,
+      "f_tvGrade": 692,
+      "f_tvLocalDay": 434,
+      "f_tvManagePlan": 1592,
+      "f_tvManagedStop": 1658,
+      "f_tvManagementCloseReason": 1674,
+      "f_tvManagementQty": 1561,
+      "f_tvNativeOpenRejection": 1640,
+      "f_tvNextStructure": 1581,
+      "f_tvOpeningRange": 398,
+      "f_tvPendingReason": 1644,
+      "f_tvProtection": 690,
+      "f_tvProtectionBoundary": 1570,
+      "f_tvQtyOnGrid": 1566,
+      "f_tvQualityLabel": 682,
+      "f_tvR": 686,
+      "f_tvRawEvent": 1064,
+      "f_tvRegimeLabel": 684,
+      "f_tvStamp": 1059,
+      "f_tvStart": 1051,
+      "f_tvStrategyName": 985,
+      "f_tvTargets": 683,
+      "f_tvText": 681,
+      "f_tvTighten": 1650,
+      "f_validPlan": 739,
+      "f_wfEvent": 1934,
+      "f_wfFlag": 1925,
+      "f_wfHtfContext": 1841,
+      "f_wfHtfSide": 1855,
+      "f_wfInt": 1922,
+      "f_wfLogId": 1931,
+      "f_wfNumber": 1919,
+      "f_wfSide": 1928
+    },
+    "function_body_digests": {
+      "f_addClosed": "01afe452ff42a2e7177a21bd7c1a51689c435851c579ad9db972b9aa7339e7d7",
+      "f_alertSide": "146c6f4480caede1453dcaddc673edf2953b5c8efd20ce1c0159738f681e5827",
+      "f_allowedUnifiedEvent": "c15afc8cd89f86c0bea94e49d9994ebcb2a4dc44775e6d473f3db9853206ddec",
+      "f_biasSymbol": "0b51d58cd17d2311cb4083116c79313d96d7324e54ae7a79790b3440bf45c012",
+      "f_capture": "0b9071ac3677aa4025ad08a5d6154500369daba3c4afc5458ebe3b3cd7faceac",
+      "f_clear": "d058aef5434224ab06ac8290888bbf56878b8f1d31ba4a78e0042047b2a3f2a1",
+      "f_clockUtc": "ae787af49788a6ece208eca07734824a308de69abcd6bbd86b45c07d2f73005f",
+      "f_cooldown": "4af3e5c385f49cdd74776a9ff525bc682a75448ecf9f655474848f0f62e5337e",
+      "f_day": "d233c5d8a26c7b1d65a807414503e823663bfaec7ed664e47b4d25387661f187",
+      "f_dtAddReason": "1db0ffbfdae85776ffbd9d4309258ad37a7649ec19e0400f18d5e7f5b0d4b26e",
+      "f_dtEmit": "c1a9eeb9df7770497ddb2a7225f5bbc11273a6e894405fd290b593040acebf55",
+      "f_dtExpired": "f85d6c6cab1719a0a8549571c09a838a4b6397de1083ea6c07551e4a98ae2bb6",
+      "f_dtGeometry": "c6588518d5c34cc778a3d47b6e49846dac5e63f8594bef595ccf986f7de73444",
+      "f_dtIdentity": "9823083f8b3cfc3fd32e457f822f9d49cbf4bfdaa153654ec853bd716c039642",
+      "f_dtInt": "b1a830345815e8efb77e91b9d55790b78ac4ac5425f2c8161435910a03e6570a",
+      "f_dtNumber": "f31663050959ec2d72a09b38acd106ba27cdcc0989ec6eb8a58bfdedc11457f1",
+      "f_dtOffer": "a71c4beaac3916e267daa1b4a765e4573185638428d3abb2f07c1362ff549b18",
+      "f_dtRank": "10b839c9a87a84eb0ae02715c772bc3ec874d2e805e08143446ecfa4535daca3",
+      "f_dtReasons": "efa95a59ebf788016ff46cf547fb08e735e30ac29694971e618f7cb311c4682b",
+      "f_dtRemember": "de9d9e6239cfe989a625d1502f5c41361afa968423a34ec7b8b7cf4a293378d0",
+      "f_dtRoundAway": "f508cacac7e063f33c7d8cc7d06bfeeb02e260c8b29f0b8c06bd8875b74fadca",
+      "f_dtString": "d261837987dab6383196fb399e28c670e3349ff1162d8beb0289548db14a97ae",
+      "f_dvActive": "baa4730a12b79b1cba528e1686dcd93ec366b41e463f1e1ef2270533a5960ece",
+      "f_dvAge": "d1d60b119df7ab6c473d61a4da89ce53815618b0e0c92a16965d854a21d255cd",
+      "f_dvBiasRow": "df6c58766def3cd2b05ed8d7fa4a143a10df9160c38a68541d2b7cdd54e9ab66",
+      "f_dvBreakIndex": "2d44e6aa54d3e57b47b65e1d0f3361f0cd25f4c580c311c16096cb33a6088f56",
+      "f_dvChoose": "9bd6d90fa2c3e948fcad2bc51b314cc23a9a658e66c2ad15545b5d15271a3cb2",
+      "f_dvChooseOpportunity": "676221a5e5163581b2a0362fb95cdb0016924163a9475cfe9a43b3fd9cee75ef",
+      "f_dvClockAge": "acca1e8016e0cef35ae853f37abe1817e6b6b8500f788ec8f8bf100a0451e16f",
+      "f_dvConflictLines": "7dae82513ed607438ec87a9cfe2e73bdea5834ddc08853100c19a41c788425f5",
+      "f_dvContextLine": "4c3d205b4281753bcadf097388e2b63d7f04171a739ad2fb00c217899ffaa58e",
+      "f_dvCountertrend": "3521f1e625165438795dcae7a073894771a0a81fb8611a17fc8fab9100ab9da5",
+      "f_dvDashboard": "2ce9226bacb71ef18ee00c2ea430715b1c6e892c6a852c7a21da0a391f397e96",
+      "f_dvEarlyAtClose": "1b5d9883f462f555025b1e9bd91fdfc80dec60fb14b666ced7d383e92a830731",
+      "f_dvEmptyView": "598d547ce9c1fcff3f62831a1601c5dd4f3b26d3fa8dc250227669bf75cb5f35",
+      "f_dvFresh": "8564b9b12a88dfbe97034737d2a57e9ae2fdef3c2568329755f188a46d5e7095",
+      "f_dvFreshView": "10b3ed1b28903578df99b19920bc534d63dd7ab7a51ad90a67fc1d1943eaef1a",
+      "f_dvJournalState": "3abf2360d85c7954a43046ae8bdbd6a540c17653933ebea2d9b816c1c3b5d969",
+      "f_dvObservationReason": "5fbe4c2f06cf8b37d28ecd5b7cfe64666bdcd86bf7857b258023908452b4d5de",
+      "f_dvOpportunityState": "e35c056f5549c014e08b163dc6a7858a7bee80445c9a5af78688a78a85372d63",
+      "f_dvPresent": "987c168d0508c5ed214a32ca2ea65b9221ff5faaf5fe88a86d10c36ff1e97701",
+      "f_dvReadPermission": "75d40435a1d8c6b98dc16e5372f01876f48a4011ed1c646146823abc6021c244",
+      "f_dvReasonLabel": "8b87bc4dcbf6d4a1ed5595e03ae7fff482ebd55fca74f97e4fee58f5a5a2be33",
+      "f_dvS5AtClose": "752f16a0858ac62112654f1c3ebf769c21ce9fc48b019ca893989447d2626109",
+      "f_dvShadowAtClose": "2e70d6a731a958a1ebfdd3e0cb4f2ddaad7234654b774c2300c4ed293baf8ac5",
+      "f_dvShadowEvent": "425845f62140647bb3be7d3be8073c6c5c1bbbc20a64bce10b1f6f00450f15cf",
+      "f_dvShadowSource": "8599367ef7169825c1d93f34483d6715376bb7dbedcf7bb6b7c4a0dbde8a2c5c",
+      "f_dvSignalJson": "c04c355f2c7821cb82d5934682f442d951233b2ebca21fd7138028492cd3aaca",
+      "f_dvSignalTip": "b91968ddce3e7d1e0c9a72d832ca3356fe0519847792e63d5833cba432b2e0ec",
+      "f_dvSignalsJson": "82acb33038f2c48a42c9e29bb005c1181acba80f0dca5921f22a0acc8754767a",
+      "f_dvSourceLine": "a0ee6c169deb2434bfd8de632386ece7b070a4f76b702006a9ac3bab67e5e606",
+      "f_dvState": "aef2837d93da8858fdc41f8bf0b99fcce3f4f256dee5059e1fad75a7b232a26e",
+      "f_emit": "351dd77788c2dbda96e81e91baa8b8aa0d6491bd00164e6c74639b0dc46b4d42",
+      "f_enabled": "415f542a3bd009a63c1fc1273d17b11ba16dc24831585ee09a2e990f2c5c108a",
+      "f_escape": "b56f4027b6df5e9bd50921f535e11c66c91751425e95a1931b989f20ce661116",
+      "f_eventTitle": "9444e9b6225d35ba07d524714f8372876c822cce497b6099a4d52b35575677f9",
+      "f_fast": "fe727fa076627be43732a6e743506139cfec6ecbb31ead69da2377f199b099f5",
+      "f_finish": "a9e1b0eef2d15e8af3ea8b2d6d3b5016a15c7027ed36ff37cae9f1bc7e412111",
+      "f_gate": "f374c955bb8e5fdef8d3566be09798cbd1dae142a74592d70fa71d87b5d37a0a",
+      "f_humanReason": "cfdec163c38e8cc25f46c80a8eca37fe1bfad8c8fe751b73498b6ef6540b91ee",
+      "f_id": "fd16bd2a5a4b88eae79d000a76aabdbe10c6f628c432f90468625ac430cecb77",
+      "f_int": "2dc17372ab5a5374a39ebdca343ae4a7fbb589460a05fb6dd43c8afae0f0614c",
+      "f_isRiskEvent": "f1f20b81523ea54b4a6638209052bb6a2d2854d31ac11583a43ec51b1dc633fa",
+      "f_json": "2b2487398d6a436b82ff51a40107f0f5fe332aeb450cc118c54beec96a4a67ea",
+      "f_makePlan": "3aafb089b7c73487a146e0a9f7cc492e275fac10383bd0f739e0250485dfda2d",
+      "f_model": "36f74e015218602a76d9c75bb7a5d2ae933d5e9423839fb1ece258b27c055704",
+      "f_nativeMessage": "ec0e8ac00347ba03369b64ccb9aca3c0d2bcfe6dbc8fddbb1186cd81d36ff054",
+      "f_nearest": "ef953dbfb2a547bf1710095bf5f8212a44094879e3e92b49261f1bf50c455313",
+      "f_num": "8508a96836b56eeb79fc596efbf30628ee75d4359230aa68d2989824e84924f4",
+      "f_openRejection": "916b6ef20689312b5b53e65811c324f649a3b732eba793c83bb39e9e8481d2fe",
+      "f_pick": "87880c01627d559d8dbe6df5f747aaf9be585423da7668529a07a59ee9194322",
+      "f_planEvent": "1c49188c1b4ca4e5479478c17f26fb4c2c651f81a14e19c1009947e917f948a9",
+      "f_policyReason": "883bef9c440e7aea94a8d9a9205b8a0e0ba5d83f2e7e6533bc286fcf9c97d3b5",
+      "f_price": "4fd351481491c0986056caedb66cc73bf2141932423b37fb8ab5e639a5edcc5d",
+      "f_q": "a7a2ba2c37a81e27323f9b99e49dcfb40aeccebe701db29c2fce218bf5d588c2",
+      "f_queue": "39af2987c27e5af74123b3bff31f72c3bfd6d5db5ab13215908fde27ad5714ce",
+      "f_rc2Append": "46bbfd85669f0037eca8c17a0ade9bbb2082be7a023dabbdc121773402198432",
+      "f_rc2EarlyPayload": "3a24d108f3583e7e9ab7843a1a5e5103670b7df980b5a85a4673bf0b600ae6c9",
+      "f_rc2FilterPass": "b4030c3660827a2403e2718c3462586ea2cb63deda54dac2d9abbec40ffff827",
+      "f_rc2Session": "c05e514272b3e67023b6b0040be4dcc55330dddbcf544ee5d598ddda0af8c6ab",
+      "f_rc2Trend": "c9e94a651118d86935d0979675de5473a21b4b23dcb77d9e6b0ef40141ba399f",
+      "f_rc2TrendText": "e5d3e67c5682eaceeef29f2ea4a14d9c7f87e4b77442abecf03dd9300df4ce81",
+      "f_rc2TrendValue": "733d47611fbfbc4a6880efa4aa0282cd343ecdcd8a472ae10293928af65d9f75",
+      "f_rcCore": "e322ea9e64dde0146cbad89955da1f4beb01b11c7a3ca2545bfa2ca6bb5677e3",
+      "f_rcPayload": "6ae0a3d0b46e0d13feb247041a6c936547a5ace34f318f685d11e4d415f7f357",
+      "f_rcPressureCaption": "d6e560af9e8b8c2ddff1d13c8f7ae2e4ba3f7a16f87608ae176d571fbdc4a4f6",
+      "f_rcPressureComparison": "43a93b91a508f4fded7d7605c80533e89eda54ee5541a386a116d1b75631758a",
+      "f_rcPressureFrame": "66d70a58253a135356425303cbdf24d3387e6eb91eb99243a319ea01029ba1f3",
+      "f_rcPressureLog": "cae489a817a0e4093d533652b212ffaecb3d15d536be8fd60995d8cff859b540",
+      "f_rcPressureNum": "ae31de47b18484cbeaae3737b8ac9bc2592b0711eb077597f47d87cffb0977d0",
+      "f_rcPressurePercent": "60500b15099c3e34c923768390ce054e04364d0bf0bb3df6f7551c261588e924",
+      "f_rcPressurePrevious": "57d760c5823e1059dea07966153d8e71eb8c1c49e75b133f3c5fe2a157ec7abb",
+      "f_rcPressureRaw": "6a14076d48533b2af4dde5036bfc30754bd485f9128163efd775f1f099765f1d",
+      "f_rcPressureReading": "fd2914756e9cf74bc04f57496e94a0eefce7bd46ce816cae09b493ac90d86438",
+      "f_rcPressureTenths": "54f1f45c0c5dd9805000aed538b6062c54ea3e72cbe21ead9f84b681685b4f6d",
+      "f_rcPressureTooltip": "c33acda4d83c62fbdc79b43fd0d29f1e636b69b0615ae560c453d2828dd0a162",
+      "f_rcPressureWidget": "96ca2a5ee66a1575d5567802f8e292e63eb3a8ec62ab7b6e0badcd360116f557",
+      "f_rcPressureWidgetLayout": "b338afb82c312137963949011e0ade7b762834a8afe670d6da15007ef427ba18",
+      "f_rcSide": "d5da05fe40501ad1b049e0742f1349f9b5b953d69c2f7d325b11d3dea4b5611d",
+      "f_rcStage": "7acad59f2c895fa790372eaf4c169dc48ddf66a795ffcaac29144b5ef7fa10a3",
+      "f_rcStageText": "4b7c2e57e3bd6cfe39eb21a647cd0162d3b5e323e1953ce5d6d48efaf1861fc8",
+      "f_rcViewCell": "4a6a9da741d8c88228d9f4da3816765b4d263e5a463a65a0616ec909c9237b92",
+      "f_rcViewClip": "6498763fdff48d35186d42d681abe277b1814d20aa151bfddc6c992200e93ee9",
+      "f_rcViewClock": "d036b973c0f8ae2b66e62d99e6cb4c1dd95ccc6954888716590b3fded444b6a7",
+      "f_rcViewPlanLevel": "9ca293260b0d7191c8964601951efe6677a1cdb4824eaa890fa22c9c857fec79",
+      "f_rcViewPrice": "96bee34246c5093cef50058bf42655165e7081de31facb31ae29fbaa64325e7d",
+      "f_rcViewRemember": "7ef02ebd4d36480f8187be6d883708cd85c77cfe132b3f12794669c06f71bd6b",
+      "f_rcViewSignal": "2aa3a759b89efb9e692a638bd66462ab3bc2dc98832545c49ef5c1723ac37dff",
+      "f_rcViewStructureLine": "933d9dcbcf692b1561a9fd3ad7b9cdfbfeb73325addb5f8df263fe5512c56cb6",
+      "f_rcViewUtc": "912b4be42415ae8ccbfabc9302bdda486e95b8246a551c4d5ec29a905d9759d6",
+      "f_rcViewZone": "9907c38878091c3227d8bb6f607a2f9a9fa85c747c10f9f3115fcc452573059d",
+      "f_readableEvent": "d53ba3c710718caea455dd757657c3acd2e6ace27cb1202da88e5d3fe11afa29",
+      "f_realize": "d45d3d859b07e50adbeda06157ffa2480eda20d0ec255fd70fe54b6440122387",
+      "f_reason": "bb518e782e52e46b2b53750ce5865dc7ab6e85138e4ead1f9048ae89e39a847f",
+      "f_recordDecision": "929c0c82b9b23bb9ff265bcc9db02af0f8da5ef7b7e2070f07854b68a7b1a57f",
+      "f_retest": "f046bb61c502371945fd34a918370efde9b2bf6d7b65af25c7cbb464cbeb0d74",
+      "f_reversal": "4c671e2a939755309491ea19ececd2481cd614720292eaee68c42ebb1cffad7d",
+      "f_short": "aa4b2c498f52c90988f76d4dfc86c1539cc947f7741528f31c906b83340dff6c",
+      "f_side": "4f2556db767c02494e2aaee0b7fb2b88a75f0cd22aa4fa389f0cfac93a6cf729",
+      "f_sqAlignment": "282ede4cf0030802d2779036e673d6c934f4ae821e8c36ccaa67f214f3169f4d",
+      "f_sqClass": "1d73f25acb786768bb644332b5dc0e482a398a123a87e56df98b42286462c354",
+      "f_start": "e99980bb6f6d8a089eaa85f872e3e8ad133c74ee58bfdeedf315765b9118c1fb",
+      "f_step": "76c2cc0defd792ec068999dec57331278b626c7634e1dc3506ca0c4a9de14701",
+      "f_stopRound": "a5c67e05cf840c346b23054f8e13b1c12f0bd00d3b5840b7d5f7031817a364b4",
+      "f_takeTargets": "2c8f3f207e3813f61f760f6cc43540b4b1ab67e06b2a8d0580d287195652144f",
+      "f_targetRoom": "f91fc494d070d294454bd318b5c95676fe5fa60ed2d43b9cbe9d1892d7331f12",
+      "f_targetRound": "8c26af976d15e78353e5feb235251bbd93a1000a9be5060606159f3640114712",
+      "f_tvCandidate": "8638a82b75be5e769910569cbc8bba6b9c9b15784641f5b1251936af21fd9319",
+      "f_tvClear": "9dd9c198b3a3fe9776bc117bd896b5367f5d84ce4a65ad9d5b543e8fc7b6857d",
+      "f_tvCommonReason": "4d862baadf21646c4e97e8da4aeb11dbc203acd9cec81bced82d84473a905d43",
+      "f_tvFamily": "4c59c5ef552e7f7d548d95aacdc7a310bc6b73e62e49f8cc779d2ec5bc337498",
+      "f_tvFastGate": "fe6e4df9de6f48b08835c25dffbb2f01e1fd2bf8a2011a4df284ec59fc10fa50",
+      "f_tvGrade": "42fc0e381fb0b7ebb06764cdb8e83429fb5dc47a0a803332710ecd009597e894",
+      "f_tvLocalDay": "bf2fb22fb4dc645d77de18ec095119df69e90e1354e38e524c89d0c728d4eeb9",
+      "f_tvManagePlan": "bce5ab8e9e0579f9fe72ac7d80ee157f8c1b7ad16ffc8d8ecdfd7cb06a0bf0c5",
+      "f_tvManagedStop": "abb02d26744b19753ce8086e3171e3b2f5cbddf6f8e38f894a316835dbff9575",
+      "f_tvManagementCloseReason": "198ad0364957672dd4f6907e28ed195844c65b49a914992c2dbea13100ace02f",
+      "f_tvManagementQty": "519ed2650d3bec86ab8ae527d19cf76eddc45157eebd04c8f789822877af1472",
+      "f_tvNativeOpenRejection": "868a6e7288d931b15ff6ff67e1cb97b4d962133603346b750efb37fe650f1060",
+      "f_tvNextStructure": "aa1d3c93322815a36f3dec63e5e9e347aac36b6e3c154f8a5a2ef246627ba935",
+      "f_tvOpeningRange": "1065b54fb150763687aaf2a604e7b7ff3954a29afa830c66e08c30084225e31b",
+      "f_tvPendingReason": "f8f4fde6be65bccc08ae81e8566bb00354bed274d0a16309dd75a11e7a4e34f8",
+      "f_tvProtection": "c7ecdd2d6c34e5ef8df227ff1b3b434e4ec7e189c6420ae1314281b0fc2af943",
+      "f_tvProtectionBoundary": "33a28a9c2a4d2cb492a3fe9043a64930b4fb4535cbc4ed629dadb0f16d7ada04",
+      "f_tvQtyOnGrid": "a5ad4b2a5d71330ec9c3d561f976bcd43bca00253a5bd500286f49e48b55678e",
+      "f_tvQualityLabel": "7cf0827a42ce09286b236f491751a6f7bdd7782117af596f906b04bf5b0ea8cc",
+      "f_tvR": "2e2ee7671192db9d14cb97fd881af33ff1f0a37d6aff5cb347d7a53af7de93b1",
+      "f_tvRawEvent": "753fb2c1f6b02142a1a7ff3393ecc172db3ad809c7f79004cb0392a78c60ec32",
+      "f_tvRegimeLabel": "5d7accfe5542506730c77deaf0bb1f2b3fa86c2021a44c0e55dd4a1d8db5a587",
+      "f_tvStamp": "e0e5dc8266934cab1ec727ccadc823d6e5341b3717557c8a882ef2aa56d8c4bb",
+      "f_tvStart": "801008ea12c51679af69c2deba835c4d26e0ab94f44f070144c6bf00c80bc752",
+      "f_tvStrategyName": "3db3a517ef72ec59f6368d70da2bb745c9683f66e4e0e0c241f64e74568ab4b8",
+      "f_tvTargets": "494ade71d6d5008e2e0c97e04a1484dcf231349e7667d4c45f91560b290879d4",
+      "f_tvText": "2397631add262800e9557cce5ca990ac97233ea0098f55d7d5f7f8cace96c7cb",
+      "f_tvTighten": "c034feb57deefb45f1681a745d81a9377db732bd8cd7fe45f69f4a57d7ed0272",
+      "f_validPlan": "ea9deee2299dcb30369301f746f89601970a8bd1f880dfee75615cb190fdc0a8",
+      "f_wfEvent": "e8232811f539b582c0346851e1423d24738c4872274a5af97f0512a46bfbd087",
+      "f_wfFlag": "eeb64853379777a633c22160f934484d110552dd3d0436dfe0941e08145e042b",
+      "f_wfHtfContext": "f82b53dc15766d318837a1287a31738dacbb0e91830ba33eedfec62da666336c",
+      "f_wfHtfSide": "3c6394c4e92321907931e17165df2ea3ba4ea17dfc626fdeeae1a52738681958",
+      "f_wfInt": "0cd99a08dc4bf1f21ff6839ae0da6c2373b218ddd17220e38b7c913641b39464",
+      "f_wfLogId": "599be366a6e205783788d5e1b6535bcf7b6d2f4668af13eb2c47eb0f4489be82",
+      "f_wfNumber": "ec541e80b28b2d19f67d854b3bb89624194b2705575a29fcabd0ceb8bb9f3bae",
+      "f_wfSide": "fd227fb43ea1faa69564d98d1e8155adfdd0d9173d677cc3ec055c3fed58d057"
+    },
+    "function_signature_digests": {
+      "f_addClosed": "bc875aac0faa0447497f83b1b0d9cee3000354b79c6b182614926b148e78818f",
+      "f_alertSide": "de15527bd06cd906a8f6579026a418a90c04902a704781a514a7c37a54f4537a",
+      "f_allowedUnifiedEvent": "afb7225d6b8ecfeb04e8013612ab09544f56f32cd342054fba4276e1fedaea95",
+      "f_biasSymbol": "d9487c265d68742f69d9c026c69f96bd9a90f963ee4349193e8d1c168b549900",
+      "f_capture": "36f788ed136b4472e6c59e3e407bd60f0367a7245bf1825e06e3e3b9123f2e89",
+      "f_clear": "0d83d53741b837dc1df3953b42cd03f8918971440cce5baf97a364b94baf3471",
+      "f_clockUtc": "f428cee9147a1133dfb8bee69f194e771b13ee13d29dec7e46512242c8cf20d2",
+      "f_cooldown": "0db09182e2eafcbc7f862f3981beec7c63fb3566f101182b7efcf3ff1f2c16bd",
+      "f_day": "f0d39011da9d67e7afa42e8b3fd050eeb385deab012d23e41c2d343572611aff",
+      "f_dtAddReason": "8549402ce71255af283206c96ef28c28eeb11dcb6afbe48e93eec272465e56e2",
+      "f_dtEmit": "43bb595a8d6cc882bb64686d5b73f4a231188ed7f506b296f49d7da7d56be98e",
+      "f_dtExpired": "8e1ed620b09b3af7927e897bc0ec29a6c07e8b8a8b319015d9568f8ce601b9d2",
+      "f_dtGeometry": "e158e735164ee08f7d8c17e0c1b79c77007957d3a59b49da239e28d3fb6c9289",
+      "f_dtIdentity": "14361190aa373c84c954d4ba845e68c330b2ea38ed37ce4314e83d4b7496f88a",
+      "f_dtInt": "56f87d2191703d9b2a58f668997ae6b08ac0b3058768ba662f5ddb3ab5c48851",
+      "f_dtNumber": "801b8cbeea5552b6e4fa10f0b040c1c104095e3209a253cf67bc2a881d2aa063",
+      "f_dtOffer": "39012b5499f9b8a38a516c29e587af8b71cfc56349ef4cfdb281ba6976dc7e18",
+      "f_dtRank": "3c2a33597d546413d71de67f8b86b5fef6379133509d117c01009c30306be71f",
+      "f_dtReasons": "820618a9880cbc4b4f2bec9827c901536e6afc4f9d7e1722b5b54709b57a23dc",
+      "f_dtRemember": "e8f7a27a93343764ecec48212ebc0a1430a00a4c0b55e970dae9db3e2b5bb0bc",
+      "f_dtRoundAway": "8d4c0a1477b3456b4f04277d3b277c78ac25d32448f086375e8de85895d2af3f",
+      "f_dtString": "4ea75cd48f1b5d793a0c1ce4611a233b4538f006d6fa699b54e463615c60a03f",
+      "f_dvActive": "a0ef07ab0dbcd845e8512b986458663c365b57e7aa1637946e26479693d797a4",
+      "f_dvAge": "52bbeca8dd39187b26dfecabd19fbdc1bba2e2a0f29afcbc3461f91e18670917",
+      "f_dvBiasRow": "9de87f7c068143985723f171450c2635c1a100985f2aaed43844ebcf85ae6977",
+      "f_dvBreakIndex": "dbe51140f738d4ecd0a21ebf18547edea1986ca7a15cd6ec079bc080278935b1",
+      "f_dvChoose": "a6d27eb14b5d4917462c4882fd043a232f90ebbfbdbe8d8666acbb171c42fc76",
+      "f_dvChooseOpportunity": "b0198d05a1807df7da4157461a5a5ca176d1a2168f2a8b00e60686ae543fbd5b",
+      "f_dvClockAge": "0555c5fbaa572b193e64ac847ddd69658272e7618bbf6a6d37539ee661a77042",
+      "f_dvConflictLines": "dfdd07a8b3315e52f9abc25b5861a80fc291bbe2e353893270756b3bb9a70eec",
+      "f_dvContextLine": "46d409cbf539f6df50905ab58767d61c7d7d6bd93a5d6bcecd9d310d5230625b",
+      "f_dvCountertrend": "fd004b92acdbb257ed8193df145b29e4fed558a0fea8754334c8f4418a967376",
+      "f_dvDashboard": "ea5755a5a28381870b378f1497fce99e9fd9910370b9f38e557b3d6213524346",
+      "f_dvEarlyAtClose": "680116d982d394f82dbd39013e91923e0e9d5f08c6c1eb78e2a1f880e3565680",
+      "f_dvEmptyView": "b3aa3edfcc58be45d3c1f96daa4a8a88977b5b36da4d4d4e947553b211bd3078",
+      "f_dvFresh": "cd69e5f01fbf3e24aa4659413367020171c92b00b37c31103fbffcceda548b46",
+      "f_dvFreshView": "98a8fe2fc78f01e6ee8cdca3c8e759b4ee2f3e59f63bde155081b2c29d365c0c",
+      "f_dvJournalState": "3c1ab63e7c79514c8fcd59cc87045ab55df700e020fdd8658cff1d19a3d2999e",
+      "f_dvObservationReason": "e98ae1149bc4ca4224638c984728f89892ff571de2f50fd0c486ca50eb5f2a6c",
+      "f_dvOpportunityState": "3890cb1603c620a231807714e877ac0b5c6e3a873744e58a21d8205f0cfc0457",
+      "f_dvPresent": "7d568131ae9981d386dbf90261494f19e9b81a60274d06990777d6f2de7ceace",
+      "f_dvReadPermission": "57aac004fa8d6e16b71bdc91dbbd396c965677d7509583c9a24ce349046f22ea",
+      "f_dvReasonLabel": "7c1b0469b26f2d6b7a1af2ca6e447dac7d4f4d90e212732c9de05e77477adef6",
+      "f_dvS5AtClose": "1307a74191b49d986ae7e9e82f575d2903570905ef348cb9915e941f9463f4f7",
+      "f_dvShadowAtClose": "6120227b358a2430ada96aea197f5091e78f5f03fcb4d168619feb4f67b5385f",
+      "f_dvShadowEvent": "6b4335505a209eb2fe4c11294330396dcdbef0103c56414e36bc9ee94477816d",
+      "f_dvShadowSource": "71ebe23123efaa622467420d3dc5c4c9feb28018ee7a6cf71df52d984de7c5f9",
+      "f_dvSignalJson": "1340de54b20cdff45b782dd34a0b6c0e58808ba89c5babd5fa48fc8b7c1dc886",
+      "f_dvSignalTip": "affa611183af81e1e667cb26a1e6bb99d562f6c8e8bfc968fcfb1a136cbe4307",
+      "f_dvSignalsJson": "db1c022a9c5790e423d827b2df8ee7eee8065ad3723fab72d2cd9fe18269fb9e",
+      "f_dvSourceLine": "9e5d508a71cd90cf3b915b9fedc7cfb7da798a372c57972ff05ee7cb8e4c6a46",
+      "f_dvState": "31f8625541eea17f8c390ca8f163663b0d39f6938a912778542daffa49613980",
+      "f_emit": "33fe9bc0e50542bb8368e030bd4ee9dd085859f4e47d470083aa44ca8d5718aa",
+      "f_enabled": "313cea1ba31876b5b5188ec3de85222d9ee04fb1b5a4dce0baf23dd91b936b9e",
+      "f_escape": "da59c546c1168b206f46fd7682eca21e33694366065911a5e20a72eb769202a3",
+      "f_eventTitle": "9b407ae95d78de3943cd4095d89c8e9aa8b0c7a8aaca4c982cdff77a07e6adad",
+      "f_fast": "a533861b9d2a2441122f32c43cd82f9fef20be4d3bd462c18a4e5b8d4dc766e9",
+      "f_finish": "8a73a1a658fe0fdc192e4393be2dd65045bd57055ff89336b90787c5b151be30",
+      "f_gate": "bd9490ab6a0014580f542fe5dce7102de6970d2a6a8b82b426d91a51722d6506",
+      "f_humanReason": "aa6089d0eb08104858b2e229265a0d2d9f116579552b977b94ef527a1722b4e8",
+      "f_id": "ee31010b4a3f7193fbd9e521ddad924d4c8cf0744f19a3979ea87140a950615c",
+      "f_int": "254a61e1bd958db56a5f780abeba8562b3706fc905fa23b3d12da4d9b29b0459",
+      "f_isRiskEvent": "b900bd38af055c55fe3cff59163a0cc39be28b06f071f295f4413467f782872e",
+      "f_json": "530be440b622fc0864ad94104562453a629f875108544c1331d848ef60e407d3",
+      "f_makePlan": "a607c99a7933bc7968031c54ace5762358f6bbe40f2fc8c6f7191f37ec623809",
+      "f_model": "3c480505f1bb4c600518088ca9e42d28814393281d54eba3f0a378dbef10a950",
+      "f_nativeMessage": "df985dd78746c0868fd5cdb73e1c8bb53cf4a5da97d7b57a64d5f13353520fc7",
+      "f_nearest": "8366898914bd3a4623bde0c50acf688d008567088383440dcbc04e76142c519e",
+      "f_num": "250e12ef65f5811d7a9aa8f2360efc2866dbd0279ee0a526bd623eebc2fb2bf1",
+      "f_openRejection": "d4948e253fa1c29d802c9d180028a1f48b9a81af4d577079b60e879aac8db43a",
+      "f_pick": "738eecca20eecbaa6e983eee54403a96994225d9e57b8932385f6ce217fd5d41",
+      "f_planEvent": "5fd5b5d7ba143f089ffd0852658f6d2c077fa95c3136112049f788acefa37780",
+      "f_policyReason": "c0c2ea120866fe8ec052b1f8bdfe0a3f66df14a6906b00c367cdf9022b3e5775",
+      "f_price": "f6b484663b50f1e0c15495df1ec5c9de2c3beda14c80c0ee2f4caf177609add8",
+      "f_q": "620df28cc1e4ff7ce11918854080f451706bcf0b4e1cbbc7fd70f1310616f31c",
+      "f_queue": "a86c4c2217e20778042d4b176802c11d827a2618dc54de6fbb7e0a2a6dc9dc8e",
+      "f_rc2Append": "b42e3283a8e75e9e6ed689fc67ffbc6c3f4e69627dcaf50fbdbade031fca9d8d",
+      "f_rc2EarlyPayload": "3bd0c97481f7801de62eda80f5b9a05a5f8f3c44e30c7bb33276b0645ead8a5d",
+      "f_rc2FilterPass": "d1d2149ac332e1c8b4002689b7a708dbae5e874ea35d2e3fc29a12e9c7bb81b7",
+      "f_rc2Session": "7fd0c76ebd3ac87046019f70c8f3074e59375cdae5cec5261231c6c627097424",
+      "f_rc2Trend": "5dc781a502e3af263fbb0c8e904ce3be4e47270f6e539d38126ca3b4ffa95d45",
+      "f_rc2TrendText": "39bba6dda602ea40d2065cf74dec5ab0f1ef1006b02e90bc38193c2916283cc9",
+      "f_rc2TrendValue": "78937d1fff92e184799a3432235eec8343a8c5b6c846abde2d9c1bcae1e733c1",
+      "f_rcCore": "bcc991e4c088e2ed402ac21a667c6746c18a8f033016dd1b258bb7a711494f7d",
+      "f_rcPayload": "bfd7a1c20124923a7ab2a1c9a0d33eb45389dfa8114b9c9adbeeaf9ae261df0c",
+      "f_rcPressureCaption": "badecadbbe66d00dca36393eef6beefa9d59a7491b6a199901f36027d986e468",
+      "f_rcPressureComparison": "9340e1d8874ed98fa1c381e01958301612aa772be374a2fd6fe0fe7d08849fef",
+      "f_rcPressureFrame": "437e8293ccf90679dea95cecdef10fdf63764809779b57e29d08cd6d82dcb0e0",
+      "f_rcPressureLog": "1080532980d0307b11ef0341e66201c2c09b69cb5d5b638674c46aba2a6dd27e",
+      "f_rcPressureNum": "719cca4cb758f9c20d97bc3dcccc963e925248135cb949c45518222d6cbe94f7",
+      "f_rcPressurePercent": "43b0828baad72c61a315b7a0e116d649bf332729d01e2bce600ac0fb596eb994",
+      "f_rcPressurePrevious": "16a3a1bd68d63914c16ada742ea140ac64cd18b80c71ff7d869c19877519dc30",
+      "f_rcPressureRaw": "0a178bbe20fb91301d9bcc45c7875ba6e10f08a3b4439bde5c7e49b4d69cafd0",
+      "f_rcPressureReading": "cd088f67bc819b1fb5306352057cb8b20efbe4c66050ec3c527acd9eb0c4b905",
+      "f_rcPressureTenths": "674606d9b6152f5d16ce02e62141d2eec685c816cf8afd68d5e83dd3f788723b",
+      "f_rcPressureTooltip": "64bb64c9b9873b8a826cb7570e08e147812566b8b6bbaf9af4330fe924b7c8bd",
+      "f_rcPressureWidget": "88b7cbfa06fffebdc85c08a3a71cc027840a52ec30c7bf36fc85a73d76da37b3",
+      "f_rcPressureWidgetLayout": "f4468b41fa32fe70ab24d5f5e0b75338ba9d77a8487eb94b79e506a14d144dfa",
+      "f_rcSide": "48f9dbca99b0fe7bdc282ec631366e72fa563e06f84acfdfc5ac6164fef0a3ab",
+      "f_rcStage": "6a3660255754ff178a6ebeeb99ad801344e225a5c146d9cfa0829e9570d16a84",
+      "f_rcStageText": "9794a8cec9b8d2579685c3347df1b49c2fcc826e9fc4735ba6187c08e70aa616",
+      "f_rcViewCell": "e703d59d42c09d1e0033ccd263971ff02e96f16c068891714aef045b298b75a7",
+      "f_rcViewClip": "649428b11ee674152bbb446e464d877184effdf13bd67172578a7a043658815b",
+      "f_rcViewClock": "c8046ed7409b465bf16916eaaac4121df99a1b2443683821ce9414220f54aebb",
+      "f_rcViewPlanLevel": "f25d58ce089c0ec97e396080c3083500fa66e7eae29c67d076404cd47381ca1f",
+      "f_rcViewPrice": "f8ec573cbcad7016231cd2a963b5549f400d1ffe2da993b996fff1100d4cb246",
+      "f_rcViewRemember": "73cac4d638c5b6e940afb6b701deb25d284932fec4be135d16aedc4386b027be",
+      "f_rcViewSignal": "31926a191c3cdbf219332716431fda61adaaab919c70bd7f7526946884b38d05",
+      "f_rcViewStructureLine": "e33602569b660afc6c15703b469368bff2bd6bfeb556dca6cd3293a975ae16a8",
+      "f_rcViewUtc": "628f6630ae28b0614c5bfc3581c474363a6cf331e3622149aa9619684bea3c22",
+      "f_rcViewZone": "28e3c887d6da3dea151fcd61d02be560d6c91381495ea1beb70a6464abad775c",
+      "f_readableEvent": "a3c7d19dd62329f35986e26e599282a0b7fd32aeb9ec694ab0440303ed6d8be7",
+      "f_realize": "d99f75f6ad6742d324a780de04f543e9d01f394e777d8544970a195ca2c6bff5",
+      "f_reason": "955af08df1236fce6881a06a9c3541d0df6b572eca7df92a2565ae55a1cf78c7",
+      "f_recordDecision": "d343aeeb42aecd07e562f2da97a2013bde5f0bbbf033a02d36b98840fea0a4ba",
+      "f_retest": "0c7a1cdd6d16495998161470b524e1c3a91de8cca2e60d39fb29e0c5014e20b7",
+      "f_reversal": "b3775fc3f41c0e0f5432ddc460fc5498bae6d33ca2b72d68e8bf5de0f06685fd",
+      "f_short": "943b429f32a8e704c50390902c93ce82cf033a41c2e1aa9e4c9473856935ec8f",
+      "f_side": "fc009669f560d813afdcf5d9e926637731d583db556133e393c569fdfea2a339",
+      "f_sqAlignment": "03e6af33a1baada5660cf1e42b7d95f2322024156078001aa877a2b2acd37927",
+      "f_sqClass": "e25ca38e4a02e726708cfa0e93857673902af3747de48d3dbf2cc67c3b35ee56",
+      "f_start": "6e7aac100af913b658dc5c7a1c508926ad7f2d55931a354855a7a00d4087f6c4",
+      "f_step": "9ff25e84aeac3054d2a4e5510fb7e7fbf5ba089a10886a3cee00306c3ee359e9",
+      "f_stopRound": "7c8f79f7d767e57815f1f0709b82c8bb8b59d938254ad689afe6b5157bca49b0",
+      "f_takeTargets": "f2783d5e2332e593176246713961193e960e87d57047e97a15a3472b34fa0bda",
+      "f_targetRoom": "164b028a748b317836ef1f38b633f051cf6079deb98b1b1a4188f261f2297952",
+      "f_targetRound": "afc1cf48b09add791de43569fe6efd27fa4cf358b00919289886de03edaf1c0c",
+      "f_tvCandidate": "622595409ad25a497e09de9218f4ed9c5720a2571afee33702c60215196ef5e8",
+      "f_tvClear": "f5db6ac1df0d26f9f4f2b78e45df35dbc1b303e84da2bffebb56a69ddd278f31",
+      "f_tvCommonReason": "a6374bf5456880d1a8826c043e859eba2a9fbd2c4eea55979ac75b4c3ac4adea",
+      "f_tvFamily": "c236dabca84d970748179b25571b6c8698acdf64b9419278b97f506dc0f524f5",
+      "f_tvFastGate": "1ef25c9f68edc3f327e17fa6a23bda0cefdb923831f10c64bc0390aafd4fc62a",
+      "f_tvGrade": "8bfc84b15fe5e1042f9afb062bb582f90e5234126df5f4cbd0deeb63c90bbb57",
+      "f_tvLocalDay": "667f5199de2c99a94f274c1eec498febd44bca623ead7c18739f227afe31f09d",
+      "f_tvManagePlan": "46ee6a2513f39413c92746ad331404c230e1b9f2db01e4d4f676256ad6232617",
+      "f_tvManagedStop": "0b1a7b1b2b393b56fb0dedc4c46e9a837446839a2ce23184458f7dd71912de0f",
+      "f_tvManagementCloseReason": "f74de067e6ed33ec1b05331ec6925881095b363d42948cd7196405a577863bbe",
+      "f_tvManagementQty": "df4a3c2df3d0c8d7c5f151ef3e3b980464dce4eb2e77faca54c1bac5b913bb99",
+      "f_tvNativeOpenRejection": "1b94e3672608c11fcb48f33b6d1e6360063b65e49b3de27e8d3db947df99f040",
+      "f_tvNextStructure": "fdd1a77951bc67698334c7ed2f340127d85d2d0912555e2adf64e367a1f5f61a",
+      "f_tvOpeningRange": "d96e56e149c54ae8875686bb04d4e14dffecd370ac7a499afef22634cd537b43",
+      "f_tvPendingReason": "39e7bd158a150acb097ba66a431da6f78a7aac4edf7ee48f04c9d29001b8f3bd",
+      "f_tvProtection": "2c9ce3de266087c89bbba54315167d921ff2e4128119237954445449a7abf690",
+      "f_tvProtectionBoundary": "d7ea62c473fdde869628d1949fa35a929d2923f8a2cd057f2ac0d70fe31f9f35",
+      "f_tvQtyOnGrid": "d7f1c3504495acaa6e8856e98f27c01075677dee99fb7a55f7543770883e9cea",
+      "f_tvQualityLabel": "e8825355bb44b14e1529de8cee055e13e8ae1d96dd09a7782a6576d6ea44a9ab",
+      "f_tvR": "34b9f4ec15ee4153bf9aae5f553870933b66a5a0bbf7d507288fc36d801ba08c",
+      "f_tvRawEvent": "77127de20b1dae0b29c64ef8bca4c6c64201e288bfb5b7ba562ae0cc33d89a55",
+      "f_tvRegimeLabel": "923b4456838555b1e8d08997bec8557c0f455cd39a3ef2b53f14962feeae318e",
+      "f_tvStamp": "b28e5d80d5f844263bdc129ddcbdd4e020cc0d4e3561f343bd93872f302b83b4",
+      "f_tvStart": "1f0296168e4be032f3f5f70e685c27e116bb188c0ce77f8d11801ec9ac40b622",
+      "f_tvStrategyName": "a75289d5a70843abea251b538b02eaf52809cd361da89c0539af4ad2b669afc4",
+      "f_tvTargets": "b616b17f69f959900f4c26db43e94b5b1a3deaa3b58d3067f16cf3570947175b",
+      "f_tvText": "0456a6f6050dc773f1e4584026e484201ebf3557cde5f6aa2802ba06df0ef3d5",
+      "f_tvTighten": "3fecae4c145f73966dc16dc3801aa7125ba7d1fd51edcbf92f6c4acbae10e202",
+      "f_validPlan": "06e4ce4b0116e9f634ef2600179e2ca9966635d5bb2f484dbe35a31fd1fc3aaa",
+      "f_wfEvent": "edf6f3ca05f7c4631a4c619acf3d850668a2c9323d5adc95be1d9462658a7d9d",
+      "f_wfFlag": "5a4fd2459b42ce18970a221d2ed297723b0f405137c0d334dc90d6fa1cbb6c41",
+      "f_wfHtfContext": "1ccc1540599a31fa3bc2382511b08f6021e3ed7286fa46bf876eef662046bd9f",
+      "f_wfHtfSide": "c4187e4e73b319cd05aa8a6e9d4369656c873c3d5fb2497f2d52c82246122ce3",
+      "f_wfInt": "f3df00221a6525105eb595c22257d045b983820cdaf6df397e8f9d87cb40960e",
+      "f_wfLogId": "c53eeeeaef47d51ac42e98c81aa54d9ab36d7f20b653b8a8c8178f1979d11b7e",
+      "f_wfNumber": "71e2f97d63b01665770abc931d37e28c54700edf7ae8f8a0176e6de9313491a7",
+      "f_wfSide": "a1674bcf60f9531a21a88593ba08effd68aa88df67b2f413beb5e781198c8935"
+    },
+    "user_call_graph": {
+      "<global>": {
+        "f_dtEmit": [
+          2667,
+          2670,
+          2674,
+          2688,
+          2702,
+          2705,
+          2709,
+          2721
+        ],
+        "f_dtExpired": [
+          2666,
+          2684
+        ],
+        "f_dtGeometry": [
+          2675,
+          2710
+        ],
+        "f_dtIdentity": [
+          2685,
+          2685,
+          2689,
+          2692,
+          2712
+        ],
+        "f_dtInt": [
+          2656,
+          2657,
+          2657,
+          2657,
+          2728,
+          2728
+        ],
+        "f_dtNumber": [
+          2658,
+          2658,
+          2658,
+          2659
+        ],
+        "f_dtOffer": [
+          2681
+        ],
+        "f_dtRemember": [
+          2724,
+          2726
+        ],
+        "f_dtString": [
+          2656
+        ],
+        "f_dvBiasRow": [
+          3425
+        ],
+        "f_dvChooseOpportunity": [
+          3175,
+          3176
+        ],
+        "f_dvContextLine": [
+          3423
+        ],
+        "f_dvDashboard": [
+          3424
+        ],
+        "f_dvEarlyAtClose": [
+          2818
+        ],
+        "f_dvEmptyView": [
+          2812,
+          2813
+        ],
+        "f_dvFreshView": [
+          2823
+        ],
+        "f_dvJournalState": [
+          3591,
+          3593
+        ],
+        "f_dvOpportunityState": [
+          3180
+        ],
+        "f_dvPresent": [
+          3177,
+          3178
+        ],
+        "f_dvReadPermission": [
+          2869,
+          2877
+        ],
+        "f_dvS5AtClose": [
+          2817,
+          2817
+        ],
+        "f_dvShadowAtClose": [
+          2815,
+          2816
+        ],
+        "f_emit": [
+          1538
+        ],
+        "f_fast": [
+          970
+        ],
+        "f_gate": [
+          1514
+        ],
+        "f_int": [
+          1801,
+          1802,
+          1802,
+          1802,
+          1804,
+          1804,
+          1807,
+          1807,
+          2116,
+          2121,
+          2363,
+          2363,
+          2364,
+          2364,
+          2370,
+          2370,
+          3557,
+          3566,
+          3566,
+          3567,
+          3567,
+          3571
+        ],
+        "f_json": [
+          1819,
+          3574
+        ],
+        "f_makePlan": [
+          1258
+        ],
+        "f_num": [
+          1803,
+          1803,
+          1803,
+          1803,
+          2117,
+          2122,
+          3568,
+          3568,
+          3569,
+          3569,
+          3570,
+          3570
+        ],
+        "f_openRejection": [
+          2190
+        ],
+        "f_pick": [
+          1530,
+          1533,
+          1534,
+          1788
+        ],
+        "f_planEvent": [
+          1254,
+          1264,
+          1278,
+          1281,
+          1290,
+          1528
+        ],
+        "f_policyReason": [
+          1524
+        ],
+        "f_q": [
+          2362,
+          2362,
+          2366,
+          2369,
+          2369,
+          3556,
+          3556,
+          3557,
+          3565,
+          3565,
+          3566
+        ],
+        "f_queue": [
+          1532,
+          1536,
+          1540
+        ],
+        "f_rc2Append": [
+          3527,
+          3529,
+          3533
+        ],
+        "f_rc2EarlyPayload": [
+          3533
+        ],
+        "f_rc2FilterPass": [
+          2119
+        ],
+        "f_rc2Session": [
+          2167
+        ],
+        "f_rc2Trend": [
+          2100,
+          2101
+        ],
+        "f_rc2TrendText": [
+          2209,
+          2210,
+          2211,
+          2212
+        ],
+        "f_rcCore": [
+          1811,
+          2971,
+          3522
+        ],
+        "f_rcPayload": [
+          1821,
+          3527
+        ],
+        "f_rcPressureFrame": [
+          2344,
+          2346,
+          2348
+        ],
+        "f_rcPressureLog": [
+          2382,
+          2385,
+          2387,
+          2388
+        ],
+        "f_rcPressureNum": [
+          2364,
+          2365,
+          2365,
+          2365,
+          2366
+        ],
+        "f_rcPressureRaw": [
+          2342
+        ],
+        "f_rcPressureReading": [
+          2373,
+          2374,
+          2375,
+          2376
+        ],
+        "f_rcPressureWidget": [
+          3499
+        ],
+        "f_rcPressureWidgetLayout": [
+          3415
+        ],
+        "f_rcSide": [
+          2117,
+          2137,
+          2165,
+          2207,
+          2972,
+          2989,
+          2995,
+          3557
+        ],
+        "f_rcStage": [
+          1812,
+          2128,
+          2971,
+          3523
+        ],
+        "f_rcStageText": [
+          2137,
+          2207,
+          2207,
+          2988,
+          3527
+        ],
+        "f_rcViewCell": [
+          3422,
+          3423,
+          3432,
+          3433,
+          3434,
+          3435,
+          3436,
+          3437,
+          3438,
+          3445,
+          3446,
+          3447,
+          3448,
+          3450,
+          3455,
+          3456,
+          3461,
+          3464,
+          3472,
+          3478,
+          3484,
+          3488,
+          3495
+        ],
+        "f_rcViewClip": [
+          3432,
+          3436,
+          3437,
+          3438,
+          3472,
+          3484,
+          3488
+        ],
+        "f_rcViewClock": [
+          2974,
+          2995,
+          3476
+        ],
+        "f_rcViewPlanLevel": [
+          3093,
+          3094,
+          3096,
+          3097,
+          3098
+        ],
+        "f_rcViewPrice": [
+          2974,
+          2975,
+          3448,
+          3450,
+          3456
+        ],
+        "f_rcViewRemember": [
+          2977,
+          2991,
+          3001,
+          3008
+        ],
+        "f_rcViewSignal": [
+          2976,
+          2990,
+          3000
+        ],
+        "f_rcViewStructureLine": [
+          3126,
+          3128
+        ],
+        "f_rcViewUtc": [
+          2999,
+          3007,
+          3479,
+          3495
+        ],
+        "f_rcViewZone": [
+          3100,
+          3101,
+          3107,
+          3108,
+          3115,
+          3121
+        ],
+        "f_retest": [
+          969
+        ],
+        "f_reversal": [
+          971
+        ],
+        "f_sqAlignment": [
+          3429
+        ],
+        "f_sqClass": [
+          2998
+        ],
+        "f_step": [
+          1512
+        ],
+        "f_tvCandidate": [
+          1222
+        ],
+        "f_tvCommonReason": [
+          1259
+        ],
+        "f_tvFastGate": [
+          1284
+        ],
+        "f_tvLocalDay": [
+          435,
+          436
+        ],
+        "f_tvOpeningRange": [
+          435,
+          436
+        ],
+        "f_tvQtyOnGrid": [
+          1791
+        ],
+        "f_tvStamp": [
+          1258,
+          1272
+        ],
+        "f_validPlan": [
+          1791
+        ],
+        "f_wfEvent": [
+          1986,
+          1993,
+          2003,
+          2011,
+          2035,
+          2041
+        ],
+        "f_wfHtfContext": [
+          1851,
+          1853
+        ],
+        "f_wfHtfSide": [
+          1865,
+          1866
+        ],
+        "f_wfInt": [
+          2029
+        ],
+        "f_wfSide": [
+          1974,
+          1985,
+          2013,
+          2034
+        ]
+      },
+      "f_addClosed": {},
+      "f_alertSide": {},
+      "f_allowedUnifiedEvent": {
+        "f_isRiskEvent": [
+          1716,
+          1719
+        ]
+      },
+      "f_biasSymbol": {},
+      "f_capture": {
+        "f_planEvent": [
+          808
+        ],
+        "f_validPlan": [
+          803
+        ]
+      },
+      "f_clear": {},
+      "f_clockUtc": {},
+      "f_cooldown": {},
+      "f_day": {},
+      "f_dtAddReason": {},
+      "f_dtEmit": {
+        "f_dtInt": [
+          2559,
+          2559,
+          2560,
+          2562,
+          2562,
+          2563,
+          2563
+        ],
+        "f_dtNumber": [
+          2550,
+          2551,
+          2551,
+          2552,
+          2553,
+          2553,
+          2554,
+          2554,
+          2555,
+          2555,
+          2556,
+          2561,
+          2564,
+          2565
+        ],
+        "f_dtRank": [
+          2544
+        ],
+        "f_dtReasons": [
+          2556,
+          2558
+        ],
+        "f_dtString": [
+          2552,
+          2560,
+          2560,
+          2561,
+          2564
+        ],
+        "f_dvShadowEvent": [
+          2542
+        ]
+      },
+      "f_dtExpired": {},
+      "f_dtGeometry": {
+        "f_dtAddReason": [
+          2588,
+          2590,
+          2592,
+          2594,
+          2596,
+          2598
+        ],
+        "f_dtEmit": [
+          2609
+        ],
+        "f_dtRoundAway": [
+          2574,
+          2601,
+          2602,
+          2603
+        ]
+      },
+      "f_dtIdentity": {
+        "f_dtNumber": [
+          2467
+        ]
+      },
+      "f_dtInt": {},
+      "f_dtNumber": {},
+      "f_dtOffer": {},
+      "f_dtRank": {},
+      "f_dtReasons": {},
+      "f_dtRemember": {},
+      "f_dtRoundAway": {},
+      "f_dtString": {},
+      "f_dvActive": {},
+      "f_dvAge": {},
+      "f_dvBiasRow": {
+        "f_rcViewCell": [
+          3337
+        ]
+      },
+      "f_dvBreakIndex": {},
+      "f_dvChoose": {
+        "f_dvPresent": [
+          3152,
+          3154
+        ]
+      },
+      "f_dvChooseOpportunity": {
+        "f_dvChoose": [
+          3167,
+          3168
+        ],
+        "f_dvPresent": [
+          3167,
+          3168
+        ]
+      },
+      "f_dvClockAge": {
+        "f_dvAge": [
+          3191
+        ],
+        "f_rcViewClock": [
+          3191
+        ]
+      },
+      "f_dvConflictLines": {
+        "f_dvCountertrend": [
+          3245,
+          3247
+        ],
+        "f_dvSourceLine": [
+          3243,
+          3244
+        ],
+        "f_dvState": [
+          3238,
+          3239
+        ]
+      },
+      "f_dvContextLine": {},
+      "f_dvCountertrend": {
+        "f_dvPresent": [
+          3194
+        ]
+      },
+      "f_dvDashboard": {
+        "f_dvClockAge": [
+          3292
+        ],
+        "f_dvConflictLines": [
+          3285
+        ],
+        "f_dvObservationReason": [
+          3295,
+          3296,
+          3298
+        ],
+        "f_dvReasonLabel": [
+          3293,
+          3304
+        ],
+        "f_dvSignalTip": [
+          3300,
+          3300,
+          3301,
+          3301,
+          3301
+        ],
+        "f_dvSourceLine": [
+          3287
+        ],
+        "f_rcSide": [
+          3292,
+          3303
+        ],
+        "f_rcViewCell": [
+          3325,
+          3326,
+          3327,
+          3328,
+          3329,
+          3330,
+          3331,
+          3332
+        ],
+        "f_rcViewClip": [
+          3293,
+          3295,
+          3296,
+          3298,
+          3332
+        ],
+        "f_rcViewClock": [
+          3321
+        ],
+        "f_rcViewUtc": [
+          3299,
+          3304,
+          3323
+        ],
+        "f_sqClass": [
+          3275
+        ]
+      },
+      "f_dvEarlyAtClose": {
+        "f_dvFresh": [
+          2792
+        ]
+      },
+      "f_dvEmptyView": {},
+      "f_dvFresh": {
+        "f_dvActive": [
+          2745
+        ]
+      },
+      "f_dvFreshView": {
+        "f_dvFresh": [
+          2795,
+          2795,
+          2796,
+          2796,
+          2796
+        ]
+      },
+      "f_dvJournalState": {
+        "f_dvChooseOpportunity": [
+          3578,
+          3579
+        ],
+        "f_dvOpportunityState": [
+          3582
+        ],
+        "f_dvSignalsJson": [
+          3582
+        ],
+        "f_int": [
+          3581,
+          3581,
+          3581,
+          3584,
+          3586
+        ],
+        "f_q": [
+          3580,
+          3580,
+          3582,
+          3583,
+          3583,
+          3584,
+          3585,
+          3586,
+          3587
+        ],
+        "f_rcStageText": [
+          3587
+        ]
+      },
+      "f_dvObservationReason": {
+        "f_dvReasonLabel": [
+          3222,
+          3224
+        ]
+      },
+      "f_dvOpportunityState": {
+        "f_dvPresent": [
+          3171,
+          3172
+        ],
+        "f_dvState": [
+          3173,
+          3173
+        ]
+      },
+      "f_dvPresent": {},
+      "f_dvReadPermission": {
+        "f_rcSide": [
+          2851
+        ]
+      },
+      "f_dvReasonLabel": {},
+      "f_dvS5AtClose": {
+        "f_dvFresh": [
+          2785
+        ]
+      },
+      "f_dvShadowAtClose": {
+        "f_dvFresh": [
+          2776
+        ],
+        "f_dvShadowSource": [
+          2774
+        ]
+      },
+      "f_dvShadowEvent": {
+        "f_dvBreakIndex": [
+          2516
+        ],
+        "f_dvShadowSource": [
+          2518
+        ]
+      },
+      "f_dvShadowSource": {},
+      "f_dvSignalJson": {
+        "f_int": [
+          2801,
+          2802,
+          2802
+        ],
+        "f_q": [
+          2800,
+          2800,
+          2801,
+          2803
+        ]
+      },
+      "f_dvSignalTip": {
+        "f_dvAge": [
+          3234
+        ],
+        "f_dvCountertrend": [
+          3233
+        ],
+        "f_dvPresent": [
+          3232
+        ],
+        "f_dvState": [
+          3232
+        ],
+        "f_rcViewUtc": [
+          3234,
+          3235
+        ]
+      },
+      "f_dvSignalsJson": {
+        "f_dvSignalJson": [
+          2809
+        ]
+      },
+      "f_dvSourceLine": {
+        "f_dvClockAge": [
+          3229
+        ]
+      },
+      "f_dvState": {
+        "f_dvPresent": [
+          3160
+        ]
+      },
+      "f_emit": {},
+      "f_enabled": {},
+      "f_escape": {},
+      "f_eventTitle": {},
+      "f_fast": {
+        "f_capture": [
+          896
+        ],
+        "f_cooldown": [
+          892
+        ],
+        "f_emit": [
+          902
+        ],
+        "f_enabled": [
+          873
+        ],
+        "f_id": [
+          902
+        ],
+        "f_makePlan": [
+          895
+        ],
+        "f_reason": [
+          892
+        ],
+        "f_recordDecision": [
+          899,
+          901
+        ],
+        "f_stopRound": [
+          884
+        ]
+      },
+      "f_finish": {
+        "f_addClosed": [
+          1335
+        ],
+        "f_planEvent": [
+          1344
+        ]
+      },
+      "f_gate": {
+        "f_emit": [
+          1479
+        ]
+      },
+      "f_humanReason": {
+        "f_short": [
+          1701
+        ]
+      },
+      "f_id": {},
+      "f_int": {},
+      "f_isRiskEvent": {},
+      "f_json": {
+        "f_int": [
+          678,
+          678,
+          678,
+          678
+        ],
+        "f_num": [
+          678,
+          678,
+          678,
+          678,
+          678,
+          678,
+          678,
+          678,
+          678,
+          678,
+          678,
+          678,
+          678,
+          678,
+          678,
+          678,
+          678
+        ],
+        "f_q": [
+          678,
+          678,
+          678,
+          678,
+          678,
+          678,
+          678,
+          678,
+          678,
+          678,
+          678,
+          678,
+          678,
+          678
+        ]
+      },
+      "f_makePlan": {
+        "f_id": [
+          707
+        ],
+        "f_targetRound": [
+          717,
+          718,
+          719
+        ],
+        "f_tvGrade": [
+          733
+        ]
+      },
+      "f_model": {},
+      "f_nativeMessage": {
+        "f_alertSide": [
+          1708
+        ],
+        "f_clockUtc": [
+          1708
+        ],
+        "f_eventTitle": [
+          1708
+        ],
+        "f_humanReason": [
+          1706,
+          1708
+        ],
+        "f_int": [
+          1706,
+          1708
+        ],
+        "f_num": [
+          1708,
+          1708
+        ],
+        "f_price": [
+          1708,
+          1708,
+          1708,
+          1708,
+          1708,
+          1708,
+          1708
+        ],
+        "f_tvFamily": [
+          1708
+        ],
+        "f_tvTargets": [
+          1708
+        ]
+      },
+      "f_nearest": {},
+      "f_num": {},
+      "f_openRejection": {
+        "f_targetRoom": [
+          1358
+        ]
+      },
+      "f_pick": {},
+      "f_planEvent": {
+        "f_emit": [
+          655
+        ]
+      },
+      "f_policyReason": {},
+      "f_price": {},
+      "f_q": {
+        "f_escape": [
+          612
+        ]
+      },
+      "f_queue": {
+        "f_planEvent": [
+          1459,
+          1462
+        ]
+      },
+      "f_rc2Append": {},
+      "f_rc2EarlyPayload": {
+        "f_int": [
+          3510,
+          3514
+        ],
+        "f_q": [
+          3512,
+          3512,
+          3513,
+          3513,
+          3514,
+          3515
+        ],
+        "f_rcSide": [
+          3510,
+          3514
+        ]
+      },
+      "f_rc2FilterPass": {},
+      "f_rc2Session": {},
+      "f_rc2Trend": {
+        "f_rc2TrendValue": [
+          2066,
+          2068,
+          2070
+        ]
+      },
+      "f_rc2TrendText": {},
+      "f_rc2TrendValue": {},
+      "f_rcCore": {
+        "f_rcStage": [
+          1776
+        ]
+      },
+      "f_rcPayload": {
+        "f_int": [
+          1782
+        ],
+        "f_num": [
+          1783,
+          1783,
+          1784,
+          1784,
+          1784
+        ],
+        "f_q": [
+          1779,
+          1779,
+          1780,
+          1780,
+          1781,
+          1781,
+          1782,
+          1785
+        ],
+        "f_rcSide": [
+          1781
+        ]
+      },
+      "f_rcPressureCaption": {},
+      "f_rcPressureComparison": {
+        "f_rcPressurePercent": [
+          3372,
+          3373,
+          3374
+        ],
+        "f_rcPressureTenths": [
+          3371
+        ],
+        "f_rcPressureTooltip": [
+          3374
+        ],
+        "f_rcViewCell": [
+          3375
+        ]
+      },
+      "f_rcPressureFrame": {
+        "f_rcPressurePrevious": [
+          2299
+        ],
+        "f_rcPressureRaw": [
+          2304
+        ]
+      },
+      "f_rcPressureLog": {
+        "f_int": [
+          2335,
+          2335,
+          2335,
+          2336,
+          2338
+        ],
+        "f_q": [
+          2334,
+          2334,
+          2338,
+          2338,
+          2340
+        ],
+        "f_rcPressureNum": [
+          2336,
+          2337
+        ]
+      },
+      "f_rcPressureNum": {},
+      "f_rcPressurePercent": {},
+      "f_rcPressurePrevious": {
+        "f_rcPressureRaw": [
+          2288
+        ]
+      },
+      "f_rcPressureRaw": {},
+      "f_rcPressureReading": {},
+      "f_rcPressureTenths": {},
+      "f_rcPressureTooltip": {
+        "f_rcViewUtc": [
+          3368
+        ]
+      },
+      "f_rcPressureWidget": {
+        "f_rcPressureCaption": [
+          3383
+        ],
+        "f_rcPressureComparison": [
+          3392,
+          3393,
+          3394
+        ],
+        "f_rcPressurePercent": [
+          3381,
+          3385
+        ],
+        "f_rcPressureTenths": [
+          3378
+        ],
+        "f_rcPressureTooltip": [
+          3380
+        ],
+        "f_rcViewCell": [
+          3381,
+          3383,
+          3385,
+          3402
+        ]
+      },
+      "f_rcPressureWidgetLayout": {},
+      "f_rcSide": {},
+      "f_rcStage": {},
+      "f_rcStageText": {},
+      "f_rcViewCell": {},
+      "f_rcViewClip": {},
+      "f_rcViewClock": {},
+      "f_rcViewPlanLevel": {
+        "f_rcViewPrice": [
+          3056,
+          3057
+        ]
+      },
+      "f_rcViewPrice": {},
+      "f_rcViewRemember": {},
+      "f_rcViewSignal": {
+        "f_rcViewUtc": [
+          2952
+        ]
+      },
+      "f_rcViewStructureLine": {},
+      "f_rcViewUtc": {},
+      "f_rcViewZone": {},
+      "f_readableEvent": {
+        "f_alertSide": [
+          1723
+        ],
+        "f_clockUtc": [
+          1725,
+          1725
+        ],
+        "f_eventTitle": [
+          1725
+        ],
+        "f_humanReason": [
+          1725
+        ],
+        "f_price": [
+          1725,
+          1725,
+          1725,
+          1725,
+          1725,
+          1725,
+          1725
+        ],
+        "f_tvFamily": [
+          1725
+        ],
+        "f_tvTargets": [
+          1725
+        ]
+      },
+      "f_realize": {
+        "f_planEvent": [
+          1328
+        ]
+      },
+      "f_reason": {},
+      "f_recordDecision": {},
+      "f_retest": {
+        "f_capture": [
+          852
+        ],
+        "f_clear": [
+          830,
+          859
+        ],
+        "f_cooldown": [
+          845
+        ],
+        "f_emit": [
+          829,
+          836,
+          858,
+          866,
+          869
+        ],
+        "f_enabled": [
+          812
+        ],
+        "f_makePlan": [
+          851
+        ],
+        "f_reason": [
+          847
+        ],
+        "f_recordDecision": [
+          855,
+          857
+        ],
+        "f_start": [
+          865,
+          868
+        ],
+        "f_stopRound": [
+          840
+        ]
+      },
+      "f_reversal": {
+        "f_capture": [
+          939
+        ],
+        "f_clear": [
+          916,
+          944,
+          951
+        ],
+        "f_cooldown": [
+          935
+        ],
+        "f_emit": [
+          915,
+          948,
+          960
+        ],
+        "f_enabled": [
+          906
+        ],
+        "f_makePlan": [
+          938
+        ],
+        "f_nearest": [
+          928
+        ],
+        "f_reason": [
+          935
+        ],
+        "f_recordDecision": [
+          942,
+          947
+        ],
+        "f_start": [
+          959
+        ],
+        "f_stopRound": [
+          923
+        ]
+      },
+      "f_short": {},
+      "f_side": {},
+      "f_sqAlignment": {},
+      "f_sqClass": {
+        "f_sqAlignment": [
+          2959
+        ]
+      },
+      "f_start": {
+        "f_id": [
+          765
+        ]
+      },
+      "f_step": {
+        "f_day": [
+          1379
+        ],
+        "f_finish": [
+          1425,
+          1430,
+          1446
+        ],
+        "f_openRejection": [
+          1387
+        ],
+        "f_planEvent": [
+          1393,
+          1411,
+          1420,
+          1444,
+          1452
+        ],
+        "f_realize": [
+          1424,
+          1429,
+          1445
+        ],
+        "f_stopRound": [
+          1416
+        ],
+        "f_takeTargets": [
+          1435,
+          1449
+        ]
+      },
+      "f_stopRound": {},
+      "f_takeTargets": {
+        "f_finish": [
+          1375
+        ],
+        "f_realize": [
+          1366,
+          1370,
+          1373
+        ]
+      },
+      "f_targetRoom": {},
+      "f_targetRound": {},
+      "f_tvCandidate": {
+        "f_makePlan": [
+          1175
+        ],
+        "f_planEvent": [
+          1184
+        ],
+        "f_recordDecision": [
+          1185
+        ],
+        "f_stopRound": [
+          1175
+        ],
+        "f_tvClear": [
+          1091,
+          1128,
+          1173
+        ],
+        "f_tvCommonReason": [
+          1176
+        ],
+        "f_tvRawEvent": [
+          1090,
+          1118,
+          1124,
+          1127,
+          1138,
+          1152
+        ],
+        "f_tvStamp": [
+          1175
+        ],
+        "f_tvStart": [
+          1117,
+          1137,
+          1151
+        ]
+      },
+      "f_tvClear": {},
+      "f_tvCommonReason": {
+        "f_reason": [
+          1069
+        ],
+        "f_validPlan": [
+          1069
+        ]
+      },
+      "f_tvFamily": {
+        "f_model": [
+          680
+        ]
+      },
+      "f_tvFastGate": {},
+      "f_tvGrade": {
+        "f_reason": [
+          700
+        ],
+        "f_tvText": [
+          700,
+          700,
+          700,
+          700,
+          702
+        ]
+      },
+      "f_tvLocalDay": {},
+      "f_tvManagePlan": {
+        "f_stopRound": [
+          1600
+        ],
+        "f_targetRound": [
+          1616,
+          1617,
+          1618
+        ],
+        "f_tvManagementQty": [
+          1624
+        ],
+        "f_tvNextStructure": [
+          1611,
+          1612,
+          1613
+        ],
+        "f_tvProtectionBoundary": [
+          1601
+        ],
+        "f_tvQtyOnGrid": [
+          1625,
+          1625,
+          1625
+        ],
+        "f_validPlan": [
+          1636
+        ]
+      },
+      "f_tvManagedStop": {
+        "f_tvTighten": [
+          1664,
+          1668
+        ]
+      },
+      "f_tvManagementCloseReason": {},
+      "f_tvManagementQty": {},
+      "f_tvNativeOpenRejection": {
+        "f_openRejection": [
+          1641
+        ]
+      },
+      "f_tvNextStructure": {
+        "f_stopRound": [
+          1587
+        ]
+      },
+      "f_tvOpeningRange": {},
+      "f_tvPendingReason": {},
+      "f_tvProtection": {
+        "f_tvText": [
+          691,
+          691,
+          691,
+          691,
+          691
+        ]
+      },
+      "f_tvProtectionBoundary": {
+        "f_stopRound": [
+          1575
+        ]
+      },
+      "f_tvQtyOnGrid": {},
+      "f_tvQualityLabel": {
+        "f_tvText": [
+          682,
+          682,
+          682,
+          682
+        ]
+      },
+      "f_tvR": {},
+      "f_tvRawEvent": {
+        "f_emit": [
+          1065
+        ],
+        "f_id": [
+          1065
+        ]
+      },
+      "f_tvRegimeLabel": {
+        "f_tvText": [
+          685,
+          685,
+          685,
+          685,
+          685,
+          685
+        ]
+      },
+      "f_tvStamp": {},
+      "f_tvStart": {},
+      "f_tvStrategyName": {},
+      "f_tvTargets": {
+        "f_tvText": [
+          683,
+          683
+        ]
+      },
+      "f_tvText": {},
+      "f_tvTighten": {
+        "f_stopRound": [
+          1653
+        ]
+      },
+      "f_validPlan": {
+        "f_targetRoom": [
+          740
+        ]
+      },
+      "f_wfEvent": {
+        "f_wfFlag": [
+          1942,
+          1942
+        ],
+        "f_wfInt": [
+          1937,
+          1939,
+          1943,
+          1944
+        ],
+        "f_wfLogId": [
+          1938
+        ],
+        "f_wfNumber": [
+          1939,
+          1940,
+          1940
+        ]
+      },
+      "f_wfFlag": {},
+      "f_wfHtfContext": {},
+      "f_wfHtfSide": {},
+      "f_wfInt": {},
+      "f_wfLogId": {},
+      "f_wfNumber": {},
+      "f_wfSide": {}
+    },
+    "protected_call_counts": {
+      "alert": 1,
+      "alertcondition": 2,
+      "indicator": 1,
+      "input.bool": 22,
+      "input.int": 1,
+      "input.string": 3,
+      "input.time": 3,
+      "plot": 1,
+      "request.security": 8,
+      "request.security_lower_tf": 2
+    },
+    "drawing_call_counts": {
+      "box.new": 3,
+      "box.set_bgcolor": 1,
+      "box.set_border_color": 1,
+      "box.set_lefttop": 1,
+      "box.set_rightbottom": 1,
+      "box.set_text": 2,
+      "box.set_text_color": 1,
+      "label.delete": 1,
+      "label.new": 3,
+      "label.set_color": 1,
+      "label.set_text": 1,
+      "label.set_textcolor": 1,
+      "label.set_tooltip": 1,
+      "label.set_xy": 1,
+      "label.set_y": 1,
+      "line.delete": 1,
+      "line.new": 3,
+      "line.set_color": 1,
+      "line.set_style": 1,
+      "line.set_xy1": 2,
+      "line.set_xy2": 2,
+      "line.set_y1": 1,
+      "line.set_y2": 1,
+      "table.cell": 3,
+      "table.clear": 7,
+      "table.merge_cells": 6,
+      "table.new": 1
+    },
+    "log_call_counts": {
+      "log.info": 20
+    }
+  },
+  "candidate": {
+    "sha256": "96c06840e856a079ed6a45840967ee0e1ec25ed5a9f86cf24bf83b9b9cb7de4a",
+    "lines": 2646,
+    "bytes": 144021,
+    "lexical_tokens": 25492,
+    "loop_sites": {
+      "for": 35,
+      "while": 2
+    },
+    "function_declarations": 116,
+    "functions_reachable_from_global": 116,
+    "unreachable_functions_syntactically": [],
+    "function_lines": {
+      "f_addClosed": 611,
+      "f_day": 384,
+      "f_dtAddReason": 1525,
+      "f_dtEmit": 1594,
+      "f_dtExpired": 1697,
+      "f_dtGeometry": 1621,
+      "f_dtIdentity": 1519,
+      "f_dtInt": 1513,
+      "f_dtNumber": 1510,
+      "f_dtOffer": 1665,
+      "f_dtRank": 1585,
+      "f_dtReasons": 1522,
+      "f_dtRemember": 1700,
+      "f_dtRoundAway": 1528,
+      "f_dtString": 1516,
+      "f_dvActive": 1794,
+      "f_dvAge": 2236,
+      "f_dvBiasRow": 2388,
+      "f_dvBreakIndex": 1565,
+      "f_dvChoose": 2204,
+      "f_dvChooseOpportunity": 2216,
+      "f_dvClockAge": 2243,
+      "f_dvConflictLines": 2290,
+      "f_dvContextLine": 2307,
+      "f_dvCountertrend": 2246,
+      "f_dvDashboard": 2320,
+      "f_dvEarlyAtClose": 1840,
+      "f_dvEmptyView": 1791,
+      "f_dvFresh": 1797,
+      "f_dvFreshView": 1847,
+      "f_dvJournalState": 2630,
+      "f_dvObservationReason": 2270,
+      "f_dvOpportunityState": 2223,
+      "f_dvPresent": 2201,
+      "f_dvReadPermission": 1893,
+      "f_dvReasonLabel": 2249,
+      "f_dvS5AtClose": 1831,
+      "f_dvShadowAtClose": 1800,
+      "f_dvShadowEvent": 1568,
+      "f_dvShadowSource": 1559,
+      "f_dvSignalJson": 1852,
+      "f_dvSignalTip": 2284,
+      "f_dvSignalsJson": 1858,
+      "f_dvSourceLine": 2279,
+      "f_dvState": 2212,
+      "f_emit": 393,
+      "f_escape": 381,
+      "f_finish": 648,
+      "f_gate": 778,
+      "f_id": 383,
+      "f_int": 380,
+      "f_json": 440,
+      "f_makePlan": 457,
+      "f_num": 379,
+      "f_openRejection": 667,
+      "f_pick": 795,
+      "f_planEvent": 417,
+      "f_policyReason": 489,
+      "f_q": 382,
+      "f_queue": 768,
+      "f_rc2Append": 2561,
+      "f_rc2EarlyPayload": 2562,
+      "f_rc2FilterPass": 865,
+      "f_rc2Session": 1128,
+      "f_rc2Trend": 1116,
+      "f_rc2TrendText": 1127,
+      "f_rc2TrendValue": 1109,
+      "f_rcCore": 905,
+      "f_rcPayload": 906,
+      "f_rcPressureCaption": 2406,
+      "f_rcPressureComparison": 2423,
+      "f_rcPressureFrame": 1344,
+      "f_rcPressureLog": 1384,
+      "f_rcPressureNum": 1382,
+      "f_rcPressurePercent": 2403,
+      "f_rcPressurePrevious": 1340,
+      "f_rcPressureRaw": 1316,
+      "f_rcPressureReading": 1364,
+      "f_rcPressureTenths": 2400,
+      "f_rcPressureTooltip": 2414,
+      "f_rcPressureWidget": 2430,
+      "f_rcPressureWidgetLayout": 2394,
+      "f_rcSide": 887,
+      "f_rcStage": 888,
+      "f_rcStageText": 896,
+      "f_rcViewCell": 2193,
+      "f_rcViewClip": 1990,
+      "f_rcViewClock": 1987,
+      "f_rcViewPlanLevel": 2099,
+      "f_rcViewPrice": 1981,
+      "f_rcViewRemember": 1993,
+      "f_rcViewSignal": 1998,
+      "f_rcViewStructureLine": 2117,
+      "f_rcViewUtc": 1984,
+      "f_rcViewZone": 2112,
+      "f_realize": 629,
+      "f_reason": 387,
+      "f_sqAlignment": 2008,
+      "f_sqClass": 2011,
+      "f_step": 692,
+      "f_stopRound": 385,
+      "f_takeTargets": 675,
+      "f_targetRoom": 486,
+      "f_targetRound": 386,
+      "f_tvCandidate": 551,
+      "f_tvClear": 522,
+      "f_tvCommonReason": 548,
+      "f_tvGrade": 444,
+      "f_tvQtyOnGrid": 854,
+      "f_tvRawEvent": 544,
+      "f_tvStamp": 539,
+      "f_tvStart": 531,
+      "f_tvText": 443,
+      "f_validPlan": 491,
+      "f_wfInt": 1005,
+      "f_wfSide": 1008
+    },
+    "function_body_digests": {
+      "f_addClosed": "01afe452ff42a2e7177a21bd7c1a51689c435851c579ad9db972b9aa7339e7d7",
+      "f_day": "d233c5d8a26c7b1d65a807414503e823663bfaec7ed664e47b4d25387661f187",
+      "f_dtAddReason": "1db0ffbfdae85776ffbd9d4309258ad37a7649ec19e0400f18d5e7f5b0d4b26e",
+      "f_dtEmit": "c1a9eeb9df7770497ddb2a7225f5bbc11273a6e894405fd290b593040acebf55",
+      "f_dtExpired": "f85d6c6cab1719a0a8549571c09a838a4b6397de1083ea6c07551e4a98ae2bb6",
+      "f_dtGeometry": "c6588518d5c34cc778a3d47b6e49846dac5e63f8594bef595ccf986f7de73444",
+      "f_dtIdentity": "9823083f8b3cfc3fd32e457f822f9d49cbf4bfdaa153654ec853bd716c039642",
+      "f_dtInt": "b1a830345815e8efb77e91b9d55790b78ac4ac5425f2c8161435910a03e6570a",
+      "f_dtNumber": "f31663050959ec2d72a09b38acd106ba27cdcc0989ec6eb8a58bfdedc11457f1",
+      "f_dtOffer": "a71c4beaac3916e267daa1b4a765e4573185638428d3abb2f07c1362ff549b18",
+      "f_dtRank": "10b839c9a87a84eb0ae02715c772bc3ec874d2e805e08143446ecfa4535daca3",
+      "f_dtReasons": "efa95a59ebf788016ff46cf547fb08e735e30ac29694971e618f7cb311c4682b",
+      "f_dtRemember": "de9d9e6239cfe989a625d1502f5c41361afa968423a34ec7b8b7cf4a293378d0",
+      "f_dtRoundAway": "f508cacac7e063f33c7d8cc7d06bfeeb02e260c8b29f0b8c06bd8875b74fadca",
+      "f_dtString": "d261837987dab6383196fb399e28c670e3349ff1162d8beb0289548db14a97ae",
+      "f_dvActive": "baa4730a12b79b1cba528e1686dcd93ec366b41e463f1e1ef2270533a5960ece",
+      "f_dvAge": "d1d60b119df7ab6c473d61a4da89ce53815618b0e0c92a16965d854a21d255cd",
+      "f_dvBiasRow": "df6c58766def3cd2b05ed8d7fa4a143a10df9160c38a68541d2b7cdd54e9ab66",
+      "f_dvBreakIndex": "2d44e6aa54d3e57b47b65e1d0f3361f0cd25f4c580c311c16096cb33a6088f56",
+      "f_dvChoose": "9bd6d90fa2c3e948fcad2bc51b314cc23a9a658e66c2ad15545b5d15271a3cb2",
+      "f_dvChooseOpportunity": "676221a5e5163581b2a0362fb95cdb0016924163a9475cfe9a43b3fd9cee75ef",
+      "f_dvClockAge": "acca1e8016e0cef35ae853f37abe1817e6b6b8500f788ec8f8bf100a0451e16f",
+      "f_dvConflictLines": "7dae82513ed607438ec87a9cfe2e73bdea5834ddc08853100c19a41c788425f5",
+      "f_dvContextLine": "4c3d205b4281753bcadf097388e2b63d7f04171a739ad2fb00c217899ffaa58e",
+      "f_dvCountertrend": "3521f1e625165438795dcae7a073894771a0a81fb8611a17fc8fab9100ab9da5",
+      "f_dvDashboard": "2ce9226bacb71ef18ee00c2ea430715b1c6e892c6a852c7a21da0a391f397e96",
+      "f_dvEarlyAtClose": "1b5d9883f462f555025b1e9bd91fdfc80dec60fb14b666ced7d383e92a830731",
+      "f_dvEmptyView": "598d547ce9c1fcff3f62831a1601c5dd4f3b26d3fa8dc250227669bf75cb5f35",
+      "f_dvFresh": "8564b9b12a88dfbe97034737d2a57e9ae2fdef3c2568329755f188a46d5e7095",
+      "f_dvFreshView": "10b3ed1b28903578df99b19920bc534d63dd7ab7a51ad90a67fc1d1943eaef1a",
+      "f_dvJournalState": "3abf2360d85c7954a43046ae8bdbd6a540c17653933ebea2d9b816c1c3b5d969",
+      "f_dvObservationReason": "5fbe4c2f06cf8b37d28ecd5b7cfe64666bdcd86bf7857b258023908452b4d5de",
+      "f_dvOpportunityState": "e35c056f5549c014e08b163dc6a7858a7bee80445c9a5af78688a78a85372d63",
+      "f_dvPresent": "987c168d0508c5ed214a32ca2ea65b9221ff5faaf5fe88a86d10c36ff1e97701",
+      "f_dvReadPermission": "75d40435a1d8c6b98dc16e5372f01876f48a4011ed1c646146823abc6021c244",
+      "f_dvReasonLabel": "8b87bc4dcbf6d4a1ed5595e03ae7fff482ebd55fca74f97e4fee58f5a5a2be33",
+      "f_dvS5AtClose": "752f16a0858ac62112654f1c3ebf769c21ce9fc48b019ca893989447d2626109",
+      "f_dvShadowAtClose": "2e70d6a731a958a1ebfdd3e0cb4f2ddaad7234654b774c2300c4ed293baf8ac5",
+      "f_dvShadowEvent": "425845f62140647bb3be7d3be8073c6c5c1bbbc20a64bce10b1f6f00450f15cf",
+      "f_dvShadowSource": "8599367ef7169825c1d93f34483d6715376bb7dbedcf7bb6b7c4a0dbde8a2c5c",
+      "f_dvSignalJson": "c04c355f2c7821cb82d5934682f442d951233b2ebca21fd7138028492cd3aaca",
+      "f_dvSignalTip": "b91968ddce3e7d1e0c9a72d832ca3356fe0519847792e63d5833cba432b2e0ec",
+      "f_dvSignalsJson": "82acb33038f2c48a42c9e29bb005c1181acba80f0dca5921f22a0acc8754767a",
+      "f_dvSourceLine": "a0ee6c169deb2434bfd8de632386ece7b070a4f76b702006a9ac3bab67e5e606",
+      "f_dvState": "aef2837d93da8858fdc41f8bf0b99fcce3f4f256dee5059e1fad75a7b232a26e",
+      "f_emit": "351dd77788c2dbda96e81e91baa8b8aa0d6491bd00164e6c74639b0dc46b4d42",
+      "f_escape": "b56f4027b6df5e9bd50921f535e11c66c91751425e95a1931b989f20ce661116",
+      "f_finish": "a9e1b0eef2d15e8af3ea8b2d6d3b5016a15c7027ed36ff37cae9f1bc7e412111",
+      "f_gate": "f374c955bb8e5fdef8d3566be09798cbd1dae142a74592d70fa71d87b5d37a0a",
+      "f_id": "fd16bd2a5a4b88eae79d000a76aabdbe10c6f628c432f90468625ac430cecb77",
+      "f_int": "2dc17372ab5a5374a39ebdca343ae4a7fbb589460a05fb6dd43c8afae0f0614c",
+      "f_json": "2b2487398d6a436b82ff51a40107f0f5fe332aeb450cc118c54beec96a4a67ea",
+      "f_makePlan": "3aafb089b7c73487a146e0a9f7cc492e275fac10383bd0f739e0250485dfda2d",
+      "f_num": "8508a96836b56eeb79fc596efbf30628ee75d4359230aa68d2989824e84924f4",
+      "f_openRejection": "916b6ef20689312b5b53e65811c324f649a3b732eba793c83bb39e9e8481d2fe",
+      "f_pick": "87880c01627d559d8dbe6df5f747aaf9be585423da7668529a07a59ee9194322",
+      "f_planEvent": "1c49188c1b4ca4e5479478c17f26fb4c2c651f81a14e19c1009947e917f948a9",
+      "f_policyReason": "883bef9c440e7aea94a8d9a9205b8a0e0ba5d83f2e7e6533bc286fcf9c97d3b5",
+      "f_q": "a7a2ba2c37a81e27323f9b99e49dcfb40aeccebe701db29c2fce218bf5d588c2",
+      "f_queue": "39af2987c27e5af74123b3bff31f72c3bfd6d5db5ab13215908fde27ad5714ce",
+      "f_rc2Append": "46bbfd85669f0037eca8c17a0ade9bbb2082be7a023dabbdc121773402198432",
+      "f_rc2EarlyPayload": "3a24d108f3583e7e9ab7843a1a5e5103670b7df980b5a85a4673bf0b600ae6c9",
+      "f_rc2FilterPass": "b4030c3660827a2403e2718c3462586ea2cb63deda54dac2d9abbec40ffff827",
+      "f_rc2Session": "c05e514272b3e67023b6b0040be4dcc55330dddbcf544ee5d598ddda0af8c6ab",
+      "f_rc2Trend": "c9e94a651118d86935d0979675de5473a21b4b23dcb77d9e6b0ef40141ba399f",
+      "f_rc2TrendText": "e5d3e67c5682eaceeef29f2ea4a14d9c7f87e4b77442abecf03dd9300df4ce81",
+      "f_rc2TrendValue": "733d47611fbfbc4a6880efa4aa0282cd343ecdcd8a472ae10293928af65d9f75",
+      "f_rcCore": "e322ea9e64dde0146cbad89955da1f4beb01b11c7a3ca2545bfa2ca6bb5677e3",
+      "f_rcPayload": "6ae0a3d0b46e0d13feb247041a6c936547a5ace34f318f685d11e4d415f7f357",
+      "f_rcPressureCaption": "d6e560af9e8b8c2ddff1d13c8f7ae2e4ba3f7a16f87608ae176d571fbdc4a4f6",
+      "f_rcPressureComparison": "43a93b91a508f4fded7d7605c80533e89eda54ee5541a386a116d1b75631758a",
+      "f_rcPressureFrame": "66d70a58253a135356425303cbdf24d3387e6eb91eb99243a319ea01029ba1f3",
+      "f_rcPressureLog": "cae489a817a0e4093d533652b212ffaecb3d15d536be8fd60995d8cff859b540",
+      "f_rcPressureNum": "ae31de47b18484cbeaae3737b8ac9bc2592b0711eb077597f47d87cffb0977d0",
+      "f_rcPressurePercent": "60500b15099c3e34c923768390ce054e04364d0bf0bb3df6f7551c261588e924",
+      "f_rcPressurePrevious": "57d760c5823e1059dea07966153d8e71eb8c1c49e75b133f3c5fe2a157ec7abb",
+      "f_rcPressureRaw": "6a14076d48533b2af4dde5036bfc30754bd485f9128163efd775f1f099765f1d",
+      "f_rcPressureReading": "fd2914756e9cf74bc04f57496e94a0eefce7bd46ce816cae09b493ac90d86438",
+      "f_rcPressureTenths": "54f1f45c0c5dd9805000aed538b6062c54ea3e72cbe21ead9f84b681685b4f6d",
+      "f_rcPressureTooltip": "c33acda4d83c62fbdc79b43fd0d29f1e636b69b0615ae560c453d2828dd0a162",
+      "f_rcPressureWidget": "96ca2a5ee66a1575d5567802f8e292e63eb3a8ec62ab7b6e0badcd360116f557",
+      "f_rcPressureWidgetLayout": "b338afb82c312137963949011e0ade7b762834a8afe670d6da15007ef427ba18",
+      "f_rcSide": "d5da05fe40501ad1b049e0742f1349f9b5b953d69c2f7d325b11d3dea4b5611d",
+      "f_rcStage": "7acad59f2c895fa790372eaf4c169dc48ddf66a795ffcaac29144b5ef7fa10a3",
+      "f_rcStageText": "4b7c2e57e3bd6cfe39eb21a647cd0162d3b5e323e1953ce5d6d48efaf1861fc8",
+      "f_rcViewCell": "4a6a9da741d8c88228d9f4da3816765b4d263e5a463a65a0616ec909c9237b92",
+      "f_rcViewClip": "6498763fdff48d35186d42d681abe277b1814d20aa151bfddc6c992200e93ee9",
+      "f_rcViewClock": "d036b973c0f8ae2b66e62d99e6cb4c1dd95ccc6954888716590b3fded444b6a7",
+      "f_rcViewPlanLevel": "9ca293260b0d7191c8964601951efe6677a1cdb4824eaa890fa22c9c857fec79",
+      "f_rcViewPrice": "96bee34246c5093cef50058bf42655165e7081de31facb31ae29fbaa64325e7d",
+      "f_rcViewRemember": "7ef02ebd4d36480f8187be6d883708cd85c77cfe132b3f12794669c06f71bd6b",
+      "f_rcViewSignal": "2aa3a759b89efb9e692a638bd66462ab3bc2dc98832545c49ef5c1723ac37dff",
+      "f_rcViewStructureLine": "933d9dcbcf692b1561a9fd3ad7b9cdfbfeb73325addb5f8df263fe5512c56cb6",
+      "f_rcViewUtc": "912b4be42415ae8ccbfabc9302bdda486e95b8246a551c4d5ec29a905d9759d6",
+      "f_rcViewZone": "9907c38878091c3227d8bb6f607a2f9a9fa85c747c10f9f3115fcc452573059d",
+      "f_realize": "d45d3d859b07e50adbeda06157ffa2480eda20d0ec255fd70fe54b6440122387",
+      "f_reason": "bb518e782e52e46b2b53750ce5865dc7ab6e85138e4ead1f9048ae89e39a847f",
+      "f_sqAlignment": "282ede4cf0030802d2779036e673d6c934f4ae821e8c36ccaa67f214f3169f4d",
+      "f_sqClass": "1d73f25acb786768bb644332b5dc0e482a398a123a87e56df98b42286462c354",
+      "f_step": "76c2cc0defd792ec068999dec57331278b626c7634e1dc3506ca0c4a9de14701",
+      "f_stopRound": "a5c67e05cf840c346b23054f8e13b1c12f0bd00d3b5840b7d5f7031817a364b4",
+      "f_takeTargets": "2c8f3f207e3813f61f760f6cc43540b4b1ab67e06b2a8d0580d287195652144f",
+      "f_targetRoom": "f91fc494d070d294454bd318b5c95676fe5fa60ed2d43b9cbe9d1892d7331f12",
+      "f_targetRound": "8c26af976d15e78353e5feb235251bbd93a1000a9be5060606159f3640114712",
+      "f_tvCandidate": "5578d1154589907a57a5ef520727bcb707f67228703cda5f9e25f5c0b4bb4199",
+      "f_tvClear": "9dd9c198b3a3fe9776bc117bd896b5367f5d84ce4a65ad9d5b543e8fc7b6857d",
+      "f_tvCommonReason": "4d862baadf21646c4e97e8da4aeb11dbc203acd9cec81bced82d84473a905d43",
+      "f_tvGrade": "42fc0e381fb0b7ebb06764cdb8e83429fb5dc47a0a803332710ecd009597e894",
+      "f_tvQtyOnGrid": "a5ad4b2a5d71330ec9c3d561f976bcd43bca00253a5bd500286f49e48b55678e",
+      "f_tvRawEvent": "753fb2c1f6b02142a1a7ff3393ecc172db3ad809c7f79004cb0392a78c60ec32",
+      "f_tvStamp": "e0e5dc8266934cab1ec727ccadc823d6e5341b3717557c8a882ef2aa56d8c4bb",
+      "f_tvStart": "801008ea12c51679af69c2deba835c4d26e0ab94f44f070144c6bf00c80bc752",
+      "f_tvText": "2397631add262800e9557cce5ca990ac97233ea0098f55d7d5f7f8cace96c7cb",
+      "f_validPlan": "ea9deee2299dcb30369301f746f89601970a8bd1f880dfee75615cb190fdc0a8",
+      "f_wfInt": "0cd99a08dc4bf1f21ff6839ae0da6c2373b218ddd17220e38b7c913641b39464",
+      "f_wfSide": "fd227fb43ea1faa69564d98d1e8155adfdd0d9173d677cc3ec055c3fed58d057"
+    },
+    "function_signature_digests": {
+      "f_addClosed": "bc875aac0faa0447497f83b1b0d9cee3000354b79c6b182614926b148e78818f",
+      "f_day": "f0d39011da9d67e7afa42e8b3fd050eeb385deab012d23e41c2d343572611aff",
+      "f_dtAddReason": "8549402ce71255af283206c96ef28c28eeb11dcb6afbe48e93eec272465e56e2",
+      "f_dtEmit": "43bb595a8d6cc882bb64686d5b73f4a231188ed7f506b296f49d7da7d56be98e",
+      "f_dtExpired": "8e1ed620b09b3af7927e897bc0ec29a6c07e8b8a8b319015d9568f8ce601b9d2",
+      "f_dtGeometry": "e158e735164ee08f7d8c17e0c1b79c77007957d3a59b49da239e28d3fb6c9289",
+      "f_dtIdentity": "14361190aa373c84c954d4ba845e68c330b2ea38ed37ce4314e83d4b7496f88a",
+      "f_dtInt": "56f87d2191703d9b2a58f668997ae6b08ac0b3058768ba662f5ddb3ab5c48851",
+      "f_dtNumber": "801b8cbeea5552b6e4fa10f0b040c1c104095e3209a253cf67bc2a881d2aa063",
+      "f_dtOffer": "39012b5499f9b8a38a516c29e587af8b71cfc56349ef4cfdb281ba6976dc7e18",
+      "f_dtRank": "3c2a33597d546413d71de67f8b86b5fef6379133509d117c01009c30306be71f",
+      "f_dtReasons": "820618a9880cbc4b4f2bec9827c901536e6afc4f9d7e1722b5b54709b57a23dc",
+      "f_dtRemember": "e8f7a27a93343764ecec48212ebc0a1430a00a4c0b55e970dae9db3e2b5bb0bc",
+      "f_dtRoundAway": "8d4c0a1477b3456b4f04277d3b277c78ac25d32448f086375e8de85895d2af3f",
+      "f_dtString": "4ea75cd48f1b5d793a0c1ce4611a233b4538f006d6fa699b54e463615c60a03f",
+      "f_dvActive": "a0ef07ab0dbcd845e8512b986458663c365b57e7aa1637946e26479693d797a4",
+      "f_dvAge": "52bbeca8dd39187b26dfecabd19fbdc1bba2e2a0f29afcbc3461f91e18670917",
+      "f_dvBiasRow": "9de87f7c068143985723f171450c2635c1a100985f2aaed43844ebcf85ae6977",
+      "f_dvBreakIndex": "dbe51140f738d4ecd0a21ebf18547edea1986ca7a15cd6ec079bc080278935b1",
+      "f_dvChoose": "a6d27eb14b5d4917462c4882fd043a232f90ebbfbdbe8d8666acbb171c42fc76",
+      "f_dvChooseOpportunity": "b0198d05a1807df7da4157461a5a5ca176d1a2168f2a8b00e60686ae543fbd5b",
+      "f_dvClockAge": "0555c5fbaa572b193e64ac847ddd69658272e7618bbf6a6d37539ee661a77042",
+      "f_dvConflictLines": "dfdd07a8b3315e52f9abc25b5861a80fc291bbe2e353893270756b3bb9a70eec",
+      "f_dvContextLine": "46d409cbf539f6df50905ab58767d61c7d7d6bd93a5d6bcecd9d310d5230625b",
+      "f_dvCountertrend": "fd004b92acdbb257ed8193df145b29e4fed558a0fea8754334c8f4418a967376",
+      "f_dvDashboard": "ea5755a5a28381870b378f1497fce99e9fd9910370b9f38e557b3d6213524346",
+      "f_dvEarlyAtClose": "680116d982d394f82dbd39013e91923e0e9d5f08c6c1eb78e2a1f880e3565680",
+      "f_dvEmptyView": "b3aa3edfcc58be45d3c1f96daa4a8a88977b5b36da4d4d4e947553b211bd3078",
+      "f_dvFresh": "cd69e5f01fbf3e24aa4659413367020171c92b00b37c31103fbffcceda548b46",
+      "f_dvFreshView": "98a8fe2fc78f01e6ee8cdca3c8e759b4ee2f3e59f63bde155081b2c29d365c0c",
+      "f_dvJournalState": "3c1ab63e7c79514c8fcd59cc87045ab55df700e020fdd8658cff1d19a3d2999e",
+      "f_dvObservationReason": "e98ae1149bc4ca4224638c984728f89892ff571de2f50fd0c486ca50eb5f2a6c",
+      "f_dvOpportunityState": "3890cb1603c620a231807714e877ac0b5c6e3a873744e58a21d8205f0cfc0457",
+      "f_dvPresent": "7d568131ae9981d386dbf90261494f19e9b81a60274d06990777d6f2de7ceace",
+      "f_dvReadPermission": "57aac004fa8d6e16b71bdc91dbbd396c965677d7509583c9a24ce349046f22ea",
+      "f_dvReasonLabel": "7c1b0469b26f2d6b7a1af2ca6e447dac7d4f4d90e212732c9de05e77477adef6",
+      "f_dvS5AtClose": "1307a74191b49d986ae7e9e82f575d2903570905ef348cb9915e941f9463f4f7",
+      "f_dvShadowAtClose": "6120227b358a2430ada96aea197f5091e78f5f03fcb4d168619feb4f67b5385f",
+      "f_dvShadowEvent": "6b4335505a209eb2fe4c11294330396dcdbef0103c56414e36bc9ee94477816d",
+      "f_dvShadowSource": "71ebe23123efaa622467420d3dc5c4c9feb28018ee7a6cf71df52d984de7c5f9",
+      "f_dvSignalJson": "1340de54b20cdff45b782dd34a0b6c0e58808ba89c5babd5fa48fc8b7c1dc886",
+      "f_dvSignalTip": "affa611183af81e1e667cb26a1e6bb99d562f6c8e8bfc968fcfb1a136cbe4307",
+      "f_dvSignalsJson": "db1c022a9c5790e423d827b2df8ee7eee8065ad3723fab72d2cd9fe18269fb9e",
+      "f_dvSourceLine": "9e5d508a71cd90cf3b915b9fedc7cfb7da798a372c57972ff05ee7cb8e4c6a46",
+      "f_dvState": "31f8625541eea17f8c390ca8f163663b0d39f6938a912778542daffa49613980",
+      "f_emit": "33fe9bc0e50542bb8368e030bd4ee9dd085859f4e47d470083aa44ca8d5718aa",
+      "f_escape": "da59c546c1168b206f46fd7682eca21e33694366065911a5e20a72eb769202a3",
+      "f_finish": "8a73a1a658fe0fdc192e4393be2dd65045bd57055ff89336b90787c5b151be30",
+      "f_gate": "bd9490ab6a0014580f542fe5dce7102de6970d2a6a8b82b426d91a51722d6506",
+      "f_id": "ee31010b4a3f7193fbd9e521ddad924d4c8cf0744f19a3979ea87140a950615c",
+      "f_int": "254a61e1bd958db56a5f780abeba8562b3706fc905fa23b3d12da4d9b29b0459",
+      "f_json": "530be440b622fc0864ad94104562453a629f875108544c1331d848ef60e407d3",
+      "f_makePlan": "a607c99a7933bc7968031c54ace5762358f6bbe40f2fc8c6f7191f37ec623809",
+      "f_num": "250e12ef65f5811d7a9aa8f2360efc2866dbd0279ee0a526bd623eebc2fb2bf1",
+      "f_openRejection": "d4948e253fa1c29d802c9d180028a1f48b9a81af4d577079b60e879aac8db43a",
+      "f_pick": "738eecca20eecbaa6e983eee54403a96994225d9e57b8932385f6ce217fd5d41",
+      "f_planEvent": "5fd5b5d7ba143f089ffd0852658f6d2c077fa95c3136112049f788acefa37780",
+      "f_policyReason": "c0c2ea120866fe8ec052b1f8bdfe0a3f66df14a6906b00c367cdf9022b3e5775",
+      "f_q": "620df28cc1e4ff7ce11918854080f451706bcf0b4e1cbbc7fd70f1310616f31c",
+      "f_queue": "a86c4c2217e20778042d4b176802c11d827a2618dc54de6fbb7e0a2a6dc9dc8e",
+      "f_rc2Append": "b42e3283a8e75e9e6ed689fc67ffbc6c3f4e69627dcaf50fbdbade031fca9d8d",
+      "f_rc2EarlyPayload": "3bd0c97481f7801de62eda80f5b9a05a5f8f3c44e30c7bb33276b0645ead8a5d",
+      "f_rc2FilterPass": "d1d2149ac332e1c8b4002689b7a708dbae5e874ea35d2e3fc29a12e9c7bb81b7",
+      "f_rc2Session": "7fd0c76ebd3ac87046019f70c8f3074e59375cdae5cec5261231c6c627097424",
+      "f_rc2Trend": "5dc781a502e3af263fbb0c8e904ce3be4e47270f6e539d38126ca3b4ffa95d45",
+      "f_rc2TrendText": "39bba6dda602ea40d2065cf74dec5ab0f1ef1006b02e90bc38193c2916283cc9",
+      "f_rc2TrendValue": "78937d1fff92e184799a3432235eec8343a8c5b6c846abde2d9c1bcae1e733c1",
+      "f_rcCore": "bcc991e4c088e2ed402ac21a667c6746c18a8f033016dd1b258bb7a711494f7d",
+      "f_rcPayload": "bfd7a1c20124923a7ab2a1c9a0d33eb45389dfa8114b9c9adbeeaf9ae261df0c",
+      "f_rcPressureCaption": "badecadbbe66d00dca36393eef6beefa9d59a7491b6a199901f36027d986e468",
+      "f_rcPressureComparison": "9340e1d8874ed98fa1c381e01958301612aa772be374a2fd6fe0fe7d08849fef",
+      "f_rcPressureFrame": "437e8293ccf90679dea95cecdef10fdf63764809779b57e29d08cd6d82dcb0e0",
+      "f_rcPressureLog": "1080532980d0307b11ef0341e66201c2c09b69cb5d5b638674c46aba2a6dd27e",
+      "f_rcPressureNum": "719cca4cb758f9c20d97bc3dcccc963e925248135cb949c45518222d6cbe94f7",
+      "f_rcPressurePercent": "43b0828baad72c61a315b7a0e116d649bf332729d01e2bce600ac0fb596eb994",
+      "f_rcPressurePrevious": "16a3a1bd68d63914c16ada742ea140ac64cd18b80c71ff7d869c19877519dc30",
+      "f_rcPressureRaw": "0a178bbe20fb91301d9bcc45c7875ba6e10f08a3b4439bde5c7e49b4d69cafd0",
+      "f_rcPressureReading": "cd088f67bc819b1fb5306352057cb8b20efbe4c66050ec3c527acd9eb0c4b905",
+      "f_rcPressureTenths": "674606d9b6152f5d16ce02e62141d2eec685c816cf8afd68d5e83dd3f788723b",
+      "f_rcPressureTooltip": "64bb64c9b9873b8a826cb7570e08e147812566b8b6bbaf9af4330fe924b7c8bd",
+      "f_rcPressureWidget": "88b7cbfa06fffebdc85c08a3a71cc027840a52ec30c7bf36fc85a73d76da37b3",
+      "f_rcPressureWidgetLayout": "f4468b41fa32fe70ab24d5f5e0b75338ba9d77a8487eb94b79e506a14d144dfa",
+      "f_rcSide": "48f9dbca99b0fe7bdc282ec631366e72fa563e06f84acfdfc5ac6164fef0a3ab",
+      "f_rcStage": "6a3660255754ff178a6ebeeb99ad801344e225a5c146d9cfa0829e9570d16a84",
+      "f_rcStageText": "9794a8cec9b8d2579685c3347df1b49c2fcc826e9fc4735ba6187c08e70aa616",
+      "f_rcViewCell": "e703d59d42c09d1e0033ccd263971ff02e96f16c068891714aef045b298b75a7",
+      "f_rcViewClip": "649428b11ee674152bbb446e464d877184effdf13bd67172578a7a043658815b",
+      "f_rcViewClock": "c8046ed7409b465bf16916eaaac4121df99a1b2443683821ce9414220f54aebb",
+      "f_rcViewPlanLevel": "f25d58ce089c0ec97e396080c3083500fa66e7eae29c67d076404cd47381ca1f",
+      "f_rcViewPrice": "f8ec573cbcad7016231cd2a963b5549f400d1ffe2da993b996fff1100d4cb246",
+      "f_rcViewRemember": "73cac4d638c5b6e940afb6b701deb25d284932fec4be135d16aedc4386b027be",
+      "f_rcViewSignal": "31926a191c3cdbf219332716431fda61adaaab919c70bd7f7526946884b38d05",
+      "f_rcViewStructureLine": "e33602569b660afc6c15703b469368bff2bd6bfeb556dca6cd3293a975ae16a8",
+      "f_rcViewUtc": "628f6630ae28b0614c5bfc3581c474363a6cf331e3622149aa9619684bea3c22",
+      "f_rcViewZone": "28e3c887d6da3dea151fcd61d02be560d6c91381495ea1beb70a6464abad775c",
+      "f_realize": "d99f75f6ad6742d324a780de04f543e9d01f394e777d8544970a195ca2c6bff5",
+      "f_reason": "955af08df1236fce6881a06a9c3541d0df6b572eca7df92a2565ae55a1cf78c7",
+      "f_sqAlignment": "03e6af33a1baada5660cf1e42b7d95f2322024156078001aa877a2b2acd37927",
+      "f_sqClass": "e25ca38e4a02e726708cfa0e93857673902af3747de48d3dbf2cc67c3b35ee56",
+      "f_step": "9ff25e84aeac3054d2a4e5510fb7e7fbf5ba089a10886a3cee00306c3ee359e9",
+      "f_stopRound": "7c8f79f7d767e57815f1f0709b82c8bb8b59d938254ad689afe6b5157bca49b0",
+      "f_takeTargets": "f2783d5e2332e593176246713961193e960e87d57047e97a15a3472b34fa0bda",
+      "f_targetRoom": "164b028a748b317836ef1f38b633f051cf6079deb98b1b1a4188f261f2297952",
+      "f_targetRound": "afc1cf48b09add791de43569fe6efd27fa4cf358b00919289886de03edaf1c0c",
+      "f_tvCandidate": "622595409ad25a497e09de9218f4ed9c5720a2571afee33702c60215196ef5e8",
+      "f_tvClear": "f5db6ac1df0d26f9f4f2b78e45df35dbc1b303e84da2bffebb56a69ddd278f31",
+      "f_tvCommonReason": "a6374bf5456880d1a8826c043e859eba2a9fbd2c4eea55979ac75b4c3ac4adea",
+      "f_tvGrade": "8bfc84b15fe5e1042f9afb062bb582f90e5234126df5f4cbd0deeb63c90bbb57",
+      "f_tvQtyOnGrid": "d7f1c3504495acaa6e8856e98f27c01075677dee99fb7a55f7543770883e9cea",
+      "f_tvRawEvent": "77127de20b1dae0b29c64ef8bca4c6c64201e288bfb5b7ba562ae0cc33d89a55",
+      "f_tvStamp": "b28e5d80d5f844263bdc129ddcbdd4e020cc0d4e3561f343bd93872f302b83b4",
+      "f_tvStart": "1f0296168e4be032f3f5f70e685c27e116bb188c0ce77f8d11801ec9ac40b622",
+      "f_tvText": "0456a6f6050dc773f1e4584026e484201ebf3557cde5f6aa2802ba06df0ef3d5",
+      "f_validPlan": "06e4ce4b0116e9f634ef2600179e2ca9966635d5bb2f484dbe35a31fd1fc3aaa",
+      "f_wfInt": "f3df00221a6525105eb595c22257d045b983820cdaf6df397e8f9d87cb40960e",
+      "f_wfSide": "a1674bcf60f9531a21a88593ba08effd68aa88df67b2f413beb5e781198c8935"
+    },
+    "user_call_graph": {
+      "<global>": {
+        "f_dtEmit": [
+          1720,
+          1723,
+          1727,
+          1741,
+          1755,
+          1758,
+          1762,
+          1774
+        ],
+        "f_dtExpired": [
+          1719,
+          1737
+        ],
+        "f_dtGeometry": [
+          1728,
+          1763
+        ],
+        "f_dtIdentity": [
+          1738,
+          1738,
+          1742,
+          1745,
+          1765
+        ],
+        "f_dtInt": [
+          1709,
+          1710,
+          1710,
+          1710,
+          1781,
+          1781
+        ],
+        "f_dtNumber": [
+          1711,
+          1711,
+          1711,
+          1712
+        ],
+        "f_dtOffer": [
+          1734
+        ],
+        "f_dtRemember": [
+          1777,
+          1779
+        ],
+        "f_dtString": [
+          1709
+        ],
+        "f_dvBiasRow": [
+          2478
+        ],
+        "f_dvChooseOpportunity": [
+          2228,
+          2229
+        ],
+        "f_dvContextLine": [
+          2476
+        ],
+        "f_dvDashboard": [
+          2477
+        ],
+        "f_dvEarlyAtClose": [
+          1871
+        ],
+        "f_dvEmptyView": [
+          1865,
+          1866
+        ],
+        "f_dvFreshView": [
+          1876
+        ],
+        "f_dvJournalState": [
+          2644,
+          2646
+        ],
+        "f_dvOpportunityState": [
+          2233
+        ],
+        "f_dvPresent": [
+          2230,
+          2231
+        ],
+        "f_dvReadPermission": [
+          1922,
+          1930
+        ],
+        "f_dvS5AtClose": [
+          1870,
+          1870
+        ],
+        "f_dvShadowAtClose": [
+          1868,
+          1869
+        ],
+        "f_emit": [
+          850
+        ],
+        "f_gate": [
+          827
+        ],
+        "f_int": [
+          930,
+          931,
+          931,
+          931,
+          933,
+          933,
+          936,
+          936,
+          1169,
+          1174,
+          1416,
+          1416,
+          1417,
+          1417,
+          1423,
+          1423,
+          2610,
+          2619,
+          2619,
+          2620,
+          2620,
+          2624
+        ],
+        "f_json": [
+          948,
+          2627
+        ],
+        "f_num": [
+          932,
+          932,
+          932,
+          932,
+          1170,
+          1175,
+          2621,
+          2621,
+          2622,
+          2622,
+          2623,
+          2623
+        ],
+        "f_openRejection": [
+          1243
+        ],
+        "f_pick": [
+          842,
+          845,
+          846,
+          917
+        ],
+        "f_planEvent": [
+          840
+        ],
+        "f_policyReason": [
+          837
+        ],
+        "f_q": [
+          1415,
+          1415,
+          1419,
+          1422,
+          1422,
+          2609,
+          2609,
+          2610,
+          2618,
+          2618,
+          2619
+        ],
+        "f_queue": [
+          844,
+          848,
+          852
+        ],
+        "f_rc2Append": [
+          2580,
+          2582,
+          2586
+        ],
+        "f_rc2EarlyPayload": [
+          2586
+        ],
+        "f_rc2FilterPass": [
+          1172
+        ],
+        "f_rc2Session": [
+          1220
+        ],
+        "f_rc2Trend": [
+          1153,
+          1154
+        ],
+        "f_rc2TrendText": [
+          1262,
+          1263,
+          1264,
+          1265
+        ],
+        "f_rcCore": [
+          940,
+          2024,
+          2575
+        ],
+        "f_rcPayload": [
+          950,
+          2580
+        ],
+        "f_rcPressureFrame": [
+          1397,
+          1399,
+          1401
+        ],
+        "f_rcPressureLog": [
+          1435,
+          1438,
+          1440,
+          1441
+        ],
+        "f_rcPressureNum": [
+          1417,
+          1418,
+          1418,
+          1418,
+          1419
+        ],
+        "f_rcPressureRaw": [
+          1395
+        ],
+        "f_rcPressureReading": [
+          1426,
+          1427,
+          1428,
+          1429
+        ],
+        "f_rcPressureWidget": [
+          2552
+        ],
+        "f_rcPressureWidgetLayout": [
+          2468
+        ],
+        "f_rcSide": [
+          1170,
+          1190,
+          1218,
+          1260,
+          2025,
+          2042,
+          2048,
+          2610
+        ],
+        "f_rcStage": [
+          941,
+          1181,
+          2024,
+          2576
+        ],
+        "f_rcStageText": [
+          1190,
+          1260,
+          1260,
+          2041,
+          2580
+        ],
+        "f_rcViewCell": [
+          2475,
+          2476,
+          2485,
+          2486,
+          2487,
+          2488,
+          2489,
+          2490,
+          2491,
+          2498,
+          2499,
+          2500,
+          2501,
+          2503,
+          2508,
+          2509,
+          2514,
+          2517,
+          2525,
+          2531,
+          2537,
+          2541,
+          2548
+        ],
+        "f_rcViewClip": [
+          2485,
+          2489,
+          2490,
+          2491,
+          2525,
+          2537,
+          2541
+        ],
+        "f_rcViewClock": [
+          2027,
+          2048,
+          2529
+        ],
+        "f_rcViewPlanLevel": [
+          2146,
+          2147,
+          2149,
+          2150,
+          2151
+        ],
+        "f_rcViewPrice": [
+          2027,
+          2028,
+          2501,
+          2503,
+          2509
+        ],
+        "f_rcViewRemember": [
+          2030,
+          2044,
+          2054,
+          2061
+        ],
+        "f_rcViewSignal": [
+          2029,
+          2043,
+          2053
+        ],
+        "f_rcViewStructureLine": [
+          2179,
+          2181
+        ],
+        "f_rcViewUtc": [
+          2052,
+          2060,
+          2532,
+          2548
+        ],
+        "f_rcViewZone": [
+          2153,
+          2154,
+          2160,
+          2161,
+          2168,
+          2174
+        ],
+        "f_sqAlignment": [
+          2482
+        ],
+        "f_sqClass": [
+          2051
+        ],
+        "f_step": [
+          825
+        ],
+        "f_tvCandidate": [
+          609
+        ],
+        "f_tvQtyOnGrid": [
+          920
+        ],
+        "f_validPlan": [
+          920
+        ],
+        "f_wfInt": [
+          1089
+        ],
+        "f_wfSide": [
+          1038,
+          1049,
+          1073,
+          1094
+        ]
+      },
+      "f_addClosed": {},
+      "f_day": {},
+      "f_dtAddReason": {},
+      "f_dtEmit": {
+        "f_dtInt": [
+          1612,
+          1612,
+          1613,
+          1615,
+          1615,
+          1616,
+          1616
+        ],
+        "f_dtNumber": [
+          1603,
+          1604,
+          1604,
+          1605,
+          1606,
+          1606,
+          1607,
+          1607,
+          1608,
+          1608,
+          1609,
+          1614,
+          1617,
+          1618
+        ],
+        "f_dtRank": [
+          1597
+        ],
+        "f_dtReasons": [
+          1609,
+          1611
+        ],
+        "f_dtString": [
+          1605,
+          1613,
+          1613,
+          1614,
+          1617
+        ],
+        "f_dvShadowEvent": [
+          1595
+        ]
+      },
+      "f_dtExpired": {},
+      "f_dtGeometry": {
+        "f_dtAddReason": [
+          1641,
+          1643,
+          1645,
+          1647,
+          1649,
+          1651
+        ],
+        "f_dtEmit": [
+          1662
+        ],
+        "f_dtRoundAway": [
+          1627,
+          1654,
+          1655,
+          1656
+        ]
+      },
+      "f_dtIdentity": {
+        "f_dtNumber": [
+          1520
+        ]
+      },
+      "f_dtInt": {},
+      "f_dtNumber": {},
+      "f_dtOffer": {},
+      "f_dtRank": {},
+      "f_dtReasons": {},
+      "f_dtRemember": {},
+      "f_dtRoundAway": {},
+      "f_dtString": {},
+      "f_dvActive": {},
+      "f_dvAge": {},
+      "f_dvBiasRow": {
+        "f_rcViewCell": [
+          2390
+        ]
+      },
+      "f_dvBreakIndex": {},
+      "f_dvChoose": {
+        "f_dvPresent": [
+          2205,
+          2207
+        ]
+      },
+      "f_dvChooseOpportunity": {
+        "f_dvChoose": [
+          2220,
+          2221
+        ],
+        "f_dvPresent": [
+          2220,
+          2221
+        ]
+      },
+      "f_dvClockAge": {
+        "f_dvAge": [
+          2244
+        ],
+        "f_rcViewClock": [
+          2244
+        ]
+      },
+      "f_dvConflictLines": {
+        "f_dvCountertrend": [
+          2298,
+          2300
+        ],
+        "f_dvSourceLine": [
+          2296,
+          2297
+        ],
+        "f_dvState": [
+          2291,
+          2292
+        ]
+      },
+      "f_dvContextLine": {},
+      "f_dvCountertrend": {
+        "f_dvPresent": [
+          2247
+        ]
+      },
+      "f_dvDashboard": {
+        "f_dvClockAge": [
+          2345
+        ],
+        "f_dvConflictLines": [
+          2338
+        ],
+        "f_dvObservationReason": [
+          2348,
+          2349,
+          2351
+        ],
+        "f_dvReasonLabel": [
+          2346,
+          2357
+        ],
+        "f_dvSignalTip": [
+          2353,
+          2353,
+          2354,
+          2354,
+          2354
+        ],
+        "f_dvSourceLine": [
+          2340
+        ],
+        "f_rcSide": [
+          2345,
+          2356
+        ],
+        "f_rcViewCell": [
+          2378,
+          2379,
+          2380,
+          2381,
+          2382,
+          2383,
+          2384,
+          2385
+        ],
+        "f_rcViewClip": [
+          2346,
+          2348,
+          2349,
+          2351,
+          2385
+        ],
+        "f_rcViewClock": [
+          2374
+        ],
+        "f_rcViewUtc": [
+          2352,
+          2357,
+          2376
+        ],
+        "f_sqClass": [
+          2328
+        ]
+      },
+      "f_dvEarlyAtClose": {
+        "f_dvFresh": [
+          1845
+        ]
+      },
+      "f_dvEmptyView": {},
+      "f_dvFresh": {
+        "f_dvActive": [
+          1798
+        ]
+      },
+      "f_dvFreshView": {
+        "f_dvFresh": [
+          1848,
+          1848,
+          1849,
+          1849,
+          1849
+        ]
+      },
+      "f_dvJournalState": {
+        "f_dvChooseOpportunity": [
+          2631,
+          2632
+        ],
+        "f_dvOpportunityState": [
+          2635
+        ],
+        "f_dvSignalsJson": [
+          2635
+        ],
+        "f_int": [
+          2634,
+          2634,
+          2634,
+          2637,
+          2639
+        ],
+        "f_q": [
+          2633,
+          2633,
+          2635,
+          2636,
+          2636,
+          2637,
+          2638,
+          2639,
+          2640
+        ],
+        "f_rcStageText": [
+          2640
+        ]
+      },
+      "f_dvObservationReason": {
+        "f_dvReasonLabel": [
+          2275,
+          2277
+        ]
+      },
+      "f_dvOpportunityState": {
+        "f_dvPresent": [
+          2224,
+          2225
+        ],
+        "f_dvState": [
+          2226,
+          2226
+        ]
+      },
+      "f_dvPresent": {},
+      "f_dvReadPermission": {
+        "f_rcSide": [
+          1904
+        ]
+      },
+      "f_dvReasonLabel": {},
+      "f_dvS5AtClose": {
+        "f_dvFresh": [
+          1838
+        ]
+      },
+      "f_dvShadowAtClose": {
+        "f_dvFresh": [
+          1829
+        ],
+        "f_dvShadowSource": [
+          1827
+        ]
+      },
+      "f_dvShadowEvent": {
+        "f_dvBreakIndex": [
+          1569
+        ],
+        "f_dvShadowSource": [
+          1571
+        ]
+      },
+      "f_dvShadowSource": {},
+      "f_dvSignalJson": {
+        "f_int": [
+          1854,
+          1855,
+          1855
+        ],
+        "f_q": [
+          1853,
+          1853,
+          1854,
+          1856
+        ]
+      },
+      "f_dvSignalTip": {
+        "f_dvAge": [
+          2287
+        ],
+        "f_dvCountertrend": [
+          2286
+        ],
+        "f_dvPresent": [
+          2285
+        ],
+        "f_dvState": [
+          2285
+        ],
+        "f_rcViewUtc": [
+          2287,
+          2288
+        ]
+      },
+      "f_dvSignalsJson": {
+        "f_dvSignalJson": [
+          1862
+        ]
+      },
+      "f_dvSourceLine": {
+        "f_dvClockAge": [
+          2282
+        ]
+      },
+      "f_dvState": {
+        "f_dvPresent": [
+          2213
+        ]
+      },
+      "f_emit": {},
+      "f_escape": {},
+      "f_finish": {
+        "f_addClosed": [
+          649
+        ],
+        "f_planEvent": [
+          658
+        ]
+      },
+      "f_gate": {
+        "f_emit": [
+          793
+        ]
+      },
+      "f_id": {},
+      "f_int": {},
+      "f_json": {
+        "f_int": [
+          441,
+          441,
+          441,
+          441
+        ],
+        "f_num": [
+          441,
+          441,
+          441,
+          441,
+          441,
+          441,
+          441,
+          441,
+          441,
+          441,
+          441,
+          441,
+          441,
+          441,
+          441,
+          441,
+          441
+        ],
+        "f_q": [
+          441,
+          441,
+          441,
+          441,
+          441,
+          441,
+          441,
+          441,
+          441,
+          441,
+          441,
+          441,
+          441,
+          441
+        ]
+      },
+      "f_makePlan": {
+        "f_id": [
+          459
+        ],
+        "f_targetRound": [
+          469,
+          470,
+          471
+        ],
+        "f_tvGrade": [
+          485
+        ]
+      },
+      "f_num": {},
+      "f_openRejection": {
+        "f_targetRoom": [
+          672
+        ]
+      },
+      "f_pick": {},
+      "f_planEvent": {
+        "f_emit": [
+          418
+        ]
+      },
+      "f_policyReason": {},
+      "f_q": {
+        "f_escape": [
+          382
+        ]
+      },
+      "f_queue": {
+        "f_planEvent": [
+          773,
+          776
+        ]
+      },
+      "f_rc2Append": {},
+      "f_rc2EarlyPayload": {
+        "f_int": [
+          2563,
+          2567
+        ],
+        "f_q": [
+          2565,
+          2565,
+          2566,
+          2566,
+          2567,
+          2568
+        ],
+        "f_rcSide": [
+          2563,
+          2567
+        ]
+      },
+      "f_rc2FilterPass": {},
+      "f_rc2Session": {},
+      "f_rc2Trend": {
+        "f_rc2TrendValue": [
+          1119,
+          1121,
+          1123
+        ]
+      },
+      "f_rc2TrendText": {},
+      "f_rc2TrendValue": {},
+      "f_rcCore": {
+        "f_rcStage": [
+          905
+        ]
+      },
+      "f_rcPayload": {
+        "f_int": [
+          911
+        ],
+        "f_num": [
+          912,
+          912,
+          913,
+          913,
+          913
+        ],
+        "f_q": [
+          908,
+          908,
+          909,
+          909,
+          910,
+          910,
+          911,
+          914
+        ],
+        "f_rcSide": [
+          910
+        ]
+      },
+      "f_rcPressureCaption": {},
+      "f_rcPressureComparison": {
+        "f_rcPressurePercent": [
+          2425,
+          2426,
+          2427
+        ],
+        "f_rcPressureTenths": [
+          2424
+        ],
+        "f_rcPressureTooltip": [
+          2427
+        ],
+        "f_rcViewCell": [
+          2428
+        ]
+      },
+      "f_rcPressureFrame": {
+        "f_rcPressurePrevious": [
+          1352
+        ],
+        "f_rcPressureRaw": [
+          1357
+        ]
+      },
+      "f_rcPressureLog": {
+        "f_int": [
+          1388,
+          1388,
+          1388,
+          1389,
+          1391
+        ],
+        "f_q": [
+          1387,
+          1387,
+          1391,
+          1391,
+          1393
+        ],
+        "f_rcPressureNum": [
+          1389,
+          1390
+        ]
+      },
+      "f_rcPressureNum": {},
+      "f_rcPressurePercent": {},
+      "f_rcPressurePrevious": {
+        "f_rcPressureRaw": [
+          1341
+        ]
+      },
+      "f_rcPressureRaw": {},
+      "f_rcPressureReading": {},
+      "f_rcPressureTenths": {},
+      "f_rcPressureTooltip": {
+        "f_rcViewUtc": [
+          2421
+        ]
+      },
+      "f_rcPressureWidget": {
+        "f_rcPressureCaption": [
+          2436
+        ],
+        "f_rcPressureComparison": [
+          2445,
+          2446,
+          2447
+        ],
+        "f_rcPressurePercent": [
+          2434,
+          2438
+        ],
+        "f_rcPressureTenths": [
+          2431
+        ],
+        "f_rcPressureTooltip": [
+          2433
+        ],
+        "f_rcViewCell": [
+          2434,
+          2436,
+          2438,
+          2455
+        ]
+      },
+      "f_rcPressureWidgetLayout": {},
+      "f_rcSide": {},
+      "f_rcStage": {},
+      "f_rcStageText": {},
+      "f_rcViewCell": {},
+      "f_rcViewClip": {},
+      "f_rcViewClock": {},
+      "f_rcViewPlanLevel": {
+        "f_rcViewPrice": [
+          2109,
+          2110
+        ]
+      },
+      "f_rcViewPrice": {},
+      "f_rcViewRemember": {},
+      "f_rcViewSignal": {
+        "f_rcViewUtc": [
+          2005
+        ]
+      },
+      "f_rcViewStructureLine": {},
+      "f_rcViewUtc": {},
+      "f_rcViewZone": {},
+      "f_realize": {
+        "f_planEvent": [
+          642
+        ]
+      },
+      "f_reason": {},
+      "f_sqAlignment": {},
+      "f_sqClass": {
+        "f_sqAlignment": [
+          2012
+        ]
+      },
+      "f_step": {
+        "f_day": [
+          693
+        ],
+        "f_finish": [
+          739,
+          744,
+          760
+        ],
+        "f_openRejection": [
+          701
+        ],
+        "f_planEvent": [
+          707,
+          725,
+          734,
+          758,
+          766
+        ],
+        "f_realize": [
+          738,
+          743,
+          759
+        ],
+        "f_stopRound": [
+          730
+        ],
+        "f_takeTargets": [
+          749,
+          763
+        ]
+      },
+      "f_stopRound": {},
+      "f_takeTargets": {
+        "f_finish": [
+          689
+        ],
+        "f_realize": [
+          680,
+          684,
+          687
+        ]
+      },
+      "f_targetRoom": {},
+      "f_targetRound": {},
+      "f_tvCandidate": {
+        "f_makePlan": [
+          590
+        ],
+        "f_planEvent": [
+          599
+        ],
+        "f_stopRound": [
+          590
+        ],
+        "f_tvClear": [
+          570,
+          588
+        ],
+        "f_tvCommonReason": [
+          591
+        ],
+        "f_tvRawEvent": [
+          569,
+          585
+        ],
+        "f_tvStamp": [
+          590
+        ],
+        "f_tvStart": [
+          584
+        ]
+      },
+      "f_tvClear": {},
+      "f_tvCommonReason": {
+        "f_reason": [
+          549
+        ],
+        "f_validPlan": [
+          549
+        ]
+      },
+      "f_tvGrade": {
+        "f_reason": [
+          452
+        ],
+        "f_tvText": [
+          452,
+          452,
+          452,
+          452,
+          454
+        ]
+      },
+      "f_tvQtyOnGrid": {},
+      "f_tvRawEvent": {
+        "f_emit": [
+          545
+        ],
+        "f_id": [
+          545
+        ]
+      },
+      "f_tvStamp": {},
+      "f_tvStart": {},
+      "f_tvText": {},
+      "f_validPlan": {
+        "f_targetRoom": [
+          492
+        ]
+      },
+      "f_wfInt": {},
+      "f_wfSide": {}
+    },
+    "protected_call_counts": {
+      "alert": 1,
+      "alertcondition": 2,
+      "indicator": 1,
+      "input.bool": 22,
+      "input.int": 1,
+      "input.string": 3,
+      "input.time": 3,
+      "plot": 1,
+      "request.security": 6,
+      "request.security_lower_tf": 2
+    },
+    "drawing_call_counts": {
+      "box.new": 3,
+      "box.set_bgcolor": 1,
+      "box.set_border_color": 1,
+      "box.set_lefttop": 1,
+      "box.set_rightbottom": 1,
+      "box.set_text": 2,
+      "box.set_text_color": 1,
+      "label.delete": 1,
+      "label.new": 3,
+      "label.set_color": 1,
+      "label.set_text": 1,
+      "label.set_textcolor": 1,
+      "label.set_tooltip": 1,
+      "label.set_xy": 1,
+      "label.set_y": 1,
+      "line.delete": 1,
+      "line.new": 3,
+      "line.set_color": 1,
+      "line.set_style": 1,
+      "line.set_xy1": 2,
+      "line.set_xy2": 2,
+      "line.set_y1": 1,
+      "line.set_y2": 1,
+      "table.cell": 3,
+      "table.clear": 7,
+      "table.merge_cells": 6,
+      "table.new": 1
+    },
+    "log_call_counts": {
+      "log.info": 19
+    }
+  },
+  "removed_functions": [
+    "f_alertSide",
+    "f_allowedUnifiedEvent",
+    "f_biasSymbol",
+    "f_capture",
+    "f_clear",
+    "f_clockUtc",
+    "f_cooldown",
+    "f_enabled",
+    "f_eventTitle",
+    "f_fast",
+    "f_humanReason",
+    "f_isRiskEvent",
+    "f_model",
+    "f_nativeMessage",
+    "f_nearest",
+    "f_price",
+    "f_readableEvent",
+    "f_recordDecision",
+    "f_retest",
+    "f_reversal",
+    "f_short",
+    "f_side",
+    "f_start",
+    "f_tvFamily",
+    "f_tvFastGate",
+    "f_tvLocalDay",
+    "f_tvManagePlan",
+    "f_tvManagedStop",
+    "f_tvManagementCloseReason",
+    "f_tvManagementQty",
+    "f_tvNativeOpenRejection",
+    "f_tvNextStructure",
+    "f_tvOpeningRange",
+    "f_tvPendingReason",
+    "f_tvProtection",
+    "f_tvProtectionBoundary",
+    "f_tvQualityLabel",
+    "f_tvR",
+    "f_tvRegimeLabel",
+    "f_tvStrategyName",
+    "f_tvTargets",
+    "f_tvTighten",
+    "f_wfEvent",
+    "f_wfFlag",
+    "f_wfHtfContext",
+    "f_wfHtfSide",
+    "f_wfLogId",
+    "f_wfNumber"
+  ],
+  "added_functions": [],
+  "executable_token_modified_functions": [
+    "f_tvCandidate"
+  ],
+  "unexpected_function_body_changes": [],
+  "modified_function_signatures": [],
+  "removed_function_name_references": {},
+  "changed_protected_calls": [],
+  "permitted_dead_wick_request_removals": [
+    {
+      "function": "request.security",
+      "frame": "60",
+      "expression": "f_wfHtfContext()"
+    },
+    {
+      "function": "request.security",
+      "frame": "240",
+      "expression": "f_wfHtfContext()"
+    }
+  ],
+  "changed_line_intervals": [
+    {
+      "kind": "replace",
+      "baseline_start": 6,
+      "baseline_end": 6,
+      "candidate_start": 6,
+      "candidate_end": 6
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 9,
+      "baseline_end": 9,
+      "candidate_start": 9,
+      "candidate_end": 8
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 11,
+      "baseline_end": 12,
+      "candidate_start": 10,
+      "candidate_end": 9
+    },
+    {
+      "kind": "replace",
+      "baseline_start": 14,
+      "baseline_end": 14,
+      "candidate_start": 11,
+      "candidate_end": 11
+    },
+    {
+      "kind": "replace",
+      "baseline_start": 18,
+      "baseline_end": 18,
+      "candidate_start": 15,
+      "candidate_end": 15
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 20,
+      "baseline_end": 20,
+      "candidate_start": 17,
+      "candidate_end": 16
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 22,
+      "baseline_end": 26,
+      "candidate_start": 18,
+      "candidate_end": 17
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 29,
+      "baseline_end": 29,
+      "candidate_start": 20,
+      "candidate_end": 19
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 31,
+      "baseline_end": 33,
+      "candidate_start": 21,
+      "candidate_end": 20
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 36,
+      "baseline_end": 41,
+      "candidate_start": 23,
+      "candidate_end": 22
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 45,
+      "baseline_end": 47,
+      "candidate_start": 26,
+      "candidate_end": 25
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 58,
+      "baseline_end": 58,
+      "candidate_start": 36,
+      "candidate_end": 35
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 100,
+      "baseline_end": 129,
+      "candidate_start": 77,
+      "candidate_end": 76
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 136,
+      "baseline_end": 136,
+      "candidate_start": 83,
+      "candidate_end": 82
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 162,
+      "baseline_end": 163,
+      "candidate_start": 108,
+      "candidate_end": 107
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 184,
+      "baseline_end": 184,
+      "candidate_start": 128,
+      "candidate_end": 127
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 186,
+      "baseline_end": 186,
+      "candidate_start": 129,
+      "candidate_end": 128
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 190,
+      "baseline_end": 191,
+      "candidate_start": 132,
+      "candidate_end": 131
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 194,
+      "baseline_end": 195,
+      "candidate_start": 134,
+      "candidate_end": 133
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 203,
+      "baseline_end": 215,
+      "candidate_start": 141,
+      "candidate_end": 140
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 219,
+      "baseline_end": 219,
+      "candidate_start": 144,
+      "candidate_end": 143
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 221,
+      "baseline_end": 221,
+      "candidate_start": 145,
+      "candidate_end": 144
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 224,
+      "baseline_end": 224,
+      "candidate_start": 147,
+      "candidate_end": 146
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 227,
+      "baseline_end": 227,
+      "candidate_start": 149,
+      "candidate_end": 148
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 229,
+      "baseline_end": 235,
+      "candidate_start": 150,
+      "candidate_end": 149
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 256,
+      "baseline_end": 287,
+      "candidate_start": 170,
+      "candidate_end": 169
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 304,
+      "baseline_end": 304,
+      "candidate_start": 186,
+      "candidate_end": 185
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 344,
+      "baseline_end": 344,
+      "candidate_start": 225,
+      "candidate_end": 224
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 352,
+      "baseline_end": 352,
+      "candidate_start": 232,
+      "candidate_end": 231
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 364,
+      "baseline_end": 366,
+      "candidate_start": 243,
+      "candidate_end": 242
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 378,
+      "baseline_end": 383,
+      "candidate_start": 254,
+      "candidate_end": 253
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 385,
+      "baseline_end": 426,
+      "candidate_start": 255,
+      "candidate_end": 254
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 430,
+      "baseline_end": 482,
+      "candidate_start": 258,
+      "candidate_end": 257
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 604,
+      "baseline_end": 607,
+      "candidate_start": 379,
+      "candidate_end": 378
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 610,
+      "baseline_end": 610,
+      "candidate_start": 381,
+      "candidate_end": 380
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 617,
+      "baseline_end": 623,
+      "candidate_start": 387,
+      "candidate_end": 386
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 680,
+      "baseline_end": 680,
+      "candidate_start": 443,
+      "candidate_end": 442
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 682,
+      "baseline_end": 691,
+      "candidate_start": 444,
+      "candidate_end": 443
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 741,
+      "baseline_end": 773,
+      "candidate_start": 493,
+      "candidate_end": 492
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 776,
+      "baseline_end": 978,
+      "candidate_start": 495,
+      "candidate_end": 494
+    },
+    {
+      "kind": "replace",
+      "baseline_start": 982,
+      "baseline_end": 1008,
+      "candidate_start": 498,
+      "candidate_end": 499
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 1020,
+      "baseline_end": 1022,
+      "candidate_start": 511,
+      "candidate_end": 510
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 1027,
+      "baseline_end": 1027,
+      "candidate_start": 515,
+      "candidate_end": 514
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 1029,
+      "baseline_end": 1029,
+      "candidate_start": 516,
+      "candidate_end": 515
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 1032,
+      "baseline_end": 1037,
+      "candidate_start": 518,
+      "candidate_end": 517
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 1081,
+      "baseline_end": 1081,
+      "candidate_start": 561,
+      "candidate_end": 560
+    },
+    {
+      "kind": "replace",
+      "baseline_start": 1084,
+      "baseline_end": 1084,
+      "candidate_start": 563,
+      "candidate_end": 563
+    },
+    {
+      "kind": "replace",
+      "baseline_start": 1093,
+      "baseline_end": 1097,
+      "candidate_start": 572,
+      "candidate_end": 572
+    },
+    {
+      "kind": "replace",
+      "baseline_start": 1103,
+      "baseline_end": 1165,
+      "candidate_start": 578,
+      "candidate_end": 579
+    },
+    {
+      "kind": "replace",
+      "baseline_start": 1167,
+      "baseline_end": 1170,
+      "candidate_start": 581,
+      "candidate_end": 585
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 1185,
+      "baseline_end": 1185,
+      "candidate_start": 600,
+      "candidate_end": 599
+    },
+    {
+      "kind": "replace",
+      "baseline_start": 1190,
+      "baseline_end": 1216,
+      "candidate_start": 604,
+      "candidate_end": 604
+    },
+    {
+      "kind": "replace",
+      "baseline_start": 1219,
+      "baseline_end": 1295,
+      "candidate_start": 607,
+      "candidate_end": 609
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 1507,
+      "baseline_end": 1507,
+      "candidate_start": 821,
+      "candidate_end": 820
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 1527,
+      "baseline_end": 1527,
+      "candidate_start": 840,
+      "candidate_end": 839
+    },
+    {
+      "kind": "replace",
+      "baseline_start": 1541,
+      "baseline_end": 1565,
+      "candidate_start": 853,
+      "candidate_end": 853
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 1569,
+      "baseline_end": 1727,
+      "candidate_start": 857,
+      "candidate_end": 856
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 1831,
+      "baseline_end": 1831,
+      "candidate_start": 960,
+      "candidate_end": 959
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 1836,
+      "baseline_end": 1836,
+      "candidate_start": 964,
+      "candidate_end": 963
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 1838,
+      "baseline_end": 1866,
+      "candidate_start": 965,
+      "candidate_end": 964
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 1890,
+      "baseline_end": 1901,
+      "candidate_start": 988,
+      "candidate_end": 987
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 1919,
+      "baseline_end": 1921,
+      "candidate_start": 1005,
+      "candidate_end": 1004
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 1925,
+      "baseline_end": 1927,
+      "candidate_start": 1008,
+      "candidate_end": 1007
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 1930,
+      "baseline_end": 1944,
+      "candidate_start": 1010,
+      "candidate_end": 1009
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 1951,
+      "baseline_end": 1951,
+      "candidate_start": 1016,
+      "candidate_end": 1015
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 1986,
+      "baseline_end": 1986,
+      "candidate_start": 1050,
+      "candidate_end": 1049
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 1993,
+      "baseline_end": 1993,
+      "candidate_start": 1056,
+      "candidate_end": 1055
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 2003,
+      "baseline_end": 2003,
+      "candidate_start": 1065,
+      "candidate_end": 1064
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 2011,
+      "baseline_end": 2011,
+      "candidate_start": 1072,
+      "candidate_end": 1071
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 2035,
+      "baseline_end": 2035,
+      "candidate_start": 1095,
+      "candidate_end": 1094
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 2039,
+      "baseline_end": 2041,
+      "candidate_start": 1098,
+      "candidate_end": 1097
+    },
+    {
+      "kind": "delete",
+      "baseline_start": 2044,
+      "baseline_end": 2046,
+      "candidate_start": 1100,
+      "candidate_end": 1099
+    }
+  ],
+  "scope": "Source-level lexical and direct-call analysis; global reachability treats every conditional branch as possible. Verify constant-guard proofs, global data/state dependencies, Pine scopes/types, and native parity independently. Token counts are not Pine IL size or a compilation forecast.",
+  "forward_seal_sha256": "09181ecaf9e30cde62c5203b524cb458d808a07c24029e961e32bb25c474afd1"
+}
