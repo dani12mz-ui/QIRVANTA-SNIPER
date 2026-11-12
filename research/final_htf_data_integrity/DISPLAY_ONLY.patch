@@ -1,0 +1,35 @@
+--- a/research/professional_signal_selector/QIRVANTA_GOLD_PRO_PROFESSIONAL_SELECTOR.pine
++++ b/research/professional_signal_selector/QIRVANTA_GOLD_PRO_PROFESSIONAL_SELECTOR.pine
+@@ -2155,4 +2155,7 @@
+     int bias = tvH1Bias == tvH4Bias ? tvH1Bias : 0
++    bool h1Available = not na(uiH1ClosedAt) and not na(uiH1Close) and not na(uiH1EMA) and not na(uiH1EarlierEMA)
++    bool h4Available = not na(uiH4ClosedAt) and not na(uiH4Close) and not na(uiH4EMA) and not na(uiH4EarlierEMA)
+     string quality = rc2Blocked or stage == RC_REJECTED ? "FILTERED" : stage == RC_READY or stage == RC_CONFIRMED ?
+-         (bias == side ? "HTF ALIGNED" : bias == -side ? "COUNTERTREND" : "HTF MIXED") :
++         (not h1Available or not h4Available ? "HTF DATA MISSING" :
++         bias == side ? "HTF ALIGNED" : bias == -side ? "COUNTERTREND" : "HTF MIXED") :
+          stage == RC_WATCH ? "OBSERVATION" : "—"
+@@ -2163,3 +2166,3 @@
+     RcContext context = RcContext.new(rcM5ClosedTrend, rcM15ClosedTrend,
+-         na(uiH1ClosedAt) ? na : tvH1Bias, na(uiH4ClosedAt) ? na : tvH4Bias, f_rc2Session(time_close),
++         h1Available ? tvH1Bias : na, h4Available ? tvH4Bias : na, f_rc2Session(time_close),
+          volatility, quality, early)
+@@ -2198,3 +2201,5 @@
+     rcReason := "Изчаква се затворена свещ."
+-string rcMarket = not rcSupported or na(rcView.closed) ? "—" : rcBias == 1 ? "BULLISH" : rcBias == -1 ? "BEARISH" : "MIXED"
++string rcMarket = not rcSupported or na(rcView.context) ? "—" :
++     na(rcView.context.h4) ? "H4 DATA MISSING" : na(rcView.context.h1) ? "H1 DATA MISSING" :
++     rcBias == 1 ? "BULLISH" : rcBias == -1 ? "BEARISH" : "MIXED"
+ string rcModel = rc2FilterActive ? "S5 / RC2 EXP" : "S5"
+@@ -2205,4 +2210,4 @@
+ string rcTrendM15 = na(rcView.context) ? "—" : f_rc2TrendText(rcView.context.m15)
+-string rcTrendH1 = na(rcView.context) ? "—" : f_rc2TrendText(rcView.context.h1)
+-string rcTrendH4 = na(rcView.context) ? "—" : f_rc2TrendText(rcView.context.h4)
++string rcTrendH1 = na(rcView.context) or na(rcView.context.h1) ? "DATA MISSING" : f_rc2TrendText(rcView.context.h1)
++string rcTrendH4 = na(rcView.context) or na(rcView.context.h4) ? "DATA MISSING" : f_rc2TrendText(rcView.context.h4)
+ string rcSession = na(rcView.context) ? "—" : rcView.context.session
+@@ -2954,3 +2959,3 @@
+     int alignment = f_sqAlignment(context)
+-    confirmed ? (alignment == side ? "TREND CONTINUATION" : "BREAKOUT CONFIRMED") :
++    na(alignment) ? "HTF DATA MISSING" : confirmed ? (alignment == side ? "TREND CONTINUATION" : "BREAKOUT CONFIRMED") :
+          alignment == -side ? "COUNTERTREND REVERSAL WATCH" : "UNCONFIRMED"
