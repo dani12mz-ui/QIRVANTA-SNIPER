@@ -1,0 +1,261 @@
+//@version=6
+indicator("QIRVANTA GOLD PRO · PRECISION ZONES", shorttitle="QIRV ZONES", overlay=true, behind_chart=true, max_boxes_count=2, max_labels_count=14, max_bars_back=300, calc_bars_count=1200)
+
+// Frozen observational rules in research/precision_buy_sell_zones/PROTOCOL.json.
+bool pzShow = input.bool(true, "Show precision zones", display=display.none)
+bool pzMarks = input.bool(true, "Show confirmed lifecycle markers", display=display.none)
+bool pzNotify = input.bool(false, "Research zone alerts", display=display.none)
+bool pzQa = input.bool(false, "Export precision zones QA journal", display=display.none)
+string pzLayout = input.string("DESKTOP", "Layout", options=["DESKTOP", "COMPACT", "MOBILE"], display=display.none)
+bool pzLarge = input.bool(false, "Larger text", display=display.none)
+string pzCorner = input.string("Bottom left", "Dashboard position", options=["Bottom left", "Bottom right", "Top left", "Top right"], display=display.none)
+bool pzReview = input.bool(false, "Historical review", display=display.none)
+int pzReviewAt = input.time(timestamp("11 Nov 2026 12:00 +0000"), "Exact UTC close for review", display=display.none)
+bool pzSupported = syminfo.tickerid == "OANDA:XAUUSD" and chart.is_standard and
+     (timeframe.period == "5" or timeframe.period == "15" or timeframe.period == "30")
+bool pzBar = pzSupported and barstate.isconfirmed
+int pzInterval = timeframe.in_seconds() * 1000
+bool pzGap = not na(time_close[1]) and time != time_close[1]
+float pzAtr = ta.atr(14)
+float pzBody = math.abs(close - open)
+float pzRange = math.max(high - low, syminfo.mintick)
+bool pzBull = close > open and (close - low) / pzRange >= .65
+bool pzBear = close < open and (high - close) / pzRange >= .65
+bool pzBuyFvg = not na(high[2]) and low > high[2] and low - high[2] >= .04 * pzAtr
+bool pzSellFvg = not na(low[2]) and high < low[2] and low[2] - high >= .04 * pzAtr
+float pzHighPivot = ta.pivothigh(high, 3, 3)
+float pzLowPivot = ta.pivotlow(low, 3, 3)
+var float pzHigh = na
+var float pzLow = na
+var int pzHighKnown = na
+var int pzLowKnown = na
+
+type PzZone
+    string id
+    int side
+    int born
+    int formed
+    int origin
+    float proximal
+    float distal
+    float level
+    int pivotKnown
+    bool fvg
+    bool touched = false
+    bool partial = false
+    bool full = false
+    bool rejected = false
+
+var array<PzZone> pzActive = array.new<PzZone>(2, na)
+var array<PzZone> pzArchive = array.new<PzZone>(2, na)
+var array<string> pzAlertItems = array.new<string>()
+var array<label> pzMarkerPool = array.new<label>()
+var int pzLastClose = na
+var bool pzReviewFound = false
+varip int pzLastAlert = na
+bool pzLight = color.r(chart.bg_color) * .2126 + color.g(chart.bg_color) * .7152 + color.b(chart.bg_color) * .0722 > 145
+color pzBuyInk = pzLight ? #006956 : #31D5B3
+color pzSellInk = pzLight ? #A82946 : #F87C88
+color pzMuted = #B2BFD0
+color pzPanel = #172538
+
+f_pzNumber(float value) => na(value) ? "null" : str.tostring(value, "0.##########")
+f_pzInt(int value) => na(value) ? "null" : str.tostring(value)
+f_pzBool(bool value) => value ? "true" : "false"
+f_pzSide(int side) => side > 0 ? "BUY" : "SELL"
+f_pzUtc(int stamp) => str.format_time(stamp, "yyyy-MM-dd HH:mm", "UTC") + " UTC"
+f_pzStatus(PzZone zone) =>
+    zone.rejected ? "REJECTION CONFIRMED" : zone.full ? "FULLY MITIGATED" : zone.partial ? "PARTIALLY MITIGATED" :
+         zone.touched ? "FIRST TOUCH" : "UNTESTED"
+
+f_pzEmit(PzZone zone, string state) =>
+    string notification = switch state
+        "FIRST_TOUCH" => "RESEARCH " + f_pzSide(zone.side) + " ZONE TOUCHED"
+        "REJECTION_CONFIRMED" => "RESEARCH " + f_pzSide(zone.side) + " REJECTION CONFIRMED"
+        "INVALIDATED" => "RESEARCH ZONE INVALIDATED"
+        => ""
+    if pzQa or (pzNotify and notification != "")
+        string message = '{"zone_id":"' + zone.id + '","event_id":"' + zone.id + "|" + state +
+             '","state":"' + state + '","known_ms":' + f_pzInt(time_close) + ',"bar_index":' + f_pzInt(bar_index) +
+             ',"atr":' + f_pzNumber(pzAtr) + ',"side":' + f_pzInt(zone.side) + ',"origin_open_ms":' + f_pzInt(zone.origin) +
+             ',"formed_ms":' + f_pzInt(zone.formed) + ',"proximal":' + f_pzNumber(zone.proximal) +
+             ',"distal":' + f_pzNumber(zone.distal) + ',"break_level":' + f_pzNumber(zone.level) +
+             ',"pivot_known_ms":' + f_pzInt(zone.pivotKnown) + ',"fvg":' + f_pzBool(zone.fvg) +
+             ',"observation_only":true,"notification":"' + notification + '"}'
+        if pzQa
+            log.info("PZ_EVENT|" + message)
+        if pzNotify and notification != "" and not pzReview
+            array.push(pzAlertItems, message)
+    if pzShow and pzMarks and (not pzReview or time_close <= pzReviewAt) and notification != ""
+        bool touch = state == "FIRST_TOUCH"
+        bool broken = state == "INVALIDATED"
+        color ink = zone.side > 0 ? pzBuyInk : pzSellInk
+        string caption = touch ? "" : broken ? "ZONE BROKEN" : f_pzSide(zone.side) + " REJECTION"
+        if array.size(pzMarkerPool) >= 12
+            label.delete(array.shift(pzMarkerPool))
+        label mark = label.new(bar_index, zone.side > 0 ? low : high, caption, xloc=xloc.bar_index,
+             yloc=zone.side > 0 ? yloc.belowbar : yloc.abovebar,
+             style=touch ? label.style_circle : zone.side > 0 ? label.style_label_up : label.style_label_down,
+             size=size.tiny, color=color.new(ink, broken ? 65 : touch ? 30 : 25), textcolor=color.white,
+             tooltip=notification + "\n" + f_pzUtc(time_close) + "\nObservation only")
+        array.push(pzMarkerPool, mark)
+    true
+
+if pzBar
+    pzLastClose := time_close
+    if pzQa
+        log.info('PZ_MARKET|{"symbol":"' + syminfo.tickerid + '","timeframe":' + f_pzInt(timeframe.multiplier) +
+             ',"index":' + f_pzInt(bar_index) + ',"time":' + f_pzInt(time) + ',"time_close":' + f_pzInt(time_close) +
+             ',"open":' + f_pzNumber(open) + ',"high":' + f_pzNumber(high) + ',"low":' + f_pzNumber(low) +
+             ',"close":' + f_pzNumber(close) + ',"atr14":' + f_pzNumber(pzAtr) + ',"tick":' + f_pzNumber(syminfo.mintick) +
+             ',"pivot_high":' + f_pzNumber(pzHighPivot) + ',"pivot_low":' + f_pzNumber(pzLowPivot) +
+             ',"fvg_buy":' + f_pzBool(pzBuyFvg) + ',"fvg_sell":' + f_pzBool(pzSellFvg) + '}')
+    array.clear(pzAlertItems)
+    for slot = 0 to 1
+        PzZone zone = array.get(pzActive, slot)
+        if not na(zone)
+            if bar_index - zone.born >= 24
+                f_pzEmit(zone, "EXPIRED")
+                array.set(pzActive, slot, na)
+            else if pzAtr > 0 and zone.side * (close - zone.distal) <= -.10 * pzAtr
+                f_pzEmit(zone, "INVALIDATED")
+                array.set(pzActive, slot, na)
+            else
+                float top = math.max(zone.proximal, zone.distal)
+                float bottom = math.min(zone.proximal, zone.distal)
+                bool overlap = low <= top and high >= bottom
+                float extreme = zone.side > 0 ? low : high
+                if overlap and not zone.touched
+                    zone.touched := true
+                    f_pzEmit(zone, "FIRST_TOUCH")
+                if overlap and not zone.full
+                    if zone.side * (extreme - zone.distal) <= 0
+                        zone.full := true
+                        f_pzEmit(zone, "FULLY_MITIGATED")
+                    else if not zone.partial and zone.side * (extreme - zone.proximal) < 0
+                        zone.partial := true
+                        f_pzEmit(zone, "PARTIALLY_MITIGATED")
+                bool priorInside = close[1] >= bottom and close[1] <= top
+                if zone.touched and not zone.rejected and not pzGap and (overlap or priorInside) and pzAtr > 0 and
+                     zone.side * (close - zone.proximal) > 0 and zone.side * (close - open) >= .25 * pzAtr
+                    zone.rejected := true
+                    f_pzEmit(zone, "REJECTION_CONFIRMED")
+
+    // These levels were committed before the current bar. Same-close pivots are committed below.
+    bool eligible = bar_index >= 250 and not pzGap and pzAtr > 0 and pzBody >= .50 * pzAtr and
+         math.round((high - low) / syminfo.mintick) >= 1
+    int side = eligible and pzBull and not na(pzHigh) and close > pzHigh and close[1] <= pzHigh ? 1 :
+         eligible and pzBear and not na(pzLow) and close < pzLow and close[1] >= pzLow ? -1 : 0
+    if side != 0
+        for ago = 1 to 5
+            if na(time_close[ago]) or time[ago - 1] != time_close[ago]
+                break
+            float proximal = open[ago]
+            float distal = side > 0 ? low[ago] : high[ago]
+            float height = side * (proximal - distal)
+            if side * (open[ago] - close[ago]) > 0 and math.round(height / syminfo.mintick) >= 2 and height <= 2 * pzAtr
+                int slot = side > 0 ? 0 : 1
+                PzZone previous = array.get(pzActive, slot)
+                if not na(previous)
+                    f_pzEmit(previous, "REPLACED")
+                string id = syminfo.tickerid + "|" + timeframe.period + "|" + f_pzSide(side) + "|" +
+                     f_pzInt(time_close) + "|" + f_pzInt(time[ago])
+                PzZone formed = PzZone.new(id, side, bar_index, time_close, time[ago], proximal, distal,
+                     side > 0 ? pzHigh : pzLow, side > 0 ? pzHighKnown : pzLowKnown, side > 0 ? pzBuyFvg : pzSellFvg)
+                array.set(pzActive, slot, formed)
+                f_pzEmit(formed, "FORMATION_DETECTED")
+                break
+    if not na(pzHighPivot)
+        pzHigh := pzHighPivot
+        pzHighKnown := time_close
+    if not na(pzLowPivot)
+        pzLow := pzLowPivot
+        pzLowKnown := time_close
+
+    if pzReview and time_close == pzReviewAt
+        pzReviewFound := true
+        for slot = 0 to 1
+            PzZone zone = array.get(pzActive, slot)
+            array.set(pzArchive, slot, na(zone) ? na : zone.copy())
+    if array.size(pzAlertItems) > 0
+        string batch = '{"schema":"qirvanta.precision-zones.research.v1","symbol":"' + syminfo.tickerid +
+             '","timeframe":"' + timeframe.period + '","known_ms":' + f_pzInt(time_close) +
+             ',"events":[' + array.join(pzAlertItems, ",") + ']}'
+        if pzQa
+            log.info("PZ_ALERT_INTENT|" + batch)
+        if barstate.isrealtime and (na(pzLastAlert) or pzLastAlert != time_close)
+            pzLastAlert := time_close
+            alert(batch, alert.freq_once_per_bar_close)
+    if pzQa and barstate.islastconfirmedhistory
+        log.info('PZ_END|{"index":' + f_pzInt(bar_index) + ',"time_close":' + f_pzInt(time_close) + '}')
+
+// Two bands and two right-edge tags are recycled independently of event annotations.
+var array<box> pzBands = array.new<box>(2, na)
+var array<label> pzTags = array.new<label>(2, na)
+string pzPosition = switch pzCorner
+    "Bottom right" => position.bottom_right
+    "Top left" => position.top_left
+    "Top right" => position.top_right
+    => position.bottom_left
+var table pzTable = table.new(pzPosition, 2, 3, frame_color=#334459, frame_width=1)
+if barstate.isfirst
+    table.merge_cells(pzTable, 0, 0, 1, 0)
+
+if barstate.islast or barstate.islastconfirmedhistory
+    if not pzShow
+        table.clear(pzTable, 0, 0, 1, 2)
+    else
+        bool mobile = pzLayout == "MOBILE"
+        int fontSize = (pzLayout == "DESKTOP" ? 12 : 10) + (pzLarge ? 2 : 0)
+        string header = not pzSupported ? "OANDA:XAUUSD · M5 / M15 / M30" :
+             pzReview ? (pzReviewFound ? "PRECISION ZONES · HISTORICAL REVIEW" : "SELECT A LOADED CLOSE UTC") :
+             "PRECISION ZONES · RESEARCH"
+        table.cell(pzTable, 0, 0, header, text_color=#EDC376, bgcolor=#0D1521, text_size=fontSize,
+             text_formatting=text.format_bold, tooltip="Observation only. S5/RC2 permission is shown by the separate protected indicator.")
+        int asOf = pzReview ? pzReviewAt : pzLastClose
+        for slot = 0 to 1
+            PzZone zone = array.get(pzReview ? pzArchive : pzActive, slot)
+            box band = array.get(pzBands, slot)
+            label tag = array.get(pzTags, slot)
+            bool isBuy = slot == 0
+            color ink = isBuy ? pzBuyInk : pzSellInk
+            color textInk = isBuy ? #25D9B5 : #FF7884
+            string side = isBuy ? "BUY" : "SELL"
+            string title = mobile ? side + " ZONE" : "ACTIVE " + side + " ZONE"
+            string details = "—"
+            string tooltip = "No active research zone"
+            if not na(zone)
+                int right = math.max(zone.formed + 1, asOf + pzInterval)
+                float top = math.max(zone.proximal, zone.distal)
+                float bottom = math.min(zone.proximal, zone.distal)
+                string rangeText = str.tostring(zone.proximal, format.mintick) + " – " + str.tostring(zone.distal, format.mintick)
+                string status = f_pzStatus(zone)
+                string shortStatus = zone.rejected ? "REJECTION" : zone.full ? "FULL" : zone.partial ? "PARTIAL" :
+                     zone.touched ? "TOUCHED" : "WATCH"
+                string clock = str.format_time(zone.formed, "HH:mm", "UTC") + "Z"
+                string age = str.tostring(int((asOf - zone.formed) / 60000)) + "m"
+                details := rangeText + "\n" + (mobile ? shortStatus : status) + " · " + clock + " · " + age
+                tooltip := side + " RESEARCH ZONE · " + status + "\nProximal → distal " + rangeText +
+                     "\nKnown " + f_pzUtc(zone.formed) + (zone.fvg ? "\nSame-close FVG" : "")
+                if na(band)
+                    band := box.new(zone.formed, top, right, bottom, xloc=xloc.bar_time, border_width=1)
+                    array.set(pzBands, slot, band)
+                box.set_lefttop(band, zone.formed, top)
+                box.set_rightbottom(band, right, bottom)
+                box.set_bgcolor(band, color.new(ink, pzLight ? 92 : 89))
+                box.set_border_color(band, color.new(ink, 40))
+                if na(tag)
+                    tag := label.new(right, zone.proximal, xloc=xloc.bar_time, yloc=yloc.price,
+                         style=label.style_label_left, size=size.tiny, textcolor=textInk, color=#0D1521)
+                    array.set(pzTags, slot, tag)
+                label.set_xy(tag, right, zone.proximal)
+                label.set_text(tag, side + " ZONE · " + shortStatus)
+                label.set_tooltip(tag, tooltip)
+            else
+                if not na(band)
+                    box.set_top(band, na)
+                    box.set_bottom(band, na)
+                if not na(tag)
+                    label.set_y(tag, na)
+            table.cell(pzTable, 0, slot + 1, title, text_color=textInk, bgcolor=pzPanel, text_size=fontSize, tooltip=tooltip)
+            table.cell(pzTable, 1, slot + 1, details, text_color=#F1F4F8, bgcolor=pzPanel, text_size=fontSize, tooltip=tooltip)

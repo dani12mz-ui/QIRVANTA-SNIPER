@@ -1,0 +1,61 @@
+{
+  "status": "PREREGISTERED_BEFORE_OUTCOME_INSPECTION",
+  "protected_base": "5528556584910faa75f1b76d2d96f14d3852e6e7",
+  "symbol": "OANDA:XAUUSD",
+  "timeframes": [
+    "5",
+    "15",
+    "30"
+  ],
+  "zone_rule": {
+    "pivot_left": 3,
+    "pivot_right": 3,
+    "structure": "Strict close crossing the latest matching pivot value already known on the prior close. Previous close at or inside edge. Symmetric.",
+    "atr": "Wilder ATR14 of closed chart bars",
+    "minimum_displacement_body_atr": 0.5,
+    "minimum_close_location": 0.65,
+    "minimum_range_ticks": 1,
+    "origin": "Nearest opposite-bodied closed candle among ages 1..5 whose wick-to-open geometry is within inclusive width limits. Stop scanning at first non-contiguous boundary. Require contiguous current and previous bars.",
+    "min_height_ticks": 2,
+    "max_height_atr": 2,
+    "buy_geometry": "origin low to open",
+    "sell_geometry": "origin open to high",
+    "fvg": "Existing same-close 3-bar directional FVG, minimum gap 0.04 ATR14, context only",
+    "max_active_per_side": 1,
+    "identity": "symbol, timeframe, side, formation close timestamp and origin open timestamp",
+    "draw_start": "formation close UTC, never origin"
+  },
+  "lifecycle": {
+    "order": "Existing zones first: age 24 expiry, close invalidation, actual range intersection first touch, wick mitigation, rejection; then formation, replacing prior same-side survivor.",
+    "expiry_bars": 24,
+    "invalidation_close_atr": 0.1,
+    "invalidation_atr": "ATR14 on evaluating close",
+    "first_touch": "Later bar with actual range intersecting bounds; gap-through without overlap is not touch.",
+    "partial": "First wick penetration strictly beyond proximal with range overlap; full skips partial if never logged.",
+    "full": "First range overlap reaching distal wick; keep active until invalidation, expiry or replacement.",
+    "rejection": "Once, after first touch (may share first-touch bar), contiguous bar and overlap or prior close within bounds; strict close beyond proximal and same-direction body >= 0.25 current ATR14.",
+    "rejection_body_atr": 0.25,
+    "status_priority": "Terminal > rejection observed > deepest mitigation > first touch > untested.",
+    "notification": "Optional and off by default, realtime confirmed-bar TOUCH, REJECTION and INVALIDATED once each per zone/event; research only, existing alerts untouched."
+  },
+  "evaluation": {
+    "warmup_chart_bars": 250,
+    "native_calc_bars": 1200,
+    "false_reversal": "Confirmed close past distal by >=0.10 frozen rejection ATR in next 3/6/12 contiguous bars. Censor at data end or gaps; ex-post only.",
+    "independent_events": "Previously registered independent hourly archive event definition, both directions. Main displacement = first same-direction completed chart close >=0.75 x prior event scale from hour open. Count pre-main strictly before that close.",
+    "case_utc": "2026-11-11 00:00 to 17:30 inclusive where archived OANDA chart rows exist",
+    "execution": "Diagnostic only: next open after rejection; signal anchor rejection close; stop one tick beyond distal; 1/2/3R geometry; existing quote-side gap and stop-first controls, 0.20 ATR max adverse open deviation, 250 cash cap, single occupancy. Keep filled, blocked and rejected separate.",
+    "base_costs": {
+      "spread": 0.35,
+      "slippage_ticks": 2,
+      "commission_per_unit_side": 0.175
+    },
+    "stress_costs": {
+      "spread": 0.7,
+      "slippage_ticks": 5,
+      "commission_per_unit_side": 0.2625
+    },
+    "holdout": "No sealed period access. Archive is exploratory; prospective untouched test not started, no earlier than 2027-05-01.",
+    "news": "No news classification without evidence; distinguish OHLC shock proxy from actual scheduled news."
+  }
+}

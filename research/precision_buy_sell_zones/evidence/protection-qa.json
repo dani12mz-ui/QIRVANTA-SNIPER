@@ -1,0 +1,195 @@
+{
+  "mode": "INDEPENDENT_COMPANION",
+  "compiled_companion_sha256": "acfaf5ac3fd80f08efd7f179cd3802eb41043f957a70800c3444595bf5ebc09a",
+  "protected_pine_sha256": "a9955a1ed3f402f1b8674b3ef2fabfc3d6578bb20f61d8a7d12ade5f527353a2",
+  "source_pins": {
+    "baseline_commit": "6e2c2b4425dd5bca6741e8d3f91c244fbacb6daa",
+    "canonical_research_commit": "416cb2fef55b98ac09e762563055c297573e5962",
+    "baseline_sha256": "91f2f7687fd07f836cad3dfad145721a5c8f9cc74207b1db00afc60f6cb86b4c",
+    "compiled_candidate_sha256": "a9955a1ed3f402f1b8674b3ef2fabfc3d6578bb20f61d8a7d12ade5f527353a2",
+    "forward_seal_sha256": "09181ecaf9e30cde62c5203b524cb458d808a07c24029e961e32bb25c474afd1",
+    "display_ranges_old_new": [
+      [
+        2156,
+        2155,
+        2156,
+        2157
+      ],
+      [
+        2157,
+        2157,
+        2159,
+        2160
+      ],
+      [
+        2164,
+        2164,
+        2167,
+        2167
+      ],
+      [
+        2199,
+        2199,
+        2202,
+        2204
+      ],
+      [
+        2206,
+        2207,
+        2211,
+        2212
+      ],
+      [
+        2955,
+        2955,
+        2960,
+        2960
+      ]
+    ]
+  },
+  "prior_protected_exact_parity": {
+    "evidence_sha256": "de181ec077fa9f78d18fd1d77cc4f687ffc338cce559d1ee7082ac7970260158",
+    "native_archive_sha256": "33a526caaa71c401b21547f3dff9fa1080ac775bfb2b030e75beb91faae886d4",
+    "closes": 318
+  },
+  "fresh_protected_control": {
+    "M5": {
+      "sha256": "8ccda9736c9e75ec797fe2b5a99ab28a0a0a7dd560e37dc5bee0a00bd577789b",
+      "closes": 211,
+      "core": 42,
+      "ready": 6,
+      "paper_events": 32,
+      "rc2_alert_batches": 38,
+      "prior_archive_payloads": {
+        "RC1_CORE": {
+          "exact": true,
+          "rows": 42
+        },
+        "RC1_READY": {
+          "exact": true,
+          "rows": 6
+        },
+        "RC1_ALERT": {
+          "exact": true,
+          "rows": 38
+        },
+        "RC2_ALERT": {
+          "exact": true,
+          "rows": 38
+        },
+        "DTV_PAPER": {
+          "exact": true,
+          "rows": 32
+        },
+        "DTV_ALERT": {
+          "exact": true,
+          "rows": 7
+        }
+      },
+      "ledger_raw_differing_fields": {
+        "entered": 211,
+        "losses": 211,
+        "net": 211,
+        "gross": 211,
+        "drawdown": 211,
+        "closed": 211,
+        "costs": 211
+      },
+      "ledger_start_net_r": [
+        "-4.40501944",
+        "-3.29956814"
+      ],
+      "net_r_change_first_to_last_close": [
+        "0.98029531",
+        "0.98029530"
+      ]
+    },
+    "M15": {
+      "sha256": "c763f14adcc724550cdd16b4e568289bcdcd80a8482663b82f24c51261e11de7",
+      "closes": 71,
+      "core": 20,
+      "ready": 2,
+      "paper_events": 6,
+      "rc2_alert_batches": 17,
+      "prior_archive_payloads": {
+        "RC1_CORE": {
+          "exact": true,
+          "rows": 20
+        },
+        "RC1_READY": {
+          "exact": true,
+          "rows": 2
+        },
+        "RC1_ALERT": {
+          "exact": true,
+          "rows": 17
+        },
+        "RC2_ALERT": {
+          "exact": true,
+          "rows": 17
+        },
+        "DTV_PAPER": {
+          "exact": true,
+          "rows": 6
+        },
+        "DTV_ALERT": {
+          "exact": true,
+          "rows": 12
+        }
+      },
+      "ledger_raw_differing_fields": {},
+      "ledger_start_net_r": [
+        "0.98827449",
+        "0.98827449"
+      ],
+      "net_r_change_first_to_last_close": [
+        "-1.03082818",
+        "-1.03082818"
+      ]
+    },
+    "M30": {
+      "sha256": "1bf604304fa8b650842760277cb243a98ed5132ef54dd67fde2cc4a81997e54a",
+      "closes": 36,
+      "core": 0,
+      "ready": 0,
+      "paper_events": 0,
+      "rc2_alert_batches": 0,
+      "prior_archive_payloads": {
+        "RC1_CORE": {
+          "exact": true,
+          "rows": 0
+        },
+        "RC1_READY": {
+          "exact": true,
+          "rows": 0
+        },
+        "RC1_ALERT": {
+          "exact": true,
+          "rows": 0
+        },
+        "RC2_ALERT": {
+          "exact": true,
+          "rows": 0
+        },
+        "DTV_PAPER": {
+          "exact": true,
+          "rows": 0
+        },
+        "DTV_ALERT": {
+          "exact": true,
+          "rows": 1
+        }
+      },
+      "ledger_raw_differing_fields": {},
+      "ledger_start_net_r": [
+        "0",
+        "0"
+      ],
+      "net_r_change_first_to_last_close": [
+        "0",
+        "0"
+      ]
+    }
+  },
+  "scope": "The companion has no S5/RC2 execution or alert path. Its fresh candles match the fresh protected charts. The prior archive uses an older calculation origin; equal in-window trade payloads do not imply identical cumulative ledger levels across different warmup."
+}
