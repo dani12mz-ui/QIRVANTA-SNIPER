@@ -1,6 +1,6 @@
 # QIRVANTA GOLD PRO — VISUAL SIGNATURE V2
 
-**STATUS: SOURCE-LEVEL CHECKS PASS. NATIVE TRADINGVIEW COMPILE / VISUAL QA PENDING.**
+**STATUS: VERIFIED — Pine v6 compiled in TradingView; M5/M15/M30 native parity passed in the audited window.** See [Bulgarian QA, screenshots and reproduction steps](NATIVE_QA_BG.md).
 
 This is the original native-verified single-file S5 + Luminous from commit `26ad1aa2992f9e2e7e28c13fbbd3f321e1de8261` with **presentation-only changes**. No new strategy and no altered trade levels.
 
@@ -14,6 +14,8 @@ This is the original native-verified single-file S5 + Luminous from commit `26ad
 - Luminous BUY/SELL bands have stronger color, a brighter band edge, wider translucent halos and a more apparent accent layer.
 - Zone price badge now includes `BUY / DEMAND` or `SELL / SUPPLY`, status and the actual price range, with larger labels.
 - `Show BUY / SELL research zones` also controls research zone event markers.
+- Where a research zone intersects the active plan's display range, its price badge faces left and stays separate from the plan's right-edge price badges. Zone event markers use smaller badges.
+- MOBILE keeps the compact font scale and shows a shortened zone label with the full price range.
 - All zone events remain **RESEARCH ONLY**, even if rejected/confirmed; nothing in a zone becomes S5 READY.
 
 ## Verified statically (not native)
@@ -44,4 +46,4 @@ This is the original native-verified single-file S5 + Luminous from commit `26ad
 - For real-time monitoring `Исторически преглед OFF`. S5 READY plan is not a promise of a profitable trade.
 - Paid effects cannot use CSS shadows/true glow in Pine; the halo is a wide translucent native line.
 
-**Important:** This code is a visual candidate — the original `26ad1aa` stays the known successful native compile until the new file passes the same acceptance checks.
+**Baseline:** `26ad1aa` remains unchanged. The final Visual V2 source passed the matched native audit; the scope and limits of that check are in [NATIVE_QA_BG.md](NATIVE_QA_BG.md).

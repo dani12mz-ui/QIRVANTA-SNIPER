@@ -1997,7 +1997,6 @@ f_rcViewRemember(array<label> pool, label item, int capacity) =>
 
 f_rcViewSignal(int direction, int known, string caption, string tip, bool confirmed) =>
     bool isBuy = direction > 0
-    color directionInk = isBuy ? rcViewChartBuy : rcViewChartSell
     color paper = confirmed ? (isBuy ? #0C604E : #733447) : rcViewTagBg
     color ink = confirmed ? color.white : rcViewGold
     label.new(bar_index, isBuy ? low : high, caption, xloc=xloc.bar_index,
@@ -2187,10 +2186,10 @@ if rcViewRefresh
 
 // Six columns support one, two and three-cell groups without a second overlay.
 int rcViewFontAdjust = rcViewMobile ? 0 : rcDisplaySize == "Small" ? -1 : rcDisplaySize == "Large" ? 2 : 0
-int rcViewSmall = (rcViewMobile ? 10 : 11) + rcViewFontAdjust
-int rcViewBody = (rcViewMobile ? 11 : 13) + rcViewFontAdjust
-int rcViewTitle = (rcViewMobile ? 13 : rcViewMinimal ? 15 : 19) + rcViewFontAdjust
-int rcViewHero = (rcViewMobile ? 16 : rcViewMinimal ? 17 : 22) + rcViewFontAdjust
+int rcViewSmall = (rcViewMobile ? 9 : 11) + rcViewFontAdjust
+int rcViewBody = (rcViewMobile ? 10 : 13) + rcViewFontAdjust
+int rcViewTitle = (rcViewMobile ? 11 : rcViewMinimal ? 15 : 19) + rcViewFontAdjust
+int rcViewHero = (rcViewMobile ? 14 : rcViewMinimal ? 17 : 22) + rcViewFontAdjust
 float rcViewColumn = rcViewMobile ? 10.8 : (rcViewMinimal ? 4.1 : 5.35) + rcViewFontAdjust * 0.35
 var table rcViewTable = table.new(rcViewPosition, 12, 26, bgcolor=color.new(rcViewGraphite, 100), force_overlay=true)
 
@@ -2691,6 +2690,7 @@ f_lzEvent(LzZone zone, string state) =>
         string labelText = state == "INVALIDATED" ? "× " + side + " ZONE BROKEN" :
              state == "REJECTION_CONFIRMED" ? "✓ " + side + " REJECTION" : "◆ " + side + " ZONE"
         label mark = f_rcViewSignal(zone.side, time_close, labelText, "LUMINOUS · RESEARCH\n" + state, true)
+        label.set_size(mark, rcViewMobile ? size.tiny : size.small)
         f_rcViewRemember(lzLabels, mark, 8)
     true
 
@@ -2802,10 +2802,23 @@ if lzShow and rcViewRefresh
             bool upper = not na(other) and (zone.proximal + zone.distal > other.proximal + other.distal or
                  (slot == 0 and zone.proximal + zone.distal == other.proximal + other.distal))
             string prices = f_rcViewPrice(bottom) + "–" + f_rcViewPrice(top)
-            label.set_style(tag, na(other) ? label.style_label_left :
-                 upper ? label.style_label_lower_left : label.style_label_upper_left)
-            label.set_xy(tag, right, na(other) ? zone.proximal : upper ? top : bottom)
-            label.set_text(tag, (zone.side > 0 ? "◆ BUY  /  DEMAND" : "◆ SELL  /  SUPPLY") + "\n" + prices + "  ·  " + f_lzStatus(zone))
+            // Give plan badges the right lane when their price range meets a zone.
+            bool besidePlan = false
+            if rcViewHasPlan and not rcViewMobile
+                float cushion = rcShownPlan.atrValue * 0.5
+                float planLow = math.min(rcShownPlan.initialStop, rcShownPlan.tp3)
+                float planHigh = math.max(rcShownPlan.initialStop, rcShownPlan.tp3)
+                besidePlan := bottom <= planHigh + cushion and top >= planLow - cushion
+            bool leftFacing = besidePlan or rcViewMobile
+            int tagTime = besidePlan ? math.min(right, rcKnownAt) : right
+            label.set_style(tag, leftFacing ?
+                 (na(other) ? label.style_label_right : upper ? label.style_label_lower_right : label.style_label_upper_right) :
+                 (na(other) ? label.style_label_left : upper ? label.style_label_lower_left : label.style_label_upper_left))
+            label.set_xy(tag, tagTime, na(other) ? zone.proximal : upper ? top : bottom)
+            string name = zone.side > 0 ? "◆ BUY  /  DEMAND" : "◆ SELL  /  SUPPLY"
+            string status = f_lzStatus(zone)
+            label.set_text(tag, rcViewMobile ? f_rcSide(zone.side) + " · " + status + "\n" + prices :
+                 name + "\n" + prices + "  ·  " + status)
             label.set_size(tag, rcViewMobile ? size.small : rcDisplaySize == "Large" ? size.normal : size.small)
             label.set_textcolor(tag, color.white)
             label.set_color(tag, slot == 0 ? #075744 : #703044)

@@ -1,0 +1,48 @@
+{
+  "status": "STATIC_CHECKS_PASSED",
+  "baseline": "26ad1aa2992f9e2e7e28c13fbbd3f321e1de8261",
+  "baseline_sha256": "023c9eaf8a0e0085fd187b4bf9b5f76eb48017dd187c5e5b04cb8e542ff852ce",
+  "candidate_sha256": "77feedcbef84e77b9270ec43840be5b823d838300d0a09d5ddb4fec7acc089f4",
+  "source_bytes": [
+    152489,
+    154037
+  ],
+  "source_lines": [
+    2805,
+    2825
+  ],
+  "lexical_tokens": [
+    27269,
+    27543
+  ],
+  "modified_functions": [
+    "f_lzEvent",
+    "f_rcPressureWidget",
+    "f_rcViewPlanLevel",
+    "f_rcViewSignal"
+  ],
+  "protected_calls": {
+    "alert": 1,
+    "alertcondition": 2,
+    "indicator": 1,
+    "input.bool": 25,
+    "input.int": 2,
+    "input.string": 3,
+    "input.time": 3,
+    "plot": 1,
+    "request.security": 6,
+    "request.security_lower_tf": 2
+  },
+  "constructors": {
+    "box.new": 5,
+    "label.new": 4,
+    "line.new": 4,
+    "table.new": 1
+  },
+  "object_caps": [
+    60,
+    26,
+    12
+  ],
+  "source_only": true
+}
