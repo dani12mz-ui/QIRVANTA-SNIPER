@@ -1,0 +1,430 @@
+{
+  "symbol": "OANDA:XAUUSD",
+  "candles": "standard",
+  "close_window_utc": [
+    "2026-11-11T00:00:00Z",
+    "2026-11-11T17:30:00Z"
+  ],
+  "candidate_sha256": "a0ec3f26bd1bf3a6cc7385184501b1ecd6b4aedc6a3a4fe5e52c70201db2c26f",
+  "matched_pairs": {
+    "M5": {
+      "sha256": [
+        "3380274a7e8784b791c0d097bfd394e43580f8d5bba02d5fc3a8d5e1b4ddadab",
+        "3380274a7e8784b791c0d097bfd394e43580f8d5bba02d5fc3a8d5e1b4ddadab"
+      ],
+      "overlap": {
+        "status": "MATCH",
+        "rows": {
+          "context": 211,
+          "core": 42,
+          "ready": 6,
+          "alerts": 44
+        },
+        "shared_first_open_ms": 1794354900000,
+        "shared_last_close_ms": 1794418200000,
+        "left_chart_first_open_ms": 1793904600000,
+        "right_chart_first_open_ms": 1793904600000,
+        "left_minus_right_bar_index": 0,
+        "loaded_warmup_origins_differ": false,
+        "left_context_outside_overlap": 0,
+        "right_context_outside_overlap": 0,
+        "shared_gap_count": 0
+      },
+      "pair": "MATCH",
+      "raw_paper": {
+        "status": "MATCH",
+        "mismatched_streams": [],
+        "ledger_snapshots": 211,
+        "execution_events": 32,
+        "last_close": "2026-11-11T17:30:00Z",
+        "final_ledger_r": {
+          "entered": 10,
+          "closed": 10,
+          "capacity_skipped": 1,
+          "net": "-2.00237566",
+          "gross": "-1.11024449",
+          "costs": "0.89213117",
+          "gains": "4.55480455",
+          "losses": "6.55718021",
+          "drawdown": "3.29956814"
+        },
+        "scope": "Native indicator RAW PAPER events and ledger. P&L and drawdown are in R."
+      },
+      "shadow": {
+        "ohlc_match": true,
+        "events_match": true,
+        "count": 69,
+        "count_other": 69,
+        "first_native_open": [
+          1793904600000,
+          1793904600000
+        ],
+        "last_native_close": [
+          1794455100000,
+          1794455100000
+        ]
+      },
+      "streams": {
+        "DTV_STATE": {
+          "count": 211,
+          "count_other": 211,
+          "exact": true
+        },
+        "DTV_PAPER": {
+          "count": 32,
+          "count_other": 32,
+          "exact": true
+        },
+        "DTV_LEDGER": {
+          "count": 211,
+          "count_other": 211,
+          "exact": true
+        },
+        "RC1_CORE": {
+          "count": 42,
+          "count_other": 42,
+          "exact": true
+        },
+        "RC2_ALERT": {
+          "count": 38,
+          "count_other": 38,
+          "exact": true
+        },
+        "RC2_EARLY": {
+          "count": 17,
+          "count_other": 17,
+          "exact": true
+        },
+        "DTV_ALERT": {
+          "count": 7,
+          "count_other": 7,
+          "exact": true
+        },
+        "PR_SAMPLE": {
+          "count": 211,
+          "count_other": 211,
+          "exact": true
+        }
+      },
+      "alert_batches": 38,
+      "unique_alert_ids": 44,
+      "duplicate_alert_ids": 0
+    },
+    "M15": {
+      "sha256": [
+        "ba776a8d393569fff641fa87855ef6a6381bf6e879944f038328d04e33ea953f",
+        "ba776a8d393569fff641fa87855ef6a6381bf6e879944f038328d04e33ea953f"
+      ],
+      "overlap": {
+        "status": "MATCH",
+        "rows": {
+          "context": 71,
+          "core": 20,
+          "ready": 2,
+          "alerts": 19
+        },
+        "shared_first_open_ms": 1794354300000,
+        "shared_last_close_ms": 1794418200000,
+        "left_chart_first_open_ms": 1792980000000,
+        "right_chart_first_open_ms": 1792980000000,
+        "left_minus_right_bar_index": 0,
+        "loaded_warmup_origins_differ": false,
+        "left_context_outside_overlap": 0,
+        "right_context_outside_overlap": 0,
+        "shared_gap_count": 0
+      },
+      "pair": "MATCH",
+      "raw_paper": {
+        "status": "MATCH",
+        "mismatched_streams": [],
+        "ledger_snapshots": 71,
+        "execution_events": 6,
+        "last_close": "2026-11-11T17:30:00Z",
+        "final_ledger_r": {
+          "entered": 2,
+          "closed": 2,
+          "capacity_skipped": 1,
+          "net": "-0.04255369",
+          "gross": "0.01124957",
+          "costs": "0.05380326",
+          "gains": "0.98827449",
+          "losses": "1.03082818",
+          "drawdown": "1.03082818"
+        },
+        "scope": "Native indicator RAW PAPER events and ledger. P&L and drawdown are in R."
+      },
+      "shadow": {
+        "ohlc_match": true,
+        "events_match": true,
+        "count": 50,
+        "count_other": 50,
+        "first_native_open": [
+          1792980000000,
+          1792980000000
+        ],
+        "last_native_close": [
+          1794455100000,
+          1794455100000
+        ]
+      },
+      "streams": {
+        "DTV_STATE": {
+          "count": 71,
+          "count_other": 71,
+          "exact": true
+        },
+        "DTV_PAPER": {
+          "count": 6,
+          "count_other": 6,
+          "exact": true
+        },
+        "DTV_LEDGER": {
+          "count": 71,
+          "count_other": 71,
+          "exact": true
+        },
+        "RC1_CORE": {
+          "count": 20,
+          "count_other": 20,
+          "exact": true
+        },
+        "RC2_ALERT": {
+          "count": 17,
+          "count_other": 17,
+          "exact": true
+        },
+        "RC2_EARLY": {
+          "count": 6,
+          "count_other": 6,
+          "exact": true
+        },
+        "DTV_ALERT": {
+          "count": 12,
+          "count_other": 12,
+          "exact": true
+        },
+        "PR_SAMPLE": {
+          "count": 71,
+          "count_other": 71,
+          "exact": true
+        }
+      },
+      "alert_batches": 17,
+      "unique_alert_ids": 19,
+      "duplicate_alert_ids": 0
+    },
+    "M30": {
+      "sha256": [
+        "de7702e45d8fd7205fede86f05f8ac0957e9db237aacf32270f7fb070d6f666a",
+        "de7702e45d8fd7205fede86f05f8ac0957e9db237aacf32270f7fb070d6f666a"
+      ],
+      "overlap": {
+        "status": "MATCH",
+        "rows": {
+          "context": 36,
+          "core": 0,
+          "ready": 0,
+          "alerts": 0
+        },
+        "shared_first_open_ms": 1794353400000,
+        "shared_last_close_ms": 1794418200000,
+        "left_chart_first_open_ms": 1791334800000,
+        "right_chart_first_open_ms": 1791334800000,
+        "left_minus_right_bar_index": 0,
+        "loaded_warmup_origins_differ": false,
+        "left_context_outside_overlap": 0,
+        "right_context_outside_overlap": 0,
+        "shared_gap_count": 0
+      },
+      "pair": "MATCH",
+      "raw_paper": {
+        "status": "MATCH",
+        "mismatched_streams": [],
+        "ledger_snapshots": 36,
+        "execution_events": 0,
+        "last_close": "2026-11-11T17:30:00Z",
+        "final_ledger_r": {
+          "entered": 0,
+          "closed": 0,
+          "capacity_skipped": 0,
+          "net": 0,
+          "gross": 0,
+          "costs": 0,
+          "gains": 0,
+          "losses": 0,
+          "drawdown": 0
+        },
+        "scope": "Native indicator RAW PAPER events and ledger. P&L and drawdown are in R."
+      },
+      "shadow": {
+        "ohlc_match": true,
+        "events_match": true,
+        "count": 10,
+        "count_other": 10,
+        "first_native_open": [
+          1791334800000,
+          1791334800000
+        ],
+        "last_native_close": [
+          1794454200000,
+          1794454200000
+        ]
+      },
+      "streams": {
+        "DTV_STATE": {
+          "count": 36,
+          "count_other": 36,
+          "exact": true
+        },
+        "DTV_PAPER": {
+          "count": 0,
+          "count_other": 0,
+          "exact": true
+        },
+        "DTV_LEDGER": {
+          "count": 36,
+          "count_other": 36,
+          "exact": true
+        },
+        "RC1_CORE": {
+          "count": 0,
+          "count_other": 0,
+          "exact": true
+        },
+        "RC2_ALERT": {
+          "count": 0,
+          "count_other": 0,
+          "exact": true
+        },
+        "RC2_EARLY": {
+          "count": 5,
+          "count_other": 5,
+          "exact": true
+        },
+        "DTV_ALERT": {
+          "count": 1,
+          "count_other": 1,
+          "exact": true
+        },
+        "PR_SAMPLE": {
+          "count": 36,
+          "count_other": 36,
+          "exact": true
+        }
+      },
+      "alert_batches": 0,
+      "unique_alert_ids": 0,
+      "duplicate_alert_ids": 0
+    }
+  },
+  "repeat_after_m5_close": {
+    "sha256": [
+      "8dec5447ae7f47f6383633257e9cf38c9c1252cd8dd3aa6cabd956bc2e52c873",
+      "3380274a7e8784b791c0d097bfd394e43580f8d5bba02d5fc3a8d5e1b4ddadab"
+    ],
+    "overlap": {
+      "status": "MATCH",
+      "rows": {
+        "context": 211,
+        "core": 42,
+        "ready": 6,
+        "alerts": 44
+      },
+      "shared_first_open_ms": 1794354900000,
+      "shared_last_close_ms": 1794418200000,
+      "left_chart_first_open_ms": 1793904300000,
+      "right_chart_first_open_ms": 1793904600000,
+      "left_minus_right_bar_index": 1,
+      "loaded_warmup_origins_differ": true,
+      "left_context_outside_overlap": 0,
+      "right_context_outside_overlap": 0,
+      "shared_gap_count": 0
+    },
+    "pair": "MATCHED_OVERLAP_ONLY",
+    "raw_paper": {
+      "status": "MATCH",
+      "mismatched_streams": [],
+      "ledger_snapshots": 211,
+      "execution_events": 32,
+      "last_close": "2026-11-11T17:30:00Z",
+      "final_ledger_r": {
+        "entered": 10,
+        "closed": 10,
+        "capacity_skipped": 1,
+        "net": "-2.00237566",
+        "gross": "-1.11024449",
+        "costs": "0.89213117",
+        "gains": "4.55480455",
+        "losses": "6.55718021",
+        "drawdown": "3.29956814"
+      },
+      "scope": "Native indicator RAW PAPER events and ledger. P&L and drawdown are in R."
+    },
+    "shadow": {
+      "ohlc_match": true,
+      "events_match": true,
+      "count": 69,
+      "count_other": 69,
+      "first_native_open": [
+        1793904300000,
+        1793904600000
+      ],
+      "last_native_close": [
+        1794454800000,
+        1794455100000
+      ]
+    },
+    "streams": {
+      "DTV_STATE": {
+        "count": 211,
+        "count_other": 211,
+        "exact": true
+      },
+      "DTV_PAPER": {
+        "count": 32,
+        "count_other": 32,
+        "exact": true
+      },
+      "DTV_LEDGER": {
+        "count": 211,
+        "count_other": 211,
+        "exact": true
+      },
+      "RC1_CORE": {
+        "count": 42,
+        "count_other": 42,
+        "exact": true
+      },
+      "RC2_ALERT": {
+        "count": 38,
+        "count_other": 38,
+        "exact": true
+      },
+      "RC2_EARLY": {
+        "count": 17,
+        "count_other": 17,
+        "exact": true
+      },
+      "DTV_ALERT": {
+        "count": 7,
+        "count_other": 7,
+        "exact": true
+      },
+      "PR_SAMPLE": {
+        "count": 211,
+        "count_other": 211,
+        "exact": true
+      }
+    }
+  },
+  "earlier_shifted_m5_archive_discrepancy": {
+    "warmup_offset_bars": 47,
+    "fields": [
+      "atr_at_signal",
+      "prior_atr",
+      "extension_atr"
+    ],
+    "note": "Matched first candle removes the observed numeric differences."
+  },
+  "phone_alert_status": "BLOCKED_BASIC_ZERO_TECHNICAL_ALERTS"
+}
