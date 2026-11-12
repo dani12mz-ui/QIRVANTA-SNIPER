@@ -1,0 +1,111 @@
+{
+  "status": "FROZEN BEFORE IMPLEMENTATION AND OUTCOME REPLAY",
+  "base_commit": "192986d5fd5dddbaead0f7a45a8075b9137082f7",
+  "brief_commit": "d082c99c970fdd6e6ed0b1fb088e8009c29b5a67",
+  "brief_git_blob": "7ef79bb2308f4aca3a2f0b350138c7f8475a9e9a",
+  "baseline_pine_sha256": "a0ec3f26bd1bf3a6cc7385184501b1ecd6b4aedc6a3a4fe5e52c70201db2c26f",
+  "sealed_forward_sha256": "09181ecaf9e30cde62c5203b524cb458d808a07c24029e961e32bb25c474afd1",
+  "data": {
+    "symbol": "OANDA:XAUUSD",
+    "timezone": "UTC",
+    "rc2_native_zip_sha256": "a058bd9789bf9f5d258a08316217f3bebc8b9951460ee0c499aae848c761813a",
+    "direct_trend_context_zip_sha256": "60ee8e06a5a54d2871903fd8eb33cd79d980be4b7ada386cef316fdc631d9a68",
+    "precision_inputs_commit": "a0666824a8cc6ad9b0055c47ca74292d3b8d3d90",
+    "research_windows_utc": {
+      "M5_long": {
+        "load_first": "2026-10-11T22:00:00Z",
+        "score_first": "2026-10-12T18:50:00Z",
+        "descriptive_split": "2026-10-28T08:35:00Z",
+        "last": "2026-11-09T02:45:00Z",
+        "control": "S5 RAW only"
+      },
+      "M5_matched": {
+        "load_first": "2026-11-05T05:00:00Z",
+        "score_first": "2026-11-06T02:50:00Z",
+        "descriptive_split": "2026-11-10T00:05:00Z",
+        "last": "2026-11-11T06:00:00Z",
+        "controls": "S5 RAW and RC2 Fixed SL"
+      },
+      "M15_matched": {
+        "load_first": "2026-10-23T11:00:00Z",
+        "score_first": "2026-10-28T04:30:00Z",
+        "descriptive_split": "2026-11-05T05:45:00Z",
+        "last": "2026-11-11T06:00:00Z",
+        "controls": "S5 RAW and RC2 Fixed SL"
+      },
+      "native_qa": {
+        "close_first": "2026-11-11T00:00:00Z",
+        "close_last": "2026-11-11T17:30:00Z",
+        "frames_minutes": [
+          5,
+          15,
+          30
+        ],
+        "require": "Identical bar OHLC, first loaded bar, context and settings within each pair."
+      }
+    },
+    "untouched_selector": {
+      "start_utc": "2027-02-01T00:00:00Z",
+      "end_exclusive_utc": "2027-05-01T00:00:00Z",
+      "require": "New dedicated immutable snapshot before evaluating. Do not use original sealed November 16–January 11 or consume the Precision forward tape. No proxy holdout from historical windows.",
+      "minimum_closed_campaigns": 60,
+      "minimum_closed_per_side": 15,
+      "minimum_regimes": 3
+    }
+  },
+  "policies": {
+    "count": 2,
+    "parent": "Every original Direct Trend Shadow geometry-admitted diagnostic offer, under its original lifecycle. Observation-only sources remain in the event ledger. Approved S5 and RC2 are unaffected independent controls.",
+    "shared": {
+      "confirmation": "Native or replayed source close on a complete confirmed bar; never relabel an early watch or move its time.",
+      "frozen_edge": "Price strictly beyond a source level known before the decision for breakout or beyond the original broken level for a confirmed retest. Preserve original stop, targets, expiry and rejection.",
+      "alignment": "Last closed H1 and H4 both in direction of the signal; missing or warmup-unverified snapshots remain UNKNOWN, opposing confirmed observations are CONFLICT. HTF reconstructed from an archive with different warmup is not native parity.",
+      "body_atr": 0.5,
+      "body_rule": "Direction-signed body divided by prior confirmed ATR, no recalculation at a later close.",
+      "minimum_net_room_r": 0.7,
+      "room_rule": "Original causal geometry, with a known opposing structural barrier and known modeled costs. Source fallback risk used when no opposing structure is known cannot qualify.",
+      "portfolio": "No changes to S5 or RC2. Mark occupancy using the matched approved campaign ledger where available. An UNKNOWN slot, costs, structure, or expiry cannot produce RESEARCH PRIORITY."
+    },
+    "P1_BREAKOUT": "Original STRUCTURAL_BREAK or CONSOLIDATION_BREAK confirmed offers passing shared gates.",
+    "P2_RETEST": "Original PULLBACK_RETEST confirmed offers passing shared gates. Reuse the original retest entry timestamp and invalidation.",
+    "partial_evidence": "If full event-time HTF, lifecycle or cost evidence is unavailable, NO DATA for promotion. Report known structural gates in a separate historical ablation, omit only the unavailable gates, never treat an unknown gate as a pass or count its replay as full-selector evidence.",
+    "triage_precedence": "Source invalidation, expiry or known risk failure; confirmed opposing conflict; complete qualified confirmed research; early or known weak/mixed observation; otherwise NO DATA. Approval is an independent literal source field."
+  },
+  "execution": {
+    "next_open": true,
+    "intrabar": "Bid/ask open gap first, then stop before TP on ambiguous OHLC. Keep all exclusions and unfilled/blocked plans.",
+    "normal": {
+      "spread_price": 0.35,
+      "slippage_ticks_per_side": 2,
+      "commission_per_unit_per_side": 0.175
+    },
+    "stress": {
+      "spread_price": 0.7,
+      "slippage_ticks_per_side": 5,
+      "commission_per_unit_per_side": 0.2625
+    },
+    "tick_price": 0.001,
+    "mark_to_market": "Quote-side liquidation equity including open risk and modeled exit commission. Same capital/risk basis as pinned comparable control; label any unmatched control separately."
+  },
+  "evaluation": {
+    "false_reclaim": "A complete next three closes strictly back through the previously frozen breakout edge. Require all three bars within archive, denominator of eligible breakouts and 95% Wilson interval. This label is offline only.",
+    "event_definition": "Reuse pinned Precision independent historical move events, with their causal detection timestamps and ex-post boundaries kept separate. Describe regimes by closed H1/H4 alignment where exact, or mark UNKNOWN. Score both sides, missed events and latencies.",
+    "metrics": [
+      "net_r",
+      "net_usd",
+      "profit_factor",
+      "mark_to_market_drawdown",
+      "worst_loss_and_5pct_tail",
+      "mean_win_loss_and_ratio",
+      "win_rate",
+      "frequency",
+      "avoided_losses",
+      "excluded_winners",
+      "occupied_and_displaced_control",
+      "missed_buy_and_sell",
+      "first_causal_detection_and_next_open",
+      "false_reclaims_with_denominator"
+    ],
+    "inference": "Historical windows descriptive with chronological cuts. No independent significance claim. On a sufficient dedicated untouched tape predeclare paired chronological weekly-block bootstrap for each policy versus S5 and RC2, Holm adjustment across four primary comparisons, stressed net expectancy positive and no worse drawdown or loss tail. Report all failures and all campaigns."
+  }
+}

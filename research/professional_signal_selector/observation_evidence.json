@@ -1,0 +1,2412 @@
+{
+  "availability": {
+    "archived_htf": "Context only. Different-run HTF warmup is not established.",
+    "null": "UNKNOWN or inapplicable without a source value",
+    "research_geometry": "A native diagnostic plan only. No executable permission."
+  },
+  "frames": {
+    "M15": {
+      "approved_s5_events": 2,
+      "archived_htf_context": {
+        "ALIGNED": 7,
+        "COUNTERTREND": 3,
+        "MIXED": 25
+      },
+      "confirmed_snapshot_bars": 71,
+      "event_stream_sha256": "3ea7463ae6615bbdf00444c6e3ecc0035fda68da3935e9f2579f07e55606d75d",
+      "event_time_htf": {
+        "DATA MISSING": 78
+      },
+      "events": 78,
+      "examples": [
+        {
+          "approval": "SOURCE OBSERVATION",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": true,
+          "context": {
+            "active_observation_sources": [
+              {
+                "expires_ms": 1794367800000,
+                "known_ms": 1794361500000,
+                "model": "STRUCTURAL_BREAK",
+                "side": 1,
+                "source": "DT STRUCTURE",
+                "stage": "BREAKOUT CONFIRMED"
+              }
+            ],
+            "directional_opportunity": "BUY BREAKOUT CONFIRMED",
+            "permission": "SELL READY",
+            "permission_plan_visible": true,
+            "permission_source": "S5 · RC2",
+            "slot": "RESERVED",
+            "slot_plan_id": "S5|OANDA:XAUUSD|15|2|-1|1794361500000|1794363300000",
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "SELL",
+          "directional_body_prior_atr": 0.38098354474534657,
+          "edge": {
+            "close_beyond_in_direction": true,
+            "known_at_utc": "2026-11-11T01:30:00Z",
+            "level": "4042.135",
+            "source": "S5 FROZEN WATCH EDGE"
+          },
+          "event_id": "S5|OANDA:XAUUSD|15|2|-1|1794361500000|1794363300000|CORE|CONFIRMED|1794363300000",
+          "executable_plan_status": "NO EXECUTABLE PLAN",
+          "expires_at_utc": "2026-11-11T02:30:00Z",
+          "htf": {
+            "h1": null,
+            "h4": null,
+            "source": null,
+            "status": "DATA MISSING"
+          },
+          "id_origin": "NATIVE",
+          "known_at_ms": 1794363300000,
+          "known_at_utc": "2026-11-11T02:15:00Z",
+          "model": "S5_RECLAIM",
+          "plan": null,
+          "plan_id": "S5|OANDA:XAUUSD|15|2|-1|1794361500000|1794363300000",
+          "policy": null,
+          "prior_atr": 7.467514120331439,
+          "prior_ema20": 4036.8568263894676,
+          "prior_ema20_slope3": 2.72051509148514,
+          "provisional_observation": false,
+          "range_prior_atr": 0.9507849447073073,
+          "reason": "Техническите правила са изпълнени; НЕ е препоръка за поръчка",
+          "source": "S5/RC2",
+          "state": "CONFIRMED",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 15,
+          "triage": "CONFLICT",
+          "triage_reason": "OPPOSING_CONFIRMED_OBSERVATIONS"
+        },
+        {
+          "approval": "S5 APPROVED",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": true,
+          "context": {
+            "active_observation_sources": [
+              {
+                "expires_ms": 1794367800000,
+                "known_ms": 1794361500000,
+                "model": "STRUCTURAL_BREAK",
+                "side": 1,
+                "source": "DT STRUCTURE",
+                "stage": "BREAKOUT CONFIRMED"
+              }
+            ],
+            "directional_opportunity": "BUY BREAKOUT CONFIRMED",
+            "permission": "SELL READY",
+            "permission_plan_visible": true,
+            "permission_source": "S5 · RC2",
+            "slot": "RESERVED",
+            "slot_plan_id": "S5|OANDA:XAUUSD|15|2|-1|1794361500000|1794363300000",
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "SELL",
+          "directional_body_prior_atr": 0.38098354474534657,
+          "edge": {
+            "close_beyond_in_direction": true,
+            "known_at_utc": "2026-11-11T01:30:00Z",
+            "level": "4042.135",
+            "source": "S5 FROZEN WATCH EDGE"
+          },
+          "event_id": "S5|OANDA:XAUUSD|15|2|-1|1794361500000|1794363300000|CORE|CONFIRMED|1794363300000|RC1|READY",
+          "executable_plan_status": "S5 PLAN",
+          "expires_at_utc": "2026-11-11T02:30:00Z",
+          "htf": {
+            "h1": null,
+            "h4": null,
+            "source": null,
+            "status": "DATA MISSING"
+          },
+          "id_origin": "NATIVE",
+          "known_at_ms": 1794363300000,
+          "known_at_utc": "2026-11-11T02:15:00Z",
+          "model": "S5_RECLAIM",
+          "parent_source_id": "S5|OANDA:XAUUSD|15|2|-1|1794361500000|1794363300000|CORE|CONFIRMED|1794363300000",
+          "plan": {
+            "broker_cost_status": "BROKER COSTS UNKNOWN",
+            "classification": "S5 PLAN",
+            "earliest_eligible_open_utc": "2026-11-11T02:15:00Z",
+            "entry_reference": "4042.005",
+            "initial_risk_price": "11.563",
+            "initial_sl": "4053.568",
+            "modeled_cost": {
+              "mode": "SOURCE PLAN",
+              "roundtrip_cost_price": "0.354"
+            },
+            "net_structural_room_r": null,
+            "next_open_execution_status": "UNOBSERVED_AT_DECISION",
+            "opposing_structure": "4026.6",
+            "targets": [
+              "4030.442",
+              "4018.879",
+              "4007.316"
+            ]
+          },
+          "policy": null,
+          "prior_atr": 7.467514120331439,
+          "prior_ema20": 4036.8568263894676,
+          "prior_ema20_slope3": 2.72051509148514,
+          "provisional_observation": false,
+          "range_prior_atr": 0.9507849447073073,
+          "reason": "Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.",
+          "source": "S5/RC2",
+          "state": "READY",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 15,
+          "triage": "CONFLICT",
+          "triage_reason": "OPPOSING_CONFIRMED_OBSERVATIONS"
+        },
+        {
+          "approval": "RESEARCH ONLY",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": false,
+          "context": {
+            "active_observation_sources": [
+              {
+                "expires_ms": 1794403800000,
+                "known_ms": 1794397500000,
+                "model": "STRUCTURAL_BREAK",
+                "side": -1,
+                "source": "DT STRUCTURE",
+                "stage": "WATCH"
+              }
+            ],
+            "directional_opportunity": "SELL WATCH",
+            "permission": "WAIT",
+            "permission_plan_visible": false,
+            "permission_source": "S5 · RC2",
+            "slot": "FREE",
+            "slot_plan_id": null,
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "SELL",
+          "directional_body_prior_atr": 1.1722320570844404,
+          "edge": {
+            "close_beyond_in_direction": false,
+            "known_at_utc": "2026-11-11T11:15:00Z",
+            "level": "4046.53",
+            "source": "NATIVE SHADOW"
+          },
+          "event_id": "OANDA:XAUUSD|15|DT|-1|STRUCTURAL_BREAK|WATCH|1794397500000|1794393000000|1794397500000|-|-",
+          "executable_plan_status": "NO EXECUTABLE PLAN",
+          "expires_at_utc": "2026-11-11T13:30:00Z",
+          "htf": {
+            "archived_status": "MIXED",
+            "h1": {
+              "bias": "DOWN",
+              "closed_utc": "2026-11-11T11:00:00Z"
+            },
+            "h4": {
+              "bias": "UP",
+              "closed_utc": "2026-11-11T10:00:00Z"
+            },
+            "source": "archived native M15, exact local OHLC join, HTF warmup unverified",
+            "status": "DATA MISSING"
+          },
+          "id_origin": "DETERMINISTIC_DT_SOURCE_KEY",
+          "known_at_ms": 1794397500000,
+          "known_at_utc": "2026-11-11T11:45:00Z",
+          "model": "STRUCTURAL_BREAK",
+          "origin_watch_utc": "2026-11-11T11:45:00Z",
+          "plan": null,
+          "plan_id": null,
+          "policy": "P1_BREAKOUT",
+          "prior_atr": "5.195217076",
+          "prior_ema20": 4053.135635722575,
+          "prior_ema20_slope3": -0.08145312809847383,
+          "provisional_observation": true,
+          "range_prior_atr": 1.380115574597036,
+          "reason": "APPROACHING_LEVEL",
+          "source": "DIRECT TREND SHADOW",
+          "source_gate_rejections": [],
+          "state": "WATCH",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 15,
+          "triage": "OBSERVE",
+          "triage_reason": "WATCH_ONLY"
+        },
+        {
+          "approval": "RESEARCH ONLY",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": true,
+          "context": {
+            "active_observation_sources": [
+              {
+                "expires_ms": 1794404700000,
+                "known_ms": 1794398400000,
+                "model": "STRUCTURAL_BREAK",
+                "side": -1,
+                "source": "DT STRUCTURE",
+                "stage": "BREAKOUT CONFIRMED"
+              },
+              {
+                "expires_ms": 1794402000000,
+                "known_ms": 1794398400000,
+                "model": "S5_RECLAIM",
+                "side": 1,
+                "source": "S5",
+                "stage": "WATCH"
+              }
+            ],
+            "directional_opportunity": "CONFLICT",
+            "permission": "WAIT",
+            "permission_plan_visible": false,
+            "permission_source": "S5 · RC2",
+            "slot": "FREE",
+            "slot_plan_id": null,
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "SELL",
+          "directional_body_prior_atr": 0.5884256672378453,
+          "edge": {
+            "close_beyond_in_direction": true,
+            "known_at_utc": "2026-11-11T11:15:00Z",
+            "level": "4046.53",
+            "source": "NATIVE SHADOW"
+          },
+          "event_id": "OANDA:XAUUSD|15|DT|-1|STRUCTURAL_BREAK|BREAKOUT CONFIRMED|1794398400000|1794393000000|1794397500000|1794398400000|-",
+          "executable_plan_status": "NO EXECUTABLE PLAN",
+          "expires_at_utc": "2026-11-11T13:45:00Z",
+          "htf": {
+            "archived_status": "MIXED",
+            "h1": {
+              "bias": "DOWN",
+              "closed_utc": "2026-11-11T11:00:00Z"
+            },
+            "h4": {
+              "bias": "UP",
+              "closed_utc": "2026-11-11T10:00:00Z"
+            },
+            "source": "archived native M15, exact local OHLC join, HTF warmup unverified",
+            "status": "DATA MISSING"
+          },
+          "id_origin": "DETERMINISTIC_DT_SOURCE_KEY",
+          "known_at_ms": 1794398400000,
+          "known_at_utc": "2026-11-11T12:00:00Z",
+          "model": "STRUCTURAL_BREAK",
+          "origin_watch_utc": "2026-11-11T11:45:00Z",
+          "plan": null,
+          "plan_id": null,
+          "policy": "P1_BREAKOUT",
+          "prior_atr": "5.336272999",
+          "prior_ema20": 4052.613194225187,
+          "prior_ema20_slope3": -0.3832194968508702,
+          "provisional_observation": false,
+          "range_prior_atr": 1.1309391406944975,
+          "reason": "CONFIRMED_CLOSE_CROSS",
+          "source": "DIRECT TREND SHADOW",
+          "source_gate_rejections": [
+            "INSUFFICIENT_NET_ROOM"
+          ],
+          "state": "BREAKOUT CONFIRMED",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 15,
+          "triage": "REJECT / EXPIRED",
+          "triage_reason": "SOURCE_TERMINAL_OR_KNOWN_RISK_FAILURE"
+        },
+        {
+          "approval": "RESEARCH ONLY",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": false,
+          "context": {
+            "active_observation_sources": [
+              {
+                "expires_ms": 1794404700000,
+                "known_ms": 1794398400000,
+                "model": "STRUCTURAL_BREAK",
+                "side": -1,
+                "source": "DT STRUCTURE",
+                "stage": "BREAKOUT CONFIRMED"
+              },
+              {
+                "expires_ms": 1794402000000,
+                "known_ms": 1794398400000,
+                "model": "S5_RECLAIM",
+                "side": 1,
+                "source": "S5",
+                "stage": "WATCH"
+              }
+            ],
+            "directional_opportunity": "CONFLICT",
+            "permission": "WAIT",
+            "permission_plan_visible": false,
+            "permission_source": "S5 · RC2",
+            "slot": "FREE",
+            "slot_plan_id": null,
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "SELL",
+          "directional_body_prior_atr": 0.5884256672378453,
+          "edge": {
+            "close_beyond_in_direction": true,
+            "known_at_utc": "2026-11-11T11:15:00Z",
+            "level": "4046.53",
+            "source": "NATIVE SHADOW"
+          },
+          "event_id": "OANDA:XAUUSD|15|DT|-1|STRUCTURAL_BREAK|REJECTED|1794398400000|1794393000000|1794397500000|1794398400000|-",
+          "executable_plan_status": "NO EXECUTABLE PLAN",
+          "expires_at_utc": "2026-11-11T12:00:00Z",
+          "htf": {
+            "archived_status": "MIXED",
+            "h1": {
+              "bias": "DOWN",
+              "closed_utc": "2026-11-11T11:00:00Z"
+            },
+            "h4": {
+              "bias": "UP",
+              "closed_utc": "2026-11-11T10:00:00Z"
+            },
+            "source": "archived native M15, exact local OHLC join, HTF warmup unverified",
+            "status": "DATA MISSING"
+          },
+          "id_origin": "DETERMINISTIC_DT_SOURCE_KEY",
+          "known_at_ms": 1794398400000,
+          "known_at_utc": "2026-11-11T12:00:00Z",
+          "model": "STRUCTURAL_BREAK",
+          "origin_watch_utc": "2026-11-11T11:45:00Z",
+          "plan": null,
+          "plan_id": "DT|STRUCTURAL_BREAK|-1|1794398400000",
+          "policy": "P1_BREAKOUT",
+          "prior_atr": "5.336272999",
+          "prior_ema20": 4052.613194225187,
+          "prior_ema20_slope3": -0.3832194968508702,
+          "provisional_observation": false,
+          "range_prior_atr": 1.1309391406944975,
+          "reason": "INSUFFICIENT_NET_ROOM",
+          "source": "DIRECT TREND SHADOW",
+          "source_gate_rejections": [],
+          "state": "REJECTED",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 15,
+          "triage": "REJECT / EXPIRED",
+          "triage_reason": "SOURCE_TERMINAL_OR_KNOWN_RISK_FAILURE"
+        },
+        {
+          "approval": "RESEARCH ONLY",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": false,
+          "context": {
+            "active_observation_sources": [
+              {
+                "expires_ms": 1794404700000,
+                "known_ms": 1794398400000,
+                "model": "STRUCTURAL_BREAK",
+                "side": -1,
+                "source": "DT STRUCTURE",
+                "stage": "BREAKOUT CONFIRMED"
+              },
+              {
+                "expires_ms": 1794402000000,
+                "known_ms": 1794398400000,
+                "model": "S5_RECLAIM",
+                "side": 1,
+                "source": "S5",
+                "stage": "WATCH"
+              }
+            ],
+            "directional_opportunity": "CONFLICT",
+            "permission": "WAIT",
+            "permission_plan_visible": false,
+            "permission_source": "S5 · RC2",
+            "slot": "FREE",
+            "slot_plan_id": null,
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "SELL",
+          "directional_body_prior_atr": 0.5884256672378453,
+          "edge": {
+            "close_beyond_in_direction": true,
+            "known_at_utc": "2026-11-11T11:15:00Z",
+            "level": "4046.53",
+            "source": "NATIVE SHADOW"
+          },
+          "event_id": "OANDA:XAUUSD|15|DT|-1|RETEST_CONTINUATION|RETEST WATCH|1794398400000|1794393000000|1794398400000|1794398400000|STRUCTURAL_BREAK",
+          "executable_plan_status": "NO EXECUTABLE PLAN",
+          "expires_at_utc": "2026-11-11T13:45:00Z",
+          "htf": {
+            "archived_status": "MIXED",
+            "h1": {
+              "bias": "DOWN",
+              "closed_utc": "2026-11-11T11:00:00Z"
+            },
+            "h4": {
+              "bias": "UP",
+              "closed_utc": "2026-11-11T10:00:00Z"
+            },
+            "source": "archived native M15, exact local OHLC join, HTF warmup unverified",
+            "status": "DATA MISSING"
+          },
+          "id_origin": "DETERMINISTIC_DT_SOURCE_KEY",
+          "known_at_ms": 1794398400000,
+          "known_at_utc": "2026-11-11T12:00:00Z",
+          "model": "RETEST_CONTINUATION",
+          "origin_watch_utc": "2026-11-11T12:00:00Z",
+          "plan": null,
+          "plan_id": null,
+          "policy": "P2_RETEST",
+          "prior_atr": "5.336272999",
+          "prior_ema20": 4052.613194225187,
+          "prior_ema20_slope3": -0.3832194968508702,
+          "provisional_observation": true,
+          "range_prior_atr": 1.1309391406944975,
+          "reason": "CONFIRMED_BREAK_LEVEL",
+          "source": "DIRECT TREND SHADOW",
+          "source_gate_rejections": [],
+          "state": "RETEST WATCH",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 15,
+          "triage": "OBSERVE",
+          "triage_reason": "WATCH_ONLY"
+        },
+        {
+          "approval": "SOURCE OBSERVATION",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": false,
+          "context": {
+            "active_observation_sources": [
+              {
+                "expires_ms": 1794404700000,
+                "known_ms": 1794398400000,
+                "model": "STRUCTURAL_BREAK",
+                "side": -1,
+                "source": "DT STRUCTURE",
+                "stage": "BREAKOUT CONFIRMED"
+              },
+              {
+                "expires_ms": 1794402000000,
+                "known_ms": 1794398400000,
+                "model": "S5_RECLAIM",
+                "side": 1,
+                "source": "S5",
+                "stage": "WATCH"
+              }
+            ],
+            "directional_opportunity": "CONFLICT",
+            "permission": "WAIT",
+            "permission_plan_visible": false,
+            "permission_source": "S5 · RC2",
+            "slot": "FREE",
+            "slot_plan_id": null,
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "BUY",
+          "directional_body_prior_atr": -0.588425667245618,
+          "edge": {
+            "close_beyond_in_direction": false,
+            "known_at_utc": "2026-11-11T11:45:00Z",
+            "level": "4046.515",
+            "source": "S5 PRIOR RANGE EDGE"
+          },
+          "event_id": "S5|OANDA:XAUUSD|15|2|1|1794398400000|CORE|WATCH|1794398400000",
+          "executable_plan_status": "NO EXECUTABLE PLAN",
+          "expires_at_utc": "2026-11-11T13:00:00Z",
+          "htf": {
+            "archived_status": "MIXED",
+            "h1": {
+              "bias": "DOWN",
+              "closed_utc": "2026-11-11T11:00:00Z"
+            },
+            "h4": {
+              "bias": "UP",
+              "closed_utc": "2026-11-11T10:00:00Z"
+            },
+            "source": "archived native M15, exact local OHLC join, HTF warmup unverified",
+            "status": "DATA MISSING"
+          },
+          "id_origin": "NATIVE",
+          "known_at_ms": 1794398400000,
+          "known_at_utc": "2026-11-11T12:00:00Z",
+          "model": "S5_RECLAIM",
+          "plan": null,
+          "plan_id": "S5|OANDA:XAUUSD|15|2|1|1794398400000",
+          "policy": null,
+          "prior_atr": 5.336272998929512,
+          "prior_ema20": 4052.613194225187,
+          "prior_ema20_slope3": -0.3832194968508702,
+          "provisional_observation": true,
+          "range_prior_atr": 1.1309391407094365,
+          "reason": "Противоположен пробив; чака връщане отвъд нивото",
+          "source": "S5/RC2",
+          "state": "WATCH",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 15,
+          "triage": "OBSERVE",
+          "triage_reason": "WATCH_ONLY"
+        },
+        {
+          "approval": "SOURCE OBSERVATION",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": true,
+          "context": {
+            "active_observation_sources": [
+              {
+                "expires_ms": 1794404700000,
+                "known_ms": 1794398400000,
+                "model": "STRUCTURAL_BREAK",
+                "side": -1,
+                "source": "DT STRUCTURE",
+                "stage": "BREAKOUT CONFIRMED"
+              }
+            ],
+            "directional_opportunity": "SELL BREAKOUT CONFIRMED",
+            "permission": "BUY READY",
+            "permission_plan_visible": true,
+            "permission_source": "S5 · RC2",
+            "slot": "RESERVED",
+            "slot_plan_id": "S5|OANDA:XAUUSD|15|2|1|1794398400000|1794399300000",
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "BUY",
+          "directional_body_prior_atr": 0.3759620401834485,
+          "edge": {
+            "close_beyond_in_direction": true,
+            "known_at_utc": "2026-11-11T11:45:00Z",
+            "level": "4046.515",
+            "source": "S5 FROZEN WATCH EDGE"
+          },
+          "event_id": "S5|OANDA:XAUUSD|15|2|1|1794398400000|1794399300000|CORE|CONFIRMED|1794399300000",
+          "executable_plan_status": "NO EXECUTABLE PLAN",
+          "expires_at_utc": "2026-11-11T12:30:00Z",
+          "htf": {
+            "archived_status": "MIXED",
+            "h1": {
+              "bias": "DOWN",
+              "closed_utc": "2026-11-11T12:00:00Z"
+            },
+            "h4": {
+              "bias": "UP",
+              "closed_utc": "2026-11-11T10:00:00Z"
+            },
+            "source": "archived native M15, exact local OHLC join, HTF warmup unverified",
+            "status": "DATA MISSING"
+          },
+          "id_origin": "NATIVE",
+          "known_at_ms": 1794399300000,
+          "known_at_utc": "2026-11-11T12:15:00Z",
+          "model": "S5_RECLAIM",
+          "plan": null,
+          "plan_id": "S5|OANDA:XAUUSD|15|2|1|1794398400000|1794399300000",
+          "policy": null,
+          "prior_atr": 5.386182070434568,
+          "prior_ema20": 4051.8433662037405,
+          "prior_ema20_slope3": -1.2233890685793085,
+          "provisional_observation": false,
+          "range_prior_atr": 0.7667769017074635,
+          "reason": "Техническите правила са изпълнени; НЕ е препоръка за поръчка",
+          "source": "S5/RC2",
+          "state": "CONFIRMED",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 15,
+          "triage": "CONFLICT",
+          "triage_reason": "OPPOSING_CONFIRMED_OBSERVATIONS"
+        },
+        {
+          "approval": "S5 APPROVED",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": true,
+          "context": {
+            "active_observation_sources": [
+              {
+                "expires_ms": 1794404700000,
+                "known_ms": 1794398400000,
+                "model": "STRUCTURAL_BREAK",
+                "side": -1,
+                "source": "DT STRUCTURE",
+                "stage": "BREAKOUT CONFIRMED"
+              }
+            ],
+            "directional_opportunity": "SELL BREAKOUT CONFIRMED",
+            "permission": "BUY READY",
+            "permission_plan_visible": true,
+            "permission_source": "S5 · RC2",
+            "slot": "RESERVED",
+            "slot_plan_id": "S5|OANDA:XAUUSD|15|2|1|1794398400000|1794399300000",
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "BUY",
+          "directional_body_prior_atr": 0.3759620401834485,
+          "edge": {
+            "close_beyond_in_direction": true,
+            "known_at_utc": "2026-11-11T11:45:00Z",
+            "level": "4046.515",
+            "source": "S5 FROZEN WATCH EDGE"
+          },
+          "event_id": "S5|OANDA:XAUUSD|15|2|1|1794398400000|1794399300000|CORE|CONFIRMED|1794399300000|RC1|READY",
+          "executable_plan_status": "S5 PLAN",
+          "expires_at_utc": "2026-11-11T12:30:00Z",
+          "htf": {
+            "archived_status": "MIXED",
+            "h1": {
+              "bias": "DOWN",
+              "closed_utc": "2026-11-11T12:00:00Z"
+            },
+            "h4": {
+              "bias": "UP",
+              "closed_utc": "2026-11-11T10:00:00Z"
+            },
+            "source": "archived native M15, exact local OHLC join, HTF warmup unverified",
+            "status": "DATA MISSING"
+          },
+          "id_origin": "NATIVE",
+          "known_at_ms": 1794399300000,
+          "known_at_utc": "2026-11-11T12:15:00Z",
+          "model": "S5_RECLAIM",
+          "parent_source_id": "S5|OANDA:XAUUSD|15|2|1|1794398400000|1794399300000|CORE|CONFIRMED|1794399300000",
+          "plan": {
+            "broker_cost_status": "BROKER COSTS UNKNOWN",
+            "classification": "S5 PLAN",
+            "earliest_eligible_open_utc": "2026-11-11T12:15:00Z",
+            "entry_reference": "4046.645",
+            "initial_risk_price": "4.238",
+            "initial_sl": "4042.407",
+            "modeled_cost": {
+              "mode": "SOURCE PLAN",
+              "roundtrip_cost_price": "0.354"
+            },
+            "net_structural_room_r": null,
+            "next_open_execution_status": "UNOBSERVED_AT_DECISION",
+            "opposing_structure": "4056.17",
+            "targets": [
+              "4050.883",
+              "4055.121",
+              "4059.359"
+            ]
+          },
+          "policy": null,
+          "prior_atr": 5.386182070434568,
+          "prior_ema20": 4051.8433662037405,
+          "prior_ema20_slope3": -1.2233890685793085,
+          "provisional_observation": false,
+          "range_prior_atr": 0.7667769017074635,
+          "reason": "Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.",
+          "source": "S5/RC2",
+          "state": "READY",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 15,
+          "triage": "CONFLICT",
+          "triage_reason": "OPPOSING_CONFIRMED_OBSERVATIONS"
+        },
+        {
+          "approval": "RESEARCH ONLY",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": true,
+          "context": {
+            "active_observation_sources": [
+              {
+                "expires_ms": 1794401100000,
+                "known_ms": 1794400200000,
+                "model": "RETEST_CONTINUATION",
+                "side": -1,
+                "source": "DT RETEST",
+                "stage": "BREAKOUT CONFIRMED"
+              }
+            ],
+            "directional_opportunity": "SELL BREAKOUT CONFIRMED",
+            "permission": "WAIT",
+            "permission_plan_visible": false,
+            "permission_source": "S5 · RC2",
+            "slot": "FREE",
+            "slot_plan_id": null,
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "SELL",
+          "directional_body_prior_atr": 0.3219134441472428,
+          "edge": {
+            "close_beyond_in_direction": true,
+            "known_at_utc": "2026-11-11T11:15:00Z",
+            "level": "4046.53",
+            "source": "NATIVE SHADOW"
+          },
+          "event_id": "OANDA:XAUUSD|15|DT|-1|RETEST_CONTINUATION|BREAKOUT CONFIRMED|1794400200000|1794393000000|1794398400000|1794398400000|STRUCTURAL_BREAK",
+          "executable_plan_status": "NO EXECUTABLE PLAN",
+          "expires_at_utc": "2026-11-11T12:45:00Z",
+          "htf": {
+            "archived_status": "MIXED",
+            "h1": {
+              "bias": "DOWN",
+              "closed_utc": "2026-11-11T12:00:00Z"
+            },
+            "h4": {
+              "bias": "UP",
+              "closed_utc": "2026-11-11T10:00:00Z"
+            },
+            "source": "archived native M15, exact local OHLC join, HTF warmup unverified",
+            "status": "DATA MISSING"
+          },
+          "id_origin": "DETERMINISTIC_DT_SOURCE_KEY",
+          "known_at_ms": 1794400200000,
+          "known_at_utc": "2026-11-11T12:30:00Z",
+          "model": "RETEST_CONTINUATION",
+          "origin_watch_utc": "2026-11-11T12:00:00Z",
+          "plan": null,
+          "plan_id": null,
+          "policy": "P2_RETEST",
+          "prior_atr": "5.29645478",
+          "prior_ema20": 4051.348283708146,
+          "prior_ema20_slope3": -1.7873520144289614,
+          "provisional_observation": false,
+          "range_prior_atr": 0.6306105005582895,
+          "reason": "RETEST_CONFIRMED",
+          "source": "DIRECT TREND SHADOW",
+          "source_gate_rejections": [],
+          "state": "BREAKOUT CONFIRMED",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 15,
+          "triage": "OBSERVE",
+          "triage_reason": "BODY_BELOW_THRESHOLD"
+        },
+        {
+          "approval": "RESEARCH ONLY",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": true,
+          "context": {
+            "active_observation_sources": [
+              {
+                "expires_ms": 1794401100000,
+                "known_ms": 1794400200000,
+                "model": "RETEST_CONTINUATION",
+                "side": -1,
+                "source": "DT RETEST",
+                "stage": "BREAKOUT CONFIRMED"
+              }
+            ],
+            "directional_opportunity": "SELL BREAKOUT CONFIRMED",
+            "permission": "WAIT",
+            "permission_plan_visible": false,
+            "permission_source": "S5 · RC2",
+            "slot": "FREE",
+            "slot_plan_id": null,
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "SELL",
+          "directional_body_prior_atr": 0.3219134441472428,
+          "edge": {
+            "close_beyond_in_direction": true,
+            "known_at_utc": "2026-11-11T11:15:00Z",
+            "level": "4046.53",
+            "source": "NATIVE SHADOW"
+          },
+          "event_id": "OANDA:XAUUSD|15|DT|-1|RETEST_CONTINUATION|ENTRY CANDIDATE|1794400200000|1794393000000|1794398400000|1794398400000|STRUCTURAL_BREAK",
+          "executable_plan_status": "NO EXECUTABLE PLAN",
+          "expires_at_utc": "2026-11-11T12:45:00Z",
+          "htf": {
+            "archived_status": "MIXED",
+            "h1": {
+              "bias": "DOWN",
+              "closed_utc": "2026-11-11T12:00:00Z"
+            },
+            "h4": {
+              "bias": "UP",
+              "closed_utc": "2026-11-11T10:00:00Z"
+            },
+            "source": "archived native M15, exact local OHLC join, HTF warmup unverified",
+            "status": "DATA MISSING"
+          },
+          "id_origin": "DETERMINISTIC_DT_SOURCE_KEY",
+          "known_at_ms": 1794400200000,
+          "known_at_utc": "2026-11-11T12:30:00Z",
+          "model": "RETEST_CONTINUATION",
+          "origin_watch_utc": "2026-11-11T12:00:00Z",
+          "plan": {
+            "broker_cost_status": "BROKER COSTS UNKNOWN",
+            "classification": "RESEARCH GEOMETRY",
+            "earliest_eligible_open_utc": "2026-11-11T12:30:00Z",
+            "entry_reference": "4044.89",
+            "initial_all_in_risk_usd": "11.337",
+            "initial_sl": "4047.965",
+            "modeled_cost": {
+              "friction_r": "0.228943089",
+              "mode": "PINNED MODELED COSTS"
+            },
+            "net_structural_room_r": "0.771056911",
+            "next_open_execution_status": "UNOBSERVED_AT_DECISION",
+            "opposing_structure": "4040.635",
+            "opposing_structure_known_at_utc": "2026-11-11T05:15:00Z",
+            "targets": [
+              "4041.815",
+              "4038.74",
+              "4035.665"
+            ]
+          },
+          "plan_id": "DT|RETEST_CONTINUATION|-1|1794400200000",
+          "policy": "P2_RETEST",
+          "prior_atr": "5.29645478",
+          "prior_ema20": 4051.348283708146,
+          "prior_ema20_slope3": -1.7873520144289614,
+          "provisional_observation": false,
+          "range_prior_atr": 0.6306105005582895,
+          "reason": "DIAGNOSTIC_ONLY",
+          "source": "DIRECT TREND SHADOW",
+          "source_gate_rejections": [],
+          "state": "ENTRY CANDIDATE",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 15,
+          "triage": "OBSERVE",
+          "triage_reason": "BODY_BELOW_THRESHOLD"
+        },
+        {
+          "approval": "RESEARCH ONLY",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": false,
+          "context": {
+            "active_observation_sources": [
+              {
+                "expires_ms": 1794410100000,
+                "known_ms": 1794403800000,
+                "model": "CONSOLIDATION_BREAK",
+                "side": -1,
+                "source": "DT CONSOLIDATION",
+                "stage": "BREAKOUT CONFIRMED"
+              },
+              {
+                "expires_ms": 1794407400000,
+                "known_ms": 1794403800000,
+                "model": "S5_RECLAIM",
+                "side": 1,
+                "source": "S5",
+                "stage": "WATCH"
+              },
+              {
+                "expires_ms": 1794405600000,
+                "known_ms": 1794403800000,
+                "model": "RC2_EARLY_WATCH",
+                "side": -1,
+                "source": "RC2 EARLY WATCH",
+                "stage": "WATCH"
+              }
+            ],
+            "directional_opportunity": "CONFLICT",
+            "permission": "WAIT",
+            "permission_plan_visible": false,
+            "permission_source": "S5 · RC2",
+            "slot": "FREE",
+            "slot_plan_id": null,
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "SELL",
+          "directional_body_prior_atr": 1.0574347092017442,
+          "edge": {
+            "close_beyond_in_direction": true,
+            "known_at_utc": "2026-11-11T13:15:00Z",
+            "level": "4039.735",
+            "source": "NATIVE SHADOW"
+          },
+          "event_id": "OANDA:XAUUSD|15|DT|-1|CONSOLIDATION_BREAK|WATCH|1794403800000|1794402000000|1794403800000|-|-",
+          "executable_plan_status": "NO EXECUTABLE PLAN",
+          "expires_at_utc": "2026-11-11T15:15:00Z",
+          "htf": {
+            "archived_status": "MIXED",
+            "h1": {
+              "bias": "DOWN",
+              "closed_utc": "2026-11-11T13:00:00Z"
+            },
+            "h4": {
+              "bias": "UP",
+              "closed_utc": "2026-11-11T10:00:00Z"
+            },
+            "source": "archived native M15, exact local OHLC join, HTF warmup unverified",
+            "status": "DATA MISSING"
+          },
+          "id_origin": "DETERMINISTIC_DT_SOURCE_KEY",
+          "known_at_ms": 1794403800000,
+          "known_at_utc": "2026-11-11T13:30:00Z",
+          "model": "CONSOLIDATION_BREAK",
+          "origin_watch_utc": "2026-11-11T13:30:00Z",
+          "plan": null,
+          "plan_id": null,
+          "policy": "P1_BREAKOUT",
+          "prior_atr": "5.049957178",
+          "prior_ema20": 4048.7979722498817,
+          "prior_ema20_slope3": -1.9352368193931397,
+          "provisional_observation": true,
+          "range_prior_atr": 1.876253533649253,
+          "reason": "FIRST_OBSERVED_ON_BREAK",
+          "source": "DIRECT TREND SHADOW",
+          "source_gate_rejections": [],
+          "state": "WATCH",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 15,
+          "triage": "OBSERVE",
+          "triage_reason": "WATCH_ONLY"
+        },
+        {
+          "approval": "RESEARCH ONLY",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": true,
+          "context": {
+            "active_observation_sources": [
+              {
+                "expires_ms": 1794410100000,
+                "known_ms": 1794403800000,
+                "model": "CONSOLIDATION_BREAK",
+                "side": -1,
+                "source": "DT CONSOLIDATION",
+                "stage": "BREAKOUT CONFIRMED"
+              },
+              {
+                "expires_ms": 1794407400000,
+                "known_ms": 1794403800000,
+                "model": "S5_RECLAIM",
+                "side": 1,
+                "source": "S5",
+                "stage": "WATCH"
+              },
+              {
+                "expires_ms": 1794405600000,
+                "known_ms": 1794403800000,
+                "model": "RC2_EARLY_WATCH",
+                "side": -1,
+                "source": "RC2 EARLY WATCH",
+                "stage": "WATCH"
+              }
+            ],
+            "directional_opportunity": "CONFLICT",
+            "permission": "WAIT",
+            "permission_plan_visible": false,
+            "permission_source": "S5 · RC2",
+            "slot": "FREE",
+            "slot_plan_id": null,
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "SELL",
+          "directional_body_prior_atr": 1.0574347092017442,
+          "edge": {
+            "close_beyond_in_direction": true,
+            "known_at_utc": "2026-11-11T13:15:00Z",
+            "level": "4039.735",
+            "source": "NATIVE SHADOW"
+          },
+          "event_id": "OANDA:XAUUSD|15|DT|-1|CONSOLIDATION_BREAK|BREAKOUT CONFIRMED|1794403800000|1794402000000|1794403800000|1794403800000|-",
+          "executable_plan_status": "NO EXECUTABLE PLAN",
+          "expires_at_utc": "2026-11-11T15:15:00Z",
+          "htf": {
+            "archived_status": "MIXED",
+            "h1": {
+              "bias": "DOWN",
+              "closed_utc": "2026-11-11T13:00:00Z"
+            },
+            "h4": {
+              "bias": "UP",
+              "closed_utc": "2026-11-11T10:00:00Z"
+            },
+            "source": "archived native M15, exact local OHLC join, HTF warmup unverified",
+            "status": "DATA MISSING"
+          },
+          "id_origin": "DETERMINISTIC_DT_SOURCE_KEY",
+          "known_at_ms": 1794403800000,
+          "known_at_utc": "2026-11-11T13:30:00Z",
+          "model": "CONSOLIDATION_BREAK",
+          "origin_watch_utc": "2026-11-11T13:30:00Z",
+          "plan": null,
+          "plan_id": null,
+          "policy": "P1_BREAKOUT",
+          "prior_atr": "5.049957178",
+          "prior_ema20": 4048.7979722498817,
+          "prior_ema20_slope3": -1.9352368193931397,
+          "provisional_observation": false,
+          "range_prior_atr": 1.876253533649253,
+          "reason": "CONFIRMED_CLOSE_CROSS",
+          "source": "DIRECT TREND SHADOW",
+          "source_gate_rejections": [],
+          "state": "BREAKOUT CONFIRMED",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 15,
+          "triage": "NO DATA",
+          "triage_reason": "INCOMPLETE_OR_NO_VALID_CAUSAL_PLAN"
+        },
+        {
+          "approval": "RESEARCH ONLY",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": true,
+          "context": {
+            "active_observation_sources": [
+              {
+                "expires_ms": 1794410100000,
+                "known_ms": 1794403800000,
+                "model": "CONSOLIDATION_BREAK",
+                "side": -1,
+                "source": "DT CONSOLIDATION",
+                "stage": "BREAKOUT CONFIRMED"
+              },
+              {
+                "expires_ms": 1794407400000,
+                "known_ms": 1794403800000,
+                "model": "S5_RECLAIM",
+                "side": 1,
+                "source": "S5",
+                "stage": "WATCH"
+              },
+              {
+                "expires_ms": 1794405600000,
+                "known_ms": 1794403800000,
+                "model": "RC2_EARLY_WATCH",
+                "side": -1,
+                "source": "RC2 EARLY WATCH",
+                "stage": "WATCH"
+              }
+            ],
+            "directional_opportunity": "CONFLICT",
+            "permission": "WAIT",
+            "permission_plan_visible": false,
+            "permission_source": "S5 · RC2",
+            "slot": "FREE",
+            "slot_plan_id": null,
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "SELL",
+          "directional_body_prior_atr": 1.0574347092017442,
+          "edge": {
+            "close_beyond_in_direction": true,
+            "known_at_utc": "2026-11-11T13:15:00Z",
+            "level": "4039.735",
+            "source": "NATIVE SHADOW"
+          },
+          "event_id": "OANDA:XAUUSD|15|DT|-1|CONSOLIDATION_BREAK|ENTRY CANDIDATE|1794403800000|1794402000000|1794403800000|1794403800000|-",
+          "executable_plan_status": "NO EXECUTABLE PLAN",
+          "expires_at_utc": "2026-11-11T15:15:00Z",
+          "htf": {
+            "archived_status": "MIXED",
+            "h1": {
+              "bias": "DOWN",
+              "closed_utc": "2026-11-11T13:00:00Z"
+            },
+            "h4": {
+              "bias": "UP",
+              "closed_utc": "2026-11-11T10:00:00Z"
+            },
+            "source": "archived native M15, exact local OHLC join, HTF warmup unverified",
+            "status": "DATA MISSING"
+          },
+          "id_origin": "DETERMINISTIC_DT_SOURCE_KEY",
+          "known_at_ms": 1794403800000,
+          "known_at_utc": "2026-11-11T13:30:00Z",
+          "model": "CONSOLIDATION_BREAK",
+          "origin_watch_utc": "2026-11-11T13:30:00Z",
+          "plan": {
+            "broker_cost_status": "BROKER COSTS UNKNOWN",
+            "classification": "RESEARCH GEOMETRY",
+            "earliest_eligible_open_utc": "2026-11-11T13:30:00Z",
+            "entry_reference": "4038.78",
+            "initial_all_in_risk_usd": "27.822",
+            "initial_sl": "4047.35",
+            "modeled_cost": {
+              "friction_r": "0.082147025",
+              "mode": "PINNED MODELED COSTS"
+            },
+            "net_structural_room_r": "0.917852975",
+            "next_open_execution_status": "UNOBSERVED_AT_DECISION",
+            "opposing_structure": "4026.6",
+            "opposing_structure_known_at_utc": "2026-11-11T02:00:00Z",
+            "targets": [
+              "4030.21",
+              "4021.64",
+              "4013.07"
+            ]
+          },
+          "plan_id": "DT|CONSOLIDATION_BREAK|-1|1794403800000",
+          "policy": "P1_BREAKOUT",
+          "prior_atr": "5.049957178",
+          "prior_ema20": 4048.7979722498817,
+          "prior_ema20_slope3": -1.9352368193931397,
+          "provisional_observation": false,
+          "range_prior_atr": 1.876253533649253,
+          "reason": "DIAGNOSTIC_ONLY",
+          "source": "DIRECT TREND SHADOW",
+          "source_gate_rejections": [],
+          "state": "ENTRY CANDIDATE",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 15,
+          "triage": "NO DATA",
+          "triage_reason": "INCOMPLETE_OR_NO_VALID_CAUSAL_PLAN"
+        },
+        {
+          "approval": "RESEARCH ONLY",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": false,
+          "context": {
+            "active_observation_sources": [
+              {
+                "expires_ms": 1794410100000,
+                "known_ms": 1794403800000,
+                "model": "CONSOLIDATION_BREAK",
+                "side": -1,
+                "source": "DT CONSOLIDATION",
+                "stage": "BREAKOUT CONFIRMED"
+              },
+              {
+                "expires_ms": 1794407400000,
+                "known_ms": 1794403800000,
+                "model": "S5_RECLAIM",
+                "side": 1,
+                "source": "S5",
+                "stage": "WATCH"
+              },
+              {
+                "expires_ms": 1794405600000,
+                "known_ms": 1794403800000,
+                "model": "RC2_EARLY_WATCH",
+                "side": -1,
+                "source": "RC2 EARLY WATCH",
+                "stage": "WATCH"
+              }
+            ],
+            "directional_opportunity": "CONFLICT",
+            "permission": "WAIT",
+            "permission_plan_visible": false,
+            "permission_source": "S5 · RC2",
+            "slot": "FREE",
+            "slot_plan_id": null,
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "SELL",
+          "directional_body_prior_atr": 1.0574347092017442,
+          "edge": {
+            "close_beyond_in_direction": true,
+            "known_at_utc": "2026-11-11T13:15:00Z",
+            "level": "4039.735",
+            "source": "NATIVE SHADOW"
+          },
+          "event_id": "OANDA:XAUUSD|15|DT|-1|RETEST_CONTINUATION|RETEST WATCH|1794403800000|1794402000000|1794403800000|1794403800000|CONSOLIDATION_BREAK",
+          "executable_plan_status": "NO EXECUTABLE PLAN",
+          "expires_at_utc": "2026-11-11T15:15:00Z",
+          "htf": {
+            "archived_status": "MIXED",
+            "h1": {
+              "bias": "DOWN",
+              "closed_utc": "2026-11-11T13:00:00Z"
+            },
+            "h4": {
+              "bias": "UP",
+              "closed_utc": "2026-11-11T10:00:00Z"
+            },
+            "source": "archived native M15, exact local OHLC join, HTF warmup unverified",
+            "status": "DATA MISSING"
+          },
+          "id_origin": "DETERMINISTIC_DT_SOURCE_KEY",
+          "known_at_ms": 1794403800000,
+          "known_at_utc": "2026-11-11T13:30:00Z",
+          "model": "RETEST_CONTINUATION",
+          "origin_watch_utc": "2026-11-11T13:30:00Z",
+          "plan": null,
+          "plan_id": null,
+          "policy": "P2_RETEST",
+          "prior_atr": "5.049957178",
+          "prior_ema20": 4048.7979722498817,
+          "prior_ema20_slope3": -1.9352368193931397,
+          "provisional_observation": true,
+          "range_prior_atr": 1.876253533649253,
+          "reason": "CONFIRMED_BREAK_LEVEL",
+          "source": "DIRECT TREND SHADOW",
+          "source_gate_rejections": [],
+          "state": "RETEST WATCH",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 15,
+          "triage": "OBSERVE",
+          "triage_reason": "WATCH_ONLY"
+        },
+        {
+          "approval": "SOURCE OBSERVATION",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": false,
+          "context": {
+            "active_observation_sources": [
+              {
+                "expires_ms": 1794410100000,
+                "known_ms": 1794403800000,
+                "model": "CONSOLIDATION_BREAK",
+                "side": -1,
+                "source": "DT CONSOLIDATION",
+                "stage": "BREAKOUT CONFIRMED"
+              },
+              {
+                "expires_ms": 1794407400000,
+                "known_ms": 1794403800000,
+                "model": "S5_RECLAIM",
+                "side": 1,
+                "source": "S5",
+                "stage": "WATCH"
+              },
+              {
+                "expires_ms": 1794405600000,
+                "known_ms": 1794403800000,
+                "model": "RC2_EARLY_WATCH",
+                "side": -1,
+                "source": "RC2 EARLY WATCH",
+                "stage": "WATCH"
+              }
+            ],
+            "directional_opportunity": "CONFLICT",
+            "permission": "WAIT",
+            "permission_plan_visible": false,
+            "permission_source": "S5 · RC2",
+            "slot": "FREE",
+            "slot_plan_id": null,
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "BUY",
+          "directional_body_prior_atr": -1.0574347091327616,
+          "edge": {
+            "close_beyond_in_direction": false,
+            "known_at_utc": "2026-11-11T13:15:00Z",
+            "level": "4039.735",
+            "source": "S5 PRIOR RANGE EDGE"
+          },
+          "event_id": "S5|OANDA:XAUUSD|15|2|1|1794403800000|CORE|WATCH|1794403800000",
+          "executable_plan_status": "NO EXECUTABLE PLAN",
+          "expires_at_utc": "2026-11-11T14:30:00Z",
+          "htf": {
+            "archived_status": "MIXED",
+            "h1": {
+              "bias": "DOWN",
+              "closed_utc": "2026-11-11T13:00:00Z"
+            },
+            "h4": {
+              "bias": "UP",
+              "closed_utc": "2026-11-11T10:00:00Z"
+            },
+            "source": "archived native M15, exact local OHLC join, HTF warmup unverified",
+            "status": "DATA MISSING"
+          },
+          "id_origin": "NATIVE",
+          "known_at_ms": 1794403800000,
+          "known_at_utc": "2026-11-11T13:30:00Z",
+          "model": "S5_RECLAIM",
+          "plan": null,
+          "plan_id": "S5|OANDA:XAUUSD|15|2|1|1794403800000",
+          "policy": null,
+          "prior_atr": 5.049957178329438,
+          "prior_ema20": 4048.7979722498817,
+          "prior_ema20_slope3": -1.9352368193931397,
+          "provisional_observation": true,
+          "range_prior_atr": 1.8762535335268538,
+          "reason": "Противоположен пробив; чака връщане отвъд нивото",
+          "source": "S5/RC2",
+          "state": "WATCH",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 15,
+          "triage": "OBSERVE",
+          "triage_reason": "WATCH_ONLY"
+        },
+        {
+          "approval": "RESEARCH ONLY",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": false,
+          "context": {
+            "active_observation_sources": [
+              {
+                "expires_ms": 1794410100000,
+                "known_ms": 1794403800000,
+                "model": "CONSOLIDATION_BREAK",
+                "side": -1,
+                "source": "DT CONSOLIDATION",
+                "stage": "BREAKOUT CONFIRMED"
+              },
+              {
+                "expires_ms": 1794407400000,
+                "known_ms": 1794403800000,
+                "model": "S5_RECLAIM",
+                "side": 1,
+                "source": "S5",
+                "stage": "WATCH"
+              },
+              {
+                "expires_ms": 1794405600000,
+                "known_ms": 1794403800000,
+                "model": "RC2_EARLY_WATCH",
+                "side": -1,
+                "source": "RC2 EARLY WATCH",
+                "stage": "WATCH"
+              }
+            ],
+            "directional_opportunity": "CONFLICT",
+            "permission": "WAIT",
+            "permission_plan_visible": false,
+            "permission_source": "S5 · RC2",
+            "slot": "FREE",
+            "slot_plan_id": null,
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "SELL",
+          "directional_body_prior_atr": 1.0574347091327616,
+          "edge": {
+            "close_beyond_in_direction": true,
+            "known_at_utc": "2026-11-11T13:15:00Z",
+            "level": 4039.735,
+            "source": "RC2 PRIOR 12 CLOSED BARS"
+          },
+          "event_id": "OANDA:XAUUSD|15|RC2_EARLY|SELL|1794403800000|WATCH",
+          "executable_plan_status": "NO EXECUTABLE PLAN",
+          "expires_at_utc": "2026-11-11T14:00:00Z",
+          "htf": {
+            "archived_status": "MIXED",
+            "h1": {
+              "bias": "DOWN",
+              "closed_utc": "2026-11-11T13:00:00Z"
+            },
+            "h4": {
+              "bias": "UP",
+              "closed_utc": "2026-11-11T10:00:00Z"
+            },
+            "source": "archived native M15, exact local OHLC join, HTF warmup unverified",
+            "status": "DATA MISSING"
+          },
+          "id_origin": "DERIVED_FROM_PINNED_RC2_ALERT_KEY",
+          "known_at_ms": 1794403800000,
+          "known_at_utc": "2026-11-11T13:30:00Z",
+          "model": "RC2_EARLY_WATCH",
+          "plan": null,
+          "policy": null,
+          "prior_atr": 5.049957178329438,
+          "prior_ema20": 4048.7979722498817,
+          "prior_ema20_slope3": -1.9352368193931397,
+          "provisional_observation": true,
+          "range_prior_atr": 1.8762535335268538,
+          "reason": "CLOSED BAR EARLY WATCH",
+          "source": "RC2 EARLY WATCH",
+          "state": "WATCH",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 15,
+          "triage": "OBSERVE",
+          "triage_reason": "WATCH_ONLY"
+        },
+        {
+          "approval": "SOURCE OBSERVATION",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": false,
+          "context": {
+            "active_observation_sources": [
+              {
+                "expires_ms": 1794410100000,
+                "known_ms": 1794408300000,
+                "model": "RC2_EARLY_WATCH",
+                "side": -1,
+                "source": "RC2 EARLY WATCH",
+                "stage": "WATCH"
+              }
+            ],
+            "directional_opportunity": "SELL WATCH",
+            "permission": "WAIT",
+            "permission_plan_visible": false,
+            "permission_source": "S5 · RC2",
+            "slot": "FREE",
+            "slot_plan_id": null,
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "BUY",
+          "directional_body_prior_atr": -2.5951900799477197,
+          "edge": null,
+          "event_id": "S5|OANDA:XAUUSD|15|2|1|1794406500000|CORE|CANCELLED|1794408300000",
+          "executable_plan_status": "NO EXECUTABLE PLAN",
+          "expires_at_utc": "2026-11-11T14:45:00Z",
+          "htf": {
+            "archived_status": "COUNTERTREND",
+            "h1": {
+              "bias": "DOWN",
+              "closed_utc": "2026-11-11T14:00:00Z"
+            },
+            "h4": {
+              "bias": "DOWN",
+              "closed_utc": "2026-11-11T14:00:00Z"
+            },
+            "source": "archived native M15, exact local OHLC join, HTF warmup unverified",
+            "status": "DATA MISSING"
+          },
+          "id_origin": "NATIVE",
+          "known_at_ms": 1794408300000,
+          "known_at_utc": "2026-11-11T14:45:00Z",
+          "model": "S5_RECLAIM",
+          "plan": null,
+          "plan_id": "S5|OANDA:XAUUSD|15|2|1|1794406500000",
+          "policy": null,
+          "prior_atr": 5.752950473785952,
+          "prior_ema20": 4042.961464310006,
+          "prior_ema20_slope3": -3.473950615634294,
+          "provisional_observation": false,
+          "range_prior_atr": 3.565127162741385,
+          "reason": "Нарушена структура",
+          "source": "S5/RC2",
+          "state": "CANCELLED",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 15,
+          "triage": "REJECT / EXPIRED",
+          "triage_reason": "SOURCE_TERMINAL_OR_KNOWN_RISK_FAILURE"
+        },
+        {
+          "approval": "RESEARCH ONLY",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": false,
+          "context": {
+            "active_observation_sources": [
+              {
+                "expires_ms": 1794410100000,
+                "known_ms": 1794408300000,
+                "model": "RC2_EARLY_WATCH",
+                "side": -1,
+                "source": "RC2 EARLY WATCH",
+                "stage": "WATCH"
+              }
+            ],
+            "directional_opportunity": "SELL WATCH",
+            "permission": "WAIT",
+            "permission_plan_visible": false,
+            "permission_source": "S5 · RC2",
+            "slot": "FREE",
+            "slot_plan_id": null,
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "SELL",
+          "directional_body_prior_atr": 2.5951900799477197,
+          "edge": {
+            "close_beyond_in_direction": true,
+            "known_at_utc": "2026-11-11T14:30:00Z",
+            "level": 4028.465,
+            "source": "RC2 PRIOR 12 CLOSED BARS"
+          },
+          "event_id": "OANDA:XAUUSD|15|RC2_EARLY|SELL|1794408300000|WATCH",
+          "executable_plan_status": "NO EXECUTABLE PLAN",
+          "expires_at_utc": "2026-11-11T15:15:00Z",
+          "htf": {
+            "archived_status": "ALIGNED",
+            "h1": {
+              "bias": "DOWN",
+              "closed_utc": "2026-11-11T14:00:00Z"
+            },
+            "h4": {
+              "bias": "DOWN",
+              "closed_utc": "2026-11-11T14:00:00Z"
+            },
+            "source": "archived native M15, exact local OHLC join, HTF warmup unverified",
+            "status": "DATA MISSING"
+          },
+          "id_origin": "DERIVED_FROM_PINNED_RC2_ALERT_KEY",
+          "known_at_ms": 1794408300000,
+          "known_at_utc": "2026-11-11T14:45:00Z",
+          "model": "RC2_EARLY_WATCH",
+          "plan": null,
+          "policy": null,
+          "prior_atr": 5.752950473785952,
+          "prior_ema20": 4042.961464310006,
+          "prior_ema20_slope3": -3.473950615634294,
+          "provisional_observation": true,
+          "range_prior_atr": 3.565127162741385,
+          "reason": "CLOSED BAR EARLY WATCH",
+          "source": "RC2 EARLY WATCH",
+          "state": "WATCH",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 15,
+          "triage": "OBSERVE",
+          "triage_reason": "WATCH_ONLY"
+        }
+      ],
+      "first_loaded_open_utc": "2026-10-26T02:45:00Z",
+      "known_window_utc": [
+        "2026-11-11T00:00:00Z",
+        "2026-11-11T17:30:00Z"
+      ],
+      "native_csv": "candidate-M15.csv",
+      "prefix_invariance": {
+        "status": "MATCH",
+        "tested_prefixes": 71
+      },
+      "previous_source_first_loaded_open_utc": "2026-10-26T02:00:00Z",
+      "same_window_source_pair": {
+        "baseline_csv": "baseline-M15.csv",
+        "baseline_sha256": "b766cf135ced65580a52b38e429ac61df1a2af780aa84104a06ae6a55aeb7e09",
+        "core_ready_and_compatibility": {
+          "coverage": "BOUNDED_WINDOW",
+          "rows": {
+            "alerts": 19,
+            "core": 20,
+            "ready": 2
+          },
+          "status": "MATCH"
+        },
+        "raw_csv_identical": true,
+        "raw_paper": {
+          "execution_events": 6,
+          "final_ledger_r": {
+            "capacity_skipped": 1,
+            "closed": 2,
+            "costs": "0.05380326",
+            "drawdown": "1.03082818",
+            "entered": 2,
+            "gains": "0.98827449",
+            "gross": "0.01124957",
+            "losses": "1.03082818",
+            "net": "-0.04255369"
+          },
+          "last_close": "2026-11-11T17:30:00Z",
+          "ledger_snapshots": 71,
+          "mismatched_streams": [],
+          "scope": "Native indicator RAW PAPER events and ledger. P&L and drawdown are in R.",
+          "status": "MATCH"
+        },
+        "rc2_streams": {
+          "mismatched_streams": [],
+          "rows": {
+            "RC2_ALERT": 17,
+            "RC2_EARLY": 6,
+            "RC2_FILTER": 0
+          },
+          "status": "MATCH"
+        },
+        "shadow": {
+          "baseline_events": 500,
+          "baseline_first_open_utc": "2026-10-26T02:45:00Z",
+          "common_bars": 1199,
+          "events": 500,
+          "repeat_file": "candidate-M15.csv",
+          "repeat_sha256": "b766cf135ced65580a52b38e429ac61df1a2af780aa84104a06ae6a55aeb7e09",
+          "status": "MATCH",
+          "visibility_events": 500,
+          "visibility_first_open_utc": "2026-10-26T02:45:00Z"
+        },
+        "status": "MATCH"
+      },
+      "sha256": "b766cf135ced65580a52b38e429ac61df1a2af780aa84104a06ae6a55aeb7e09",
+      "snapshot_deduplication": {
+        "display_rows": 67,
+        "repeat_displays": 36,
+        "unique_observations": 31
+      },
+      "sources": {
+        "DIRECT TREND SHADOW": 50,
+        "RC2 EARLY WATCH": 6,
+        "S5/RC2": 22
+      },
+      "states": {
+        "BREAKOUT CONFIRMED": 12,
+        "CANCELLED": 5,
+        "CONFIRMED": 2,
+        "ENTRY CANDIDATE": 6,
+        "EXPIRED": 3,
+        "INVALIDATED": 3,
+        "READY": 2,
+        "REJECTED": 12,
+        "RETEST WATCH": 8,
+        "WATCH": 25
+      },
+      "terminal_events": 23,
+      "triage": {
+        "CONFLICT": 4,
+        "NO DATA": 6,
+        "OBSERVE": 39,
+        "REJECT / EXPIRED": 29
+      }
+    },
+    "M30": {
+      "approved_s5_events": 0,
+      "archived_htf_context": {},
+      "confirmed_snapshot_bars": 36,
+      "event_stream_sha256": "e79c52d66636c46aa8146f4ba09a00b89a16e28397006890738da282aa097faf",
+      "event_time_htf": {
+        "DATA MISSING": 15
+      },
+      "events": 15,
+      "examples": [
+        {
+          "approval": "RESEARCH ONLY",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": false,
+          "context": {
+            "active_observation_sources": [
+              {
+                "expires_ms": 1794366000000,
+                "known_ms": 1794362400000,
+                "model": "RC2_EARLY_WATCH",
+                "side": 1,
+                "source": "RC2 EARLY WATCH",
+                "stage": "WATCH"
+              }
+            ],
+            "directional_opportunity": "BUY WATCH",
+            "permission": "WAIT",
+            "permission_plan_visible": false,
+            "permission_source": "S5 · RC2",
+            "slot": "FREE",
+            "slot_plan_id": null,
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "BUY",
+          "directional_body_prior_atr": 0.8011949267067987,
+          "edge": {
+            "close_beyond_in_direction": true,
+            "known_at_utc": "2026-11-11T01:30:00Z",
+            "level": 4042.135,
+            "source": "RC2 PRIOR 12 CLOSED BARS"
+          },
+          "event_id": "OANDA:XAUUSD|30|RC2_EARLY|BUY|1794362400000|WATCH",
+          "executable_plan_status": "NO EXECUTABLE PLAN",
+          "expires_at_utc": "2026-11-11T03:00:00Z",
+          "htf": {
+            "h1": null,
+            "h4": null,
+            "source": null,
+            "status": "DATA MISSING"
+          },
+          "id_origin": "DERIVED_FROM_PINNED_RC2_ALERT_KEY",
+          "known_at_ms": 1794362400000,
+          "known_at_utc": "2026-11-11T02:00:00Z",
+          "model": "RC2_EARLY_WATCH",
+          "plan": null,
+          "policy": null,
+          "prior_atr": 9.847790764765112,
+          "prior_ema20": 4040.318264758789,
+          "prior_ema20_slope3": -1.287928553814254,
+          "provisional_observation": true,
+          "range_prior_atr": 1.6765181546171908,
+          "reason": "CLOSED BAR EARLY WATCH",
+          "source": "RC2 EARLY WATCH",
+          "state": "WATCH",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 30,
+          "triage": "OBSERVE",
+          "triage_reason": "WATCH_ONLY"
+        },
+        {
+          "approval": "RESEARCH ONLY",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": false,
+          "context": {
+            "active_observation_sources": [
+              {
+                "expires_ms": 1794402000000,
+                "known_ms": 1794398400000,
+                "model": "RC2_EARLY_WATCH",
+                "side": -1,
+                "source": "RC2 EARLY WATCH",
+                "stage": "WATCH"
+              }
+            ],
+            "directional_opportunity": "SELL WATCH",
+            "permission": "WAIT",
+            "permission_plan_visible": false,
+            "permission_source": "S5 · RC2",
+            "slot": "FREE",
+            "slot_plan_id": null,
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "SELL",
+          "directional_body_prior_atr": 1.1206106512780682,
+          "edge": {
+            "close_beyond_in_direction": true,
+            "known_at_utc": "2026-11-11T11:30:00Z",
+            "level": 4046.515,
+            "source": "RC2 PRIOR 12 CLOSED BARS"
+          },
+          "event_id": "OANDA:XAUUSD|30|RC2_EARLY|SELL|1794398400000|WATCH",
+          "executable_plan_status": "NO EXECUTABLE PLAN",
+          "expires_at_utc": "2026-11-11T13:00:00Z",
+          "htf": {
+            "h1": null,
+            "h4": null,
+            "source": null,
+            "status": "DATA MISSING"
+          },
+          "id_origin": "DERIVED_FROM_PINNED_RC2_ALERT_KEY",
+          "known_at_ms": 1794398400000,
+          "known_at_utc": "2026-11-11T12:00:00Z",
+          "model": "RC2_EARLY_WATCH",
+          "plan": null,
+          "policy": null,
+          "prior_atr": 8.218733232185041,
+          "prior_ema20": 4051.5712757491688,
+          "prior_ema20_slope3": 0.08286275703449064,
+          "provisional_observation": true,
+          "range_prior_atr": 1.2100404915267187,
+          "reason": "CLOSED BAR EARLY WATCH",
+          "source": "RC2 EARLY WATCH",
+          "state": "WATCH",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 30,
+          "triage": "OBSERVE",
+          "triage_reason": "WATCH_ONLY"
+        },
+        {
+          "approval": "RESEARCH ONLY",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": false,
+          "context": {
+            "active_observation_sources": [
+              {
+                "expires_ms": 1794407400000,
+                "known_ms": 1794403800000,
+                "model": "RC2_EARLY_WATCH",
+                "side": -1,
+                "source": "RC2 EARLY WATCH",
+                "stage": "WATCH"
+              }
+            ],
+            "directional_opportunity": "SELL WATCH",
+            "permission": "WAIT",
+            "permission_plan_visible": false,
+            "permission_source": "S5 · RC2",
+            "slot": "FREE",
+            "slot_plan_id": null,
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "SELL",
+          "directional_body_prior_atr": 0.6890705449146579,
+          "edge": {
+            "close_beyond_in_direction": true,
+            "known_at_utc": "2026-11-11T13:00:00Z",
+            "level": 4040.525,
+            "source": "RC2 PRIOR 12 CLOSED BARS"
+          },
+          "event_id": "OANDA:XAUUSD|30|RC2_EARLY|SELL|1794403800000|WATCH",
+          "executable_plan_status": "NO EXECUTABLE PLAN",
+          "expires_at_utc": "2026-11-11T14:30:00Z",
+          "htf": {
+            "h1": null,
+            "h4": null,
+            "source": null,
+            "status": "DATA MISSING"
+          },
+          "id_origin": "DERIVED_FROM_PINNED_RC2_ALERT_KEY",
+          "known_at_ms": 1794403800000,
+          "known_at_utc": "2026-11-11T13:30:00Z",
+          "model": "RC2_EARLY_WATCH",
+          "plan": null,
+          "policy": null,
+          "prior_atr": 7.778593990929497,
+          "prior_ema20": 4049.738400859902,
+          "prior_ema20_slope3": -1.8328748892668045,
+          "provisional_observation": true,
+          "range_prior_atr": 1.2180864576617014,
+          "reason": "CLOSED BAR EARLY WATCH",
+          "source": "RC2 EARLY WATCH",
+          "state": "WATCH",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 30,
+          "triage": "OBSERVE",
+          "triage_reason": "WATCH_ONLY"
+        }
+      ],
+      "first_loaded_open_utc": "2026-10-07T02:00:00Z",
+      "known_window_utc": [
+        "2026-11-11T00:00:00Z",
+        "2026-11-11T17:30:00Z"
+      ],
+      "native_csv": "candidate-M30.csv",
+      "prefix_invariance": {
+        "status": "MATCH",
+        "tested_prefixes": 36
+      },
+      "previous_source_first_loaded_open_utc": "2026-10-07T01:00:00Z",
+      "same_window_source_pair": {
+        "baseline_csv": "baseline-M30.csv",
+        "baseline_sha256": "78b46c01496da6b2d97145f09dede89b04223d338db6bc12851d227e9f154793",
+        "core_ready_and_compatibility": {
+          "coverage": "BOUNDED_WINDOW",
+          "rows": {
+            "alerts": 0,
+            "core": 0,
+            "ready": 0
+          },
+          "status": "MATCH"
+        },
+        "raw_csv_identical": true,
+        "raw_paper": {
+          "execution_events": 0,
+          "final_ledger_r": {
+            "capacity_skipped": 0,
+            "closed": 0,
+            "costs": 0,
+            "drawdown": 0,
+            "entered": 0,
+            "gains": 0,
+            "gross": 0,
+            "losses": 0,
+            "net": 0
+          },
+          "last_close": "2026-11-11T17:30:00Z",
+          "ledger_snapshots": 36,
+          "mismatched_streams": [],
+          "scope": "Native indicator RAW PAPER events and ledger. P&L and drawdown are in R.",
+          "status": "MATCH"
+        },
+        "rc2_streams": {
+          "mismatched_streams": [],
+          "rows": {
+            "RC2_ALERT": 0,
+            "RC2_EARLY": 5,
+            "RC2_FILTER": 0
+          },
+          "status": "MATCH"
+        },
+        "shadow": {
+          "baseline_events": 480,
+          "baseline_first_open_utc": "2026-10-07T02:00:00Z",
+          "common_bars": 1199,
+          "events": 480,
+          "repeat_file": "candidate-M30.csv",
+          "repeat_sha256": "78b46c01496da6b2d97145f09dede89b04223d338db6bc12851d227e9f154793",
+          "status": "MATCH",
+          "visibility_events": 480,
+          "visibility_first_open_utc": "2026-10-07T02:00:00Z"
+        },
+        "status": "MATCH"
+      },
+      "sha256": "78b46c01496da6b2d97145f09dede89b04223d338db6bc12851d227e9f154793",
+      "snapshot_deduplication": {
+        "display_rows": 17,
+        "repeat_displays": 11,
+        "unique_observations": 6
+      },
+      "sources": {
+        "DIRECT TREND SHADOW": 10,
+        "RC2 EARLY WATCH": 5
+      },
+      "states": {
+        "BREAKOUT CONFIRMED": 2,
+        "ENTRY CANDIDATE": 1,
+        "EXPIRED": 1,
+        "INVALIDATED": 1,
+        "REJECTED": 1,
+        "RETEST WATCH": 1,
+        "WATCH": 8
+      },
+      "terminal_events": 3,
+      "triage": {
+        "NO DATA": 2,
+        "OBSERVE": 9,
+        "REJECT / EXPIRED": 4
+      }
+    },
+    "M5": {
+      "approved_s5_events": 6,
+      "archived_htf_context": {},
+      "confirmed_snapshot_bars": 211,
+      "event_stream_sha256": "35fca489de897176a357471e9a8d5acc077c55348c888ef168b1cb81d2e6e77c",
+      "event_time_htf": {
+        "DATA MISSING": 134
+      },
+      "events": 134,
+      "examples": [
+        {
+          "approval": "RESEARCH ONLY",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": false,
+          "context": {
+            "active_observation_sources": [],
+            "directional_opportunity": "NONE",
+            "permission": "WAIT",
+            "permission_plan_visible": false,
+            "permission_source": "S5 · RC2",
+            "slot": "FREE",
+            "slot_plan_id": null,
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "SELL",
+          "directional_body_prior_atr": -0.572094314745411,
+          "edge": {
+            "close_beyond_in_direction": false,
+            "known_at_utc": "2026-11-11T08:40:00Z",
+            "level": "4055.745",
+            "source": "NATIVE SHADOW"
+          },
+          "event_id": "OANDA:XAUUSD|5|DT|-1|RETEST_CONTINUATION|INVALIDATED|1794388200000|1794385500000|1794387900000|1794387900000|STRUCTURAL_BREAK",
+          "executable_plan_status": "NO EXECUTABLE PLAN",
+          "expires_at_utc": "2026-11-11T09:10:00Z",
+          "htf": {
+            "h1": null,
+            "h4": null,
+            "source": null,
+            "status": "DATA MISSING"
+          },
+          "id_origin": "DETERMINISTIC_DT_SOURCE_KEY",
+          "known_at_ms": 1794388200000,
+          "known_at_utc": "2026-11-11T09:10:00Z",
+          "model": "RETEST_CONTINUATION",
+          "origin_watch_utc": "2026-11-11T09:05:00Z",
+          "plan": null,
+          "plan_id": null,
+          "policy": "P2_RETEST",
+          "prior_atr": "3.37356962",
+          "prior_ema20": 4058.629364632203,
+          "prior_ema20_slope3": -0.6530724371700671,
+          "provisional_observation": false,
+          "range_prior_atr": 0.9856028997558595,
+          "reason": "CLOSE_BACK_THROUGH_BREAK_LEVEL",
+          "source": "DIRECT TREND SHADOW",
+          "source_gate_rejections": [],
+          "state": "INVALIDATED",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 5,
+          "triage": "REJECT / EXPIRED",
+          "triage_reason": "SOURCE_TERMINAL_OR_KNOWN_RISK_FAILURE"
+        },
+        {
+          "approval": "RESEARCH ONLY",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": false,
+          "context": {
+            "active_observation_sources": [
+              {
+                "expires_ms": 1794398100000,
+                "known_ms": 1794397500000,
+                "model": "RC2_EARLY_WATCH",
+                "side": -1,
+                "source": "RC2 EARLY WATCH",
+                "stage": "WATCH"
+              }
+            ],
+            "directional_opportunity": "SELL WATCH",
+            "permission": "WAIT",
+            "permission_plan_visible": false,
+            "permission_source": "S5 · RC2",
+            "slot": "FREE",
+            "slot_plan_id": null,
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "SELL",
+          "directional_body_prior_atr": 1.1908443981981405,
+          "edge": {
+            "close_beyond_in_direction": true,
+            "known_at_utc": "2026-11-11T11:40:00Z",
+            "level": 4047.795,
+            "source": "RC2 PRIOR 12 CLOSED BARS"
+          },
+          "event_id": "OANDA:XAUUSD|5|RC2_EARLY|SELL|1794397500000|WATCH",
+          "executable_plan_status": "NO EXECUTABLE PLAN",
+          "expires_at_utc": "2026-11-11T11:55:00Z",
+          "htf": {
+            "h1": null,
+            "h4": null,
+            "source": null,
+            "status": "DATA MISSING"
+          },
+          "id_origin": "DERIVED_FROM_PINNED_RC2_ALERT_KEY",
+          "known_at_ms": 1794397500000,
+          "known_at_utc": "2026-11-11T11:45:00Z",
+          "model": "RC2_EARLY_WATCH",
+          "plan": null,
+          "policy": null,
+          "prior_atr": 2.8551169280760864,
+          "prior_ema20": 4052.1026079612993,
+          "prior_ema20_slope3": -0.006075859897919145,
+          "provisional_observation": true,
+          "range_prior_atr": 1.3904859590725867,
+          "reason": "CLOSED BAR EARLY WATCH",
+          "source": "RC2 EARLY WATCH",
+          "state": "WATCH",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 5,
+          "triage": "OBSERVE",
+          "triage_reason": "WATCH_ONLY"
+        },
+        {
+          "approval": "SOURCE OBSERVATION",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": false,
+          "context": {
+            "active_observation_sources": [
+              {
+                "expires_ms": 1794399600000,
+                "known_ms": 1794398400000,
+                "model": "S5_RECLAIM",
+                "side": 1,
+                "source": "S5",
+                "stage": "WATCH"
+              },
+              {
+                "expires_ms": 1794399000000,
+                "known_ms": 1794398400000,
+                "model": "RC2_EARLY_WATCH",
+                "side": -1,
+                "source": "RC2 EARLY WATCH",
+                "stage": "WATCH"
+              }
+            ],
+            "directional_opportunity": "CONFLICT",
+            "permission": "WAIT",
+            "permission_plan_visible": false,
+            "permission_source": "S5 · RC2",
+            "slot": "FREE",
+            "slot_plan_id": null,
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "BUY",
+          "directional_body_prior_atr": -1.1928062446894574,
+          "edge": {
+            "close_beyond_in_direction": false,
+            "known_at_utc": "2026-11-11T11:55:00Z",
+            "level": "4046.53",
+            "source": "S5 PRIOR RANGE EDGE"
+          },
+          "event_id": "S5|OANDA:XAUUSD|5|2|1|1794398400000|CORE|WATCH|1794398400000",
+          "executable_plan_status": "NO EXECUTABLE PLAN",
+          "expires_at_utc": "2026-11-11T12:20:00Z",
+          "htf": {
+            "h1": null,
+            "h4": null,
+            "source": null,
+            "status": "DATA MISSING"
+          },
+          "id_origin": "NATIVE",
+          "known_at_ms": 1794398400000,
+          "known_at_utc": "2026-11-11T12:00:00Z",
+          "model": "S5_RECLAIM",
+          "plan": null,
+          "plan_id": "S5|OANDA:XAUUSD|5|2|1|1794398400000",
+          "policy": null,
+          "prior_atr": 2.917489756189215,
+          "prior_ema20": 4051.132395854287,
+          "prior_ema20_slope3": -0.9702121070122303,
+          "provisional_observation": true,
+          "range_prior_atr": 1.3641864522597809,
+          "reason": "Противоположен пробив; чака връщане отвъд нивото",
+          "source": "S5/RC2",
+          "state": "WATCH",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 5,
+          "triage": "OBSERVE",
+          "triage_reason": "WATCH_ONLY"
+        },
+        {
+          "approval": "RESEARCH ONLY",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": false,
+          "context": {
+            "active_observation_sources": [
+              {
+                "expires_ms": 1794399600000,
+                "known_ms": 1794398400000,
+                "model": "S5_RECLAIM",
+                "side": 1,
+                "source": "S5",
+                "stage": "WATCH"
+              },
+              {
+                "expires_ms": 1794399000000,
+                "known_ms": 1794398400000,
+                "model": "RC2_EARLY_WATCH",
+                "side": -1,
+                "source": "RC2 EARLY WATCH",
+                "stage": "WATCH"
+              }
+            ],
+            "directional_opportunity": "CONFLICT",
+            "permission": "WAIT",
+            "permission_plan_visible": false,
+            "permission_source": "S5 · RC2",
+            "slot": "FREE",
+            "slot_plan_id": null,
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "SELL",
+          "directional_body_prior_atr": 1.1928062446894574,
+          "edge": {
+            "close_beyond_in_direction": true,
+            "known_at_utc": "2026-11-11T11:55:00Z",
+            "level": 4046.96,
+            "source": "RC2 PRIOR 12 CLOSED BARS"
+          },
+          "event_id": "OANDA:XAUUSD|5|RC2_EARLY|SELL|1794398400000|WATCH",
+          "executable_plan_status": "NO EXECUTABLE PLAN",
+          "expires_at_utc": "2026-11-11T12:10:00Z",
+          "htf": {
+            "h1": null,
+            "h4": null,
+            "source": null,
+            "status": "DATA MISSING"
+          },
+          "id_origin": "DERIVED_FROM_PINNED_RC2_ALERT_KEY",
+          "known_at_ms": 1794398400000,
+          "known_at_utc": "2026-11-11T12:00:00Z",
+          "model": "RC2_EARLY_WATCH",
+          "plan": null,
+          "policy": null,
+          "prior_atr": 2.917489756189215,
+          "prior_ema20": 4051.132395854287,
+          "prior_ema20_slope3": -0.9702121070122303,
+          "provisional_observation": true,
+          "range_prior_atr": 1.3641864522597809,
+          "reason": "CLOSED BAR EARLY WATCH",
+          "source": "RC2 EARLY WATCH",
+          "state": "WATCH",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 5,
+          "triage": "OBSERVE",
+          "triage_reason": "WATCH_ONLY"
+        },
+        {
+          "approval": "RESEARCH ONLY",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": false,
+          "context": {
+            "active_observation_sources": [
+              {
+                "expires_ms": 1794405600000,
+                "known_ms": 1794403500000,
+                "model": "STRUCTURAL_BREAK",
+                "side": -1,
+                "source": "DT STRUCTURE",
+                "stage": "WATCH"
+              },
+              {
+                "expires_ms": 1794405000000,
+                "known_ms": 1794403800000,
+                "model": "S5_RECLAIM",
+                "side": 1,
+                "source": "S5",
+                "stage": "WATCH"
+              }
+            ],
+            "directional_opportunity": "CONFLICT",
+            "permission": "WAIT",
+            "permission_plan_visible": false,
+            "permission_source": "S5 · RC2",
+            "slot": "FREE",
+            "slot_plan_id": null,
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "SELL",
+          "directional_body_prior_atr": 0.43371311837602156,
+          "edge": {
+            "close_beyond_in_direction": true,
+            "known_at_utc": "2026-11-11T13:20:00Z",
+            "level": "4039.735",
+            "source": "NATIVE SHADOW"
+          },
+          "event_id": "OANDA:XAUUSD|5|DT|-1|STRUCTURAL_BREAK|REJECTED|1794403800000|1794402300000|1794403500000|-|-",
+          "executable_plan_status": "NO EXECUTABLE PLAN",
+          "expires_at_utc": "2026-11-11T13:30:00Z",
+          "htf": {
+            "h1": null,
+            "h4": null,
+            "source": null,
+            "status": "DATA MISSING"
+          },
+          "id_origin": "DETERMINISTIC_DT_SOURCE_KEY",
+          "known_at_ms": 1794403800000,
+          "known_at_utc": "2026-11-11T13:30:00Z",
+          "model": "STRUCTURAL_BREAK",
+          "origin_watch_utc": "2026-11-11T13:25:00Z",
+          "plan": null,
+          "plan_id": null,
+          "policy": "P1_BREAKOUT",
+          "prior_atr": "3.216411819",
+          "prior_ema20": 4044.2954663959167,
+          "prior_ema20_slope3": -0.6289765684487065,
+          "provisional_observation": false,
+          "range_prior_atr": 0.9638069297244766,
+          "reason": "INSUFFICIENT_DISPLACEMENT",
+          "source": "DIRECT TREND SHADOW",
+          "source_gate_rejections": [],
+          "state": "REJECTED",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 5,
+          "triage": "REJECT / EXPIRED",
+          "triage_reason": "SOURCE_TERMINAL_OR_KNOWN_RISK_FAILURE"
+        },
+        {
+          "approval": "SOURCE OBSERVATION",
+          "broker_cost_status": "BROKER COSTS UNKNOWN",
+          "closed_bar": true,
+          "confirmed_observation": false,
+          "context": {
+            "active_observation_sources": [
+              {
+                "expires_ms": 1794405600000,
+                "known_ms": 1794403500000,
+                "model": "STRUCTURAL_BREAK",
+                "side": -1,
+                "source": "DT STRUCTURE",
+                "stage": "WATCH"
+              },
+              {
+                "expires_ms": 1794405000000,
+                "known_ms": 1794403800000,
+                "model": "S5_RECLAIM",
+                "side": 1,
+                "source": "S5",
+                "stage": "WATCH"
+              }
+            ],
+            "directional_opportunity": "CONFLICT",
+            "permission": "WAIT",
+            "permission_plan_visible": false,
+            "permission_source": "S5 · RC2",
+            "slot": "FREE",
+            "slot_plan_id": null,
+            "slot_source": "native S5 RAW PAPER at the same close"
+          },
+          "direction": "BUY",
+          "directional_body_prior_atr": -0.43371311844137844,
+          "edge": {
+            "close_beyond_in_direction": false,
+            "known_at_utc": "2026-11-11T13:25:00Z",
+            "level": "4039.735",
+            "source": "S5 PRIOR RANGE EDGE"
+          },
+          "event_id": "S5|OANDA:XAUUSD|5|2|1|1794403800000|CORE|WATCH|1794403800000",
+          "executable_plan_status": "NO EXECUTABLE PLAN",
+          "expires_at_utc": "2026-11-11T13:50:00Z",
+          "htf": {
+            "h1": null,
+            "h4": null,
+            "source": null,
+            "status": "DATA MISSING"
+          },
+          "id_origin": "NATIVE",
+          "known_at_ms": 1794403800000,
+          "known_at_utc": "2026-11-11T13:30:00Z",
+          "model": "S5_RECLAIM",
+          "plan": null,
+          "plan_id": "S5|OANDA:XAUUSD|5|2|1|1794403800000",
+          "policy": null,
+          "prior_atr": 3.216411818515314,
+          "prior_ema20": 4044.2954663959167,
+          "prior_ema20_slope3": -0.6289765684487065,
+          "provisional_observation": true,
+          "range_prior_atr": 0.9638069298697142,
+          "reason": "Противоположен пробив; чака връщане отвъд нивото",
+          "source": "S5/RC2",
+          "state": "WATCH",
+          "symbol": "OANDA:XAUUSD",
+          "timeframe_minutes": 5,
+          "triage": "OBSERVE",
+          "triage_reason": "WATCH_ONLY"
+        }
+      ],
+      "first_loaded_open_utc": "2026-11-05T19:45:00Z",
+      "known_window_utc": [
+        "2026-11-11T00:00:00Z",
+        "2026-11-11T17:30:00Z"
+      ],
+      "native_csv": "candidate-M5.csv",
+      "prefix_invariance": {
+        "status": "MATCH",
+        "tested_prefixes": 211
+      },
+      "previous_source_first_loaded_open_utc": "2026-11-05T18:50:00Z",
+      "same_window_source_pair": {
+        "baseline_csv": "baseline-M5.csv",
+        "baseline_sha256": "350c89a24481b1947495049faa704a70501b3be73825601a675aea441616211d",
+        "core_ready_and_compatibility": {
+          "coverage": "BOUNDED_WINDOW",
+          "rows": {
+            "alerts": 44,
+            "core": 42,
+            "ready": 6
+          },
+          "status": "MATCH"
+        },
+        "raw_csv_identical": false,
+        "raw_paper": {
+          "execution_events": 32,
+          "final_ledger_r": {
+            "capacity_skipped": 1,
+            "closed": 10,
+            "costs": "0.89213117",
+            "drawdown": "3.29956814",
+            "entered": 10,
+            "gains": "4.55480455",
+            "gross": "-1.11024449",
+            "losses": "6.55718021",
+            "net": "-2.00237566"
+          },
+          "last_close": "2026-11-11T17:30:00Z",
+          "ledger_snapshots": 211,
+          "mismatched_streams": [],
+          "scope": "Native indicator RAW PAPER events and ledger. P&L and drawdown are in R.",
+          "status": "MATCH"
+        },
+        "rc2_streams": {
+          "mismatched_streams": [],
+          "rows": {
+            "RC2_ALERT": 38,
+            "RC2_EARLY": 17,
+            "RC2_FILTER": 0
+          },
+          "status": "MATCH"
+        },
+        "shadow": {
+          "baseline_events": 522,
+          "baseline_first_open_utc": "2026-11-05T19:45:00Z",
+          "common_bars": 1199,
+          "events": 522,
+          "repeat_file": "candidate-M5.csv",
+          "repeat_sha256": "71ae2259bc6876eb4acaaba1b6d6395582a07440c792cdab53fc257f88b4b82c",
+          "status": "MATCH",
+          "visibility_events": 522,
+          "visibility_first_open_utc": "2026-11-05T19:45:00Z"
+        },
+        "status": "MATCH"
+      },
+      "sha256": "71ae2259bc6876eb4acaaba1b6d6395582a07440c792cdab53fc257f88b4b82c",
+      "snapshot_deduplication": {
+        "display_rows": 120,
+        "repeat_displays": 64,
+        "unique_observations": 56
+      },
+      "sources": {
+        "DIRECT TREND SHADOW": 69,
+        "RC2 EARLY WATCH": 17,
+        "S5/RC2": 48
+      },
+      "states": {
+        "BREAKOUT CONFIRMED": 9,
+        "CANCELLED": 11,
+        "CONFIRMED": 6,
+        "ENTRY CANDIDATE": 1,
+        "EXPIRED": 5,
+        "INVALIDATED": 12,
+        "READY": 6,
+        "REJECTED": 20,
+        "RETEST WATCH": 6,
+        "WATCH": 58
+      },
+      "terminal_events": 48,
+      "triage": {
+        "CONFLICT": 2,
+        "NO DATA": 2,
+        "OBSERVE": 74,
+        "REJECT / EXPIRED": 56
+      }
+    }
+  },
+  "missing_sources": {
+    "pressure": "Context-only OHLC proxy, no directional event or order-flow evidence.",
+    "wick": "No same-tape native Wick event rows. Separate Wick tape not merged."
+  },
+  "model_aliases": {
+    "PULLBACK_RETEST": "RETEST_CONTINUATION"
+  },
+  "native_h1_h4": {
+    "partial_M15_source_sha256": "b5773bb4c69e265cf06043eb352abe2158ecf48a4353f4804574061ec68d264f",
+    "same_warmup_equivalence": "NOT VERIFIED"
+  },
+  "protocol_sha256": "131608a1cf59d2ba48875662b1e39bc571253728326a081bc7141b9b123d1564",
+  "scope": "Native Professional Selector closed-bar journals paired with unchanged Signal Quality"
+}
