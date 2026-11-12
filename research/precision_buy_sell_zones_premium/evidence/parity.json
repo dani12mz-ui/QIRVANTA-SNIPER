@@ -1,0 +1,314 @@
+{
+  "source": {
+    "status": "MATCH",
+    "baseline_commit": "4059963f4e3091ae7a92864ab5b8944c140bc429",
+    "original_remote_premium_commit": "101db3408139f30c2d80b210c49c1603cc1e45ba",
+    "candidate": "research/precision_buy_sell_zones_premium/QIRVANTA_PRECISION_ZONES_PREMIUM.pine",
+    "candidate_sha256": "124db7b8324cd1070a8f380372501d28c654dd965003cf11b3250a4ca818cd88",
+    "protected_sha256": {
+      "research/precision_buy_sell_zones/QIRVANTA_GOLD_PRO_PRECISION_ZONES.pine": "acfaf5ac3fd80f08efd7f179cd3802eb41043f957a70800c3444595bf5ebc09a",
+      "research/precision_buy_sell_zones/PROTOCOL.json": "7406878761ffa1d6db918b72a2e283efde224f542723238a49f10cf80023ecc4",
+      "research/final_htf_data_integrity/QIRVANTA_GOLD_PRO_HTF_DISPLAY_FIX.pine": "a9955a1ed3f402f1b8674b3ef2fabfc3d6578bb20f61d8a7d12ade5f527353a2",
+      "docs/gold_pro_evidence/forward_seal_m5.json": "09181ecaf9e30cde62c5203b524cb458d808a07c24029e961e32bb25c474afd1"
+    },
+    "byte_identical_blocks": {
+      "market_inputs_and_state": {
+        "start": "bool pzSupported",
+        "end": "bool pzLight",
+        "sha256": "1746d8f4ab91bf0d2afadb7e2e44b2dafa0444e7f0d6cbdf5bc14a26ae777fdd"
+      },
+      "source_helpers": {
+        "start": "f_pzNumber(float value)",
+        "end": "f_pzEmit(PzZone zone, string state)",
+        "sha256": "da97e37198fd7b8d62d01e7f88eb2d1831933b8d3c5ac0068f82ab0181dd59b0"
+      },
+      "event_and_alert_payload": {
+        "start": "f_pzEmit(PzZone zone, string state)",
+        "end": "    if pzShow and pzMarks",
+        "sha256": "88cad44de7f1391b04a6c3e8c6c75ba6fa83243339c55fd9d2281661539c7539"
+      },
+      "closed_bar_lifecycle_and_alert_flow": {
+        "start": "if pzBar\n",
+        "end": "// Two bands",
+        "sha256": "6e31b072cbf1839d2b97403ddd6acf63e2013333cf722f95c16a368e7d5bc4a7"
+      }
+    },
+    "protected_inputs": [
+      "pzNotify",
+      "pzQa",
+      "pzReview",
+      "pzReviewAt"
+    ],
+    "indicator_settings": ", overlay=true, behind_chart=true, max_boxes_count=2, max_labels_count=14, max_bars_back=300, calc_bars_count=1200",
+    "restricted_call_counts": {
+      "alert": 1
+    }
+  },
+  "native": {
+    "M5": {
+      "status": "MATCH",
+      "before": {
+        "file": "before/zone-M5.csv",
+        "file_sha256": "1d51996aee0865cd9d8917f8308af61a4099b76aaf6d921cbe1648dffe4cc8be",
+        "loaded_bars": 1199,
+        "first_source_index": 0,
+        "first_loaded_open_utc": "2026-11-06T02:15:00Z",
+        "last_confirmed_history_index": 1198,
+        "last_confirmed_history_close_utc": "2026-11-12T10:10:00Z",
+        "last_logged_close_utc": "2026-11-12T10:10:00Z",
+        "closed_events": 248,
+        "event_close_window_utc": [
+          "2026-11-09T00:15:00Z",
+          "2026-11-12T08:25:00Z"
+        ],
+        "events_by_state": {
+          "FORMATION_DETECTED": 64,
+          "REPLACED": 35,
+          "FIRST_TOUCH": 41,
+          "PARTIALLY_MITIGATED": 37,
+          "REJECTION_CONFIRMED": 25,
+          "EXPIRED": 9,
+          "FULLY_MITIGATED": 18,
+          "INVALIDATED": 19
+        },
+        "alert_intent_batches": 77,
+        "alert_intent_close_window_utc": [
+          "2026-11-09T00:30:00Z",
+          "2026-11-12T07:35:00Z"
+        ],
+        "alert_intent_events": 85
+      },
+      "after": {
+        "file": "after/zone-M5.csv",
+        "file_sha256": "1d51996aee0865cd9d8917f8308af61a4099b76aaf6d921cbe1648dffe4cc8be",
+        "loaded_bars": 1199,
+        "first_source_index": 0,
+        "first_loaded_open_utc": "2026-11-06T02:15:00Z",
+        "last_confirmed_history_index": 1198,
+        "last_confirmed_history_close_utc": "2026-11-12T10:10:00Z",
+        "last_logged_close_utc": "2026-11-12T10:10:00Z",
+        "closed_events": 248,
+        "event_close_window_utc": [
+          "2026-11-09T00:15:00Z",
+          "2026-11-12T08:25:00Z"
+        ],
+        "events_by_state": {
+          "FORMATION_DETECTED": 64,
+          "REPLACED": 35,
+          "FIRST_TOUCH": 41,
+          "PARTIALLY_MITIGATED": 37,
+          "REJECTION_CONFIRMED": 25,
+          "EXPIRED": 9,
+          "FULLY_MITIGATED": 18,
+          "INVALIDATED": 19
+        },
+        "alert_intent_batches": 77,
+        "alert_intent_close_window_utc": [
+          "2026-11-09T00:30:00Z",
+          "2026-11-12T07:35:00Z"
+        ],
+        "alert_intent_events": 85
+      },
+      "raw_csv_byte_identical": true,
+      "exact_streams": {
+        "bars": true,
+        "market": true,
+        "events": true,
+        "alert_intents": true,
+        "last_confirmed_history_index": true
+      },
+      "first_differences": {},
+      "native_alert_payloads": {
+        "before": {
+          "status": "MATCH",
+          "batches": 77,
+          "events": 85,
+          "push_delivery": "NOT_VERIFIED_BY_PINE_LOGS"
+        },
+        "after": {
+          "status": "MATCH",
+          "batches": 77,
+          "events": 85,
+          "push_delivery": "NOT_VERIFIED_BY_PINE_LOGS"
+        }
+      }
+    },
+    "M15": {
+      "status": "MATCH",
+      "before": {
+        "file": "before/zone-M15.csv",
+        "file_sha256": "29f755415472b96d021cd09b94a8b1da4da29663f1ecb3992459019d05366d3a",
+        "loaded_bars": 1199,
+        "first_source_index": 0,
+        "first_loaded_open_utc": "2026-10-26T08:15:00Z",
+        "last_confirmed_history_index": 1198,
+        "last_confirmed_history_close_utc": "2026-11-12T10:00:00Z",
+        "last_logged_close_utc": "2026-11-12T10:00:00Z",
+        "closed_events": 168,
+        "event_close_window_utc": [
+          "2026-10-29T02:00:00Z",
+          "2026-11-12T07:15:00Z"
+        ],
+        "events_by_state": {
+          "FORMATION_DETECTED": 48,
+          "FIRST_TOUCH": 27,
+          "FULLY_MITIGATED": 11,
+          "INVALIDATED": 15,
+          "PARTIALLY_MITIGATED": 22,
+          "REJECTION_CONFIRMED": 13,
+          "EXPIRED": 18,
+          "REPLACED": 14
+        },
+        "alert_intent_batches": 51,
+        "alert_intent_close_window_utc": [
+          "2026-10-29T02:15:00Z",
+          "2026-11-12T07:15:00Z"
+        ],
+        "alert_intent_events": 55
+      },
+      "after": {
+        "file": "after/zone-M15.csv",
+        "file_sha256": "29f755415472b96d021cd09b94a8b1da4da29663f1ecb3992459019d05366d3a",
+        "loaded_bars": 1199,
+        "first_source_index": 0,
+        "first_loaded_open_utc": "2026-10-26T08:15:00Z",
+        "last_confirmed_history_index": 1198,
+        "last_confirmed_history_close_utc": "2026-11-12T10:00:00Z",
+        "last_logged_close_utc": "2026-11-12T10:00:00Z",
+        "closed_events": 168,
+        "event_close_window_utc": [
+          "2026-10-29T02:00:00Z",
+          "2026-11-12T07:15:00Z"
+        ],
+        "events_by_state": {
+          "FORMATION_DETECTED": 48,
+          "FIRST_TOUCH": 27,
+          "FULLY_MITIGATED": 11,
+          "INVALIDATED": 15,
+          "PARTIALLY_MITIGATED": 22,
+          "REJECTION_CONFIRMED": 13,
+          "EXPIRED": 18,
+          "REPLACED": 14
+        },
+        "alert_intent_batches": 51,
+        "alert_intent_close_window_utc": [
+          "2026-10-29T02:15:00Z",
+          "2026-11-12T07:15:00Z"
+        ],
+        "alert_intent_events": 55
+      },
+      "raw_csv_byte_identical": true,
+      "exact_streams": {
+        "bars": true,
+        "market": true,
+        "events": true,
+        "alert_intents": true,
+        "last_confirmed_history_index": true
+      },
+      "first_differences": {},
+      "native_alert_payloads": {
+        "before": {
+          "status": "MATCH",
+          "batches": 51,
+          "events": 55,
+          "push_delivery": "NOT_VERIFIED_BY_PINE_LOGS"
+        },
+        "after": {
+          "status": "MATCH",
+          "batches": 51,
+          "events": 55,
+          "push_delivery": "NOT_VERIFIED_BY_PINE_LOGS"
+        }
+      }
+    },
+    "M30": {
+      "status": "MATCH",
+      "before": {
+        "file": "before/zone-M30.csv",
+        "file_sha256": "d831f6e08d174d7d643dc6b6afc707259dd519678fba12bdbb2ea330eabfa669",
+        "loaded_bars": 1199,
+        "first_source_index": 0,
+        "first_loaded_open_utc": "2026-10-07T07:30:00Z",
+        "last_confirmed_history_index": 1198,
+        "last_confirmed_history_close_utc": "2026-11-12T10:00:00Z",
+        "last_logged_close_utc": "2026-11-12T10:00:00Z",
+        "closed_events": 234,
+        "event_close_window_utc": [
+          "2026-10-15T00:00:00Z",
+          "2026-11-12T07:30:00Z"
+        ],
+        "events_by_state": {
+          "FORMATION_DETECTED": 63,
+          "EXPIRED": 16,
+          "FIRST_TOUCH": 37,
+          "FULLY_MITIGATED": 19,
+          "INVALIDATED": 20,
+          "PARTIALLY_MITIGATED": 30,
+          "REPLACED": 26,
+          "REJECTION_CONFIRMED": 23
+        },
+        "alert_intent_batches": 74,
+        "alert_intent_close_window_utc": [
+          "2026-10-16T00:00:00Z",
+          "2026-11-12T07:30:00Z"
+        ],
+        "alert_intent_events": 80
+      },
+      "after": {
+        "file": "after/zone-M30.csv",
+        "file_sha256": "d831f6e08d174d7d643dc6b6afc707259dd519678fba12bdbb2ea330eabfa669",
+        "loaded_bars": 1199,
+        "first_source_index": 0,
+        "first_loaded_open_utc": "2026-10-07T07:30:00Z",
+        "last_confirmed_history_index": 1198,
+        "last_confirmed_history_close_utc": "2026-11-12T10:00:00Z",
+        "last_logged_close_utc": "2026-11-12T10:00:00Z",
+        "closed_events": 234,
+        "event_close_window_utc": [
+          "2026-10-15T00:00:00Z",
+          "2026-11-12T07:30:00Z"
+        ],
+        "events_by_state": {
+          "FORMATION_DETECTED": 63,
+          "EXPIRED": 16,
+          "FIRST_TOUCH": 37,
+          "FULLY_MITIGATED": 19,
+          "INVALIDATED": 20,
+          "PARTIALLY_MITIGATED": 30,
+          "REPLACED": 26,
+          "REJECTION_CONFIRMED": 23
+        },
+        "alert_intent_batches": 74,
+        "alert_intent_close_window_utc": [
+          "2026-10-16T00:00:00Z",
+          "2026-11-12T07:30:00Z"
+        ],
+        "alert_intent_events": 80
+      },
+      "raw_csv_byte_identical": true,
+      "exact_streams": {
+        "bars": true,
+        "market": true,
+        "events": true,
+        "alert_intents": true,
+        "last_confirmed_history_index": true
+      },
+      "first_differences": {},
+      "native_alert_payloads": {
+        "before": {
+          "status": "MATCH",
+          "batches": 74,
+          "events": 80,
+          "push_delivery": "NOT_VERIFIED_BY_PINE_LOGS"
+        },
+        "after": {
+          "status": "MATCH",
+          "batches": 74,
+          "events": 80,
+          "push_delivery": "NOT_VERIFIED_BY_PINE_LOGS"
+        }
+      }
+    }
+  },
+  "status": "MATCH"
+}

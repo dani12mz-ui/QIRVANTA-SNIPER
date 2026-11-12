@@ -1,11 +1,11 @@
 # QIRVANTA PRECISION ZONES — PREMIUM VISUAL CANDIDATE
 
-**Статус: SOURCE VERIFIED / NATIVE COMPILATION NOT YET RUN.** Публикуван е работен вариант за **самостоятелния Precision Zones индикатор**, базиран на проверения commit `4059963f4e3091ae7a92864ab5b8944c140bc429`. Изходните правила за нова зона, първи touch, rejection, invalidation, expiry, излъчени събития и тяхната часова маркировка са **без промени**. Нативното компилиране на този *нов* визуален файл все още трябва да бъде потвърдено от TradingView/Codex; не обозначавай като VERIFIED преди това.
+**Статус: VERIFIED в TradingView на OANDA:XAUUSD M5, M15 и M30.** Сверени са 650 зонални събития спрямо `4059963f4e3091ae7a92864ab5b8944c140bc429`. [Нативен QA, снимки и журнали](QA_BG.md).
 
 ## Реални промени в UI
 
-- На графиката `BUY REJECTION`, `SELL REJECTION`, `BUY/SELL ZONE BROKEN` са с размер `normal` за DESKTOP + Larger text, `small` за MOBILE. Точката за първи touch остава малка.
-- Етикетът до активната зона е двуредов: `BUY/SELL ZONE · WATCH / TOUCHED / PARTIAL / FULL / REJECTION` и точния **proximal–distal** ценови диапазон.
+- На графиката `BUY/SELL REJECTION` е с размер `normal` за DESKTOP + Larger text. В COMPACT и MOBILE е `small`. По-контрастните `BUY/SELL ZONE BROKEN` маркери са `small`, а точката за първи touch е при wick на свещта.
+- На desktop етикетът до активната зона показва посоката, статуса и точния **proximal–distal** ценови диапазон. При две зони етикетите са над по-високата и под по-ниската лента. В MOBILE цените се четат от таблото и подсказката.
 - Полупрозрачните области вече са по-видими, но не трябва да закриват свещите; контурите са 2px и по-контрастни.
 - Таблото има заглавна секция, контекстна лента, две симетрични BUY/SELL колони, по-едър **моноширинен ценови диапазон**, статуса, UTC часа, възрастта и `RESEARCH ONLY` предупреждение.
 - `Larger text = ON` е новото фабрично визуално състояние; при MOBILE се използва по-компактна стъпка.
@@ -17,8 +17,8 @@
 - **OANDA:XAUUSD**, стандартни свещи, **M5/M15/M30**.
 - `Show precision zones = ON`
 - `Show confirmed lifecycle markers = ON`
-- `Layout = DESKTOP`, `Larger text = ON`, `Dashboard position = Bottom left` (не се застъпва с основното QIRVANTA табло горе вдясно).
-- `Layout = MOBILE` на тесен екран; при нужда изключи `Larger text`, ако две колони се режат.
+- `Layout = DESKTOP`, `Larger text = ON`, `Dashboard position = Auto` поставят таблото долу вляво.
+- `Layout = MOBILE` с `Dashboard position = Auto` поставя компактното табло горе вдясно, под статус реда. Проверено е при 390 × 844 px.
 - Осигури няколко свободни бара вдясно на графиката, защото етикетите на зоните са вдясно от последната потвърдена свещ.
 - `Historical review = OFF` за текущия пазар; включи го само за точен час UTC.
 - `Research zone alerts = OFF`, докато платформата и телефонното известяване не бъдат реално проверени.

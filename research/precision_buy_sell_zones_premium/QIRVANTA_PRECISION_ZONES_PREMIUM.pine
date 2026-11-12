@@ -8,7 +8,7 @@ bool pzNotify = input.bool(false, "Research zone alerts", display=display.none)
 bool pzQa = input.bool(false, "Export precision zones QA journal", display=display.none)
 string pzLayout = input.string("DESKTOP", "Layout", options=["DESKTOP", "COMPACT", "MOBILE"], display=display.none)
 bool pzLarge = input.bool(true, "Larger text", display=display.none)
-string pzCorner = input.string("Bottom left", "Dashboard position", options=["Bottom left", "Bottom right", "Top left", "Top right"], display=display.none)
+string pzCorner = input.string("Auto", "Dashboard position", options=["Auto", "Bottom left", "Bottom right", "Top left", "Top right"], display=display.none)
 bool pzReview = input.bool(false, "Historical review", display=display.none)
 int pzReviewAt = input.time(timestamp("11 Nov 2026 12:00 +0000"), "Exact UTC close for review", display=display.none)
 bool pzSupported = syminfo.tickerid == "OANDA:XAUUSD" and chart.is_standard and
@@ -90,15 +90,17 @@ f_pzEmit(PzZone zone, string state) =>
         bool touch = state == "FIRST_TOUCH"
         bool broken = state == "INVALIDATED"
         color markerBg = zone.side > 0 ? (pzLight ? #006956 : #116B57) : (pzLight ? #9F2843 : #9B3E54)
-        string caption = touch ? "" : broken ? f_pzSide(zone.side) + " ZONE BROKEN" :
+        string caption = touch ? "•" : broken ? f_pzSide(zone.side) + " ZONE BROKEN" :
              f_pzSide(zone.side) + " REJECTION"
         if array.size(pzMarkerPool) >= 12
             label.delete(array.shift(pzMarkerPool))
-        label mark = label.new(bar_index, zone.side > 0 ? low : high, caption, xloc=xloc.bar_index,
-             yloc=zone.side > 0 ? yloc.belowbar : yloc.abovebar,
-             style=touch ? label.style_circle : zone.side > 0 ? label.style_label_up : label.style_label_down,
-             size=touch ? size.tiny : pzLayout == "MOBILE" ? size.small : pzLarge ? size.normal : size.small,
-             color=color.new(markerBg, broken ? 50 : touch ? 25 : 0), textcolor=color.white,
+        // Invalidation goes on the opposite side of the candle from rejection for the same zone direction.
+        bool markerAbove = broken ? zone.side > 0 : zone.side < 0
+        label mark = label.new(bar_index, markerAbove ? high : low, caption, xloc=xloc.bar_index,
+             yloc=touch ? yloc.price : markerAbove ? yloc.abovebar : yloc.belowbar,
+             style=touch ? label.style_none : markerAbove ? label.style_label_down : label.style_label_up,
+             size=touch ? size.tiny : broken or pzLayout != "DESKTOP" or not pzLarge ? size.small : size.normal,
+             color=color.new(markerBg, broken ? 12 : 0), textcolor=touch ? markerBg : color.white,
              tooltip=notification + "\n" + f_pzUtc(time_close) + "\nObservation only · no trading permission")
         array.push(pzMarkerPool, mark)
     true
@@ -195,20 +197,20 @@ if pzBar
 var array<box> pzBands = array.new<box>(2, na)
 var array<label> pzTags = array.new<label>(2, na)
 string pzPosition = switch pzCorner
+    "Auto" => pzLayout == "MOBILE" ? position.top_right : position.bottom_left
     "Bottom right" => position.bottom_right
     "Top left" => position.top_left
     "Top right" => position.top_right
     => position.bottom_left
-// Premium table: two symmetric cards plus a quiet header and status footer.
-var table pzTable = table.new(pzPosition, 2, 7, frame_color=#334459, frame_width=1)
+// The outer rows can reserve room for TradingView's status line or watermark.
+var table pzTable = table.new(pzPosition, 2, 9)
 if barstate.isfirst
-    table.merge_cells(pzTable, 0, 0, 1, 0)
-    table.merge_cells(pzTable, 0, 1, 1, 1)
-    table.merge_cells(pzTable, 0, 6, 1, 6)
+    for row in array.from(0, 1, 2, 7, 8)
+        table.merge_cells(pzTable, 0, row, 1, row)
 
 if barstate.islast or barstate.islastconfirmedhistory
     if not pzShow
-        table.clear(pzTable, 0, 0, 1, 6)
+        table.clear(pzTable, 0, 0, 1, 8)
         for slot = 0 to 1
             box inactiveBand = array.get(pzBands, slot)
             label inactiveTag = array.get(pzTags, slot)
@@ -223,15 +225,19 @@ if barstate.islast or barstate.islastconfirmedhistory
         int titleSize = bodySize + (mobile ? 1 : 2)
         int detailSize = math.max(9, bodySize - 1)
         string view = pzReview ? (pzReviewFound ? "HISTORICAL REVIEW" : "SELECT UTC CLOSE") : "LIVE OBSERVATION"
-        string heading = not pzSupported ? "QIRVANTA · USE XAUUSD M5/M15/M30" : "QIRVANTA GOLD PRO  /  PRECISION ZONES"
-        table.cell(pzTable, 0, 0, heading, text_color=#EDC376, bgcolor=#0D1521,
+        string heading = not pzSupported ? "USE XAUUSD M5/M15/M30" :
+             mobile ? "QIRVANTA · PRECISION ZONES" : "QIRVANTA GOLD PRO  /  PRECISION ZONES"
+        table.cell(pzTable, 0, 1, heading, text_color=#EDC376, bgcolor=#0D1521,
              text_size=titleSize, text_formatting=text.format_bold, text_halign=text.align_center,
              tooltip="Premium zone visual layer. Original event and alert logic unchanged.")
-        table.cell(pzTable, 0, 1, syminfo.tickerid + " · " + timeframe.period + "m   /   " + view,
-             text_color=#AFC0D2, bgcolor=#111F2E, text_size=detailSize, text_halign=text.align_center)
+        string context = (mobile ? syminfo.ticker : syminfo.tickerid) + " · " + timeframe.period + "m · " + view
+        table.cell(pzTable, 0, 2, context, text_color=#AFC0D2, bgcolor=#111F2E, text_size=detailSize,
+             text_halign=text.align_center)
         int asOf = pzReview ? pzReviewAt : pzLastClose
+        array<PzZone> visibleZones = pzReview ? pzArchive : pzActive
         for slot = 0 to 1
-            PzZone zone = array.get(pzReview ? pzArchive : pzActive, slot)
+            PzZone zone = array.get(visibleZones, slot)
+            PzZone other = array.get(visibleZones, 1 - slot)
             box band = array.get(pzBands, slot)
             label tag = array.get(pzTags, slot)
             bool isBuy = slot == 0
@@ -249,14 +255,15 @@ if barstate.islast or barstate.islastconfirmedhistory
                 int right = math.max(zone.formed + 1, asOf + pzInterval)
                 float top = math.max(zone.proximal, zone.distal)
                 float bottom = math.min(zone.proximal, zone.distal)
-                rangeText := str.tostring(zone.proximal, format.mintick) + " – " + str.tostring(zone.distal, format.mintick)
+                string separator = mobile ? "–" : " – "
+                rangeText := str.tostring(zone.proximal, format.mintick) + separator + str.tostring(zone.distal, format.mintick)
                 string status = f_pzStatus(zone)
                 string shortStatus = zone.rejected ? "REJECTION" : zone.full ? "FULL" : zone.partial ? "PARTIAL" :
                      zone.touched ? "TOUCHED" : "WATCH"
                 string clock = str.format_time(zone.formed, "HH:mm", "UTC") + " UTC"
                 string age = str.tostring(int(math.max(0, asOf - zone.formed) / 60000)) + "m"
-                statusText := status
-                timestampText := clock + "   ·   " + age
+                statusText := mobile ? shortStatus : status
+                timestampText := clock + (mobile ? " · " : "   ·   ") + age
                 tooltip := side + " RESEARCH ZONE · " + status + "\nProximal → distal " + rangeText +
                      "\nKnown " + f_pzUtc(zone.formed) + (zone.fvg ? "\nSame-close FVG" : "") +
                      "\nNot an approved entry or reversal prediction"
@@ -273,8 +280,15 @@ if barstate.islast or barstate.islastconfirmedhistory
                          style=label.style_label_left, size=mobile ? size.small : pzLarge ? size.normal : size.small,
                          textcolor=color.white, color=tagBg)
                     array.set(pzTags, slot, tag)
-                label.set_xy(tag, right, zone.proximal)
-                label.set_text(tag, side + " ZONE  ·  " + shortStatus + "\n" + rangeText)
+                // Put the higher range's label above its band and the lower range's label below.
+                // Both price labels can stay visible even when the zones are close on screen.
+                bool upperTag = not na(other) and (zone.proximal + zone.distal > other.proximal + other.distal or
+                     (zone.proximal + zone.distal == other.proximal + other.distal and isBuy))
+                label.set_style(tag, na(other) ? label.style_label_left :
+                     upperTag ? label.style_label_lower_left : label.style_label_upper_left)
+                label.set_xy(tag, right, na(other) ? zone.proximal : upperTag ? top : bottom)
+                label.set_size(tag, mobile ? size.tiny : pzLarge ? size.normal : size.small)
+                label.set_text(tag, mobile ? side + " · " + shortStatus : side + " ZONE · " + shortStatus + "\n" + rangeText)
                 label.set_tooltip(tag, tooltip)
             else
                 if not na(band)
@@ -282,16 +296,25 @@ if barstate.islast or barstate.islastconfirmedhistory
                     box.set_bottom(band, na)
                 if not na(tag)
                     label.set_y(tag, na)
-            table.cell(pzTable, slot, 2, zoneTitle, text_color=captionInk, bgcolor=cellBg,
+            table.cell(pzTable, slot, 3, zoneTitle, text_color=captionInk, bgcolor=cellBg,
                  text_size=bodySize, text_formatting=text.format_bold, text_halign=text.align_center, tooltip=tooltip)
-            table.cell(pzTable, slot, 3, rangeText, text_color=#F2F6FA, bgcolor=#19293B,
+            table.cell(pzTable, slot, 4, rangeText, text_color=#F2F6FA, bgcolor=#19293B,
                  text_size=bodySize, text_font_family=font.family_monospace,
                  text_formatting=text.format_bold, text_halign=text.align_center, tooltip=tooltip)
-            table.cell(pzTable, slot, 4, statusText, text_color=captionInk, bgcolor=#172538,
+            table.cell(pzTable, slot, 5, statusText, text_color=captionInk, bgcolor=#172538,
                  text_size=detailSize, text_halign=text.align_center, tooltip=tooltip)
-            table.cell(pzTable, slot, 5, timestampText, text_color=#B7C7D7, bgcolor=#172538,
+            table.cell(pzTable, slot, 6, timestampText, text_color=#B7C7D7, bgcolor=#172538,
                  text_size=detailSize, text_halign=text.align_center, tooltip=tooltip)
-        table.cell(pzTable, 0, 6, "RESEARCH ONLY   ·   ZONE ≠ ENTRY / SL / TP",
+        table.cell(pzTable, 0, 7, mobile ? "RESEARCH ONLY" : "RESEARCH ONLY   ·   ZONE ≠ ENTRY / SL / TP",
              text_color=#EDC376, bgcolor=#0D1521, text_size=detailSize,
              text_halign=text.align_center,
              tooltip="A zone may break without reversing. S5/RC2 trading decisions are separate.")
+        bool dockedAtTop = pzPosition == position.top_left or pzPosition == position.top_right
+        if mobile and dockedAtTop
+            table.cell(pzTable, 0, 0, "", height=17, bgcolor=color.new(color.black, 100))
+        else
+            table.clear(pzTable, 0, 0, 1, 0)
+        if not dockedAtTop
+            table.cell(pzTable, 0, 8, "", height=mobile ? 6 : 4, bgcolor=color.new(color.black, 100))
+        else
+            table.clear(pzTable, 0, 8, 1, 8)
