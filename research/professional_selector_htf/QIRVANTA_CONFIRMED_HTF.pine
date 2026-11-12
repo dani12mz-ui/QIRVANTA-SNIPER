@@ -1,0 +1,46 @@
+//@version=6
+indicator("QIRVANTA Confirmed H1/H4", shorttitle="Q HTF CONTEXT", overlay=true, max_bars_back=120, calc_bars_count=1200)
+
+bool supported = syminfo.tickerid == "OANDA:XAUUSD" and chart.is_standard and
+     (timeframe.period == "5" or timeframe.period == "15" or timeframe.period == "30")
+bool qa = input.bool(false, "Export H1/H4 QA", display=display.none)
+
+f_context() =>
+    float fast = close[110]
+    float slow = fast
+    if not na(fast)
+        for ago = 109 to 1
+            fast += (close[ago] - fast) * (2.0 / 22.0)
+            slow += (close[ago] - slow) * (2.0 / 56.0)
+    [time_close[1], close[1], fast, slow]
+
+[known1, value1, fast1, slow1] = request.security(syminfo.tickerid, "60", f_context(), lookahead=barmerge.lookahead_on, calc_bars_count=600)
+[known4, value4, fast4, slow4] = request.security(syminfo.tickerid, "240", f_context(), lookahead=barmerge.lookahead_on, calc_bars_count=600)
+
+f_side(int known, float value, float fast, float slow, int maxAge) =>
+    int state = na
+    if supported and not na(known) and known <= time and time - known <= maxAge and
+         not na(value) and not na(fast) and not na(slow)
+        int price = math.round(value * 1000000.0)
+        int ema21 = math.round(fast * 1000000.0)
+        int ema55 = math.round(slow * 1000000.0)
+        state := price > ema21 and ema21 > ema55 ? 1 : price < ema21 and ema21 < ema55 ? -1 : 0
+    state
+
+int h1 = f_side(known1, value1, fast1, slow1, 7200000)
+int h4 = f_side(known4, value4, fast4, slow4, 28800000)
+// Link is tied to its original chart close. Code 3 is unavailable, distinct from neutral.
+int packet = time_close * 32 + 8 + (nz(h1, 2) + 1) * 4 + (nz(h4, 2) + 1)
+plot(supported and barstate.isconfirmed ? packet : na, "Confirmed H1/H4 link", display=display.none)
+plot(supported and barstate.isconfirmed ? h1 : na, "Confirmed H1 side", display=display.data_window)
+plot(supported and barstate.isconfirmed ? h4 : na, "Confirmed H4 side", display=display.data_window)
+
+f_num(float x) => na(x) ? "null" : str.tostring(x, "#.########")
+f_int(int x) => na(x) ? "null" : str.tostring(x)
+
+if qa and supported and barstate.isconfirmed and time_close >= timestamp("11 Nov 2026 00:00 +0000") and
+     time_close <= timestamp("11 Nov 2026 17:30 +0000")
+    log.info("HTF_CANON|" + timeframe.period + "|" + f_int(time) + "|" + f_int(time_close) +
+         "|" + f_int(known1) + "|" + f_num(value1) + "|" + f_num(fast1) + "|" + f_num(slow1) + "|" + f_int(h1) +
+         "|" + f_int(known4) + "|" + f_num(value4) + "|" + f_num(fast4) + "|" + f_num(slow4) + "|" + f_int(h4) +
+         "|" + f_int(packet) + "|" + f_num(open) + "|" + f_num(high) + "|" + f_num(low) + "|" + f_num(close))

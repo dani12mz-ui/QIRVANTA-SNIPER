@@ -1,0 +1,46 @@
+//@version=6
+indicator("QIRVANTA H1/H4 forensic probe", shorttitle="Q HTF PROBE", overlay=true, max_bars_back=1000, calc_bars_count=1200)
+
+f_legacy() =>
+    float ema = ta.ema(close, 50)
+    var int first = time
+    var float seed = close
+    [time_close[1], close[1], ema[1], ema[3], bar_index[1], first, seed]
+
+f_canonical() =>
+    float fast = close[110]
+    float slow = fast
+    if not na(fast)
+        for ago = 109 to 1
+            fast += (close[ago] - fast) * (2.0 / 22.0)
+            slow += (close[ago] - slow) * (2.0 / 56.0)
+    [time_close[1], close[1], fast, slow, time_close[110], close[110]]
+
+[t1, c1, e1, lag1, count1, first1, seed1] = request.security(syminfo.tickerid, "60", f_legacy(), lookahead=barmerge.lookahead_on)
+[t4, c4, e4, lag4, count4, first4, seed4] = request.security(syminfo.tickerid, "240", f_legacy(), lookahead=barmerge.lookahead_on)
+[u1, d1, f1, p1, n1, a1, s1] = request.security(syminfo.tickerid, "60", f_legacy(), lookahead=barmerge.lookahead_on, calc_bars_count=1200)
+[u4, d4, f4, p4, n4, a4, s4] = request.security(syminfo.tickerid, "240", f_legacy(), lookahead=barmerge.lookahead_on, calc_bars_count=1200)
+[k1, x1, q1, z1, oldest1, y1] = request.security(syminfo.tickerid, "60", f_canonical(), lookahead=barmerge.lookahead_on)
+[k4, x4, q4, z4, oldest4, y4] = request.security(syminfo.tickerid, "240", f_canonical(), lookahead=barmerge.lookahead_on)
+
+f_side(float c, float e, float earlier) =>
+    na(earlier) ? 0 : c > e and e > earlier ? 1 : c < e and e < earlier ? -1 : 0
+
+f_tuple(int stamp, float c, float e, float previous, int bars, int first, float seed) =>
+    str.format("{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}", str.tostring(stamp), str.tostring(c, "#.##########"),
+         str.tostring(e, "#.##########"), str.tostring(previous, "#.##########"), str.tostring(bars),
+         str.tostring(first), str.tostring(seed, "#.##########"), str.tostring(f_side(c, e, previous)))
+
+f_finite(int stamp, float c, float fast, float slow, int oldest, float seed) =>
+    str.format("{0}|{1}|{2}|{3}|{4}|{5}", str.tostring(stamp), str.tostring(c, "#.##########"),
+         str.tostring(fast, "#.##########"), str.tostring(slow, "#.##########"),
+         str.tostring(oldest), str.tostring(seed, "#.##########"))
+
+var int chartFirst = time
+if barstate.isconfirmed and time_close >= timestamp("11 Nov 2026 00:00 +0000") and time_close <= timestamp("11 Nov 2026 17:30 +0000")
+    log.info("HTF_PROBE|" + timeframe.period + "|" + str.tostring(chartFirst) + "|" + str.tostring(time) + "|" + str.tostring(time_close) +
+         "|" + f_tuple(t1, c1, e1, lag1, count1, first1, seed1) + "|" + f_tuple(t4, c4, e4, lag4, count4, first4, seed4) +
+         "|" + f_tuple(u1, d1, f1, p1, n1, a1, s1) + "|" + f_tuple(u4, d4, f4, p4, n4, a4, s4) +
+         "|" + f_finite(k1, x1, q1, z1, oldest1, y1) + "|" + f_finite(k4, x4, q4, z4, oldest4, y4))
+
+plot(na, display=display.none)

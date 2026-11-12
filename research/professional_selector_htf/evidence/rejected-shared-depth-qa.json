@@ -1,0 +1,1894 @@
+{
+  "symbol": "OANDA:XAUUSD",
+  "source": {
+    "parent_sha256": "91f2f7687fd07f836cad3dfad145721a5c8f9cc74207b1db00afc60f6cb86b4c",
+    "candidate_sha256": "ff6e2f5a7a305295b56343c6a2e10fe2246b26bf915c94b23c8a1f96ea2b6c75",
+    "forward_seal_sha256": "09181ecaf9e30cde62c5203b524cb458d808a07c24029e961e32bb25c474afd1",
+    "protected_source_regions": 6,
+    "new_request_calls": 0,
+    "new_alert_calls": 0
+  },
+  "protected": {
+    "status": "MISMATCH",
+    "expected_closes": 318,
+    "protected_parity_closes": 36,
+    "frames_with_exact_normalized_logs": [
+      "M30"
+    ],
+    "frames": {
+      "M5": {
+        "status": "MISMATCH",
+        "baseline": {
+          "file": "baseline-M5.csv",
+          "sha256": "e83cd88565d2d685a9050c4eb294f67e44fd774da92af87e2142acfdc3afc234"
+        },
+        "candidate": {
+          "file": "candidate-M5.csv",
+          "sha256": "d3cf37d05d790ad338fb4370bc06b72214a5667588b8783b889f2e388fa0cf9f"
+        },
+        "raw_csv_byte_identical": false,
+        "expected_closes": 211,
+        "closed_bars": [
+          211,
+          211
+        ],
+        "exact_frozen_window": true,
+        "indicator_context_and_warmup_match": true,
+        "indicator": {
+          "status": "MISMATCH",
+          "baseline": {
+            "file": "baseline-M5.csv",
+            "sha256": "e83cd88565d2d685a9050c4eb294f67e44fd774da92af87e2142acfdc3afc234",
+            "closed_bars": 211,
+            "first_loaded_open_utc": "2026-11-05T23:25:00Z",
+            "first_exported_open_utc": "2026-11-10T23:55:00Z",
+            "last_exported_close_utc": "2026-11-11T17:30:00Z",
+            "status": "VERIFIED",
+            "s5_alerts": 44,
+            "early_observations": 17,
+            "early_alerts": 0,
+            "filter_rejected": 0
+          },
+          "visibility": {
+            "file": "candidate-M5.csv",
+            "sha256": "d3cf37d05d790ad338fb4370bc06b72214a5667588b8783b889f2e388fa0cf9f",
+            "closed_bars": 211,
+            "first_loaded_open_utc": "2026-11-05T23:25:00Z",
+            "first_exported_open_utc": "2026-11-10T23:55:00Z",
+            "last_exported_close_utc": "2026-11-11T17:30:00Z",
+            "status": "VERIFIED",
+            "s5_alerts": 44,
+            "early_observations": 17,
+            "early_alerts": 0,
+            "filter_rejected": 0
+          },
+          "core_ready_and_compatibility": {
+            "status": "MISMATCH",
+            "stream": "core",
+            "row": 4,
+            "left": {
+              "schema": "qirvanta.event.v1",
+              "core_sha256": "0d12e94769569a5af6c70061ae1ea4ff5cf4b41b1d8e0867abf739c70710c1d6",
+              "event_id": "S5|OANDA:XAUUSD|5|2|-1|1794356100000|1794356700000|CORE|CONFIRMED|1794356700000",
+              "event": "CONFIRMED",
+              "book": "CORE",
+              "plan_id": "S5|OANDA:XAUUSD|5|2|-1|1794356100000|1794356700000",
+              "strategy_key": "S5",
+              "target_basis": "R",
+              "quality": "UNVERIFIED",
+              "quality_note": "Липсва контекст или преграда",
+              "symbol": "OANDA:XAUUSD",
+              "timeframe": "5",
+              "family": 2,
+              "side": -1,
+              "bar_open_time": 1794356400000,
+              "bar_close_time": 1794356700000,
+              "effective_time": 1794356700000,
+              "known_time": 1794356700000,
+              "price": "4039.41",
+              "quantity_fraction": null,
+              "gross_r": null,
+              "cost_r": null,
+              "net_r": null,
+              "cash_pnl": null,
+              "risk_basis": "ACTUAL_INITIAL_DISTANCE",
+              "reference": "4039.41",
+              "initial_sl": "4042.486",
+              "tp1": "4036.334",
+              "tp2": "4033.258",
+              "tp3": "4030.182",
+              "evidence": "НЕВАЛИДИРАН: МАЛКА ИЗВАДКА",
+              "reason": "Техническите правила са изпълнени; НЕ е препоръка за поръчка",
+              "created_time": 1794356100000,
+              "atr_at_signal": "2.91740662",
+              "roundtrip_cost_price": "0.354",
+              "max_risk_atr": "3.5",
+              "obstacle": "4033.645",
+              "required_room_r": 0,
+              "countertrend": false,
+              "local_aligned": false,
+              "efficiency_ratio": "0.306616",
+              "filter_eligible": true,
+              "advisory_only": true
+            },
+            "right": {
+              "schema": "qirvanta.event.v1",
+              "core_sha256": "0d12e94769569a5af6c70061ae1ea4ff5cf4b41b1d8e0867abf739c70710c1d6",
+              "event_id": "S5|OANDA:XAUUSD|5|2|-1|1794356100000|1794356700000|CORE|CONFIRMED|1794356700000",
+              "event": "CONFIRMED",
+              "book": "CORE",
+              "plan_id": "S5|OANDA:XAUUSD|5|2|-1|1794356100000|1794356700000",
+              "strategy_key": "S5",
+              "target_basis": "R",
+              "quality": "MODERATE",
+              "quality_note": "Импулс",
+              "symbol": "OANDA:XAUUSD",
+              "timeframe": "5",
+              "family": 2,
+              "side": -1,
+              "bar_open_time": 1794356400000,
+              "bar_close_time": 1794356700000,
+              "effective_time": 1794356700000,
+              "known_time": 1794356700000,
+              "price": "4039.41",
+              "quantity_fraction": null,
+              "gross_r": null,
+              "cost_r": null,
+              "net_r": null,
+              "cash_pnl": null,
+              "risk_basis": "ACTUAL_INITIAL_DISTANCE",
+              "reference": "4039.41",
+              "initial_sl": "4042.486",
+              "tp1": "4036.334",
+              "tp2": "4033.258",
+              "tp3": "4030.182",
+              "evidence": "НЕВАЛИДИРАН: МАЛКА ИЗВАДКА",
+              "reason": "Техническите правила са изпълнени; НЕ е препоръка за поръчка",
+              "created_time": 1794356100000,
+              "atr_at_signal": "2.91740662",
+              "roundtrip_cost_price": "0.354",
+              "max_risk_atr": "3.5",
+              "obstacle": "4033.645",
+              "required_room_r": 0,
+              "countertrend": false,
+              "local_aligned": false,
+              "efficiency_ratio": "0.306616",
+              "filter_eligible": true,
+              "advisory_only": true
+            }
+          },
+          "rc2_native_streams": {
+            "status": "MATCH",
+            "mismatched_streams": [],
+            "rows": {
+              "RC2_ALERT": 38,
+              "RC2_EARLY": 17,
+              "RC2_FILTER": 0
+            }
+          },
+          "s5_raw_paper": {
+            "status": "MISMATCH",
+            "mismatched_streams": [
+              "DTV_LEDGER",
+              "DTV_PAPER"
+            ],
+            "ledger_snapshots": 211,
+            "execution_events": 32,
+            "last_close": "2026-11-11T17:30:00Z",
+            "final_ledger_r": {
+              "entered": 10,
+              "closed": 10,
+              "capacity_skipped": 0,
+              "net": "-3.42472413",
+              "gross": "-2.48035874",
+              "costs": "0.94436539",
+              "gains": "4.23790737",
+              "losses": "7.66263151",
+              "drawdown": "4.40501944"
+            },
+            "scope": "Native indicator RAW PAPER events and ledger. P&L and drawdown are in R."
+          }
+        },
+        "shadow_prefix": {
+          "status": "MATCH",
+          "common_bars": 1199,
+          "events": 516,
+          "repeat_file": "candidate-M5.csv",
+          "repeat_sha256": "d3cf37d05d790ad338fb4370bc06b72214a5667588b8783b889f2e388fa0cf9f",
+          "minimum_confirmed_bars_for_1200_bar_run": 1199,
+          "target_closes_covered": true,
+          "warmup_origin_matches_indicator": true,
+          "indicator_ohlc_cross_checked_closes": [
+            211,
+            211
+          ],
+          "first_open_ms": [
+            1793921100000,
+            1793921100000
+          ],
+          "last_close_ms": [
+            1794468000000,
+            1794468000000
+          ],
+          "end_markers": [
+            {
+              "index": 1198,
+              "time_close": 1794468000000
+            },
+            {
+              "index": 1198,
+              "time_close": 1794468000000
+            }
+          ],
+          "confirmed_bars_at_end_marker": [
+            1199,
+            1199
+          ],
+          "closed_bars": [
+            1199,
+            1199
+          ],
+          "events_total": [
+            516,
+            516
+          ],
+          "repeated_validated_batches": [
+            0,
+            0
+          ],
+          "scope": "Exact OHLC and events on the common loaded prefix. No claim about a non-overlapping tail."
+        },
+        "normalized_logs": {
+          "status": "MISMATCH",
+          "messages": [
+            1237,
+            1237
+          ],
+          "streams": {
+            "DTV_ALERT": {
+              "baseline": 7,
+              "candidate": 7,
+              "exact": true
+            },
+            "DTV_LEDGER": {
+              "baseline": 211,
+              "candidate": 211,
+              "exact": false
+            },
+            "DTV_PAPER": {
+              "baseline": 32,
+              "candidate": 32,
+              "exact": false
+            },
+            "DTV_STATE": {
+              "baseline": 211,
+              "candidate": 211,
+              "exact": true
+            },
+            "PR_CTX": {
+              "baseline": 211,
+              "candidate": 211,
+              "exact": true
+            },
+            "PR_END": {
+              "baseline": 1,
+              "candidate": 1,
+              "exact": true
+            },
+            "PR_SAMPLE": {
+              "baseline": 211,
+              "candidate": 211,
+              "exact": true
+            },
+            "RC1_ALERT": {
+              "baseline": 38,
+              "candidate": 38,
+              "exact": true
+            },
+            "RC1_CORE": {
+              "baseline": 42,
+              "candidate": 42,
+              "exact": false
+            },
+            "RC1_CTX": {
+              "baseline": 211,
+              "candidate": 211,
+              "exact": true
+            },
+            "RC1_END": {
+              "baseline": 1,
+              "candidate": 1,
+              "exact": true
+            },
+            "RC1_READY": {
+              "baseline": 6,
+              "candidate": 6,
+              "exact": true
+            },
+            "RC2_ALERT": {
+              "baseline": 38,
+              "candidate": 38,
+              "exact": true
+            },
+            "RC2_EARLY": {
+              "baseline": 17,
+              "candidate": 17,
+              "exact": true
+            }
+          },
+          "normalized_fields": []
+        },
+        "pressure": {
+          "status": "MATCH",
+          "samples": 211,
+          "original_sha256": "e83cd88565d2d685a9050c4eb294f67e44fd774da92af87e2142acfdc3afc234",
+          "repeat_sha256": "d3cf37d05d790ad338fb4370bc06b72214a5667588b8783b889f2e388fa0cf9f",
+          "all_indicator_closes_covered": true,
+          "sample_rows_exact": true,
+          "unused_volume_differences": [],
+          "tick_volume_weighted_parity": "NOT_EXERCISED",
+          "independent_checks": [
+            {
+              "status": "VERIFIED",
+              "file": "baseline-M5.csv",
+              "sha256": "e83cd88565d2d685a9050c4eb294f67e44fd774da92af87e2142acfdc3afc234",
+              "bars": 211,
+              "end_marker_present": true,
+              "settings": {
+                "lookback": 10,
+                "weighted": false,
+                "comparison": false
+              },
+              "frame_counts": {
+                "5": {
+                  "verification": {
+                    "SOURCE_WARMUP_NOT_OBSERVED": 9,
+                    "CALCULATION_VERIFIED": 202
+                  },
+                  "modes": {
+                    "OHLC": 211
+                  },
+                  "reasons": {
+                    "OHLC_SELECTED": 211
+                  }
+                }
+              }
+            },
+            {
+              "status": "VERIFIED",
+              "file": "candidate-M5.csv",
+              "sha256": "d3cf37d05d790ad338fb4370bc06b72214a5667588b8783b889f2e388fa0cf9f",
+              "bars": 211,
+              "end_marker_present": true,
+              "settings": {
+                "lookback": 10,
+                "weighted": false,
+                "comparison": false
+              },
+              "frame_counts": {
+                "5": {
+                  "verification": {
+                    "SOURCE_WARMUP_NOT_OBSERVED": 9,
+                    "CALCULATION_VERIFIED": 202
+                  },
+                  "modes": {
+                    "OHLC": 211
+                  },
+                  "reasons": {
+                    "OHLC_SELECTED": 211
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "visibility": {
+          "baseline": {
+            "status": "VERIFIED",
+            "file": "baseline-M5.csv",
+            "closed_bar_snapshots": 211,
+            "review": {
+              "status": "NO_REVIEW_JOURNAL",
+              "rows": 0
+            },
+            "observational_alert": {
+              "status": "INTENT_VERIFIED",
+              "rows": 7,
+              "delivery": "NOT_VERIFIED_BY_PINE_LOGS"
+            },
+            "case_status": "NOT_M15",
+            "case_timeline": {},
+            "permissions": {
+              "WAIT": 162,
+              "SELL READY": 2,
+              "POSITION OCCUPIED": 39,
+              "BUY READY": 4,
+              "RISK REJECTED": 4
+            },
+            "approved_s5_plans": [
+              {
+                "event_id": "S5|OANDA:XAUUSD|5|2|-1|1794356100000|1794356700000|CORE|CONFIRMED|1794356700000|RC1|READY",
+                "direction": "SELL",
+                "confirmation_utc": "2026-11-11T00:25:00Z",
+                "entry": "4039.41",
+                "sl": "4042.486",
+                "tp1": "4036.334",
+                "tp2": "4033.258",
+                "tp3": "4030.182"
+              },
+              {
+                "event_id": "S5|OANDA:XAUUSD|5|2|1|1794359700000|1794360000000|CORE|CONFIRMED|1794360000000|RC1|READY",
+                "direction": "BUY",
+                "confirmation_utc": "2026-11-11T01:20:00Z",
+                "entry": "4031.76",
+                "sl": "4026.173",
+                "tp1": "4037.347",
+                "tp2": "4042.934",
+                "tp3": "4048.521"
+              },
+              {
+                "event_id": "S5|OANDA:XAUUSD|5|2|-1|1794375300000|1794375600000|CORE|CONFIRMED|1794375600000|RC1|READY",
+                "direction": "SELL",
+                "confirmation_utc": "2026-11-11T05:40:00Z",
+                "entry": "4058.79",
+                "sl": "4066.491",
+                "tp1": "4051.089",
+                "tp2": "4043.388",
+                "tp3": "4035.687"
+              },
+              {
+                "event_id": "S5|OANDA:XAUUSD|5|2|1|1794390000000|1794390300000|CORE|CONFIRMED|1794390300000|RC1|READY",
+                "direction": "BUY",
+                "confirmation_utc": "2026-11-11T09:45:00Z",
+                "entry": "4049.745",
+                "sl": "4046.108",
+                "tp1": "4053.382",
+                "tp2": "4057.019",
+                "tp3": "4060.656"
+              },
+              {
+                "event_id": "S5|OANDA:XAUUSD|5|2|1|1794401100000|1794401400000|CORE|CONFIRMED|1794401400000|RC1|READY",
+                "direction": "BUY",
+                "confirmation_utc": "2026-11-11T12:50:00Z",
+                "entry": "4043.01",
+                "sl": "4040.753",
+                "tp1": "4045.267",
+                "tp2": "4047.524",
+                "tp3": "4049.781"
+              },
+              {
+                "event_id": "S5|OANDA:XAUUSD|5|2|1|1794404700000|1794405600000|CORE|CONFIRMED|1794405600000|RC1|READY",
+                "direction": "BUY",
+                "confirmation_utc": "2026-11-11T14:00:00Z",
+                "entry": "4038.075",
+                "sl": "4031.738",
+                "tp1": "4044.412",
+                "tp2": "4050.749",
+                "tp3": "4057.086"
+              }
+            ],
+            "rc2_alert_batches": 38,
+            "rc2_unique_alert_ids": 44
+          },
+          "candidate": {
+            "status": "VERIFIED",
+            "file": "candidate-M5.csv",
+            "closed_bar_snapshots": 211,
+            "review": {
+              "status": "NO_REVIEW_JOURNAL",
+              "rows": 0
+            },
+            "observational_alert": {
+              "status": "INTENT_VERIFIED",
+              "rows": 7,
+              "delivery": "NOT_VERIFIED_BY_PINE_LOGS"
+            },
+            "case_status": "NOT_M15",
+            "case_timeline": {},
+            "permissions": {
+              "WAIT": 162,
+              "SELL READY": 2,
+              "POSITION OCCUPIED": 39,
+              "BUY READY": 4,
+              "RISK REJECTED": 4
+            },
+            "approved_s5_plans": [
+              {
+                "event_id": "S5|OANDA:XAUUSD|5|2|-1|1794356100000|1794356700000|CORE|CONFIRMED|1794356700000|RC1|READY",
+                "direction": "SELL",
+                "confirmation_utc": "2026-11-11T00:25:00Z",
+                "entry": "4039.41",
+                "sl": "4042.486",
+                "tp1": "4036.334",
+                "tp2": "4033.258",
+                "tp3": "4030.182"
+              },
+              {
+                "event_id": "S5|OANDA:XAUUSD|5|2|1|1794359700000|1794360000000|CORE|CONFIRMED|1794360000000|RC1|READY",
+                "direction": "BUY",
+                "confirmation_utc": "2026-11-11T01:20:00Z",
+                "entry": "4031.76",
+                "sl": "4026.173",
+                "tp1": "4037.347",
+                "tp2": "4042.934",
+                "tp3": "4048.521"
+              },
+              {
+                "event_id": "S5|OANDA:XAUUSD|5|2|-1|1794375300000|1794375600000|CORE|CONFIRMED|1794375600000|RC1|READY",
+                "direction": "SELL",
+                "confirmation_utc": "2026-11-11T05:40:00Z",
+                "entry": "4058.79",
+                "sl": "4066.491",
+                "tp1": "4051.089",
+                "tp2": "4043.388",
+                "tp3": "4035.687"
+              },
+              {
+                "event_id": "S5|OANDA:XAUUSD|5|2|1|1794390000000|1794390300000|CORE|CONFIRMED|1794390300000|RC1|READY",
+                "direction": "BUY",
+                "confirmation_utc": "2026-11-11T09:45:00Z",
+                "entry": "4049.745",
+                "sl": "4046.108",
+                "tp1": "4053.382",
+                "tp2": "4057.019",
+                "tp3": "4060.656"
+              },
+              {
+                "event_id": "S5|OANDA:XAUUSD|5|2|1|1794401100000|1794401400000|CORE|CONFIRMED|1794401400000|RC1|READY",
+                "direction": "BUY",
+                "confirmation_utc": "2026-11-11T12:50:00Z",
+                "entry": "4043.01",
+                "sl": "4040.753",
+                "tp1": "4045.267",
+                "tp2": "4047.524",
+                "tp3": "4049.781"
+              },
+              {
+                "event_id": "S5|OANDA:XAUUSD|5|2|1|1794404700000|1794405600000|CORE|CONFIRMED|1794405600000|RC1|READY",
+                "direction": "BUY",
+                "confirmation_utc": "2026-11-11T14:00:00Z",
+                "entry": "4038.075",
+                "sl": "4031.738",
+                "tp1": "4044.412",
+                "tp2": "4050.749",
+                "tp3": "4057.086"
+              }
+            ],
+            "rc2_alert_batches": 38,
+            "rc2_unique_alert_ids": 44
+          }
+        }
+      },
+      "M15": {
+        "status": "MISMATCH",
+        "baseline": {
+          "file": "baseline-M15.csv",
+          "sha256": "67d3aa41b886276576915c83debb1bcf2cceeb3ca50205a93e1c5f73c582032a"
+        },
+        "candidate": {
+          "file": "candidate-M15.csv",
+          "sha256": "0111be9a84b94a6e9d589932a88f75849f23aa0a939dcccebc1cde1bc4f742fe"
+        },
+        "raw_csv_byte_identical": false,
+        "expected_closes": 71,
+        "closed_bars": [
+          71,
+          71
+        ],
+        "exact_frozen_window": true,
+        "indicator_context_and_warmup_match": true,
+        "indicator": {
+          "status": "MISMATCH",
+          "baseline": {
+            "file": "baseline-M15.csv",
+            "sha256": "67d3aa41b886276576915c83debb1bcf2cceeb3ca50205a93e1c5f73c582032a",
+            "closed_bars": 71,
+            "first_loaded_open_utc": "2026-10-26T05:30:00Z",
+            "first_exported_open_utc": "2026-11-10T23:45:00Z",
+            "last_exported_close_utc": "2026-11-11T17:30:00Z",
+            "status": "VERIFIED",
+            "s5_alerts": 19,
+            "early_observations": 6,
+            "early_alerts": 0,
+            "filter_rejected": 0
+          },
+          "visibility": {
+            "file": "candidate-M15.csv",
+            "sha256": "0111be9a84b94a6e9d589932a88f75849f23aa0a939dcccebc1cde1bc4f742fe",
+            "closed_bars": 71,
+            "first_loaded_open_utc": "2026-10-26T05:30:00Z",
+            "first_exported_open_utc": "2026-11-10T23:45:00Z",
+            "last_exported_close_utc": "2026-11-11T17:30:00Z",
+            "status": "VERIFIED",
+            "s5_alerts": 19,
+            "early_observations": 6,
+            "early_alerts": 0,
+            "filter_rejected": 0
+          },
+          "core_ready_and_compatibility": {
+            "status": "MISMATCH",
+            "stream": "core",
+            "row": 10,
+            "left": {
+              "schema": "qirvanta.event.v1",
+              "core_sha256": "0d12e94769569a5af6c70061ae1ea4ff5cf4b41b1d8e0867abf739c70710c1d6",
+              "event_id": "S5|OANDA:XAUUSD|15|2|1|1794398400000|1794399300000|CORE|CONFIRMED|1794399300000",
+              "event": "CONFIRMED",
+              "book": "CORE",
+              "plan_id": "S5|OANDA:XAUUSD|15|2|1|1794398400000|1794399300000",
+              "strategy_key": "S5",
+              "target_basis": "R",
+              "quality": "MODERATE",
+              "quality_note": "H1/H4 / Импулс",
+              "symbol": "OANDA:XAUUSD",
+              "timeframe": "15",
+              "family": 2,
+              "side": 1,
+              "bar_open_time": 1794398400000,
+              "bar_close_time": 1794399300000,
+              "effective_time": 1794399300000,
+              "known_time": 1794399300000,
+              "price": "4046.645",
+              "quantity_fraction": null,
+              "gross_r": null,
+              "cost_r": null,
+              "net_r": null,
+              "cash_pnl": null,
+              "risk_basis": "ACTUAL_INITIAL_DISTANCE",
+              "reference": "4046.645",
+              "initial_sl": "4042.407",
+              "tp1": "4050.883",
+              "tp2": "4055.121",
+              "tp3": "4059.359",
+              "evidence": "НЕВАЛИДИРАН: МАЛКА ИЗВАДКА",
+              "reason": "Техническите правила са изпълнени; НЕ е препоръка за поръчка",
+              "created_time": 1794398400000,
+              "atr_at_signal": "5.29645478",
+              "roundtrip_cost_price": "0.354",
+              "max_risk_atr": "3.5",
+              "obstacle": "4056.17",
+              "required_room_r": 0,
+              "countertrend": false,
+              "local_aligned": false,
+              "efficiency_ratio": "0.28796122",
+              "filter_eligible": true,
+              "advisory_only": true
+            },
+            "right": {
+              "schema": "qirvanta.event.v1",
+              "core_sha256": "0d12e94769569a5af6c70061ae1ea4ff5cf4b41b1d8e0867abf739c70710c1d6",
+              "event_id": "S5|OANDA:XAUUSD|15|2|1|1794398400000|1794399300000|CORE|CONFIRMED|1794399300000",
+              "event": "CONFIRMED",
+              "book": "CORE",
+              "plan_id": "S5|OANDA:XAUUSD|15|2|1|1794398400000|1794399300000",
+              "strategy_key": "S5",
+              "target_basis": "R",
+              "quality": "MODERATE",
+              "quality_note": "H1/H4 / Импулс",
+              "symbol": "OANDA:XAUUSD",
+              "timeframe": "15",
+              "family": 2,
+              "side": 1,
+              "bar_open_time": 1794398400000,
+              "bar_close_time": 1794399300000,
+              "effective_time": 1794399300000,
+              "known_time": 1794399300000,
+              "price": "4046.645",
+              "quantity_fraction": null,
+              "gross_r": null,
+              "cost_r": null,
+              "net_r": null,
+              "cash_pnl": null,
+              "risk_basis": "ACTUAL_INITIAL_DISTANCE",
+              "reference": "4046.645",
+              "initial_sl": "4042.407",
+              "tp1": "4050.883",
+              "tp2": "4055.121",
+              "tp3": "4059.359",
+              "evidence": "ИЗСЛЕДВАНЕ: КОНТРАТРЕНД",
+              "reason": "Техническите правила са изпълнени; НЕ е препоръка за поръчка",
+              "created_time": 1794398400000,
+              "atr_at_signal": "5.29645478",
+              "roundtrip_cost_price": "0.354",
+              "max_risk_atr": "3.5",
+              "obstacle": "4056.17",
+              "required_room_r": 0,
+              "countertrend": true,
+              "local_aligned": false,
+              "efficiency_ratio": "0.28796122",
+              "filter_eligible": false,
+              "advisory_only": true
+            }
+          },
+          "rc2_native_streams": {
+            "status": "MATCH",
+            "mismatched_streams": [],
+            "rows": {
+              "RC2_ALERT": 17,
+              "RC2_EARLY": 6,
+              "RC2_FILTER": 0
+            }
+          },
+          "s5_raw_paper": {
+            "status": "MISMATCH",
+            "mismatched_streams": [
+              "DTV_LEDGER",
+              "DTV_PAPER"
+            ],
+            "ledger_snapshots": 71,
+            "execution_events": 6,
+            "last_close": "2026-11-11T17:30:00Z",
+            "final_ledger_r": {
+              "entered": 2,
+              "closed": 2,
+              "capacity_skipped": 1,
+              "net": "-0.04255369",
+              "gross": "0.01124957",
+              "costs": "0.05380326",
+              "gains": "0.98827449",
+              "losses": "1.03082818",
+              "drawdown": "1.03082818"
+            },
+            "scope": "Native indicator RAW PAPER events and ledger. P&L and drawdown are in R."
+          }
+        },
+        "shadow_prefix": {
+          "status": "MATCH",
+          "common_bars": 1199,
+          "events": 503,
+          "repeat_file": "candidate-M15.csv",
+          "repeat_sha256": "0111be9a84b94a6e9d589932a88f75849f23aa0a939dcccebc1cde1bc4f742fe",
+          "minimum_confirmed_bars_for_1200_bar_run": 1199,
+          "target_closes_covered": true,
+          "warmup_origin_matches_indicator": true,
+          "indicator_ohlc_cross_checked_closes": [
+            71,
+            71
+          ],
+          "first_open_ms": [
+            1792992600000,
+            1792992600000
+          ],
+          "last_close_ms": [
+            1794467700000,
+            1794467700000
+          ],
+          "end_markers": [
+            {
+              "index": 1198,
+              "time_close": 1794467700000
+            },
+            {
+              "index": 1198,
+              "time_close": 1794467700000
+            }
+          ],
+          "confirmed_bars_at_end_marker": [
+            1199,
+            1199
+          ],
+          "closed_bars": [
+            1199,
+            1199
+          ],
+          "events_total": [
+            503,
+            503
+          ],
+          "repeated_validated_batches": [
+            0,
+            0
+          ],
+          "scope": "Exact OHLC and events on the common loaded prefix. No claim about a non-overlapping tail."
+        },
+        "normalized_logs": {
+          "status": "MISMATCH",
+          "messages": [
+            437,
+            437
+          ],
+          "streams": {
+            "DTV_ALERT": {
+              "baseline": 12,
+              "candidate": 12,
+              "exact": true
+            },
+            "DTV_LEDGER": {
+              "baseline": 71,
+              "candidate": 71,
+              "exact": false
+            },
+            "DTV_PAPER": {
+              "baseline": 6,
+              "candidate": 6,
+              "exact": false
+            },
+            "DTV_STATE": {
+              "baseline": 71,
+              "candidate": 71,
+              "exact": true
+            },
+            "PR_CTX": {
+              "baseline": 71,
+              "candidate": 71,
+              "exact": true
+            },
+            "PR_END": {
+              "baseline": 1,
+              "candidate": 1,
+              "exact": true
+            },
+            "PR_SAMPLE": {
+              "baseline": 71,
+              "candidate": 71,
+              "exact": true
+            },
+            "RC1_ALERT": {
+              "baseline": 17,
+              "candidate": 17,
+              "exact": true
+            },
+            "RC1_CORE": {
+              "baseline": 20,
+              "candidate": 20,
+              "exact": false
+            },
+            "RC1_CTX": {
+              "baseline": 71,
+              "candidate": 71,
+              "exact": true
+            },
+            "RC1_END": {
+              "baseline": 1,
+              "candidate": 1,
+              "exact": true
+            },
+            "RC1_READY": {
+              "baseline": 2,
+              "candidate": 2,
+              "exact": true
+            },
+            "RC2_ALERT": {
+              "baseline": 17,
+              "candidate": 17,
+              "exact": true
+            },
+            "RC2_EARLY": {
+              "baseline": 6,
+              "candidate": 6,
+              "exact": true
+            }
+          },
+          "normalized_fields": []
+        },
+        "pressure": {
+          "status": "MATCH",
+          "samples": 71,
+          "original_sha256": "67d3aa41b886276576915c83debb1bcf2cceeb3ca50205a93e1c5f73c582032a",
+          "repeat_sha256": "0111be9a84b94a6e9d589932a88f75849f23aa0a939dcccebc1cde1bc4f742fe",
+          "all_indicator_closes_covered": true,
+          "sample_rows_exact": true,
+          "unused_volume_differences": [],
+          "tick_volume_weighted_parity": "NOT_EXERCISED",
+          "independent_checks": [
+            {
+              "status": "VERIFIED",
+              "file": "baseline-M15.csv",
+              "sha256": "67d3aa41b886276576915c83debb1bcf2cceeb3ca50205a93e1c5f73c582032a",
+              "bars": 71,
+              "end_marker_present": true,
+              "settings": {
+                "lookback": 10,
+                "weighted": false,
+                "comparison": false
+              },
+              "frame_counts": {
+                "15": {
+                  "verification": {
+                    "SOURCE_WARMUP_NOT_OBSERVED": 9,
+                    "CALCULATION_VERIFIED": 62
+                  },
+                  "modes": {
+                    "OHLC": 71
+                  },
+                  "reasons": {
+                    "OHLC_SELECTED": 71
+                  }
+                }
+              }
+            },
+            {
+              "status": "VERIFIED",
+              "file": "candidate-M15.csv",
+              "sha256": "0111be9a84b94a6e9d589932a88f75849f23aa0a939dcccebc1cde1bc4f742fe",
+              "bars": 71,
+              "end_marker_present": true,
+              "settings": {
+                "lookback": 10,
+                "weighted": false,
+                "comparison": false
+              },
+              "frame_counts": {
+                "15": {
+                  "verification": {
+                    "SOURCE_WARMUP_NOT_OBSERVED": 9,
+                    "CALCULATION_VERIFIED": 62
+                  },
+                  "modes": {
+                    "OHLC": 71
+                  },
+                  "reasons": {
+                    "OHLC_SELECTED": 71
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "visibility": {
+          "baseline": {
+            "status": "VERIFIED",
+            "file": "baseline-M15.csv",
+            "closed_bar_snapshots": 71,
+            "review": {
+              "status": "NO_REVIEW_JOURNAL",
+              "rows": 0
+            },
+            "observational_alert": {
+              "status": "INTENT_VERIFIED",
+              "rows": 12,
+              "delivery": "NOT_VERIFIED_BY_PINE_LOGS"
+            },
+            "case_status": "VERIFIED",
+            "case_timeline": {
+              "bullish_retest": {
+                "status": "VERIFIED",
+                "known_utc": "2026-11-11T00:15:00Z",
+                "symbol": "OANDA:XAUUSD",
+                "frame": "15",
+                "open_ms": 1794355200000,
+                "known_ms": 1794356100000,
+                "as_of_ms": 1794356100000,
+                "direction": "BUY BREAKOUT CONFIRMED",
+                "signals": [
+                  {
+                    "source": "DT RETEST",
+                    "model": "RETEST_CONTINUATION",
+                    "side": 1,
+                    "stage": "BREAKOUT CONFIRMED",
+                    "known_ms": 1794356100000,
+                    "expires_ms": 1794357000000,
+                    "reason": "RETEST_CONFIRMED · RESEARCH ENTRY CANDIDATE",
+                    "research": true
+                  }
+                ],
+                "permission": "WAIT",
+                "permission_source": "S5 · RC2",
+                "permission_known_ms": 1794356100000,
+                "permission_reason": "Нарушена структура",
+                "permission_freshness": "AT CLOSE",
+                "plan_visible": false,
+                "paper_phase": 0,
+                "paper_plan_id": "",
+                "paper_capacity": false,
+                "s5_stage": "INVALIDATED",
+                "review": false
+              },
+              "quiet": {
+                "status": "VERIFIED",
+                "known_utc": "2026-11-11T11:30:00Z",
+                "symbol": "OANDA:XAUUSD",
+                "frame": "15",
+                "open_ms": 1794395700000,
+                "known_ms": 1794396600000,
+                "as_of_ms": 1794396600000,
+                "direction": "NONE",
+                "signals": [],
+                "permission": "WAIT",
+                "permission_source": "S5 · RC2",
+                "permission_known_ms": 1794396600000,
+                "permission_reason": "Няма нов потвърден S5 план.",
+                "permission_freshness": "AT CLOSE",
+                "plan_visible": false,
+                "paper_phase": 0,
+                "paper_plan_id": "",
+                "paper_capacity": false,
+                "s5_stage": "NO SETUP",
+                "review": false
+              },
+              "sell_watch": {
+                "status": "VERIFIED",
+                "known_utc": "2026-11-11T11:45:00Z",
+                "symbol": "OANDA:XAUUSD",
+                "frame": "15",
+                "open_ms": 1794396600000,
+                "known_ms": 1794397500000,
+                "as_of_ms": 1794397500000,
+                "direction": "SELL WATCH",
+                "signals": [
+                  {
+                    "source": "DT STRUCTURE",
+                    "model": "STRUCTURAL_BREAK",
+                    "side": -1,
+                    "stage": "WATCH",
+                    "known_ms": 1794397500000,
+                    "expires_ms": 1794403800000,
+                    "reason": "APPROACHING_LEVEL",
+                    "research": false
+                  }
+                ],
+                "permission": "WAIT",
+                "permission_source": "S5 · RC2",
+                "permission_known_ms": 1794397500000,
+                "permission_reason": "Няма нов потвърден S5 план.",
+                "permission_freshness": "AT CLOSE",
+                "plan_visible": false,
+                "paper_phase": 0,
+                "paper_plan_id": "",
+                "paper_capacity": false,
+                "s5_stage": "NO SETUP",
+                "review": false
+              },
+              "sell_break_s5_buy_watch": {
+                "status": "VERIFIED",
+                "known_utc": "2026-11-11T12:00:00Z",
+                "symbol": "OANDA:XAUUSD",
+                "frame": "15",
+                "open_ms": 1794397500000,
+                "known_ms": 1794398400000,
+                "as_of_ms": 1794398400000,
+                "direction": "CONFLICT",
+                "signals": [
+                  {
+                    "source": "DT STRUCTURE",
+                    "model": "STRUCTURAL_BREAK",
+                    "side": -1,
+                    "stage": "BREAKOUT CONFIRMED",
+                    "known_ms": 1794398400000,
+                    "expires_ms": 1794404700000,
+                    "reason": "CONFIRMED_CLOSE_CROSS · RESEARCH REJECTED: INSUFFICIENT_NET_ROOM",
+                    "research": false
+                  },
+                  {
+                    "source": "S5",
+                    "model": "S5_RECLAIM",
+                    "side": 1,
+                    "stage": "WATCH",
+                    "known_ms": 1794398400000,
+                    "expires_ms": 1794402000000,
+                    "reason": "Противоположен пробив; чака връщане отвъд нивото",
+                    "research": false
+                  }
+                ],
+                "permission": "WAIT",
+                "permission_source": "S5 · RC2",
+                "permission_known_ms": 1794398400000,
+                "permission_reason": "Чака връщане отвъд нивото със затворена свещ.",
+                "permission_freshness": "AT CLOSE",
+                "plan_visible": false,
+                "paper_phase": 0,
+                "paper_plan_id": "",
+                "paper_capacity": false,
+                "s5_stage": "WATCH",
+                "review": false
+              },
+              "sell_retest_research": {
+                "status": "VERIFIED",
+                "known_utc": "2026-11-11T12:30:00Z",
+                "symbol": "OANDA:XAUUSD",
+                "frame": "15",
+                "open_ms": 1794399300000,
+                "known_ms": 1794400200000,
+                "as_of_ms": 1794400200000,
+                "direction": "SELL BREAKOUT CONFIRMED",
+                "signals": [
+                  {
+                    "source": "DT RETEST",
+                    "model": "RETEST_CONTINUATION",
+                    "side": -1,
+                    "stage": "BREAKOUT CONFIRMED",
+                    "known_ms": 1794400200000,
+                    "expires_ms": 1794401100000,
+                    "reason": "RETEST_CONFIRMED · RESEARCH ENTRY CANDIDATE",
+                    "research": true
+                  }
+                ],
+                "permission": "WAIT",
+                "permission_source": "S5 · RC2",
+                "permission_known_ms": 1794400200000,
+                "permission_reason": "Няма нов потвърден S5 план.",
+                "permission_freshness": "AT CLOSE",
+                "plan_visible": false,
+                "paper_phase": 0,
+                "paper_plan_id": "",
+                "paper_capacity": false,
+                "s5_stage": "NO SETUP",
+                "review": false
+              },
+              "sell_consolidation_s5_buy_watch": {
+                "status": "VERIFIED",
+                "known_utc": "2026-11-11T13:30:00Z",
+                "symbol": "OANDA:XAUUSD",
+                "frame": "15",
+                "open_ms": 1794402900000,
+                "known_ms": 1794403800000,
+                "as_of_ms": 1794403800000,
+                "direction": "CONFLICT",
+                "signals": [
+                  {
+                    "source": "DT CONSOLIDATION",
+                    "model": "CONSOLIDATION_BREAK",
+                    "side": -1,
+                    "stage": "BREAKOUT CONFIRMED",
+                    "known_ms": 1794403800000,
+                    "expires_ms": 1794410100000,
+                    "reason": "CONFIRMED_CLOSE_CROSS · RESEARCH ENTRY CANDIDATE",
+                    "research": true
+                  },
+                  {
+                    "source": "S5",
+                    "model": "S5_RECLAIM",
+                    "side": 1,
+                    "stage": "WATCH",
+                    "known_ms": 1794403800000,
+                    "expires_ms": 1794407400000,
+                    "reason": "Противоположен пробив; чака връщане отвъд нивото",
+                    "research": false
+                  },
+                  {
+                    "source": "RC2 EARLY WATCH",
+                    "model": "RC2_EARLY_WATCH",
+                    "side": -1,
+                    "stage": "WATCH",
+                    "known_ms": 1794403800000,
+                    "expires_ms": 1794405600000,
+                    "reason": "Затворена свещ отвъд предходния 12-баров диапазон",
+                    "research": false
+                  }
+                ],
+                "permission": "WAIT",
+                "permission_source": "S5 · RC2",
+                "permission_known_ms": 1794403800000,
+                "permission_reason": "Чака връщане отвъд нивото със затворена свещ.",
+                "permission_freshness": "AT CLOSE",
+                "plan_visible": false,
+                "paper_phase": 0,
+                "paper_plan_id": "",
+                "paper_capacity": false,
+                "s5_stage": "WATCH",
+                "review": false
+              }
+            },
+            "quiet_counterexample_market_window": {
+              "status": "VERIFIED",
+              "from_utc": "2026-11-11T10:30:00Z",
+              "through_utc": "2026-11-11T11:30:00Z",
+              "bars": 4,
+              "range": "9.64",
+              "net_change": "3.32",
+              "net_to_range": "0.3443983402489626556016597510"
+            },
+            "permissions": {
+              "WAIT": 55,
+              "SELL READY": 1,
+              "POSITION OCCUPIED": 11,
+              "RISK REJECTED": 3,
+              "BUY READY": 1
+            },
+            "approved_s5_plans": [
+              {
+                "event_id": "S5|OANDA:XAUUSD|15|2|-1|1794361500000|1794363300000|CORE|CONFIRMED|1794363300000|RC1|READY",
+                "direction": "SELL",
+                "confirmation_utc": "2026-11-11T02:15:00Z",
+                "entry": "4042.005",
+                "sl": "4053.568",
+                "tp1": "4030.442",
+                "tp2": "4018.879",
+                "tp3": "4007.316"
+              },
+              {
+                "event_id": "S5|OANDA:XAUUSD|15|2|1|1794398400000|1794399300000|CORE|CONFIRMED|1794399300000|RC1|READY",
+                "direction": "BUY",
+                "confirmation_utc": "2026-11-11T12:15:00Z",
+                "entry": "4046.645",
+                "sl": "4042.407",
+                "tp1": "4050.883",
+                "tp2": "4055.121",
+                "tp3": "4059.359"
+              }
+            ],
+            "rc2_alert_batches": 17,
+            "rc2_unique_alert_ids": 19
+          },
+          "candidate": {
+            "status": "VERIFIED",
+            "file": "candidate-M15.csv",
+            "closed_bar_snapshots": 71,
+            "review": {
+              "status": "NO_REVIEW_JOURNAL",
+              "rows": 0
+            },
+            "observational_alert": {
+              "status": "INTENT_VERIFIED",
+              "rows": 12,
+              "delivery": "NOT_VERIFIED_BY_PINE_LOGS"
+            },
+            "case_status": "VERIFIED",
+            "case_timeline": {
+              "bullish_retest": {
+                "status": "VERIFIED",
+                "known_utc": "2026-11-11T00:15:00Z",
+                "symbol": "OANDA:XAUUSD",
+                "frame": "15",
+                "open_ms": 1794355200000,
+                "known_ms": 1794356100000,
+                "as_of_ms": 1794356100000,
+                "direction": "BUY BREAKOUT CONFIRMED",
+                "signals": [
+                  {
+                    "source": "DT RETEST",
+                    "model": "RETEST_CONTINUATION",
+                    "side": 1,
+                    "stage": "BREAKOUT CONFIRMED",
+                    "known_ms": 1794356100000,
+                    "expires_ms": 1794357000000,
+                    "reason": "RETEST_CONFIRMED · RESEARCH ENTRY CANDIDATE",
+                    "research": true
+                  }
+                ],
+                "permission": "WAIT",
+                "permission_source": "S5 · RC2",
+                "permission_known_ms": 1794356100000,
+                "permission_reason": "Нарушена структура",
+                "permission_freshness": "AT CLOSE",
+                "plan_visible": false,
+                "paper_phase": 0,
+                "paper_plan_id": "",
+                "paper_capacity": false,
+                "s5_stage": "INVALIDATED",
+                "review": false
+              },
+              "quiet": {
+                "status": "VERIFIED",
+                "known_utc": "2026-11-11T11:30:00Z",
+                "symbol": "OANDA:XAUUSD",
+                "frame": "15",
+                "open_ms": 1794395700000,
+                "known_ms": 1794396600000,
+                "as_of_ms": 1794396600000,
+                "direction": "NONE",
+                "signals": [],
+                "permission": "WAIT",
+                "permission_source": "S5 · RC2",
+                "permission_known_ms": 1794396600000,
+                "permission_reason": "Няма нов потвърден S5 план.",
+                "permission_freshness": "AT CLOSE",
+                "plan_visible": false,
+                "paper_phase": 0,
+                "paper_plan_id": "",
+                "paper_capacity": false,
+                "s5_stage": "NO SETUP",
+                "review": false
+              },
+              "sell_watch": {
+                "status": "VERIFIED",
+                "known_utc": "2026-11-11T11:45:00Z",
+                "symbol": "OANDA:XAUUSD",
+                "frame": "15",
+                "open_ms": 1794396600000,
+                "known_ms": 1794397500000,
+                "as_of_ms": 1794397500000,
+                "direction": "SELL WATCH",
+                "signals": [
+                  {
+                    "source": "DT STRUCTURE",
+                    "model": "STRUCTURAL_BREAK",
+                    "side": -1,
+                    "stage": "WATCH",
+                    "known_ms": 1794397500000,
+                    "expires_ms": 1794403800000,
+                    "reason": "APPROACHING_LEVEL",
+                    "research": false
+                  }
+                ],
+                "permission": "WAIT",
+                "permission_source": "S5 · RC2",
+                "permission_known_ms": 1794397500000,
+                "permission_reason": "Няма нов потвърден S5 план.",
+                "permission_freshness": "AT CLOSE",
+                "plan_visible": false,
+                "paper_phase": 0,
+                "paper_plan_id": "",
+                "paper_capacity": false,
+                "s5_stage": "NO SETUP",
+                "review": false
+              },
+              "sell_break_s5_buy_watch": {
+                "status": "VERIFIED",
+                "known_utc": "2026-11-11T12:00:00Z",
+                "symbol": "OANDA:XAUUSD",
+                "frame": "15",
+                "open_ms": 1794397500000,
+                "known_ms": 1794398400000,
+                "as_of_ms": 1794398400000,
+                "direction": "CONFLICT",
+                "signals": [
+                  {
+                    "source": "DT STRUCTURE",
+                    "model": "STRUCTURAL_BREAK",
+                    "side": -1,
+                    "stage": "BREAKOUT CONFIRMED",
+                    "known_ms": 1794398400000,
+                    "expires_ms": 1794404700000,
+                    "reason": "CONFIRMED_CLOSE_CROSS · RESEARCH REJECTED: INSUFFICIENT_NET_ROOM",
+                    "research": false
+                  },
+                  {
+                    "source": "S5",
+                    "model": "S5_RECLAIM",
+                    "side": 1,
+                    "stage": "WATCH",
+                    "known_ms": 1794398400000,
+                    "expires_ms": 1794402000000,
+                    "reason": "Противоположен пробив; чака връщане отвъд нивото",
+                    "research": false
+                  }
+                ],
+                "permission": "WAIT",
+                "permission_source": "S5 · RC2",
+                "permission_known_ms": 1794398400000,
+                "permission_reason": "Чака връщане отвъд нивото със затворена свещ.",
+                "permission_freshness": "AT CLOSE",
+                "plan_visible": false,
+                "paper_phase": 0,
+                "paper_plan_id": "",
+                "paper_capacity": false,
+                "s5_stage": "WATCH",
+                "review": false
+              },
+              "sell_retest_research": {
+                "status": "VERIFIED",
+                "known_utc": "2026-11-11T12:30:00Z",
+                "symbol": "OANDA:XAUUSD",
+                "frame": "15",
+                "open_ms": 1794399300000,
+                "known_ms": 1794400200000,
+                "as_of_ms": 1794400200000,
+                "direction": "SELL BREAKOUT CONFIRMED",
+                "signals": [
+                  {
+                    "source": "DT RETEST",
+                    "model": "RETEST_CONTINUATION",
+                    "side": -1,
+                    "stage": "BREAKOUT CONFIRMED",
+                    "known_ms": 1794400200000,
+                    "expires_ms": 1794401100000,
+                    "reason": "RETEST_CONFIRMED · RESEARCH ENTRY CANDIDATE",
+                    "research": true
+                  }
+                ],
+                "permission": "WAIT",
+                "permission_source": "S5 · RC2",
+                "permission_known_ms": 1794400200000,
+                "permission_reason": "Няма нов потвърден S5 план.",
+                "permission_freshness": "AT CLOSE",
+                "plan_visible": false,
+                "paper_phase": 0,
+                "paper_plan_id": "",
+                "paper_capacity": false,
+                "s5_stage": "NO SETUP",
+                "review": false
+              },
+              "sell_consolidation_s5_buy_watch": {
+                "status": "VERIFIED",
+                "known_utc": "2026-11-11T13:30:00Z",
+                "symbol": "OANDA:XAUUSD",
+                "frame": "15",
+                "open_ms": 1794402900000,
+                "known_ms": 1794403800000,
+                "as_of_ms": 1794403800000,
+                "direction": "CONFLICT",
+                "signals": [
+                  {
+                    "source": "DT CONSOLIDATION",
+                    "model": "CONSOLIDATION_BREAK",
+                    "side": -1,
+                    "stage": "BREAKOUT CONFIRMED",
+                    "known_ms": 1794403800000,
+                    "expires_ms": 1794410100000,
+                    "reason": "CONFIRMED_CLOSE_CROSS · RESEARCH ENTRY CANDIDATE",
+                    "research": true
+                  },
+                  {
+                    "source": "S5",
+                    "model": "S5_RECLAIM",
+                    "side": 1,
+                    "stage": "WATCH",
+                    "known_ms": 1794403800000,
+                    "expires_ms": 1794407400000,
+                    "reason": "Противоположен пробив; чака връщане отвъд нивото",
+                    "research": false
+                  },
+                  {
+                    "source": "RC2 EARLY WATCH",
+                    "model": "RC2_EARLY_WATCH",
+                    "side": -1,
+                    "stage": "WATCH",
+                    "known_ms": 1794403800000,
+                    "expires_ms": 1794405600000,
+                    "reason": "Затворена свещ отвъд предходния 12-баров диапазон",
+                    "research": false
+                  }
+                ],
+                "permission": "WAIT",
+                "permission_source": "S5 · RC2",
+                "permission_known_ms": 1794403800000,
+                "permission_reason": "Чака връщане отвъд нивото със затворена свещ.",
+                "permission_freshness": "AT CLOSE",
+                "plan_visible": false,
+                "paper_phase": 0,
+                "paper_plan_id": "",
+                "paper_capacity": false,
+                "s5_stage": "WATCH",
+                "review": false
+              }
+            },
+            "quiet_counterexample_market_window": {
+              "status": "VERIFIED",
+              "from_utc": "2026-11-11T10:30:00Z",
+              "through_utc": "2026-11-11T11:30:00Z",
+              "bars": 4,
+              "range": "9.64",
+              "net_change": "3.32",
+              "net_to_range": "0.3443983402489626556016597510"
+            },
+            "permissions": {
+              "WAIT": 55,
+              "SELL READY": 1,
+              "POSITION OCCUPIED": 11,
+              "RISK REJECTED": 3,
+              "BUY READY": 1
+            },
+            "approved_s5_plans": [
+              {
+                "event_id": "S5|OANDA:XAUUSD|15|2|-1|1794361500000|1794363300000|CORE|CONFIRMED|1794363300000|RC1|READY",
+                "direction": "SELL",
+                "confirmation_utc": "2026-11-11T02:15:00Z",
+                "entry": "4042.005",
+                "sl": "4053.568",
+                "tp1": "4030.442",
+                "tp2": "4018.879",
+                "tp3": "4007.316"
+              },
+              {
+                "event_id": "S5|OANDA:XAUUSD|15|2|1|1794398400000|1794399300000|CORE|CONFIRMED|1794399300000|RC1|READY",
+                "direction": "BUY",
+                "confirmation_utc": "2026-11-11T12:15:00Z",
+                "entry": "4046.645",
+                "sl": "4042.407",
+                "tp1": "4050.883",
+                "tp2": "4055.121",
+                "tp3": "4059.359"
+              }
+            ],
+            "rc2_alert_batches": 17,
+            "rc2_unique_alert_ids": 19
+          }
+        }
+      },
+      "M30": {
+        "status": "MATCH",
+        "baseline": {
+          "file": "baseline-M30.csv",
+          "sha256": "74a731ba786d9a6f1d93dfe0ae3bd592829f1cb9867cb7dea8ff1f63aaf21a92"
+        },
+        "candidate": {
+          "file": "candidate-M30.csv",
+          "sha256": "74a731ba786d9a6f1d93dfe0ae3bd592829f1cb9867cb7dea8ff1f63aaf21a92"
+        },
+        "raw_csv_byte_identical": true,
+        "expected_closes": 36,
+        "closed_bars": [
+          36,
+          36
+        ],
+        "exact_frozen_window": true,
+        "indicator_context_and_warmup_match": true,
+        "indicator": {
+          "status": "MATCH",
+          "baseline": {
+            "file": "baseline-M30.csv",
+            "sha256": "74a731ba786d9a6f1d93dfe0ae3bd592829f1cb9867cb7dea8ff1f63aaf21a92",
+            "closed_bars": 36,
+            "first_loaded_open_utc": "2026-10-07T04:30:00Z",
+            "first_exported_open_utc": "2026-11-10T23:30:00Z",
+            "last_exported_close_utc": "2026-11-11T17:30:00Z",
+            "status": "NO_EXAMPLES",
+            "s5_alerts": 0,
+            "early_observations": 5,
+            "early_alerts": 0,
+            "filter_rejected": 0
+          },
+          "visibility": {
+            "file": "candidate-M30.csv",
+            "sha256": "74a731ba786d9a6f1d93dfe0ae3bd592829f1cb9867cb7dea8ff1f63aaf21a92",
+            "closed_bars": 36,
+            "first_loaded_open_utc": "2026-10-07T04:30:00Z",
+            "first_exported_open_utc": "2026-11-10T23:30:00Z",
+            "last_exported_close_utc": "2026-11-11T17:30:00Z",
+            "status": "NO_EXAMPLES",
+            "s5_alerts": 0,
+            "early_observations": 5,
+            "early_alerts": 0,
+            "filter_rejected": 0
+          },
+          "core_ready_and_compatibility": {
+            "status": "MATCH",
+            "coverage": "BOUNDED_WINDOW",
+            "rows": {
+              "core": 0,
+              "ready": 0,
+              "alerts": 0
+            }
+          },
+          "rc2_native_streams": {
+            "status": "MATCH",
+            "mismatched_streams": [],
+            "rows": {
+              "RC2_ALERT": 0,
+              "RC2_EARLY": 5,
+              "RC2_FILTER": 0
+            }
+          },
+          "s5_raw_paper": {
+            "status": "MATCH",
+            "mismatched_streams": [],
+            "ledger_snapshots": 36,
+            "execution_events": 0,
+            "last_close": "2026-11-11T17:30:00Z",
+            "final_ledger_r": {
+              "entered": 0,
+              "closed": 0,
+              "capacity_skipped": 0,
+              "net": 0,
+              "gross": 0,
+              "costs": 0,
+              "gains": 0,
+              "losses": 0,
+              "drawdown": 0
+            },
+            "scope": "Native indicator RAW PAPER events and ledger. P&L and drawdown are in R."
+          }
+        },
+        "shadow_prefix": {
+          "status": "MATCH",
+          "common_bars": 1199,
+          "events": 485,
+          "repeat_file": "candidate-M30.csv",
+          "repeat_sha256": "74a731ba786d9a6f1d93dfe0ae3bd592829f1cb9867cb7dea8ff1f63aaf21a92",
+          "minimum_confirmed_bars_for_1200_bar_run": 1199,
+          "target_closes_covered": true,
+          "warmup_origin_matches_indicator": true,
+          "indicator_ohlc_cross_checked_closes": [
+            36,
+            36
+          ],
+          "first_open_ms": [
+            1791347400000,
+            1791347400000
+          ],
+          "last_close_ms": [
+            1794466800000,
+            1794466800000
+          ],
+          "end_markers": [
+            {
+              "index": 1198,
+              "time_close": 1794466800000
+            },
+            {
+              "index": 1198,
+              "time_close": 1794466800000
+            }
+          ],
+          "confirmed_bars_at_end_marker": [
+            1199,
+            1199
+          ],
+          "closed_bars": [
+            1199,
+            1199
+          ],
+          "events_total": [
+            485,
+            485
+          ],
+          "repeated_validated_batches": [
+            0,
+            0
+          ],
+          "scope": "Exact OHLC and events on the common loaded prefix. No claim about a non-overlapping tail."
+        },
+        "normalized_logs": {
+          "status": "MATCH",
+          "messages": [
+            188,
+            188
+          ],
+          "streams": {
+            "DTV_ALERT": {
+              "baseline": 1,
+              "candidate": 1,
+              "exact": true
+            },
+            "DTV_LEDGER": {
+              "baseline": 36,
+              "candidate": 36,
+              "exact": true
+            },
+            "DTV_STATE": {
+              "baseline": 36,
+              "candidate": 36,
+              "exact": true
+            },
+            "PR_CTX": {
+              "baseline": 36,
+              "candidate": 36,
+              "exact": true
+            },
+            "PR_END": {
+              "baseline": 1,
+              "candidate": 1,
+              "exact": true
+            },
+            "PR_SAMPLE": {
+              "baseline": 36,
+              "candidate": 36,
+              "exact": true
+            },
+            "RC1_CTX": {
+              "baseline": 36,
+              "candidate": 36,
+              "exact": true
+            },
+            "RC1_END": {
+              "baseline": 1,
+              "candidate": 1,
+              "exact": true
+            },
+            "RC2_EARLY": {
+              "baseline": 5,
+              "candidate": 5,
+              "exact": true
+            }
+          },
+          "normalized_fields": []
+        },
+        "pressure": {
+          "status": "MATCH",
+          "samples": 36,
+          "original_sha256": "74a731ba786d9a6f1d93dfe0ae3bd592829f1cb9867cb7dea8ff1f63aaf21a92",
+          "repeat_sha256": "74a731ba786d9a6f1d93dfe0ae3bd592829f1cb9867cb7dea8ff1f63aaf21a92",
+          "all_indicator_closes_covered": true,
+          "sample_rows_exact": true,
+          "unused_volume_differences": [],
+          "tick_volume_weighted_parity": "NOT_EXERCISED",
+          "independent_checks": [
+            {
+              "status": "VERIFIED",
+              "file": "baseline-M30.csv",
+              "sha256": "74a731ba786d9a6f1d93dfe0ae3bd592829f1cb9867cb7dea8ff1f63aaf21a92",
+              "bars": 36,
+              "end_marker_present": true,
+              "settings": {
+                "lookback": 10,
+                "weighted": false,
+                "comparison": false
+              },
+              "frame_counts": {
+                "30": {
+                  "verification": {
+                    "SOURCE_WARMUP_NOT_OBSERVED": 9,
+                    "CALCULATION_VERIFIED": 27
+                  },
+                  "modes": {
+                    "OHLC": 36
+                  },
+                  "reasons": {
+                    "OHLC_SELECTED": 36
+                  }
+                }
+              }
+            },
+            {
+              "status": "VERIFIED",
+              "file": "candidate-M30.csv",
+              "sha256": "74a731ba786d9a6f1d93dfe0ae3bd592829f1cb9867cb7dea8ff1f63aaf21a92",
+              "bars": 36,
+              "end_marker_present": true,
+              "settings": {
+                "lookback": 10,
+                "weighted": false,
+                "comparison": false
+              },
+              "frame_counts": {
+                "30": {
+                  "verification": {
+                    "SOURCE_WARMUP_NOT_OBSERVED": 9,
+                    "CALCULATION_VERIFIED": 27
+                  },
+                  "modes": {
+                    "OHLC": 36
+                  },
+                  "reasons": {
+                    "OHLC_SELECTED": 36
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "visibility": {
+          "baseline": {
+            "status": "VERIFIED",
+            "file": "baseline-M30.csv",
+            "closed_bar_snapshots": 36,
+            "review": {
+              "status": "NO_REVIEW_JOURNAL",
+              "rows": 0
+            },
+            "observational_alert": {
+              "status": "INTENT_VERIFIED",
+              "rows": 1,
+              "delivery": "NOT_VERIFIED_BY_PINE_LOGS"
+            },
+            "case_status": "NOT_M15",
+            "case_timeline": {},
+            "permissions": {
+              "WAIT": 36
+            },
+            "approved_s5_plans": [],
+            "rc2_alert_batches": 0,
+            "rc2_unique_alert_ids": 0
+          },
+          "candidate": {
+            "status": "VERIFIED",
+            "file": "candidate-M30.csv",
+            "closed_bar_snapshots": 36,
+            "review": {
+              "status": "NO_REVIEW_JOURNAL",
+              "rows": 0
+            },
+            "observational_alert": {
+              "status": "INTENT_VERIFIED",
+              "rows": 1,
+              "delivery": "NOT_VERIFIED_BY_PINE_LOGS"
+            },
+            "case_status": "NOT_M15",
+            "case_timeline": {},
+            "permissions": {
+              "WAIT": 36
+            },
+            "approved_s5_plans": [],
+            "rc2_alert_batches": 0,
+            "rc2_unique_alert_ids": 0
+          }
+        }
+      }
+    },
+    "alert_scope": "Native payload and intent parity. Server alert creation or iPhone delivery is outside the CSV evidence.",
+    "execution_scope": "Native in-indicator S5 RAW Paper. The separately published RC2 strategy source is pinned."
+  },
+  "canonical_cross_frame": {
+    "M5/M15": {
+      "same_chart_closes": 71,
+      "exact_H1": 71,
+      "exact_H4": 71
+    },
+    "M5/M30": {
+      "same_chart_closes": 36,
+      "exact_H1": 36,
+      "exact_H4": 36
+    },
+    "M15/M30": {
+      "same_chart_closes": 36,
+      "exact_H1": 36,
+      "exact_H4": 36
+    }
+  },
+  "frames": {
+    "M5": {
+      "csv_sha256": "7ad19a8842ed79cab3c45e04e3251a610bbc4fd01ffaf0776fae9dcf5e3d14de",
+      "closes": 211,
+      "missing_canonical": [
+        0,
+        0
+      ],
+      "missing_legacy_ema_lag2": [
+        0,
+        0
+      ],
+      "legacy_sides": [
+        {
+          "-1": 211
+        },
+        {
+          "-1": 163,
+          "0": 48
+        }
+      ],
+      "canonical_sides": [
+        {
+          "-1": 163,
+          "0": 48
+        },
+        {
+          "0": 211
+        }
+      ],
+      "legacy_context_not_ready": 0
+    },
+    "M15": {
+      "csv_sha256": "3931d62929992c09e27e32b2e7609e162a9f5f0387f020a92142c98b07029369",
+      "closes": 71,
+      "missing_canonical": [
+        0,
+        0
+      ],
+      "missing_legacy_ema_lag2": [
+        0,
+        0
+      ],
+      "legacy_sides": [
+        {
+          "-1": 71
+        },
+        {
+          "-1": 55,
+          "0": 16
+        }
+      ],
+      "canonical_sides": [
+        {
+          "-1": 55,
+          "0": 16
+        },
+        {
+          "0": 71
+        }
+      ],
+      "legacy_context_not_ready": 0
+    },
+    "M30": {
+      "csv_sha256": "f875b03ce2da01d5653c7239adf0b0201745bf7bf6e4b577ba4543b325d18908",
+      "closes": 36,
+      "missing_canonical": [
+        0,
+        0
+      ],
+      "missing_legacy_ema_lag2": [
+        0,
+        0
+      ],
+      "legacy_sides": [
+        {
+          "-1": 36
+        },
+        {
+          "-1": 28,
+          "0": 8
+        }
+      ],
+      "canonical_sides": [
+        {
+          "-1": 28,
+          "0": 8
+        },
+        {
+          "0": 36
+        }
+      ],
+      "legacy_context_not_ready": 0
+    }
+  }
+}

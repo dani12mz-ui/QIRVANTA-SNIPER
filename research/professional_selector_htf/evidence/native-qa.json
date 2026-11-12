@@ -1,0 +1,365 @@
+{
+  "symbol": "OANDA:XAUUSD",
+  "source": {
+    "protected_selector_sha256": "91f2f7687fd07f836cad3dfad145721a5c8f9cc74207b1db00afc60f6cb86b4c",
+    "companion_sha256": "d7683e5166edf32e47143e80b29a3b0fd89ab91ae035b149ca97d14a0d38cc7e",
+    "forward_seal_sha256": "09181ecaf9e30cde62c5203b524cb458d808a07c24029e961e32bb25c474afd1",
+    "protected_source_changed": false,
+    "standalone_request_calls": 2
+  },
+  "canonical_cross_frame": {
+    "M5/M15": {
+      "same_chart_closes": 71,
+      "exact_H1": 71,
+      "exact_H4": 71
+    },
+    "M5/M30": {
+      "same_chart_closes": 36,
+      "exact_H1": 36,
+      "exact_H4": 36
+    },
+    "M15/M30": {
+      "same_chart_closes": 36,
+      "exact_H1": 36,
+      "exact_H4": 36
+    }
+  },
+  "frames": {
+    "M5": {
+      "baseline_sha256": "db37aedbdd57510a649672b56920e71f059a5cdb334524be12e442e46400de86",
+      "companion_sha256": "14536619cf1e2ed03bb030d5b768f80ed53559705121a6be0639a7017981510c",
+      "same_local_ohlc_closes": 211,
+      "canonical_sides": [
+        {
+          "-1": 163,
+          "0": 48
+        },
+        {
+          "0": 211
+        }
+      ],
+      "observations": 134,
+      "triage": {
+        "OBSERVE": 76,
+        "REJECT / EXPIRED": 56,
+        "CONFLICT": 2
+      },
+      "protected_reference_journal": {
+        "status": "VERIFIED",
+        "file": "baseline-M5.csv",
+        "closed_bar_snapshots": 211,
+        "review": {
+          "status": "NO_REVIEW_JOURNAL",
+          "rows": 0
+        },
+        "observational_alert": {
+          "status": "INTENT_VERIFIED",
+          "rows": 7,
+          "delivery": "NOT_VERIFIED_BY_PINE_LOGS"
+        },
+        "case_status": "NOT_M15",
+        "case_timeline": {}
+      }
+    },
+    "M15": {
+      "baseline_sha256": "58b8e8107704d6abf096a5a9f909f352f8f21c65f6351bfbab411249194a39e7",
+      "companion_sha256": "761097396016a0f206d436fe9196b69f6ff2d230c9f0a3fd587dac1eb843260e",
+      "same_local_ohlc_closes": 71,
+      "canonical_sides": [
+        {
+          "-1": 55,
+          "0": 16
+        },
+        {
+          "0": 71
+        }
+      ],
+      "observations": 78,
+      "triage": {
+        "OBSERVE": 45,
+        "REJECT / EXPIRED": 29,
+        "CONFLICT": 4
+      },
+      "protected_reference_journal": {
+        "status": "VERIFIED",
+        "file": "baseline-M15.csv",
+        "closed_bar_snapshots": 71,
+        "review": {
+          "status": "NO_REVIEW_JOURNAL",
+          "rows": 0
+        },
+        "observational_alert": {
+          "status": "INTENT_VERIFIED",
+          "rows": 12,
+          "delivery": "NOT_VERIFIED_BY_PINE_LOGS"
+        },
+        "case_status": "VERIFIED",
+        "case_timeline": {
+          "bullish_retest": {
+            "status": "VERIFIED",
+            "known_utc": "2026-11-11T00:15:00Z",
+            "symbol": "OANDA:XAUUSD",
+            "frame": "15",
+            "open_ms": 1794355200000,
+            "known_ms": 1794356100000,
+            "as_of_ms": 1794356100000,
+            "direction": "BUY BREAKOUT CONFIRMED",
+            "signals": [
+              {
+                "source": "DT RETEST",
+                "model": "RETEST_CONTINUATION",
+                "side": 1,
+                "stage": "BREAKOUT CONFIRMED",
+                "known_ms": 1794356100000,
+                "expires_ms": 1794357000000,
+                "reason": "RETEST_CONFIRMED · RESEARCH ENTRY CANDIDATE",
+                "research": true
+              }
+            ],
+            "permission": "WAIT",
+            "permission_source": "S5 · RC2",
+            "permission_known_ms": 1794356100000,
+            "permission_reason": "Нарушена структура",
+            "permission_freshness": "AT CLOSE",
+            "plan_visible": false,
+            "paper_phase": 0,
+            "paper_plan_id": "",
+            "paper_capacity": false,
+            "s5_stage": "INVALIDATED",
+            "review": false
+          },
+          "quiet": {
+            "status": "VERIFIED",
+            "known_utc": "2026-11-11T11:30:00Z",
+            "symbol": "OANDA:XAUUSD",
+            "frame": "15",
+            "open_ms": 1794395700000,
+            "known_ms": 1794396600000,
+            "as_of_ms": 1794396600000,
+            "direction": "NONE",
+            "signals": [],
+            "permission": "WAIT",
+            "permission_source": "S5 · RC2",
+            "permission_known_ms": 1794396600000,
+            "permission_reason": "Няма нов потвърден S5 план.",
+            "permission_freshness": "AT CLOSE",
+            "plan_visible": false,
+            "paper_phase": 0,
+            "paper_plan_id": "",
+            "paper_capacity": false,
+            "s5_stage": "NO SETUP",
+            "review": false
+          },
+          "sell_watch": {
+            "status": "VERIFIED",
+            "known_utc": "2026-11-11T11:45:00Z",
+            "symbol": "OANDA:XAUUSD",
+            "frame": "15",
+            "open_ms": 1794396600000,
+            "known_ms": 1794397500000,
+            "as_of_ms": 1794397500000,
+            "direction": "SELL WATCH",
+            "signals": [
+              {
+                "source": "DT STRUCTURE",
+                "model": "STRUCTURAL_BREAK",
+                "side": -1,
+                "stage": "WATCH",
+                "known_ms": 1794397500000,
+                "expires_ms": 1794403800000,
+                "reason": "APPROACHING_LEVEL",
+                "research": false
+              }
+            ],
+            "permission": "WAIT",
+            "permission_source": "S5 · RC2",
+            "permission_known_ms": 1794397500000,
+            "permission_reason": "Няма нов потвърден S5 план.",
+            "permission_freshness": "AT CLOSE",
+            "plan_visible": false,
+            "paper_phase": 0,
+            "paper_plan_id": "",
+            "paper_capacity": false,
+            "s5_stage": "NO SETUP",
+            "review": false
+          },
+          "sell_break_s5_buy_watch": {
+            "status": "VERIFIED",
+            "known_utc": "2026-11-11T12:00:00Z",
+            "symbol": "OANDA:XAUUSD",
+            "frame": "15",
+            "open_ms": 1794397500000,
+            "known_ms": 1794398400000,
+            "as_of_ms": 1794398400000,
+            "direction": "CONFLICT",
+            "signals": [
+              {
+                "source": "DT STRUCTURE",
+                "model": "STRUCTURAL_BREAK",
+                "side": -1,
+                "stage": "BREAKOUT CONFIRMED",
+                "known_ms": 1794398400000,
+                "expires_ms": 1794404700000,
+                "reason": "CONFIRMED_CLOSE_CROSS · RESEARCH REJECTED: INSUFFICIENT_NET_ROOM",
+                "research": false
+              },
+              {
+                "source": "S5",
+                "model": "S5_RECLAIM",
+                "side": 1,
+                "stage": "WATCH",
+                "known_ms": 1794398400000,
+                "expires_ms": 1794402000000,
+                "reason": "Противоположен пробив; чака връщане отвъд нивото",
+                "research": false
+              }
+            ],
+            "permission": "WAIT",
+            "permission_source": "S5 · RC2",
+            "permission_known_ms": 1794398400000,
+            "permission_reason": "Чака връщане отвъд нивото със затворена свещ.",
+            "permission_freshness": "AT CLOSE",
+            "plan_visible": false,
+            "paper_phase": 0,
+            "paper_plan_id": "",
+            "paper_capacity": false,
+            "s5_stage": "WATCH",
+            "review": false
+          },
+          "sell_retest_research": {
+            "status": "VERIFIED",
+            "known_utc": "2026-11-11T12:30:00Z",
+            "symbol": "OANDA:XAUUSD",
+            "frame": "15",
+            "open_ms": 1794399300000,
+            "known_ms": 1794400200000,
+            "as_of_ms": 1794400200000,
+            "direction": "SELL BREAKOUT CONFIRMED",
+            "signals": [
+              {
+                "source": "DT RETEST",
+                "model": "RETEST_CONTINUATION",
+                "side": -1,
+                "stage": "BREAKOUT CONFIRMED",
+                "known_ms": 1794400200000,
+                "expires_ms": 1794401100000,
+                "reason": "RETEST_CONFIRMED · RESEARCH ENTRY CANDIDATE",
+                "research": true
+              }
+            ],
+            "permission": "WAIT",
+            "permission_source": "S5 · RC2",
+            "permission_known_ms": 1794400200000,
+            "permission_reason": "Няма нов потвърден S5 план.",
+            "permission_freshness": "AT CLOSE",
+            "plan_visible": false,
+            "paper_phase": 0,
+            "paper_plan_id": "",
+            "paper_capacity": false,
+            "s5_stage": "NO SETUP",
+            "review": false
+          },
+          "sell_consolidation_s5_buy_watch": {
+            "status": "VERIFIED",
+            "known_utc": "2026-11-11T13:30:00Z",
+            "symbol": "OANDA:XAUUSD",
+            "frame": "15",
+            "open_ms": 1794402900000,
+            "known_ms": 1794403800000,
+            "as_of_ms": 1794403800000,
+            "direction": "CONFLICT",
+            "signals": [
+              {
+                "source": "DT CONSOLIDATION",
+                "model": "CONSOLIDATION_BREAK",
+                "side": -1,
+                "stage": "BREAKOUT CONFIRMED",
+                "known_ms": 1794403800000,
+                "expires_ms": 1794410100000,
+                "reason": "CONFIRMED_CLOSE_CROSS · RESEARCH ENTRY CANDIDATE",
+                "research": true
+              },
+              {
+                "source": "S5",
+                "model": "S5_RECLAIM",
+                "side": 1,
+                "stage": "WATCH",
+                "known_ms": 1794403800000,
+                "expires_ms": 1794407400000,
+                "reason": "Противоположен пробив; чака връщане отвъд нивото",
+                "research": false
+              },
+              {
+                "source": "RC2 EARLY WATCH",
+                "model": "RC2_EARLY_WATCH",
+                "side": -1,
+                "stage": "WATCH",
+                "known_ms": 1794403800000,
+                "expires_ms": 1794405600000,
+                "reason": "Затворена свещ отвъд предходния 12-баров диапазон",
+                "research": false
+              }
+            ],
+            "permission": "WAIT",
+            "permission_source": "S5 · RC2",
+            "permission_known_ms": 1794403800000,
+            "permission_reason": "Чака връщане отвъд нивото със затворена свещ.",
+            "permission_freshness": "AT CLOSE",
+            "plan_visible": false,
+            "paper_phase": 0,
+            "paper_plan_id": "",
+            "paper_capacity": false,
+            "s5_stage": "WATCH",
+            "review": false
+          }
+        },
+        "quiet_counterexample_market_window": {
+          "status": "VERIFIED",
+          "from_utc": "2026-11-11T10:30:00Z",
+          "through_utc": "2026-11-11T11:30:00Z",
+          "bars": 4,
+          "range": "9.64",
+          "net_change": "3.32",
+          "net_to_range": "0.3443983402489626556016597510"
+        }
+      }
+    },
+    "M30": {
+      "baseline_sha256": "9741250ab051111d9508563d46b3a2ef06fe72311ed2bf40ec1951d2abb43b56",
+      "companion_sha256": "762c277abb3b911e1c009cd2c6a9a9d2c58d60f11d3e52d7fb16b50ce650e1a5",
+      "same_local_ohlc_closes": 36,
+      "canonical_sides": [
+        {
+          "-1": 28,
+          "0": 8
+        },
+        {
+          "0": 36
+        }
+      ],
+      "observations": 15,
+      "triage": {
+        "OBSERVE": 11,
+        "REJECT / EXPIRED": 4
+      },
+      "protected_reference_journal": {
+        "status": "VERIFIED",
+        "file": "baseline-M30.csv",
+        "closed_bar_snapshots": 36,
+        "review": {
+          "status": "NO_REVIEW_JOURNAL",
+          "rows": 0
+        },
+        "observational_alert": {
+          "status": "INTENT_VERIFIED",
+          "rows": 1,
+          "delivery": "NOT_VERIFIED_BY_PINE_LOGS"
+        },
+        "case_status": "NOT_M15",
+        "case_timeline": {}
+      }
+    }
+  },
+  "scope": "Canonical standalone compiled natively. Protected parent was compiled separately. Observation join is offline and does not change protected S5/RC2 native decisions.",
+  "combined_native_link": "BLOCKED_BY_COMPILATION_AND_BASIC_INDICATOR_LIMIT"
+}

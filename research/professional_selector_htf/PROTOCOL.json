@@ -1,0 +1,39 @@
+{
+  "reference": "6e2c2b4425dd5bca6741e8d3f91c244fbacb6daa",
+  "branch": "research/qirvanta-professional-selector-htf",
+  "original_selector_protocol_sha256": "131608a1cf59d2ba48875662b1e39bc571253728326a081bc7141b9b123d1564",
+  "existing_context_source": "unified/tools/gold_market_data.py",
+  "existing_context_source_sha256": "c3ebcca84a4a199d201bce856d5a82e1480ca04499f70a90459946f0b7c5903b",
+  "legacy_archived_sha256": "60ee8e06a5a54d2871903fd8eb33cd79d980be4b7ada386cef316fdc631d9a68",
+  "forward_seal_sha256": "09181ecaf9e30cde62c5203b524cb458d808a07c24029e961e32bb25c474afd1",
+  "context": {
+    "symbol": "OANDA:XAUUSD",
+    "chart_frames_minutes": [
+      5,
+      15,
+      30
+    ],
+    "htf_frames_minutes": [
+      60,
+      240
+    ],
+    "source": "Existing GOLD PRO/Wick provider-aligned completed candles",
+    "history": "Exactly 110 completed source closes per HTF, oldest close seeds both EMA series",
+    "fast": 21,
+    "slow": 55,
+    "scale": 1000000,
+    "available_at": "Latest completed HTF close at or before containing chart bar open; attach to confirmed chart-bar decision and retain that snapshot.",
+    "max_age_ms": {
+      "60": 7200000,
+      "240": 28800000
+    },
+    "direction": "UP if quantized close > fast > slow; DOWN if close < fast < slow; MIXED otherwise; UNKNOWN if source unavailable, insufficient, unverified gap or stale.",
+    "closed_only": true
+  },
+  "policy": "Existing P1/P2 thresholds, source model lifecycle, costs and sealed evaluation boundaries are fixed. Replace unavailable context only with evidence meeting the canonical definition; use the unchanged protected trading controls and report hypothetical one-slot overlap. No further policy tuning.",
+  "native_case": {
+    "from_close_utc": "2026-11-11T00:00:00Z",
+    "through_close_utc": "2026-11-11T17:30:00Z",
+    "protected": "Exact event and payload parity against 6e2c2b with same OHLC, initial chart history and settings. Keep original protected EMA50 requests."
+  }
+}
