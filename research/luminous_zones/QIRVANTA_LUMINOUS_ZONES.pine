@@ -95,7 +95,7 @@ f_pzEmit(PzZone zone, string state) =>
         bool touch = state == "FIRST_TOUCH"
         bool broken = state == "INVALIDATED"
         color markerBg = zone.side > 0 ? (pzLight ? #006956 : #116B57) : (pzLight ? #9F2843 : #9B3E54)
-        string caption = touch ? "◆" : formationBadge ? "◆ " + f_pzSide(zone.side) + " ZONE" :
+        string caption = touch ? "◆" : formationBadge ? "◆ " + f_pzSide(zone.side) :
              broken ? "× " + f_pzSide(zone.side) + " BROKEN" : "✓ " + f_pzSide(zone.side) + " REJECTION"
         if array.size(pzMarkerPool) >= 12
             label.delete(array.shift(pzMarkerPool))
@@ -296,13 +296,16 @@ if barstate.islast or barstate.islastconfirmedhistory
                 box.set_bgcolor(band, color.new(ink, pzLuminous ? mainAlpha : 92))
                 box.set_border_color(band, color.new(ink, pzLuminous ? 42 : 55))
                 box.set_border_width(band, 1)
-                int brightStart = math.max(zone.formed, right - 2 * pzInterval)
+                // Keep the accent near the observed close when the outer band is projected farther.
+                int brightRight = math.min(right, asOf + pzInterval)
+                int brightStart = math.max(zone.formed, brightRight - 2 * pzInterval)
+                int brightAlpha = zone.rejected ? (pzLight ? 68 : 62) : (pzLight ? 74 : 68)
                 if na(spotlight)
-                    spotlight := box.new(brightStart, top, right, bottom, xloc=xloc.bar_time, border_width=0)
+                    spotlight := box.new(brightStart, top, brightRight, bottom, xloc=xloc.bar_time, border_width=0)
                     array.set(pzSpotlights, slot, spotlight)
                 box.set_lefttop(spotlight, brightStart, top)
-                box.set_rightbottom(spotlight, right, bottom)
-                box.set_bgcolor(spotlight, color.new(ink, pzLuminous ? (zone.rejected ? 77 : 86) : 100))
+                box.set_rightbottom(spotlight, brightRight, bottom)
+                box.set_bgcolor(spotlight, color.new(ink, pzLuminous ? brightAlpha : 100))
                 box.set_border_color(spotlight, color.new(ink, 100))
                 // Reusable line objects: each real boundary has a wide translucent halo plus a crisp rail.
                 for edge = 0 to 1
@@ -311,9 +314,9 @@ if barstate.islast or barstate.islastconfirmedhistory
                         int railIndex = slot * 4 + edge * 2 + layer
                         line rail = array.get(pzGlowRails, railIndex)
                         bool isGlow = layer == 0
-                        color railInk = color.new(ink, pzLuminous ? (isGlow ? 77 : zone.rejected ? 6 : 16) :
+                        color railInk = color.new(ink, pzLuminous ? (isGlow ? (pzLight ? 72 : 68) : zone.rejected ? 6 : 16) :
                              (isGlow ? 100 : 46))
-                        int railWidth = isGlow ? 6 : 2
+                        int railWidth = isGlow ? 7 : 2
                         if na(rail)
                             rail := line.new(zone.formed, price, right, price, xloc=xloc.bar_time,
                                  color=railInk, width=railWidth)
@@ -322,7 +325,7 @@ if barstate.islast or barstate.islastconfirmedhistory
                         line.set_xy2(rail, right, price)
                         line.set_color(rail, railInk)
                         line.set_width(rail, railWidth)
-                        line.set_style(rail, zone.touched ? line.style_solid : line.style_dotted)
+                        line.set_style(rail, isGlow or zone.touched ? line.style_solid : line.style_dotted)
                 if na(tag)
                     tag := label.new(right, zone.proximal, xloc=xloc.bar_time, yloc=yloc.price,
                          style=label.style_label_left, size=mobile ? size.small : pzLarge ? size.normal : size.small,
@@ -337,7 +340,7 @@ if barstate.islast or barstate.islastconfirmedhistory
                 label.set_xy(tag, right, na(other) ? zone.proximal : upperTag ? top : bottom)
                 label.set_size(tag, mobile ? size.tiny : pzLarge ? size.normal : size.small)
                 label.set_text(tag, mobile ? "◆ " + side + " · " + shortStatus :
-                     "◆ " + side + (isBuy ? " DEMAND" : " SUPPLY") + "  ·  " + shortStatus + "\n" + rangeText + "\nRESEARCH ZONE")
+                     "◆ " + side + (isBuy ? " DEMAND" : " SUPPLY") + "  ·  " + shortStatus + "\n" + rangeText)
                 label.set_tooltip(tag, tooltip)
             else
                 if not na(band)

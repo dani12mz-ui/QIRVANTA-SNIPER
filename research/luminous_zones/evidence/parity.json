@@ -1,0 +1,336 @@
+{
+  "source": {
+    "status": "MATCH",
+    "baseline_commit": "eb0428a13e626ec233bed85752e81028890e2d8f",
+    "original_candidate_commit": "e9a51963d4d67bd2fe4f16e0a543c76eca3f3f87",
+    "candidate": "research/luminous_zones/QIRVANTA_LUMINOUS_ZONES.pine",
+    "candidate_sha256": "dd5aeab3af0fafd1bdae30204a42d99d886eee5d60b4ba0a3a51fc87a51d1763",
+    "protected_sha256": {
+      "research/precision_buy_sell_zones/QIRVANTA_GOLD_PRO_PRECISION_ZONES.pine": "acfaf5ac3fd80f08efd7f179cd3802eb41043f957a70800c3444595bf5ebc09a",
+      "research/precision_buy_sell_zones/PROTOCOL.json": "7406878761ffa1d6db918b72a2e283efde224f542723238a49f10cf80023ecc4",
+      "research/final_htf_data_integrity/QIRVANTA_GOLD_PRO_HTF_DISPLAY_FIX.pine": "a9955a1ed3f402f1b8674b3ef2fabfc3d6578bb20f61d8a7d12ade5f527353a2",
+      "docs/gold_pro_evidence/forward_seal_m5.json": "09181ecaf9e30cde62c5203b524cb458d808a07c24029e961e32bb25c474afd1",
+      "research/precision_buy_sell_zones_premium/QIRVANTA_PRECISION_ZONES_PREMIUM.pine": "124db7b8324cd1070a8f380372501d28c654dd965003cf11b3250a4ca818cd88"
+    },
+    "byte_identical_blocks": {
+      "market_inputs_and_state": {
+        "start": "bool pzSupported",
+        "end": "bool pzLight",
+        "sha256": "1746d8f4ab91bf0d2afadb7e2e44b2dafa0444e7f0d6cbdf5bc14a26ae777fdd"
+      },
+      "source_helpers": {
+        "start": "f_pzNumber(float value)",
+        "end": "f_pzEmit(PzZone zone, string state)",
+        "sha256": "da97e37198fd7b8d62d01e7f88eb2d1831933b8d3c5ac0068f82ab0181dd59b0"
+      },
+      "event_and_alert_payload": {
+        "start": "f_pzEmit(PzZone zone, string state)",
+        "end": "            array.push(pzAlertItems, message)\n",
+        "sha256": "88cad44de7f1391b04a6c3e8c6c75ba6fa83243339c55fd9d2281661539c7539"
+      },
+      "closed_bar_lifecycle_and_alert_flow": {
+        "start": "if pzBar\n",
+        "end": "// Two bands",
+        "sha256": "6e31b072cbf1839d2b97403ddd6acf63e2013333cf722f95c16a368e7d5bc4a7"
+      }
+    },
+    "protected_inputs": [
+      "pzNotify",
+      "pzQa",
+      "pzReview",
+      "pzReviewAt"
+    ],
+    "indicator_settings": ", overlay=true, behind_chart=true, max_boxes_count=4, max_lines_count=8, max_labels_count=14, max_bars_back=300, calc_bars_count=1200",
+    "restricted_call_counts": {
+      "alert": 1
+    }
+  },
+  "native": {
+    "M5": {
+      "status": "MATCH",
+      "before": {
+        "file": "before/zone-M5.csv",
+        "file_sha256": "25c63be16a60304233ba54c4b44116f97c37afc98b8e36daae8a4fb241b96ac3",
+        "loaded_bars": 1199,
+        "first_source_index": 0,
+        "first_loaded_open_utc": "2026-11-06T02:40:00Z",
+        "last_confirmed_history_index": 1198,
+        "last_confirmed_history_close_utc": "2026-11-12T10:35:00Z",
+        "last_logged_close_utc": "2026-11-12T10:35:00Z",
+        "closed_events": 242,
+        "event_close_window_utc": [
+          "2026-11-09T00:35:00Z",
+          "2026-11-12T10:25:00Z"
+        ],
+        "events_by_state": {
+          "FORMATION_DETECTED": 62,
+          "EXPIRED": 10,
+          "FIRST_TOUCH": 40,
+          "PARTIALLY_MITIGATED": 36,
+          "FULLY_MITIGATED": 18,
+          "REJECTION_CONFIRMED": 24,
+          "REPLACED": 33,
+          "INVALIDATED": 19
+        },
+        "alert_intent_batches": 75,
+        "alert_intent_close_window_utc": [
+          "2026-11-09T03:50:00Z",
+          "2026-11-12T07:35:00Z"
+        ],
+        "alert_intent_events": 83
+      },
+      "after": {
+        "file": "after/zone-M5.csv",
+        "file_sha256": "25c63be16a60304233ba54c4b44116f97c37afc98b8e36daae8a4fb241b96ac3",
+        "loaded_bars": 1199,
+        "first_source_index": 0,
+        "first_loaded_open_utc": "2026-11-06T02:40:00Z",
+        "last_confirmed_history_index": 1198,
+        "last_confirmed_history_close_utc": "2026-11-12T10:35:00Z",
+        "last_logged_close_utc": "2026-11-12T10:35:00Z",
+        "closed_events": 242,
+        "event_close_window_utc": [
+          "2026-11-09T00:35:00Z",
+          "2026-11-12T10:25:00Z"
+        ],
+        "events_by_state": {
+          "FORMATION_DETECTED": 62,
+          "EXPIRED": 10,
+          "FIRST_TOUCH": 40,
+          "PARTIALLY_MITIGATED": 36,
+          "FULLY_MITIGATED": 18,
+          "REJECTION_CONFIRMED": 24,
+          "REPLACED": 33,
+          "INVALIDATED": 19
+        },
+        "alert_intent_batches": 75,
+        "alert_intent_close_window_utc": [
+          "2026-11-09T03:50:00Z",
+          "2026-11-12T07:35:00Z"
+        ],
+        "alert_intent_events": 83
+      },
+      "raw_csv_byte_identical": true,
+      "exact_streams": {
+        "bars": true,
+        "market": true,
+        "events": true,
+        "alert_intents": true,
+        "last_confirmed_history_index": true
+      },
+      "first_differences": {},
+      "native_alert_payloads": {
+        "before": {
+          "status": "MATCH",
+          "batches": 75,
+          "events": 83,
+          "push_delivery": "NOT_VERIFIED_BY_PINE_LOGS"
+        },
+        "after": {
+          "status": "MATCH",
+          "batches": 75,
+          "events": 83,
+          "push_delivery": "NOT_VERIFIED_BY_PINE_LOGS"
+        }
+      },
+      "raw_pine_rows": {
+        "status": "MATCH",
+        "before_rows": 1517,
+        "after_rows": 1517,
+        "first_difference": null,
+        "scope": "PZ_MARKET, PZ_EVENT, PZ_ALERT_INTENT and PZ_END; original timestamps and messages"
+      }
+    },
+    "M15": {
+      "status": "MATCH",
+      "before": {
+        "file": "before/zone-M15.csv",
+        "file_sha256": "1e938a5e761d6b4bf256fced8a032e84a2901cf47bb34688e9b4b873efe6f5ee",
+        "loaded_bars": 1199,
+        "first_source_index": 0,
+        "first_loaded_open_utc": "2026-10-26T08:45:00Z",
+        "last_confirmed_history_index": 1198,
+        "last_confirmed_history_close_utc": "2026-11-12T10:30:00Z",
+        "last_logged_close_utc": "2026-11-12T10:30:00Z",
+        "closed_events": 164,
+        "event_close_window_utc": [
+          "2026-10-29T05:45:00Z",
+          "2026-11-12T07:15:00Z"
+        ],
+        "events_by_state": {
+          "FORMATION_DETECTED": 47,
+          "FIRST_TOUCH": 26,
+          "PARTIALLY_MITIGATED": 22,
+          "REJECTION_CONFIRMED": 13,
+          "EXPIRED": 18,
+          "REPLACED": 14,
+          "FULLY_MITIGATED": 10,
+          "INVALIDATED": 14
+        },
+        "alert_intent_batches": 49,
+        "alert_intent_close_window_utc": [
+          "2026-10-29T11:15:00Z",
+          "2026-11-12T07:15:00Z"
+        ],
+        "alert_intent_events": 53
+      },
+      "after": {
+        "file": "after/zone-M15.csv",
+        "file_sha256": "1e938a5e761d6b4bf256fced8a032e84a2901cf47bb34688e9b4b873efe6f5ee",
+        "loaded_bars": 1199,
+        "first_source_index": 0,
+        "first_loaded_open_utc": "2026-10-26T08:45:00Z",
+        "last_confirmed_history_index": 1198,
+        "last_confirmed_history_close_utc": "2026-11-12T10:30:00Z",
+        "last_logged_close_utc": "2026-11-12T10:30:00Z",
+        "closed_events": 164,
+        "event_close_window_utc": [
+          "2026-10-29T05:45:00Z",
+          "2026-11-12T07:15:00Z"
+        ],
+        "events_by_state": {
+          "FORMATION_DETECTED": 47,
+          "FIRST_TOUCH": 26,
+          "PARTIALLY_MITIGATED": 22,
+          "REJECTION_CONFIRMED": 13,
+          "EXPIRED": 18,
+          "REPLACED": 14,
+          "FULLY_MITIGATED": 10,
+          "INVALIDATED": 14
+        },
+        "alert_intent_batches": 49,
+        "alert_intent_close_window_utc": [
+          "2026-10-29T11:15:00Z",
+          "2026-11-12T07:15:00Z"
+        ],
+        "alert_intent_events": 53
+      },
+      "raw_csv_byte_identical": true,
+      "exact_streams": {
+        "bars": true,
+        "market": true,
+        "events": true,
+        "alert_intents": true,
+        "last_confirmed_history_index": true
+      },
+      "first_differences": {},
+      "native_alert_payloads": {
+        "before": {
+          "status": "MATCH",
+          "batches": 49,
+          "events": 53,
+          "push_delivery": "NOT_VERIFIED_BY_PINE_LOGS"
+        },
+        "after": {
+          "status": "MATCH",
+          "batches": 49,
+          "events": 53,
+          "push_delivery": "NOT_VERIFIED_BY_PINE_LOGS"
+        }
+      },
+      "raw_pine_rows": {
+        "status": "MATCH",
+        "before_rows": 1413,
+        "after_rows": 1413,
+        "first_difference": null,
+        "scope": "PZ_MARKET, PZ_EVENT, PZ_ALERT_INTENT and PZ_END; original timestamps and messages"
+      }
+    },
+    "M30": {
+      "status": "MATCH",
+      "before": {
+        "file": "before/zone-M30.csv",
+        "file_sha256": "cb4ba16594694d25e129c2965ef61f9cd11855f1ed16ec0dac741a30068a5bd8",
+        "loaded_bars": 1199,
+        "first_source_index": 0,
+        "first_loaded_open_utc": "2026-10-07T08:00:00Z",
+        "last_confirmed_history_index": 1198,
+        "last_confirmed_history_close_utc": "2026-11-12T10:30:00Z",
+        "last_logged_close_utc": "2026-11-12T10:30:00Z",
+        "closed_events": 234,
+        "event_close_window_utc": [
+          "2026-10-15T00:00:00Z",
+          "2026-11-12T07:30:00Z"
+        ],
+        "events_by_state": {
+          "FORMATION_DETECTED": 63,
+          "EXPIRED": 16,
+          "FIRST_TOUCH": 37,
+          "FULLY_MITIGATED": 19,
+          "INVALIDATED": 20,
+          "PARTIALLY_MITIGATED": 30,
+          "REPLACED": 26,
+          "REJECTION_CONFIRMED": 23
+        },
+        "alert_intent_batches": 74,
+        "alert_intent_close_window_utc": [
+          "2026-10-16T00:00:00Z",
+          "2026-11-12T07:30:00Z"
+        ],
+        "alert_intent_events": 80
+      },
+      "after": {
+        "file": "after/zone-M30.csv",
+        "file_sha256": "cb4ba16594694d25e129c2965ef61f9cd11855f1ed16ec0dac741a30068a5bd8",
+        "loaded_bars": 1199,
+        "first_source_index": 0,
+        "first_loaded_open_utc": "2026-10-07T08:00:00Z",
+        "last_confirmed_history_index": 1198,
+        "last_confirmed_history_close_utc": "2026-11-12T10:30:00Z",
+        "last_logged_close_utc": "2026-11-12T10:30:00Z",
+        "closed_events": 234,
+        "event_close_window_utc": [
+          "2026-10-15T00:00:00Z",
+          "2026-11-12T07:30:00Z"
+        ],
+        "events_by_state": {
+          "FORMATION_DETECTED": 63,
+          "EXPIRED": 16,
+          "FIRST_TOUCH": 37,
+          "FULLY_MITIGATED": 19,
+          "INVALIDATED": 20,
+          "PARTIALLY_MITIGATED": 30,
+          "REPLACED": 26,
+          "REJECTION_CONFIRMED": 23
+        },
+        "alert_intent_batches": 74,
+        "alert_intent_close_window_utc": [
+          "2026-10-16T00:00:00Z",
+          "2026-11-12T07:30:00Z"
+        ],
+        "alert_intent_events": 80
+      },
+      "raw_csv_byte_identical": true,
+      "exact_streams": {
+        "bars": true,
+        "market": true,
+        "events": true,
+        "alert_intents": true,
+        "last_confirmed_history_index": true
+      },
+      "first_differences": {},
+      "native_alert_payloads": {
+        "before": {
+          "status": "MATCH",
+          "batches": 74,
+          "events": 80,
+          "push_delivery": "NOT_VERIFIED_BY_PINE_LOGS"
+        },
+        "after": {
+          "status": "MATCH",
+          "batches": 74,
+          "events": 80,
+          "push_delivery": "NOT_VERIFIED_BY_PINE_LOGS"
+        }
+      },
+      "raw_pine_rows": {
+        "status": "MATCH",
+        "before_rows": 1508,
+        "after_rows": 1508,
+        "first_difference": null,
+        "scope": "PZ_MARKET, PZ_EVENT, PZ_ALERT_INTENT and PZ_END; original timestamps and messages"
+      }
+    }
+  },
+  "status": "MATCH"
+}
