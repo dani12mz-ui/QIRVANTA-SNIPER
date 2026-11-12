@@ -1,8 +1,8 @@
 # QIRVANTA GOLD PRO — SINGLE-FILE LUMINOUS LITE
 
-**STATUS: CANDIDATE — not yet compiled natively in TradingView.**
+**STATUS: BLOCKED — one native TradingView M5 compilation attempt timed out.**
 
-[Complete Pine v6 source](QIRVANTA_GOLD_PRO_LUMINOUS_LITE.pine)
+[Complete Pine v6 candidate](QIRVANTA_GOLD_PRO_LUMINOUS_LITE.pine) · [QA report and verified fallbacks](QA_BG.md) · [Native M5 timeout screenshot](evidence/M5-native-compile-timeout.jpg)
 
 This is a lighter response to the `Pine compilation was timed out` error from the previously attempted 3978-line all-in-one file.
 
@@ -17,7 +17,7 @@ This is a lighter response to the `Pine compilation was timed out` error from th
 
 - This does **not** reproduce the standalone Luminous Zones companion in full. It removes the separate precision zone JSON alerts, QA streams, FVG metadata and full partial/full mitigation labeling to reduce compiler burden. Zone signals are approximate visual research observations. The complete zone event parity with `2a4d2e3` is **not claimed**.
 - Original full S5/RC2 source body is preserved except `indicator()` declaration and object quotas. No core trade logic changes are intended.
-- The new file has **not** yet passed native Pine compilation or parity. The previously successful sources still provide the tested fallback.
+- The static audit and 189 Python regression tests passed. The single native M5 submission timed out with four attempts remaining. M15/M30, native parity and visual acceptance were blocked. The two independently verified sources are linked in the QA report.
 - The user has only a few remaining compiler attempts. **Do not submit several variants in sequence**, and do not repeatedly compile after another timeout.
 
 ## A single controlled native QA attempt

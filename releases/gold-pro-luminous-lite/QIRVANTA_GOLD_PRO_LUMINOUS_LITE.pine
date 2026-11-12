@@ -3593,173 +3593,115 @@ if rcQaBar
         log.info("DTV_REVIEW|" + f_dvJournalState(dvView, dvVisiblePermission, true, dvView.asOf, dvPermissionFreshness))
 
 // ═══ LUMINOUS PRECISION ZONES · LITE / VISUAL-ONLY ═══
-// Derived from the separate verified Precision Zones research.
-// Causal price boundaries; intentionally excludes duplicate QA/zone alert engines.
-// S5/RC2 CORE, risk decisions, approved prices and alert streams are unchanged.
 const string LZ_GROUP = "LUMINOUS ZONES · RESEARCH"
 bool lzShow = input.bool(true, "Show luminous BUY/SELL zones", group=LZ_GROUP, display=display.none)
 bool lzShowEvents = input.bool(true, "Rejection and broken-zone labels", group=LZ_GROUP, display=display.none)
 int lzExtend = input.int(2, "Right projection · chart bars", minval=1, maxval=6, group=LZ_GROUP, display=display.none)
 bool lzGlow = input.bool(true, "Double luminous zone boundaries", group=LZ_GROUP, display=display.none)
 
-var array<float> lzProx = array.new<float>(2, na)
-var array<float> lzDist = array.new<float>(2, na)
-var array<int> lzBorn = array.new<int>(2, na)
-var array<int> lzKnown = array.new<int>(2, na)
-var array<bool> lzTouched = array.new<bool>(2, false)
-var array<bool> lzRejected = array.new<bool>(2, false)
-var array<float> lzReviewProx = array.new<float>(2, na)
-var array<float> lzReviewDist = array.new<float>(2, na)
-var array<int> lzReviewKnown = array.new<int>(2, na)
-var array<bool> lzReviewTouched = array.new<bool>(2, false)
-var array<bool> lzReviewRejected = array.new<bool>(2, false)
-var array<box> lzBands = array.new<box>(2, na)
-var array<box> lzHighlights = array.new<box>(2, na)
-var array<line> lzRails = array.new<line>(8, na)
-var array<label> lzTags = array.new<label>(2, na)
-var array<label> lzEventMarks = array.new<label>()
+type LiteZone
+    float proximal
+    float distal
+    int born
+    int known
+    int state = 0
 
-// Pivots committed at a prior close. Origin bars are never back-dated as zone signals.
-if rcCanDrawBar
+var array<LiteZone> lzZones = array.new<LiteZone>(2, na)
+var array<label> lzEventMarks = array.new<label>()
+var array<box> lzBands = array.new<box>()
+var array<box> lzAccents = array.new<box>()
+var array<line> lzHalos = array.new<line>()
+var array<label> lzTags = array.new<label>()
+
+// Stop at the selected review close, so the same two slots serve both live and historical views.
+if lzShow and rcViewPaintBar
     for slot = 0 to 1
-        int direction = slot == 0 ? 1 : -1
-        float near = array.get(lzProx, slot)
-        float far = array.get(lzDist, slot)
-        if not na(near)
-            bool expired = bar_index - array.get(lzBorn, slot) >= 24
-            bool broken = atr > 0 and direction * (close - far) <= -0.10 * atr
+        LiteZone zone = array.get(lzZones, slot)
+        if not na(zone)
+            int side = slot == 0 ? 1 : -1
+            bool expired = bar_index - zone.born >= 24
+            bool broken = not expired and atr > 0 and side * (close - zone.distal) <= -.10 * atr
+            bool rejected = false
             if expired or broken
-                if broken and lzShow and lzShowEvents
-                    label mark = label.new(bar_index, direction > 0 ? low : high,
-                         "× " + (direction > 0 ? "BUY" : "SELL") + " ZONE BROKEN · RESEARCH",
-                         style=direction > 0 ? label.style_label_up : label.style_label_down,
-                         color=direction > 0 ? #116B57 : #9B3E54, textcolor=color.white, size=size.small)
-                    array.push(lzEventMarks, mark)
-                array.set(lzProx, slot, na)
-                array.set(lzDist, slot, na)
+                array.set(lzZones, slot, na)
             else
-                float top = math.max(near, far)
-                float bottom = math.min(near, far)
+                float top = math.max(zone.proximal, zone.distal)
+                float bottom = math.min(zone.proximal, zone.distal)
                 bool overlap = low <= top and high >= bottom
-                if overlap
-                    array.set(lzTouched, slot, true)
-                bool priorInside = close[1] >= bottom and close[1] <= top
-                bool rejection = array.get(lzTouched, slot) and not array.get(lzRejected, slot) and
-                     not tvTimeGap and (overlap or priorInside) and atr > 0 and
-                     direction * (close - near) > 0 and direction * (close - open) >= .25 * atr
-                if rejection
-                    array.set(lzRejected, slot, true)
-                    if lzShow and lzShowEvents
-                        label mark = label.new(bar_index, direction > 0 ? low : high,
-                             "✓ " + (direction > 0 ? "BUY" : "SELL") + " REJECTION · RESEARCH",
-                             style=direction > 0 ? label.style_label_up : label.style_label_down,
-                             color=direction > 0 ? #116B57 : #9B3E54, textcolor=color.white, size=size.small)
-                        array.push(lzEventMarks, mark)
-    if array.size(lzEventMarks) > 8
-        label.delete(array.shift(lzEventMarks))
-    float lzPriorHigh = lastPivotHigh[1]
-    float lzPriorLow = lastPivotLow[1]
-    bool lzEligible = bar_index >= 250 and not tvTimeGap and atr > 0 and body >= .50 * atr and
+                if overlap and zone.state == 0
+                    zone.state := 1
+                rejected := zone.state == 1 and not tvTimeGap and atr > 0 and
+                     (overlap or (close[1] >= bottom and close[1] <= top)) and
+                     side * (close - zone.proximal) > 0 and side * (close - open) >= .25 * atr
+                if rejected
+                    zone.state := 2
+            if lzShowEvents and (broken or rejected)
+                string caption = (broken ? "× " : "✓ ") + f_rcSide(side) + (broken ? " BROKEN" : " REJECTION")
+                label mark = f_rcViewSignal(side, time_close, caption + " · ZONE", "LUMINOUS · RESEARCH", true)
+                f_rcViewRemember(lzEventMarks, mark, 8)
+
+    float priorHigh = lastPivotHigh[1]
+    float priorLow = lastPivotLow[1]
+    bool eligible = bar_index >= 250 and not tvTimeGap and atr > 0 and body >= .50 * atr and
          math.round((high - low) / syminfo.mintick) >= 1
-    int lzSide = lzEligible and bullishBar and not na(lzPriorHigh) and
-         close > lzPriorHigh and close[1] <= lzPriorHigh ? 1 :
-         lzEligible and bearishBar and not na(lzPriorLow) and
-         close < lzPriorLow and close[1] >= lzPriorLow ? -1 : 0
-    if lzSide != 0
+    int side = eligible and bullishBar and close > priorHigh and close[1] <= priorHigh ? 1 :
+         eligible and bearishBar and close < priorLow and close[1] >= priorLow ? -1 : 0
+    if side != 0
         for ago = 1 to 5
             if na(time_close[ago]) or time[ago - 1] != time_close[ago]
                 break
-            float near = open[ago]
-            float far = lzSide > 0 ? low[ago] : high[ago]
-            float width = lzSide * (near - far)
-            if lzSide * (open[ago] - close[ago]) > 0 and
-                 math.round(width / syminfo.mintick) >= 2 and width <= 2.0 * atr
-                int slot = lzSide > 0 ? 0 : 1
-                array.set(lzProx, slot, near)
-                array.set(lzDist, slot, far)
-                array.set(lzKnown, slot, time_close)
-                array.set(lzBorn, slot, bar_index)
-                array.set(lzTouched, slot, false)
-                array.set(lzRejected, slot, false)
+            float proximal = open[ago]
+            float distal = side > 0 ? low[ago] : high[ago]
+            float height = side * (proximal - distal)
+            if side * (open[ago] - close[ago]) > 0 and math.round(height / syminfo.mintick) >= 2 and height <= 2 * atr
+                array.set(lzZones, side > 0 ? 0 : 1, LiteZone.new(proximal, distal, bar_index, time_close))
                 break
-    if rcReview and time_close == rcReviewAt
-        for slot = 0 to 1
-            array.set(lzReviewProx, slot, array.get(lzProx, slot))
-            array.set(lzReviewDist, slot, array.get(lzDist, slot))
-            array.set(lzReviewKnown, slot, array.get(lzKnown, slot))
-            array.set(lzReviewTouched, slot, array.get(lzTouched, slot))
-            array.set(lzReviewRejected, slot, array.get(lzRejected, slot))
 
-if rcViewRefresh
-    int lzAsOf = rcReview ? rcReviewAt : nz(rcView.closed, time_close)
-    for slot = 0 to 1
-        float near = array.get(rcReview ? lzReviewProx : lzProx, slot)
-        float far = array.get(rcReview ? lzReviewDist : lzDist, slot)
-        int known = array.get(rcReview ? lzReviewKnown : lzKnown, slot)
-        bool touched = array.get(rcReview ? lzReviewTouched : lzTouched, slot)
-        bool rejected = array.get(rcReview ? lzReviewRejected : lzRejected, slot)
-        box band = array.get(lzBands, slot)
-        box highlight = array.get(lzHighlights, slot)
-        label tag = array.get(lzTags, slot)
-        color ink = slot == 0 ? rcViewChartBuy : rcViewChartSell
-        bool visible = lzShow and not na(near) and not na(far) and not na(known) and
-             (not rcReview or known <= rcReviewAt)
-        if visible
-            int right = math.max(known + 1, lzAsOf + lzExtend * tfSeconds * 1000)
-            int accentLeft = math.max(known, right - lzExtend * tfSeconds * 1000)
-            float top = math.max(near, far)
-            float bottom = math.min(near, far)
-            if na(band)
-                band := box.new(known, top, right, bottom, xloc=xloc.bar_time, border_width=1)
-                array.set(lzBands, slot, band)
-            box.set_lefttop(band, known, top)
-            box.set_rightbottom(band, right, bottom)
-            box.set_bgcolor(band, color.new(ink, lzGlow ? 88 : 94))
-            box.set_border_color(band, color.new(ink, lzGlow ? 45 : 70))
-            if na(highlight)
-                highlight := box.new(accentLeft, top, right, bottom, xloc=xloc.bar_time, border_width=0)
-                array.set(lzHighlights, slot, highlight)
-            box.set_lefttop(highlight, accentLeft, top)
-            box.set_rightbottom(highlight, right, bottom)
-            box.set_bgcolor(highlight, color.new(ink, lzGlow ? 82 : 100))
+if lzShow and rcViewRefresh
+    if array.size(lzBands) == 0
+        for slot = 0 to 1
+            array.push(lzBands, box.new(time, na, time, na, xloc=xloc.bar_time, border_width=1))
+            array.push(lzAccents, box.new(time, na, time, na, xloc=xloc.bar_time, border_width=0))
+            array.push(lzTags, label.new(time, na, xloc=xloc.bar_time, yloc=yloc.price,
+                 size=size.tiny, textcolor=color.white, color=slot == 0 ? #0D5845 : #752B43))
             for edge = 0 to 1
-                float price = edge == 0 ? top : bottom
-                for layer = 0 to 1
-                    int index = slot * 4 + edge * 2 + layer
-                    line rail = array.get(lzRails, index)
-                    bool halo = layer == 0
-                    color railColor = color.new(ink, lzGlow ? (halo ? 77 : 9) : (halo ? 100 : 42))
-                    if na(rail)
-                        rail := line.new(known, price, right, price, xloc=xloc.bar_time,
-                             color=railColor, width=halo ? 5 : 2)
-                        array.set(lzRails, index, rail)
-                    line.set_xy1(rail, known, price)
-                    line.set_xy2(rail, right, price)
-                    line.set_color(rail, railColor)
-                    line.set_style(rail, touched ? line.style_solid : line.style_dotted)
-            if na(tag)
-                tag := label.new(right, near, xloc=xloc.bar_time, yloc=yloc.price,
-                     style=label.style_label_left, color=slot == 0 ? #0D5845 : #752B43,
-                     textcolor=color.white, size=size.small)
-                array.set(lzTags, slot, tag)
-            string labelText = (slot == 0 ? "◆ BUY DEMAND" : "◆ SELL SUPPLY") +
-                 (rejected ? " · REJECTION" : touched ? " · TOUCHED" : " · WATCH") +
-                 "\n" + str.tostring(near, format.mintick) + " – " + str.tostring(far, format.mintick)
-            label.set_xy(tag, right, slot == 0 ? bottom : top)
-            label.set_text(tag, labelText)
-            label.set_tooltip(tag, "RESEARCH ONLY · formed " +
-                 str.format_time(known, "yyyy-MM-dd HH:mm", "UTC") + " UTC\nNo S5 trade permission")
-        else
-            if not na(band)
-                box.set_top(band, na)
-                box.set_bottom(band, na)
-            if not na(highlight)
-                box.set_top(highlight, na)
-                box.set_bottom(highlight, na)
-            for j = 0 to 3
-                line rail = array.get(lzRails, slot * 4 + j)
-                if not na(rail)
-                    line.set_y1(rail, na)
-                    line.set_y2(rail, na)
-            if not na(tag)
-                label.set_y(tag, na)
+                array.push(lzHalos, line.new(time, na, time, na, xloc=xloc.bar_time, width=5))
+    int interval = tfSeconds * 1000
+    int asOf = rcReview ? rcReviewAt : nz(rcView.closed, time_close)
+    int projection = interval * (rcViewMobile ? 1 : lzExtend)
+    for slot = 0 to 1
+        LiteZone zone = array.get(lzZones, slot)
+        LiteZone other = array.get(lzZones, 1 - slot)
+        bool visible = not na(zone) and (not rcReview or rcReviewFound)
+        int known = visible ? zone.known : time
+        int right = visible ? math.max(known + 1, asOf + projection) : time
+        float top = visible ? math.max(zone.proximal, zone.distal) : na
+        float bottom = visible ? math.min(zone.proximal, zone.distal) : na
+        color ink = slot == 0 ? rcViewChartBuy : rcViewChartSell
+        box band = array.get(lzBands, slot)
+        f_rcViewZone(band, known, right, top, bottom, color.new(ink, lzGlow ? 88 : 94))
+        box.set_border_color(band, color.new(ink, lzGlow ? 10 : 58))
+        box.set_border_style(band, visible and zone.state > 0 ? line.style_solid : line.style_dotted)
+        int accentRight = math.min(right, asOf + interval)
+        f_rcViewZone(array.get(lzAccents, slot), math.max(known, accentRight - 2 * interval), accentRight,
+             top, bottom, color.new(ink, lzGlow ? 72 : 100))
+        // The crisp box edges and these wider rails share the exact same prices.
+        for edge = 0 to 1
+            line halo = array.get(lzHalos, slot * 2 + edge)
+            float price = edge == 0 ? top : bottom
+            line.set_xy1(halo, known, price)
+            line.set_xy2(halo, right, price)
+            line.set_color(halo, color.new(ink, lzGlow ? 72 : 100))
+        label tag = array.get(lzTags, slot)
+        label.set_y(tag, na)
+        if visible
+            bool upper = not na(other) and (zone.proximal + zone.distal > other.proximal + other.distal or
+                 (slot == 0 and zone.proximal + zone.distal == other.proximal + other.distal))
+            string side = slot == 0 ? "BUY" : "SELL"
+            string status = zone.state == 2 ? "REJECTION" : zone.state == 1 ? "TOUCHED" : "WATCH"
+            string prices = f_rcViewPrice(zone.proximal) + " – " + f_rcViewPrice(zone.distal)
+            label.set_style(tag, na(other) ? label.style_label_left :
+                 upper ? label.style_label_lower_left : label.style_label_upper_left)
+            label.set_xy(tag, right, na(other) ? zone.proximal : upper ? top : bottom)
+            label.set_text(tag, side + " ZONE · " + status + (rcViewMobile ? "" : "\n" + prices))
+            label.set_tooltip(tag, prices + "\nRESEARCH · " + f_rcViewUtc(known))
