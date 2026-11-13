@@ -1,0 +1,57 @@
+name: 369 research historical data export
+on:
+  push:
+    branches: [research/qirvanta-369-levels-validation]
+    paths: [.github/workflows/369-research-data-export.yml]
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Extract pinned OHLC journals only
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import csv, hashlib, io, json, pathlib, re, zipfile
+          from datetime import datetime, timezone
+          root=pathlib.Path('research/luminous_visual_v2/evidence/native-pairs.zip')
+          out=pathlib.Path('research-data-export'); out.mkdir()
+          manifest={'archive':str(root),'archive_sha256':hashlib.sha256(root.read_bytes()).hexdigest(),'datasets':{}}
+          with zipfile.ZipFile(root) as z:
+              for frame in (5,15,30):
+                  matches=[n for n in z.namelist() if pathlib.PurePosixPath(n).name==f'baseline-M{frame}.csv']
+                  if len(matches)!=1: raise ValueError(('missing baseline',frame,z.namelist()))
+                  raw=z.read(matches[0]); rows={}; conflicts=0
+                  for row in csv.reader(io.StringIO(raw.decode('utf-8-sig'))):
+                      for cell in row:
+                          pos=cell.find('DT_MARKET|')
+                          if pos<0: continue
+                          msg=cell[pos+10:].strip()
+                          obj=json.JSONDecoder().raw_decode(msg)[0]
+                          if obj.get('symbol')!='OANDA:XAUUSD' or int(obj['timeframe'])!=frame: continue
+                          t=int(obj['time']); tc=int(obj['time_close'])
+                          if tc>=1794528000000: continue
+                          bar=(t,tc,*[float(obj[k]) for k in ('open','high','low','close')])
+                          if t in rows and rows[t]!=bar: conflicts+=1
+                          rows[t]=bar
+                  if conflicts: raise ValueError(('conflicting duplicate OHLC',frame,conflicts))
+                  bars=sorted(rows.values())
+                  if not bars: raise ValueError(('empty OHLC',frame))
+                  dest=out/f'OANDA_XAUUSD_M{frame}.csv'
+                  with dest.open('w',newline='') as f:
+                      w=csv.writer(f);w.writerow(['time','time_close','open','high','low','close']);w.writerows(bars)
+                  manifest['datasets'][str(frame)]={'member':matches[0],'member_sha256':hashlib.sha256(raw).hexdigest(),'bars':len(bars),'first_open':datetime.fromtimestamp(bars[0][0]/1000,timezone.utc).isoformat(),'last_close':datetime.fromtimestamp(bars[-1][1]/1000,timezone.utc).isoformat(),'csv_sha256':hashlib.sha256(dest.read_bytes()).hexdigest()}
+          (out/'MANIFEST.json').write_text(json.dumps(manifest,indent=2))
+          print(json.dumps(manifest,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qirvanta-369-historical-ohlc
+          path: research-data-export/
+          retention-days: 7
+          if-no-files-found: error
