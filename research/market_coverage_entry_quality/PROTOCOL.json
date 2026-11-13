@@ -1,0 +1,30 @@
+{
+  "schema": "qirvanta.market-coverage-entry-quality.v1",
+  "visual_control": "37b903f46a2d878d9d0757da134620c22f2d067d",
+  "prior_study": "64235b9b78a88be019a7494944ba40b55ddb9ebb",
+  "dataset": "Pinned archival OANDA:XAUUSD M5, same 33 complete significant UTC hours and full eligible archive. Separate prior Visual V2 native Nov 11 window for source cross-check only.",
+  "classification": {
+    "early": "First same-side confirmed-bar observation known strictly before hour start and up to 15 minutes earlier.",
+    "in_hour": "Known at start or later, strictly before hour end. Report 0–15 minutes separately from later closes.",
+    "movement_clock": "Independent ex-post hour, existing V2.1 event criteria. Never passed into detection or execution.",
+    "matching": "A same-side observation assigned to its own significant hour takes precedence, even if it is also in the next significant hour's pre-window. Each observation can match at most one hour. Compare earliest qualifying evidence; do not count a Shadow FIRST_OBSERVED_ON_BREAK as an earlier WATCH.",
+    "false_warning_proxy": "New directional warning clocks outside an eligible same-side hour and its pre-window. Explicitly separate uncovered boundary or ineligible rows, repeated updates and actual losing executions."
+  },
+  "radar": {
+    "control": "Existing union of RC2 EARLY, Shadow WATCH and confirmed Shadow breaks, same-close per side deduplication. Report RC2 EARLY alone as an additional reference. S5 admitted times are a separate approved control, not a directional warning proxy.",
+    "state": "Keep confirmed direction through the existing linked Shadow retest lifecycle. Preserve identity (side, origin model, pivot source, level, breakout close) and source order. The retest expires/invalidates on its original terminal event. A risk rejection, non-fill, occupied slot or protected trade does not alter radar state.",
+    "continuation": "Audit only new confirmed Shadow consolidation breaks occurring strictly after a prior same-side confirmation with a live linked retest at that close, and confirmations of the linked retest itself. On a bar where that retest expires or invalidates, it cannot qualify another opportunity. Keep original geometry and all Shadow rejections. A later confirmation requires its own source event; carried state creates no warning, entry or alert. No independent new detector."
+  },
+  "entry_quality_gate": {
+    "policy_count": 1,
+    "geometry": "Use existing Shadow diagnostic candidate only, including its fixed structural stop and TP1–TP3. Reject unknown opposing barrier. Recheck at the next contiguous open on executable quotes: no open through stop or TP1, original <=0.20 ATR absolute open repricing, <=2.50 ATR initial midpoint risk and >=0.25 ATR, <=1.00 ATR extension from the frozen level, max estimated friction 0.30R and net room >=0.70R. Net room uses min(TP1 distance, distance to actual known obstacle) less one modeled round trip, divided by midpoint risk. Original $250 cash risk and $100000 notional limits. Do not substitute an obstacle or enter later after a rejection.",
+    "costs": "Reuse direct_breakout_research BASE and STRESS. Keep entry and exit quotes, slippage, commission and all-in R denominator from its shared simulator, including stop-first ambiguous intrabar execution. First mark is at the observed close; no intrabar equity claim.",
+    "occupancy": "One research position. Record the independent counterfactual for any same-bar collision, protected or research slot. For the protected-priority lane, reserve around both the fixed native S5 submission/terminal intervals and the same-scenario replay of those same admitted plans. If a protected slot begins later, close residual research at the next available opening exit quote with adverse slippage and commission (SL_GAP if the opening quote crossed the fixed stop). Never displace S5. Compare in common cash units and separately report each lane's all-in R."
+  },
+  "acceptance": {
+    "observation": "Require positive incremental pre-hour coverage or earlier median first observation compared with the existing union, without increasing the eligible false-warning count. Clear lifecycle interpretation alone does not establish earlier recognition.",
+    "execution": "Report archived results only. Any promotion requires independent unseen OOS, positive incremental stressed expectancy with comparable risk and no worse drawdown or losing tail.",
+    "pine": "Consider an isolated presentation change only when observational acceptance is met. No compiler submission for an unsupported change.",
+    "protected_data": "Do not load any market data at or beyond the protected GOLD PRO forward start. No historical parameter selection."
+  }
+}
