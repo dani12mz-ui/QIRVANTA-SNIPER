@@ -1,0 +1,39 @@
+{
+  "schema": "qirvanta.coverage-data-readiness.v1",
+  "baseline": {
+    "commit": "37b903f46a2d878d9d0757da134620c22f2d067d",
+    "pine": "research/luminous_visual_v2/QIRVANTA_GOLD_PRO_VISUAL_V2.pine",
+    "sha256": "77feedcbef84e77b9270ec43840be5b823d838300d0a09d5ddb4fec7acc089f4"
+  },
+  "symbol": "OANDA:XAUUSD",
+  "market_clock": "UTC milliseconds, confirmed candle opens/ends, standard chart candles",
+  "partition": {
+    "development": "All registered previously examined M5/M15 OHLC, older native strategy tapes and Visual V2 native warmup/audit, classified together as already seen. This run uses the existing event definition and no candidate selection.",
+    "untouched_test": {
+      "state": "NOT_AVAILABLE",
+      "assigned_bars": 0,
+      "admission": "Independent custody and proof that neither outcomes nor candidate evaluations in this chronological window previously entered model selection. Record source/date/hash before looking at test outcomes. Use an earlier contiguous source prefix for warmup only. A provider change alone does not make previously scored dates independent.",
+      "prospective_dates": "To be reserved independently alongside an actual data source. Exclude all prior registered or reserved evaluation windows before ingestion."
+    },
+    "excluded": [
+      {"label": "Original GOLD PRO", "start_utc": "2026-11-16T00:00:00Z", "end_exclusive_utc": "2027-01-11T00:00:00Z"},
+      {"label": "Precision Entry", "start_utc": "2027-01-12T00:00:00Z", "end_exclusive_utc": "2027-03-01T00:00:00Z"},
+      {"label": "Professional Selector", "start_utc": "2027-02-01T00:00:00Z", "end_exclusive_utc": "2027-05-01T00:00:00Z"}
+    ],
+    "precision_zones": "Its protocol gives prospective testing no earlier than 2027-05-01 without a dated interval. Resolve any reservation before assigning future test dates."
+  },
+  "controls": {
+    "native": "Visual V2 exact source. Score protected state, native RAW PAPER and observations only within the published time-bounded journal. Never substitute the older S5 strategy tape for current native results.",
+    "archival": "Older admitted S5 native strategy on matched M5/M15 development data. Retain every original campaign, order and fill. Unknown unsubmitted decisions remain unknown. Quote-side accounting uses the existing chronological simulator, separately from native results.",
+    "same_model_risk": "For any future candidate, same verified risk budget, available capital and one-slot policy in both lanes. Recompute the full ledger, including releases, loss days and displaced candidates. No candidate in this run.",
+    "normal_cost_scenario": {"spread_price_usd": 0.35, "slippage_ticks_per_market_or_stop": 2, "commission_usd_per_unit_per_side": 0.175},
+    "stress_cost_scenario": {"spread_price_usd": 0.7, "slippage_ticks_per_market_or_stop": 5, "commission_usd_per_unit_per_side": 0.2625},
+    "fees_scope": "Comparison scenarios already registered in prior studies, not broker tariff or fills. Use actual historical bid/ask if licensed, then separately add substantiated commissions, slippage and any financing. Do not add the quoted spread again."
+  },
+  "data_checks": [
+    "Pin source bytes, retain complete candles, verify instrument, UTC open/close, monotonic time, OHLC envelopes and exact source overlaps.",
+    "Compare independently exported M15 to each observed complete set of three native M5 bars. Never use higher timeframe prices to fill M5 gaps.",
+    "Keep gaps, list exceptions and local session boundaries, and quarantine source conflicts. Require the exact source and warmup for the current S5/RC2 ledger.",
+    "No download from or access to sealed observations in this data-readiness run."
+  ]
+}

@@ -1,0 +1,3280 @@
+{
+  "common_market": {
+    "complete_m5_triplets_without_native_m15": [],
+    "days_elapsed": 31.927083333333332,
+    "exact_m15_bars": 2201,
+    "first_open_utc": "2026-10-11T22:00:00Z",
+    "last_close_utc": "2026-11-12T20:15:00Z",
+    "m15_without_all_three_m5": 0
+  },
+  "current_visual_v2_native": {
+    "frames": {
+      "M15": {
+        "audited_closes": 71,
+        "candidate_csv_sha256": "a7cf2c08e57f34690157718e988d64200106e509a2a903f21c14d0635ff19688",
+        "core_ready_and_legacy_alerts": {
+          "alerts": 19,
+          "core": 20,
+          "ready": 2
+        },
+        "early_observations": 6,
+        "first_audited_open_utc": "2026-11-10T23:45:00Z",
+        "historical_market_and_shadow_bars": 1222,
+        "last_audited_close_utc": "2026-11-11T17:30:00Z",
+        "luminous_events": 13,
+        "raw_paper_execution_events": 6,
+        "raw_paper_final_r": {
+          "capacity_skipped": 1,
+          "closed": 2,
+          "costs": "0.05380326",
+          "drawdown": "1.03082818",
+          "entered": 2,
+          "gains": "0.98827449",
+          "gross": "0.01124957",
+          "losses": "1.03082818",
+          "net": "-0.04255369"
+        }
+      },
+      "M5": {
+        "audited_closes": 211,
+        "candidate_csv_sha256": "95f660d2a662d9c6e5299e6dc496ac31d55af950c8ab6770a566313a32e7670c",
+        "core_ready_and_legacy_alerts": {
+          "alerts": 44,
+          "core": 42,
+          "ready": 6
+        },
+        "early_observations": 17,
+        "first_audited_open_utc": "2026-11-10T23:55:00Z",
+        "historical_market_and_shadow_bars": 1222,
+        "last_audited_close_utc": "2026-11-11T17:30:00Z",
+        "luminous_events": 66,
+        "raw_paper_execution_events": 32,
+        "raw_paper_final_r": {
+          "capacity_skipped": 0,
+          "closed": 8,
+          "costs": "0.75063479",
+          "drawdown": "2.98907829",
+          "entered": 8,
+          "gains": "4.23790737",
+          "gross": "-0.48035874",
+          "losses": "5.46890091",
+          "net": "-1.23099353"
+        }
+      }
+    },
+    "pine_sha256": "77feedcbef84e77b9270ec43840be5b823d838300d0a09d5ddb4fec7acc089f4",
+    "status": "EXACT_ARCHIVED_NATIVE_PARITY"
+  },
+  "earlier_rc2_strategy_native": {
+    "archive_sha256": "a058bd9789bf9f5d258a08316217f3bebc8b9951460ee0c499aae848c761813a",
+    "frames": {
+      "M15": {
+        "audited_closes": 1172,
+        "core_and_ready_match": true,
+        "first_open_utc": "2026-10-23T11:00:00Z",
+        "last_close_utc": "2026-11-11T06:00:00Z",
+        "rc2_fixed_strategy": {
+          "actual_partial_commission_usd": 2.0999999999999996,
+          "mean_emulator_partial_drawdown_usd": 12.2745,
+          "mean_emulator_partial_runup_usd": 14.606166666666667,
+          "native_lifecycle_anomalies": [],
+          "native_strategy_properties": {
+            "campaign_count": 2,
+            "closed_parts": 6,
+            "currency": "USD",
+            "first_open_ms": 1792753200000,
+            "grossloss": 35.511,
+            "grossprofit": 47.841,
+            "initial_capital": 100000,
+            "last_close_ms": 1794376800000,
+            "loss_parts": 3,
+            "max_drawdown": 38.661,
+            "mode": "RC2 Fixed SL",
+            "netprofit": 12.33,
+            "openprofit": 0,
+            "position_size": 0,
+            "symbol": "OANDA:XAUUSD",
+            "timeframe": "15",
+            "win_parts": 3
+          },
+          "states": {
+            "ENTRY": 2,
+            "EXIT": 2,
+            "SL": 3,
+            "TP1": 1,
+            "TP2": 1
+          },
+          "status": "VERIFIED"
+        },
+        "s5_raw_strategy": {
+          "actual_partial_commission_usd": 2.0999999999999996,
+          "mean_emulator_partial_drawdown_usd": 12.2745,
+          "mean_emulator_partial_runup_usd": 14.606166666666667,
+          "native_lifecycle_anomalies": [],
+          "native_strategy_properties": {
+            "campaign_count": 2,
+            "closed_parts": 6,
+            "currency": "USD",
+            "first_open_ms": 1792753200000,
+            "grossloss": 35.511,
+            "grossprofit": 45.688,
+            "initial_capital": 100000,
+            "last_close_ms": 1794376800000,
+            "loss_parts": 3,
+            "max_drawdown": 38.661,
+            "mode": "S5 RAW Parity",
+            "netprofit": 10.177,
+            "openprofit": 0,
+            "position_size": 0,
+            "symbol": "OANDA:XAUUSD",
+            "timeframe": "15",
+            "win_parts": 3
+          },
+          "states": {
+            "ENTRY": 2,
+            "EXIT": 2,
+            "PROFIT_LOCK": 1,
+            "SL": 4,
+            "TP1": 1,
+            "TP2": 1
+          },
+          "status": "VERIFIED"
+        }
+      },
+      "M5": {
+        "audited_closes": 1116,
+        "core_and_ready_match": true,
+        "first_open_utc": "2026-11-05T05:00:00Z",
+        "last_close_utc": "2026-11-11T06:00:00Z",
+        "rc2_fixed_strategy": {
+          "actual_partial_commission_usd": 8.399999999999999,
+          "mean_emulator_partial_drawdown_usd": 2.941,
+          "mean_emulator_partial_runup_usd": 6.013916666666667,
+          "native_lifecycle_anomalies": [],
+          "native_strategy_properties": {
+            "campaign_count": 8,
+            "closed_parts": 24,
+            "currency": "USD",
+            "first_open_ms": 1793854800000,
+            "grossloss": 47.513,
+            "grossprofit": 103.924,
+            "initial_capital": 100000,
+            "last_close_ms": 1794376800000,
+            "loss_parts": 11,
+            "max_drawdown": 31.044,
+            "mode": "RC2 Fixed SL",
+            "netprofit": 56.411,
+            "openprofit": 0.474,
+            "position_size": -3,
+            "symbol": "OANDA:XAUUSD",
+            "timeframe": "5",
+            "win_parts": 13
+          },
+          "states": {
+            "ENTRY": 9,
+            "EXIT": 8,
+            "SL": 11,
+            "TP1": 5,
+            "TP2": 4,
+            "TP3": 3
+          },
+          "status": "VERIFIED"
+        },
+        "s5_raw_strategy": {
+          "actual_partial_commission_usd": 8.399999999999999,
+          "mean_emulator_partial_drawdown_usd": 2.85475,
+          "mean_emulator_partial_runup_usd": 5.417458333333333,
+          "native_lifecycle_anomalies": [],
+          "native_strategy_properties": {
+            "campaign_count": 8,
+            "closed_parts": 24,
+            "currency": "USD",
+            "first_open_ms": 1793854800000,
+            "grossloss": 38.829,
+            "grossprofit": 71.123,
+            "initial_capital": 100000,
+            "last_close_ms": 1794376800000,
+            "loss_parts": 13,
+            "max_drawdown": 31.044,
+            "mode": "S5 RAW Parity",
+            "netprofit": 32.294,
+            "openprofit": 0.474,
+            "position_size": -3,
+            "symbol": "OANDA:XAUUSD",
+            "timeframe": "5",
+            "win_parts": 11
+          },
+          "states": {
+            "ENTRY": 9,
+            "EXIT": 8,
+            "PROFIT_LOCK": 5,
+            "SL": 13,
+            "TP1": 5,
+            "TP2": 3,
+            "TP3": 2
+          },
+          "status": "VERIFIED"
+        }
+      }
+    },
+    "scope": "Earlier RC2 strategy build, distinct from current indicator RAW PAPER."
+  },
+  "frames": {
+    "M15": {
+      "confirmed_native_repeat_rows_preserved_as_one": 0,
+      "exact_overlap": 876,
+      "merged": {
+        "bars": 6791,
+        "days_elapsed": 101.92708333333333,
+        "first_open_utc": "2026-08-02T22:00:00Z",
+        "gap_counts": {
+          "REGULAR_SESSION_BOUNDARY:60m": 58,
+          "UNVERIFIED_OR_SPECIAL_SESSION_GAP:210m": 1,
+          "WEEKEND_SESSION_BOUNDARY:2940m": 13,
+          "WEEKEND_SESSION_BOUNDARY:3000m": 1
+        },
+        "gap_details": [
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-03T18:00:00-04:00",
+            "next_open_utc": "2026-08-03T22:00:00Z",
+            "previous_close_ny": "2026-08-03T17:00:00-04:00",
+            "previous_close_utc": "2026-08-03T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-04T18:00:00-04:00",
+            "next_open_utc": "2026-08-04T22:00:00Z",
+            "previous_close_ny": "2026-08-04T17:00:00-04:00",
+            "previous_close_utc": "2026-08-04T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-05T18:00:00-04:00",
+            "next_open_utc": "2026-08-05T22:00:00Z",
+            "previous_close_ny": "2026-08-05T17:00:00-04:00",
+            "previous_close_utc": "2026-08-05T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-06T18:00:00-04:00",
+            "next_open_utc": "2026-08-06T22:00:00Z",
+            "previous_close_ny": "2026-08-06T17:00:00-04:00",
+            "previous_close_utc": "2026-08-06T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-08-09T18:00:00-04:00",
+            "next_open_utc": "2026-08-09T22:00:00Z",
+            "previous_close_ny": "2026-08-07T17:00:00-04:00",
+            "previous_close_utc": "2026-08-07T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-10T18:00:00-04:00",
+            "next_open_utc": "2026-08-10T22:00:00Z",
+            "previous_close_ny": "2026-08-10T17:00:00-04:00",
+            "previous_close_utc": "2026-08-10T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-11T18:00:00-04:00",
+            "next_open_utc": "2026-08-11T22:00:00Z",
+            "previous_close_ny": "2026-08-11T17:00:00-04:00",
+            "previous_close_utc": "2026-08-11T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-12T18:00:00-04:00",
+            "next_open_utc": "2026-08-12T22:00:00Z",
+            "previous_close_ny": "2026-08-12T17:00:00-04:00",
+            "previous_close_utc": "2026-08-12T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-13T18:00:00-04:00",
+            "next_open_utc": "2026-08-13T22:00:00Z",
+            "previous_close_ny": "2026-08-13T17:00:00-04:00",
+            "previous_close_utc": "2026-08-13T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-08-16T18:00:00-04:00",
+            "next_open_utc": "2026-08-16T22:00:00Z",
+            "previous_close_ny": "2026-08-14T17:00:00-04:00",
+            "previous_close_utc": "2026-08-14T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-17T18:00:00-04:00",
+            "next_open_utc": "2026-08-17T22:00:00Z",
+            "previous_close_ny": "2026-08-17T17:00:00-04:00",
+            "previous_close_utc": "2026-08-17T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-18T18:00:00-04:00",
+            "next_open_utc": "2026-08-18T22:00:00Z",
+            "previous_close_ny": "2026-08-18T17:00:00-04:00",
+            "previous_close_utc": "2026-08-18T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-19T18:00:00-04:00",
+            "next_open_utc": "2026-08-19T22:00:00Z",
+            "previous_close_ny": "2026-08-19T17:00:00-04:00",
+            "previous_close_utc": "2026-08-19T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-20T18:00:00-04:00",
+            "next_open_utc": "2026-08-20T22:00:00Z",
+            "previous_close_ny": "2026-08-20T17:00:00-04:00",
+            "previous_close_utc": "2026-08-20T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-08-23T18:00:00-04:00",
+            "next_open_utc": "2026-08-23T22:00:00Z",
+            "previous_close_ny": "2026-08-21T17:00:00-04:00",
+            "previous_close_utc": "2026-08-21T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-24T18:00:00-04:00",
+            "next_open_utc": "2026-08-24T22:00:00Z",
+            "previous_close_ny": "2026-08-24T17:00:00-04:00",
+            "previous_close_utc": "2026-08-24T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-25T18:00:00-04:00",
+            "next_open_utc": "2026-08-25T22:00:00Z",
+            "previous_close_ny": "2026-08-25T17:00:00-04:00",
+            "previous_close_utc": "2026-08-25T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-26T18:00:00-04:00",
+            "next_open_utc": "2026-08-26T22:00:00Z",
+            "previous_close_ny": "2026-08-26T17:00:00-04:00",
+            "previous_close_utc": "2026-08-26T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-27T18:00:00-04:00",
+            "next_open_utc": "2026-08-27T22:00:00Z",
+            "previous_close_ny": "2026-08-27T17:00:00-04:00",
+            "previous_close_utc": "2026-08-27T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-08-30T18:00:00-04:00",
+            "next_open_utc": "2026-08-30T22:00:00Z",
+            "previous_close_ny": "2026-08-28T17:00:00-04:00",
+            "previous_close_utc": "2026-08-28T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-31T18:00:00-04:00",
+            "next_open_utc": "2026-08-31T22:00:00Z",
+            "previous_close_ny": "2026-08-31T17:00:00-04:00",
+            "previous_close_utc": "2026-08-31T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-01T18:00:00-04:00",
+            "next_open_utc": "2026-09-01T22:00:00Z",
+            "previous_close_ny": "2026-09-01T17:00:00-04:00",
+            "previous_close_utc": "2026-09-01T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-02T18:00:00-04:00",
+            "next_open_utc": "2026-09-02T22:00:00Z",
+            "previous_close_ny": "2026-09-02T17:00:00-04:00",
+            "previous_close_utc": "2026-09-02T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-03T18:00:00-04:00",
+            "next_open_utc": "2026-09-03T22:00:00Z",
+            "previous_close_ny": "2026-09-03T17:00:00-04:00",
+            "previous_close_utc": "2026-09-03T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-09-06T18:00:00-04:00",
+            "next_open_utc": "2026-09-06T22:00:00Z",
+            "previous_close_ny": "2026-09-04T17:00:00-04:00",
+            "previous_close_utc": "2026-09-04T21:00:00Z"
+          },
+          {
+            "classification": "UNVERIFIED_OR_SPECIAL_SESSION_GAP",
+            "minutes": 210,
+            "next_open_ny": "2026-09-07T18:00:00-04:00",
+            "next_open_utc": "2026-09-07T22:00:00Z",
+            "previous_close_ny": "2026-09-07T14:30:00-04:00",
+            "previous_close_utc": "2026-09-07T18:30:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-08T18:00:00-04:00",
+            "next_open_utc": "2026-09-08T22:00:00Z",
+            "previous_close_ny": "2026-09-08T17:00:00-04:00",
+            "previous_close_utc": "2026-09-08T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-09T18:00:00-04:00",
+            "next_open_utc": "2026-09-09T22:00:00Z",
+            "previous_close_ny": "2026-09-09T17:00:00-04:00",
+            "previous_close_utc": "2026-09-09T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-10T18:00:00-04:00",
+            "next_open_utc": "2026-09-10T22:00:00Z",
+            "previous_close_ny": "2026-09-10T17:00:00-04:00",
+            "previous_close_utc": "2026-09-10T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-09-13T18:00:00-04:00",
+            "next_open_utc": "2026-09-13T22:00:00Z",
+            "previous_close_ny": "2026-09-11T17:00:00-04:00",
+            "previous_close_utc": "2026-09-11T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-14T18:00:00-04:00",
+            "next_open_utc": "2026-09-14T22:00:00Z",
+            "previous_close_ny": "2026-09-14T17:00:00-04:00",
+            "previous_close_utc": "2026-09-14T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-15T18:00:00-04:00",
+            "next_open_utc": "2026-09-15T22:00:00Z",
+            "previous_close_ny": "2026-09-15T17:00:00-04:00",
+            "previous_close_utc": "2026-09-15T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-16T18:00:00-04:00",
+            "next_open_utc": "2026-09-16T22:00:00Z",
+            "previous_close_ny": "2026-09-16T17:00:00-04:00",
+            "previous_close_utc": "2026-09-16T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-17T18:00:00-04:00",
+            "next_open_utc": "2026-09-17T22:00:00Z",
+            "previous_close_ny": "2026-09-17T17:00:00-04:00",
+            "previous_close_utc": "2026-09-17T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-09-20T18:00:00-04:00",
+            "next_open_utc": "2026-09-20T22:00:00Z",
+            "previous_close_ny": "2026-09-18T17:00:00-04:00",
+            "previous_close_utc": "2026-09-18T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-21T18:00:00-04:00",
+            "next_open_utc": "2026-09-21T22:00:00Z",
+            "previous_close_ny": "2026-09-21T17:00:00-04:00",
+            "previous_close_utc": "2026-09-21T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-22T18:00:00-04:00",
+            "next_open_utc": "2026-09-22T22:00:00Z",
+            "previous_close_ny": "2026-09-22T17:00:00-04:00",
+            "previous_close_utc": "2026-09-22T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-23T18:00:00-04:00",
+            "next_open_utc": "2026-09-23T22:00:00Z",
+            "previous_close_ny": "2026-09-23T17:00:00-04:00",
+            "previous_close_utc": "2026-09-23T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-24T18:00:00-04:00",
+            "next_open_utc": "2026-09-24T22:00:00Z",
+            "previous_close_ny": "2026-09-24T17:00:00-04:00",
+            "previous_close_utc": "2026-09-24T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-09-27T18:00:00-04:00",
+            "next_open_utc": "2026-09-27T22:00:00Z",
+            "previous_close_ny": "2026-09-25T17:00:00-04:00",
+            "previous_close_utc": "2026-09-25T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-28T18:00:00-04:00",
+            "next_open_utc": "2026-09-28T22:00:00Z",
+            "previous_close_ny": "2026-09-28T17:00:00-04:00",
+            "previous_close_utc": "2026-09-28T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-29T18:00:00-04:00",
+            "next_open_utc": "2026-09-29T22:00:00Z",
+            "previous_close_ny": "2026-09-29T17:00:00-04:00",
+            "previous_close_utc": "2026-09-29T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-30T18:00:00-04:00",
+            "next_open_utc": "2026-09-30T22:00:00Z",
+            "previous_close_ny": "2026-09-30T17:00:00-04:00",
+            "previous_close_utc": "2026-09-30T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-01T18:00:00-04:00",
+            "next_open_utc": "2026-10-01T22:00:00Z",
+            "previous_close_ny": "2026-10-01T17:00:00-04:00",
+            "previous_close_utc": "2026-10-01T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-10-04T18:00:00-04:00",
+            "next_open_utc": "2026-10-04T22:00:00Z",
+            "previous_close_ny": "2026-10-02T17:00:00-04:00",
+            "previous_close_utc": "2026-10-02T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-05T18:00:00-04:00",
+            "next_open_utc": "2026-10-05T22:00:00Z",
+            "previous_close_ny": "2026-10-05T17:00:00-04:00",
+            "previous_close_utc": "2026-10-05T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-06T18:00:00-04:00",
+            "next_open_utc": "2026-10-06T22:00:00Z",
+            "previous_close_ny": "2026-10-06T17:00:00-04:00",
+            "previous_close_utc": "2026-10-06T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-07T18:00:00-04:00",
+            "next_open_utc": "2026-10-07T22:00:00Z",
+            "previous_close_ny": "2026-10-07T17:00:00-04:00",
+            "previous_close_utc": "2026-10-07T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-08T18:00:00-04:00",
+            "next_open_utc": "2026-10-08T22:00:00Z",
+            "previous_close_ny": "2026-10-08T17:00:00-04:00",
+            "previous_close_utc": "2026-10-08T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-10-11T18:00:00-04:00",
+            "next_open_utc": "2026-10-11T22:00:00Z",
+            "previous_close_ny": "2026-10-09T17:00:00-04:00",
+            "previous_close_utc": "2026-10-09T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-12T18:00:00-04:00",
+            "next_open_utc": "2026-10-12T22:00:00Z",
+            "previous_close_ny": "2026-10-12T17:00:00-04:00",
+            "previous_close_utc": "2026-10-12T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-13T18:00:00-04:00",
+            "next_open_utc": "2026-10-13T22:00:00Z",
+            "previous_close_ny": "2026-10-13T17:00:00-04:00",
+            "previous_close_utc": "2026-10-13T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-14T18:00:00-04:00",
+            "next_open_utc": "2026-10-14T22:00:00Z",
+            "previous_close_ny": "2026-10-14T17:00:00-04:00",
+            "previous_close_utc": "2026-10-14T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-15T18:00:00-04:00",
+            "next_open_utc": "2026-10-15T22:00:00Z",
+            "previous_close_ny": "2026-10-15T17:00:00-04:00",
+            "previous_close_utc": "2026-10-15T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-10-18T18:00:00-04:00",
+            "next_open_utc": "2026-10-18T22:00:00Z",
+            "previous_close_ny": "2026-10-16T17:00:00-04:00",
+            "previous_close_utc": "2026-10-16T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-19T18:00:00-04:00",
+            "next_open_utc": "2026-10-19T22:00:00Z",
+            "previous_close_ny": "2026-10-19T17:00:00-04:00",
+            "previous_close_utc": "2026-10-19T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-20T18:00:00-04:00",
+            "next_open_utc": "2026-10-20T22:00:00Z",
+            "previous_close_ny": "2026-10-20T17:00:00-04:00",
+            "previous_close_utc": "2026-10-20T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-21T18:00:00-04:00",
+            "next_open_utc": "2026-10-21T22:00:00Z",
+            "previous_close_ny": "2026-10-21T17:00:00-04:00",
+            "previous_close_utc": "2026-10-21T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-22T18:00:00-04:00",
+            "next_open_utc": "2026-10-22T22:00:00Z",
+            "previous_close_ny": "2026-10-22T17:00:00-04:00",
+            "previous_close_utc": "2026-10-22T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-10-25T18:00:00-04:00",
+            "next_open_utc": "2026-10-25T22:00:00Z",
+            "previous_close_ny": "2026-10-23T17:00:00-04:00",
+            "previous_close_utc": "2026-10-23T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-26T18:00:00-04:00",
+            "next_open_utc": "2026-10-26T22:00:00Z",
+            "previous_close_ny": "2026-10-26T17:00:00-04:00",
+            "previous_close_utc": "2026-10-26T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-27T18:00:00-04:00",
+            "next_open_utc": "2026-10-27T22:00:00Z",
+            "previous_close_ny": "2026-10-27T17:00:00-04:00",
+            "previous_close_utc": "2026-10-27T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-28T18:00:00-04:00",
+            "next_open_utc": "2026-10-28T22:00:00Z",
+            "previous_close_ny": "2026-10-28T17:00:00-04:00",
+            "previous_close_utc": "2026-10-28T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-29T18:00:00-04:00",
+            "next_open_utc": "2026-10-29T22:00:00Z",
+            "previous_close_ny": "2026-10-29T17:00:00-04:00",
+            "previous_close_utc": "2026-10-29T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 3000,
+            "next_open_ny": "2026-11-01T18:00:00-05:00",
+            "next_open_utc": "2026-11-01T23:00:00Z",
+            "previous_close_ny": "2026-10-30T17:00:00-04:00",
+            "previous_close_utc": "2026-10-30T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-02T18:00:00-05:00",
+            "next_open_utc": "2026-11-02T23:00:00Z",
+            "previous_close_ny": "2026-11-02T17:00:00-05:00",
+            "previous_close_utc": "2026-11-02T22:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-03T18:00:00-05:00",
+            "next_open_utc": "2026-11-03T23:00:00Z",
+            "previous_close_ny": "2026-11-03T17:00:00-05:00",
+            "previous_close_utc": "2026-11-03T22:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-04T18:00:00-05:00",
+            "next_open_utc": "2026-11-04T23:00:00Z",
+            "previous_close_ny": "2026-11-04T17:00:00-05:00",
+            "previous_close_utc": "2026-11-04T22:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-05T18:00:00-05:00",
+            "next_open_utc": "2026-11-05T23:00:00Z",
+            "previous_close_ny": "2026-11-05T17:00:00-05:00",
+            "previous_close_utc": "2026-11-05T22:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-11-08T18:00:00-05:00",
+            "next_open_utc": "2026-11-08T23:00:00Z",
+            "previous_close_ny": "2026-11-06T17:00:00-05:00",
+            "previous_close_utc": "2026-11-06T22:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-09T18:00:00-05:00",
+            "next_open_utc": "2026-11-09T23:00:00Z",
+            "previous_close_ny": "2026-11-09T17:00:00-05:00",
+            "previous_close_utc": "2026-11-09T22:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-10T18:00:00-05:00",
+            "next_open_utc": "2026-11-10T23:00:00Z",
+            "previous_close_ny": "2026-11-10T17:00:00-05:00",
+            "previous_close_utc": "2026-11-10T22:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-11T18:00:00-05:00",
+            "next_open_utc": "2026-11-11T23:00:00Z",
+            "previous_close_ny": "2026-11-11T17:00:00-05:00",
+            "previous_close_utc": "2026-11-11T22:00:00Z"
+          }
+        ],
+        "last_close_utc": "2026-11-12T20:15:00Z"
+      },
+      "native_additions": 346,
+      "native_historical_parity_end_utc": "2026-11-12T20:15:00Z",
+      "native_tail": {
+        "bars": 1222,
+        "days_elapsed": 17.3125,
+        "first_open_utc": "2026-10-26T12:45:00Z",
+        "gap_counts": {
+          "REGULAR_SESSION_BOUNDARY:60m": 11,
+          "WEEKEND_SESSION_BOUNDARY:2940m": 1,
+          "WEEKEND_SESSION_BOUNDARY:3000m": 1
+        },
+        "gap_details": [
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-26T18:00:00-04:00",
+            "next_open_utc": "2026-10-26T22:00:00Z",
+            "previous_close_ny": "2026-10-26T17:00:00-04:00",
+            "previous_close_utc": "2026-10-26T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-27T18:00:00-04:00",
+            "next_open_utc": "2026-10-27T22:00:00Z",
+            "previous_close_ny": "2026-10-27T17:00:00-04:00",
+            "previous_close_utc": "2026-10-27T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-28T18:00:00-04:00",
+            "next_open_utc": "2026-10-28T22:00:00Z",
+            "previous_close_ny": "2026-10-28T17:00:00-04:00",
+            "previous_close_utc": "2026-10-28T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-29T18:00:00-04:00",
+            "next_open_utc": "2026-10-29T22:00:00Z",
+            "previous_close_ny": "2026-10-29T17:00:00-04:00",
+            "previous_close_utc": "2026-10-29T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 3000,
+            "next_open_ny": "2026-11-01T18:00:00-05:00",
+            "next_open_utc": "2026-11-01T23:00:00Z",
+            "previous_close_ny": "2026-10-30T17:00:00-04:00",
+            "previous_close_utc": "2026-10-30T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-02T18:00:00-05:00",
+            "next_open_utc": "2026-11-02T23:00:00Z",
+            "previous_close_ny": "2026-11-02T17:00:00-05:00",
+            "previous_close_utc": "2026-11-02T22:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-03T18:00:00-05:00",
+            "next_open_utc": "2026-11-03T23:00:00Z",
+            "previous_close_ny": "2026-11-03T17:00:00-05:00",
+            "previous_close_utc": "2026-11-03T22:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-04T18:00:00-05:00",
+            "next_open_utc": "2026-11-04T23:00:00Z",
+            "previous_close_ny": "2026-11-04T17:00:00-05:00",
+            "previous_close_utc": "2026-11-04T22:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-05T18:00:00-05:00",
+            "next_open_utc": "2026-11-05T23:00:00Z",
+            "previous_close_ny": "2026-11-05T17:00:00-05:00",
+            "previous_close_utc": "2026-11-05T22:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-11-08T18:00:00-05:00",
+            "next_open_utc": "2026-11-08T23:00:00Z",
+            "previous_close_ny": "2026-11-06T17:00:00-05:00",
+            "previous_close_utc": "2026-11-06T22:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-09T18:00:00-05:00",
+            "next_open_utc": "2026-11-09T23:00:00Z",
+            "previous_close_ny": "2026-11-09T17:00:00-05:00",
+            "previous_close_utc": "2026-11-09T22:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-10T18:00:00-05:00",
+            "next_open_utc": "2026-11-10T23:00:00Z",
+            "previous_close_ny": "2026-11-10T17:00:00-05:00",
+            "previous_close_utc": "2026-11-10T22:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-11T18:00:00-05:00",
+            "next_open_utc": "2026-11-11T23:00:00Z",
+            "previous_close_ny": "2026-11-11T17:00:00-05:00",
+            "previous_close_utc": "2026-11-11T22:00:00Z"
+          }
+        ],
+        "last_close_utc": "2026-11-12T20:15:00Z"
+      },
+      "registered": {
+        "bars": 6445,
+        "days_elapsed": 98.19791666666667,
+        "first_open_utc": "2026-08-02T22:00:00Z",
+        "gap_counts": {
+          "REGULAR_SESSION_BOUNDARY:60m": 55,
+          "UNVERIFIED_OR_SPECIAL_SESSION_GAP:210m": 1,
+          "WEEKEND_SESSION_BOUNDARY:2940m": 13,
+          "WEEKEND_SESSION_BOUNDARY:3000m": 1
+        },
+        "gap_details": [
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-03T18:00:00-04:00",
+            "next_open_utc": "2026-08-03T22:00:00Z",
+            "previous_close_ny": "2026-08-03T17:00:00-04:00",
+            "previous_close_utc": "2026-08-03T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-04T18:00:00-04:00",
+            "next_open_utc": "2026-08-04T22:00:00Z",
+            "previous_close_ny": "2026-08-04T17:00:00-04:00",
+            "previous_close_utc": "2026-08-04T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-05T18:00:00-04:00",
+            "next_open_utc": "2026-08-05T22:00:00Z",
+            "previous_close_ny": "2026-08-05T17:00:00-04:00",
+            "previous_close_utc": "2026-08-05T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-06T18:00:00-04:00",
+            "next_open_utc": "2026-08-06T22:00:00Z",
+            "previous_close_ny": "2026-08-06T17:00:00-04:00",
+            "previous_close_utc": "2026-08-06T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-08-09T18:00:00-04:00",
+            "next_open_utc": "2026-08-09T22:00:00Z",
+            "previous_close_ny": "2026-08-07T17:00:00-04:00",
+            "previous_close_utc": "2026-08-07T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-10T18:00:00-04:00",
+            "next_open_utc": "2026-08-10T22:00:00Z",
+            "previous_close_ny": "2026-08-10T17:00:00-04:00",
+            "previous_close_utc": "2026-08-10T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-11T18:00:00-04:00",
+            "next_open_utc": "2026-08-11T22:00:00Z",
+            "previous_close_ny": "2026-08-11T17:00:00-04:00",
+            "previous_close_utc": "2026-08-11T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-12T18:00:00-04:00",
+            "next_open_utc": "2026-08-12T22:00:00Z",
+            "previous_close_ny": "2026-08-12T17:00:00-04:00",
+            "previous_close_utc": "2026-08-12T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-13T18:00:00-04:00",
+            "next_open_utc": "2026-08-13T22:00:00Z",
+            "previous_close_ny": "2026-08-13T17:00:00-04:00",
+            "previous_close_utc": "2026-08-13T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-08-16T18:00:00-04:00",
+            "next_open_utc": "2026-08-16T22:00:00Z",
+            "previous_close_ny": "2026-08-14T17:00:00-04:00",
+            "previous_close_utc": "2026-08-14T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-17T18:00:00-04:00",
+            "next_open_utc": "2026-08-17T22:00:00Z",
+            "previous_close_ny": "2026-08-17T17:00:00-04:00",
+            "previous_close_utc": "2026-08-17T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-18T18:00:00-04:00",
+            "next_open_utc": "2026-08-18T22:00:00Z",
+            "previous_close_ny": "2026-08-18T17:00:00-04:00",
+            "previous_close_utc": "2026-08-18T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-19T18:00:00-04:00",
+            "next_open_utc": "2026-08-19T22:00:00Z",
+            "previous_close_ny": "2026-08-19T17:00:00-04:00",
+            "previous_close_utc": "2026-08-19T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-20T18:00:00-04:00",
+            "next_open_utc": "2026-08-20T22:00:00Z",
+            "previous_close_ny": "2026-08-20T17:00:00-04:00",
+            "previous_close_utc": "2026-08-20T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-08-23T18:00:00-04:00",
+            "next_open_utc": "2026-08-23T22:00:00Z",
+            "previous_close_ny": "2026-08-21T17:00:00-04:00",
+            "previous_close_utc": "2026-08-21T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-24T18:00:00-04:00",
+            "next_open_utc": "2026-08-24T22:00:00Z",
+            "previous_close_ny": "2026-08-24T17:00:00-04:00",
+            "previous_close_utc": "2026-08-24T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-25T18:00:00-04:00",
+            "next_open_utc": "2026-08-25T22:00:00Z",
+            "previous_close_ny": "2026-08-25T17:00:00-04:00",
+            "previous_close_utc": "2026-08-25T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-26T18:00:00-04:00",
+            "next_open_utc": "2026-08-26T22:00:00Z",
+            "previous_close_ny": "2026-08-26T17:00:00-04:00",
+            "previous_close_utc": "2026-08-26T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-27T18:00:00-04:00",
+            "next_open_utc": "2026-08-27T22:00:00Z",
+            "previous_close_ny": "2026-08-27T17:00:00-04:00",
+            "previous_close_utc": "2026-08-27T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-08-30T18:00:00-04:00",
+            "next_open_utc": "2026-08-30T22:00:00Z",
+            "previous_close_ny": "2026-08-28T17:00:00-04:00",
+            "previous_close_utc": "2026-08-28T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-08-31T18:00:00-04:00",
+            "next_open_utc": "2026-08-31T22:00:00Z",
+            "previous_close_ny": "2026-08-31T17:00:00-04:00",
+            "previous_close_utc": "2026-08-31T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-01T18:00:00-04:00",
+            "next_open_utc": "2026-09-01T22:00:00Z",
+            "previous_close_ny": "2026-09-01T17:00:00-04:00",
+            "previous_close_utc": "2026-09-01T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-02T18:00:00-04:00",
+            "next_open_utc": "2026-09-02T22:00:00Z",
+            "previous_close_ny": "2026-09-02T17:00:00-04:00",
+            "previous_close_utc": "2026-09-02T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-03T18:00:00-04:00",
+            "next_open_utc": "2026-09-03T22:00:00Z",
+            "previous_close_ny": "2026-09-03T17:00:00-04:00",
+            "previous_close_utc": "2026-09-03T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-09-06T18:00:00-04:00",
+            "next_open_utc": "2026-09-06T22:00:00Z",
+            "previous_close_ny": "2026-09-04T17:00:00-04:00",
+            "previous_close_utc": "2026-09-04T21:00:00Z"
+          },
+          {
+            "classification": "UNVERIFIED_OR_SPECIAL_SESSION_GAP",
+            "minutes": 210,
+            "next_open_ny": "2026-09-07T18:00:00-04:00",
+            "next_open_utc": "2026-09-07T22:00:00Z",
+            "previous_close_ny": "2026-09-07T14:30:00-04:00",
+            "previous_close_utc": "2026-09-07T18:30:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-08T18:00:00-04:00",
+            "next_open_utc": "2026-09-08T22:00:00Z",
+            "previous_close_ny": "2026-09-08T17:00:00-04:00",
+            "previous_close_utc": "2026-09-08T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-09T18:00:00-04:00",
+            "next_open_utc": "2026-09-09T22:00:00Z",
+            "previous_close_ny": "2026-09-09T17:00:00-04:00",
+            "previous_close_utc": "2026-09-09T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-10T18:00:00-04:00",
+            "next_open_utc": "2026-09-10T22:00:00Z",
+            "previous_close_ny": "2026-09-10T17:00:00-04:00",
+            "previous_close_utc": "2026-09-10T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-09-13T18:00:00-04:00",
+            "next_open_utc": "2026-09-13T22:00:00Z",
+            "previous_close_ny": "2026-09-11T17:00:00-04:00",
+            "previous_close_utc": "2026-09-11T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-14T18:00:00-04:00",
+            "next_open_utc": "2026-09-14T22:00:00Z",
+            "previous_close_ny": "2026-09-14T17:00:00-04:00",
+            "previous_close_utc": "2026-09-14T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-15T18:00:00-04:00",
+            "next_open_utc": "2026-09-15T22:00:00Z",
+            "previous_close_ny": "2026-09-15T17:00:00-04:00",
+            "previous_close_utc": "2026-09-15T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-16T18:00:00-04:00",
+            "next_open_utc": "2026-09-16T22:00:00Z",
+            "previous_close_ny": "2026-09-16T17:00:00-04:00",
+            "previous_close_utc": "2026-09-16T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-17T18:00:00-04:00",
+            "next_open_utc": "2026-09-17T22:00:00Z",
+            "previous_close_ny": "2026-09-17T17:00:00-04:00",
+            "previous_close_utc": "2026-09-17T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-09-20T18:00:00-04:00",
+            "next_open_utc": "2026-09-20T22:00:00Z",
+            "previous_close_ny": "2026-09-18T17:00:00-04:00",
+            "previous_close_utc": "2026-09-18T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-21T18:00:00-04:00",
+            "next_open_utc": "2026-09-21T22:00:00Z",
+            "previous_close_ny": "2026-09-21T17:00:00-04:00",
+            "previous_close_utc": "2026-09-21T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-22T18:00:00-04:00",
+            "next_open_utc": "2026-09-22T22:00:00Z",
+            "previous_close_ny": "2026-09-22T17:00:00-04:00",
+            "previous_close_utc": "2026-09-22T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-23T18:00:00-04:00",
+            "next_open_utc": "2026-09-23T22:00:00Z",
+            "previous_close_ny": "2026-09-23T17:00:00-04:00",
+            "previous_close_utc": "2026-09-23T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-24T18:00:00-04:00",
+            "next_open_utc": "2026-09-24T22:00:00Z",
+            "previous_close_ny": "2026-09-24T17:00:00-04:00",
+            "previous_close_utc": "2026-09-24T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-09-27T18:00:00-04:00",
+            "next_open_utc": "2026-09-27T22:00:00Z",
+            "previous_close_ny": "2026-09-25T17:00:00-04:00",
+            "previous_close_utc": "2026-09-25T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-28T18:00:00-04:00",
+            "next_open_utc": "2026-09-28T22:00:00Z",
+            "previous_close_ny": "2026-09-28T17:00:00-04:00",
+            "previous_close_utc": "2026-09-28T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-29T18:00:00-04:00",
+            "next_open_utc": "2026-09-29T22:00:00Z",
+            "previous_close_ny": "2026-09-29T17:00:00-04:00",
+            "previous_close_utc": "2026-09-29T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-09-30T18:00:00-04:00",
+            "next_open_utc": "2026-09-30T22:00:00Z",
+            "previous_close_ny": "2026-09-30T17:00:00-04:00",
+            "previous_close_utc": "2026-09-30T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-01T18:00:00-04:00",
+            "next_open_utc": "2026-10-01T22:00:00Z",
+            "previous_close_ny": "2026-10-01T17:00:00-04:00",
+            "previous_close_utc": "2026-10-01T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-10-04T18:00:00-04:00",
+            "next_open_utc": "2026-10-04T22:00:00Z",
+            "previous_close_ny": "2026-10-02T17:00:00-04:00",
+            "previous_close_utc": "2026-10-02T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-05T18:00:00-04:00",
+            "next_open_utc": "2026-10-05T22:00:00Z",
+            "previous_close_ny": "2026-10-05T17:00:00-04:00",
+            "previous_close_utc": "2026-10-05T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-06T18:00:00-04:00",
+            "next_open_utc": "2026-10-06T22:00:00Z",
+            "previous_close_ny": "2026-10-06T17:00:00-04:00",
+            "previous_close_utc": "2026-10-06T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-07T18:00:00-04:00",
+            "next_open_utc": "2026-10-07T22:00:00Z",
+            "previous_close_ny": "2026-10-07T17:00:00-04:00",
+            "previous_close_utc": "2026-10-07T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-08T18:00:00-04:00",
+            "next_open_utc": "2026-10-08T22:00:00Z",
+            "previous_close_ny": "2026-10-08T17:00:00-04:00",
+            "previous_close_utc": "2026-10-08T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-10-11T18:00:00-04:00",
+            "next_open_utc": "2026-10-11T22:00:00Z",
+            "previous_close_ny": "2026-10-09T17:00:00-04:00",
+            "previous_close_utc": "2026-10-09T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-12T18:00:00-04:00",
+            "next_open_utc": "2026-10-12T22:00:00Z",
+            "previous_close_ny": "2026-10-12T17:00:00-04:00",
+            "previous_close_utc": "2026-10-12T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-13T18:00:00-04:00",
+            "next_open_utc": "2026-10-13T22:00:00Z",
+            "previous_close_ny": "2026-10-13T17:00:00-04:00",
+            "previous_close_utc": "2026-10-13T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-14T18:00:00-04:00",
+            "next_open_utc": "2026-10-14T22:00:00Z",
+            "previous_close_ny": "2026-10-14T17:00:00-04:00",
+            "previous_close_utc": "2026-10-14T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-15T18:00:00-04:00",
+            "next_open_utc": "2026-10-15T22:00:00Z",
+            "previous_close_ny": "2026-10-15T17:00:00-04:00",
+            "previous_close_utc": "2026-10-15T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-10-18T18:00:00-04:00",
+            "next_open_utc": "2026-10-18T22:00:00Z",
+            "previous_close_ny": "2026-10-16T17:00:00-04:00",
+            "previous_close_utc": "2026-10-16T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-19T18:00:00-04:00",
+            "next_open_utc": "2026-10-19T22:00:00Z",
+            "previous_close_ny": "2026-10-19T17:00:00-04:00",
+            "previous_close_utc": "2026-10-19T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-20T18:00:00-04:00",
+            "next_open_utc": "2026-10-20T22:00:00Z",
+            "previous_close_ny": "2026-10-20T17:00:00-04:00",
+            "previous_close_utc": "2026-10-20T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-21T18:00:00-04:00",
+            "next_open_utc": "2026-10-21T22:00:00Z",
+            "previous_close_ny": "2026-10-21T17:00:00-04:00",
+            "previous_close_utc": "2026-10-21T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-22T18:00:00-04:00",
+            "next_open_utc": "2026-10-22T22:00:00Z",
+            "previous_close_ny": "2026-10-22T17:00:00-04:00",
+            "previous_close_utc": "2026-10-22T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-10-25T18:00:00-04:00",
+            "next_open_utc": "2026-10-25T22:00:00Z",
+            "previous_close_ny": "2026-10-23T17:00:00-04:00",
+            "previous_close_utc": "2026-10-23T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-26T18:00:00-04:00",
+            "next_open_utc": "2026-10-26T22:00:00Z",
+            "previous_close_ny": "2026-10-26T17:00:00-04:00",
+            "previous_close_utc": "2026-10-26T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-27T18:00:00-04:00",
+            "next_open_utc": "2026-10-27T22:00:00Z",
+            "previous_close_ny": "2026-10-27T17:00:00-04:00",
+            "previous_close_utc": "2026-10-27T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-28T18:00:00-04:00",
+            "next_open_utc": "2026-10-28T22:00:00Z",
+            "previous_close_ny": "2026-10-28T17:00:00-04:00",
+            "previous_close_utc": "2026-10-28T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-29T18:00:00-04:00",
+            "next_open_utc": "2026-10-29T22:00:00Z",
+            "previous_close_ny": "2026-10-29T17:00:00-04:00",
+            "previous_close_utc": "2026-10-29T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 3000,
+            "next_open_ny": "2026-11-01T18:00:00-05:00",
+            "next_open_utc": "2026-11-01T23:00:00Z",
+            "previous_close_ny": "2026-10-30T17:00:00-04:00",
+            "previous_close_utc": "2026-10-30T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-02T18:00:00-05:00",
+            "next_open_utc": "2026-11-02T23:00:00Z",
+            "previous_close_ny": "2026-11-02T17:00:00-05:00",
+            "previous_close_utc": "2026-11-02T22:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-03T18:00:00-05:00",
+            "next_open_utc": "2026-11-03T23:00:00Z",
+            "previous_close_ny": "2026-11-03T17:00:00-05:00",
+            "previous_close_utc": "2026-11-03T22:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-04T18:00:00-05:00",
+            "next_open_utc": "2026-11-04T23:00:00Z",
+            "previous_close_ny": "2026-11-04T17:00:00-05:00",
+            "previous_close_utc": "2026-11-04T22:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-05T18:00:00-05:00",
+            "next_open_utc": "2026-11-05T23:00:00Z",
+            "previous_close_ny": "2026-11-05T17:00:00-05:00",
+            "previous_close_utc": "2026-11-05T22:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-11-08T18:00:00-05:00",
+            "next_open_utc": "2026-11-08T23:00:00Z",
+            "previous_close_ny": "2026-11-06T17:00:00-05:00",
+            "previous_close_utc": "2026-11-06T22:00:00Z"
+          }
+        ],
+        "last_close_utc": "2026-11-09T02:45:00Z"
+      },
+      "registration_sha256": "6c89015105a406c2a0c1567f0e9a5e445cb31ee7604a985d727f26892d8ba4b7",
+      "visual_archive_csv_sha256": "a7cf2c08e57f34690157718e988d64200106e509a2a903f21c14d0635ff19688"
+    },
+    "M5": {
+      "confirmed_native_repeat_rows_preserved_as_one": 1,
+      "exact_overlap": 185,
+      "merged": {
+        "bars": 6603,
+        "days_elapsed": 31.927083333333332,
+        "first_open_utc": "2026-10-11T22:00:00Z",
+        "gap_counts": {
+          "REGULAR_SESSION_BOUNDARY:60m": 19,
+          "WEEKEND_SESSION_BOUNDARY:2940m": 3,
+          "WEEKEND_SESSION_BOUNDARY:3000m": 1
+        },
+        "gap_details": [
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-12T18:00:00-04:00",
+            "next_open_utc": "2026-10-12T22:00:00Z",
+            "previous_close_ny": "2026-10-12T17:00:00-04:00",
+            "previous_close_utc": "2026-10-12T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-13T18:00:00-04:00",
+            "next_open_utc": "2026-10-13T22:00:00Z",
+            "previous_close_ny": "2026-10-13T17:00:00-04:00",
+            "previous_close_utc": "2026-10-13T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-14T18:00:00-04:00",
+            "next_open_utc": "2026-10-14T22:00:00Z",
+            "previous_close_ny": "2026-10-14T17:00:00-04:00",
+            "previous_close_utc": "2026-10-14T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-15T18:00:00-04:00",
+            "next_open_utc": "2026-10-15T22:00:00Z",
+            "previous_close_ny": "2026-10-15T17:00:00-04:00",
+            "previous_close_utc": "2026-10-15T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-10-18T18:00:00-04:00",
+            "next_open_utc": "2026-10-18T22:00:00Z",
+            "previous_close_ny": "2026-10-16T17:00:00-04:00",
+            "previous_close_utc": "2026-10-16T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-19T18:00:00-04:00",
+            "next_open_utc": "2026-10-19T22:00:00Z",
+            "previous_close_ny": "2026-10-19T17:00:00-04:00",
+            "previous_close_utc": "2026-10-19T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-20T18:00:00-04:00",
+            "next_open_utc": "2026-10-20T22:00:00Z",
+            "previous_close_ny": "2026-10-20T17:00:00-04:00",
+            "previous_close_utc": "2026-10-20T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-21T18:00:00-04:00",
+            "next_open_utc": "2026-10-21T22:00:00Z",
+            "previous_close_ny": "2026-10-21T17:00:00-04:00",
+            "previous_close_utc": "2026-10-21T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-22T18:00:00-04:00",
+            "next_open_utc": "2026-10-22T22:00:00Z",
+            "previous_close_ny": "2026-10-22T17:00:00-04:00",
+            "previous_close_utc": "2026-10-22T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-10-25T18:00:00-04:00",
+            "next_open_utc": "2026-10-25T22:00:00Z",
+            "previous_close_ny": "2026-10-23T17:00:00-04:00",
+            "previous_close_utc": "2026-10-23T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-26T18:00:00-04:00",
+            "next_open_utc": "2026-10-26T22:00:00Z",
+            "previous_close_ny": "2026-10-26T17:00:00-04:00",
+            "previous_close_utc": "2026-10-26T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-27T18:00:00-04:00",
+            "next_open_utc": "2026-10-27T22:00:00Z",
+            "previous_close_ny": "2026-10-27T17:00:00-04:00",
+            "previous_close_utc": "2026-10-27T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-28T18:00:00-04:00",
+            "next_open_utc": "2026-10-28T22:00:00Z",
+            "previous_close_ny": "2026-10-28T17:00:00-04:00",
+            "previous_close_utc": "2026-10-28T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-29T18:00:00-04:00",
+            "next_open_utc": "2026-10-29T22:00:00Z",
+            "previous_close_ny": "2026-10-29T17:00:00-04:00",
+            "previous_close_utc": "2026-10-29T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 3000,
+            "next_open_ny": "2026-11-01T18:00:00-05:00",
+            "next_open_utc": "2026-11-01T23:00:00Z",
+            "previous_close_ny": "2026-10-30T17:00:00-04:00",
+            "previous_close_utc": "2026-10-30T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-02T18:00:00-05:00",
+            "next_open_utc": "2026-11-02T23:00:00Z",
+            "previous_close_ny": "2026-11-02T17:00:00-05:00",
+            "previous_close_utc": "2026-11-02T22:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-03T18:00:00-05:00",
+            "next_open_utc": "2026-11-03T23:00:00Z",
+            "previous_close_ny": "2026-11-03T17:00:00-05:00",
+            "previous_close_utc": "2026-11-03T22:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-04T18:00:00-05:00",
+            "next_open_utc": "2026-11-04T23:00:00Z",
+            "previous_close_ny": "2026-11-04T17:00:00-05:00",
+            "previous_close_utc": "2026-11-04T22:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-05T18:00:00-05:00",
+            "next_open_utc": "2026-11-05T23:00:00Z",
+            "previous_close_ny": "2026-11-05T17:00:00-05:00",
+            "previous_close_utc": "2026-11-05T22:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-11-08T18:00:00-05:00",
+            "next_open_utc": "2026-11-08T23:00:00Z",
+            "previous_close_ny": "2026-11-06T17:00:00-05:00",
+            "previous_close_utc": "2026-11-06T22:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-09T18:00:00-05:00",
+            "next_open_utc": "2026-11-09T23:00:00Z",
+            "previous_close_ny": "2026-11-09T17:00:00-05:00",
+            "previous_close_utc": "2026-11-09T22:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-10T18:00:00-05:00",
+            "next_open_utc": "2026-11-10T23:00:00Z",
+            "previous_close_ny": "2026-11-10T17:00:00-05:00",
+            "previous_close_utc": "2026-11-10T22:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-11T18:00:00-05:00",
+            "next_open_utc": "2026-11-11T23:00:00Z",
+            "previous_close_ny": "2026-11-11T17:00:00-05:00",
+            "previous_close_utc": "2026-11-11T22:00:00Z"
+          }
+        ],
+        "last_close_utc": "2026-11-12T20:15:00Z"
+      },
+      "native_additions": 1038,
+      "native_historical_parity_end_utc": "2026-11-12T20:10:00Z",
+      "native_tail": {
+        "bars": 1223,
+        "days_elapsed": 6.413194444444445,
+        "first_open_utc": "2026-11-06T10:20:00Z",
+        "gap_counts": {
+          "REGULAR_SESSION_BOUNDARY:60m": 3,
+          "WEEKEND_SESSION_BOUNDARY:2940m": 1
+        },
+        "gap_details": [
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-11-08T18:00:00-05:00",
+            "next_open_utc": "2026-11-08T23:00:00Z",
+            "previous_close_ny": "2026-11-06T17:00:00-05:00",
+            "previous_close_utc": "2026-11-06T22:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-09T18:00:00-05:00",
+            "next_open_utc": "2026-11-09T23:00:00Z",
+            "previous_close_ny": "2026-11-09T17:00:00-05:00",
+            "previous_close_utc": "2026-11-09T22:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-10T18:00:00-05:00",
+            "next_open_utc": "2026-11-10T23:00:00Z",
+            "previous_close_ny": "2026-11-10T17:00:00-05:00",
+            "previous_close_utc": "2026-11-10T22:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-11T18:00:00-05:00",
+            "next_open_utc": "2026-11-11T23:00:00Z",
+            "previous_close_ny": "2026-11-11T17:00:00-05:00",
+            "previous_close_utc": "2026-11-11T22:00:00Z"
+          }
+        ],
+        "last_close_utc": "2026-11-12T20:15:00Z"
+      },
+      "registered": {
+        "bars": 5565,
+        "days_elapsed": 28.197916666666668,
+        "first_open_utc": "2026-10-11T22:00:00Z",
+        "gap_counts": {
+          "REGULAR_SESSION_BOUNDARY:60m": 16,
+          "WEEKEND_SESSION_BOUNDARY:2940m": 3,
+          "WEEKEND_SESSION_BOUNDARY:3000m": 1
+        },
+        "gap_details": [
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-12T18:00:00-04:00",
+            "next_open_utc": "2026-10-12T22:00:00Z",
+            "previous_close_ny": "2026-10-12T17:00:00-04:00",
+            "previous_close_utc": "2026-10-12T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-13T18:00:00-04:00",
+            "next_open_utc": "2026-10-13T22:00:00Z",
+            "previous_close_ny": "2026-10-13T17:00:00-04:00",
+            "previous_close_utc": "2026-10-13T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-14T18:00:00-04:00",
+            "next_open_utc": "2026-10-14T22:00:00Z",
+            "previous_close_ny": "2026-10-14T17:00:00-04:00",
+            "previous_close_utc": "2026-10-14T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-15T18:00:00-04:00",
+            "next_open_utc": "2026-10-15T22:00:00Z",
+            "previous_close_ny": "2026-10-15T17:00:00-04:00",
+            "previous_close_utc": "2026-10-15T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-10-18T18:00:00-04:00",
+            "next_open_utc": "2026-10-18T22:00:00Z",
+            "previous_close_ny": "2026-10-16T17:00:00-04:00",
+            "previous_close_utc": "2026-10-16T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-19T18:00:00-04:00",
+            "next_open_utc": "2026-10-19T22:00:00Z",
+            "previous_close_ny": "2026-10-19T17:00:00-04:00",
+            "previous_close_utc": "2026-10-19T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-20T18:00:00-04:00",
+            "next_open_utc": "2026-10-20T22:00:00Z",
+            "previous_close_ny": "2026-10-20T17:00:00-04:00",
+            "previous_close_utc": "2026-10-20T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-21T18:00:00-04:00",
+            "next_open_utc": "2026-10-21T22:00:00Z",
+            "previous_close_ny": "2026-10-21T17:00:00-04:00",
+            "previous_close_utc": "2026-10-21T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-22T18:00:00-04:00",
+            "next_open_utc": "2026-10-22T22:00:00Z",
+            "previous_close_ny": "2026-10-22T17:00:00-04:00",
+            "previous_close_utc": "2026-10-22T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-10-25T18:00:00-04:00",
+            "next_open_utc": "2026-10-25T22:00:00Z",
+            "previous_close_ny": "2026-10-23T17:00:00-04:00",
+            "previous_close_utc": "2026-10-23T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-26T18:00:00-04:00",
+            "next_open_utc": "2026-10-26T22:00:00Z",
+            "previous_close_ny": "2026-10-26T17:00:00-04:00",
+            "previous_close_utc": "2026-10-26T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-27T18:00:00-04:00",
+            "next_open_utc": "2026-10-27T22:00:00Z",
+            "previous_close_ny": "2026-10-27T17:00:00-04:00",
+            "previous_close_utc": "2026-10-27T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-28T18:00:00-04:00",
+            "next_open_utc": "2026-10-28T22:00:00Z",
+            "previous_close_ny": "2026-10-28T17:00:00-04:00",
+            "previous_close_utc": "2026-10-28T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-10-29T18:00:00-04:00",
+            "next_open_utc": "2026-10-29T22:00:00Z",
+            "previous_close_ny": "2026-10-29T17:00:00-04:00",
+            "previous_close_utc": "2026-10-29T21:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 3000,
+            "next_open_ny": "2026-11-01T18:00:00-05:00",
+            "next_open_utc": "2026-11-01T23:00:00Z",
+            "previous_close_ny": "2026-10-30T17:00:00-04:00",
+            "previous_close_utc": "2026-10-30T21:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-02T18:00:00-05:00",
+            "next_open_utc": "2026-11-02T23:00:00Z",
+            "previous_close_ny": "2026-11-02T17:00:00-05:00",
+            "previous_close_utc": "2026-11-02T22:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-03T18:00:00-05:00",
+            "next_open_utc": "2026-11-03T23:00:00Z",
+            "previous_close_ny": "2026-11-03T17:00:00-05:00",
+            "previous_close_utc": "2026-11-03T22:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-04T18:00:00-05:00",
+            "next_open_utc": "2026-11-04T23:00:00Z",
+            "previous_close_ny": "2026-11-04T17:00:00-05:00",
+            "previous_close_utc": "2026-11-04T22:00:00Z"
+          },
+          {
+            "classification": "REGULAR_SESSION_BOUNDARY",
+            "minutes": 60,
+            "next_open_ny": "2026-11-05T18:00:00-05:00",
+            "next_open_utc": "2026-11-05T23:00:00Z",
+            "previous_close_ny": "2026-11-05T17:00:00-05:00",
+            "previous_close_utc": "2026-11-05T22:00:00Z"
+          },
+          {
+            "classification": "WEEKEND_SESSION_BOUNDARY",
+            "minutes": 2940,
+            "next_open_ny": "2026-11-08T18:00:00-05:00",
+            "next_open_utc": "2026-11-08T23:00:00Z",
+            "previous_close_ny": "2026-11-06T17:00:00-05:00",
+            "previous_close_utc": "2026-11-06T22:00:00Z"
+          }
+        ],
+        "last_close_utc": "2026-11-09T02:45:00Z"
+      },
+      "registration_sha256": "44971f52b0008fefc4b61dda51c71043f08e4a2e3bc6d08121380e95232ace1d",
+      "visual_archive_csv_sha256": "95f660d2a662d9c6e5299e6dc496ac31d55af950c8ab6770a566313a32e7670c"
+    }
+  },
+  "newly_joined_native_development_episodes": {
+    "control_comparability": "Both frames use merged M5 market-hour labels. Current native Shadow sources cover their DT_END prefix; S5/RC2 protected state only covers the QA window.",
+    "hours": [
+      {
+        "M15": {
+          "absence_semantics": "Unknown outside protected QA logging; no approved entry inferred from Shadow.",
+          "combined_direction_scope": "RC2_EARLY_UNAVAILABLE_FOR_PART_OR_ALL_OF_WINDOW",
+          "first_logged_directional_observation": null,
+          "native_raw_paper_same_side_sim_entries": [],
+          "native_s5_decision_scope": "PARTIAL_OR_UNAVAILABLE",
+          "native_s5_permissions_by_close": [],
+          "native_s5_same_side_ready": [],
+          "same_side_new_continuations": [],
+          "source_diagnostics": []
+        },
+        "M5": {
+          "absence_semantics": "Unknown outside protected QA logging; no approved entry inferred from Shadow.",
+          "combined_direction_scope": "RC2_EARLY_UNAVAILABLE_FOR_PART_OR_ALL_OF_WINDOW",
+          "first_logged_directional_observation": null,
+          "native_raw_paper_same_side_sim_entries": [],
+          "native_s5_decision_scope": "PARTIAL_OR_UNAVAILABLE",
+          "native_s5_permissions_by_close": [],
+          "native_s5_same_side_ready": [],
+          "same_side_new_continuations": [],
+          "source_diagnostics": []
+        },
+        "directional_extreme_distance": 35.0049999999992,
+        "end_ms": 1794254400000,
+        "side": 1,
+        "start_ms": 1794250800000,
+        "start_utc": "2026-11-09T19:00:00Z"
+      },
+      {
+        "M15": {
+          "absence_semantics": "Unknown outside protected QA logging; no approved entry inferred from Shadow.",
+          "combined_direction_scope": "RC2_EARLY_UNAVAILABLE_FOR_PART_OR_ALL_OF_WINDOW",
+          "first_logged_directional_observation": {
+            "known_ms": 1794301200000,
+            "known_utc": "2026-11-10T09:00:00Z",
+            "latency_minutes": 0.0,
+            "side": -1,
+            "sources": [
+              "CONSOLIDATION_BREAK \u00b7 WATCH",
+              "STRUCTURAL_BREAK \u00b7 WATCH"
+            ]
+          },
+          "native_raw_paper_same_side_sim_entries": [],
+          "native_s5_decision_scope": "PARTIAL_OR_UNAVAILABLE",
+          "native_s5_permissions_by_close": [],
+          "native_s5_same_side_ready": [],
+          "same_side_new_continuations": [],
+          "source_diagnostics": [
+            {
+              "bar": 992,
+              "breakout_ms": null,
+              "close": 4113.37,
+              "level": 4112.3,
+              "level_known_ms": 1794299400000,
+              "model": "STRUCTURAL_BREAK",
+              "origin_model": null,
+              "prior_atr": 6.524106496,
+              "reason": "APPROACHING_LEVEL",
+              "side": -1,
+              "source_ms": 1794296700000,
+              "state": "WATCH",
+              "time_ms": 1794301200000,
+              "watch_ms": 1794301200000
+            },
+            {
+              "bar": 992,
+              "breakout_ms": null,
+              "close": 4113.37,
+              "level": 4112.3,
+              "level_known_ms": 1794300300000,
+              "model": "CONSOLIDATION_BREAK",
+              "origin_model": null,
+              "prior_atr": 6.524106496,
+              "reason": "APPROACHING_LEVEL",
+              "side": -1,
+              "source_ms": 1794296700000,
+              "state": "WATCH",
+              "time_ms": 1794301200000,
+              "watch_ms": 1794301200000
+            },
+            {
+              "bar": 993,
+              "breakout_ms": 1794302100000,
+              "close": 4095.76,
+              "level": 4112.3,
+              "level_known_ms": 1794299400000,
+              "model": "STRUCTURAL_BREAK",
+              "origin_model": null,
+              "prior_atr": 6.486670317,
+              "reason": "CONFIRMED_CLOSE_CROSS",
+              "side": -1,
+              "source_ms": 1794296700000,
+              "state": "BREAKOUT CONFIRMED",
+              "time_ms": 1794302100000,
+              "watch_ms": 1794301200000
+            },
+            {
+              "bar": 993,
+              "breakout_ms": 1794302100000,
+              "close": 4095.76,
+              "extension_atr": 2.549844403,
+              "friction_r": 0.029806512,
+              "level": 4112.3,
+              "level_known_ms": 1794299400000,
+              "model": "STRUCTURAL_BREAK",
+              "net_room_r": 0.970193488,
+              "obstacle": null,
+              "origin_model": null,
+              "plan_id": "DT|STRUCTURAL_BREAK|-1|1794302100000",
+              "prior_atr": 6.486670317,
+              "reason": "STOP_TOO_WIDE",
+              "reasons": [
+                "STOP_TOO_WIDE",
+                "LATE_EXTENSION"
+              ],
+              "reference": 4095.76,
+              "risk": 23.619,
+              "risk_cash": 72.969,
+              "side": -1,
+              "source_ms": 1794296700000,
+              "state": "REJECTED",
+              "stop": 4119.379,
+              "targets": [
+                4072.141,
+                4048.522,
+                4024.903
+              ],
+              "time_ms": 1794302100000,
+              "watch_ms": 1794301200000
+            },
+            {
+              "bar": 993,
+              "breakout_ms": 1794302100000,
+              "close": 4095.76,
+              "level": 4112.3,
+              "level_known_ms": 1794299400000,
+              "model": "RETEST_CONTINUATION",
+              "origin_model": "STRUCTURAL_BREAK",
+              "prior_atr": 6.486670317,
+              "reason": "CONFIRMED_BREAK_LEVEL",
+              "side": -1,
+              "source_ms": 1794296700000,
+              "state": "RETEST WATCH",
+              "time_ms": 1794302100000,
+              "watch_ms": 1794302100000
+            },
+            {
+              "bar": 993,
+              "breakout_ms": null,
+              "close": 4095.76,
+              "level": 4112.3,
+              "level_known_ms": 1794300300000,
+              "model": "CONSOLIDATION_BREAK",
+              "origin_model": null,
+              "prior_atr": 6.486670317,
+              "reason": "STRUCTURE_CHANGED",
+              "side": -1,
+              "source_ms": 1794296700000,
+              "state": "INVALIDATED",
+              "time_ms": 1794302100000,
+              "watch_ms": 1794301200000
+            },
+            {
+              "bar": 993,
+              "breakout_ms": null,
+              "close": 4095.76,
+              "level": 4112.365,
+              "level_known_ms": 1794301200000,
+              "model": "CONSOLIDATION_BREAK",
+              "origin_model": null,
+              "prior_atr": 6.486670317,
+              "reason": "FIRST_OBSERVED_ON_BREAK",
+              "side": -1,
+              "source_ms": 1794297600000,
+              "state": "WATCH",
+              "time_ms": 1794302100000,
+              "watch_ms": 1794302100000
+            },
+            {
+              "bar": 993,
+              "breakout_ms": 1794302100000,
+              "close": 4095.76,
+              "level": 4112.365,
+              "level_known_ms": 1794301200000,
+              "model": "CONSOLIDATION_BREAK",
+              "origin_model": null,
+              "prior_atr": 6.486670317,
+              "reason": "CONFIRMED_CLOSE_CROSS",
+              "side": -1,
+              "source_ms": 1794297600000,
+              "state": "BREAKOUT CONFIRMED",
+              "time_ms": 1794302100000,
+              "watch_ms": 1794302100000
+            },
+            {
+              "bar": 993,
+              "breakout_ms": 1794302100000,
+              "close": 4095.76,
+              "extension_atr": 2.559864952,
+              "friction_r": 0.026547004,
+              "level": 4112.365,
+              "level_known_ms": 1794301200000,
+              "model": "CONSOLIDATION_BREAK",
+              "net_room_r": 0.973452996,
+              "obstacle": null,
+              "origin_model": null,
+              "plan_id": "DT|CONSOLIDATION_BREAK|-1|1794302100000",
+              "prior_atr": 6.486670317,
+              "reason": "STOP_TOO_WIDE",
+              "reasons": [
+                "STOP_TOO_WIDE",
+                "LATE_EXTENSION"
+              ],
+              "reference": 4095.76,
+              "risk": 26.519,
+              "risk_cash": 81.669,
+              "side": -1,
+              "source_ms": 1794297600000,
+              "state": "REJECTED",
+              "stop": 4122.279,
+              "targets": [
+                4069.241,
+                4042.722,
+                4016.203
+              ],
+              "time_ms": 1794302100000,
+              "watch_ms": 1794302100000
+            }
+          ]
+        },
+        "M5": {
+          "absence_semantics": "Unknown outside protected QA logging; no approved entry inferred from Shadow.",
+          "combined_direction_scope": "RC2_EARLY_UNAVAILABLE_FOR_PART_OR_ALL_OF_WINDOW",
+          "first_logged_directional_observation": {
+            "known_ms": 1794300900000,
+            "known_utc": "2026-11-10T08:55:00Z",
+            "latency_minutes": -5.0,
+            "side": -1,
+            "sources": [
+              "CONSOLIDATION_BREAK \u00b7 WATCH"
+            ]
+          },
+          "native_raw_paper_same_side_sim_entries": [],
+          "native_s5_decision_scope": "PARTIAL_OR_UNAVAILABLE",
+          "native_s5_permissions_by_close": [],
+          "native_s5_same_side_ready": [],
+          "same_side_new_continuations": [],
+          "source_diagnostics": [
+            {
+              "bar": 534,
+              "breakout_ms": null,
+              "close": 4114.74,
+              "level": 4114.56,
+              "level_known_ms": 1794300600000,
+              "model": "CONSOLIDATION_BREAK",
+              "origin_model": null,
+              "prior_atr": 3.566672196,
+              "reason": "APPROACHING_LEVEL",
+              "side": -1,
+              "source_ms": 1794300000000,
+              "state": "WATCH",
+              "time_ms": 1794300900000,
+              "watch_ms": 1794300900000
+            },
+            {
+              "bar": 535,
+              "breakout_ms": null,
+              "close": 4113.37,
+              "level": 4114.56,
+              "level_known_ms": 1794300600000,
+              "model": "CONSOLIDATION_BREAK",
+              "origin_model": null,
+              "prior_atr": 3.617981325,
+              "reason": "STRUCTURE_CHANGED",
+              "side": -1,
+              "source_ms": 1794300000000,
+              "state": "INVALIDATED",
+              "time_ms": 1794301200000,
+              "watch_ms": 1794300900000
+            },
+            {
+              "bar": 535,
+              "breakout_ms": null,
+              "close": 4113.37,
+              "level": 4114.445,
+              "level_known_ms": 1794300900000,
+              "model": "CONSOLIDATION_BREAK",
+              "origin_model": null,
+              "prior_atr": 3.617981325,
+              "reason": "INSUFFICIENT_DISPLACEMENT",
+              "reasons": [
+                "INSUFFICIENT_DISPLACEMENT"
+              ],
+              "side": -1,
+              "source_ms": 1794300600000,
+              "state": "REJECTED",
+              "time_ms": 1794301200000,
+              "watch_ms": 1794301200000
+            },
+            {
+              "bar": 542,
+              "breakout_ms": null,
+              "close": 4087.935,
+              "level": 4088.405,
+              "level_known_ms": 1794302700000,
+              "model": "STRUCTURAL_BREAK",
+              "origin_model": null,
+              "prior_atr": 5.580993914,
+              "reason": "INSUFFICIENT_DISPLACEMENT",
+              "reasons": [
+                "INSUFFICIENT_DISPLACEMENT"
+              ],
+              "side": -1,
+              "source_ms": 1794301800000,
+              "state": "REJECTED",
+              "time_ms": 1794303300000,
+              "watch_ms": 1794303300000
+            }
+          ]
+        },
+        "directional_extreme_distance": 32.01000000000022,
+        "end_ms": 1794304800000,
+        "side": -1,
+        "start_ms": 1794301200000,
+        "start_utc": "2026-11-10T09:00:00Z"
+      },
+      {
+        "M15": {
+          "absence_semantics": "Unknown outside protected QA logging; no approved entry inferred from Shadow.",
+          "combined_direction_scope": "RC2_EARLY_UNAVAILABLE_FOR_PART_OR_ALL_OF_WINDOW",
+          "first_logged_directional_observation": null,
+          "native_raw_paper_same_side_sim_entries": [],
+          "native_s5_decision_scope": "PARTIAL_OR_UNAVAILABLE",
+          "native_s5_permissions_by_close": [],
+          "native_s5_same_side_ready": [],
+          "same_side_new_continuations": [],
+          "source_diagnostics": []
+        },
+        "M5": {
+          "absence_semantics": "Unknown outside protected QA logging; no approved entry inferred from Shadow.",
+          "combined_direction_scope": "RC2_EARLY_UNAVAILABLE_FOR_PART_OR_ALL_OF_WINDOW",
+          "first_logged_directional_observation": {
+            "known_ms": 1794317100000,
+            "known_utc": "2026-11-10T13:25:00Z",
+            "latency_minutes": 25.0,
+            "side": -1,
+            "sources": [
+              "STRUCTURAL_BREAK \u00b7 BREAKOUT CONFIRMED",
+              "STRUCTURAL_BREAK \u00b7 WATCH"
+            ]
+          },
+          "native_raw_paper_same_side_sim_entries": [],
+          "native_s5_decision_scope": "PARTIAL_OR_UNAVAILABLE",
+          "native_s5_permissions_by_close": [],
+          "native_s5_same_side_ready": [],
+          "same_side_new_continuations": [],
+          "source_diagnostics": [
+            {
+              "bar": 588,
+              "breakout_ms": null,
+              "close": 4070.065,
+              "level": 4072.29,
+              "level_known_ms": 1794316500000,
+              "model": "STRUCTURAL_BREAK",
+              "origin_model": null,
+              "prior_atr": 4.282776088,
+              "reason": "FIRST_OBSERVED_ON_BREAK",
+              "side": -1,
+              "source_ms": 1794315600000,
+              "state": "WATCH",
+              "time_ms": 1794317100000,
+              "watch_ms": 1794317100000
+            },
+            {
+              "bar": 588,
+              "breakout_ms": 1794317100000,
+              "close": 4070.065,
+              "level": 4072.29,
+              "level_known_ms": 1794316500000,
+              "model": "STRUCTURAL_BREAK",
+              "origin_model": null,
+              "prior_atr": 4.282776088,
+              "reason": "CONFIRMED_CLOSE_CROSS",
+              "side": -1,
+              "source_ms": 1794315600000,
+              "state": "BREAKOUT CONFIRMED",
+              "time_ms": 1794317100000,
+              "watch_ms": 1794317100000
+            },
+            {
+              "bar": 588,
+              "breakout_ms": 1794317100000,
+              "close": 4070.065,
+              "extension_atr": 0.519522841,
+              "friction_r": 0.070477525,
+              "level": 4072.29,
+              "level_known_ms": 1794316500000,
+              "model": "STRUCTURAL_BREAK",
+              "net_room_r": -0.01691861,
+              "obstacle": 4069.53,
+              "origin_model": null,
+              "plan_id": "DT|STRUCTURAL_BREAK|-1|1794317100000",
+              "prior_atr": 4.282776088,
+              "reason": "INSUFFICIENT_NET_ROOM",
+              "reasons": [
+                "INSUFFICIENT_NET_ROOM"
+              ],
+              "reference": 4070.065,
+              "risk": 9.989,
+              "risk_cash": 32.079,
+              "side": -1,
+              "source_ms": 1794315600000,
+              "state": "REJECTED",
+              "stop": 4080.054,
+              "targets": [
+                4060.076,
+                4050.087,
+                4040.098
+              ],
+              "time_ms": 1794317100000,
+              "watch_ms": 1794317100000
+            },
+            {
+              "bar": 588,
+              "breakout_ms": 1794317100000,
+              "close": 4070.065,
+              "level": 4072.29,
+              "level_known_ms": 1794316500000,
+              "model": "RETEST_CONTINUATION",
+              "origin_model": "STRUCTURAL_BREAK",
+              "prior_atr": 4.282776088,
+              "reason": "CONFIRMED_BREAK_LEVEL",
+              "side": -1,
+              "source_ms": 1794315600000,
+              "state": "RETEST WATCH",
+              "time_ms": 1794317100000,
+              "watch_ms": 1794317100000
+            }
+          ]
+        },
+        "directional_extreme_distance": 39.33000000000038,
+        "end_ms": 1794319200000,
+        "side": -1,
+        "start_ms": 1794315600000,
+        "start_utc": "2026-11-10T13:00:00Z"
+      },
+      {
+        "M15": {
+          "absence_semantics": "Unknown outside protected QA logging; no approved entry inferred from Shadow.",
+          "combined_direction_scope": "COMPLETE_WINDOW",
+          "first_logged_directional_observation": {
+            "known_ms": 1794404700000,
+            "known_utc": "2026-11-11T13:45:00Z",
+            "latency_minutes": -15.0,
+            "side": -1,
+            "sources": [
+              "RETEST_CONTINUATION \u00b7 BREAKOUT CONFIRMED"
+            ]
+          },
+          "native_raw_paper_same_side_sim_entries": [],
+          "native_s5_decision_scope": "COMPLETE_WINDOW",
+          "native_s5_permissions_by_close": [
+            {
+              "known_ms": 1794405600000,
+              "known_utc": "2026-11-11T14:00:00Z",
+              "permission": "WAIT",
+              "reason": "\u041d\u044f\u043c\u0430 \u043d\u043e\u0432 \u043f\u043e\u0442\u0432\u044a\u0440\u0434\u0435\u043d S5 \u043f\u043b\u0430\u043d."
+            },
+            {
+              "known_ms": 1794406500000,
+              "known_utc": "2026-11-11T14:15:00Z",
+              "permission": "WAIT",
+              "reason": "\u0427\u0430\u043a\u0430 \u0432\u0440\u044a\u0449\u0430\u043d\u0435 \u043e\u0442\u0432\u044a\u0434 \u043d\u0438\u0432\u043e\u0442\u043e \u0441\u044a\u0441 \u0437\u0430\u0442\u0432\u043e\u0440\u0435\u043d\u0430 \u0441\u0432\u0435\u0449."
+            },
+            {
+              "known_ms": 1794407400000,
+              "known_utc": "2026-11-11T14:30:00Z",
+              "permission": "WAIT",
+              "reason": "\u0427\u0430\u043a\u0430 \u0432\u0440\u044a\u0449\u0430\u043d\u0435 \u043e\u0442\u0432\u044a\u0434 \u043d\u0438\u0432\u043e\u0442\u043e \u0441\u044a\u0441 \u0437\u0430\u0442\u0432\u043e\u0440\u0435\u043d\u0430 \u0441\u0432\u0435\u0449."
+            },
+            {
+              "known_ms": 1794408300000,
+              "known_utc": "2026-11-11T14:45:00Z",
+              "permission": "WAIT",
+              "reason": "\u041d\u0430\u0440\u0443\u0448\u0435\u043d\u0430 \u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u0430"
+            }
+          ],
+          "native_s5_same_side_ready": [],
+          "same_side_new_continuations": [],
+          "source_diagnostics": [
+            {
+              "bar": 1103,
+              "breakout_ms": 1794403800000,
+              "close": 4033.055,
+              "level": 4039.735,
+              "level_known_ms": 1794402900000,
+              "model": "RETEST_CONTINUATION",
+              "origin_model": "CONSOLIDATION_BREAK",
+              "prior_atr": 5.366031666,
+              "reason": "RETEST_CONFIRMED",
+              "side": -1,
+              "source_ms": 1794402000000,
+              "state": "BREAKOUT CONFIRMED",
+              "time_ms": 1794404700000,
+              "watch_ms": 1794403800000
+            },
+            {
+              "bar": 1103,
+              "breakout_ms": 1794403800000,
+              "close": 4033.055,
+              "extension_atr": 1.244867794,
+              "friction_r": 0.049137991,
+              "level": 4039.735,
+              "level_known_ms": 1794402900000,
+              "model": "RETEST_CONTINUATION",
+              "net_room_r": 0.401409925,
+              "obstacle": 4026.6,
+              "origin_model": "CONSOLIDATION_BREAK",
+              "plan_id": "DT|RETEST_CONTINUATION|-1|1794404700000",
+              "prior_atr": 5.366031666,
+              "reason": "STOP_TOO_WIDE",
+              "reasons": [
+                "STOP_TOO_WIDE",
+                "LATE_EXTENSION",
+                "INSUFFICIENT_NET_ROOM"
+              ],
+              "reference": 4033.055,
+              "risk": 14.327,
+              "risk_cash": 45.093,
+              "side": -1,
+              "source_ms": 1794402000000,
+              "state": "REJECTED",
+              "stop": 4047.382,
+              "targets": [
+                4018.728,
+                4004.401,
+                3990.074
+              ],
+              "time_ms": 1794404700000,
+              "watch_ms": 1794403800000
+            }
+          ]
+        },
+        "M5": {
+          "absence_semantics": "Unknown outside protected QA logging; no approved entry inferred from Shadow.",
+          "combined_direction_scope": "COMPLETE_WINDOW",
+          "first_logged_directional_observation": {
+            "known_ms": 1794407700000,
+            "known_utc": "2026-11-11T14:35:00Z",
+            "latency_minutes": 35.0,
+            "side": -1,
+            "sources": [
+              "CONSOLIDATION_BREAK \u00b7 BREAKOUT CONFIRMED",
+              "CONSOLIDATION_BREAK \u00b7 WATCH",
+              "RC2 EARLY",
+              "STRUCTURAL_BREAK \u00b7 BREAKOUT CONFIRMED",
+              "STRUCTURAL_BREAK \u00b7 WATCH"
+            ]
+          },
+          "native_raw_paper_same_side_sim_entries": [],
+          "native_s5_decision_scope": "COMPLETE_WINDOW",
+          "native_s5_permissions_by_close": [
+            {
+              "known_ms": 1794405600000,
+              "known_utc": "2026-11-11T14:00:00Z",
+              "permission": "BUY READY",
+              "reason": "\u041f\u0440\u043e\u0432\u0435\u0440\u0435\u043d S5 \u043f\u043b\u0430\u043d \u043f\u0440\u0438 \u0437\u0430\u0442\u0432\u0430\u0440\u044f\u043d\u0435\u0442\u043e; Entry \u0435 \u0440\u0435\u0444\u0435\u0440\u0435\u043d\u0442\u043d\u0430 \u0446\u0435\u043d\u0430, \u0441\u043b\u0435\u0434\u0432\u0430\u0449\u043e\u0442\u043e \u043e\u0442\u0432\u0430\u0440\u044f\u043d\u0435 \u043c\u043e\u0436\u0435 \u0434\u0430 \u043e\u0442\u043a\u0430\u0436\u0435 \u0432\u0445\u043e\u0434\u0430."
+            },
+            {
+              "known_ms": 1794405900000,
+              "known_utc": "2026-11-11T14:05:00Z",
+              "permission": "WAIT",
+              "reason": "\u041d\u044f\u043c\u0430 \u043d\u043e\u0432 \u043f\u043e\u0442\u0432\u044a\u0440\u0434\u0435\u043d S5 \u043f\u043b\u0430\u043d."
+            },
+            {
+              "known_ms": 1794406200000,
+              "known_utc": "2026-11-11T14:10:00Z",
+              "permission": "WAIT",
+              "reason": "\u0427\u0430\u043a\u0430 \u0432\u0440\u044a\u0449\u0430\u043d\u0435 \u043e\u0442\u0432\u044a\u0434 \u043d\u0438\u0432\u043e\u0442\u043e \u0441\u044a\u0441 \u0437\u0430\u0442\u0432\u043e\u0440\u0435\u043d\u0430 \u0441\u0432\u0435\u0449."
+            },
+            {
+              "known_ms": 1794406500000,
+              "known_utc": "2026-11-11T14:15:00Z",
+              "permission": "RISK REJECTED",
+              "reason": "\u041d\u044f\u043c\u0430 \u043f\u043e\u0442\u0432\u044a\u0440\u0436\u0434\u0430\u0432\u0430\u0449\u0430 \u0441\u0432\u0435\u0449"
+            },
+            {
+              "known_ms": 1794406800000,
+              "known_utc": "2026-11-11T14:20:00Z",
+              "permission": "WAIT",
+              "reason": "\u041d\u044f\u043c\u0430 \u043d\u043e\u0432 \u043f\u043e\u0442\u0432\u044a\u0440\u0434\u0435\u043d S5 \u043f\u043b\u0430\u043d."
+            },
+            {
+              "known_ms": 1794407100000,
+              "known_utc": "2026-11-11T14:25:00Z",
+              "permission": "WAIT",
+              "reason": "\u041d\u044f\u043c\u0430 \u043d\u043e\u0432 \u043f\u043e\u0442\u0432\u044a\u0440\u0434\u0435\u043d S5 \u043f\u043b\u0430\u043d."
+            },
+            {
+              "known_ms": 1794407400000,
+              "known_utc": "2026-11-11T14:30:00Z",
+              "permission": "WAIT",
+              "reason": "\u041d\u044f\u043c\u0430 \u043d\u043e\u0432 \u043f\u043e\u0442\u0432\u044a\u0440\u0434\u0435\u043d S5 \u043f\u043b\u0430\u043d."
+            },
+            {
+              "known_ms": 1794407700000,
+              "known_utc": "2026-11-11T14:35:00Z",
+              "permission": "WAIT",
+              "reason": "\u0427\u0430\u043a\u0430 \u0432\u0440\u044a\u0449\u0430\u043d\u0435 \u043e\u0442\u0432\u044a\u0434 \u043d\u0438\u0432\u043e\u0442\u043e \u0441\u044a\u0441 \u0437\u0430\u0442\u0432\u043e\u0440\u0435\u043d\u0430 \u0441\u0432\u0435\u0449."
+            },
+            {
+              "known_ms": 1794408000000,
+              "known_utc": "2026-11-11T14:40:00Z",
+              "permission": "WAIT",
+              "reason": "\u041d\u0430\u0440\u0443\u0448\u0435\u043d\u0430 \u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u0430"
+            },
+            {
+              "known_ms": 1794408300000,
+              "known_utc": "2026-11-11T14:45:00Z",
+              "permission": "WAIT",
+              "reason": "\u041d\u044f\u043c\u0430 \u043d\u043e\u0432 \u043f\u043e\u0442\u0432\u044a\u0440\u0434\u0435\u043d S5 \u043f\u043b\u0430\u043d."
+            },
+            {
+              "known_ms": 1794408600000,
+              "known_utc": "2026-11-11T14:50:00Z",
+              "permission": "WAIT",
+              "reason": "\u041d\u044f\u043c\u0430 \u043d\u043e\u0432 \u043f\u043e\u0442\u0432\u044a\u0440\u0434\u0435\u043d S5 \u043f\u043b\u0430\u043d."
+            },
+            {
+              "known_ms": 1794408900000,
+              "known_utc": "2026-11-11T14:55:00Z",
+              "permission": "WAIT",
+              "reason": "\u041d\u044f\u043c\u0430 \u043d\u043e\u0432 \u043f\u043e\u0442\u0432\u044a\u0440\u0434\u0435\u043d S5 \u043f\u043b\u0430\u043d."
+            }
+          ],
+          "native_s5_same_side_ready": [],
+          "same_side_new_continuations": [],
+          "source_diagnostics": [
+            {
+              "bar": 878,
+              "breakout_ms": null,
+              "close": 4021.715,
+              "level": 4028.465,
+              "level_known_ms": 1794407400000,
+              "model": "STRUCTURAL_BREAK",
+              "origin_model": null,
+              "prior_atr": 3.617316738,
+              "reason": "FIRST_OBSERVED_ON_BREAK",
+              "side": -1,
+              "source_ms": 1794406500000,
+              "state": "WATCH",
+              "time_ms": 1794407700000,
+              "watch_ms": 1794407700000
+            },
+            {
+              "bar": 878,
+              "breakout_ms": 1794407700000,
+              "close": 4021.715,
+              "level": 4028.465,
+              "level_known_ms": 1794407400000,
+              "model": "STRUCTURAL_BREAK",
+              "origin_model": null,
+              "prior_atr": 3.617316738,
+              "reason": "CONFIRMED_CLOSE_CROSS",
+              "side": -1,
+              "source_ms": 1794406500000,
+              "state": "BREAKOUT CONFIRMED",
+              "time_ms": 1794407700000,
+              "watch_ms": 1794407700000
+            },
+            {
+              "bar": 878,
+              "breakout_ms": 1794407700000,
+              "close": 4021.715,
+              "extension_atr": 1.866024042,
+              "friction_r": 0.065905261,
+              "level": 4028.465,
+              "level_known_ms": 1794407400000,
+              "model": "STRUCTURAL_BREAK",
+              "net_room_r": 0.934094739,
+              "obstacle": null,
+              "origin_model": null,
+              "plan_id": "DT|STRUCTURAL_BREAK|-1|1794407700000",
+              "prior_atr": 3.617316738,
+              "reason": "STOP_TOO_WIDE",
+              "reasons": [
+                "STOP_TOO_WIDE",
+                "LATE_EXTENSION"
+              ],
+              "reference": 4021.715,
+              "risk": 10.682,
+              "risk_cash": 34.158,
+              "side": -1,
+              "source_ms": 1794406500000,
+              "state": "REJECTED",
+              "stop": 4032.397,
+              "targets": [
+                4011.033,
+                4000.351,
+                3989.669
+              ],
+              "time_ms": 1794407700000,
+              "watch_ms": 1794407700000
+            },
+            {
+              "bar": 878,
+              "breakout_ms": 1794407700000,
+              "close": 4021.715,
+              "level": 4028.465,
+              "level_known_ms": 1794407400000,
+              "model": "RETEST_CONTINUATION",
+              "origin_model": "STRUCTURAL_BREAK",
+              "prior_atr": 3.617316738,
+              "reason": "CONFIRMED_BREAK_LEVEL",
+              "side": -1,
+              "source_ms": 1794406500000,
+              "state": "RETEST WATCH",
+              "time_ms": 1794407700000,
+              "watch_ms": 1794407700000
+            },
+            {
+              "bar": 878,
+              "breakout_ms": null,
+              "close": 4021.715,
+              "level": 4028.465,
+              "level_known_ms": 1794407400000,
+              "model": "CONSOLIDATION_BREAK",
+              "origin_model": null,
+              "prior_atr": 3.617316738,
+              "reason": "FIRST_OBSERVED_ON_BREAK",
+              "side": -1,
+              "source_ms": 1794406500000,
+              "state": "WATCH",
+              "time_ms": 1794407700000,
+              "watch_ms": 1794407700000
+            },
+            {
+              "bar": 878,
+              "breakout_ms": 1794407700000,
+              "close": 4021.715,
+              "level": 4028.465,
+              "level_known_ms": 1794407400000,
+              "model": "CONSOLIDATION_BREAK",
+              "origin_model": null,
+              "prior_atr": 3.617316738,
+              "reason": "CONFIRMED_CLOSE_CROSS",
+              "side": -1,
+              "source_ms": 1794406500000,
+              "state": "BREAKOUT CONFIRMED",
+              "time_ms": 1794407700000,
+              "watch_ms": 1794407700000
+            },
+            {
+              "bar": 878,
+              "breakout_ms": 1794407700000,
+              "close": 4021.715,
+              "extension_atr": 1.866024042,
+              "friction_r": 0.065905261,
+              "level": 4028.465,
+              "level_known_ms": 1794407400000,
+              "model": "CONSOLIDATION_BREAK",
+              "net_room_r": 0.934094739,
+              "obstacle": null,
+              "origin_model": null,
+              "plan_id": "DT|CONSOLIDATION_BREAK|-1|1794407700000",
+              "prior_atr": 3.617316738,
+              "reason": "STOP_TOO_WIDE",
+              "reasons": [
+                "STOP_TOO_WIDE",
+                "LATE_EXTENSION"
+              ],
+              "reference": 4021.715,
+              "risk": 10.682,
+              "risk_cash": 34.158,
+              "side": -1,
+              "source_ms": 1794406500000,
+              "state": "REJECTED",
+              "stop": 4032.397,
+              "targets": [
+                4011.033,
+                4000.351,
+                3989.669
+              ],
+              "time_ms": 1794407700000,
+              "watch_ms": 1794407700000
+            }
+          ]
+        },
+        "directional_extreme_distance": 27.295000000000073,
+        "end_ms": 1794409200000,
+        "side": -1,
+        "start_ms": 1794405600000,
+        "start_utc": "2026-11-11T14:00:00Z"
+      },
+      {
+        "M15": {
+          "absence_semantics": "Unknown outside protected QA logging; no approved entry inferred from Shadow.",
+          "combined_direction_scope": "RC2_EARLY_UNAVAILABLE_FOR_PART_OR_ALL_OF_WINDOW",
+          "first_logged_directional_observation": null,
+          "native_raw_paper_same_side_sim_entries": [],
+          "native_s5_decision_scope": "PARTIAL_OR_UNAVAILABLE",
+          "native_s5_permissions_by_close": [],
+          "native_s5_same_side_ready": [],
+          "same_side_new_continuations": [],
+          "source_diagnostics": []
+        },
+        "M5": {
+          "absence_semantics": "Unknown outside protected QA logging; no approved entry inferred from Shadow.",
+          "combined_direction_scope": "RC2_EARLY_UNAVAILABLE_FOR_PART_OR_ALL_OF_WINDOW",
+          "first_logged_directional_observation": {
+            "known_ms": 1794469500000,
+            "known_utc": "2026-11-12T07:45:00Z",
+            "latency_minutes": -15.0,
+            "side": -1,
+            "sources": [
+              "STRUCTURAL_BREAK \u00b7 BREAKOUT CONFIRMED"
+            ]
+          },
+          "native_raw_paper_same_side_sim_entries": [],
+          "native_s5_decision_scope": "PARTIAL_OR_UNAVAILABLE",
+          "native_s5_permissions_by_close": [],
+          "native_s5_same_side_ready": [],
+          "same_side_new_continuations": [],
+          "source_diagnostics": [
+            {
+              "bar": 1072,
+              "breakout_ms": 1794469500000,
+              "close": 3956.975,
+              "level": 3959.23,
+              "level_known_ms": 1794468300000,
+              "model": "STRUCTURAL_BREAK",
+              "origin_model": null,
+              "prior_atr": 5.115060726,
+              "reason": "CONFIRMED_CLOSE_CROSS",
+              "side": -1,
+              "source_ms": 1794467400000,
+              "state": "BREAKOUT CONFIRMED",
+              "time_ms": 1794469500000,
+              "watch_ms": 1794468600000
+            },
+            {
+              "bar": 1072,
+              "breakout_ms": 1794469500000,
+              "close": 3956.975,
+              "extension_atr": 0.440854981,
+              "friction_r": 0.145695364,
+              "level": 3959.23,
+              "level_known_ms": 1794468300000,
+              "model": "STRUCTURAL_BREAK",
+              "net_room_r": 0.854304636,
+              "obstacle": null,
+              "origin_model": null,
+              "plan_id": "DT|STRUCTURAL_BREAK|-1|1794469500000",
+              "prior_atr": 5.115060726,
+              "reason": "DIAGNOSTIC_ONLY",
+              "reasons": [],
+              "reference": 3956.975,
+              "risk": 4.832,
+              "risk_cash": 16.608,
+              "side": -1,
+              "source_ms": 1794467400000,
+              "state": "ENTRY CANDIDATE",
+              "stop": 3961.807,
+              "targets": [
+                3952.143,
+                3947.311,
+                3942.479
+              ],
+              "time_ms": 1794469500000,
+              "watch_ms": 1794468600000
+            },
+            {
+              "bar": 1072,
+              "breakout_ms": 1794469500000,
+              "close": 3956.975,
+              "level": 3959.23,
+              "level_known_ms": 1794468300000,
+              "model": "RETEST_CONTINUATION",
+              "origin_model": "STRUCTURAL_BREAK",
+              "prior_atr": 5.115060726,
+              "reason": "CONFIRMED_BREAK_LEVEL",
+              "side": -1,
+              "source_ms": 1794467400000,
+              "state": "RETEST WATCH",
+              "time_ms": 1794469500000,
+              "watch_ms": 1794469500000
+            },
+            {
+              "bar": 1073,
+              "breakout_ms": 1794469500000,
+              "close": 3960.78,
+              "level": 3959.23,
+              "level_known_ms": 1794468300000,
+              "model": "RETEST_CONTINUATION",
+              "origin_model": "STRUCTURAL_BREAK",
+              "prior_atr": 5.091842103,
+              "reason": "CLOSE_BACK_THROUGH_BREAK_LEVEL",
+              "side": -1,
+              "source_ms": 1794467400000,
+              "state": "INVALIDATED",
+              "time_ms": 1794469800000,
+              "watch_ms": 1794469500000
+            },
+            {
+              "bar": 1080,
+              "breakout_ms": null,
+              "close": 3950.99,
+              "level": 3954.82,
+              "level_known_ms": 1794469500000,
+              "model": "STRUCTURAL_BREAK",
+              "origin_model": null,
+              "prior_atr": 4.625071308,
+              "reason": "FIRST_OBSERVED_ON_BREAK",
+              "side": -1,
+              "source_ms": 1794468600000,
+              "state": "WATCH",
+              "time_ms": 1794471900000,
+              "watch_ms": 1794471900000
+            },
+            {
+              "bar": 1080,
+              "breakout_ms": 1794471900000,
+              "close": 3950.99,
+              "level": 3954.82,
+              "level_known_ms": 1794469500000,
+              "model": "STRUCTURAL_BREAK",
+              "origin_model": null,
+              "prior_atr": 4.625071308,
+              "reason": "CONFIRMED_CLOSE_CROSS",
+              "side": -1,
+              "source_ms": 1794468600000,
+              "state": "BREAKOUT CONFIRMED",
+              "time_ms": 1794471900000,
+              "watch_ms": 1794471900000
+            },
+            {
+              "bar": 1080,
+              "breakout_ms": 1794471900000,
+              "close": 3950.99,
+              "extension_atr": 0.82809534,
+              "friction_r": 0.076746975,
+              "level": 3954.82,
+              "level_known_ms": 1794469500000,
+              "model": "STRUCTURAL_BREAK",
+              "net_room_r": 0.923253025,
+              "obstacle": null,
+              "origin_model": null,
+              "plan_id": "DT|STRUCTURAL_BREAK|-1|1794471900000",
+              "prior_atr": 4.625071308,
+              "reason": "DIAGNOSTIC_ONLY",
+              "reasons": [],
+              "reference": 3950.99,
+              "risk": 9.173,
+              "risk_cash": 29.631,
+              "side": -1,
+              "source_ms": 1794468600000,
+              "state": "ENTRY CANDIDATE",
+              "stop": 3960.163,
+              "targets": [
+                3941.817,
+                3932.644,
+                3923.471
+              ],
+              "time_ms": 1794471900000,
+              "watch_ms": 1794471900000
+            },
+            {
+              "bar": 1080,
+              "breakout_ms": 1794471900000,
+              "close": 3950.99,
+              "level": 3954.82,
+              "level_known_ms": 1794469500000,
+              "model": "RETEST_CONTINUATION",
+              "origin_model": "STRUCTURAL_BREAK",
+              "prior_atr": 4.625071308,
+              "reason": "CONFIRMED_BREAK_LEVEL",
+              "side": -1,
+              "source_ms": 1794468600000,
+              "state": "RETEST WATCH",
+              "time_ms": 1794471900000,
+              "watch_ms": 1794471900000
+            }
+          ]
+        },
+        "directional_extreme_distance": 36.7800000000002,
+        "end_ms": 1794474000000,
+        "side": -1,
+        "start_ms": 1794470400000,
+        "start_utc": "2026-11-12T08:00:00Z"
+      },
+      {
+        "M15": {
+          "absence_semantics": "Unknown outside protected QA logging; no approved entry inferred from Shadow.",
+          "combined_direction_scope": "RC2_EARLY_UNAVAILABLE_FOR_PART_OR_ALL_OF_WINDOW",
+          "first_logged_directional_observation": {
+            "known_ms": 1794489300000,
+            "known_utc": "2026-11-12T13:15:00Z",
+            "latency_minutes": 15.0,
+            "side": -1,
+            "sources": [
+              "STRUCTURAL_BREAK \u00b7 BREAKOUT CONFIRMED",
+              "STRUCTURAL_BREAK \u00b7 WATCH"
+            ]
+          },
+          "native_raw_paper_same_side_sim_entries": [],
+          "native_s5_decision_scope": "PARTIAL_OR_UNAVAILABLE",
+          "native_s5_permissions_by_close": [],
+          "native_s5_same_side_ready": [],
+          "same_side_new_continuations": [],
+          "source_diagnostics": [
+            {
+              "bar": 1191,
+              "breakout_ms": null,
+              "close": 3936.24,
+              "level": 3939.7,
+              "level_known_ms": 1794486600000,
+              "model": "CONSOLIDATION_BREAK",
+              "origin_model": null,
+              "prior_atr": 7.185498346,
+              "reason": "INSUFFICIENT_DISPLACEMENT",
+              "reasons": [
+                "INSUFFICIENT_DISPLACEMENT"
+              ],
+              "side": -1,
+              "source_ms": 1794485700000,
+              "state": "REJECTED",
+              "time_ms": 1794487500000,
+              "watch_ms": 1794487500000
+            },
+            {
+              "bar": 1193,
+              "breakout_ms": null,
+              "close": 3923.045,
+              "level": 3924.685,
+              "level_known_ms": 1794476700000,
+              "model": "STRUCTURAL_BREAK",
+              "origin_model": null,
+              "prior_atr": 7.013873574,
+              "reason": "FIRST_OBSERVED_ON_BREAK",
+              "side": -1,
+              "source_ms": 1794474000000,
+              "state": "WATCH",
+              "time_ms": 1794489300000,
+              "watch_ms": 1794489300000
+            },
+            {
+              "bar": 1193,
+              "breakout_ms": 1794489300000,
+              "close": 3923.045,
+              "level": 3924.685,
+              "level_known_ms": 1794476700000,
+              "model": "STRUCTURAL_BREAK",
+              "origin_model": null,
+              "prior_atr": 7.013873574,
+              "reason": "CONFIRMED_CLOSE_CROSS",
+              "side": -1,
+              "source_ms": 1794474000000,
+              "state": "BREAKOUT CONFIRMED",
+              "time_ms": 1794489300000,
+              "watch_ms": 1794489300000
+            },
+            {
+              "bar": 1193,
+              "breakout_ms": 1794489300000,
+              "close": 3923.045,
+              "extension_atr": 0.233822293,
+              "friction_r": 0.026604187,
+              "level": 3924.685,
+              "level_known_ms": 1794476700000,
+              "model": "STRUCTURAL_BREAK",
+              "net_room_r": 0.973395813,
+              "obstacle": null,
+              "origin_model": null,
+              "plan_id": "DT|STRUCTURAL_BREAK|-1|1794489300000",
+              "prior_atr": 7.013873574,
+              "reason": "STOP_TOO_WIDE",
+              "reasons": [
+                "STOP_TOO_WIDE"
+              ],
+              "reference": 3923.045,
+              "risk": 26.462,
+              "risk_cash": 81.498,
+              "side": -1,
+              "source_ms": 1794474000000,
+              "state": "REJECTED",
+              "stop": 3949.507,
+              "targets": [
+                3896.583,
+                3870.121,
+                3843.659
+              ],
+              "time_ms": 1794489300000,
+              "watch_ms": 1794489300000
+            },
+            {
+              "bar": 1193,
+              "breakout_ms": 1794489300000,
+              "close": 3923.045,
+              "level": 3924.685,
+              "level_known_ms": 1794476700000,
+              "model": "RETEST_CONTINUATION",
+              "origin_model": "STRUCTURAL_BREAK",
+              "prior_atr": 7.013873574,
+              "reason": "CONFIRMED_BREAK_LEVEL",
+              "side": -1,
+              "source_ms": 1794474000000,
+              "state": "RETEST WATCH",
+              "time_ms": 1794489300000,
+              "watch_ms": 1794489300000
+            }
+          ]
+        },
+        "M5": {
+          "absence_semantics": "Unknown outside protected QA logging; no approved entry inferred from Shadow.",
+          "combined_direction_scope": "RC2_EARLY_UNAVAILABLE_FOR_PART_OR_ALL_OF_WINDOW",
+          "first_logged_directional_observation": {
+            "known_ms": 1794489000000,
+            "known_utc": "2026-11-12T13:10:00Z",
+            "latency_minutes": 10.0,
+            "side": -1,
+            "sources": [
+              "CONSOLIDATION_BREAK \u00b7 BREAKOUT CONFIRMED",
+              "CONSOLIDATION_BREAK \u00b7 WATCH",
+              "STRUCTURAL_BREAK \u00b7 BREAKOUT CONFIRMED",
+              "STRUCTURAL_BREAK \u00b7 WATCH"
+            ]
+          },
+          "native_raw_paper_same_side_sim_entries": [],
+          "native_s5_decision_scope": "PARTIAL_OR_UNAVAILABLE",
+          "native_s5_permissions_by_close": [],
+          "native_s5_same_side_ready": [],
+          "same_side_new_continuations": [],
+          "source_diagnostics": [
+            {
+              "bar": 1136,
+              "breakout_ms": 1794486600000,
+              "close": 3936.475,
+              "level": 3943.08,
+              "level_known_ms": 1794485100000,
+              "model": "RETEST_CONTINUATION",
+              "origin_model": "STRUCTURAL_BREAK",
+              "prior_atr": 3.665733242,
+              "reason": "RETEST_WINDOW_EXPIRED",
+              "side": -1,
+              "source_ms": 1794484200000,
+              "state": "EXPIRED",
+              "time_ms": 1794488700000,
+              "watch_ms": 1794486600000
+            },
+            {
+              "bar": 1137,
+              "breakout_ms": null,
+              "close": 3929.785,
+              "level": 3932.13,
+              "level_known_ms": 1794488100000,
+              "model": "STRUCTURAL_BREAK",
+              "origin_model": null,
+              "prior_atr": 3.720680867,
+              "reason": "FIRST_OBSERVED_ON_BREAK",
+              "side": -1,
+              "source_ms": 1794487200000,
+              "state": "WATCH",
+              "time_ms": 1794489000000,
+              "watch_ms": 1794489000000
+            },
+            {
+              "bar": 1137,
+              "breakout_ms": 1794489000000,
+              "close": 3929.785,
+              "level": 3932.13,
+              "level_known_ms": 1794488100000,
+              "model": "STRUCTURAL_BREAK",
+              "origin_model": null,
+              "prior_atr": 3.720680867,
+              "reason": "CONFIRMED_CLOSE_CROSS",
+              "side": -1,
+              "source_ms": 1794487200000,
+              "state": "BREAKOUT CONFIRMED",
+              "time_ms": 1794489000000,
+              "watch_ms": 1794489000000
+            },
+            {
+              "bar": 1137,
+              "breakout_ms": 1794489000000,
+              "close": 3929.785,
+              "extension_atr": 0.630260988,
+              "friction_r": 0.036301758,
+              "level": 3932.13,
+              "level_known_ms": 1794488100000,
+              "model": "STRUCTURAL_BREAK",
+              "net_room_r": 0.222812355,
+              "obstacle": 3924.76,
+              "origin_model": null,
+              "plan_id": "DT|STRUCTURAL_BREAK|-1|1794489000000",
+              "prior_atr": 3.720680867,
+              "reason": "STOP_TOO_WIDE",
+              "reasons": [
+                "STOP_TOO_WIDE",
+                "INSUFFICIENT_NET_ROOM"
+              ],
+              "reference": 3929.785,
+              "risk": 19.393,
+              "risk_cash": 60.291,
+              "side": -1,
+              "source_ms": 1794487200000,
+              "state": "REJECTED",
+              "stop": 3949.178,
+              "targets": [
+                3910.392,
+                3890.999,
+                3871.606
+              ],
+              "time_ms": 1794489000000,
+              "watch_ms": 1794489000000
+            },
+            {
+              "bar": 1137,
+              "breakout_ms": 1794489000000,
+              "close": 3929.785,
+              "level": 3932.13,
+              "level_known_ms": 1794488100000,
+              "model": "RETEST_CONTINUATION",
+              "origin_model": "STRUCTURAL_BREAK",
+              "prior_atr": 3.720680867,
+              "reason": "CONFIRMED_BREAK_LEVEL",
+              "side": -1,
+              "source_ms": 1794487200000,
+              "state": "RETEST WATCH",
+              "time_ms": 1794489000000,
+              "watch_ms": 1794489000000
+            },
+            {
+              "bar": 1137,
+              "breakout_ms": null,
+              "close": 3929.785,
+              "level": 3934.925,
+              "level_known_ms": 1794488700000,
+              "model": "CONSOLIDATION_BREAK",
+              "origin_model": null,
+              "prior_atr": 3.720680867,
+              "reason": "FIRST_OBSERVED_ON_BREAK",
+              "side": -1,
+              "source_ms": 1794488400000,
+              "state": "WATCH",
+              "time_ms": 1794489000000,
+              "watch_ms": 1794489000000
+            },
+            {
+              "bar": 1137,
+              "breakout_ms": 1794489000000,
+              "close": 3929.785,
+              "level": 3934.925,
+              "level_known_ms": 1794488700000,
+              "model": "CONSOLIDATION_BREAK",
+              "origin_model": null,
+              "prior_atr": 3.720680867,
+              "reason": "CONFIRMED_CLOSE_CROSS",
+              "side": -1,
+              "source_ms": 1794488400000,
+              "state": "BREAKOUT CONFIRMED",
+              "time_ms": 1794489000000,
+              "watch_ms": 1794489000000
+            },
+            {
+              "bar": 1137,
+              "breakout_ms": 1794489000000,
+              "close": 3929.785,
+              "extension_atr": 1.381467582,
+              "friction_r": 0.036301758,
+              "level": 3934.925,
+              "level_known_ms": 1794488700000,
+              "model": "CONSOLIDATION_BREAK",
+              "net_room_r": 0.222812355,
+              "obstacle": 3924.76,
+              "origin_model": null,
+              "plan_id": "DT|CONSOLIDATION_BREAK|-1|1794489000000",
+              "prior_atr": 3.720680867,
+              "reason": "STOP_TOO_WIDE",
+              "reasons": [
+                "STOP_TOO_WIDE",
+                "LATE_EXTENSION",
+                "INSUFFICIENT_NET_ROOM"
+              ],
+              "reference": 3929.785,
+              "risk": 19.393,
+              "risk_cash": 60.291,
+              "side": -1,
+              "source_ms": 1794488400000,
+              "state": "REJECTED",
+              "stop": 3949.178,
+              "targets": [
+                3910.392,
+                3890.999,
+                3871.606
+              ],
+              "time_ms": 1794489000000,
+              "watch_ms": 1794489000000
+            },
+            {
+              "bar": 1144,
+              "breakout_ms": 1794489000000,
+              "close": 3903.18,
+              "level": 3932.13,
+              "level_known_ms": 1794488100000,
+              "model": "RETEST_CONTINUATION",
+              "origin_model": "STRUCTURAL_BREAK",
+              "prior_atr": 7.582640948,
+              "reason": "RETEST_WINDOW_EXPIRED",
+              "side": -1,
+              "source_ms": 1794487200000,
+              "state": "EXPIRED",
+              "time_ms": 1794491100000,
+              "watch_ms": 1794489000000
+            }
+          ]
+        },
+        "directional_extreme_distance": 51.679999999999836,
+        "end_ms": 1794492000000,
+        "side": -1,
+        "start_ms": 1794488400000,
+        "start_utc": "2026-11-12T13:00:00Z"
+      }
+    ]
+  },
+  "reserved_test": {
+    "admission": "Independent custody and proof that neither outcomes nor candidate evaluations in this chronological window previously entered model selection. Record source/date/hash before looking at test outcomes. Use an earlier contiguous source prefix for warmup only. A provider change alone does not make previously scored dates independent.",
+    "assigned_bars": 0,
+    "prospective_dates": "To be reserved independently alongside an actual data source. Exclude all prior registered or reserved evaluation windows before ingestion.",
+    "state": "NOT_AVAILABLE"
+  },
+  "sealed_start_utc": "2026-11-16T00:00:00Z",
+  "status": "MATCHED_DATASETS_VERIFIED_INSUFFICIENT_FOR_NEW_CANDIDATE",
+  "visual_archive_sha256": "fec83cd615923b210b6815852a69b74ed457f791ac41b3913a7c189f7d58f952"
+}
