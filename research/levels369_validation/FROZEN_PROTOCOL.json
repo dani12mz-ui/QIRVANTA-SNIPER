@@ -1,0 +1,34 @@
+{
+  "status": "PREREGISTERED_EXPLORATORY_PROTOCOL_NOT_A_TRADING_SIGNAL",
+  "source": "Seven user-supplied ICT4F/T4F 369 Levels screenshots; eighth slide not provided",
+  "source_rules": {
+    "timeframe": "M15",
+    "digital_root_groups": {"1,4,7": 12, "2,5,8": 15, "3,6,9": 18},
+    "example": {"anchor": 4023, "step": 18, "levels": [4005,3987,3969,3951]},
+    "same_step_is_repeated": true,
+    "level_is_not_confirmed_support_or_trade": true
+  },
+  "missing_from_source": ["precise swing selection and confirmation","rounding of decimal anchor before digit reduction","entry and exit rules","stop loss","position sizing","grid expiry or replacement","causal quantitative confirmation rule"],
+  "research_assumptions": {
+    "anchor": "strict 3-left/3-right confirmed swing; known only at close of third right bar; most recent per side",
+    "grid": "4 inward levels from high downward or low upward; preserve original fractional price; floor positive anchor for root",
+    "expiry_bars": 24,
+    "first_observable_touch": "strictly after anchor known-at close",
+    "touch_tolerance": "0.05 times ATR14 from preceding closed bar",
+    "approach_side": "BUY reaction if preceding close above level+tol; SELL if below level-tol",
+    "rejection": "touch bar closes >=0.10 prior ATR away in reaction direction and directional body >=0.25 prior ATR",
+    "ambiguous_multi_level_touch": "exclude from executable entry analysis; retain descriptive counts",
+    "execution_proxy": "next bar open; one position; fixed 1 prior ATR midpoint stop, 1.5R midpoint target, 12-bar max hold; gap exits conservative; stop-first intrabar ambiguity",
+    "risk_unit": "25 USD per 1R; fractional research units, no claim of PU Prime lot admissibility",
+    "cost_comparison": "identical midpoint trade ledger; adverse half-spread and slip on both executions; commission each side; quote-trigger sensitivity not native tested",
+    "baseline_costs": {"spread_price":0.35,"slippage_ticks_each_side":2,"tick_size":0.001,"commission_per_unit_each_side":0.175},
+    "stress_costs": {"spread_price":0.70,"slippage_ticks_each_side":5,"tick_size":0.001,"commission_per_unit_each_side":0.2625}
+  },
+  "controls": ["constant 12","constant 15 PRIMARY COMPARATOR","constant 18","cyclic reassignment A","cyclic reassignment B","2 times anchor ATR","last four confirmed structural pivot levels"],
+  "sensitivity": ["nearest-integer root instead of floor","200 seeded within-side step permutations","M5 and M30 secondary only"],
+  "data": {"primary_archive":"research/luminous_visual_v2/evidence/native-pairs.zip","primary_member":"baseline-M15.csv","pinned_commit":"37b903f46a2d878d9d0757da134620c22f2d067d","max_allowed_close_utc":"2026-11-13T00:00:00Z","no_bar_imputation":true,"report_conflicting_duplicates":true,"first_250_bars_warmup":true},
+  "evaluation": ["counts of causal anchors and touched levels","rejection counts","gross and net R, net USD, PF, drawdown, win rate","mean outcome and costs per campaign","blocked overlapping candidates","early and late chronological subperiods without parameter selection","uncertainty and random-grid comparison"],
+  "holdout": "No independent holdout claimed for previously viewed archive. Do not access, tune on, or modify sealed original GOLD PRO 2026-11-16 through 2027-01-11 or other protected forward protocols.",
+  "promotion": "RESEARCH ONLY; no integration to Pine or S5 READY based solely on historical exploratory outcomes",
+  "protected": ["main","S5/RC2","Visual V2","existing release refs","sealed forward files"]
+}
