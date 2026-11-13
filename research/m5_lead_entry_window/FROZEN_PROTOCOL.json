@@ -1,0 +1,55 @@
+{
+  "schema": "qirvanta.m5-lead-entry-window.v1",
+  "frozen_utc_date": "2026-11-13",
+  "baseline": "37b903f46a2d878d9d0757da134620c22f2d067d",
+  "baseline_pine_sha256": "77feedcbef84e77b9270ec43840be5b823d838300d0a09d5ddb4fec7acc089f4",
+  "symbol": "OANDA:XAUUSD",
+  "bar_minutes": 5,
+  "tick": 0.001,
+  "atr": {"length": 14, "offset": 1, "initialization": "Wilder RMA seeded by the mean of the first 14 true ranges, with high-low on the first bar. Session gaps do not reset ATR."},
+  "continuous_bars": "A needs current and six previous contiguous full M5 bars; B needs current and three previous contiguous full M5 bars. Gap means non-adjacent timestamps or non-five-minute bar.",
+  "watch": {
+    "lookback": 6, "distance_atr_max": 0.25, "ttl_bars": 3,
+    "structure": "BUY low[0] > low[1] > low[2], SELL high[0] < high[1] < high[2]. Side-wise edge at start of qualifying run or if the six-bar level changes; no replacement while a watch is active.",
+    "terminal_order": "Data gap expires first; a close strictly through the opposite frozen six-bar edge invalidates; a qualifying same-side micro break closing beyond the watch level completes; otherwise expires at age 3. No new watch on the terminal bar for that side."
+  },
+  "break": {
+    "lookback": 3, "body_atr_min": 0.35, "close_location_min": 0.70, "max_extension_atr": 0.70,
+    "first": "Current close strictly beyond prior three-bar extreme; previous close must not already be beyond that same frozen level.",
+    "rejection_order": ["DATA_GAP", "ATR_UNAVAILABLE", "TWO_SIDED", "EXTENDED"],
+    "notes": "Emit only a qualified displacement break, except missing ATR may emit ATR_UNAVAILABLE on a first geometric break with directed body and close location. Gap check is preceding three bars. Both sides are evaluated separately before accepting either."
+  },
+  "retest": {
+    "ttl_bars": 4, "tolerance_atr": 0.10,
+    "rule": "Only an initially EXTENDED first break arms one chance. In bars 1-4, first retest that touches within 0.10 original ATR, closes on break side and satisfies fresh B candle body/location (without a new rolling break) consumes it. Apply fresh ATR, stop and barrier plus original level for extension and all C gates. Gap expires, close through the original level by more than 0.10 original ATR invalidates. Check bar 4 before expiry. No second chance after any C, stop, invalidation or failed retest. No new initial break for that side on any bar with an active retest at its start."
+  },
+  "entry": {
+    "stop_buffer_atr": 0.10, "minimum_stop_atr": 0.8, "maximum_stop_atr": 2.4,
+    "min_net_room_r": 0.70, "max_cost_r": 0.18, "obstacle_lookback": 20,
+    "rule": "At B freeze prior three-bar opposite extreme with buffer, round stop outward at 0.001, and freeze prior 20-bar favorable extreme. The barrier must be strictly past the broken level and the next open; crossing a previously known barrier never substitutes a new one. Evaluate C at the next contiguous M5 open, using midpoint for R and the exit-side quote for opening stop. Emit C only at that bar's confirmed close, with effective entry time separate. The research open simulation assumes a conditional instruction fixed at B. The user cannot act at that earlier open from a C alert.",
+    "rejection_order": ["ENTRY_GAP", "OPEN_THROUGH_STOP", "OPEN_BACK_INSIDE", "OPEN_EXTENDED", "STOP_TOO_SMALL", "STOP_TOO_WIDE", "OBSTACLE_UNKNOWN", "OBSTACLE_CROSSED", "INSUFFICIENT_NET_ROOM", "COST_RISK"],
+    "htf": "Existing closed M15, H1 and H4 context is advisory only. Any available opposite H1/H4 prints COUNTERTREND. Independently flag HTF DATA MISSING for missing H1 or H4. The existing M15 request returns the last M15 close available at M5 bar open."
+  },
+  "costs": {
+    "normal": {"spread": 0.35, "slippage_ticks_per_market_or_stop": 2, "commission_price_per_fill": 0.175},
+    "stress": {"spread": 0.70, "slippage_ticks_per_market_or_stop": 5, "commission_price_per_fill": 0.2625},
+    "risk_gate": "Spread plus twice slippage plus twice commission per unit (0.704 or 1.235). Net room equals directional midpoint-to-obstacle distance less this friction, divided by midpoint-to-stop risk. Recompute risk admission separately at stressed costs.",
+    "provenance": "Previously registered research assumptions, never quotes. Bid/ask = OHLC midpoint minus/plus half spread. Entry and market/stop exits add adverse slippage. Target exit is a limit at the structural obstacle. Spread already enters via quotes and is not deducted again. No financing inferred."
+  },
+  "execution": {
+    "risk_unit": "One initial midpoint-to-stop R per campaign, with no leverage sizing or compounding.",
+    "exits": "One structural target at the frozen obstacle for the experiment only; opening stop first, then marketable opening target, otherwise intrabar stop first when both touched. Entry-bar stop active. Holding limit 12 M5 bars including the entry bar, then first next open at exit quote plus slippage; at any earlier data gap flatten at first observed open, recording a gap if stop crossed. Right-edge open trades and pending orders stay censored.",
+    "max_hold_bars": 12,
+    "position": "One slot. Standalone run consumes slot at entry open until confirmed exit. For protected-priority overlay, reject if an original approved S5/RC2 pending/position occupies the slot at entry. If S5 reserves later, exit research at the next observed open before giving S5 the slot. Original S5 executions remain fixed. Overlap/capacity and any price gaps are logged.",
+    "alerts": "Four opt-in research alertconditions (setup, break, candidate, rejection) only on confirmed realtime M5 outside historical review. No executable notifications, no actual alert creation. Labels, when enabled, appear at the event-known bar. R is research geometry, never a protected trade plan."
+  },
+  "evaluation": {
+    "archives": ["WSB archival M5 OHLC and native S5 controls, known to project", "Visual V2 candidate-M5.csv and candidate-M15.csv in native-pairs.zip, known to project"],
+    "major_moves": "Pinned docs/v21_evidence/event_evaluation_registration.json, fixed complete UTC hours, 250-bar warmup, prior 24-hour median, >=1.5x open-close move and >=0.60 directional efficiency. Outcome labels are assigned only after the hour. Track same-side detection up to 15 minutes before the start and within the hour separately; matched warnings use unique event IDs. Early coverage counts watches known strictly before the start. Also compare latency against existing enabled RC2 EARLY observations where available.",
+    "counterexamples": "Chronologically first four BUY and SELL labeled hours, first four complete non-significant hours that contain a new candidate-model WATCH or break after eligibility, plus Nov 11 02:45-04:00 UTC. Include all hours and all fills in aggregate metrics.",
+    "misses": "Report missed significant hours, and independently classify risk-rejected comparable counterfactuals by replaying their known structural stop and target where both are available and opening geometry valid. Unknown geometry has no hypothetical winner. Isolate occupancy-blocked candidates by their standalone simulation, including profitable and losing cases.",
+    "context": "M5 timing/entry report and separate M15 trend-conditioned observations on matched overlap; M15/M30 never run the new engine. Context is explanatory and not an admission filter.",
+    "holdout": "No independent sample currently established. Existing archives and overlapping diagnostics are archival only. No data from the sealed 2026-11-16 to 2027-01-11 UTC period or any later existing sealed protocol are used.",
+    "promotion": "Requires positive independent stressed incremental net expectancy, no higher max drawdown or tail losses, and practical early coverage. Insufficient independent data means INCONCLUSIVE and RESEARCH ONLY."
+  }
+}

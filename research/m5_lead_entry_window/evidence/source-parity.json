@@ -1,0 +1,29 @@
+{
+  "status": "STATIC_CHECKS_PASSED",
+  "protected_commit": "37b903f46a2d878d9d0757da134620c22f2d067d",
+  "protected_prefix_byte_identical": true,
+  "candidate_sha256": "60e924183bdec55f65eecf35828d07fe4e478bd000df9144532608f4922e845b",
+  "protocol_sha256": "e7adbaedc1e9519256729439e59b09156aab8e9876901e40aac18ff5b564462c",
+  "sealed_control_sha256": "09181ecaf9e30cde62c5203b524cb458d808a07c24029e961e32bb25c474afd1",
+  "lines": [
+    2825,
+    3082
+  ],
+  "lexical_tokens": [
+    27543,
+    30077
+  ],
+  "protected_call_deltas": {
+    "indicator": 0,
+    "request.security": 0,
+    "input.bool": 2,
+    "input.time": 0,
+    "input.string": 0,
+    "request.security_lower_tf": 0,
+    "input.int": 0,
+    "alert": 0,
+    "plot": 5,
+    "alertcondition": 4
+  },
+  "research_labels_retained": 8
+}

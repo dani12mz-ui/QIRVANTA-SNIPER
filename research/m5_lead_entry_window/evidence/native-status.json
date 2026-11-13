@@ -1,0 +1,23 @@
+{
+  "status": "BLOCKED_COMPILER_TIMEOUT",
+  "control_commit": "37b903f46a2d878d9d0757da134620c22f2d067d",
+  "attempted_pine_sha256": "60e924183bdec55f65eecf35828d07fe4e478bd000df9144532608f4922e845b",
+  "editor_clipboard_sha_verified": true,
+  "symbol": "OANDA:XAUUSD",
+  "chart_type": "standard candles",
+  "submitted_utc": "2026-11-13T03:26:07Z",
+  "timeout_utc": "2026-11-13T03:27:39Z",
+  "attempts_used_this_run": 1,
+  "attempts_before_blocking_as_displayed": 4,
+  "frames": {
+    "M5": "COMPILER_TIMEOUT",
+    "M15": "NOT_RUN_CANDIDATE_DID_NOT_COMPILE",
+    "M30": "NOT_RUN_CANDIDATE_DID_NOT_COMPILE"
+  },
+  "native_s5_rc2_luminous_parity": "NOT_RUN",
+  "native_pine_python_parity": "NOT_RUN",
+  "native_candidate_visual_matrix": "NOT_RUN",
+  "alert_delivery": "NOT_RUN",
+  "screenshot": "M5-native-compiler-timeout.jpg",
+  "pine_candidate_published": false
+}
