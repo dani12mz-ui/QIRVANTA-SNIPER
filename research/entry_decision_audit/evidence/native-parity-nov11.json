@@ -1,0 +1,287 @@
+{
+  "status": "PROTECTED_NATIVE_PARITY",
+  "control_commit": "37b903f46a2d878d9d0757da134620c22f2d067d",
+  "control_pine_sha256": "77feedcbef84e77b9270ec43840be5b823d838300d0a09d5ddb4fec7acc089f4",
+  "candidate_source_sha256_supplied_by_operator": "7be6412d3d22f62ea6e8ea1cd92a1dfd017ba38173e2289782c177169fdb6221",
+  "settings_manifest_sha256_supplied_by_operator": "19eba88a9489799ca423b559f63a5e16b5e74d8fd825435f3c6713726b112587",
+  "audited_close_window_ms": {
+    "start_inclusive": 1794355200000,
+    "end_inclusive": 1794418200000
+  },
+  "evidence_scope": "Pine Logs prove bounded protected stream parity. Compile, exact configuration and UI captures require separate native witnesses.",
+  "alert_scope": "Alert payload and logged intent, without server delivery verification.",
+  "frames": {
+    "M5": {
+      "status": "PROTECTED_NATIVE_PARITY",
+      "files": {
+        "baseline": {
+          "name": "baseline-M5.csv",
+          "sha256": "ddc9242adc01efc52cdfdb55755936aeef10273cf67110ae18a0eae8cc443744",
+          "messages": 3272
+        },
+        "audit-on": {
+          "name": "audit-on-M5.csv",
+          "sha256": "953486506b06eda44884097ad3860af8e7e678b18f4fff902b0ad934fd90359a",
+          "messages": 3905
+        },
+        "audit-off": {
+          "name": "audit-off-M5.csv",
+          "sha256": "ddc9242adc01efc52cdfdb55755936aeef10273cf67110ae18a0eae8cc443744",
+          "messages": 3272
+        }
+      },
+      "coverage": {
+        "first_loaded_open_ms": 1794216900000,
+        "last_historical_close_ms": 1794597900000,
+        "audited_closes": 211,
+        "first_audited_close_ms": 1794355200000,
+        "last_audited_close_ms": 1794418200000
+      },
+      "protected_streams": {
+        "RC1_CTX": 211,
+        "RC2_EARLY": 17,
+        "PR_CTX": 211,
+        "PR_SAMPLE": 633,
+        "DTV_ALERT": 7,
+        "DTV_LEDGER": 211,
+        "DTV_STATE": 211,
+        "LZ_EVENT": 66,
+        "RC1_END": 1,
+        "PR_END": 1
+      },
+      "legacy_alert_validation": {
+        "baseline": {
+          "status": "NO_EXAMPLES",
+          "s5_alerts": 0,
+          "early_observations": 17,
+          "early_alerts": 0,
+          "filter_rejected": 0
+        },
+        "audit-on": {
+          "status": "NO_EXAMPLES",
+          "s5_alerts": 0,
+          "early_observations": 17,
+          "early_alerts": 0,
+          "filter_rejected": 0
+        },
+        "audit-off": {
+          "status": "NO_EXAMPLES",
+          "s5_alerts": 0,
+          "early_observations": 17,
+          "early_alerts": 0,
+          "filter_rejected": 0
+        }
+      },
+      "raw_paper_examples": {},
+      "raw_paper_final_ledger": {
+        "symbol": "OANDA:XAUUSD",
+        "frame": "5",
+        "known_ms": 1794418200000,
+        "phase": 0,
+        "plan_id": "",
+        "entered": 0,
+        "closed": 0,
+        "net": 0,
+        "gross": 0,
+        "costs": 0,
+        "gains": 0,
+        "losses": 0,
+        "drawdown": 0,
+        "capacity_skipped": 0
+      },
+      "observational_native_events": 480,
+      "first_differences": {},
+      "execution_coverage": "NO_SIMULATED_ENTRY_EXAMPLES",
+      "zone_coverage": "LZ_EVENT_EXERCISED",
+      "diagnostic_rows": {
+        "bar": 211,
+        "side": 422
+      }
+    },
+    "M15": {
+      "status": "PROTECTED_NATIVE_PARITY",
+      "files": {
+        "baseline": {
+          "name": "baseline-M15.csv",
+          "sha256": "87574300ad7e09d783817cd5e7a55b06784f5e34a5e8af62326d812ce3a1abc8",
+          "messages": 2316
+        },
+        "audit-on": {
+          "name": "audit-on-M15.csv",
+          "sha256": "3496ac681806935e788bff24a23421992af3cc390046e6cc1b5eebc0a278f854",
+          "messages": 2529
+        },
+        "audit-off": {
+          "name": "audit-off-M15.csv",
+          "sha256": "87574300ad7e09d783817cd5e7a55b06784f5e34a5e8af62326d812ce3a1abc8",
+          "messages": 2316
+        }
+      },
+      "coverage": {
+        "first_loaded_open_ms": 1793101500000,
+        "last_historical_close_ms": 1794597300000,
+        "audited_closes": 71,
+        "first_audited_close_ms": 1794355200000,
+        "last_audited_close_ms": 1794418200000
+      },
+      "protected_streams": {
+        "RC1_CTX": 71,
+        "RC1_CORE": 20,
+        "PR_CTX": 71,
+        "PR_SAMPLE": 213,
+        "RC1_ALERT": 17,
+        "RC2_ALERT": 17,
+        "DTV_ALERT": 12,
+        "DTV_LEDGER": 71,
+        "DTV_STATE": 71,
+        "LZ_EVENT": 13,
+        "RC2_EARLY": 6,
+        "RC1_READY": 2,
+        "DTV_PAPER": 6,
+        "RC1_END": 1,
+        "PR_END": 1
+      },
+      "legacy_alert_validation": {
+        "baseline": {
+          "status": "VERIFIED",
+          "s5_alerts": 19,
+          "early_observations": 6,
+          "early_alerts": 0,
+          "filter_rejected": 0
+        },
+        "audit-on": {
+          "status": "VERIFIED",
+          "s5_alerts": 19,
+          "early_observations": 6,
+          "early_alerts": 0,
+          "filter_rejected": 0
+        },
+        "audit-off": {
+          "status": "VERIFIED",
+          "s5_alerts": 19,
+          "early_observations": 6,
+          "early_alerts": 0,
+          "filter_rejected": 0
+        }
+      },
+      "raw_paper_examples": {
+        "QUEUED": 2,
+        "SIM_ENTRY": 1,
+        "SIM_SL": 1,
+        "CLOSED": 1,
+        "CANCELLED": 1
+      },
+      "raw_paper_final_ledger": {
+        "symbol": "OANDA:XAUUSD",
+        "frame": "15",
+        "known_ms": 1794418200000,
+        "phase": 0,
+        "plan_id": "",
+        "entered": 1,
+        "closed": 1,
+        "net": "-1.03082818",
+        "gross": -1,
+        "costs": "0.03082818",
+        "gains": 0,
+        "losses": "1.03082818",
+        "drawdown": "1.03082818",
+        "capacity_skipped": 0
+      },
+      "observational_native_events": 501,
+      "first_differences": {},
+      "execution_coverage": "SIM_ENTRY_EXERCISED",
+      "zone_coverage": "LZ_EVENT_EXERCISED",
+      "diagnostic_rows": {
+        "bar": 71,
+        "side": 142
+      }
+    },
+    "M30": {
+      "status": "PROTECTED_NATIVE_PARITY",
+      "files": {
+        "baseline": {
+          "name": "baseline-M30.csv",
+          "sha256": "58c4a89876cefce696c89725e1c214d69269617866dfb07df794db2b33b889e8",
+          "messages": 2029
+        },
+        "audit-on": {
+          "name": "audit-on-M30.csv",
+          "sha256": "f92ad5f59fb97103eef3d305fbb78587928120a7a3ff5b972ad358912d0270c6",
+          "messages": 2137
+        },
+        "audit-off": {
+          "name": "audit-off-M30.csv",
+          "sha256": "58c4a89876cefce696c89725e1c214d69269617866dfb07df794db2b33b889e8",
+          "messages": 2029
+        }
+      },
+      "coverage": {
+        "first_loaded_open_ms": 1791435600000,
+        "last_historical_close_ms": 1794596400000,
+        "audited_closes": 36,
+        "first_audited_close_ms": 1794355200000,
+        "last_audited_close_ms": 1794418200000
+      },
+      "protected_streams": {
+        "RC1_CTX": 36,
+        "PR_CTX": 36,
+        "PR_SAMPLE": 144,
+        "DTV_LEDGER": 36,
+        "DTV_STATE": 36,
+        "RC2_EARLY": 5,
+        "LZ_EVENT": 7,
+        "DTV_ALERT": 1,
+        "RC1_END": 1,
+        "PR_END": 1
+      },
+      "legacy_alert_validation": {
+        "baseline": {
+          "status": "NO_EXAMPLES",
+          "s5_alerts": 0,
+          "early_observations": 5,
+          "early_alerts": 0,
+          "filter_rejected": 0
+        },
+        "audit-on": {
+          "status": "NO_EXAMPLES",
+          "s5_alerts": 0,
+          "early_observations": 5,
+          "early_alerts": 0,
+          "filter_rejected": 0
+        },
+        "audit-off": {
+          "status": "NO_EXAMPLES",
+          "s5_alerts": 0,
+          "early_observations": 5,
+          "early_alerts": 0,
+          "filter_rejected": 0
+        }
+      },
+      "raw_paper_examples": {},
+      "raw_paper_final_ledger": {
+        "symbol": "OANDA:XAUUSD",
+        "frame": "30",
+        "known_ms": 1794418200000,
+        "phase": 0,
+        "plan_id": "",
+        "entered": 0,
+        "closed": 0,
+        "net": 0,
+        "gross": 0,
+        "costs": 0,
+        "gains": 0,
+        "losses": 0,
+        "drawdown": 0,
+        "capacity_skipped": 0
+      },
+      "observational_native_events": 503,
+      "first_differences": {},
+      "execution_coverage": "NO_SIMULATED_ENTRY_EXAMPLES",
+      "zone_coverage": "LZ_EVENT_EXERCISED",
+      "diagnostic_rows": {
+        "bar": 36,
+        "side": 72
+      }
+    }
+  }
+}

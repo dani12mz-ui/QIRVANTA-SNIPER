@@ -1,0 +1,810 @@
+{
+  "source": "587e46228040788fe893dd242769511257557993:research/market_coverage_entry_quality/evidence/evidence.json.gz",
+  "source_sha256": "b1f8f4e7fc2e62b9d99b281e114564a134ef3724575bb35e6291d688ef4d1cb4",
+  "scope": "Previously used M5 OANDA archive, quote-side scenario, known dates; no new execution test.",
+  "independent_holdout": "NOT_AVAILABLE",
+  "time_in_drawdown": null,
+  "time_in_drawdown_reason": "Per-bar marked equity time series not retained in this pinned portable evidence.",
+  "portfolio_results": {
+    "normal": {
+      "all_protected_priority": {
+        "BUY": {
+          "closed": 12,
+          "wins": 2,
+          "losses": 10,
+          "win_rate": 0.16666666666666666,
+          "win_rate_wilson95": [
+            0.04696514218385378,
+            0.4480308622529734
+          ],
+          "net_r": -3.7120423222746,
+          "net_usd": -75.06999999999843,
+          "expectancy_r": -0.30933686018955003,
+          "profit_factor": 0.4188638932326136,
+          "average_loss_usd": -12.917800000000168,
+          "mean_worst_five_percent_r": -1.000000000000098,
+          "marked_bar_close_drawdown_usd": 118.98899999999757,
+          "modeled_total_cost_usd": 25.325999999996917
+        },
+        "SELL": {
+          "closed": 16,
+          "wins": 7,
+          "losses": 9,
+          "win_rate": 0.4375,
+          "win_rate_wilson95": [
+            0.23098652405492354,
+            0.6682144360118811
+          ],
+          "net_r": -0.3501877111910736,
+          "net_usd": 36.16099999999162,
+          "expectancy_r": -0.0218867319494421,
+          "profit_factor": 1.2736298078741355,
+          "average_loss_usd": -14.683666666667067,
+          "mean_worst_five_percent_r": -1.000000000000097,
+          "marked_bar_close_drawdown_usd": 71.71200000000617,
+          "modeled_total_cost_usd": 33.772000000001555
+        },
+        "all": {
+          "closed": 28,
+          "wins": 9,
+          "losses": 19,
+          "win_rate": 0.32142857142857145,
+          "win_rate_wilson95": [
+            0.1793324692249496,
+            0.5066115681914238
+          ],
+          "net_r": -4.062230033465674,
+          "net_usd": -38.909000000006806,
+          "expectancy_r": -0.1450796440523455,
+          "profit_factor": 0.8511121910527032,
+          "average_loss_usd": -13.754263157895016,
+          "mean_worst_five_percent_r": -1.0000000000000975,
+          "marked_bar_close_drawdown_usd": 155.6610000000092,
+          "modeled_total_cost_usd": 59.09799999999847
+        }
+      },
+      "all_standalone": {
+        "BUY": {
+          "closed": 12,
+          "wins": 2,
+          "losses": 10,
+          "win_rate": 0.16666666666666666,
+          "win_rate_wilson95": [
+            0.04696514218385378,
+            0.4480308622529734
+          ],
+          "net_r": -4.81135596817193,
+          "net_usd": -100.20400000000025,
+          "expectancy_r": -0.40094633068099417,
+          "profit_factor": 0.35064026128883063,
+          "average_loss_usd": -15.431200000000352,
+          "mean_worst_five_percent_r": -1.0000000000001006,
+          "marked_bar_close_drawdown_usd": 144.3540000000001,
+          "modeled_total_cost_usd": 25.325999999996913
+        },
+        "SELL": {
+          "closed": 19,
+          "wins": 6,
+          "losses": 13,
+          "win_rate": 0.3157894736842105,
+          "win_rate_wilson95": [
+            0.1536437908779228,
+            0.5398959232467253
+          ],
+          "net_r": -3.443364802573887,
+          "net_usd": -36.48700000000432,
+          "expectancy_r": -0.18122972645125723,
+          "profit_factor": 0.8616407292804118,
+          "average_loss_usd": -20.285538461538625,
+          "mean_worst_five_percent_r": -1.000000000000097,
+          "marked_bar_close_drawdown_usd": 174.44700000000154,
+          "modeled_total_cost_usd": 40.100000000008244
+        },
+        "all": {
+          "closed": 31,
+          "wins": 8,
+          "losses": 23,
+          "win_rate": 0.25806451612903225,
+          "win_rate_wilson95": [
+            0.13701705906393744,
+            0.43246135809433794
+          ],
+          "net_r": -8.254720770745816,
+          "net_usd": -136.69100000000458,
+          "expectancy_r": -0.2662813151853489,
+          "profit_factor": 0.6730068130059453,
+          "average_loss_usd": -18.174956521739375,
+          "mean_worst_five_percent_r": -1.0000000000000988,
+          "marked_bar_close_drawdown_usd": 262.4990000000038,
+          "modeled_total_cost_usd": 65.42600000000516
+        }
+      },
+      "continuation_protected_priority": {
+        "BUY": {
+          "closed": 4,
+          "wins": 0,
+          "losses": 4,
+          "win_rate": 0.0,
+          "win_rate_wilson95": [
+            0,
+            0.4898908364545973
+          ],
+          "net_r": -3.4306325327703564,
+          "net_usd": -63.06799999999948,
+          "expectancy_r": -0.8576581331925891,
+          "profit_factor": 0.0,
+          "average_loss_usd": -15.76699999999987,
+          "mean_worst_five_percent_r": -1.000000000000098,
+          "marked_bar_close_drawdown_usd": 64.14600000000047,
+          "modeled_total_cost_usd": 8.445999999998273
+        },
+        "SELL": {
+          "closed": 7,
+          "wins": 2,
+          "losses": 5,
+          "win_rate": 0.2857142857142857,
+          "win_rate_wilson95": [
+            0.08221892400405678,
+            0.6410655481673808
+          ],
+          "net_r": -3.0715553863679204,
+          "net_usd": -53.03799999999919,
+          "expectancy_r": -0.43879362662398863,
+          "profit_factor": 0.2994121920612921,
+          "average_loss_usd": -15.140999999999803,
+          "mean_worst_five_percent_r": -1.000000000000097,
+          "marked_bar_close_drawdown_usd": 53.10699999999996,
+          "modeled_total_cost_usd": 14.776000000001742
+        },
+        "all": {
+          "closed": 11,
+          "wins": 2,
+          "losses": 9,
+          "win_rate": 0.18181818181818182,
+          "win_rate_wilson95": [
+            0.05136768974608513,
+            0.4769805619608442
+          ],
+          "net_r": -6.502187919138277,
+          "net_usd": -116.10599999999866,
+          "expectancy_r": -0.5911079926489342,
+          "profit_factor": 0.16333868980277194,
+          "average_loss_usd": -15.419222222222055,
+          "mean_worst_five_percent_r": -1.000000000000098,
+          "marked_bar_close_drawdown_usd": 116.10599999999864,
+          "modeled_total_cost_usd": 23.222000000000016
+        }
+      },
+      "continuation_standalone": {
+        "BUY": {
+          "closed": 4,
+          "wins": 0,
+          "losses": 4,
+          "win_rate": 0.0,
+          "win_rate_wilson95": [
+            0,
+            0.4898908364545973
+          ],
+          "net_r": -3.4306325327703564,
+          "net_usd": -63.06799999999948,
+          "expectancy_r": -0.8576581331925891,
+          "profit_factor": 0.0,
+          "average_loss_usd": -15.76699999999987,
+          "mean_worst_five_percent_r": -1.000000000000098,
+          "marked_bar_close_drawdown_usd": 64.14600000000047,
+          "modeled_total_cost_usd": 8.445999999998273
+        },
+        "SELL": {
+          "closed": 9,
+          "wins": 1,
+          "losses": 8,
+          "win_rate": 0.1111111111111111,
+          "win_rate_wilson95": [
+            0.019890887638544907,
+            0.434999705576656
+          ],
+          "net_r": -5.917043185599274,
+          "net_usd": -103.64099999999752,
+          "expectancy_r": -0.6574492428443639,
+          "profit_factor": 0.10894740914601163,
+          "average_loss_usd": -14.53912499999966,
+          "mean_worst_five_percent_r": -1.000000000000097,
+          "marked_bar_close_drawdown_usd": 103.70999999999829,
+          "modeled_total_cost_usd": 19.000000000003354
+        },
+        "all": {
+          "closed": 13,
+          "wins": 1,
+          "losses": 12,
+          "win_rate": 0.07692307692307693,
+          "win_rate_wilson95": [
+            0.013710421242556586,
+            0.3331395092109959
+          ],
+          "net_r": -9.347675718369631,
+          "net_usd": -166.708999999997,
+          "expectancy_r": -0.7190519783361254,
+          "profit_factor": 0.0706429331980532,
+          "average_loss_usd": -14.948416666666397,
+          "mean_worst_five_percent_r": -1.000000000000098,
+          "marked_bar_close_drawdown_usd": 166.70899999999702,
+          "modeled_total_cost_usd": 27.446000000001625
+        }
+      },
+      "s5_control": {
+        "BUY": {
+          "closed": 55,
+          "wins": 35,
+          "losses": 20,
+          "win_rate": 0.6363636363636364,
+          "win_rate_wilson95": [
+            0.5042276149984125,
+            0.7506946846969275
+          ],
+          "net_r": 4.767642932151718,
+          "net_usd": 123.63400000000459,
+          "expectancy_r": 0.08668441694821305,
+          "profit_factor": 1.367200981309391,
+          "average_loss_usd": -16.834650000000238,
+          "mean_worst_five_percent_r": -1.0000000000001246,
+          "marked_bar_close_drawdown_usd": 78.79199999999977,
+          "modeled_total_cost_usd": 116.0459999999857
+        },
+        "SELL": {
+          "closed": 43,
+          "wins": 24,
+          "losses": 19,
+          "win_rate": 0.5581395348837209,
+          "win_rate_wilson95": [
+            0.41107614452824104,
+            0.6956669016082949
+          ],
+          "net_r": -1.0990176206095117,
+          "net_usd": -75.52100000000686,
+          "expectancy_r": -0.02555854931650027,
+          "profit_factor": 0.8043654525154572,
+          "average_loss_usd": -20.317421052631943,
+          "mean_worst_five_percent_r": -1.0000000000001172,
+          "marked_bar_close_drawdown_usd": 124.73100000000412,
+          "modeled_total_cost_usd": 90.73399999998296
+        },
+        "all": {
+          "closed": 98,
+          "wins": 59,
+          "losses": 39,
+          "win_rate": 0.6020408163265306,
+          "win_rate_wilson95": [
+            0.5030495272292229,
+            0.6933341482561485
+          ],
+          "net_r": 3.668625311542206,
+          "net_usd": 48.112999999997726,
+          "expectancy_r": 0.03743495215859394,
+          "profit_factor": 1.0665717479978485,
+          "average_loss_usd": -18.531384615384916,
+          "mean_worst_five_percent_r": -1.000000000000123,
+          "marked_bar_close_drawdown_usd": 163.35400000000183,
+          "modeled_total_cost_usd": 206.77999999996865
+        }
+      },
+      "s5_plus_all": {
+        "BUY": {
+          "closed": 67,
+          "wins": 37,
+          "losses": 30,
+          "win_rate": 0.5522388059701493,
+          "win_rate_wilson95": [
+            0.4335761280049216,
+            0.6652360663870319
+          ],
+          "net_r": 1.0556006098771173,
+          "net_usd": 48.56400000000617,
+          "expectancy_r": 0.015755232983240556,
+          "profit_factor": 1.1042434493668964,
+          "average_loss_usd": -15.529033333333548,
+          "mean_worst_five_percent_r": -1.000000000000119,
+          "marked_bar_close_drawdown_usd": 158.44600000000725,
+          "modeled_total_cost_usd": 141.37199999998262
+        },
+        "SELL": {
+          "closed": 59,
+          "wins": 31,
+          "losses": 28,
+          "win_rate": 0.5254237288135594,
+          "win_rate_wilson95": [
+            0.4003979517001709,
+            0.6473412328493146
+          ],
+          "net_r": -1.4492053318005853,
+          "net_usd": -39.36000000001525,
+          "expectancy_r": -0.024562802233908224,
+          "profit_factor": 0.924042425084498,
+          "average_loss_usd": -18.506571428571803,
+          "mean_worst_five_percent_r": -1.0000000000001172,
+          "marked_bar_close_drawdown_usd": 173.97600000000617,
+          "modeled_total_cost_usd": 124.50599999998451
+        },
+        "all": {
+          "closed": 126,
+          "wins": 68,
+          "losses": 58,
+          "win_rate": 0.5396825396825397,
+          "win_rate_wilson95": [
+            0.45276918332225385,
+            0.6242478194966192
+          ],
+          "net_r": -0.393604721923468,
+          "net_usd": 9.203999999990918,
+          "expectancy_r": -0.0031238469993926034,
+          "profit_factor": 1.0093531357495167,
+          "average_loss_usd": -16.966465517241673,
+          "mean_worst_five_percent_r": -1.0000000000001181,
+          "marked_bar_close_drawdown_usd": 204.58600000000456,
+          "modeled_total_cost_usd": 265.87799999996713
+        }
+      },
+      "s5_plus_continuation": {
+        "BUY": {
+          "closed": 59,
+          "wins": 35,
+          "losses": 24,
+          "win_rate": 0.5932203389830508,
+          "win_rate_wilson95": [
+            0.4659340125533739,
+            0.7091096641280723
+          ],
+          "net_r": 1.337010399381361,
+          "net_usd": 60.56600000000511,
+          "expectancy_r": 0.022661193209853575,
+          "profit_factor": 1.1515055245509302,
+          "average_loss_usd": -16.65670833333351,
+          "mean_worst_five_percent_r": -1.0000000000001246,
+          "marked_bar_close_drawdown_usd": 117.43400000000645,
+          "modeled_total_cost_usd": 124.49199999998396
+        },
+        "SELL": {
+          "closed": 50,
+          "wins": 26,
+          "losses": 24,
+          "win_rate": 0.52,
+          "win_rate_wilson95": [
+            0.38511744890044614,
+            0.6520286471342196
+          ],
+          "net_r": -4.170573006977432,
+          "net_usd": -128.55900000000605,
+          "expectancy_r": -0.08341146013954864,
+          "profit_factor": 0.7215746660429241,
+          "average_loss_usd": -19.239000000000246,
+          "mean_worst_five_percent_r": -1.0000000000001172,
+          "marked_bar_close_drawdown_usd": 137.15700000000385,
+          "modeled_total_cost_usd": 105.5099999999847
+        },
+        "all": {
+          "closed": 109,
+          "wins": 61,
+          "losses": 48,
+          "win_rate": 0.5596330275229358,
+          "win_rate_wilson95": [
+            0.46598523329777164,
+            0.6492206505667493
+          ],
+          "net_r": -2.833562607596071,
+          "net_usd": -67.99300000000095,
+          "expectancy_r": -0.025995987225652026,
+          "profit_factor": 0.9210757553421542,
+          "average_loss_usd": -17.94785416666688,
+          "mean_worst_five_percent_r": -1.000000000000121,
+          "marked_bar_close_drawdown_usd": 175.78000000000156,
+          "modeled_total_cost_usd": 230.00199999996866
+        }
+      }
+    },
+    "stress": {
+      "all_protected_priority": {
+        "BUY": {
+          "closed": 5,
+          "wins": 1,
+          "losses": 4,
+          "win_rate": 0.2,
+          "win_rate_wilson95": [
+            0.03622410863243014,
+            0.6244653702374747
+          ],
+          "net_r": -0.8342614373728839,
+          "net_usd": -33.42499999999838,
+          "expectancy_r": -0.16685228747457678,
+          "profit_factor": 0.5018851616172387,
+          "average_loss_usd": -16.775749999999974,
+          "mean_worst_five_percent_r": -1.000000000000011,
+          "marked_bar_close_drawdown_usd": 94.35999999999659,
+          "modeled_total_cost_usd": 18.499999999997282
+        },
+        "SELL": {
+          "closed": 14,
+          "wins": 6,
+          "losses": 8,
+          "win_rate": 0.42857142857142855,
+          "win_rate_wilson95": [
+            0.21380798904474121,
+            0.6740935542034926
+          ],
+          "net_r": -1.5869816032141886,
+          "net_usd": 13.154999999996729,
+          "expectancy_r": -0.11335582880101347,
+          "profit_factor": 1.101450616569855,
+          "average_loss_usd": -16.208625000000225,
+          "mean_worst_five_percent_r": -1.0000000000000189,
+          "marked_bar_close_drawdown_usd": 80.22000000000227,
+          "modeled_total_cost_usd": 51.83499999999351
+        },
+        "all": {
+          "closed": 19,
+          "wins": 7,
+          "losses": 12,
+          "win_rate": 0.3684210526315789,
+          "win_rate_wilson95": [
+            0.19149512745135072,
+            0.5896046683519693
+          ],
+          "net_r": -2.4212430405870724,
+          "net_usd": -20.270000000001644,
+          "expectancy_r": -0.12743384424142487,
+          "profit_factor": 0.8969873762527113,
+          "average_loss_usd": -16.397666666666808,
+          "mean_worst_five_percent_r": -1.0000000000000189,
+          "marked_bar_close_drawdown_usd": 129.6980000000038,
+          "modeled_total_cost_usd": 70.33499999999079
+        }
+      },
+      "all_standalone": {
+        "BUY": {
+          "closed": 5,
+          "wins": 1,
+          "losses": 4,
+          "win_rate": 0.2,
+          "win_rate_wilson95": [
+            0.03622410863243014,
+            0.6244653702374747
+          ],
+          "net_r": -1.2226645187803493,
+          "net_usd": -44.61799999999768,
+          "expectancy_r": -0.24453290375606984,
+          "profit_factor": 0.43013691631758794,
+          "average_loss_usd": -19.5739999999998,
+          "mean_worst_five_percent_r": -1.0000000000000113,
+          "marked_bar_close_drawdown_usd": 105.43299999999873,
+          "modeled_total_cost_usd": 18.499999999997282
+        },
+        "SELL": {
+          "closed": 16,
+          "wins": 5,
+          "losses": 11,
+          "win_rate": 0.3125,
+          "win_rate_wilson95": [
+            0.14164643854782039,
+            0.5559564416525933
+          ],
+          "net_r": -3.553824773913978,
+          "net_usd": -39.81300000000395,
+          "expectancy_r": -0.22211404836962362,
+          "profit_factor": 0.8366143428747173,
+          "average_loss_usd": -22.152272727273093,
+          "mean_worst_five_percent_r": -1.0000000000000204,
+          "marked_bar_close_drawdown_usd": 161.67600000000195,
+          "modeled_total_cost_usd": 59.22499999999876
+        },
+        "all": {
+          "closed": 21,
+          "wins": 6,
+          "losses": 15,
+          "win_rate": 0.2857142857142857,
+          "win_rate_wilson95": [
+            0.1381386295212213,
+            0.49956380716085597
+          ],
+          "net_r": -4.776489292694327,
+          "net_usd": -84.43100000000163,
+          "expectancy_r": -0.22745187108068227,
+          "profit_factor": 0.7377683083259027,
+          "average_loss_usd": -21.464733333333548,
+          "mean_worst_five_percent_r": -1.0000000000000189,
+          "marked_bar_close_drawdown_usd": 211.15400000000346,
+          "modeled_total_cost_usd": 77.72499999999604
+        }
+      },
+      "continuation_protected_priority": {
+        "BUY": {
+          "closed": 0,
+          "wins": 0,
+          "losses": 0,
+          "win_rate": null,
+          "win_rate_wilson95": [
+            null,
+            null
+          ],
+          "net_r": 0,
+          "net_usd": 0,
+          "expectancy_r": null,
+          "profit_factor": null,
+          "average_loss_usd": null,
+          "mean_worst_five_percent_r": null,
+          "marked_bar_close_drawdown_usd": 0.0,
+          "modeled_total_cost_usd": 0
+        },
+        "SELL": {
+          "closed": 3,
+          "wins": 1,
+          "losses": 2,
+          "win_rate": 0.3333333333333333,
+          "win_rate_wilson95": [
+            0.06149194472039621,
+            0.7923403991979522
+          ],
+          "net_r": -1.6214427531435978,
+          "net_usd": -33.42600000000003,
+          "expectancy_r": -0.5404809177145327,
+          "profit_factor": 0.2042565347807579,
+          "average_loss_usd": -21.00300000000034,
+          "mean_worst_five_percent_r": -1.0000000000000164,
+          "marked_bar_close_drawdown_usd": 52.38600000000052,
+          "modeled_total_cost_usd": 11.110000000000223
+        },
+        "all": {
+          "closed": 3,
+          "wins": 1,
+          "losses": 2,
+          "win_rate": 0.3333333333333333,
+          "win_rate_wilson95": [
+            0.06149194472039621,
+            0.7923403991979522
+          ],
+          "net_r": -1.6214427531435978,
+          "net_usd": -33.42600000000003,
+          "expectancy_r": -0.5404809177145327,
+          "profit_factor": 0.2042565347807579,
+          "average_loss_usd": -21.00300000000034,
+          "mean_worst_five_percent_r": -1.0000000000000164,
+          "marked_bar_close_drawdown_usd": 52.38600000000052,
+          "modeled_total_cost_usd": 11.110000000000223
+        }
+      },
+      "continuation_standalone": {
+        "BUY": {
+          "closed": 0,
+          "wins": 0,
+          "losses": 0,
+          "win_rate": null,
+          "win_rate_wilson95": [
+            null,
+            null
+          ],
+          "net_r": 0,
+          "net_usd": 0,
+          "expectancy_r": null,
+          "profit_factor": null,
+          "average_loss_usd": null,
+          "mean_worst_five_percent_r": null,
+          "marked_bar_close_drawdown_usd": 0.0,
+          "modeled_total_cost_usd": 0
+        },
+        "SELL": {
+          "closed": 5,
+          "wins": 0,
+          "losses": 5,
+          "win_rate": 0.0,
+          "win_rate_wilson95": [
+            0,
+            0.43448246478317476
+          ],
+          "net_r": -4.4116479152879435,
+          "net_usd": -85.81499999999916,
+          "expectancy_r": -0.8823295830575887,
+          "profit_factor": 0.0,
+          "average_loss_usd": -17.162999999999833,
+          "mean_worst_five_percent_r": -1.0000000000000204,
+          "marked_bar_close_drawdown_usd": 86.8649999999998,
+          "modeled_total_cost_usd": 18.52000000000045
+        },
+        "all": {
+          "closed": 5,
+          "wins": 0,
+          "losses": 5,
+          "win_rate": 0.0,
+          "win_rate_wilson95": [
+            0,
+            0.43448246478317476
+          ],
+          "net_r": -4.4116479152879435,
+          "net_usd": -85.81499999999916,
+          "expectancy_r": -0.8823295830575887,
+          "profit_factor": 0.0,
+          "average_loss_usd": -17.162999999999833,
+          "mean_worst_five_percent_r": -1.0000000000000204,
+          "marked_bar_close_drawdown_usd": 86.8649999999998,
+          "modeled_total_cost_usd": 18.52000000000045
+        }
+      },
+      "s5_control": {
+        "BUY": {
+          "closed": 53,
+          "wins": 32,
+          "losses": 21,
+          "win_rate": 0.6037735849056604,
+          "win_rate_wilson95": [
+            0.46941478673205517,
+            0.7241059326199831
+          ],
+          "net_r": -0.7944444828437153,
+          "net_usd": 3.829000000030523,
+          "expectancy_r": -0.014989518544221042,
+          "profit_factor": 1.0106506670227937,
+          "average_loss_usd": -17.119428571428333,
+          "mean_worst_five_percent_r": -1.0000000000000329,
+          "marked_bar_close_drawdown_usd": 149.95699999999925,
+          "modeled_total_cost_usd": 196.09999999995455
+        },
+        "SELL": {
+          "closed": 42,
+          "wins": 21,
+          "losses": 21,
+          "win_rate": 0.5,
+          "win_rate_wilson95": [
+            0.3552598959637448,
+            0.6447401040362553
+          ],
+          "net_r": -5.578569213787418,
+          "net_usd": -137.68299999998405,
+          "expectancy_r": -0.13282307651874806,
+          "profit_factor": 0.672061527615049,
+          "average_loss_usd": -19.992571428570944,
+          "mean_worst_five_percent_r": -1.0000000000000284,
+          "marked_bar_close_drawdown_usd": 137.68299999998408,
+          "modeled_total_cost_usd": 155.41999999995411
+        },
+        "all": {
+          "closed": 95,
+          "wins": 53,
+          "losses": 42,
+          "win_rate": 0.5578947368421052,
+          "win_rate_wilson95": [
+            0.45771096959731233,
+            0.6535783631507485
+          ],
+          "net_r": -6.3730136966311335,
+          "net_usd": -133.85399999995352,
+          "expectancy_r": -0.06708435470138036,
+          "profit_factor": 0.8282496227635829,
+          "average_loss_usd": -18.55599999999964,
+          "mean_worst_five_percent_r": -1.000000000000032,
+          "marked_bar_close_drawdown_usd": 177.7279999999716,
+          "modeled_total_cost_usd": 351.5199999999087
+        }
+      },
+      "s5_plus_all": {
+        "BUY": {
+          "closed": 58,
+          "wins": 33,
+          "losses": 25,
+          "win_rate": 0.5689655172413793,
+          "win_rate_wilson95": [
+            0.44118104569962746,
+            0.6881820086745516
+          ],
+          "net_r": -1.6287059202165992,
+          "net_usd": -29.59599999996785,
+          "expectancy_r": -0.028081136555458606,
+          "profit_factor": 0.9306253237727855,
+          "average_loss_usd": -17.064439999999795,
+          "mean_worst_five_percent_r": -1.0000000000000329,
+          "marked_bar_close_drawdown_usd": 217.05999999999918,
+          "modeled_total_cost_usd": 214.59999999995185
+        },
+        "SELL": {
+          "closed": 56,
+          "wins": 27,
+          "losses": 29,
+          "win_rate": 0.48214285714285715,
+          "win_rate_wilson95": [
+            0.3566821941245828,
+            0.6098961607582303
+          ],
+          "net_r": -7.1655508170016065,
+          "net_usd": -124.5279999999873,
+          "expectancy_r": -0.12795626458931442,
+          "profit_factor": 0.773384797083983,
+          "average_loss_usd": -18.948724137930746,
+          "mean_worst_five_percent_r": -1.0000000000000284,
+          "marked_bar_close_drawdown_usd": 188.4969999999983,
+          "modeled_total_cost_usd": 207.25499999994761
+        },
+        "all": {
+          "closed": 114,
+          "wins": 60,
+          "losses": 54,
+          "win_rate": 0.5263157894736842,
+          "win_rate_wilson95": [
+            0.43530365279900507,
+            0.6156122138242137
+          ],
+          "net_r": -8.794256737218205,
+          "net_usd": -154.12399999995515,
+          "expectancy_r": -0.07714260295805443,
+          "profit_factor": 0.8421061258611025,
+          "average_loss_usd": -18.07637037037012,
+          "mean_worst_five_percent_r": -1.0000000000000315,
+          "marked_bar_close_drawdown_usd": 224.2089999999942,
+          "modeled_total_cost_usd": 421.85499999989946
+        }
+      },
+      "s5_plus_continuation": {
+        "BUY": {
+          "closed": 53,
+          "wins": 32,
+          "losses": 21,
+          "win_rate": 0.6037735849056604,
+          "win_rate_wilson95": [
+            0.46941478673205517,
+            0.7241059326199831
+          ],
+          "net_r": -0.7944444828437153,
+          "net_usd": 3.829000000030523,
+          "expectancy_r": -0.014989518544221042,
+          "profit_factor": 1.0106506670227937,
+          "average_loss_usd": -17.119428571428333,
+          "mean_worst_five_percent_r": -1.0000000000000329,
+          "marked_bar_close_drawdown_usd": 149.95699999999925,
+          "modeled_total_cost_usd": 196.09999999995455
+        },
+        "SELL": {
+          "closed": 45,
+          "wins": 22,
+          "losses": 23,
+          "win_rate": 0.4888888888888889,
+          "win_rate_wilson95": [
+            0.349570237528785,
+            0.6299553535541681
+          ],
+          "net_r": -7.200011966931016,
+          "net_usd": -171.10899999998406,
+          "expectancy_r": -0.16000026593180036,
+          "profit_factor": 0.6295139114431361,
+          "average_loss_usd": -20.080434782608283,
+          "mean_worst_five_percent_r": -1.0000000000000284,
+          "marked_bar_close_drawdown_usd": 172.62399999998635,
+          "modeled_total_cost_usd": 166.52999999995433
+        },
+        "all": {
+          "closed": 98,
+          "wins": 54,
+          "losses": 44,
+          "win_rate": 0.5510204081632653,
+          "win_rate_wilson95": [
+            0.4524754605807967,
+            0.6457163771618889
+          ],
+          "net_r": -7.994456449774732,
+          "net_usd": -167.27999999995353,
+          "expectancy_r": -0.08157608622219113,
+          "profit_factor": 0.7963372853250877,
+          "average_loss_usd": -18.667227272726944,
+          "mean_worst_five_percent_r": -1.000000000000032,
+          "marked_bar_close_drawdown_usd": 211.15399999997146,
+          "modeled_total_cost_usd": 362.6299999999089
+        }
+      }
+    }
+  },
+  "prior_gate_counterfactuals": {
+    "normal": {},
+    "stress": {
+      "COST_TOO_HIGH_AT_OPEN": {
+        "LOSS": 9,
+        "WIN": 3
+      },
+      "INSUFFICIENT_NET_ROOM_AT_OPEN": {
+        "LOSS": 5
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "baseline_commit": "37b903f46a2d878d9d0757da134620c22f2d067d",
+  "baseline_sha256": "77feedcbef84e77b9270ec43840be5b823d838300d0a09d5ddb4fec7acc089f4",
+  "candidate_sha256": "7be6412d3d22f62ea6e8ea1cd92a1dfd017ba38173e2289782c177169fdb6221",
+  "source_bytes": {
+    "baseline": 154037,
+    "candidate": 157289
+  },
+  "changed_lines": {
+    "added": 46,
+    "removed_and_relocated": 3
+  },
+  "protected_occurrences": {
+    "request.security(": 6,
+    "request.security_lower_tf(": 2,
+    "alert(": 2,
+    "alertcondition(": 2,
+    "strategy.entry(": 0,
+    "table.new(": 1,
+    "label.new(": 4,
+    "line.new(": 4,
+    "box.new(": 5,
+    "log.info(": 20
+  },
+  "additional_log_calls": 2,
+  "source_restored_exactly": true
+}

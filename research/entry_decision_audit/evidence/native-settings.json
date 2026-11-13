@@ -1,0 +1,65 @@
+{
+  "symbol": "OANDA:XAUUSD",
+  "chart": "Standard candles",
+  "timezone": "UTC",
+  "tradingView": "Authorized test profile, temporary tab, autosave off, no saved script or server alert",
+  "compilation": {
+    "frame": "5",
+    "attempts": 1,
+    "pineVersion": 6,
+    "start_utc": "2026-11-13T19:20:29Z",
+    "end_utc": "2026-11-13T19:22:05Z",
+    "confirmation": [
+      "Compiled.",
+      "Added to chart."
+    ],
+    "sha256": "7be6412d3d22f62ea6e8ea1cd92a1dfd017ba38173e2289782c177169fdb6221"
+  },
+  "native_windows": [
+    {
+      "id": "nov11",
+      "from_utc": "2026-11-11T00:00:00Z",
+      "to_utc": "2026-11-11T17:30:00Z",
+      "frames": [
+        5,
+        15,
+        30
+      ]
+    },
+    {
+      "id": "nov13-m5",
+      "from_utc": "2026-11-13T12:00:00Z",
+      "to_utc": "2026-11-13T19:00:00Z",
+      "frames": [
+        5
+      ]
+    }
+  ],
+  "native_inputs": {
+    "calculated_bars": 1223,
+    "export_rc2_qa": true,
+    "export_pressure_qa": true,
+    "export_direct_trend_qa": true,
+    "experimental_early_watch": true,
+    "experimental_range_filter": false,
+    "shadow_observation": true,
+    "shadow_notification_intent": true,
+    "early_notification_intent": false,
+    "s5_alert_inputs": "WATCH, CONFIRMED, READY, INVALIDATED / EXPIRED on",
+    "historical_review": false,
+    "pressure_mode": "OHLC",
+    "pressure_lookback": 10,
+    "pressure_comparison": true,
+    "preset": "PREMIUM",
+    "dashboard_size": "Large",
+    "Luminous_zones": true
+  },
+  "auxiliary_results": {
+    "nov13_m30": "UNVERIFIED: supplemental native exports rejected for RC1 end marker ordering; no simulated entry seen in these exports.",
+    "warmup_shift_m5": "First one-bar-shifted Nov11 triad rejected; reacquired on same synchronized chart."
+  },
+  "source_guards": {
+    "forward_seal_sha256": "09181ecaf9e30cde62c5203b524cb458d808a07c24029e961e32bb25c474afd1",
+    "original_window": "2026-11-16 through 2027-01-11 UTC, outside all exports"
+  }
+}

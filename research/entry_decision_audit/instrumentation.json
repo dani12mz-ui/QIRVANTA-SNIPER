@@ -1,0 +1,25 @@
+{
+  "insertions": [
+    [
+      "f_tvCandidate(int d) =>",
+      "const string EDA_GROUP = \"NATIVE QA\"\nbool edaEnabled = input.bool(false, \"Entry decision audit (Pine Logs)\", group=EDA_GROUP, display=display.none)\nbool rcQa = input.bool(false, \"Export RC2 QA journal\", group=\"NATIVE QA\", display=display.none)\nint rcQaStart = input.time(timestamp(\"01 Oct 2026 00:00 +0000\"), \"QA start UTC\", group=\"NATIVE QA\", display=display.none)\nint rcQaEnd = input.time(timestamp(\"11 Nov 2026 06:00 +0000\"), \"QA end UTC\", group=\"NATIVE QA\", display=display.none)\nbool edaBar = edaEnabled and rcQa and processBar and tvEntryFrame and syminfo.tickerid == \"OANDA:XAUUSD\" and time_close >= rcQaStart and time_close <= rcQaEnd\nf_edaKey(string tag) =>\n    tag + \"|1|\" + syminfo.tickerid + \"|\" + timeframe.period + \"|\" + f_int(time_close)\nf_edaState(TvCandidateState s) =>\n    f_int(s.phase) + \"|\" + f_int(s.bornTime) + \"|\" + f_int(s.born) + \"|\" + f_num(s.anchor) + \"|\" + f_num(s.level)\n\n"
+    ],
+    [
+      "        [why, attempted] = f_tvCandidate(d)",
+      "        string edaBefore = edaBar ? f_edaState(array.get(tvCandidateStates, idx)) : \"\"\n        int edaLast = edaBar ? array.get(tvCandidateLast, idx) : na\n"
+    ],
+    [
+      "\nf_addClosed(Ledger a",
+      "        if edaBar\n            float edge = d == 1 ? close - low : high - close\n            string cooldown = attempted ? str.tostring(na(edaLast) or bar_index - edaLast > minCooldown) : \"NA\"\n            log.info(f_edaKey(\"EDA_SIDE\") + \"|\" + f_int(d) + \"|\" + edaBefore + \"|\" + f_int(edaLast) +\n                 \"|\" + f_edaState(array.get(tvCandidateStates, idx)) + \"|\" + str.tostring(attempted) + \"|\" + why +\n                 \"|\" + f_num((close - open) * d) + \"|\" + f_num(atr) + \"|\" + f_num(edge / barRange) + \"|\" + cooldown +\n                 \"|\" + f_num(d == 1 ? tvRange20Low : tvRange20High))\n\n"
+    ],
+    [
+      "if processBar\n    // Step existing portfolios",
+      "f_edaPaperId(Paper s) =>\n    s.phase == 0 or na(s.p) ? \"\" : str.replace_all(s.p.id, \"|\", \"~\")\nPaper edaPaperBefore = edaBar ? array.get(books, 3) : na\nint edaBeforePhase = edaBar ? edaPaperBefore.phase : na\nstring edaBeforePlan = edaBar ? f_edaPaperId(edaPaperBefore) : \"\"\n\n"
+    ],
+    [
+      "// ═══ LUMINOUS ZONES · RESEARCH ═══",
+      "if edaBar\n    Paper rawPaper = array.get(books, 3)\n    string context = f_edaKey(\"EDA_BAR\") + \"|\" + f_int(rcFirstOpen) + \"|\" + f_int(bar_index) +\n         \"|\" + f_num(open) + \"|\" + f_num(high) + \"|\" + f_num(low) + \"|\" + f_num(close) +\n         \"|\" + str.tostring(warmup) + \"|\" + str.tostring(readyHTF) + \"|\" + htf +\n         \"|\" + f_int(uiH1ClosedAt) + \"|\" + f_int(rcCurrent.context.h1) +\n         \"|\" + f_int(uiH4ClosedAt) + \"|\" + f_int(rcCurrent.context.h4) + \"|\" + str.tostring(tvTimeGap)\n    string gates = f_num(atrMean) + \"|\" + str.tostring(validATR) + \"|\" + f_num(barRange) + \"|\" + f_num(maxEntryBarATR) +\n         \"|\" + str.tostring(datePass) + \"|\" + str.tostring(newsPaused) + \"|\" + str.tostring(sessionPass)\n    string decision = f_int(edaBeforePhase) + \"|\" + edaBeforePlan + \"|\" + f_int(rawPaper.phase) + \"|\" + f_edaPaperId(rawPaper) +\n         \"|\" + (na(rcSelected) ? \"\" : str.replace_all(rcSelected.id, \"|\", \"~\")) +\n         \"|\" + (na(rcSelected) ? \"NA\" : str.tostring(f_tvQtyOnGrid(1.0))) +\n         \"|\" + str.tostring(rc2FilterActive) + \"|\" + str.tostring(rc2Blocked) +\n         \"|\" + dvClosedPermission.state + \"|\" + str.replace_all(dvClosedPermission.reason, \"|\", \"~\") + \"|\" + f_num(syminfo.mintick)\n    log.info(context + \"|\" + gates + \"|\" + decision + \"|\" + f_num(minATRratio) + \"|\" + f_num(maxATRratio) +\n         \"|\" + f_num(minStopATR) + \"|\" + f_num(maxStopATR) + \"|\" + f_num(maxCostRisk) + \"|\" + f_num(maxOpenDeviationATR) +\n         \"|\" + f_int(minCooldown) + \"|\" + f_num(RC2_RANGE_ATR_LIMIT) + \"|\" + f_int(time) +\n         \"|\" + f_num(close[1]) + \"|\" + f_int(rcEarlySide) + \"|\" + f_int(structureUpNow ? 1 : structureDownNow ? -1 : 0))\n\n"
+    ]
+  ],
+  "moved": "bool rcQa = input.bool(false, \"Export RC2 QA journal\", group=\"NATIVE QA\", display=display.none)\nint rcQaStart = input.time(timestamp(\"01 Oct 2026 00:00 +0000\"), \"QA start UTC\", group=\"NATIVE QA\", display=display.none)\nint rcQaEnd = input.time(timestamp(\"11 Nov 2026 06:00 +0000\"), \"QA end UTC\", group=\"NATIVE QA\", display=display.none)\n"
+}
