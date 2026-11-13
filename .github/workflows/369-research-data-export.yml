@@ -1,4 +1,4 @@
-name: 369 research historical data export
+name: 369 research reproducible benchmark
 on:
   push:
     branches: [research/qirvanta-369-levels-validation]
@@ -6,40 +6,42 @@ on:
 permissions:
   contents: read
 jobs:
-  export:
+  research:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: Extract pinned OHLC journals only
+      - name: Extract pinned historical OHLC only
         shell: bash
         run: |
           python3 - <<'PY'
-          import csv, hashlib, io, json, pathlib, re, zipfile
+          import csv, hashlib, io, json, pathlib, zipfile
           from datetime import datetime, timezone
           root=pathlib.Path('research/luminous_visual_v2/evidence/native-pairs.zip')
+          expected='fec83cd615923b210b6815852a69b74ed457f791ac41b3913a7c189f7d58f952'
+          actual=hashlib.sha256(root.read_bytes()).hexdigest()
+          if actual!=expected: raise ValueError('pinned archive hash mismatch')
           out=pathlib.Path('research-data-export'); out.mkdir()
-          manifest={'archive':str(root),'archive_sha256':hashlib.sha256(root.read_bytes()).hexdigest(),'datasets':{}}
+          manifest={'archive':str(root),'archive_sha256':actual,'datasets':{}}
           with zipfile.ZipFile(root) as z:
               for frame in (5,15,30):
                   matches=[n for n in z.namelist() if pathlib.PurePosixPath(n).name==f'baseline-M{frame}.csv']
-                  if len(matches)!=1: raise ValueError(('missing baseline',frame,z.namelist()))
-                  raw=z.read(matches[0]); rows={}; conflicts=0
+                  if len(matches)!=1: raise ValueError(('missing baseline',frame))
+                  raw=z.read(matches[0]);rows={};conflicts=0
                   for row in csv.reader(io.StringIO(raw.decode('utf-8-sig'))):
                       for cell in row:
                           pos=cell.find('DT_MARKET|')
                           if pos<0: continue
-                          msg=cell[pos+10:].strip()
-                          obj=json.JSONDecoder().raw_decode(msg)[0]
+                          obj=json.JSONDecoder().raw_decode(cell[pos+10:].strip())[0]
                           if obj.get('symbol')!='OANDA:XAUUSD' or int(obj['timeframe'])!=frame: continue
-                          t=int(obj['time']); tc=int(obj['time_close'])
+                          t=int(obj['time']);tc=int(obj['time_close'])
                           if tc>=1794528000000: continue
                           bar=(t,tc,*[float(obj[k]) for k in ('open','high','low','close')])
                           if t in rows and rows[t]!=bar: conflicts+=1
                           rows[t]=bar
-                  if conflicts: raise ValueError(('conflicting duplicate OHLC',frame,conflicts))
+                  if conflicts: raise ValueError(('conflicting OHLC',frame,conflicts))
                   bars=sorted(rows.values())
                   if not bars: raise ValueError(('empty OHLC',frame))
                   dest=out/f'OANDA_XAUUSD_M{frame}.csv'
@@ -49,9 +51,32 @@ jobs:
           (out/'MANIFEST.json').write_text(json.dumps(manifest,indent=2))
           print(json.dumps(manifest,indent=2))
           PY
+      - name: Run real benchmark and repeatability checks
+        shell: bash
+        run: |
+          python3 research/levels369_validation/benchmark_369.py --self-test
+          python3 research/levels369_validation/benchmark_369.py --data research-data-export --out research-369-results
+          python3 research/levels369_validation/benchmark_369.py --data research-data-export --out research-369-repeat >/dev/null
+          python3 - <<'PY'
+          import hashlib,json,pathlib
+          a=pathlib.Path('research-369-results');b=pathlib.Path('research-369-repeat')
+          checks={p.name:p.read_bytes()==(b/p.name).read_bytes() for p in a.iterdir()}
+          assert checks and all(checks.values()),checks
+          r=json.loads((a/'RESULTS.json').read_text())
+          qa={'repeat_files_identical':len(checks),'unit_tests':r['unit_tests'],'prefix_tests':{f:v['prefix_tests'] for f,v in r['frames'].items()},'code_sha256':r['code_sha256'],'native_pine_tested':False,'independent_holdout_tested':False}
+          (a/'RUNNER_QA.json').write_text(json.dumps(qa,indent=2))
+          print('REPEAT VERIFIED',len(checks),'files; code SHA',r['code_sha256'])
+          PY
+      - name: Package evidence
+        shell: bash
+        run: |
+          mkdir -p bundle369
+          cp -r research-data-export bundle369/data
+          cp -r research-369-results bundle369/results
+          cp research/levels369_validation/benchmark_369.py research/levels369_validation/FROZEN_PROTOCOL.json research/levels369_validation/REPORT_BG.md bundle369/
       - uses: actions/upload-artifact@v4
         with:
-          name: qirvanta-369-historical-ohlc
-          path: research-data-export/
+          name: qirvanta-369-validation-complete
+          path: bundle369/
           retention-days: 7
           if-no-files-found: error
