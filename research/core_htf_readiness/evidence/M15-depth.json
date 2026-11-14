@@ -1,0 +1,457 @@
+{
+  "control_commit": "37b903f46a2d878d9d0757da134620c22f2d067d",
+  "control_pine_sha256": "77feedcbef84e77b9270ec43840be5b823d838300d0a09d5ddb4fec7acc089f4",
+  "frame": 15,
+  "audited_utc": [
+    "2026-11-11T00:00:00Z",
+    "2026-11-11T17:30:00Z"
+  ],
+  "left": {
+    "file": "M15-1223-add.csv",
+    "log_sha256": "5447d32110594419a5effe5a27acc6d4272c4931a8cc86ea1b2e884c5420bdc1",
+    "source_sha256": "5bb0019e045b739f1454fd90185e6525c0954f4c1eb3255c963641cea1039caa",
+    "chart_first_open_ms": 1793110500000,
+    "chart_first_open_utc": "2026-10-27T14:15:00Z",
+    "chart_last_historical_close_ms": 1794607200000,
+    "chart_last_historical_close_utc": "2026-11-13T22:00:00Z",
+    "prefix_confirmed_bars": 1223,
+    "prefix_ohlc_sha256": "89ce3b4297aa31e263ceea813da90fb48676dda441c9a9e888caf5a6ad430db8",
+    "audited_closes": 71,
+    "raw_core_observation_closes": 71,
+    "ready_HTF_closes": 71,
+    "warmed_closes": 71,
+    "first_observed_ready_ms": 1794355200000,
+    "first_observed_warmed_ms": 1794355200000,
+    "unavailable_by_field": {
+      "htf_close": 0,
+      "ema50": 0,
+      "ema50_prev": 0,
+      "atr_mean": 0,
+      "rsi": 0,
+      "adx": 0
+    },
+    "ema200": "UNOBSERVED_NOT_A_GATE",
+    "core_trends": {
+      "-1": 9,
+      "1": 62
+    },
+    "s5_stream_counts": {
+      "CORE": 20,
+      "READY": 2,
+      "ALERT": 19,
+      "RAW": 6,
+      "LEDGER": 71,
+      "STATE": 71
+    },
+    "raw_event_types": {
+      "QUEUED": 2,
+      "SIM_ENTRY": 1,
+      "SIM_SL": 1,
+      "CLOSED": 1,
+      "CANCELLED": 1
+    }
+  },
+  "right": {
+    "file": "M15-3200-add.csv",
+    "log_sha256": "33055310d814d2cfbf6f39606683de1246eb3bf8058aa21e8e2af17cb15faf8b",
+    "source_sha256": "5bb0019e045b739f1454fd90185e6525c0954f4c1eb3255c963641cea1039caa",
+    "chart_first_open_ms": 1790564400000,
+    "chart_first_open_utc": "2026-09-28T03:00:00Z",
+    "chart_last_historical_close_ms": 1794607200000,
+    "chart_last_historical_close_utc": "2026-11-13T22:00:00Z",
+    "prefix_confirmed_bars": 3200,
+    "prefix_ohlc_sha256": "5e79d0d8dd8bee156836963c29f3495f78381bdae742aa0205f7e0d5ce26e707",
+    "audited_closes": 71,
+    "raw_core_observation_closes": 71,
+    "ready_HTF_closes": 71,
+    "warmed_closes": 71,
+    "first_observed_ready_ms": 1794355200000,
+    "first_observed_warmed_ms": 1794355200000,
+    "unavailable_by_field": {
+      "htf_close": 0,
+      "ema50": 0,
+      "ema50_prev": 0,
+      "atr_mean": 0,
+      "rsi": 0,
+      "adx": 0
+    },
+    "ema200": "UNOBSERVED_NOT_A_GATE",
+    "core_trends": {
+      "-1": 55,
+      "0": 16
+    },
+    "s5_stream_counts": {
+      "CORE": 20,
+      "READY": 2,
+      "ALERT": 19,
+      "RAW": 6,
+      "LEDGER": 71,
+      "STATE": 71
+    },
+    "raw_event_types": {
+      "QUEUED": 2,
+      "SIM_ENTRY": 1,
+      "SIM_SL": 1,
+      "CLOSED": 1,
+      "CANCELLED": 1
+    }
+  },
+  "common_confirmed_ohlc": {
+    "closes": 1223,
+    "first_close_ms": 1793111400000,
+    "last_close_ms": 1794607200000,
+    "ohlc_conflicts": 0,
+    "first_conflict_ms": null,
+    "same_end_marker_close": true,
+    "identical_loaded_history": false
+  },
+  "s5": {
+    "CORE": {
+      "exact": false,
+      "counts": [
+        20,
+        20
+      ],
+      "examples": "OBSERVED",
+      "event_counts": [
+        {
+          "WATCH": 10,
+          "CANCELLED": 5,
+          "CONFIRMED": 2,
+          "REJECTED": 3
+        },
+        {
+          "WATCH": 10,
+          "CANCELLED": 5,
+          "CONFIRMED": 2,
+          "REJECTED": 3
+        }
+      ],
+      "shared_event_ids": 20,
+      "unmatched_event_ids": [
+        0,
+        0
+      ],
+      "changed_fields_across_shared_events": {
+        "countertrend": 5,
+        "evidence": 2,
+        "filter_eligible": 1,
+        "quality_note": 2
+      }
+    },
+    "READY": {
+      "exact": true,
+      "counts": [
+        2,
+        2
+      ],
+      "examples": "OBSERVED"
+    },
+    "ALERT": {
+      "exact": true,
+      "counts": [
+        19,
+        19
+      ],
+      "examples": "OBSERVED"
+    },
+    "RAW": {
+      "exact": false,
+      "counts": [
+        6,
+        6
+      ],
+      "examples": "OBSERVED",
+      "event_counts": [
+        {
+          "QUEUED": 2,
+          "SIM_ENTRY": 1,
+          "SIM_SL": 1,
+          "CLOSED": 1,
+          "CANCELLED": 1
+        },
+        {
+          "QUEUED": 2,
+          "SIM_ENTRY": 1,
+          "SIM_SL": 1,
+          "CLOSED": 1,
+          "CANCELLED": 1
+        }
+      ],
+      "shared_event_ids": 6,
+      "unmatched_event_ids": [
+        0,
+        0
+      ],
+      "changed_fields_across_shared_events": {
+        "countertrend": 6,
+        "evidence": 6,
+        "filter_eligible": 2,
+        "quality_note": 4
+      }
+    },
+    "LEDGER": {
+      "exact": false,
+      "counts": [
+        71,
+        71
+      ],
+      "examples": "OBSERVED",
+      "first_and_last_cumulative": [
+        [
+          {
+            "known_ms": 1794355200000,
+            "entered": 0,
+            "closed": 0,
+            "net": 0,
+            "gross": 0,
+            "costs": 0,
+            "drawdown": 0,
+            "capacity_skipped": 0
+          },
+          {
+            "known_ms": 1794418200000,
+            "entered": 1,
+            "closed": 1,
+            "net": "-1.03082818",
+            "gross": -1,
+            "costs": "0.03082818",
+            "drawdown": "1.03082818",
+            "capacity_skipped": 0
+          }
+        ],
+        [
+          {
+            "known_ms": 1794355200000,
+            "entered": 37,
+            "closed": 37,
+            "net": "-7.68875537",
+            "gross": "-6.1699299",
+            "costs": "1.51882547",
+            "drawdown": "9.1673453",
+            "capacity_skipped": 7
+          },
+          {
+            "known_ms": 1794418200000,
+            "entered": 38,
+            "closed": 38,
+            "net": "-8.71958355",
+            "gross": "-7.1699299",
+            "costs": "1.54965365",
+            "drawdown": "9.1673453",
+            "capacity_skipped": 7
+          }
+        ]
+      ],
+      "closed_event_totals_in_window": [
+        {
+          "campaigns": 1,
+          "gross_r": -1,
+          "net_r": "-1.03082818",
+          "cost_r": "0.03082818"
+        },
+        {
+          "campaigns": 1,
+          "gross_r": -1,
+          "net_r": "-1.03082818",
+          "cost_r": "0.03082818"
+        }
+      ]
+    },
+    "STATE": {
+      "exact": true,
+      "counts": [
+        71,
+        71
+      ],
+      "examples": "OBSERVED"
+    },
+    "FORMATION_STATE": {
+      "exact": true,
+      "counts": [
+        142,
+        142
+      ],
+      "scope": "Phase, absolute origin timestamp, raw trigger, actual reason, cooldown."
+    }
+  },
+  "source_provenance": "SAME_SOURCE",
+  "alert_scope": "Protected Pine alert payloads in logs. Server delivery was not exercised by this comparator.",
+  "timestamp_scope": "CORE_HTF is witnessed at chart close. A dedicated source timestamp for the original HTF raw tuple is not logged.",
+  "status": "DEPTH_SENSITIVITY_MISMATCH",
+  "shared_warmed_closes": 71,
+  "htf_close_requires_exact_match": true,
+  "ema_absolute_tolerance": "0.001",
+  "htf_price_fields": {
+    "htf_close": {
+      "differences": 0,
+      "one_sided_missing": 0,
+      "required_bound_failed": 0,
+      "both_present": 71,
+      "maximum_observed_absolute_delta": null,
+      "first_difference": null
+    },
+    "ema50": {
+      "differences": 71,
+      "one_sided_missing": 0,
+      "required_bound_failed": 71,
+      "both_present": 71,
+      "maximum_observed_absolute_delta": "19.86083173",
+      "first_difference": {
+        "at_ms": 1794355200000,
+        "left": "4035.9521806",
+        "right": "4055.81301233"
+      }
+    },
+    "ema50_prev": {
+      "differences": 71,
+      "one_sided_missing": 0,
+      "required_bound_failed": 71,
+      "both_present": 71,
+      "maximum_observed_absolute_delta": "21.51521171",
+      "first_difference": {
+        "at_ms": 1794355200000,
+        "left": "4036.80971751",
+        "right": "4058.32492922"
+      }
+    }
+  },
+  "exact_state_fields": {
+    "ready_HTF": {
+      "differences": 0,
+      "one_sided_missing": 0,
+      "required_bound_failed": 0,
+      "both_present": 71,
+      "maximum_observed_absolute_delta": null,
+      "first_difference": null
+    },
+    "warmup": {
+      "differences": 0,
+      "one_sided_missing": 0,
+      "required_bound_failed": 0,
+      "both_present": 71,
+      "maximum_observed_absolute_delta": null,
+      "first_difference": null
+    },
+    "core_trend": {
+      "differences": 62,
+      "one_sided_missing": 0,
+      "required_bound_failed": 62,
+      "both_present": 71,
+      "maximum_observed_absolute_delta": null,
+      "first_difference": {
+        "at_ms": 1794363300000,
+        "left": 1,
+        "right": -1
+      }
+    },
+    "raw_phase": {
+      "differences": 0,
+      "one_sided_missing": 0,
+      "required_bound_failed": 0,
+      "both_present": 71,
+      "maximum_observed_absolute_delta": null,
+      "first_difference": null
+    },
+    "raw_plan_id": {
+      "differences": 0,
+      "one_sided_missing": 0,
+      "required_bound_failed": 0,
+      "both_present": 71,
+      "maximum_observed_absolute_delta": null,
+      "first_difference": null
+    },
+    "last_buy_close_ms": {
+      "differences": 49,
+      "one_sided_missing": 49,
+      "required_bound_failed": 49,
+      "both_present": 22,
+      "maximum_observed_absolute_delta": null,
+      "first_difference": {
+        "at_ms": 1794355200000,
+        "left": null,
+        "right": 1794212100000
+      }
+    },
+    "last_sell_close_ms": {
+      "differences": 9,
+      "one_sided_missing": 9,
+      "required_bound_failed": 9,
+      "both_present": 62,
+      "maximum_observed_absolute_delta": null,
+      "first_difference": {
+        "at_ms": 1794355200000,
+        "left": null,
+        "right": 1794193200000
+      }
+    },
+    "global_paused": {
+      "differences": 71,
+      "one_sided_missing": 0,
+      "required_bound_failed": 71,
+      "both_present": 71,
+      "maximum_observed_absolute_delta": null,
+      "first_difference": {
+        "at_ms": 1794355200000,
+        "left": false,
+        "right": true
+      }
+    },
+    "family_paused": {
+      "differences": 71,
+      "one_sided_missing": 0,
+      "required_bound_failed": 71,
+      "both_present": 71,
+      "maximum_observed_absolute_delta": null,
+      "first_difference": {
+        "at_ms": 1794355200000,
+        "left": false,
+        "right": true
+      }
+    },
+    "filtered_day_net": {
+      "differences": 0,
+      "one_sided_missing": 0,
+      "required_bound_failed": 0,
+      "both_present": 71,
+      "maximum_observed_absolute_delta": null,
+      "first_difference": null
+    },
+    "filtered_day_streak": {
+      "differences": 0,
+      "one_sided_missing": 0,
+      "required_bound_failed": 0,
+      "both_present": 71,
+      "maximum_observed_absolute_delta": null,
+      "first_difference": null
+    }
+  },
+  "local_warmup_numeric_sensitivity": {
+    "atr_mean": {
+      "differences": 0,
+      "one_sided_missing": 0,
+      "required_bound_failed": 0,
+      "both_present": 71,
+      "maximum_observed_absolute_delta": null,
+      "first_difference": null
+    },
+    "rsi": {
+      "differences": 0,
+      "one_sided_missing": 0,
+      "required_bound_failed": 0,
+      "both_present": 71,
+      "maximum_observed_absolute_delta": null,
+      "first_difference": null
+    },
+    "adx": {
+      "differences": 0,
+      "one_sided_missing": 0,
+      "required_bound_failed": 0,
+      "both_present": 71,
+      "maximum_observed_absolute_delta": null,
+      "first_difference": null
+    }
+  },
+  "any_observed_s5_state_drift": true,
+  "interpretation": "Different loaded origins are a sensitivity experiment; agreement in this window does not prove general parity."
+}

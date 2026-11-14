@@ -1,0 +1,1381 @@
+{
+  "case_window_counts": {
+    "nov11_buy": {
+      "M15": {
+        "closed_bars": 6,
+        "focus_side_code": {
+          "NO_S5_FORMATION_TRIGGER": 6
+        }
+      },
+      "M30": {
+        "closed_bars": 3,
+        "focus_side_code": {
+          "CORE_HTF_NOT_READY_BEFORE_CANDIDATE": 3
+        }
+      },
+      "M5": {
+        "closed_bars": 18,
+        "focus_side_code": {
+          "CORE_HTF_NOT_READY_BEFORE_CANDIDATE": 18
+        }
+      }
+    },
+    "nov11_fixed_sell_hour": {
+      "M15": {
+        "closed_bars": 4,
+        "focus_side_code": {
+          "NO_S5_FORMATION_TRIGGER": 4
+        }
+      },
+      "M30": {
+        "closed_bars": 2,
+        "focus_side_code": {
+          "CORE_HTF_NOT_READY_BEFORE_CANDIDATE": 2
+        }
+      },
+      "M5": {
+        "closed_bars": 12,
+        "focus_side_code": {
+          "CORE_HTF_NOT_READY_BEFORE_CANDIDATE": 12
+        }
+      }
+    },
+    "nov11_sell": {
+      "M15": {
+        "closed_bars": 20,
+        "focus_side_code": {
+          "NO_S5_FORMATION_TRIGGER": 20
+        }
+      },
+      "M30": {
+        "closed_bars": 10,
+        "focus_side_code": {
+          "CORE_HTF_NOT_READY_BEFORE_CANDIDATE": 10
+        }
+      },
+      "M5": {
+        "closed_bars": 60,
+        "focus_side_code": {
+          "CORE_HTF_NOT_READY_BEFORE_CANDIDATE": 60
+        }
+      }
+    },
+    "nov13_m5_witness": {
+      "M5": {
+        "closed_bars": 15,
+        "focus_side_code": {
+          "EXECUTED_IN_RAW_PAPER": 1,
+          "NO_S5_FORMATION_TRIGGER": 11,
+          "READY_OR_QUEUED_NO_FILL_AT_THIS_CLOSE": 1,
+          "S5_OBSERVATION_WAITING_FOR_RECLAIM": 2
+        }
+      }
+    }
+  },
+  "nov11_frames": {
+    "M15": {
+      "cross_archive_protected_payload_comparison": {
+        "DTV_LEDGER": {
+          "fresh_count": 71,
+          "old_count": 71,
+          "payload_bytes_equal": false
+        },
+        "DTV_PAPER": {
+          "fresh_count": 6,
+          "old_count": 6,
+          "payload_bytes_equal": true
+        },
+        "DTV_STATE": {
+          "fresh_count": 71,
+          "old_count": 71,
+          "payload_bytes_equal": true
+        },
+        "DT_SHADOW": {
+          "fresh_count": 501,
+          "old_count": 506,
+          "payload_bytes_equal": false
+        },
+        "LZ_EVENT": {
+          "fresh_count": 13,
+          "old_count": 13,
+          "payload_bytes_equal": false
+        },
+        "RC1_CORE": {
+          "fresh_count": 20,
+          "old_count": 20,
+          "payload_bytes_equal": false
+        },
+        "RC1_READY": {
+          "fresh_count": 2,
+          "old_count": 2,
+          "payload_bytes_equal": true
+        },
+        "RC2_EARLY": {
+          "fresh_count": 6,
+          "old_count": 6,
+          "payload_bytes_equal": true
+        }
+      },
+      "fresh_eda_formation_and_execution_log_scope": {
+        "aggregate_core_readiness_logged": true,
+        "exact_selected_core_tuple_logged": false,
+        "first_protected_ledger": {
+          "capacity_skipped": 0,
+          "closed": 0,
+          "costs": 0,
+          "drawdown": 0,
+          "entered": 0,
+          "frame": "15",
+          "gains": 0,
+          "gross": 0,
+          "known_ms": 1794355200000,
+          "losses": 0,
+          "net": 0,
+          "phase": 0,
+          "plan_id": "",
+          "symbol": "OANDA:XAUUSD"
+        },
+        "last_protected_ledger": {
+          "capacity_skipped": 0,
+          "closed": 1,
+          "costs": "0.03082818",
+          "drawdown": "1.03082818",
+          "entered": 1,
+          "frame": "15",
+          "gains": 0,
+          "gross": -1,
+          "known_ms": 1794418200000,
+          "losses": "1.03082818",
+          "net": "-1.03082818",
+          "phase": 0,
+          "plan_id": "",
+          "symbol": "OANDA:XAUUSD"
+        },
+        "paper_entries_and_terminal_events": [
+          {
+            "atr_at_signal": "7.44126311",
+            "cost_r": null,
+            "effective_utc": "2026-11-11T02:15:00Z",
+            "event": "SIM_ENTRY",
+            "gross_r": null,
+            "initial_sl": "4053.568",
+            "known_utc": "2026-11-11T02:30:00Z",
+            "net_r": null,
+            "plan_id": "S5|OANDA:XAUUSD|15|2|-1|1794361500000|1794363300000",
+            "price": "4042.085",
+            "reason": "Предполагаемо next-open; съобщено при close",
+            "reference": "4042.005",
+            "side": -1,
+            "tp1": "4030.442",
+            "tp2": "4018.879",
+            "tp3": "4007.316"
+          },
+          {
+            "atr_at_signal": "7.44126311",
+            "cost_r": "0.03082818",
+            "effective_utc": null,
+            "event": "CLOSED",
+            "gross_r": -1,
+            "initial_sl": "4053.568",
+            "known_utc": "2026-11-11T05:15:00Z",
+            "net_r": "-1.03082818",
+            "plan_id": "S5|OANDA:XAUUSD|15|2|-1|1794361500000|1794363300000",
+            "price": "4053.568",
+            "reason": "STOP_FIRST",
+            "reference": "4042.005",
+            "side": -1,
+            "tp1": "4030.442",
+            "tp2": "4018.879",
+            "tp3": "4007.316"
+          },
+          {
+            "atr_at_signal": "5.29645478",
+            "cost_r": null,
+            "effective_utc": "2026-11-11T12:15:00Z",
+            "event": "CANCELLED",
+            "gross_r": null,
+            "initial_sl": "4042.407",
+            "known_utc": "2026-11-11T12:30:00Z",
+            "net_r": null,
+            "plan_id": "S5|OANDA:XAUUSD|15|2|1|1794398400000|1794399300000",
+            "price": "4046.595",
+            "reason": "Риск/разходи при отваряне",
+            "reference": "4046.645",
+            "side": 1,
+            "tp1": "4050.883",
+            "tp2": "4055.121",
+            "tp3": "4059.359"
+          }
+        ],
+        "permission_counts": {
+          "BUY READY": 1,
+          "POSITION OCCUPIED": 11,
+          "RISK REJECTED": 3,
+          "SELL READY": 1,
+          "WAIT": 55
+        },
+        "raw_paper_counts": {
+          "CANCELLED": 1,
+          "CLOSED": 1,
+          "QUEUED": 2,
+          "SIM_ENTRY": 1,
+          "SIM_SL": 1
+        },
+        "raw_paper_ready_plan_events": [
+          {
+            "confirmation_utc": "2026-11-11T02:15:00Z",
+            "confirmed_ms": 1794363300000,
+            "direction": "SELL",
+            "entry": "4042.005",
+            "event_id": "S5|OANDA:XAUUSD|15|2|-1|1794361500000|1794363300000|CORE|CONFIRMED|1794363300000|RC1|READY",
+            "model": "S5",
+            "provisional": false,
+            "reason": "Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.",
+            "sl": "4053.568",
+            "source_id": "S5|OANDA:XAUUSD|15|2|-1|1794361500000|1794363300000|CORE|CONFIRMED|1794363300000",
+            "state": "READY",
+            "symbol": "OANDA:XAUUSD",
+            "timeframe": "15",
+            "tp1": "4030.442",
+            "tp2": "4018.879",
+            "tp3": "4007.316"
+          },
+          {
+            "confirmation_utc": "2026-11-11T12:15:00Z",
+            "confirmed_ms": 1794399300000,
+            "direction": "BUY",
+            "entry": "4046.645",
+            "event_id": "S5|OANDA:XAUUSD|15|2|1|1794398400000|1794399300000|CORE|CONFIRMED|1794399300000|RC1|READY",
+            "model": "S5",
+            "provisional": false,
+            "reason": "Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.",
+            "sl": "4042.407",
+            "source_id": "S5|OANDA:XAUUSD|15|2|1|1794398400000|1794399300000|CORE|CONFIRMED|1794399300000",
+            "state": "READY",
+            "symbol": "OANDA:XAUUSD",
+            "timeframe": "15",
+            "tp1": "4050.883",
+            "tp2": "4055.121",
+            "tp3": "4059.359"
+          }
+        ]
+      },
+      "fresh_eda_history": {
+        "bars_through_dt_end": 1222,
+        "first_loaded_close_utc": "2026-10-27T12:00:00Z",
+        "first_loaded_open_utc": "2026-10-27T11:45:00Z",
+        "gaps_between_logged_bars": 13,
+        "last_loaded_close_utc": "2026-11-13T19:15:00Z",
+        "last_loaded_open_utc": "2026-11-13T19:00:00Z",
+        "rows_after_dt_end_excluded": 0
+      },
+      "fresh_eda_on_export_sha256": "3496ac681806935e788bff24a23421992af3cc390046e6cc1b5eebc0a278f854",
+      "fresh_eda_readiness": {
+        "both_side_source_reasons": {
+          "Нарушена структура": 5,
+          "Няма потвърждаваща свещ": 2,
+          "Няма суров trigger": 118,
+          "Пауза след потвърден модел": 1,
+          "УСЛОВИЯТА СА ИЗПЪЛНЕНИ": 2,
+          "Чака отделна потвърждаваща свещ": 14
+        },
+        "core_htf_ready_count": 71,
+        "core_resolution": "240",
+        "display_h1_direction": {
+          "SELL": 71
+        },
+        "display_h4_direction": {
+          "BUY": 62,
+          "SELL": 9
+        },
+        "first_ready_core_htf_close_utc": "2026-11-11T00:00:00Z",
+        "total_closes": 71,
+        "warmup_ready_count": 71
+      },
+      "fresh_same_input_on_off_vs_visual_v2_protected_parity": "PROTECTED_NATIVE_PARITY",
+      "logged_history_overlap": {
+        "clock_or_ohlc_mismatches": [
+          {
+            "bar_open_utc": "2026-11-10T09:00:00Z",
+            "fields": {
+              "high": {
+                "fresh": "4113.31",
+                "old": "4113.345"
+              }
+            },
+            "fresh_index": 905,
+            "old_index": 993
+          }
+        ],
+        "common_bars": 1134,
+        "common_first_open_utc": "2026-10-27T11:45:00Z",
+        "common_last_close_utc": "2026-11-12T20:15:00Z",
+        "common_last_open_utc": "2026-11-12T20:00:00Z",
+        "exact_clock_and_ohlc_common_bars": 1133,
+        "fresh_only_bars": 88,
+        "old_only_bars": 88
+      },
+      "nov11_protected_window_clock_comparison": {
+        "exact_scored_window_clock_ohlc_and_advisory_source_timestamps": true,
+        "fresh_first_bar_index_at_audit_start": 960,
+        "mismatched_close_utc": [],
+        "old_first_bar_index_at_audit_start": 1048,
+        "protected_closes": 71,
+        "utc_first": "2026-11-11T00:00:00Z",
+        "utc_last": "2026-11-11T17:30:00Z"
+      },
+      "old_visual_v2_export_sha256": "a7cf2c08e57f34690157718e988d64200106e509a2a903f21c14d0635ff19688",
+      "old_visual_v2_formation_and_execution_log_scope": {
+        "aggregate_core_readiness_logged": false,
+        "exact_selected_core_tuple_logged": false,
+        "first_protected_ledger": {
+          "capacity_skipped": 1,
+          "closed": 1,
+          "costs": "0.02297508",
+          "drawdown": 0,
+          "entered": 1,
+          "frame": "15",
+          "gains": "0.98827449",
+          "gross": "1.01124957",
+          "known_ms": 1794355200000,
+          "losses": 0,
+          "net": "0.98827449",
+          "phase": 0,
+          "plan_id": "",
+          "symbol": "OANDA:XAUUSD"
+        },
+        "last_protected_ledger": {
+          "capacity_skipped": 1,
+          "closed": 2,
+          "costs": "0.05380326",
+          "drawdown": "1.03082818",
+          "entered": 2,
+          "frame": "15",
+          "gains": "0.98827449",
+          "gross": "0.01124957",
+          "known_ms": 1794418200000,
+          "losses": "1.03082818",
+          "net": "-0.04255369",
+          "phase": 0,
+          "plan_id": "",
+          "symbol": "OANDA:XAUUSD"
+        },
+        "paper_entries_and_terminal_events": [
+          {
+            "atr_at_signal": "7.44126311",
+            "cost_r": null,
+            "effective_utc": "2026-11-11T02:15:00Z",
+            "event": "SIM_ENTRY",
+            "gross_r": null,
+            "initial_sl": "4053.568",
+            "known_utc": "2026-11-11T02:30:00Z",
+            "net_r": null,
+            "plan_id": "S5|OANDA:XAUUSD|15|2|-1|1794361500000|1794363300000",
+            "price": "4042.085",
+            "reason": "Предполагаемо next-open; съобщено при close",
+            "reference": "4042.005",
+            "side": -1,
+            "tp1": "4030.442",
+            "tp2": "4018.879",
+            "tp3": "4007.316"
+          },
+          {
+            "atr_at_signal": "7.44126311",
+            "cost_r": "0.03082818",
+            "effective_utc": null,
+            "event": "CLOSED",
+            "gross_r": -1,
+            "initial_sl": "4053.568",
+            "known_utc": "2026-11-11T05:15:00Z",
+            "net_r": "-1.03082818",
+            "plan_id": "S5|OANDA:XAUUSD|15|2|-1|1794361500000|1794363300000",
+            "price": "4053.568",
+            "reason": "STOP_FIRST",
+            "reference": "4042.005",
+            "side": -1,
+            "tp1": "4030.442",
+            "tp2": "4018.879",
+            "tp3": "4007.316"
+          },
+          {
+            "atr_at_signal": "5.29645478",
+            "cost_r": null,
+            "effective_utc": "2026-11-11T12:15:00Z",
+            "event": "CANCELLED",
+            "gross_r": null,
+            "initial_sl": "4042.407",
+            "known_utc": "2026-11-11T12:30:00Z",
+            "net_r": null,
+            "plan_id": "S5|OANDA:XAUUSD|15|2|1|1794398400000|1794399300000",
+            "price": "4046.595",
+            "reason": "Риск/разходи при отваряне",
+            "reference": "4046.645",
+            "side": 1,
+            "tp1": "4050.883",
+            "tp2": "4055.121",
+            "tp3": "4059.359"
+          }
+        ],
+        "permission_counts": {
+          "BUY READY": 1,
+          "POSITION OCCUPIED": 11,
+          "RISK REJECTED": 3,
+          "SELL READY": 1,
+          "WAIT": 55
+        },
+        "raw_paper_counts": {
+          "CANCELLED": 1,
+          "CLOSED": 1,
+          "QUEUED": 2,
+          "SIM_ENTRY": 1,
+          "SIM_SL": 1
+        },
+        "raw_paper_ready_plan_events": [
+          {
+            "confirmation_utc": "2026-11-11T02:15:00Z",
+            "confirmed_ms": 1794363300000,
+            "direction": "SELL",
+            "entry": "4042.005",
+            "event_id": "S5|OANDA:XAUUSD|15|2|-1|1794361500000|1794363300000|CORE|CONFIRMED|1794363300000|RC1|READY",
+            "model": "S5",
+            "provisional": false,
+            "reason": "Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.",
+            "sl": "4053.568",
+            "source_id": "S5|OANDA:XAUUSD|15|2|-1|1794361500000|1794363300000|CORE|CONFIRMED|1794363300000",
+            "state": "READY",
+            "symbol": "OANDA:XAUUSD",
+            "timeframe": "15",
+            "tp1": "4030.442",
+            "tp2": "4018.879",
+            "tp3": "4007.316"
+          },
+          {
+            "confirmation_utc": "2026-11-11T12:15:00Z",
+            "confirmed_ms": 1794399300000,
+            "direction": "BUY",
+            "entry": "4046.645",
+            "event_id": "S5|OANDA:XAUUSD|15|2|1|1794398400000|1794399300000|CORE|CONFIRMED|1794399300000|RC1|READY",
+            "model": "S5",
+            "provisional": false,
+            "reason": "Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.",
+            "sl": "4042.407",
+            "source_id": "S5|OANDA:XAUUSD|15|2|1|1794398400000|1794399300000|CORE|CONFIRMED|1794399300000",
+            "state": "READY",
+            "symbol": "OANDA:XAUUSD",
+            "timeframe": "15",
+            "tp1": "4050.883",
+            "tp2": "4055.121",
+            "tp3": "4059.359"
+          }
+        ]
+      },
+      "old_visual_v2_history": {
+        "bars_through_dt_end": 1222,
+        "first_loaded_close_utc": "2026-10-26T13:00:00Z",
+        "first_loaded_open_utc": "2026-10-26T12:45:00Z",
+        "gaps_between_logged_bars": 13,
+        "last_loaded_close_utc": "2026-11-12T20:15:00Z",
+        "last_loaded_open_utc": "2026-11-12T20:00:00Z",
+        "rows_after_dt_end_excluded": 0
+      }
+    },
+    "M30": {
+      "cross_archive_protected_payload_comparison": {
+        "DTV_LEDGER": {
+          "fresh_count": 36,
+          "old_count": 36,
+          "payload_bytes_equal": true
+        },
+        "DTV_PAPER": {
+          "fresh_count": 0,
+          "old_count": 0,
+          "payload_bytes_equal": true
+        },
+        "DTV_STATE": {
+          "fresh_count": 36,
+          "old_count": 36,
+          "payload_bytes_equal": true
+        },
+        "DT_SHADOW": {
+          "fresh_count": 503,
+          "old_count": 493,
+          "payload_bytes_equal": false
+        },
+        "LZ_EVENT": {
+          "fresh_count": 7,
+          "old_count": 7,
+          "payload_bytes_equal": false
+        },
+        "RC1_CORE": {
+          "fresh_count": 0,
+          "old_count": 0,
+          "payload_bytes_equal": true
+        },
+        "RC1_READY": {
+          "fresh_count": 0,
+          "old_count": 0,
+          "payload_bytes_equal": true
+        },
+        "RC2_EARLY": {
+          "fresh_count": 5,
+          "old_count": 5,
+          "payload_bytes_equal": true
+        }
+      },
+      "fresh_eda_formation_and_execution_log_scope": {
+        "aggregate_core_readiness_logged": true,
+        "exact_selected_core_tuple_logged": false,
+        "first_protected_ledger": {
+          "capacity_skipped": 0,
+          "closed": 0,
+          "costs": 0,
+          "drawdown": 0,
+          "entered": 0,
+          "frame": "30",
+          "gains": 0,
+          "gross": 0,
+          "known_ms": 1794355200000,
+          "losses": 0,
+          "net": 0,
+          "phase": 0,
+          "plan_id": "",
+          "symbol": "OANDA:XAUUSD"
+        },
+        "last_protected_ledger": {
+          "capacity_skipped": 0,
+          "closed": 0,
+          "costs": 0,
+          "drawdown": 0,
+          "entered": 0,
+          "frame": "30",
+          "gains": 0,
+          "gross": 0,
+          "known_ms": 1794418200000,
+          "losses": 0,
+          "net": 0,
+          "phase": 0,
+          "plan_id": "",
+          "symbol": "OANDA:XAUUSD"
+        },
+        "paper_entries_and_terminal_events": [],
+        "permission_counts": {
+          "WAIT": 36
+        },
+        "raw_paper_counts": {},
+        "raw_paper_ready_plan_events": []
+      },
+      "fresh_eda_history": {
+        "bars_through_dt_end": 1222,
+        "first_loaded_close_utc": "2026-10-08T05:30:00Z",
+        "first_loaded_open_utc": "2026-10-08T05:00:00Z",
+        "gaps_between_logged_bars": 26,
+        "last_loaded_close_utc": "2026-11-13T19:00:00Z",
+        "last_loaded_open_utc": "2026-11-13T18:30:00Z",
+        "rows_after_dt_end_excluded": 0
+      },
+      "fresh_eda_on_export_sha256": "f92ad5f59fb97103eef3d305fbb78587928120a7a3ff5b972ad358912d0270c6",
+      "fresh_eda_readiness": {
+        "both_side_source_reasons": {
+          "Недостатъчни данни или неподдържана рамка": 72
+        },
+        "core_htf_ready_count": 0,
+        "core_resolution": "D",
+        "display_h1_direction": {
+          "SELL": 36
+        },
+        "display_h4_direction": {
+          "MIXED": 8,
+          "SELL": 28
+        },
+        "first_ready_core_htf_close_utc": null,
+        "total_closes": 36,
+        "warmup_ready_count": 0
+      },
+      "fresh_same_input_on_off_vs_visual_v2_protected_parity": "PROTECTED_NATIVE_PARITY",
+      "logged_history_overlap": {
+        "clock_or_ohlc_mismatches": [],
+        "common_bars": 1178,
+        "common_first_open_utc": "2026-10-08T05:00:00Z",
+        "common_last_close_utc": "2026-11-12T20:00:00Z",
+        "common_last_open_utc": "2026-11-12T19:30:00Z",
+        "exact_clock_and_ohlc_common_bars": 1178,
+        "fresh_only_bars": 44,
+        "old_only_bars": 44
+      },
+      "nov11_protected_window_clock_comparison": {
+        "exact_scored_window_clock_ohlc_and_advisory_source_timestamps": true,
+        "fresh_first_bar_index_at_audit_start": 1091,
+        "mismatched_close_utc": [],
+        "old_first_bar_index_at_audit_start": 1135,
+        "protected_closes": 36,
+        "utc_first": "2026-11-11T00:00:00Z",
+        "utc_last": "2026-11-11T17:30:00Z"
+      },
+      "old_visual_v2_export_sha256": "fda239de829490317e2d1f4aa0e9a6fc0f46c4ee440c3bfc016295880d75a48d",
+      "old_visual_v2_formation_and_execution_log_scope": {
+        "aggregate_core_readiness_logged": false,
+        "exact_selected_core_tuple_logged": false,
+        "first_protected_ledger": {
+          "capacity_skipped": 0,
+          "closed": 0,
+          "costs": 0,
+          "drawdown": 0,
+          "entered": 0,
+          "frame": "30",
+          "gains": 0,
+          "gross": 0,
+          "known_ms": 1794355200000,
+          "losses": 0,
+          "net": 0,
+          "phase": 0,
+          "plan_id": "",
+          "symbol": "OANDA:XAUUSD"
+        },
+        "last_protected_ledger": {
+          "capacity_skipped": 0,
+          "closed": 0,
+          "costs": 0,
+          "drawdown": 0,
+          "entered": 0,
+          "frame": "30",
+          "gains": 0,
+          "gross": 0,
+          "known_ms": 1794418200000,
+          "losses": 0,
+          "net": 0,
+          "phase": 0,
+          "plan_id": "",
+          "symbol": "OANDA:XAUUSD"
+        },
+        "paper_entries_and_terminal_events": [],
+        "permission_counts": {
+          "WAIT": 36
+        },
+        "raw_paper_counts": {},
+        "raw_paper_ready_plan_events": []
+      },
+      "old_visual_v2_history": {
+        "bars_through_dt_end": 1222,
+        "first_loaded_close_utc": "2026-10-07T06:30:00Z",
+        "first_loaded_open_utc": "2026-10-07T06:00:00Z",
+        "gaps_between_logged_bars": 26,
+        "last_loaded_close_utc": "2026-11-12T20:00:00Z",
+        "last_loaded_open_utc": "2026-11-12T19:30:00Z",
+        "rows_after_dt_end_excluded": 0
+      }
+    },
+    "M5": {
+      "cross_archive_protected_payload_comparison": {
+        "DTV_LEDGER": {
+          "fresh_count": 211,
+          "old_count": 211,
+          "payload_bytes_equal": false
+        },
+        "DTV_PAPER": {
+          "fresh_count": 0,
+          "old_count": 32,
+          "payload_bytes_equal": false
+        },
+        "DTV_STATE": {
+          "fresh_count": 211,
+          "old_count": 211,
+          "payload_bytes_equal": false
+        },
+        "DT_SHADOW": {
+          "fresh_count": 480,
+          "old_count": 531,
+          "payload_bytes_equal": false
+        },
+        "LZ_EVENT": {
+          "fresh_count": 66,
+          "old_count": 66,
+          "payload_bytes_equal": false
+        },
+        "RC1_CORE": {
+          "fresh_count": 0,
+          "old_count": 42,
+          "payload_bytes_equal": false
+        },
+        "RC1_READY": {
+          "fresh_count": 0,
+          "old_count": 6,
+          "payload_bytes_equal": false
+        },
+        "RC2_EARLY": {
+          "fresh_count": 17,
+          "old_count": 17,
+          "payload_bytes_equal": true
+        }
+      },
+      "fresh_eda_formation_and_execution_log_scope": {
+        "aggregate_core_readiness_logged": true,
+        "exact_selected_core_tuple_logged": false,
+        "first_protected_ledger": {
+          "capacity_skipped": 0,
+          "closed": 0,
+          "costs": 0,
+          "drawdown": 0,
+          "entered": 0,
+          "frame": "5",
+          "gains": 0,
+          "gross": 0,
+          "known_ms": 1794355200000,
+          "losses": 0,
+          "net": 0,
+          "phase": 0,
+          "plan_id": "",
+          "symbol": "OANDA:XAUUSD"
+        },
+        "last_protected_ledger": {
+          "capacity_skipped": 0,
+          "closed": 0,
+          "costs": 0,
+          "drawdown": 0,
+          "entered": 0,
+          "frame": "5",
+          "gains": 0,
+          "gross": 0,
+          "known_ms": 1794418200000,
+          "losses": 0,
+          "net": 0,
+          "phase": 0,
+          "plan_id": "",
+          "symbol": "OANDA:XAUUSD"
+        },
+        "paper_entries_and_terminal_events": [],
+        "permission_counts": {
+          "WAIT": 211
+        },
+        "raw_paper_counts": {},
+        "raw_paper_ready_plan_events": []
+      },
+      "fresh_eda_history": {
+        "bars_through_dt_end": 1222,
+        "first_loaded_close_utc": "2026-11-09T09:40:00Z",
+        "first_loaded_open_utc": "2026-11-09T09:35:00Z",
+        "gaps_between_logged_bars": 4,
+        "last_loaded_close_utc": "2026-11-13T19:25:00Z",
+        "last_loaded_open_utc": "2026-11-13T19:20:00Z",
+        "rows_after_dt_end_excluded": 0
+      },
+      "fresh_eda_on_export_sha256": "953486506b06eda44884097ad3860af8e7e678b18f4fff902b0ad934fd90359a",
+      "fresh_eda_readiness": {
+        "both_side_source_reasons": {
+          "Недостатъчни данни или неподдържана рамка": 410,
+          "Няма суров trigger": 12
+        },
+        "core_htf_ready_count": 6,
+        "core_resolution": "60",
+        "display_h1_direction": {
+          "SELL": 6,
+          "UNKNOWN_MISSING": 205
+        },
+        "display_h4_direction": {
+          "UNKNOWN_MISSING": 211
+        },
+        "first_ready_core_htf_close_utc": "2026-11-11T17:05:00Z",
+        "total_closes": 211,
+        "warmup_ready_count": 6
+      },
+      "fresh_same_input_on_off_vs_visual_v2_protected_parity": "PROTECTED_NATIVE_PARITY",
+      "logged_history_overlap": {
+        "clock_or_ohlc_mismatches": [
+          {
+            "bar_open_utc": "2026-11-10T09:00:00Z",
+            "fields": {
+              "high": {
+                "fresh": "4113.31",
+                "old": "4113.345"
+              }
+            },
+            "fresh_index": 269,
+            "old_index": 536
+          },
+          {
+            "bar_open_utc": "2026-11-10T16:05:00Z",
+            "fields": {
+              "high": {
+                "fresh": "4044.43",
+                "old": "4044.515"
+              }
+            },
+            "fresh_index": 354,
+            "old_index": 621
+          }
+        ],
+        "common_bars": 955,
+        "common_first_open_utc": "2026-11-09T09:35:00Z",
+        "common_last_close_utc": "2026-11-12T20:10:00Z",
+        "common_last_open_utc": "2026-11-12T20:05:00Z",
+        "exact_clock_and_ohlc_common_bars": 953,
+        "fresh_only_bars": 267,
+        "old_only_bars": 267
+      },
+      "nov11_protected_window_clock_comparison": {
+        "exact_scored_window_clock_ohlc_and_advisory_source_timestamps": true,
+        "fresh_first_bar_index_at_audit_start": 436,
+        "mismatched_close_utc": [],
+        "old_first_bar_index_at_audit_start": 703,
+        "protected_closes": 211,
+        "utc_first": "2026-11-11T00:00:00Z",
+        "utc_last": "2026-11-11T17:30:00Z"
+      },
+      "old_visual_v2_export_sha256": "95f660d2a662d9c6e5299e6dc496ac31d55af950c8ab6770a566313a32e7670c",
+      "old_visual_v2_formation_and_execution_log_scope": {
+        "aggregate_core_readiness_logged": false,
+        "exact_selected_core_tuple_logged": false,
+        "first_protected_ledger": {
+          "capacity_skipped": 0,
+          "closed": 2,
+          "costs": "0.21128884",
+          "drawdown": "2.21128884",
+          "entered": 2,
+          "frame": "5",
+          "gains": 0,
+          "gross": -2,
+          "known_ms": 1794355200000,
+          "losses": "2.21128884",
+          "net": "-2.21128884",
+          "phase": 0,
+          "plan_id": "",
+          "symbol": "OANDA:XAUUSD"
+        },
+        "last_protected_ledger": {
+          "capacity_skipped": 0,
+          "closed": 8,
+          "costs": "0.75063479",
+          "drawdown": "2.98907829",
+          "entered": 8,
+          "frame": "5",
+          "gains": "4.23790737",
+          "gross": "-0.48035874",
+          "known_ms": 1794418200000,
+          "losses": "5.46890091",
+          "net": "-1.23099353",
+          "phase": 0,
+          "plan_id": "",
+          "symbol": "OANDA:XAUUSD"
+        },
+        "paper_entries_and_terminal_events": [
+          {
+            "atr_at_signal": "2.91741624",
+            "cost_r": null,
+            "effective_utc": "2026-11-11T00:25:00Z",
+            "event": "SIM_ENTRY",
+            "gross_r": null,
+            "initial_sl": "4042.486",
+            "known_utc": "2026-11-11T00:30:00Z",
+            "net_r": null,
+            "plan_id": "S5|OANDA:XAUUSD|5|2|-1|1794356100000|1794356700000",
+            "price": "4039.57",
+            "reason": "Предполагаемо next-open; съобщено при close",
+            "reference": "4039.41",
+            "side": -1,
+            "tp1": "4036.334",
+            "tp2": "4033.258",
+            "tp3": "4030.182"
+          },
+          {
+            "atr_at_signal": "2.91741624",
+            "cost_r": "0.12139918",
+            "effective_utc": null,
+            "event": "CLOSED",
+            "gross_r": "2.16460905",
+            "initial_sl": "4042.486",
+            "known_utc": "2026-11-11T01:10:00Z",
+            "net_r": "2.04320988",
+            "plan_id": "S5|OANDA:XAUUSD|5|2|-1|1794356100000|1794356700000",
+            "price": "4030.182",
+            "reason": "TP3",
+            "reference": "4039.41",
+            "side": -1,
+            "tp1": "4036.334",
+            "tp2": "4033.258",
+            "tp3": "4030.182"
+          },
+          {
+            "atr_at_signal": "4.13706248",
+            "cost_r": null,
+            "effective_utc": "2026-11-11T01:20:00Z",
+            "event": "SIM_ENTRY",
+            "gross_r": null,
+            "initial_sl": "4026.173",
+            "known_utc": "2026-11-11T01:25:00Z",
+            "net_r": null,
+            "plan_id": "S5|OANDA:XAUUSD|5|2|1|1794359700000|1794360000000",
+            "price": "4031.78",
+            "reason": "Предполагаемо next-open; съобщено при close",
+            "reference": "4031.76",
+            "side": 1,
+            "tp1": "4037.347",
+            "tp2": "4042.934",
+            "tp3": "4048.521"
+          },
+          {
+            "atr_at_signal": "4.13706248",
+            "cost_r": "0.06313537",
+            "effective_utc": null,
+            "event": "CLOSED",
+            "gross_r": "1.98929909",
+            "initial_sl": "4026.173",
+            "known_utc": "2026-11-11T01:45:00Z",
+            "net_r": "1.92616372",
+            "plan_id": "S5|OANDA:XAUUSD|5|2|1|1794359700000|1794360000000",
+            "price": "4048.521",
+            "reason": "TP3",
+            "reference": "4031.76",
+            "side": 1,
+            "tp1": "4037.347",
+            "tp2": "4042.934",
+            "tp3": "4048.521"
+          },
+          {
+            "atr_at_signal": "3.41792677",
+            "cost_r": null,
+            "effective_utc": "2026-11-11T05:40:00Z",
+            "event": "SIM_ENTRY",
+            "gross_r": null,
+            "initial_sl": "4066.491",
+            "known_utc": "2026-11-11T05:45:00Z",
+            "net_r": null,
+            "plan_id": "S5|OANDA:XAUUSD|5|2|-1|1794375300000|1794375600000",
+            "price": "4058.8",
+            "reason": "Предполагаемо next-open; съобщено при close",
+            "reference": "4058.79",
+            "side": -1,
+            "tp1": "4051.089",
+            "tp2": "4043.388",
+            "tp3": "4035.687"
+          },
+          {
+            "atr_at_signal": "3.41792677",
+            "cost_r": "0.04602782",
+            "effective_utc": null,
+            "event": "CLOSED",
+            "gross_r": -1,
+            "initial_sl": "4066.491",
+            "known_utc": "2026-11-11T07:25:00Z",
+            "net_r": "-1.04602782",
+            "plan_id": "S5|OANDA:XAUUSD|5|2|-1|1794375300000|1794375600000",
+            "price": "4066.491",
+            "reason": "STOP_FIRST",
+            "reference": "4058.79",
+            "side": -1,
+            "tp1": "4051.089",
+            "tp2": "4043.388",
+            "tp3": "4035.687"
+          },
+          {
+            "atr_at_signal": "3.39068138",
+            "cost_r": null,
+            "effective_utc": "2026-11-11T09:45:00Z",
+            "event": "SIM_ENTRY",
+            "gross_r": null,
+            "initial_sl": "4046.108",
+            "known_utc": "2026-11-11T09:50:00Z",
+            "net_r": null,
+            "plan_id": "S5|OANDA:XAUUSD|5|2|1|1794390000000|1794390300000",
+            "price": "4049.75",
+            "reason": "Предполагаемо next-open; съобщено при close",
+            "reference": "4049.745",
+            "side": 1,
+            "tp1": "4053.382",
+            "tp2": "4057.019",
+            "tp3": "4060.656"
+          },
+          {
+            "atr_at_signal": "3.39068138",
+            "cost_r": "0.09719934",
+            "effective_utc": null,
+            "event": "CLOSED",
+            "gross_r": "0.36573311",
+            "initial_sl": "4046.108",
+            "known_utc": "2026-11-11T10:20:00Z",
+            "net_r": "0.26853377",
+            "plan_id": "S5|OANDA:XAUUSD|5|2|1|1794390000000|1794390300000",
+            "price": "4049.932",
+            "reason": "STOP_FIRST",
+            "reference": "4049.745",
+            "side": 1,
+            "tp1": "4053.382",
+            "tp2": "4057.019",
+            "tp3": "4060.656"
+          },
+          {
+            "atr_at_signal": "2.76098762",
+            "cost_r": null,
+            "effective_utc": "2026-11-11T12:50:00Z",
+            "event": "SIM_ENTRY",
+            "gross_r": null,
+            "initial_sl": "4040.753",
+            "known_utc": "2026-11-11T12:55:00Z",
+            "net_r": null,
+            "plan_id": "S5|OANDA:XAUUSD|5|2|1|1794401100000|1794401400000",
+            "price": "4043.025",
+            "reason": "Предполагаемо next-open; съобщено при close",
+            "reference": "4043.01",
+            "side": 1,
+            "tp1": "4045.267",
+            "tp2": "4047.524",
+            "tp3": "4049.781"
+          },
+          {
+            "atr_at_signal": "2.76098762",
+            "cost_r": "0.15580986",
+            "effective_utc": null,
+            "event": "CLOSED",
+            "gross_r": -1,
+            "initial_sl": "4040.753",
+            "known_utc": "2026-11-11T13:00:00Z",
+            "net_r": "-1.15580986",
+            "plan_id": "S5|OANDA:XAUUSD|5|2|1|1794401100000|1794401400000",
+            "price": "4040.753",
+            "reason": "STOP_FIRST",
+            "reference": "4043.01",
+            "side": 1,
+            "tp1": "4045.267",
+            "tp2": "4047.524",
+            "tp3": "4049.781"
+          },
+          {
+            "atr_at_signal": "3.63363476",
+            "cost_r": null,
+            "effective_utc": "2026-11-11T14:00:00Z",
+            "event": "SIM_ENTRY",
+            "gross_r": null,
+            "initial_sl": "4031.738",
+            "known_utc": "2026-11-11T14:05:00Z",
+            "net_r": null,
+            "plan_id": "S5|OANDA:XAUUSD|5|2|1|1794404700000|1794405600000",
+            "price": "4038.085",
+            "reason": "Предполагаемо next-open; съобщено при close",
+            "reference": "4038.075",
+            "side": 1,
+            "tp1": "4044.412",
+            "tp2": "4050.749",
+            "tp3": "4057.086"
+          },
+          {
+            "atr_at_signal": "3.63363476",
+            "cost_r": "0.05577438",
+            "effective_utc": null,
+            "event": "CLOSED",
+            "gross_r": -1,
+            "initial_sl": "4031.738",
+            "known_utc": "2026-11-11T14:05:00Z",
+            "net_r": "-1.05577438",
+            "plan_id": "S5|OANDA:XAUUSD|5|2|1|1794404700000|1794405600000",
+            "price": "4031.738",
+            "reason": "STOP_FIRST",
+            "reference": "4038.075",
+            "side": 1,
+            "tp1": "4044.412",
+            "tp2": "4050.749",
+            "tp3": "4057.086"
+          }
+        ],
+        "permission_counts": {
+          "BUY READY": 4,
+          "POSITION OCCUPIED": 39,
+          "RISK REJECTED": 4,
+          "SELL READY": 2,
+          "WAIT": 162
+        },
+        "raw_paper_counts": {
+          "CLOSED": 6,
+          "QUEUED": 6,
+          "SIM_ENTRY": 6,
+          "SIM_SL": 4,
+          "SIM_TP1": 3,
+          "SIM_TP2": 2,
+          "SIM_TP3": 2,
+          "STOP_UPDATE": 3
+        },
+        "raw_paper_ready_plan_events": [
+          {
+            "confirmation_utc": "2026-11-11T00:25:00Z",
+            "confirmed_ms": 1794356700000,
+            "direction": "SELL",
+            "entry": "4039.41",
+            "event_id": "S5|OANDA:XAUUSD|5|2|-1|1794356100000|1794356700000|CORE|CONFIRMED|1794356700000|RC1|READY",
+            "model": "S5",
+            "provisional": false,
+            "reason": "Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.",
+            "sl": "4042.486",
+            "source_id": "S5|OANDA:XAUUSD|5|2|-1|1794356100000|1794356700000|CORE|CONFIRMED|1794356700000",
+            "state": "READY",
+            "symbol": "OANDA:XAUUSD",
+            "timeframe": "5",
+            "tp1": "4036.334",
+            "tp2": "4033.258",
+            "tp3": "4030.182"
+          },
+          {
+            "confirmation_utc": "2026-11-11T01:20:00Z",
+            "confirmed_ms": 1794360000000,
+            "direction": "BUY",
+            "entry": "4031.76",
+            "event_id": "S5|OANDA:XAUUSD|5|2|1|1794359700000|1794360000000|CORE|CONFIRMED|1794360000000|RC1|READY",
+            "model": "S5",
+            "provisional": false,
+            "reason": "Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.",
+            "sl": "4026.173",
+            "source_id": "S5|OANDA:XAUUSD|5|2|1|1794359700000|1794360000000|CORE|CONFIRMED|1794360000000",
+            "state": "READY",
+            "symbol": "OANDA:XAUUSD",
+            "timeframe": "5",
+            "tp1": "4037.347",
+            "tp2": "4042.934",
+            "tp3": "4048.521"
+          },
+          {
+            "confirmation_utc": "2026-11-11T05:40:00Z",
+            "confirmed_ms": 1794375600000,
+            "direction": "SELL",
+            "entry": "4058.79",
+            "event_id": "S5|OANDA:XAUUSD|5|2|-1|1794375300000|1794375600000|CORE|CONFIRMED|1794375600000|RC1|READY",
+            "model": "S5",
+            "provisional": false,
+            "reason": "Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.",
+            "sl": "4066.491",
+            "source_id": "S5|OANDA:XAUUSD|5|2|-1|1794375300000|1794375600000|CORE|CONFIRMED|1794375600000",
+            "state": "READY",
+            "symbol": "OANDA:XAUUSD",
+            "timeframe": "5",
+            "tp1": "4051.089",
+            "tp2": "4043.388",
+            "tp3": "4035.687"
+          },
+          {
+            "confirmation_utc": "2026-11-11T09:45:00Z",
+            "confirmed_ms": 1794390300000,
+            "direction": "BUY",
+            "entry": "4049.745",
+            "event_id": "S5|OANDA:XAUUSD|5|2|1|1794390000000|1794390300000|CORE|CONFIRMED|1794390300000|RC1|READY",
+            "model": "S5",
+            "provisional": false,
+            "reason": "Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.",
+            "sl": "4046.108",
+            "source_id": "S5|OANDA:XAUUSD|5|2|1|1794390000000|1794390300000|CORE|CONFIRMED|1794390300000",
+            "state": "READY",
+            "symbol": "OANDA:XAUUSD",
+            "timeframe": "5",
+            "tp1": "4053.382",
+            "tp2": "4057.019",
+            "tp3": "4060.656"
+          },
+          {
+            "confirmation_utc": "2026-11-11T12:50:00Z",
+            "confirmed_ms": 1794401400000,
+            "direction": "BUY",
+            "entry": "4043.01",
+            "event_id": "S5|OANDA:XAUUSD|5|2|1|1794401100000|1794401400000|CORE|CONFIRMED|1794401400000|RC1|READY",
+            "model": "S5",
+            "provisional": false,
+            "reason": "Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.",
+            "sl": "4040.753",
+            "source_id": "S5|OANDA:XAUUSD|5|2|1|1794401100000|1794401400000|CORE|CONFIRMED|1794401400000",
+            "state": "READY",
+            "symbol": "OANDA:XAUUSD",
+            "timeframe": "5",
+            "tp1": "4045.267",
+            "tp2": "4047.524",
+            "tp3": "4049.781"
+          },
+          {
+            "confirmation_utc": "2026-11-11T14:00:00Z",
+            "confirmed_ms": 1794405600000,
+            "direction": "BUY",
+            "entry": "4038.075",
+            "event_id": "S5|OANDA:XAUUSD|5|2|1|1794404700000|1794405600000|CORE|CONFIRMED|1794405600000|RC1|READY",
+            "model": "S5",
+            "provisional": false,
+            "reason": "Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа.",
+            "sl": "4031.738",
+            "source_id": "S5|OANDA:XAUUSD|5|2|1|1794404700000|1794405600000|CORE|CONFIRMED|1794405600000",
+            "state": "READY",
+            "symbol": "OANDA:XAUUSD",
+            "timeframe": "5",
+            "tp1": "4044.412",
+            "tp2": "4050.749",
+            "tp3": "4057.086"
+          }
+        ]
+      },
+      "old_visual_v2_history": {
+        "bars_through_dt_end": 1222,
+        "first_loaded_close_utc": "2026-11-06T10:25:00Z",
+        "first_loaded_open_utc": "2026-11-06T10:20:00Z",
+        "gaps_between_logged_bars": 4,
+        "last_loaded_close_utc": "2026-11-12T20:10:00Z",
+        "last_loaded_open_utc": "2026-11-12T20:05:00Z",
+        "rows_after_dt_end_excluded": 2
+      }
+    }
+  },
+  "nov13_m5_execution_witness": {
+    "archive_sha256": "aa303f677fca2c54ab8b7641f58c800dbf24371f7e0a53b87ae037b98da8855d",
+    "fresh_same_input_parity": "PROTECTED_NATIVE_PARITY",
+    "raw_ledger_final": {
+      "capacity_skipped": 0,
+      "closed": 10,
+      "costs": "0.67877658",
+      "drawdown": "4.35465129",
+      "entered": 11,
+      "frame": "5",
+      "gains": "2.4694451",
+      "gross": "-3.23432352",
+      "known_ms": 1794596400000,
+      "losses": "6.38254521",
+      "net": "-3.9131001",
+      "phase": 2,
+      "plan_id": "S5|OANDA:XAUUSD|5|2|-1|1794592200000|1794592800000",
+      "symbol": "OANDA:XAUUSD"
+    },
+    "raw_paper_events": [
+      {
+        "atr_at_signal": "3.98398771",
+        "cost_r": null,
+        "effective_utc": "2026-11-13T18:00:00Z",
+        "event": "QUEUED",
+        "gross_r": null,
+        "initial_sl": "3890.394",
+        "known_utc": "2026-11-13T18:00:00Z",
+        "net_r": null,
+        "plan_id": "S5|OANDA:XAUUSD|5|2|-1|1794592200000|1794592800000",
+        "price": "3885.51",
+        "reason": "Чака следващо отваряне; няма брокерска поръчка",
+        "reference": "3885.51",
+        "side": -1,
+        "tp1": "3880.626",
+        "tp2": "3875.742",
+        "tp3": "3870.858"
+      },
+      {
+        "atr_at_signal": "3.98398771",
+        "cost_r": null,
+        "effective_utc": "2026-11-13T18:00:00Z",
+        "event": "SIM_ENTRY",
+        "gross_r": null,
+        "initial_sl": "3890.394",
+        "known_utc": "2026-11-13T18:05:00Z",
+        "net_r": null,
+        "plan_id": "S5|OANDA:XAUUSD|5|2|-1|1794592200000|1794592800000",
+        "price": "3885.46",
+        "reason": "Предполагаемо next-open; съобщено при close",
+        "reference": "3885.51",
+        "side": -1,
+        "tp1": "3880.626",
+        "tp2": "3875.742",
+        "tp3": "3870.858"
+      },
+      {
+        "atr_at_signal": "3.98398771",
+        "cost_r": "0.02391569",
+        "effective_utc": null,
+        "event": "SIM_TP1",
+        "gross_r": "0.32657749",
+        "initial_sl": "3890.394",
+        "known_utc": "2026-11-13T18:40:00Z",
+        "net_r": "0.3026618",
+        "plan_id": "S5|OANDA:XAUUSD|5|2|-1|1794592200000|1794592800000",
+        "price": "3880.626",
+        "reason": "Виртуален изход; известен при затваряне",
+        "reference": "3885.51",
+        "side": -1,
+        "tp1": "3880.626",
+        "tp2": "3875.742",
+        "tp3": "3870.858"
+      },
+      {
+        "atr_at_signal": "3.98398771",
+        "cost_r": null,
+        "effective_utc": "2026-11-13T18:40:00Z",
+        "event": "STOP_UPDATE",
+        "gross_r": null,
+        "initial_sl": "3890.394",
+        "known_utc": "2026-11-13T18:45:00Z",
+        "net_r": null,
+        "plan_id": "S5|OANDA:XAUUSD|5|2|-1|1794592200000|1794592800000",
+        "price": "3885.214",
+        "reason": "Брутен буфер; не гарантира нетна печалба",
+        "reference": "3885.51",
+        "side": -1,
+        "tp1": "3880.626",
+        "tp2": "3875.742",
+        "tp3": "3870.858"
+      }
+    ],
+    "readiness": {
+      "both_side_source_reasons": {
+        "Нарушена структура": 1,
+        "Няма потвърждаваща свещ": 1,
+        "Няма суров trigger": 162,
+        "УСЛОВИЯТА СА ИЗПЪЛНЕНИ": 1,
+        "Чака отделна потвърждаваща свещ": 5
+      },
+      "core_htf_ready_count": 85,
+      "core_resolution": "60",
+      "display_h1_direction": {
+        "SELL": 85
+      },
+      "display_h4_direction": {
+        "UNKNOWN_MISSING": 85
+      },
+      "first_ready_core_htf_close_utc": "2026-11-13T12:00:00Z",
+      "total_closes": 85,
+      "warmup_ready_count": 85
+    }
+  },
+  "provenance": {
+    "fresh_native": {
+      "git_commit": "4875918c17db967b706364c35c7cd074c5fbc14d",
+      "git_file": "research/entry_decision_audit/evidence/native-exports.zip",
+      "sha256": "2b64267325b52bc33dd5ee5e427bf4e833bde11d1a035e8fd7cf4e856a5b550b"
+    },
+    "fresh_nov11": {
+      "git_commit": "4875918c17db967b706364c35c7cd074c5fbc14d",
+      "git_file": "research/entry_decision_audit/evidence/native-journal-nov11.json.gz",
+      "sha256": "90fe32eab40d2f88ec7113a065194e8de378ba12af470d235f34d8d5353c003b"
+    },
+    "fresh_nov11_parity": {
+      "git_commit": "4875918c17db967b706364c35c7cd074c5fbc14d",
+      "git_file": "research/entry_decision_audit/evidence/native-parity-nov11.json",
+      "sha256": "208e5edd40ea3ad7822ae6bfd4fcf81a5ec6bb6c93328e16e4f3d1b67fa15877"
+    },
+    "fresh_nov13_m5": {
+      "git_commit": "4875918c17db967b706364c35c7cd074c5fbc14d",
+      "git_file": "research/entry_decision_audit/evidence/native-journal-nov13-m5.json.gz",
+      "sha256": "64f114f29b6e56b1dfba4b4b9b54af8c82a6bcc02bb5270dcf616cc1d275ebf1"
+    },
+    "fresh_nov13_m5_parity": {
+      "git_commit": "4875918c17db967b706364c35c7cd074c5fbc14d",
+      "git_file": "research/entry_decision_audit/evidence/native-parity-nov13-m5.json",
+      "sha256": "525e68a00d07dc55b6931e6e3596cb3e52fb80bac4f95ac57b27068a511b38ed"
+    },
+    "fresh_settings": {
+      "git_commit": "4875918c17db967b706364c35c7cd074c5fbc14d",
+      "git_file": "research/entry_decision_audit/evidence/native-settings.json",
+      "sha256": "19eba88a9489799ca423b559f63a5e16b5e74d8fd825435f3c6713726b112587"
+    },
+    "pinned_native": {
+      "git_commit": "37b903f46a2d878d9d0757da134620c22f2d067d",
+      "git_file": "research/luminous_visual_v2/evidence/native-pairs.zip",
+      "sha256": "fec83cd615923b210b6815852a69b74ed457f791ac41b3913a7c189f7d58f952"
+    },
+    "visual_v2_pine": {
+      "git_commit": "37b903f46a2d878d9d0757da134620c22f2d067d",
+      "git_file": "research/luminous_visual_v2/QIRVANTA_GOLD_PRO_VISUAL_V2.pine",
+      "sha256": "77feedcbef84e77b9270ec43840be5b823d838300d0a09d5ddb4fec7acc089f4"
+    }
+  },
+  "schema": "qirvanta.core_htf.prior_archives.v1",
+  "scope": {
+    "chart_and_htf": "Matching chart OHLC and advisory H1/H4 close timestamps establish the scored market bars, not identical HTF source EMA state. H1/H4 null is missing, 0 is a valid mixed reading.",
+    "exact_selected_core_tuple": "Old and fresh source archives lack the exact selected core tuple field values. The newer EDA logs aggregate readyHTF and the selected timeframe; the old Visual V2 tape contains neither explicit field readiness nor aggregate readyHTF. No per-field availability is inferred from the old S5 actions or from advisory sampling.",
+    "history": "Confirmed DT_MARKET prefix ending at each archive's own DT_END. Cross-archive comparison is observational. Different loaded origins, calculation indices, and any pre-window OHLC mismatches break strict reproducibility.",
+    "open_close_clock": "DTV_PAPER known_utc is its reporting close and effective_utc is the modeled execution timestamp where recorded. All trades here are RAW PAPER, not broker events.",
+    "source_of_absent_candidate": "In fresh EDA, false selected core readiness with the explicit warmup reason means the original f_tvCandidate exits before forming S5. A warmed phase 0 to 0 and no raw trigger indicates an unstarted formation. Shadow geometry and an independently occupied slot are distinct from candidate risk evaluation.",
+    "verification": "Protected ON/OFF versus Visual V2 comparisons apply within archived run groups. No new TradingView action, independent reload or external provider access is claimed here."
+  }
+}

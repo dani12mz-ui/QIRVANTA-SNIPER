@@ -1,0 +1,22 @@
+{
+  "price_epsilon_close": "0",
+  "ema_absolute_tolerance": "0.001",
+  "direction_requires_same": true,
+  "seed_decay_ema50_windows_min": 174,
+  "note": "Conditionally, 174 common HTF steps attenuate a 1 price-unit starting difference below .001 for EMA50. No assumption about actual initial difference or HTF feed equality.",
+  "same_history": "Exact chronological chart OHLC, start/end/index, core tuple, warmup, signal and ledger trace. Numerical tolerance only for stability across different history depths, never exact parity.",
+  "depth_order": [
+    1223,
+    3200
+  ],
+  "target_close_utc": [
+    "2026-11-11T00:00:00Z",
+    "2026-11-11T17:30:00Z"
+  ],
+  "capture_steps": [
+    "add",
+    "reload",
+    "remove-readd"
+  ],
+  "scope": "Test profile. Stop on compiler timeout. Core request structure unchanged. No sealed data."
+}

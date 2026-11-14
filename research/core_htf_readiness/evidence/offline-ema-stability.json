@@ -1,0 +1,278 @@
+{
+  "status": "OFFLINE_SENSITIVITY_ONLY",
+  "symbol": "OANDA:XAUUSD",
+  "anchor_utc": "2026-11-10T22:00:00Z",
+  "source_registration": "https://github.com/dani12mz-ui/QIRVANTA-SNIPER/blob/9381a6bcf54e30be897904cf3af7069ede4677d5/research/donchian_20_10/evidence/data_manifest.json",
+  "input_definition": "Existing TradingView OANDA M30 OHLC archives aggregated to New York wall-clock H4/D1 buckets by the registered Donchian study. Keep recorded gaps and shortened groups. No forward fill, interpolation, or native request representation.",
+  "method": "EMA50 = previous value + (2/51)*(close-previous value), first observed close seeds each nested depth, compare common exact close endpoints and the EMA two observed source bars earlier. Score up to the final 50 common source endpoints.",
+  "threshold": {
+    "ema50_absolute": 0.001,
+    "lag_two_absolute": 0.001,
+    "direction_equal": true
+  },
+  "limitations": [
+    "No row beyond the shared endpoint, no sealed data, no H1 tape.",
+    "Cannot determine original request.security() values, requested source availability, or native seed. Aggregated source timestamps are defined by the prior registration.",
+    "Stability at these source endpoints does not prove live or replay Pine stability. No READY, trade, or rule change tested."
+  ],
+  "frames": {
+    "H4": {
+      "path": "outputs/professional-selector-htf/repro/inputs/H4-history.csv",
+      "identical_local_copy": "outputs/donchian_20_10/reconstructed/H4.csv",
+      "sha256": "550344b3c094128f1be56cc0572b474047b775c14df038924fca4aefd51c1fa3",
+      "rows": 1330,
+      "first_open_utc": "2026-01-01T22:00:00Z",
+      "first_close_utc": "2026-01-02T02:00:00Z",
+      "endpoint": [
+        {
+          "source_first_close_utc": "2026-10-19T09:00:00Z",
+          "source_last_close_utc": "2026-11-10T22:00:00Z",
+          "lag_source_close_utc": "2026-11-10T14:00:00Z",
+          "bars": 100,
+          "seed_first_close": 4170.67,
+          "close": 4032.515,
+          "ema50": 4056.0315836627956,
+          "ema50_lag_two_bars": 4058.5617072498676,
+          "direction": "DOWN"
+        },
+        {
+          "source_first_close_utc": "2026-09-24T17:00:00Z",
+          "source_last_close_utc": "2026-11-10T22:00:00Z",
+          "lag_source_close_utc": "2026-11-10T14:00:00Z",
+          "bars": 200,
+          "seed_first_close": 4273.235,
+          "close": 4032.515,
+          "ema50": 4055.8522379366573,
+          "ema50_lag_two_bars": 4058.3674222712393,
+          "direction": "DOWN"
+        },
+        {
+          "source_first_close_utc": "2026-09-02T01:00:00Z",
+          "source_last_close_utc": "2026-11-10T22:00:00Z",
+          "lag_source_close_utc": "2026-11-10T14:00:00Z",
+          "bars": 300,
+          "seed_first_close": 4315.905,
+          "close": 4032.515,
+          "ema50": 4055.8716720370653,
+          "ema50_lag_two_bars": 4058.3884752055005,
+          "direction": "DOWN"
+        },
+        {
+          "source_first_close_utc": "2026-07-29T01:00:00Z",
+          "source_last_close_utc": "2026-11-10T22:00:00Z",
+          "lag_source_close_utc": "2026-11-10T14:00:00Z",
+          "bars": 450,
+          "seed_first_close": 4022.08,
+          "close": 4032.515,
+          "ema50": 4055.872765122883,
+          "ema50_lag_two_bars": 4058.389659343864,
+          "direction": "DOWN"
+        },
+        {
+          "source_first_close_utc": "2026-06-23T21:00:00Z",
+          "source_last_close_utc": "2026-11-10T22:00:00Z",
+          "lag_source_close_utc": "2026-11-10T14:00:00Z",
+          "bars": 600,
+          "seed_first_close": 4110.745,
+          "close": 4032.515,
+          "ema50": 4055.8727657220543,
+          "ema50_lag_two_bars": 4058.3896599929462,
+          "direction": "DOWN"
+        },
+        {
+          "source_first_close_utc": "2026-02-02T18:00:00Z",
+          "source_last_close_utc": "2026-11-10T22:00:00Z",
+          "lag_source_close_utc": "2026-11-10T14:00:00Z",
+          "bars": 1200,
+          "seed_first_close": 4674.11,
+          "close": 4032.515,
+          "ema50": 4055.872765726643,
+          "ema50_lag_two_bars": 4058.3896599979166,
+          "direction": "DOWN"
+        },
+        {
+          "source_first_close_utc": "2026-01-02T02:00:00Z",
+          "source_last_close_utc": "2026-11-10T22:00:00Z",
+          "lag_source_close_utc": "2026-11-10T14:00:00Z",
+          "bars": 1330,
+          "seed_first_close": 4348.095,
+          "close": 4032.515,
+          "ema50": 4055.872765726643,
+          "ema50_lag_two_bars": 4058.3896599979166,
+          "direction": "DOWN"
+        }
+      ],
+      "pair_checks": [
+        {
+          "shorter_depth": 300,
+          "longer_depth": 450,
+          "scored_at_anchor": {
+            "known_at_utc": "2026-11-10T22:00:00Z",
+            "ema50_abs_delta": 0.00109308581750156,
+            "ema50_lag_two_abs_delta": 0.001184138363441889,
+            "direction_same": true,
+            "within_registered_threshold": false
+          },
+          "matched_source_endpoints": 50,
+          "first_source_endpoint_utc": "2026-10-29T17:00:00Z",
+          "max_ema50_abs_delta": 0.0013197611551731825,
+          "max_ema50_lag_two_abs_delta": 0.0014296954450401245,
+          "differing_directions": 0,
+          "all_within_registered_threshold": false
+        },
+        {
+          "shorter_depth": 450,
+          "longer_depth": 600,
+          "scored_at_anchor": {
+            "known_at_utc": "2026-11-10T22:00:00Z",
+            "ema50_abs_delta": 5.99171471549198E-07,
+            "ema50_lag_two_abs_delta": 6.490822670457419E-07,
+            "direction_same": true,
+            "within_registered_threshold": true
+          },
+          "matched_source_endpoints": 50,
+          "first_source_endpoint_utc": "2026-10-29T17:00:00Z",
+          "max_ema50_abs_delta": 1.4114334589976352E-06,
+          "max_ema50_lag_two_abs_delta": 1.5290038390958216E-06,
+          "differing_directions": 0,
+          "all_within_registered_threshold": true
+        },
+        {
+          "shorter_depth": 600,
+          "longer_depth": 1200,
+          "scored_at_anchor": {
+            "known_at_utc": "2026-11-10T22:00:00Z",
+            "ema50_abs_delta": 4.5888555177953094E-09,
+            "ema50_lag_two_abs_delta": 4.970388545189053E-09,
+            "direction_same": true,
+            "within_registered_threshold": true
+          },
+          "matched_source_endpoints": 50,
+          "first_source_endpoint_utc": "2026-10-29T17:00:00Z",
+          "max_ema50_abs_delta": 9.184986993204802E-09,
+          "max_ema50_lag_two_abs_delta": 9.949872037395835E-09,
+          "differing_directions": 0,
+          "all_within_registered_threshold": true
+        }
+      ]
+    },
+    "D1": {
+      "path": "outputs/donchian_20_10/reconstructed/D1.csv",
+      "identical_local_copy": null,
+      "sha256": "ad97bfe06c69ee4bdb42faa71c04354576c87e10124d8e5e571c8db667db5be3",
+      "rows": 222,
+      "first_open_utc": "2026-01-01T22:00:00Z",
+      "first_close_utc": "2026-01-02T22:00:00Z",
+      "endpoint": [
+        {
+          "source_first_close_utc": "2026-09-02T21:00:00Z",
+          "source_last_close_utc": "2026-11-10T22:00:00Z",
+          "lag_source_close_utc": "2026-11-06T22:00:00Z",
+          "bars": 50,
+          "seed_first_close": 4388.22,
+          "close": 4032.515,
+          "ema50": 4156.202611797678,
+          "ema50_lag_two_bars": 4162.0905178199755,
+          "direction": "DOWN"
+        },
+        {
+          "source_first_close_utc": "2026-06-24T21:00:00Z",
+          "source_last_close_utc": "2026-11-10T22:00:00Z",
+          "lag_source_close_utc": "2026-11-06T22:00:00Z",
+          "bars": 100,
+          "seed_first_close": 3999.5,
+          "close": 4032.515,
+          "ema50": 4140.632370937976,
+          "ema50_lag_two_bars": 4145.223297296824,
+          "direction": "DOWN"
+        },
+        {
+          "source_first_close_utc": "2026-04-15T21:00:00Z",
+          "source_last_close_utc": "2026-11-10T22:00:00Z",
+          "lag_source_close_utc": "2026-11-06T22:00:00Z",
+          "bars": 150,
+          "seed_first_close": 4790.94,
+          "close": 4032.515,
+          "ema50": 4149.117597643318,
+          "ema50_lag_two_bars": 4154.4153317243945,
+          "direction": "DOWN"
+        },
+        {
+          "source_first_close_utc": "2026-02-03T22:00:00Z",
+          "source_last_close_utc": "2026-11-10T22:00:00Z",
+          "lag_source_close_utc": "2026-11-06T22:00:00Z",
+          "bars": 200,
+          "seed_first_close": 4946.805,
+          "close": 4032.515,
+          "ema50": 4149.228101350155,
+          "ema50_lag_two_bars": 4154.535040238132,
+          "direction": "DOWN"
+        },
+        {
+          "source_first_close_utc": "2026-01-02T22:00:00Z",
+          "source_last_close_utc": "2026-11-10T22:00:00Z",
+          "lag_source_close_utc": "2026-11-06T22:00:00Z",
+          "bars": 222,
+          "seed_first_close": 4332.065,
+          "close": 4032.515,
+          "ema50": 4149.115403027739,
+          "ema50_lag_two_bars": 4154.412954300354,
+          "direction": "DOWN"
+        }
+      ],
+      "pair_checks": [
+        {
+          "shorter_depth": 100,
+          "longer_depth": 150,
+          "scored_at_anchor": {
+            "known_at_utc": "2026-11-10T22:00:00Z",
+            "ema50_abs_delta": 8.48522670534203,
+            "ema50_lag_two_abs_delta": 9.192034427570434,
+            "direction_same": true,
+            "within_registered_threshold": false
+          },
+          "matched_source_endpoints": 50,
+          "first_source_endpoint_utc": "2026-09-02T21:00:00Z",
+          "max_ema50_abs_delta": 9.101559703247403,
+          "max_ema50_lag_two_abs_delta": 9.85970711709615,
+          "differing_directions": 3,
+          "all_within_registered_threshold": false
+        },
+        {
+          "shorter_depth": 150,
+          "longer_depth": 200,
+          "scored_at_anchor": {
+            "known_at_utc": "2026-11-10T22:00:00Z",
+            "ema50_abs_delta": 0.1105037068373349,
+            "ema50_lag_two_abs_delta": 0.11970851373735059,
+            "direction_same": true,
+            "within_registered_threshold": false
+          },
+          "matched_source_endpoints": 23,
+          "first_source_endpoint_utc": "2026-10-09T21:00:00Z",
+          "max_ema50_abs_delta": 1.3399088176001896,
+          "max_ema50_lag_two_abs_delta": 1.451521380498889,
+          "differing_directions": 0,
+          "all_within_registered_threshold": false
+        },
+        {
+          "shorter_depth": 200,
+          "longer_depth": 222,
+          "scored_at_anchor": {
+            "known_at_utc": "2026-11-10T22:00:00Z",
+            "ema50_abs_delta": 0.11269832241578115,
+            "ema50_lag_two_abs_delta": 0.12208593777813803,
+            "direction_same": true,
+            "within_registered_threshold": false
+          },
+          "matched_source_endpoints": 1,
+          "first_source_endpoint_utc": "2026-11-10T22:00:00Z",
+          "max_ema50_abs_delta": 0.11269832241578115,
+          "max_ema50_lag_two_abs_delta": 0.12208593777813803,
+          "differing_directions": 0,
+          "all_within_registered_threshold": false
+        }
+      ]
+    }
+  }
+}

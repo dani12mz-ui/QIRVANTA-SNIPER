@@ -1,0 +1,238 @@
+{
+  "control_commit": "37b903f46a2d878d9d0757da134620c22f2d067d",
+  "control_pine_sha256": "77feedcbef84e77b9270ec43840be5b823d838300d0a09d5ddb4fec7acc089f4",
+  "frame": 5,
+  "audited_utc": [
+    "2026-11-11T00:00:00Z",
+    "2026-11-11T17:30:00Z"
+  ],
+  "left": {
+    "file": "M5-1223-add.csv",
+    "log_sha256": "deb9ad4d31f8e922c6d4fd0bec8c453a98306be89300795db3b0a5e283c5ce38",
+    "source_sha256": "5bb0019e045b739f1454fd90185e6525c0954f4c1eb3255c963641cea1039caa",
+    "chart_first_open_ms": 1794225900000,
+    "chart_first_open_utc": "2026-11-09T12:05:00Z",
+    "chart_last_historical_close_ms": 1794607200000,
+    "chart_last_historical_close_utc": "2026-11-13T22:00:00Z",
+    "prefix_confirmed_bars": 1223,
+    "prefix_ohlc_sha256": "0191395befefe2dd3f0f513ca162a6bcfeba25de32a59d62741930cd6546561a",
+    "audited_closes": 211,
+    "raw_core_observation_closes": 211,
+    "ready_HTF_closes": 0,
+    "warmed_closes": 0,
+    "first_observed_ready_ms": null,
+    "first_observed_warmed_ms": null,
+    "unavailable_by_field": {
+      "htf_close": 0,
+      "ema50": 205,
+      "ema50_prev": 211,
+      "atr_mean": 0,
+      "rsi": 0,
+      "adx": 0
+    },
+    "ema200": "UNOBSERVED_NOT_A_GATE",
+    "core_trends": {
+      "MISSING": 211
+    },
+    "s5_stream_counts": {
+      "CORE": 0,
+      "READY": 0,
+      "ALERT": 0,
+      "RAW": 0,
+      "LEDGER": 211,
+      "STATE": 211
+    },
+    "raw_event_types": {}
+  },
+  "right": {
+    "file": "M5-1223-readd.csv",
+    "log_sha256": "deb9ad4d31f8e922c6d4fd0bec8c453a98306be89300795db3b0a5e283c5ce38",
+    "source_sha256": "5bb0019e045b739f1454fd90185e6525c0954f4c1eb3255c963641cea1039caa",
+    "chart_first_open_ms": 1794225900000,
+    "chart_first_open_utc": "2026-11-09T12:05:00Z",
+    "chart_last_historical_close_ms": 1794607200000,
+    "chart_last_historical_close_utc": "2026-11-13T22:00:00Z",
+    "prefix_confirmed_bars": 1223,
+    "prefix_ohlc_sha256": "0191395befefe2dd3f0f513ca162a6bcfeba25de32a59d62741930cd6546561a",
+    "audited_closes": 211,
+    "raw_core_observation_closes": 211,
+    "ready_HTF_closes": 0,
+    "warmed_closes": 0,
+    "first_observed_ready_ms": null,
+    "first_observed_warmed_ms": null,
+    "unavailable_by_field": {
+      "htf_close": 0,
+      "ema50": 205,
+      "ema50_prev": 211,
+      "atr_mean": 0,
+      "rsi": 0,
+      "adx": 0
+    },
+    "ema200": "UNOBSERVED_NOT_A_GATE",
+    "core_trends": {
+      "MISSING": 211
+    },
+    "s5_stream_counts": {
+      "CORE": 0,
+      "READY": 0,
+      "ALERT": 0,
+      "RAW": 0,
+      "LEDGER": 211,
+      "STATE": 211
+    },
+    "raw_event_types": {}
+  },
+  "common_confirmed_ohlc": {
+    "closes": 1223,
+    "first_close_ms": 1794226200000,
+    "last_close_ms": 1794607200000,
+    "ohlc_conflicts": 0,
+    "first_conflict_ms": null,
+    "same_end_marker_close": true,
+    "identical_loaded_history": true
+  },
+  "s5": {
+    "CORE": {
+      "exact": true,
+      "counts": [
+        0,
+        0
+      ],
+      "examples": "NONE_OBSERVED",
+      "event_counts": [
+        {},
+        {}
+      ],
+      "shared_event_ids": 0,
+      "unmatched_event_ids": [
+        0,
+        0
+      ],
+      "changed_fields_across_shared_events": {}
+    },
+    "READY": {
+      "exact": true,
+      "counts": [
+        0,
+        0
+      ],
+      "examples": "NONE_OBSERVED"
+    },
+    "ALERT": {
+      "exact": true,
+      "counts": [
+        0,
+        0
+      ],
+      "examples": "NONE_OBSERVED"
+    },
+    "RAW": {
+      "exact": true,
+      "counts": [
+        0,
+        0
+      ],
+      "examples": "NONE_OBSERVED",
+      "event_counts": [
+        {},
+        {}
+      ],
+      "shared_event_ids": 0,
+      "unmatched_event_ids": [
+        0,
+        0
+      ],
+      "changed_fields_across_shared_events": {}
+    },
+    "LEDGER": {
+      "exact": true,
+      "counts": [
+        211,
+        211
+      ],
+      "examples": "OBSERVED",
+      "first_and_last_cumulative": [
+        [
+          {
+            "known_ms": 1794355200000,
+            "entered": 0,
+            "closed": 0,
+            "net": 0,
+            "gross": 0,
+            "costs": 0,
+            "drawdown": 0,
+            "capacity_skipped": 0
+          },
+          {
+            "known_ms": 1794418200000,
+            "entered": 0,
+            "closed": 0,
+            "net": 0,
+            "gross": 0,
+            "costs": 0,
+            "drawdown": 0,
+            "capacity_skipped": 0
+          }
+        ],
+        [
+          {
+            "known_ms": 1794355200000,
+            "entered": 0,
+            "closed": 0,
+            "net": 0,
+            "gross": 0,
+            "costs": 0,
+            "drawdown": 0,
+            "capacity_skipped": 0
+          },
+          {
+            "known_ms": 1794418200000,
+            "entered": 0,
+            "closed": 0,
+            "net": 0,
+            "gross": 0,
+            "costs": 0,
+            "drawdown": 0,
+            "capacity_skipped": 0
+          }
+        ]
+      ],
+      "closed_event_totals_in_window": [
+        {
+          "campaigns": 0,
+          "gross_r": 0,
+          "net_r": 0,
+          "cost_r": 0
+        },
+        {
+          "campaigns": 0,
+          "gross_r": 0,
+          "net_r": 0,
+          "cost_r": 0
+        }
+      ]
+    },
+    "STATE": {
+      "exact": true,
+      "counts": [
+        211,
+        211
+      ],
+      "examples": "OBSERVED"
+    },
+    "FORMATION_STATE": {
+      "exact": true,
+      "counts": [
+        422,
+        422
+      ],
+      "scope": "Phase, absolute origin timestamp, raw trigger, actual reason, cooldown."
+    }
+  },
+  "source_provenance": "SAME_SOURCE",
+  "alert_scope": "Protected Pine alert payloads in logs. Server delivery was not exercised by this comparator.",
+  "timestamp_scope": "CORE_HTF is witnessed at chart close. A dedicated source timestamp for the original HTF raw tuple is not logged.",
+  "status": "SAME_HISTORY_NATIVE_MATCH",
+  "all_existing_payloads_and_core_HTF_exact": true,
+  "core_HTF_mismatch_closes": 0
+}

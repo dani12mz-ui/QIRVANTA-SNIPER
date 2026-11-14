@@ -1,0 +1,39 @@
+{
+  "symbol": "OANDA:XAUUSD",
+  "chart": "standard candles",
+  "timezone": "UTC",
+  "as_of": "2026-11-14",
+  "chart_depths": [
+    1223,
+    3200
+  ],
+  "target_close_window": [
+    "2026-11-11T00:00:00Z",
+    "2026-11-11T17:30:00Z"
+  ],
+  "common_last_historical_close": "2026-11-13T22:00:00Z",
+  "baseline_commit": "37b903f46a2d878d9d0757da134620c22f2d067d",
+  "diagnostic_parent": "4875918c17db967b706364c35c7cd074c5fbc14d",
+  "probe_sha256": "5bb0019e045b739f1454fd90185e6525c0954f4c1eb3255c963641cea1039caa",
+  "test_profile": true,
+  "autosave": false,
+  "no_actual_alert": true,
+  "setup": {
+    "Export_RC2_QA": true,
+    "Entry_decision_audit": "probe only",
+    "Indirect_DT_journal": true,
+    "pressure_QA": false,
+    "pressure_comparison": false,
+    "EARLY_WATCH": true,
+    "experimental_range_filter": false,
+    "shadow_notification_intent": false,
+    "early_notification_intent": false,
+    "historical_review": "off for exports, on for M30 screenshots only",
+    "standard_luminous": true
+  },
+  "compile_utc": {
+    "submitted": "2026-11-14T04:53:10Z",
+    "added": "2026-11-14T04:54:31Z",
+    "m5_readd": "2026-11-14T04:56:55Z"
+  }
+}

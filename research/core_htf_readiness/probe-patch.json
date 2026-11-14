@@ -1,0 +1,14 @@
+[
+  [
+    "if edaBar\n    Paper rawPaper = array.get(books, 3)\n",
+    "if edaBar\n    Paper rawPaper = array.get(books, 3)\n    Paper htfFiltered = array.get(books, 4)\n    string htfValues = htf + \"|\" + f_num(htfClose) + \"|\" + f_num(htfEMA50) + \"|\" +\n         f_num(htfEMA50prev) + \"|null|\" + f_num(atrMean) + \"|\" + f_num(rsi) + \"|\" + f_num(adx)\n    string htfState = str.tostring(readyHTF) + \"|\" + str.tostring(warmup) + \"|\" + f_int(rawPaper.phase) +\n         \"|\" + f_edaPaperId(rawPaper) + \"|\" + f_int(array.get(tvCandidateLast, 0)) + \"|\" + f_int(array.get(tvCandidateLast, 1))\n    EvidenceGate htfGlobalGate = array.get(gates, 0)\n    EvidenceGate htfS5Gate = array.get(gates, 2)\n    log.info(f_edaKey(\"CORE_HTF\") + \"|\" + htfValues + \"|\" + htfState + \"|\" +\n         str.tostring(htfGlobalGate.paused) + \"|\" + str.tostring(htfS5Gate.paused) +\n         \"|\" + f_num(htfFiltered.dayNet) + \"|\" + f_int(htfFiltered.dayStreak))\n"
+  ],
+  [
+    "RcDecision rcView = rcReview ? rcArchive : rcCurrent",
+    "var bool htfViewLastReady = false\nvar bool htfViewReviewReady = false\nif rcCanDrawBar\n    htfViewLastReady := readyHTF\n    if rcReview and time_close == rcReviewAt\n        htfViewReviewReady := readyHTF\nRcDecision rcView = rcReview ? rcArchive : rcCurrent"
+  ],
+  [
+    "    f_rcViewCell(3, 3, permissionFace, permissionInk, permissionPaper, rcViewBody + 1, text.align_center, true, permissionTip)",
+    "    bool coreMissing = rcSupported and not na(rcView.closed) and not (rcReview ? htfViewReviewReady : htfViewLastReady)\n    string coreResolution = htf == \"60\" ? \"H1\" : htf == \"240\" ? \"H4\" : \"D1\"\n    string permissionCaption = coreMissing ? (dvPermission == \"WAIT\" ? \"CORE HTF\\nDATA MISSING\" : permissionFace + \"\\nCORE HTF MISSING\") : permissionFace\n    f_rcViewCell(3, 3, permissionCaption, coreMissing ? rcViewGold : permissionInk, permissionPaper, rcViewBody + 1, text.align_center, true,\n         coreMissing ? permissionTip + \"\\nЛипсват основни потвърдени данни за \" + coreResolution : permissionTip)"
+  ]
+]

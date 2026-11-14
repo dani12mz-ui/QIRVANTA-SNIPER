@@ -1,0 +1,89 @@
+{
+  "control_commit": "37b903f46a2d878d9d0757da134620c22f2d067d",
+  "control_pine_sha256": "77feedcbef84e77b9270ec43840be5b823d838300d0a09d5ddb4fec7acc089f4",
+  "frame": 30,
+  "audited_utc": [
+    "2026-11-11T00:00:00Z",
+    "2026-11-11T17:30:00Z"
+  ],
+  "status": "ADDITIVE_PROBE_PROTECTED_PARITY",
+  "excluded_probe_only_tags": [
+    "CORE_HTF",
+    "EDA_BAR",
+    "EDA_SIDE"
+  ],
+  "left": {
+    "file": "M30-1223-control.csv",
+    "log_sha256": "16503aa71b25dc9af7cbdd8de30dbca15356a0197684b6e577dd6aa103c2e01c",
+    "source_sha256": "77feedcbef84e77b9270ec43840be5b823d838300d0a09d5ddb4fec7acc089f4",
+    "chart_first_open_ms": 1791444600000,
+    "chart_first_open_utc": "2026-10-08T07:30:00Z",
+    "chart_last_historical_close_ms": 1794607200000,
+    "chart_last_historical_close_utc": "2026-11-13T22:00:00Z",
+    "prefix_confirmed_bars": 1223,
+    "prefix_ohlc_sha256": "7300da02e9ffae1fa3f043cd03f60caa2f71e121652d78c3950e9ebdb12b5cf4",
+    "audited_closes": 36,
+    "raw_core_observation_closes": 0,
+    "ready_HTF_closes": null,
+    "warmed_closes": null,
+    "first_observed_ready_ms": null,
+    "first_observed_warmed_ms": null,
+    "unavailable_by_field": null,
+    "ema200": "UNOBSERVED_NOT_A_GATE",
+    "core_trends": {},
+    "s5_stream_counts": {
+      "CORE": 0,
+      "READY": 0,
+      "ALERT": 0,
+      "RAW": 0,
+      "LEDGER": 36,
+      "STATE": 36
+    },
+    "raw_event_types": {}
+  },
+  "right": {
+    "file": "M30-1223-add.csv",
+    "log_sha256": "e6e129b52466548fa7af310138d3c39c9e22cb7fa9c53d6003afe2a911c169ff",
+    "source_sha256": "5bb0019e045b739f1454fd90185e6525c0954f4c1eb3255c963641cea1039caa",
+    "chart_first_open_ms": 1791444600000,
+    "chart_first_open_utc": "2026-10-08T07:30:00Z",
+    "chart_last_historical_close_ms": 1794607200000,
+    "chart_last_historical_close_utc": "2026-11-13T22:00:00Z",
+    "prefix_confirmed_bars": 1223,
+    "prefix_ohlc_sha256": "7300da02e9ffae1fa3f043cd03f60caa2f71e121652d78c3950e9ebdb12b5cf4",
+    "audited_closes": 36,
+    "raw_core_observation_closes": 36,
+    "ready_HTF_closes": 0,
+    "warmed_closes": 0,
+    "first_observed_ready_ms": null,
+    "first_observed_warmed_ms": null,
+    "unavailable_by_field": {
+      "htf_close": 0,
+      "ema50": 36,
+      "ema50_prev": 36,
+      "atr_mean": 0,
+      "rsi": 0,
+      "adx": 0
+    },
+    "ema200": "UNOBSERVED_NOT_A_GATE",
+    "core_trends": {
+      "MISSING": 36
+    },
+    "s5_stream_counts": {
+      "CORE": 0,
+      "READY": 0,
+      "ALERT": 0,
+      "RAW": 0,
+      "LEDGER": 36,
+      "STATE": 36
+    },
+    "raw_event_types": {}
+  },
+  "confirmed_market_and_shadow_prefix_exact": true,
+  "protected_message_counts": [
+    121,
+    121
+  ],
+  "execution_coverage": "NO_SIMULATED_ENTRY_EXAMPLES",
+  "raw_core_values_only_observed_in_right": true
+}
