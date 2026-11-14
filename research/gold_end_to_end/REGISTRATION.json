@@ -1,0 +1,46 @@
+{
+  "schema": "qirvanta.gold-end-to-end.v1",
+  "registration_order": "Frozen before running any new economic variant.",
+  "parent_commit": "a92a45b8746409832c4f2c6b149c9707611c50ad",
+  "base_protocol_sha256": "0853701432c588b1ff95b58c4cb1b8ff45225634d86ce7350c558cbc6755aaa8",
+  "budget": {
+    "hypotheses": 3,
+    "new_paired_hypotheses": 2,
+    "offline_arms": ["S5_ARCHIVE", "G_BASE", "G_HOLD", "M_CROSS", "M_HOLD"],
+    "economic_replays_per_frame": 10,
+    "H1_CANCELLED_ZERO_FILL_COOLDOWN": "Third registered hypothesis, evaluated only if verified native H1 A/B input exists. No substitutions, parameter sweeps, combinations or optimization."
+  },
+  "windows": {
+    "primary_frame": 15,
+    "matched_secondary_frame": 5,
+    "warmup": "Natural start of each registered tape, no decisions/fills admitted before 250 preceding confirmed chart bars. Split boundaries never reset the economic replay.",
+    "development_start_utc": "2026-10-12T18:50:00Z",
+    "archive_chronological_validation_start_utc": "2026-10-28T08:35:00Z",
+    "archive_end_utc": "2026-11-09T02:45:00Z",
+    "archive_label": "Previously inspected, both chronological segments development evidence only. Select no production candidate from this archive.",
+    "independent_holdout": null,
+    "holdout_gate": "At least six fixed calendar months and 200 campaigns per primary comparison, from uninspected and unreserved dates, preregistered before unblinding. Exclude GOLD PRO 2026-11-16 through 2027-01-11 and all other published reservations."
+  },
+  "gap_acceptance": {
+    "mechanism": "Observe first bar after the provider's weekday daily session reopen, when timezone and the immediately preceding completed session boundary are both witnessed in the TradingView OANDA series. Require exact one-hour 17:00 to 18:00 New York on the same Monday-Thursday civil date, corresponding to the following Tue-Fri trading-date labels. Exclude weekend and extraordinary breaks.",
+    "minimum": "Absolute gap >=0.50 * ATR14 known before reopen, close on gap side of prior session close.",
+    "G_BASE": "Confirm at first closed reopening candle if minimum passes, stop beyond the first candle's adverse extreme by 0.12 current confirmed ATR.",
+    "G_HOLD": "As G_BASE plus the first candle's adverse extreme must remain strictly on the gap side of prior session close."
+  },
+  "midpoint_auction": {
+    "mechanism": "Freeze midpoint of fully observed UTC 00:00–06:00 range and consider a first confirmed crossover per side in the same 06:00–12:00 UTC weekday. Same local OHLC rules on M5/M15.",
+    "M_CROSS": "Close crosses frozen midpoint from opposite or equal side. Stop beyond trigger candle's adverse extreme by 0.12 confirmed ATR.",
+    "M_HOLD": "After crossover only the next contiguous in-window bar can confirm, with the entire bar strictly on the new side. Stop beyond adverse extreme of both signal candles by 0.12 confirmation ATR.",
+    "availability": "Missing reference candles invalidate the daily midpoint. A failed hold needs a fresh crossover, never an old trigger price."
+  },
+  "execution": {
+    "fees": "Existing fixed normal .35 spread, 2 adverse ticks, .175 USD per unit/side. Fixed stress .70, 5 ticks, .2625 USD per unit/side. Tick .001; fractional size grid .001 XAU unit is research-only.",
+    "risk": "Risk budget 250 USD, floor units on the fixed .001 lot grid and one slot. Reject if the available equity cannot cover modeled full notional. Whole campaigns count once. No borrowing, adding or funding assumptions presented as actual broker conditions.",
+    "original_native": "Audited separately from old S5 proposals. Native outcomes and cost gate never silently repriced.",
+    "open": "First contiguous next OHLC open; actual model entry adverse quote/market slip. Reject open outside original stop/first TP or beyond .20 signal ATR. For new arms require 0.8–3.5 ATR midpoint risk at confirmation and open; open all-in friction / midpoint risk <=0.18. Archive S5 uses its original recorded admissions plus that same modeled next-open cost/risk gate for comparative sensitivity, not a complete reconstruction of Visual V2 decisions.",
+    "new_plan_geometry": "Frozen rounded stops, target projections 1/2/3 price R, max 48 held bars then next-open exit. Same 1/3 allocations and +0.05R lock active from the bar after TP1 across all research lanes. Archived S5 keeps its submitted stop, targets and hold duration. Model quote stop before ambiguous further TP after open, preserve already-marketable targets at open.",
+    "numeric": "Flat absolute net <=1e-8 USD. Record open mark at cutoff. Recompute eligibility, occupancy and cumulative equity separately for each cost scenario."
+  },
+  "regime_definition": "Causal prior 24 completed full UTC hours. Signed 24-hour move >=2x median hourly range and directional efficiency >=.25 for trend; 6-vs-18 median ranges >=1.5 high, <=.67 low. UTC Asia 00–07, Europe 07–13, US 13–21, rollover 21–24. No news labels.",
+  "acceptance": "Retain original thresholds: >=70% after costs on independent holdout, positive overall net expectancy under both costs, observed max marked USD drawdown and worst closed loss no worse than matched baseline under stress, >=80% of baseline campaigns and strictly better timely same-direction fill coverage. Report exact N, cost scenarios, confidence and regime breakdown. Zero/sparse campaigns remain inconclusive."
+}
