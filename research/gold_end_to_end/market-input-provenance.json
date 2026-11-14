@@ -1,0 +1,86 @@
+{
+  "bar_clock": "UTC milliseconds",
+  "chart_type": "standard",
+  "frames": {
+    "M15": {
+      "bar_count": 6445,
+      "first_open_ms": 1785708000000,
+      "first_open_utc": "2026-08-02T22:00:00Z",
+      "last_close_ms": 1794192300000,
+      "last_close_utc": "2026-11-09T02:45:00Z",
+      "minutes": 15,
+      "protected_plan_count": 133,
+      "source": {
+        "bars_sha256": "6c89015105a406c2a0c1567f0e9a5e445cb31ee7604a985d727f26892d8ba4b7",
+        "native_log_name": "tv-S5-M15.csv",
+        "native_log_sha256": "2bfc7e3a0f4c47a98f8c66f1a96309fe648618c4948c8113942f84f9fb7dfdd3",
+        "registered_bars_path": "ui_dataset/bars.csv"
+      }
+    },
+    "M30": {
+      "bar_count": 10091,
+      "first_open_ms": 1767308400000,
+      "first_open_utc": "2026-01-01T23:00:00Z",
+      "last_close_ms": 1794191400000,
+      "last_close_utc": "2026-11-09T02:30:00Z",
+      "minutes": 30,
+      "protected_plan_count": 165,
+      "source": {
+        "bars_sha256": "1b31dc5dad532b9362c5340511211fbc13a33c64983d4a49485c7442a269c5d5",
+        "native_log_name": "tv-S5-M30.csv",
+        "native_log_sha256": "912d96a18af3448b38b4f003e8de3f57429466567ab0e1bfad6e4e27c3de26b0",
+        "registered_bars_path": "M30_dataset/bars.csv"
+      }
+    },
+    "M5": {
+      "bar_count": 5565,
+      "first_open_ms": 1791756000000,
+      "first_open_utc": "2026-10-11T22:00:00Z",
+      "last_close_ms": 1794192300000,
+      "last_close_utc": "2026-11-09T02:45:00Z",
+      "minutes": 5,
+      "protected_plan_count": 98,
+      "source": {
+        "bars_sha256": "44971f52b0008fefc4b61dda51c71043f08e4a2e3bc6d08121380e95232ace1d",
+        "native_log_name": "tv-S5-M5.csv",
+        "native_log_sha256": "b629dc4c3b1b624b5fc4632016ed1d568fbd65a83d26a17a8ee5aa909a7f0ef4",
+        "registered_bars_path": "M5_dataset/bars.csv"
+      }
+    }
+  },
+  "minimum_archive_warmup_bars": 250,
+  "native_control_commit": "6221eb63be02c70db1d6acae6d03745db9a45c94",
+  "normalized_bytes": 487272,
+  "normalized_gzip_sha256": "48af923f28fa5670cba96898117a2e8f98dc369d0c772073327c92631abf4518",
+  "normalized_uncompressed_sha256": "9538547dacdef7686e25149dae5500970e97a96907c1671a9ea578e1351bc146",
+  "paired_common": {
+    "end_ms": 1794192300000,
+    "end_utc": "2026-11-09T02:45:00Z",
+    "exact_m5_to_m15_complete_aggregates": 1855,
+    "partition": "Descriptive chronological slices of an already examined archive.",
+    "start_ms": 1791831000000,
+    "start_utc": "2026-10-12T18:50:00Z",
+    "windows_ms": {
+      "early_60_seen": [
+        1791831000000,
+        1793176500000
+      ],
+      "full": [
+        1791831000000,
+        1794192300000
+      ],
+      "later_40_seen": [
+        1793176500000,
+        1794192300000
+      ]
+    }
+  },
+  "raw_redistribution": "LOCAL_ONLY_RIGHTS_NOT_ESTABLISHED_DO_NOT_COMMIT_RAW_OR_FULL_OHLC",
+  "registration_path": "docs/premium_evidence/s5_screen_registration.json",
+  "registration_sha256": "9ef45b538670332e797e5bcbb0660b912f910c54fdf94fab3eb899f5165e6d97",
+  "schema": "qirvanta.end_to_end.market_input_provenance.v1",
+  "scope": "Pre-seal, previously examined TradingView OANDA standard candles and older S5 admitted geometry only. No current Visual V2 or RC2 permission/position history, unstated S5 opportunities, native fills, broker bid/ask, live execution or untouched test.",
+  "sealed_start_ms": 1794787200000,
+  "source_reproduction": "python -B -m research.gold_end_to_end.controls --data-root ../mission --native-root ../tv-final --output <local-output>/market_inputs.json.gz --manifest <local-output>/market-input-provenance.json",
+  "symbol": "OANDA:XAUUSD"
+}

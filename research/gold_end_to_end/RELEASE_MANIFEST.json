@@ -1,0 +1,44 @@
+{
+  "schema": "qirvanta.end-to-end.delivery.v1",
+  "status": "ANALYTICAL_CONTROL_AVAILABLE_NEW_CANDIDATE_UNSUPPORTED",
+  "parent": "a92a45b8746409832c4f2c6b149c9707611c50ad",
+  "indicator": {
+    "path": "research/compact_dashboard/QIRVANTA_GOLD_PRO_COMPACT.pine",
+    "commit": "ee5f1d846220ed4a1e835fadcb1fe283a3c62543",
+    "sha256": "e3a19a3305ee6fbeb86c0eefa91763729fa0abef547df3757345ec2df1836bf9",
+    "status": "NATIVE_ANALYTICAL_CONTROL_FROM_ARCHIVE",
+    "qa": "research/compact_dashboard/QA_BG.md",
+    "screenshots": "research/compact_dashboard/evidence"
+  },
+  "audit_strategy": {
+    "path": "releases/gold-pro-rc2/QIRVANTA_GOLD_PRO_RC2_AUDIT.pine",
+    "sha256": "4ba04321a9ef5456e8fc61aa2b5b3ab6c44398a62b18e31b3041d9dda530d42b",
+    "mode": "S5 RAW Parity",
+    "status": "NATIVE_ARCHIVAL_AUDIT_CONTROL_SEPARATE_QA_SCOPE",
+    "qa": "releases/gold-pro-rc2/NATIVE_QA.md"
+  },
+  "immutable_trading_control": {
+    "path": "research/luminous_visual_v2/QIRVANTA_GOLD_PRO_VISUAL_V2.pine",
+    "commit": "37b903f46a2d878d9d0757da134620c22f2d067d",
+    "sha256": "77feedcbef84e77b9270ec43840be5b823d838300d0a09d5ddb4fec7acc089f4"
+  },
+  "registration_sha256": "1b73701d581c90e7f7047933e8db443da40fa2f111a095983d9fbab2be7fe557",
+  "tables": {
+    "EXPERIMENTS.csv": "baaa747c39fa570139958fbc6b77d128aeff939551f632d77d3a75b077d457f4",
+    "REGIME_RESULTS.csv": "cd641b19579aea9ecf16e973a1e3c8ffb462462d58eab27b4dbe6dcdda77db0b",
+    "market-input-provenance.json": "18d6124b2939a642ddfaf07bf3e134611f9c6384946fab044848a986945972bf"
+  },
+  "local_journals": {
+    "market_inputs.json.gz": "48af923f28fa5670cba96898117a2e8f98dc369d0c772073327c92631abf4518",
+    "resolved-replay.json.gz": "30546fdd8bff1cb6a30d11f6b86045feaeb1c2d20823bc561aa772e25f71395a",
+    "control-native.json.gz": "51c38bc55bc73eb50ff8fe47ebb229eee79004db514ba9567f39a6d438ff0ee9"
+  },
+  "native_h1": {
+    "path": "research/net_campaign_evidence/h1_native/H1_NATIVE_DIAGNOSTIC.pine",
+    "sha256": "2531aa076068a04fa2e2ea98f5c667f571d18425b34b77261c78ad771a4a3ae1",
+    "qa": "STATIC_ONLY_NO_NEW_NATIVE_AB_EXPORT"
+  },
+  "independent_data_admitted": false,
+  "candidate_promoted": false,
+  "server_alert_delivery": "UNVERIFIED"
+}
