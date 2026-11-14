@@ -1,0 +1,1028 @@
+{
+  "status": "BOUNDED_EXACT_NATIVE_PARITY",
+  "baseline_commit": "37b903f46a2d878d9d0757da134620c22f2d067d",
+  "baseline_sha256": "77feedcbef84e77b9270ec43840be5b823d838300d0a09d5ddb4fec7acc089f4",
+  "candidate_sha256_supplied_by_operator": "e3a19a3305ee6fbeb86c0eefa91763729fa0abef547df3757345ec2df1836bf9",
+  "settings_manifest_sha256": "10ebe5316ac951293a1fb501a8b1be034f6d807ea791a8c3600008963069225c",
+  "window_inclusive_utc": [
+    "2026-11-11T00:00:00Z",
+    "2026-11-11T17:30:00Z"
+  ],
+  "scope": "Native logs compare confirmed chart history, original source/payload/state and in-indicator simulated execution. UI and server delivery require separate evidence.",
+  "frames": {
+    "M5": {
+      "status": "BOUNDED_EXACT_NATIVE_PARITY",
+      "exports": {
+        "baseline": {
+          "basename": "baseline-M5.csv",
+          "sha256": "75c7f066518476adc38de345f716d7b4f5a618d732ed10f5a66c6c488c86c484"
+        },
+        "candidate": {
+          "basename": "candidate-M5.csv",
+          "sha256": "75c7f066518476adc38de345f716d7b4f5a618d732ed10f5a66c6c488c86c484"
+        }
+      },
+      "market_and_shadow_prefix_exact": true,
+      "protected_messages_exact": true,
+      "prefix_first_open_utc": [
+        "2026-11-09T12:05:00Z",
+        "2026-11-09T12:05:00Z"
+      ],
+      "prefix_end_utc": [
+        "2026-11-13T22:00:00Z",
+        "2026-11-13T22:00:00Z"
+      ],
+      "prefix_confirmed_bars": [
+        1223,
+        1223
+      ],
+      "chart_closes_audited": [
+        211,
+        211
+      ],
+      "events": {
+        "RC1_CORE": 0,
+        "RC1_READY": 0,
+        "RC1_ALERT": 0,
+        "RC2_ALERT": 0,
+        "DTV_ALERT": 7,
+        "DTV_PAPER": 0,
+        "LZ_EVENT": 66
+      },
+      "raw_paper_event_types": {},
+      "raw_paper_final": {
+        "symbol": "OANDA:XAUUSD",
+        "frame": "5",
+        "known_ms": 1794418200000,
+        "phase": 0,
+        "plan_id": "",
+        "entered": 0,
+        "closed": 0,
+        "net": 0,
+        "gross": 0,
+        "costs": 0,
+        "gains": 0,
+        "losses": 0,
+        "drawdown": 0,
+        "capacity_skipped": 0
+      },
+      "execution_coverage": "NO_SIMULATED_ENTRY_EXAMPLES",
+      "zone_coverage": "LZ_EVENT_EXERCISED",
+      "alert_coverage": "NO_TRADE_ALERT_EXAMPLES",
+      "context_and_legacy_core_ready_alerts_and_paper": {
+        "status": "MATCH",
+        "baseline": {
+          "file": "baseline-M5.csv",
+          "sha256": "75c7f066518476adc38de345f716d7b4f5a618d732ed10f5a66c6c488c86c484",
+          "closed_bars": 211,
+          "first_loaded_open_utc": "2026-11-09T12:05:00Z",
+          "first_exported_open_utc": "2026-11-10T23:55:00Z",
+          "last_exported_close_utc": "2026-11-11T17:30:00Z",
+          "status": "NO_EXAMPLES",
+          "s5_alerts": 0,
+          "early_observations": 17,
+          "early_alerts": 0,
+          "filter_rejected": 0
+        },
+        "visibility": {
+          "file": "candidate-M5.csv",
+          "sha256": "75c7f066518476adc38de345f716d7b4f5a618d732ed10f5a66c6c488c86c484",
+          "closed_bars": 211,
+          "first_loaded_open_utc": "2026-11-09T12:05:00Z",
+          "first_exported_open_utc": "2026-11-10T23:55:00Z",
+          "last_exported_close_utc": "2026-11-11T17:30:00Z",
+          "status": "NO_EXAMPLES",
+          "s5_alerts": 0,
+          "early_observations": 17,
+          "early_alerts": 0,
+          "filter_rejected": 0
+        },
+        "core_ready_and_compatibility": {
+          "status": "MATCH",
+          "coverage": "BOUNDED_WINDOW",
+          "rows": {
+            "core": 0,
+            "ready": 0,
+            "alerts": 0
+          }
+        },
+        "rc2_native_streams": {
+          "status": "MATCH",
+          "mismatched_streams": [],
+          "rows": {
+            "RC2_ALERT": 0,
+            "RC2_EARLY": 17,
+            "RC2_FILTER": 0
+          }
+        },
+        "s5_raw_paper": {
+          "status": "MATCH",
+          "mismatched_streams": [],
+          "ledger_snapshots": 211,
+          "execution_events": 0,
+          "last_close": "2026-11-11T17:30:00Z",
+          "final_ledger_r": {
+            "entered": 0,
+            "closed": 0,
+            "capacity_skipped": 0,
+            "net": 0,
+            "gross": 0,
+            "costs": 0,
+            "gains": 0,
+            "losses": 0,
+            "drawdown": 0
+          },
+          "scope": "Native indicator RAW PAPER events and ledger. P&L and drawdown are in R."
+        }
+      },
+      "pressure": {
+        "status": "MATCH",
+        "samples": 633,
+        "original_sha256": "75c7f066518476adc38de345f716d7b4f5a618d732ed10f5a66c6c488c86c484",
+        "repeat_sha256": "75c7f066518476adc38de345f716d7b4f5a618d732ed10f5a66c6c488c86c484",
+        "all_indicator_closes_covered": true,
+        "sample_rows_exact": true,
+        "unused_volume_differences": [],
+        "tick_volume_weighted_parity": "NOT_EXERCISED",
+        "independent_checks": [
+          {
+            "status": "PARTIAL",
+            "file": "baseline-M5.csv",
+            "sha256": "75c7f066518476adc38de345f716d7b4f5a618d732ed10f5a66c6c488c86c484",
+            "bars": 211,
+            "end_marker_present": true,
+            "settings": {
+              "lookback": 10,
+              "weighted": false,
+              "comparison": true
+            },
+            "frame_counts": {
+              "5": {
+                "verification": {
+                  "SOURCE_WARMUP_NOT_OBSERVED": 9,
+                  "CALCULATION_VERIFIED": 202
+                },
+                "modes": {
+                  "OHLC": 211
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 211
+                }
+              },
+              "15": {
+                "verification": {
+                  "SOURCE_NOT_OBSERVED": 211
+                },
+                "modes": {
+                  "OHLC": 211
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 211
+                }
+              },
+              "60": {
+                "verification": {
+                  "SOURCE_NOT_OBSERVED": 211
+                },
+                "modes": {
+                  "OHLC": 211
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 211
+                }
+              }
+            }
+          },
+          {
+            "status": "PARTIAL",
+            "file": "candidate-M5.csv",
+            "sha256": "75c7f066518476adc38de345f716d7b4f5a618d732ed10f5a66c6c488c86c484",
+            "bars": 211,
+            "end_marker_present": true,
+            "settings": {
+              "lookback": 10,
+              "weighted": false,
+              "comparison": true
+            },
+            "frame_counts": {
+              "5": {
+                "verification": {
+                  "SOURCE_WARMUP_NOT_OBSERVED": 9,
+                  "CALCULATION_VERIFIED": 202
+                },
+                "modes": {
+                  "OHLC": 211
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 211
+                }
+              },
+              "15": {
+                "verification": {
+                  "SOURCE_NOT_OBSERVED": 211
+                },
+                "modes": {
+                  "OHLC": 211
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 211
+                }
+              },
+              "60": {
+                "verification": {
+                  "SOURCE_NOT_OBSERVED": 211
+                },
+                "modes": {
+                  "OHLC": 211
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 211
+                }
+              }
+            }
+          }
+        ]
+      },
+      "review_snapshots": {
+        "baseline": [],
+        "candidate": []
+      },
+      "first_history_delta": null,
+      "first_protected_delta": null
+    },
+    "M15": {
+      "status": "BOUNDED_EXACT_NATIVE_PARITY",
+      "exports": {
+        "baseline": {
+          "basename": "baseline-M15.csv",
+          "sha256": "e12acf25a4a216d66982e27788c59dd17c5f9e3d018c0529a106f1a5ce1a6a60"
+        },
+        "candidate": {
+          "basename": "candidate-M15.csv",
+          "sha256": "e12acf25a4a216d66982e27788c59dd17c5f9e3d018c0529a106f1a5ce1a6a60"
+        }
+      },
+      "market_and_shadow_prefix_exact": true,
+      "protected_messages_exact": true,
+      "prefix_first_open_utc": [
+        "2026-10-27T14:15:00Z",
+        "2026-10-27T14:15:00Z"
+      ],
+      "prefix_end_utc": [
+        "2026-11-13T22:00:00Z",
+        "2026-11-13T22:00:00Z"
+      ],
+      "prefix_confirmed_bars": [
+        1223,
+        1223
+      ],
+      "chart_closes_audited": [
+        71,
+        71
+      ],
+      "events": {
+        "RC1_CORE": 20,
+        "RC1_READY": 2,
+        "RC1_ALERT": 17,
+        "RC2_ALERT": 17,
+        "DTV_ALERT": 12,
+        "DTV_PAPER": 6,
+        "LZ_EVENT": 13
+      },
+      "raw_paper_event_types": {
+        "QUEUED": 2,
+        "SIM_ENTRY": 1,
+        "SIM_SL": 1,
+        "CLOSED": 1,
+        "CANCELLED": 1
+      },
+      "raw_paper_final": {
+        "symbol": "OANDA:XAUUSD",
+        "frame": "15",
+        "known_ms": 1794418200000,
+        "phase": 0,
+        "plan_id": "",
+        "entered": 1,
+        "closed": 1,
+        "net": "-1.03082818",
+        "gross": -1,
+        "costs": "0.03082818",
+        "gains": 0,
+        "losses": "1.03082818",
+        "drawdown": "1.03082818",
+        "capacity_skipped": 0
+      },
+      "execution_coverage": "SIM_ENTRY_EXERCISED",
+      "zone_coverage": "LZ_EVENT_EXERCISED",
+      "alert_coverage": "PAYLOADS_EXERCISED",
+      "context_and_legacy_core_ready_alerts_and_paper": {
+        "status": "MATCH",
+        "baseline": {
+          "file": "baseline-M15.csv",
+          "sha256": "e12acf25a4a216d66982e27788c59dd17c5f9e3d018c0529a106f1a5ce1a6a60",
+          "closed_bars": 71,
+          "first_loaded_open_utc": "2026-10-27T14:15:00Z",
+          "first_exported_open_utc": "2026-11-10T23:45:00Z",
+          "last_exported_close_utc": "2026-11-11T17:30:00Z",
+          "status": "VERIFIED",
+          "s5_alerts": 19,
+          "early_observations": 6,
+          "early_alerts": 0,
+          "filter_rejected": 0
+        },
+        "visibility": {
+          "file": "candidate-M15.csv",
+          "sha256": "e12acf25a4a216d66982e27788c59dd17c5f9e3d018c0529a106f1a5ce1a6a60",
+          "closed_bars": 71,
+          "first_loaded_open_utc": "2026-10-27T14:15:00Z",
+          "first_exported_open_utc": "2026-11-10T23:45:00Z",
+          "last_exported_close_utc": "2026-11-11T17:30:00Z",
+          "status": "VERIFIED",
+          "s5_alerts": 19,
+          "early_observations": 6,
+          "early_alerts": 0,
+          "filter_rejected": 0
+        },
+        "core_ready_and_compatibility": {
+          "status": "MATCH",
+          "coverage": "BOUNDED_WINDOW",
+          "rows": {
+            "core": 20,
+            "ready": 2,
+            "alerts": 19
+          }
+        },
+        "rc2_native_streams": {
+          "status": "MATCH",
+          "mismatched_streams": [],
+          "rows": {
+            "RC2_ALERT": 17,
+            "RC2_EARLY": 6,
+            "RC2_FILTER": 0
+          }
+        },
+        "s5_raw_paper": {
+          "status": "MATCH",
+          "mismatched_streams": [],
+          "ledger_snapshots": 71,
+          "execution_events": 6,
+          "last_close": "2026-11-11T17:30:00Z",
+          "final_ledger_r": {
+            "entered": 1,
+            "closed": 1,
+            "capacity_skipped": 0,
+            "net": "-1.03082818",
+            "gross": -1,
+            "costs": "0.03082818",
+            "gains": 0,
+            "losses": "1.03082818",
+            "drawdown": "1.03082818"
+          },
+          "scope": "Native indicator RAW PAPER events and ledger. P&L and drawdown are in R."
+        }
+      },
+      "pressure": {
+        "status": "MATCH",
+        "samples": 213,
+        "original_sha256": "e12acf25a4a216d66982e27788c59dd17c5f9e3d018c0529a106f1a5ce1a6a60",
+        "repeat_sha256": "e12acf25a4a216d66982e27788c59dd17c5f9e3d018c0529a106f1a5ce1a6a60",
+        "all_indicator_closes_covered": true,
+        "sample_rows_exact": true,
+        "unused_volume_differences": [],
+        "tick_volume_weighted_parity": "NOT_EXERCISED",
+        "independent_checks": [
+          {
+            "status": "PARTIAL",
+            "file": "baseline-M15.csv",
+            "sha256": "e12acf25a4a216d66982e27788c59dd17c5f9e3d018c0529a106f1a5ce1a6a60",
+            "bars": 71,
+            "end_marker_present": true,
+            "settings": {
+              "lookback": 10,
+              "weighted": false,
+              "comparison": true
+            },
+            "frame_counts": {
+              "5": {
+                "verification": {
+                  "SOURCE_NOT_OBSERVED": 71
+                },
+                "modes": {
+                  "OHLC": 71
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 71
+                }
+              },
+              "15": {
+                "verification": {
+                  "SOURCE_WARMUP_NOT_OBSERVED": 9,
+                  "CALCULATION_VERIFIED": 62
+                },
+                "modes": {
+                  "OHLC": 71
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 71
+                }
+              },
+              "60": {
+                "verification": {
+                  "SOURCE_NOT_OBSERVED": 71
+                },
+                "modes": {
+                  "OHLC": 71
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 71
+                }
+              }
+            }
+          },
+          {
+            "status": "PARTIAL",
+            "file": "candidate-M15.csv",
+            "sha256": "e12acf25a4a216d66982e27788c59dd17c5f9e3d018c0529a106f1a5ce1a6a60",
+            "bars": 71,
+            "end_marker_present": true,
+            "settings": {
+              "lookback": 10,
+              "weighted": false,
+              "comparison": true
+            },
+            "frame_counts": {
+              "5": {
+                "verification": {
+                  "SOURCE_NOT_OBSERVED": 71
+                },
+                "modes": {
+                  "OHLC": 71
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 71
+                }
+              },
+              "15": {
+                "verification": {
+                  "SOURCE_WARMUP_NOT_OBSERVED": 9,
+                  "CALCULATION_VERIFIED": 62
+                },
+                "modes": {
+                  "OHLC": 71
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 71
+                }
+              },
+              "60": {
+                "verification": {
+                  "SOURCE_NOT_OBSERVED": 71
+                },
+                "modes": {
+                  "OHLC": 71
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 71
+                }
+              }
+            }
+          }
+        ]
+      },
+      "review_snapshots": {
+        "baseline": [],
+        "candidate": []
+      },
+      "first_history_delta": null,
+      "first_protected_delta": null
+    },
+    "M30": {
+      "status": "BOUNDED_EXACT_NATIVE_PARITY",
+      "exports": {
+        "baseline": {
+          "basename": "baseline-M30.csv",
+          "sha256": "8c31348862e3b2a5502f56319359a2f45fa6063090e690db8abb43457c943bb7"
+        },
+        "candidate": {
+          "basename": "candidate-M30.csv",
+          "sha256": "8c31348862e3b2a5502f56319359a2f45fa6063090e690db8abb43457c943bb7"
+        }
+      },
+      "market_and_shadow_prefix_exact": true,
+      "protected_messages_exact": true,
+      "prefix_first_open_utc": [
+        "2026-10-08T07:30:00Z",
+        "2026-10-08T07:30:00Z"
+      ],
+      "prefix_end_utc": [
+        "2026-11-13T22:00:00Z",
+        "2026-11-13T22:00:00Z"
+      ],
+      "prefix_confirmed_bars": [
+        1223,
+        1223
+      ],
+      "chart_closes_audited": [
+        36,
+        36
+      ],
+      "events": {
+        "RC1_CORE": 0,
+        "RC1_READY": 0,
+        "RC1_ALERT": 0,
+        "RC2_ALERT": 0,
+        "DTV_ALERT": 1,
+        "DTV_PAPER": 0,
+        "LZ_EVENT": 7
+      },
+      "raw_paper_event_types": {},
+      "raw_paper_final": {
+        "symbol": "OANDA:XAUUSD",
+        "frame": "30",
+        "known_ms": 1794418200000,
+        "phase": 0,
+        "plan_id": "",
+        "entered": 0,
+        "closed": 0,
+        "net": 0,
+        "gross": 0,
+        "costs": 0,
+        "gains": 0,
+        "losses": 0,
+        "drawdown": 0,
+        "capacity_skipped": 0
+      },
+      "execution_coverage": "NO_SIMULATED_ENTRY_EXAMPLES",
+      "zone_coverage": "LZ_EVENT_EXERCISED",
+      "alert_coverage": "NO_TRADE_ALERT_EXAMPLES",
+      "context_and_legacy_core_ready_alerts_and_paper": {
+        "status": "MATCH",
+        "baseline": {
+          "file": "baseline-M30.csv",
+          "sha256": "8c31348862e3b2a5502f56319359a2f45fa6063090e690db8abb43457c943bb7",
+          "closed_bars": 36,
+          "first_loaded_open_utc": "2026-10-08T07:30:00Z",
+          "first_exported_open_utc": "2026-11-10T23:30:00Z",
+          "last_exported_close_utc": "2026-11-11T17:30:00Z",
+          "status": "NO_EXAMPLES",
+          "s5_alerts": 0,
+          "early_observations": 5,
+          "early_alerts": 0,
+          "filter_rejected": 0
+        },
+        "visibility": {
+          "file": "candidate-M30.csv",
+          "sha256": "8c31348862e3b2a5502f56319359a2f45fa6063090e690db8abb43457c943bb7",
+          "closed_bars": 36,
+          "first_loaded_open_utc": "2026-10-08T07:30:00Z",
+          "first_exported_open_utc": "2026-11-10T23:30:00Z",
+          "last_exported_close_utc": "2026-11-11T17:30:00Z",
+          "status": "NO_EXAMPLES",
+          "s5_alerts": 0,
+          "early_observations": 5,
+          "early_alerts": 0,
+          "filter_rejected": 0
+        },
+        "core_ready_and_compatibility": {
+          "status": "MATCH",
+          "coverage": "BOUNDED_WINDOW",
+          "rows": {
+            "core": 0,
+            "ready": 0,
+            "alerts": 0
+          }
+        },
+        "rc2_native_streams": {
+          "status": "MATCH",
+          "mismatched_streams": [],
+          "rows": {
+            "RC2_ALERT": 0,
+            "RC2_EARLY": 5,
+            "RC2_FILTER": 0
+          }
+        },
+        "s5_raw_paper": {
+          "status": "MATCH",
+          "mismatched_streams": [],
+          "ledger_snapshots": 36,
+          "execution_events": 0,
+          "last_close": "2026-11-11T17:30:00Z",
+          "final_ledger_r": {
+            "entered": 0,
+            "closed": 0,
+            "capacity_skipped": 0,
+            "net": 0,
+            "gross": 0,
+            "costs": 0,
+            "gains": 0,
+            "losses": 0,
+            "drawdown": 0
+          },
+          "scope": "Native indicator RAW PAPER events and ledger. P&L and drawdown are in R."
+        }
+      },
+      "pressure": {
+        "status": "MATCH",
+        "samples": 144,
+        "original_sha256": "8c31348862e3b2a5502f56319359a2f45fa6063090e690db8abb43457c943bb7",
+        "repeat_sha256": "8c31348862e3b2a5502f56319359a2f45fa6063090e690db8abb43457c943bb7",
+        "all_indicator_closes_covered": true,
+        "sample_rows_exact": true,
+        "unused_volume_differences": [],
+        "tick_volume_weighted_parity": "NOT_EXERCISED",
+        "independent_checks": [
+          {
+            "status": "PARTIAL",
+            "file": "baseline-M30.csv",
+            "sha256": "8c31348862e3b2a5502f56319359a2f45fa6063090e690db8abb43457c943bb7",
+            "bars": 36,
+            "end_marker_present": true,
+            "settings": {
+              "lookback": 10,
+              "weighted": false,
+              "comparison": true
+            },
+            "frame_counts": {
+              "5": {
+                "verification": {
+                  "SOURCE_NOT_OBSERVED": 36
+                },
+                "modes": {
+                  "OHLC": 36
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 36
+                }
+              },
+              "15": {
+                "verification": {
+                  "SOURCE_NOT_OBSERVED": 36
+                },
+                "modes": {
+                  "OHLC": 36
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 36
+                }
+              },
+              "30": {
+                "verification": {
+                  "SOURCE_WARMUP_NOT_OBSERVED": 9,
+                  "CALCULATION_VERIFIED": 27
+                },
+                "modes": {
+                  "OHLC": 36
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 36
+                }
+              },
+              "60": {
+                "verification": {
+                  "SOURCE_NOT_OBSERVED": 36
+                },
+                "modes": {
+                  "OHLC": 36
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 36
+                }
+              }
+            }
+          },
+          {
+            "status": "PARTIAL",
+            "file": "candidate-M30.csv",
+            "sha256": "8c31348862e3b2a5502f56319359a2f45fa6063090e690db8abb43457c943bb7",
+            "bars": 36,
+            "end_marker_present": true,
+            "settings": {
+              "lookback": 10,
+              "weighted": false,
+              "comparison": true
+            },
+            "frame_counts": {
+              "5": {
+                "verification": {
+                  "SOURCE_NOT_OBSERVED": 36
+                },
+                "modes": {
+                  "OHLC": 36
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 36
+                }
+              },
+              "15": {
+                "verification": {
+                  "SOURCE_NOT_OBSERVED": 36
+                },
+                "modes": {
+                  "OHLC": 36
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 36
+                }
+              },
+              "30": {
+                "verification": {
+                  "SOURCE_WARMUP_NOT_OBSERVED": 9,
+                  "CALCULATION_VERIFIED": 27
+                },
+                "modes": {
+                  "OHLC": 36
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 36
+                }
+              },
+              "60": {
+                "verification": {
+                  "SOURCE_NOT_OBSERVED": 36
+                },
+                "modes": {
+                  "OHLC": 36
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 36
+                }
+              }
+            }
+          }
+        ]
+      },
+      "review_snapshots": {
+        "baseline": [],
+        "candidate": []
+      },
+      "first_history_delta": null,
+      "first_protected_delta": null
+    }
+  },
+  "selected_historical_reviews": {
+    "M15 2026-11-11T12:30:00Z": {
+      "status": "BOUNDED_EXACT_NATIVE_PARITY",
+      "exports": {
+        "baseline": {
+          "basename": "baseline-M15.csv",
+          "sha256": "4d20fcfb53c6f5aa2fd03069ea11427305a9f852459fd3f31e8ae74ebe49a9af"
+        },
+        "candidate": {
+          "basename": "candidate-M15.csv",
+          "sha256": "4d20fcfb53c6f5aa2fd03069ea11427305a9f852459fd3f31e8ae74ebe49a9af"
+        }
+      },
+      "market_and_shadow_prefix_exact": true,
+      "protected_messages_exact": true,
+      "prefix_first_open_utc": [
+        "2026-10-27T14:15:00Z",
+        "2026-10-27T14:15:00Z"
+      ],
+      "prefix_end_utc": [
+        "2026-11-13T22:00:00Z",
+        "2026-11-13T22:00:00Z"
+      ],
+      "prefix_confirmed_bars": [
+        1223,
+        1223
+      ],
+      "chart_closes_audited": [
+        71,
+        71
+      ],
+      "events": {
+        "RC1_CORE": 20,
+        "RC1_READY": 2,
+        "RC1_ALERT": 17,
+        "RC2_ALERT": 17,
+        "DTV_ALERT": 0,
+        "DTV_PAPER": 6,
+        "LZ_EVENT": 13
+      },
+      "raw_paper_event_types": {
+        "QUEUED": 2,
+        "SIM_ENTRY": 1,
+        "SIM_SL": 1,
+        "CLOSED": 1,
+        "CANCELLED": 1
+      },
+      "raw_paper_final": {
+        "symbol": "OANDA:XAUUSD",
+        "frame": "15",
+        "known_ms": 1794418200000,
+        "phase": 0,
+        "plan_id": "",
+        "entered": 1,
+        "closed": 1,
+        "net": "-1.03082818",
+        "gross": -1,
+        "costs": "0.03082818",
+        "gains": 0,
+        "losses": "1.03082818",
+        "drawdown": "1.03082818",
+        "capacity_skipped": 0
+      },
+      "execution_coverage": "SIM_ENTRY_EXERCISED",
+      "zone_coverage": "LZ_EVENT_EXERCISED",
+      "alert_coverage": "PAYLOADS_EXERCISED",
+      "context_and_legacy_core_ready_alerts_and_paper": {
+        "status": "MATCH",
+        "baseline": {
+          "file": "baseline-M15.csv",
+          "sha256": "4d20fcfb53c6f5aa2fd03069ea11427305a9f852459fd3f31e8ae74ebe49a9af",
+          "closed_bars": 71,
+          "first_loaded_open_utc": "2026-10-27T14:15:00Z",
+          "first_exported_open_utc": "2026-11-10T23:45:00Z",
+          "last_exported_close_utc": "2026-11-11T17:30:00Z",
+          "status": "VERIFIED",
+          "s5_alerts": 19,
+          "early_observations": 6,
+          "early_alerts": 0,
+          "filter_rejected": 0
+        },
+        "visibility": {
+          "file": "candidate-M15.csv",
+          "sha256": "4d20fcfb53c6f5aa2fd03069ea11427305a9f852459fd3f31e8ae74ebe49a9af",
+          "closed_bars": 71,
+          "first_loaded_open_utc": "2026-10-27T14:15:00Z",
+          "first_exported_open_utc": "2026-11-10T23:45:00Z",
+          "last_exported_close_utc": "2026-11-11T17:30:00Z",
+          "status": "VERIFIED",
+          "s5_alerts": 19,
+          "early_observations": 6,
+          "early_alerts": 0,
+          "filter_rejected": 0
+        },
+        "core_ready_and_compatibility": {
+          "status": "MATCH",
+          "coverage": "BOUNDED_WINDOW",
+          "rows": {
+            "core": 20,
+            "ready": 2,
+            "alerts": 19
+          }
+        },
+        "rc2_native_streams": {
+          "status": "MATCH",
+          "mismatched_streams": [],
+          "rows": {
+            "RC2_ALERT": 17,
+            "RC2_EARLY": 6,
+            "RC2_FILTER": 0
+          }
+        },
+        "s5_raw_paper": {
+          "status": "MATCH",
+          "mismatched_streams": [],
+          "ledger_snapshots": 71,
+          "execution_events": 6,
+          "last_close": "2026-11-11T17:30:00Z",
+          "final_ledger_r": {
+            "entered": 1,
+            "closed": 1,
+            "capacity_skipped": 0,
+            "net": "-1.03082818",
+            "gross": -1,
+            "costs": "0.03082818",
+            "gains": 0,
+            "losses": "1.03082818",
+            "drawdown": "1.03082818"
+          },
+          "scope": "Native indicator RAW PAPER events and ledger. P&L and drawdown are in R."
+        }
+      },
+      "pressure": {
+        "status": "MATCH",
+        "samples": 213,
+        "original_sha256": "4d20fcfb53c6f5aa2fd03069ea11427305a9f852459fd3f31e8ae74ebe49a9af",
+        "repeat_sha256": "4d20fcfb53c6f5aa2fd03069ea11427305a9f852459fd3f31e8ae74ebe49a9af",
+        "all_indicator_closes_covered": true,
+        "sample_rows_exact": true,
+        "unused_volume_differences": [],
+        "tick_volume_weighted_parity": "NOT_EXERCISED",
+        "independent_checks": [
+          {
+            "status": "PARTIAL",
+            "file": "baseline-M15.csv",
+            "sha256": "4d20fcfb53c6f5aa2fd03069ea11427305a9f852459fd3f31e8ae74ebe49a9af",
+            "bars": 71,
+            "end_marker_present": true,
+            "settings": {
+              "lookback": 10,
+              "weighted": false,
+              "comparison": true
+            },
+            "frame_counts": {
+              "5": {
+                "verification": {
+                  "SOURCE_NOT_OBSERVED": 71
+                },
+                "modes": {
+                  "OHLC": 71
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 71
+                }
+              },
+              "15": {
+                "verification": {
+                  "SOURCE_WARMUP_NOT_OBSERVED": 9,
+                  "CALCULATION_VERIFIED": 62
+                },
+                "modes": {
+                  "OHLC": 71
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 71
+                }
+              },
+              "60": {
+                "verification": {
+                  "SOURCE_NOT_OBSERVED": 71
+                },
+                "modes": {
+                  "OHLC": 71
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 71
+                }
+              }
+            }
+          },
+          {
+            "status": "PARTIAL",
+            "file": "candidate-M15.csv",
+            "sha256": "4d20fcfb53c6f5aa2fd03069ea11427305a9f852459fd3f31e8ae74ebe49a9af",
+            "bars": 71,
+            "end_marker_present": true,
+            "settings": {
+              "lookback": 10,
+              "weighted": false,
+              "comparison": true
+            },
+            "frame_counts": {
+              "5": {
+                "verification": {
+                  "SOURCE_NOT_OBSERVED": 71
+                },
+                "modes": {
+                  "OHLC": 71
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 71
+                }
+              },
+              "15": {
+                "verification": {
+                  "SOURCE_WARMUP_NOT_OBSERVED": 9,
+                  "CALCULATION_VERIFIED": 62
+                },
+                "modes": {
+                  "OHLC": 71
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 71
+                }
+              },
+              "60": {
+                "verification": {
+                  "SOURCE_NOT_OBSERVED": 71
+                },
+                "modes": {
+                  "OHLC": 71
+                },
+                "reasons": {
+                  "OHLC_SELECTED": 71
+                }
+              }
+            }
+          }
+        ]
+      },
+      "review_snapshots": {
+        "baseline": [
+          {
+            "close_utc": "2026-11-11T12:30:00Z",
+            "directional_observation": "SELL BREAKOUT CONFIRMED",
+            "s5_permission": "WAIT",
+            "plan_visible": false,
+            "review": true,
+            "prices": null
+          }
+        ],
+        "candidate": [
+          {
+            "close_utc": "2026-11-11T12:30:00Z",
+            "directional_observation": "SELL BREAKOUT CONFIRMED",
+            "s5_permission": "WAIT",
+            "plan_visible": false,
+            "review": true,
+            "prices": null
+          }
+        ]
+      },
+      "first_history_delta": null,
+      "first_protected_delta": null
+    }
+  }
+}

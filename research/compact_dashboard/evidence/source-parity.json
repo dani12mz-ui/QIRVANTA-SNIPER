@@ -1,0 +1,12 @@
+{
+  "visual_base": "37b903f46a2d878d9d0757da134620c22f2d067d",
+  "visual_base_sha256": "77feedcbef84e77b9270ec43840be5b823d838300d0a09d5ddb4fec7acc089f4",
+  "candidate_sha256": "e3a19a3305ee6fbeb86c0eefa91763729fa0abef547df3757345ec2df1836bf9",
+  "baseline_restored_byte_for_byte": true,
+  "pine_lines": [
+    2825,
+    2893
+  ],
+  "table_new_calls": 1,
+  "history_mode_guard_unchanged": true
+}

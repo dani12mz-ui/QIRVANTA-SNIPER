@@ -1,0 +1,38 @@
+{
+  "symbol": "OANDA:XAUUSD",
+  "candles": "standard",
+  "computed_bars": 1223,
+  "last_historical_close_utc": "2026-11-13T22:00:00Z",
+  "audit_window_utc": [
+    "2026-11-11T00:00:00Z",
+    "2026-11-11T17:30:00Z"
+  ],
+  "baseline": "37b903f46a2d878d9d0757da134620c22f2d067d",
+  "diagnostic_base": "56c9dd25d506341042e8cc3c078fcfb92be650b8",
+  "candidate_sha256": "e3a19a3305ee6fbeb86c0eefa91763729fa0abef547df3757345ec2df1836bf9",
+  "native_compile_final_utc": "2026-11-14T08:19:03Z",
+  "native_result": "Compiled; Updated on chart",
+  "logs": {
+    "RC2": true,
+    "Pressure": true,
+    "DirectTrend": true,
+    "ShadowIntent": true,
+    "earlyWatch": true,
+    "PressureComparison": true,
+    "review": "off for M5/M15/M30; on for M15 separate 12:30 case"
+  },
+  "chart_capture": {
+    "desktop": [
+      1280,
+      720
+    ],
+    "mobile": [
+      390,
+      844
+    ],
+    "browser_zoom_percent": 100,
+    "compare_axes": "same chart, toggle indicator visibility; baseline auto scale is TradingView default. Narrow plan pair uses Bottom right.",
+    "test_profile": true,
+    "autosave": false
+  }
+}
