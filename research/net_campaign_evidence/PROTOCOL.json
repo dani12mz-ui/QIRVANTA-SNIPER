@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "purpose": "Check whether the 70% net campaign target can be assessed without changing the verified baseline.",
+  "current_base": "37b903f46a2d878d9d0757da134620c22f2d067d",
+  "archival_control": "6221eb63be02c70db1d6acae6d03745db9a45c94",
+  "timeframes": [5, 15, 30],
+  "development_or_diagnostic_only": {
+    "paired_M5_M15": "Original registered common period after warmup, early 60% and later 40% descriptive segments.",
+    "M30": "Separate original registered period after warmup. Never pooled with the M5/M15 sample.",
+    "native": "2026-11-11 00:00 through 17:30 UTC. Fixed last historical close 2026-11-13 22:00 UTC. Match OHLC and starting history for parity. Check availability and numeric sensitivity separately."
+  },
+  "holdout": {
+    "available": false,
+    "validation_and_test_admission": "Before a trading variant is run, record exact non-overlapping dates, source and hashes for prospective chronological validation and final test under independent custody. All dates through the latest inspected data are excluded from unseen status. Exclude all reserved tests, including original GOLD PRO [2026-11-16, 2027-01-11), Precision Entry [2027-01-12, 2027-03-01), Professional Selector [2027-02-01, 2027-05-01) and any Precision Zones reservation.",
+    "final_minimum": "A fixed test of at least six calendar months and at least 200 closed campaigns per primary comparison. Collect the whole fixed window. A smaller eligible sample is inconclusive. Do not extend based on the observed rate."
+  },
+  "trial_budget": {
+    "hypotheses": 1,
+    "variants": 1,
+    "id": "H1_CANCELLED_ZERO_FILL_COOLDOWN",
+    "mechanism": "For a fresh same-side S5 formation seeded strictly after the preceding plan was known cancelled at its next open with zero fill, assess removing only that cancelled plan's contribution to cooldown. Preserve the original greater-than-eight-bar threshold for the most recent actual fill. Preserve all checks for plan geometry, risk, open execution, other slots and exposure. No replay of the cancelled prices. No exit variant in this cycle.",
+    "precondition": "A numerically stable current Visual V2 control under identical verified inputs and initial state, plus complete bar-level envelopes for accepted and rejected decisions, cancellations, fills, positions, cooldown and recoverable risk gates. Without those inputs, audit the hypothesis at the existing decision timestamps only.",
+    "native_budget": "One submission of the previously compiled diagnostic probe, no candidate compilations and no retry after timeout."
+  },
+  "comparison": {
+    "normal": {"spread_usd": 0.35, "slippage_ticks": 2, "commission_per_side_per_unit_usd": 0.175},
+    "stress": {"spread_usd": 0.70, "slippage_ticks": 5, "commission_per_side_per_unit_usd": 0.2625},
+    "flat_epsilon_usd": 1e-8,
+    "timely_fill_minutes_from_hour_open": 30,
+    "independent_hour": "Absolute open-to-close move at least 1.5 times median range of the preceding 24 complete UTC hours and at least 60% of its own range; future outcome used to score the event, never for admission.",
+    "bootstrap": {"unit": "UTC market dates with actual score-window candles, including dates with zero settled campaigns", "block_days": 5, "draws": 2000, "seed": 20261114},
+    "archive_mark": "Bar-close quote-side liquidation, including open quantity and cash from completed legs. A mark does not close a campaign.",
+    "promotion": "Require final sample net win rate >=0.70, positive expectancy under both costs, lower 95% day-block bound for improvement in net expectancy above zero on the primary comparison, stress marked drawdown and worst campaign loss no worse than baseline, at least 80% of the baseline count and a strict increase in timely same-direction fill coverage at equal campaign risk and one-slot exposure. All known losers and write-downs remain included. Record results even if win rate is below 70%."
+  }
+}

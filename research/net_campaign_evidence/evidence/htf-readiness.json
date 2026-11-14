@@ -1,0 +1,2283 @@
+{
+  "frames": {
+    "M15": {
+      "depth_sensitivity": {
+        "any_observed_s5_state_drift": true,
+        "common_confirmed_ohlc": {
+          "closes": 1223,
+          "first_close_ms": 1793111400000,
+          "first_conflict_ms": null,
+          "identical_loaded_history": false,
+          "last_close_ms": 1794607200000,
+          "ohlc_conflicts": 0,
+          "same_end_marker_close": true
+        },
+        "deep": {
+          "audited_closes": 71,
+          "chart_first_open_ms": 1790564400000,
+          "chart_first_open_utc": "2026-09-28T03:00:00Z",
+          "chart_last_historical_close_ms": 1794607200000,
+          "chart_last_historical_close_utc": "2026-11-13T22:00:00Z",
+          "core_trends": {
+            "-1": 55,
+            "0": 16
+          },
+          "ema200": "UNOBSERVED_NOT_A_GATE",
+          "file": "M15-3200-add.csv",
+          "first_observed_ready_ms": 1794355200000,
+          "first_observed_warmed_ms": 1794355200000,
+          "log_sha256": "33055310d814d2cfbf6f39606683de1246eb3bf8058aa21e8e2af17cb15faf8b",
+          "prefix_confirmed_bars": 3200,
+          "prefix_ohlc_sha256": "5e79d0d8dd8bee156836963c29f3495f78381bdae742aa0205f7e0d5ce26e707",
+          "raw_core_observation_closes": 71,
+          "raw_event_types": {
+            "CANCELLED": 1,
+            "CLOSED": 1,
+            "QUEUED": 2,
+            "SIM_ENTRY": 1,
+            "SIM_SL": 1
+          },
+          "ready_HTF_closes": 71,
+          "s5_stream_counts": {
+            "ALERT": 19,
+            "CORE": 20,
+            "LEDGER": 71,
+            "RAW": 6,
+            "READY": 2,
+            "STATE": 71
+          },
+          "source_sha256": "5bb0019e045b739f1454fd90185e6525c0954f4c1eb3255c963641cea1039caa",
+          "unavailable_by_field": {
+            "adx": 0,
+            "atr_mean": 0,
+            "ema50": 0,
+            "ema50_prev": 0,
+            "htf_close": 0,
+            "rsi": 0
+          },
+          "warmed_closes": 71
+        },
+        "ema_absolute_tolerance": "0.001",
+        "readiness_warmup_and_direction_differences": {
+          "core_trend": {
+            "both_present": 71,
+            "differences": 62,
+            "first_difference": {
+              "at_ms": 1794363300000,
+              "left": 1,
+              "right": -1
+            },
+            "maximum_observed_absolute_delta": null,
+            "one_sided_missing": 0,
+            "required_bound_failed": 62
+          },
+          "ready_HTF": {
+            "both_present": 71,
+            "differences": 0,
+            "first_difference": null,
+            "maximum_observed_absolute_delta": null,
+            "one_sided_missing": 0,
+            "required_bound_failed": 0
+          },
+          "warmup": {
+            "both_present": 71,
+            "differences": 0,
+            "first_difference": null,
+            "maximum_observed_absolute_delta": null,
+            "one_sided_missing": 0,
+            "required_bound_failed": 0
+          }
+        },
+        "s5": {
+          "ALERT": {
+            "counts": [
+              19,
+              19
+            ],
+            "exact": true,
+            "examples": "OBSERVED"
+          },
+          "CORE": {
+            "changed_fields_across_shared_events": {
+              "countertrend": 5,
+              "evidence": 2,
+              "filter_eligible": 1,
+              "quality_note": 2
+            },
+            "counts": [
+              20,
+              20
+            ],
+            "event_counts": [
+              {
+                "CANCELLED": 5,
+                "CONFIRMED": 2,
+                "REJECTED": 3,
+                "WATCH": 10
+              },
+              {
+                "CANCELLED": 5,
+                "CONFIRMED": 2,
+                "REJECTED": 3,
+                "WATCH": 10
+              }
+            ],
+            "exact": false,
+            "examples": "OBSERVED",
+            "shared_event_ids": 20,
+            "unmatched_event_ids": [
+              0,
+              0
+            ]
+          },
+          "FORMATION_STATE": {
+            "counts": [
+              142,
+              142
+            ],
+            "exact": true,
+            "scope": "Phase, absolute origin timestamp, raw trigger, actual reason, cooldown."
+          },
+          "LEDGER": {
+            "closed_event_totals_in_window": [
+              {
+                "campaigns": 1,
+                "cost_r": "0.03082818",
+                "gross_r": -1,
+                "net_r": "-1.03082818"
+              },
+              {
+                "campaigns": 1,
+                "cost_r": "0.03082818",
+                "gross_r": -1,
+                "net_r": "-1.03082818"
+              }
+            ],
+            "counts": [
+              71,
+              71
+            ],
+            "exact": false,
+            "examples": "OBSERVED",
+            "first_and_last_cumulative": [
+              [
+                {
+                  "capacity_skipped": 0,
+                  "closed": 0,
+                  "costs": 0,
+                  "drawdown": 0,
+                  "entered": 0,
+                  "gross": 0,
+                  "known_ms": 1794355200000,
+                  "net": 0
+                },
+                {
+                  "capacity_skipped": 0,
+                  "closed": 1,
+                  "costs": "0.03082818",
+                  "drawdown": "1.03082818",
+                  "entered": 1,
+                  "gross": -1,
+                  "known_ms": 1794418200000,
+                  "net": "-1.03082818"
+                }
+              ],
+              [
+                {
+                  "capacity_skipped": 7,
+                  "closed": 37,
+                  "costs": "1.51882547",
+                  "drawdown": "9.1673453",
+                  "entered": 37,
+                  "gross": "-6.1699299",
+                  "known_ms": 1794355200000,
+                  "net": "-7.68875537"
+                },
+                {
+                  "capacity_skipped": 7,
+                  "closed": 38,
+                  "costs": "1.54965365",
+                  "drawdown": "9.1673453",
+                  "entered": 38,
+                  "gross": "-7.1699299",
+                  "known_ms": 1794418200000,
+                  "net": "-8.71958355"
+                }
+              ]
+            ]
+          },
+          "RAW": {
+            "changed_fields_across_shared_events": {
+              "countertrend": 6,
+              "evidence": 6,
+              "filter_eligible": 2,
+              "quality_note": 4
+            },
+            "counts": [
+              6,
+              6
+            ],
+            "event_counts": [
+              {
+                "CANCELLED": 1,
+                "CLOSED": 1,
+                "QUEUED": 2,
+                "SIM_ENTRY": 1,
+                "SIM_SL": 1
+              },
+              {
+                "CANCELLED": 1,
+                "CLOSED": 1,
+                "QUEUED": 2,
+                "SIM_ENTRY": 1,
+                "SIM_SL": 1
+              }
+            ],
+            "exact": false,
+            "examples": "OBSERVED",
+            "shared_event_ids": 6,
+            "unmatched_event_ids": [
+              0,
+              0
+            ]
+          },
+          "READY": {
+            "counts": [
+              2,
+              2
+            ],
+            "exact": true,
+            "examples": "OBSERVED"
+          },
+          "STATE": {
+            "counts": [
+              71,
+              71
+            ],
+            "exact": true,
+            "examples": "OBSERVED"
+          }
+        },
+        "selected_core_price_field_differences": {
+          "ema50": {
+            "both_present": 71,
+            "differences": 71,
+            "first_difference": {
+              "at_ms": 1794355200000,
+              "left": "4035.9521806",
+              "right": "4055.81301233"
+            },
+            "maximum_observed_absolute_delta": "19.86083173",
+            "one_sided_missing": 0,
+            "required_bound_failed": 71
+          },
+          "ema50_prev": {
+            "both_present": 71,
+            "differences": 71,
+            "first_difference": {
+              "at_ms": 1794355200000,
+              "left": "4036.80971751",
+              "right": "4058.32492922"
+            },
+            "maximum_observed_absolute_delta": "21.51521171",
+            "one_sided_missing": 0,
+            "required_bound_failed": 71
+          },
+          "htf_close": {
+            "both_present": 71,
+            "differences": 0,
+            "first_difference": null,
+            "maximum_observed_absolute_delta": null,
+            "one_sided_missing": 0,
+            "required_bound_failed": 0
+          }
+        },
+        "shallow": {
+          "audited_closes": 71,
+          "chart_first_open_ms": 1793110500000,
+          "chart_first_open_utc": "2026-10-27T14:15:00Z",
+          "chart_last_historical_close_ms": 1794607200000,
+          "chart_last_historical_close_utc": "2026-11-13T22:00:00Z",
+          "core_trends": {
+            "-1": 9,
+            "1": 62
+          },
+          "ema200": "UNOBSERVED_NOT_A_GATE",
+          "file": "M15-1223-add.csv",
+          "first_observed_ready_ms": 1794355200000,
+          "first_observed_warmed_ms": 1794355200000,
+          "log_sha256": "5447d32110594419a5effe5a27acc6d4272c4931a8cc86ea1b2e884c5420bdc1",
+          "prefix_confirmed_bars": 1223,
+          "prefix_ohlc_sha256": "89ce3b4297aa31e263ceea813da90fb48676dda441c9a9e888caf5a6ad430db8",
+          "raw_core_observation_closes": 71,
+          "raw_event_types": {
+            "CANCELLED": 1,
+            "CLOSED": 1,
+            "QUEUED": 2,
+            "SIM_ENTRY": 1,
+            "SIM_SL": 1
+          },
+          "ready_HTF_closes": 71,
+          "s5_stream_counts": {
+            "ALERT": 19,
+            "CORE": 20,
+            "LEDGER": 71,
+            "RAW": 6,
+            "READY": 2,
+            "STATE": 71
+          },
+          "source_sha256": "5bb0019e045b739f1454fd90185e6525c0954f4c1eb3255c963641cea1039caa",
+          "unavailable_by_field": {
+            "adx": 0,
+            "atr_mean": 0,
+            "ema50": 0,
+            "ema50_prev": 0,
+            "htf_close": 0,
+            "rsi": 0
+          },
+          "warmed_closes": 71
+        },
+        "status": "DEPTH_SENSITIVITY_MISMATCH"
+      },
+      "original_source_vs_instrumented_control": {
+        "confirmed_market_and_shadow_prefix_exact": true,
+        "excluded_probe_only_tags": [
+          "CORE_HTF",
+          "EDA_BAR",
+          "EDA_SIDE"
+        ],
+        "execution_coverage": "SIM_ENTRY_EXERCISED",
+        "left": {
+          "audited_closes": 71,
+          "chart_first_open_ms": 1793110500000,
+          "chart_first_open_utc": "2026-10-27T14:15:00Z",
+          "chart_last_historical_close_ms": 1794607200000,
+          "chart_last_historical_close_utc": "2026-11-13T22:00:00Z",
+          "core_trends": {},
+          "ema200": "UNOBSERVED_NOT_A_GATE",
+          "file": "M15-1223-control.csv",
+          "first_observed_ready_ms": null,
+          "first_observed_warmed_ms": null,
+          "log_sha256": "23d5ba98dde7c877f0688dd75967417c6546f51ef5ee3488145b11a735dce64e",
+          "prefix_confirmed_bars": 1223,
+          "prefix_ohlc_sha256": "89ce3b4297aa31e263ceea813da90fb48676dda441c9a9e888caf5a6ad430db8",
+          "raw_core_observation_closes": 0,
+          "raw_event_types": {
+            "CANCELLED": 1,
+            "CLOSED": 1,
+            "QUEUED": 2,
+            "SIM_ENTRY": 1,
+            "SIM_SL": 1
+          },
+          "ready_HTF_closes": null,
+          "s5_stream_counts": {
+            "ALERT": 19,
+            "CORE": 20,
+            "LEDGER": 71,
+            "RAW": 6,
+            "READY": 2,
+            "STATE": 71
+          },
+          "source_sha256": "77feedcbef84e77b9270ec43840be5b823d838300d0a09d5ddb4fec7acc089f4",
+          "unavailable_by_field": null,
+          "warmed_closes": null
+        },
+        "protected_message_counts": [
+          295,
+          295
+        ],
+        "raw_core_values_only_observed_in_right": true,
+        "right": {
+          "audited_closes": 71,
+          "chart_first_open_ms": 1793110500000,
+          "chart_first_open_utc": "2026-10-27T14:15:00Z",
+          "chart_last_historical_close_ms": 1794607200000,
+          "chart_last_historical_close_utc": "2026-11-13T22:00:00Z",
+          "core_trends": {
+            "-1": 9,
+            "1": 62
+          },
+          "ema200": "UNOBSERVED_NOT_A_GATE",
+          "file": "M15-1223-add.csv",
+          "first_observed_ready_ms": 1794355200000,
+          "first_observed_warmed_ms": 1794355200000,
+          "log_sha256": "5447d32110594419a5effe5a27acc6d4272c4931a8cc86ea1b2e884c5420bdc1",
+          "prefix_confirmed_bars": 1223,
+          "prefix_ohlc_sha256": "89ce3b4297aa31e263ceea813da90fb48676dda441c9a9e888caf5a6ad430db8",
+          "raw_core_observation_closes": 71,
+          "raw_event_types": {
+            "CANCELLED": 1,
+            "CLOSED": 1,
+            "QUEUED": 2,
+            "SIM_ENTRY": 1,
+            "SIM_SL": 1
+          },
+          "ready_HTF_closes": 71,
+          "s5_stream_counts": {
+            "ALERT": 19,
+            "CORE": 20,
+            "LEDGER": 71,
+            "RAW": 6,
+            "READY": 2,
+            "STATE": 71
+          },
+          "source_sha256": "5bb0019e045b739f1454fd90185e6525c0954f4c1eb3255c963641cea1039caa",
+          "unavailable_by_field": {
+            "adx": 0,
+            "atr_mean": 0,
+            "ema50": 0,
+            "ema50_prev": 0,
+            "htf_close": 0,
+            "rsi": 0
+          },
+          "warmed_closes": 71
+        },
+        "status": "ADDITIVE_PROBE_PROTECTED_PARITY"
+      },
+      "registered_local_development_chart_extension": {
+        "added_chart_bars": 445,
+        "dataset_relative_path": "ui_dataset/bars.csv",
+        "exact_ohlc_union_count": 6890,
+        "extension_is_right_edge_only": true,
+        "legacy_chart_bars": 6445,
+        "legacy_htf_nonnull_by_field": {
+          "htfClose": 6445,
+          "htfEMA50": 6445,
+          "htfEMA50prev": 6445
+        },
+        "legacy_sha256": "6c89015105a406c2a0c1567f0e9a5e445cb31ee7604a985d727f26892d8ba4b7",
+        "native_chart_bars": 3200,
+        "new_last_close_utc": "2026-11-13T22:00:00Z",
+        "old_first_open_utc": "2026-08-02T22:00:00Z",
+        "old_last_close_utc": "2026-11-09T02:45:00Z",
+        "overlap_ohlc_or_clock_conflicts": [],
+        "overlapping_chart_bars": 2755,
+        "scope": "Development chart OHLC comparison; legacy observer HTF fields are from 48e5cdd and cannot replace the exact current selected core tuple."
+      },
+      "same_history_reload": {
+        "alert_scope": "Protected Pine alert payloads in logs. Server delivery was not exercised by this comparator.",
+        "all_existing_payloads_and_core_HTF_exact": true,
+        "common_confirmed_ohlc": {
+          "closes": 1223,
+          "first_close_ms": 1793111400000,
+          "first_conflict_ms": null,
+          "identical_loaded_history": true,
+          "last_close_ms": 1794607200000,
+          "ohlc_conflicts": 0,
+          "same_end_marker_close": true
+        },
+        "core_HTF_mismatch_closes": 0,
+        "left": {
+          "audited_closes": 71,
+          "chart_first_open_ms": 1793110500000,
+          "chart_first_open_utc": "2026-10-27T14:15:00Z",
+          "chart_last_historical_close_ms": 1794607200000,
+          "chart_last_historical_close_utc": "2026-11-13T22:00:00Z",
+          "core_trends": {
+            "-1": 9,
+            "1": 62
+          },
+          "ema200": "UNOBSERVED_NOT_A_GATE",
+          "file": "M15-1223-add.csv",
+          "first_observed_ready_ms": 1794355200000,
+          "first_observed_warmed_ms": 1794355200000,
+          "log_sha256": "5447d32110594419a5effe5a27acc6d4272c4931a8cc86ea1b2e884c5420bdc1",
+          "prefix_confirmed_bars": 1223,
+          "prefix_ohlc_sha256": "89ce3b4297aa31e263ceea813da90fb48676dda441c9a9e888caf5a6ad430db8",
+          "raw_core_observation_closes": 71,
+          "raw_event_types": {
+            "CANCELLED": 1,
+            "CLOSED": 1,
+            "QUEUED": 2,
+            "SIM_ENTRY": 1,
+            "SIM_SL": 1
+          },
+          "ready_HTF_closes": 71,
+          "s5_stream_counts": {
+            "ALERT": 19,
+            "CORE": 20,
+            "LEDGER": 71,
+            "RAW": 6,
+            "READY": 2,
+            "STATE": 71
+          },
+          "source_sha256": "5bb0019e045b739f1454fd90185e6525c0954f4c1eb3255c963641cea1039caa",
+          "unavailable_by_field": {
+            "adx": 0,
+            "atr_mean": 0,
+            "ema50": 0,
+            "ema50_prev": 0,
+            "htf_close": 0,
+            "rsi": 0
+          },
+          "warmed_closes": 71
+        },
+        "right": {
+          "audited_closes": 71,
+          "chart_first_open_ms": 1793110500000,
+          "chart_first_open_utc": "2026-10-27T14:15:00Z",
+          "chart_last_historical_close_ms": 1794607200000,
+          "chart_last_historical_close_utc": "2026-11-13T22:00:00Z",
+          "core_trends": {
+            "-1": 9,
+            "1": 62
+          },
+          "ema200": "UNOBSERVED_NOT_A_GATE",
+          "file": "M15-1223-reload.csv",
+          "first_observed_ready_ms": 1794355200000,
+          "first_observed_warmed_ms": 1794355200000,
+          "log_sha256": "5447d32110594419a5effe5a27acc6d4272c4931a8cc86ea1b2e884c5420bdc1",
+          "prefix_confirmed_bars": 1223,
+          "prefix_ohlc_sha256": "89ce3b4297aa31e263ceea813da90fb48676dda441c9a9e888caf5a6ad430db8",
+          "raw_core_observation_closes": 71,
+          "raw_event_types": {
+            "CANCELLED": 1,
+            "CLOSED": 1,
+            "QUEUED": 2,
+            "SIM_ENTRY": 1,
+            "SIM_SL": 1
+          },
+          "ready_HTF_closes": 71,
+          "s5_stream_counts": {
+            "ALERT": 19,
+            "CORE": 20,
+            "LEDGER": 71,
+            "RAW": 6,
+            "READY": 2,
+            "STATE": 71
+          },
+          "source_sha256": "5bb0019e045b739f1454fd90185e6525c0954f4c1eb3255c963641cea1039caa",
+          "unavailable_by_field": {
+            "adx": 0,
+            "atr_mean": 0,
+            "ema50": 0,
+            "ema50_prev": 0,
+            "htf_close": 0,
+            "rsi": 0
+          },
+          "warmed_closes": 71
+        },
+        "s5": {
+          "ALERT": {
+            "counts": [
+              19,
+              19
+            ],
+            "exact": true,
+            "examples": "OBSERVED"
+          },
+          "CORE": {
+            "changed_fields_across_shared_events": {},
+            "counts": [
+              20,
+              20
+            ],
+            "event_counts": [
+              {
+                "CANCELLED": 5,
+                "CONFIRMED": 2,
+                "REJECTED": 3,
+                "WATCH": 10
+              },
+              {
+                "CANCELLED": 5,
+                "CONFIRMED": 2,
+                "REJECTED": 3,
+                "WATCH": 10
+              }
+            ],
+            "exact": true,
+            "examples": "OBSERVED",
+            "shared_event_ids": 20,
+            "unmatched_event_ids": [
+              0,
+              0
+            ]
+          },
+          "FORMATION_STATE": {
+            "counts": [
+              142,
+              142
+            ],
+            "exact": true,
+            "scope": "Phase, absolute origin timestamp, raw trigger, actual reason, cooldown."
+          },
+          "LEDGER": {
+            "closed_event_totals_in_window": [
+              {
+                "campaigns": 1,
+                "cost_r": "0.03082818",
+                "gross_r": -1,
+                "net_r": "-1.03082818"
+              },
+              {
+                "campaigns": 1,
+                "cost_r": "0.03082818",
+                "gross_r": -1,
+                "net_r": "-1.03082818"
+              }
+            ],
+            "counts": [
+              71,
+              71
+            ],
+            "exact": true,
+            "examples": "OBSERVED",
+            "first_and_last_cumulative": [
+              [
+                {
+                  "capacity_skipped": 0,
+                  "closed": 0,
+                  "costs": 0,
+                  "drawdown": 0,
+                  "entered": 0,
+                  "gross": 0,
+                  "known_ms": 1794355200000,
+                  "net": 0
+                },
+                {
+                  "capacity_skipped": 0,
+                  "closed": 1,
+                  "costs": "0.03082818",
+                  "drawdown": "1.03082818",
+                  "entered": 1,
+                  "gross": -1,
+                  "known_ms": 1794418200000,
+                  "net": "-1.03082818"
+                }
+              ],
+              [
+                {
+                  "capacity_skipped": 0,
+                  "closed": 0,
+                  "costs": 0,
+                  "drawdown": 0,
+                  "entered": 0,
+                  "gross": 0,
+                  "known_ms": 1794355200000,
+                  "net": 0
+                },
+                {
+                  "capacity_skipped": 0,
+                  "closed": 1,
+                  "costs": "0.03082818",
+                  "drawdown": "1.03082818",
+                  "entered": 1,
+                  "gross": -1,
+                  "known_ms": 1794418200000,
+                  "net": "-1.03082818"
+                }
+              ]
+            ]
+          },
+          "RAW": {
+            "changed_fields_across_shared_events": {},
+            "counts": [
+              6,
+              6
+            ],
+            "event_counts": [
+              {
+                "CANCELLED": 1,
+                "CLOSED": 1,
+                "QUEUED": 2,
+                "SIM_ENTRY": 1,
+                "SIM_SL": 1
+              },
+              {
+                "CANCELLED": 1,
+                "CLOSED": 1,
+                "QUEUED": 2,
+                "SIM_ENTRY": 1,
+                "SIM_SL": 1
+              }
+            ],
+            "exact": true,
+            "examples": "OBSERVED",
+            "shared_event_ids": 6,
+            "unmatched_event_ids": [
+              0,
+              0
+            ]
+          },
+          "READY": {
+            "counts": [
+              2,
+              2
+            ],
+            "exact": true,
+            "examples": "OBSERVED"
+          },
+          "STATE": {
+            "counts": [
+              71,
+              71
+            ],
+            "exact": true,
+            "examples": "OBSERVED"
+          }
+        },
+        "source_provenance": "SAME_SOURCE",
+        "status": "SAME_HISTORY_NATIVE_MATCH",
+        "timestamp_scope": "CORE_HTF is witnessed at chart close. A dedicated source timestamp for the original HTF raw tuple is not logged."
+      }
+    },
+    "M30": {
+      "depth_sensitivity": {
+        "any_observed_s5_state_drift": true,
+        "common_confirmed_ohlc": {
+          "closes": 1223,
+          "first_close_ms": 1791446400000,
+          "first_conflict_ms": null,
+          "identical_loaded_history": false,
+          "last_close_ms": 1794607200000,
+          "ohlc_conflicts": 0,
+          "same_end_marker_close": true
+        },
+        "deep": {
+          "audited_closes": 36,
+          "chart_first_open_ms": 1786339800000,
+          "chart_first_open_utc": "2026-08-10T05:30:00Z",
+          "chart_last_historical_close_ms": 1794607200000,
+          "chart_last_historical_close_utc": "2026-11-13T22:00:00Z",
+          "core_trends": {
+            "-1": 36
+          },
+          "ema200": "UNOBSERVED_NOT_A_GATE",
+          "file": "M30-3200-add.csv",
+          "first_observed_ready_ms": 1794355200000,
+          "first_observed_warmed_ms": 1794355200000,
+          "log_sha256": "3f3bd7fd33dc9442aa7bf953a7a67022d9a3fc683dfac09fc9a33f3a1d1fadd0",
+          "prefix_confirmed_bars": 3200,
+          "prefix_ohlc_sha256": "e590284f57efd3ad0773894a338db27a1a48add29e78eb91cefc948d1130a11f",
+          "raw_core_observation_closes": 36,
+          "raw_event_types": {},
+          "ready_HTF_closes": 36,
+          "s5_stream_counts": {
+            "ALERT": 6,
+            "CORE": 6,
+            "LEDGER": 36,
+            "RAW": 0,
+            "READY": 0,
+            "STATE": 36
+          },
+          "source_sha256": "5bb0019e045b739f1454fd90185e6525c0954f4c1eb3255c963641cea1039caa",
+          "unavailable_by_field": {
+            "adx": 0,
+            "atr_mean": 0,
+            "ema50": 0,
+            "ema50_prev": 0,
+            "htf_close": 0,
+            "rsi": 0
+          },
+          "warmed_closes": 36
+        },
+        "ema_absolute_tolerance": "0.001",
+        "readiness_warmup_and_direction_differences": {
+          "core_trend": {
+            "both_present": 0,
+            "differences": 36,
+            "first_difference": {
+              "at_ms": 1794355200000,
+              "left": null,
+              "right": -1
+            },
+            "maximum_observed_absolute_delta": null,
+            "one_sided_missing": 36,
+            "required_bound_failed": 36
+          },
+          "ready_HTF": {
+            "both_present": 36,
+            "differences": 36,
+            "first_difference": {
+              "at_ms": 1794355200000,
+              "left": false,
+              "right": true
+            },
+            "maximum_observed_absolute_delta": null,
+            "one_sided_missing": 0,
+            "required_bound_failed": 36
+          },
+          "warmup": {
+            "both_present": 36,
+            "differences": 36,
+            "first_difference": {
+              "at_ms": 1794355200000,
+              "left": false,
+              "right": true
+            },
+            "maximum_observed_absolute_delta": null,
+            "one_sided_missing": 0,
+            "required_bound_failed": 36
+          }
+        },
+        "s5": {
+          "ALERT": {
+            "counts": [
+              0,
+              6
+            ],
+            "exact": false,
+            "examples": "OBSERVED"
+          },
+          "CORE": {
+            "changed_fields_across_shared_events": {},
+            "counts": [
+              0,
+              6
+            ],
+            "event_counts": [
+              {},
+              {
+                "CANCELLED": 3,
+                "WATCH": 3
+              }
+            ],
+            "exact": false,
+            "examples": "OBSERVED",
+            "shared_event_ids": 0,
+            "unmatched_event_ids": [
+              0,
+              6
+            ]
+          },
+          "FORMATION_STATE": {
+            "counts": [
+              72,
+              72
+            ],
+            "exact": false,
+            "scope": "Phase, absolute origin timestamp, raw trigger, actual reason, cooldown."
+          },
+          "LEDGER": {
+            "closed_event_totals_in_window": [
+              {
+                "campaigns": 0,
+                "cost_r": 0,
+                "gross_r": 0,
+                "net_r": 0
+              },
+              {
+                "campaigns": 0,
+                "cost_r": 0,
+                "gross_r": 0,
+                "net_r": 0
+              }
+            ],
+            "counts": [
+              36,
+              36
+            ],
+            "exact": false,
+            "examples": "OBSERVED",
+            "first_and_last_cumulative": [
+              [
+                {
+                  "capacity_skipped": 0,
+                  "closed": 0,
+                  "costs": 0,
+                  "drawdown": 0,
+                  "entered": 0,
+                  "gross": 0,
+                  "known_ms": 1794355200000,
+                  "net": 0
+                },
+                {
+                  "capacity_skipped": 0,
+                  "closed": 0,
+                  "costs": 0,
+                  "drawdown": 0,
+                  "entered": 0,
+                  "gross": 0,
+                  "known_ms": 1794418200000,
+                  "net": 0
+                }
+              ],
+              [
+                {
+                  "capacity_skipped": 0,
+                  "closed": 10,
+                  "costs": "0.25270685",
+                  "drawdown": "3.08433648",
+                  "entered": 10,
+                  "gross": "3.78181808",
+                  "known_ms": 1794355200000,
+                  "net": "3.52911123"
+                },
+                {
+                  "capacity_skipped": 0,
+                  "closed": 10,
+                  "costs": "0.25270685",
+                  "drawdown": "3.08433648",
+                  "entered": 10,
+                  "gross": "3.78181808",
+                  "known_ms": 1794418200000,
+                  "net": "3.52911123"
+                }
+              ]
+            ]
+          },
+          "RAW": {
+            "changed_fields_across_shared_events": {},
+            "counts": [
+              0,
+              0
+            ],
+            "event_counts": [
+              {},
+              {}
+            ],
+            "exact": true,
+            "examples": "NONE_OBSERVED",
+            "shared_event_ids": 0,
+            "unmatched_event_ids": [
+              0,
+              0
+            ]
+          },
+          "READY": {
+            "counts": [
+              0,
+              0
+            ],
+            "exact": true,
+            "examples": "NONE_OBSERVED"
+          },
+          "STATE": {
+            "counts": [
+              36,
+              36
+            ],
+            "exact": false,
+            "examples": "OBSERVED"
+          }
+        },
+        "selected_core_price_field_differences": {
+          "ema50": {
+            "both_present": 0,
+            "differences": 36,
+            "first_difference": {
+              "at_ms": 1794355200000,
+              "left": null,
+              "right": "4195.06222815"
+            },
+            "maximum_observed_absolute_delta": null,
+            "one_sided_missing": 36,
+            "required_bound_failed": 36
+          },
+          "ema50_prev": {
+            "both_present": 0,
+            "differences": 36,
+            "first_difference": {
+              "at_ms": 1794355200000,
+              "left": null,
+              "right": "4204.1870868"
+            },
+            "maximum_observed_absolute_delta": null,
+            "one_sided_missing": 36,
+            "required_bound_failed": 36
+          },
+          "htf_close": {
+            "both_present": 36,
+            "differences": 0,
+            "first_difference": null,
+            "maximum_observed_absolute_delta": null,
+            "one_sided_missing": 0,
+            "required_bound_failed": 0
+          }
+        },
+        "shallow": {
+          "audited_closes": 36,
+          "chart_first_open_ms": 1791444600000,
+          "chart_first_open_utc": "2026-10-08T07:30:00Z",
+          "chart_last_historical_close_ms": 1794607200000,
+          "chart_last_historical_close_utc": "2026-11-13T22:00:00Z",
+          "core_trends": {
+            "MISSING": 36
+          },
+          "ema200": "UNOBSERVED_NOT_A_GATE",
+          "file": "M30-1223-add.csv",
+          "first_observed_ready_ms": null,
+          "first_observed_warmed_ms": null,
+          "log_sha256": "e6e129b52466548fa7af310138d3c39c9e22cb7fa9c53d6003afe2a911c169ff",
+          "prefix_confirmed_bars": 1223,
+          "prefix_ohlc_sha256": "7300da02e9ffae1fa3f043cd03f60caa2f71e121652d78c3950e9ebdb12b5cf4",
+          "raw_core_observation_closes": 36,
+          "raw_event_types": {},
+          "ready_HTF_closes": 0,
+          "s5_stream_counts": {
+            "ALERT": 0,
+            "CORE": 0,
+            "LEDGER": 36,
+            "RAW": 0,
+            "READY": 0,
+            "STATE": 36
+          },
+          "source_sha256": "5bb0019e045b739f1454fd90185e6525c0954f4c1eb3255c963641cea1039caa",
+          "unavailable_by_field": {
+            "adx": 0,
+            "atr_mean": 0,
+            "ema50": 36,
+            "ema50_prev": 36,
+            "htf_close": 0,
+            "rsi": 0
+          },
+          "warmed_closes": 0
+        },
+        "status": "DEPTH_SENSITIVITY_MISMATCH"
+      },
+      "original_source_vs_instrumented_control": {
+        "confirmed_market_and_shadow_prefix_exact": true,
+        "excluded_probe_only_tags": [
+          "CORE_HTF",
+          "EDA_BAR",
+          "EDA_SIDE"
+        ],
+        "execution_coverage": "NO_SIMULATED_ENTRY_EXAMPLES",
+        "left": {
+          "audited_closes": 36,
+          "chart_first_open_ms": 1791444600000,
+          "chart_first_open_utc": "2026-10-08T07:30:00Z",
+          "chart_last_historical_close_ms": 1794607200000,
+          "chart_last_historical_close_utc": "2026-11-13T22:00:00Z",
+          "core_trends": {},
+          "ema200": "UNOBSERVED_NOT_A_GATE",
+          "file": "M30-1223-control.csv",
+          "first_observed_ready_ms": null,
+          "first_observed_warmed_ms": null,
+          "log_sha256": "16503aa71b25dc9af7cbdd8de30dbca15356a0197684b6e577dd6aa103c2e01c",
+          "prefix_confirmed_bars": 1223,
+          "prefix_ohlc_sha256": "7300da02e9ffae1fa3f043cd03f60caa2f71e121652d78c3950e9ebdb12b5cf4",
+          "raw_core_observation_closes": 0,
+          "raw_event_types": {},
+          "ready_HTF_closes": null,
+          "s5_stream_counts": {
+            "ALERT": 0,
+            "CORE": 0,
+            "LEDGER": 36,
+            "RAW": 0,
+            "READY": 0,
+            "STATE": 36
+          },
+          "source_sha256": "77feedcbef84e77b9270ec43840be5b823d838300d0a09d5ddb4fec7acc089f4",
+          "unavailable_by_field": null,
+          "warmed_closes": null
+        },
+        "protected_message_counts": [
+          121,
+          121
+        ],
+        "raw_core_values_only_observed_in_right": true,
+        "right": {
+          "audited_closes": 36,
+          "chart_first_open_ms": 1791444600000,
+          "chart_first_open_utc": "2026-10-08T07:30:00Z",
+          "chart_last_historical_close_ms": 1794607200000,
+          "chart_last_historical_close_utc": "2026-11-13T22:00:00Z",
+          "core_trends": {
+            "MISSING": 36
+          },
+          "ema200": "UNOBSERVED_NOT_A_GATE",
+          "file": "M30-1223-add.csv",
+          "first_observed_ready_ms": null,
+          "first_observed_warmed_ms": null,
+          "log_sha256": "e6e129b52466548fa7af310138d3c39c9e22cb7fa9c53d6003afe2a911c169ff",
+          "prefix_confirmed_bars": 1223,
+          "prefix_ohlc_sha256": "7300da02e9ffae1fa3f043cd03f60caa2f71e121652d78c3950e9ebdb12b5cf4",
+          "raw_core_observation_closes": 36,
+          "raw_event_types": {},
+          "ready_HTF_closes": 0,
+          "s5_stream_counts": {
+            "ALERT": 0,
+            "CORE": 0,
+            "LEDGER": 36,
+            "RAW": 0,
+            "READY": 0,
+            "STATE": 36
+          },
+          "source_sha256": "5bb0019e045b739f1454fd90185e6525c0954f4c1eb3255c963641cea1039caa",
+          "unavailable_by_field": {
+            "adx": 0,
+            "atr_mean": 0,
+            "ema50": 36,
+            "ema50_prev": 36,
+            "htf_close": 0,
+            "rsi": 0
+          },
+          "warmed_closes": 0
+        },
+        "status": "ADDITIVE_PROBE_PROTECTED_PARITY"
+      },
+      "registered_local_development_chart_extension": {
+        "added_chart_bars": 223,
+        "dataset_relative_path": "M30_dataset/bars.csv",
+        "exact_ohlc_union_count": 10314,
+        "extension_is_right_edge_only": true,
+        "legacy_chart_bars": 10091,
+        "legacy_htf_nonnull_by_field": {
+          "htfClose": 10091,
+          "htfEMA50": 10091,
+          "htfEMA50prev": 10091
+        },
+        "legacy_sha256": "1b31dc5dad532b9362c5340511211fbc13a33c64983d4a49485c7442a269c5d5",
+        "native_chart_bars": 3200,
+        "new_last_close_utc": "2026-11-13T22:00:00Z",
+        "old_first_open_utc": "2026-01-01T23:00:00Z",
+        "old_last_close_utc": "2026-11-09T02:30:00Z",
+        "overlap_ohlc_or_clock_conflicts": [],
+        "overlapping_chart_bars": 2977,
+        "scope": "Development chart OHLC comparison; legacy observer HTF fields are from 48e5cdd and cannot replace the exact current selected core tuple."
+      },
+      "same_history_reload": {
+        "alert_scope": "Protected Pine alert payloads in logs. Server delivery was not exercised by this comparator.",
+        "all_existing_payloads_and_core_HTF_exact": true,
+        "common_confirmed_ohlc": {
+          "closes": 1223,
+          "first_close_ms": 1791446400000,
+          "first_conflict_ms": null,
+          "identical_loaded_history": true,
+          "last_close_ms": 1794607200000,
+          "ohlc_conflicts": 0,
+          "same_end_marker_close": true
+        },
+        "core_HTF_mismatch_closes": 0,
+        "left": {
+          "audited_closes": 36,
+          "chart_first_open_ms": 1791444600000,
+          "chart_first_open_utc": "2026-10-08T07:30:00Z",
+          "chart_last_historical_close_ms": 1794607200000,
+          "chart_last_historical_close_utc": "2026-11-13T22:00:00Z",
+          "core_trends": {
+            "MISSING": 36
+          },
+          "ema200": "UNOBSERVED_NOT_A_GATE",
+          "file": "M30-1223-add.csv",
+          "first_observed_ready_ms": null,
+          "first_observed_warmed_ms": null,
+          "log_sha256": "e6e129b52466548fa7af310138d3c39c9e22cb7fa9c53d6003afe2a911c169ff",
+          "prefix_confirmed_bars": 1223,
+          "prefix_ohlc_sha256": "7300da02e9ffae1fa3f043cd03f60caa2f71e121652d78c3950e9ebdb12b5cf4",
+          "raw_core_observation_closes": 36,
+          "raw_event_types": {},
+          "ready_HTF_closes": 0,
+          "s5_stream_counts": {
+            "ALERT": 0,
+            "CORE": 0,
+            "LEDGER": 36,
+            "RAW": 0,
+            "READY": 0,
+            "STATE": 36
+          },
+          "source_sha256": "5bb0019e045b739f1454fd90185e6525c0954f4c1eb3255c963641cea1039caa",
+          "unavailable_by_field": {
+            "adx": 0,
+            "atr_mean": 0,
+            "ema50": 36,
+            "ema50_prev": 36,
+            "htf_close": 0,
+            "rsi": 0
+          },
+          "warmed_closes": 0
+        },
+        "right": {
+          "audited_closes": 36,
+          "chart_first_open_ms": 1791444600000,
+          "chart_first_open_utc": "2026-10-08T07:30:00Z",
+          "chart_last_historical_close_ms": 1794607200000,
+          "chart_last_historical_close_utc": "2026-11-13T22:00:00Z",
+          "core_trends": {
+            "MISSING": 36
+          },
+          "ema200": "UNOBSERVED_NOT_A_GATE",
+          "file": "M30-1223-reload.csv",
+          "first_observed_ready_ms": null,
+          "first_observed_warmed_ms": null,
+          "log_sha256": "e6e129b52466548fa7af310138d3c39c9e22cb7fa9c53d6003afe2a911c169ff",
+          "prefix_confirmed_bars": 1223,
+          "prefix_ohlc_sha256": "7300da02e9ffae1fa3f043cd03f60caa2f71e121652d78c3950e9ebdb12b5cf4",
+          "raw_core_observation_closes": 36,
+          "raw_event_types": {},
+          "ready_HTF_closes": 0,
+          "s5_stream_counts": {
+            "ALERT": 0,
+            "CORE": 0,
+            "LEDGER": 36,
+            "RAW": 0,
+            "READY": 0,
+            "STATE": 36
+          },
+          "source_sha256": "5bb0019e045b739f1454fd90185e6525c0954f4c1eb3255c963641cea1039caa",
+          "unavailable_by_field": {
+            "adx": 0,
+            "atr_mean": 0,
+            "ema50": 36,
+            "ema50_prev": 36,
+            "htf_close": 0,
+            "rsi": 0
+          },
+          "warmed_closes": 0
+        },
+        "s5": {
+          "ALERT": {
+            "counts": [
+              0,
+              0
+            ],
+            "exact": true,
+            "examples": "NONE_OBSERVED"
+          },
+          "CORE": {
+            "changed_fields_across_shared_events": {},
+            "counts": [
+              0,
+              0
+            ],
+            "event_counts": [
+              {},
+              {}
+            ],
+            "exact": true,
+            "examples": "NONE_OBSERVED",
+            "shared_event_ids": 0,
+            "unmatched_event_ids": [
+              0,
+              0
+            ]
+          },
+          "FORMATION_STATE": {
+            "counts": [
+              72,
+              72
+            ],
+            "exact": true,
+            "scope": "Phase, absolute origin timestamp, raw trigger, actual reason, cooldown."
+          },
+          "LEDGER": {
+            "closed_event_totals_in_window": [
+              {
+                "campaigns": 0,
+                "cost_r": 0,
+                "gross_r": 0,
+                "net_r": 0
+              },
+              {
+                "campaigns": 0,
+                "cost_r": 0,
+                "gross_r": 0,
+                "net_r": 0
+              }
+            ],
+            "counts": [
+              36,
+              36
+            ],
+            "exact": true,
+            "examples": "OBSERVED",
+            "first_and_last_cumulative": [
+              [
+                {
+                  "capacity_skipped": 0,
+                  "closed": 0,
+                  "costs": 0,
+                  "drawdown": 0,
+                  "entered": 0,
+                  "gross": 0,
+                  "known_ms": 1794355200000,
+                  "net": 0
+                },
+                {
+                  "capacity_skipped": 0,
+                  "closed": 0,
+                  "costs": 0,
+                  "drawdown": 0,
+                  "entered": 0,
+                  "gross": 0,
+                  "known_ms": 1794418200000,
+                  "net": 0
+                }
+              ],
+              [
+                {
+                  "capacity_skipped": 0,
+                  "closed": 0,
+                  "costs": 0,
+                  "drawdown": 0,
+                  "entered": 0,
+                  "gross": 0,
+                  "known_ms": 1794355200000,
+                  "net": 0
+                },
+                {
+                  "capacity_skipped": 0,
+                  "closed": 0,
+                  "costs": 0,
+                  "drawdown": 0,
+                  "entered": 0,
+                  "gross": 0,
+                  "known_ms": 1794418200000,
+                  "net": 0
+                }
+              ]
+            ]
+          },
+          "RAW": {
+            "changed_fields_across_shared_events": {},
+            "counts": [
+              0,
+              0
+            ],
+            "event_counts": [
+              {},
+              {}
+            ],
+            "exact": true,
+            "examples": "NONE_OBSERVED",
+            "shared_event_ids": 0,
+            "unmatched_event_ids": [
+              0,
+              0
+            ]
+          },
+          "READY": {
+            "counts": [
+              0,
+              0
+            ],
+            "exact": true,
+            "examples": "NONE_OBSERVED"
+          },
+          "STATE": {
+            "counts": [
+              36,
+              36
+            ],
+            "exact": true,
+            "examples": "OBSERVED"
+          }
+        },
+        "source_provenance": "SAME_SOURCE",
+        "status": "SAME_HISTORY_NATIVE_MATCH",
+        "timestamp_scope": "CORE_HTF is witnessed at chart close. A dedicated source timestamp for the original HTF raw tuple is not logged."
+      }
+    },
+    "M5": {
+      "depth_sensitivity": {
+        "any_observed_s5_state_drift": true,
+        "common_confirmed_ohlc": {
+          "closes": 1223,
+          "first_close_ms": 1794226200000,
+          "first_conflict_ms": null,
+          "identical_loaded_history": false,
+          "last_close_ms": 1794607200000,
+          "ohlc_conflicts": 0,
+          "same_end_marker_close": true
+        },
+        "deep": {
+          "audited_closes": 211,
+          "chart_first_open_ms": 1793258400000,
+          "chart_first_open_utc": "2026-10-29T07:20:00Z",
+          "chart_last_historical_close_ms": 1794607200000,
+          "chart_last_historical_close_utc": "2026-11-13T22:00:00Z",
+          "core_trends": {
+            "-1": 211
+          },
+          "ema200": "UNOBSERVED_NOT_A_GATE",
+          "file": "M5-3200-add.csv",
+          "first_observed_ready_ms": 1794355200000,
+          "first_observed_warmed_ms": 1794355200000,
+          "log_sha256": "85d5626023f5564b64a9fc491647ea11326f0ef6bb074e2d3473259fb38a8493",
+          "prefix_confirmed_bars": 3200,
+          "prefix_ohlc_sha256": "579293aa8b2c20bb4d5ac1787e930efcf18baeed038516c441f0f823bfafd5ed",
+          "raw_core_observation_closes": 211,
+          "raw_event_types": {
+            "CLOSED": 6,
+            "QUEUED": 6,
+            "SIM_ENTRY": 6,
+            "SIM_SL": 4,
+            "SIM_TP1": 3,
+            "SIM_TP2": 2,
+            "SIM_TP3": 2,
+            "STOP_UPDATE": 3
+          },
+          "ready_HTF_closes": 211,
+          "s5_stream_counts": {
+            "ALERT": 44,
+            "CORE": 42,
+            "LEDGER": 211,
+            "RAW": 32,
+            "READY": 6,
+            "STATE": 211
+          },
+          "source_sha256": "5bb0019e045b739f1454fd90185e6525c0954f4c1eb3255c963641cea1039caa",
+          "unavailable_by_field": {
+            "adx": 0,
+            "atr_mean": 0,
+            "ema50": 0,
+            "ema50_prev": 0,
+            "htf_close": 0,
+            "rsi": 0
+          },
+          "warmed_closes": 211
+        },
+        "ema_absolute_tolerance": "0.001",
+        "readiness_warmup_and_direction_differences": {
+          "core_trend": {
+            "both_present": 0,
+            "differences": 211,
+            "first_difference": {
+              "at_ms": 1794355200000,
+              "left": null,
+              "right": -1
+            },
+            "maximum_observed_absolute_delta": null,
+            "one_sided_missing": 211,
+            "required_bound_failed": 211
+          },
+          "ready_HTF": {
+            "both_present": 211,
+            "differences": 211,
+            "first_difference": {
+              "at_ms": 1794355200000,
+              "left": false,
+              "right": true
+            },
+            "maximum_observed_absolute_delta": null,
+            "one_sided_missing": 0,
+            "required_bound_failed": 211
+          },
+          "warmup": {
+            "both_present": 211,
+            "differences": 211,
+            "first_difference": {
+              "at_ms": 1794355200000,
+              "left": false,
+              "right": true
+            },
+            "maximum_observed_absolute_delta": null,
+            "one_sided_missing": 0,
+            "required_bound_failed": 211
+          }
+        },
+        "s5": {
+          "ALERT": {
+            "counts": [
+              0,
+              44
+            ],
+            "exact": false,
+            "examples": "OBSERVED"
+          },
+          "CORE": {
+            "changed_fields_across_shared_events": {},
+            "counts": [
+              0,
+              42
+            ],
+            "event_counts": [
+              {},
+              {
+                "CANCELLED": 11,
+                "CONFIRMED": 6,
+                "REJECTED": 4,
+                "WATCH": 21
+              }
+            ],
+            "exact": false,
+            "examples": "OBSERVED",
+            "shared_event_ids": 0,
+            "unmatched_event_ids": [
+              0,
+              42
+            ]
+          },
+          "FORMATION_STATE": {
+            "counts": [
+              422,
+              422
+            ],
+            "exact": false,
+            "scope": "Phase, absolute origin timestamp, raw trigger, actual reason, cooldown."
+          },
+          "LEDGER": {
+            "closed_event_totals_in_window": [
+              {
+                "campaigns": 0,
+                "cost_r": 0,
+                "gross_r": 0,
+                "net_r": 0
+              },
+              {
+                "campaigns": 6,
+                "cost_r": "0.53934595",
+                "gross_r": "1.51964125",
+                "net_r": "0.98029531"
+              }
+            ],
+            "counts": [
+              211,
+              211
+            ],
+            "exact": false,
+            "examples": "OBSERVED",
+            "first_and_last_cumulative": [
+              [
+                {
+                  "capacity_skipped": 0,
+                  "closed": 0,
+                  "costs": 0,
+                  "drawdown": 0,
+                  "entered": 0,
+                  "gross": 0,
+                  "known_ms": 1794355200000,
+                  "net": 0
+                },
+                {
+                  "capacity_skipped": 0,
+                  "closed": 0,
+                  "costs": 0,
+                  "drawdown": 0,
+                  "entered": 0,
+                  "gross": 0,
+                  "known_ms": 1794418200000,
+                  "net": 0
+                }
+              ],
+              [
+                {
+                  "capacity_skipped": 5,
+                  "closed": 27,
+                  "costs": "1.63922655",
+                  "drawdown": "3.94703223",
+                  "entered": 27,
+                  "gross": "2.87667275",
+                  "known_ms": 1794355200000,
+                  "net": "1.2374462"
+                },
+                {
+                  "capacity_skipped": 5,
+                  "closed": 33,
+                  "costs": "2.1785725",
+                  "drawdown": "3.94703223",
+                  "entered": 33,
+                  "gross": "4.396314",
+                  "known_ms": 1794418200000,
+                  "net": "2.2177415"
+                }
+              ]
+            ]
+          },
+          "RAW": {
+            "changed_fields_across_shared_events": {},
+            "counts": [
+              0,
+              32
+            ],
+            "event_counts": [
+              {},
+              {
+                "CLOSED": 6,
+                "QUEUED": 6,
+                "SIM_ENTRY": 6,
+                "SIM_SL": 4,
+                "SIM_TP1": 3,
+                "SIM_TP2": 2,
+                "SIM_TP3": 2,
+                "STOP_UPDATE": 3
+              }
+            ],
+            "exact": false,
+            "examples": "OBSERVED",
+            "shared_event_ids": 0,
+            "unmatched_event_ids": [
+              0,
+              32
+            ]
+          },
+          "READY": {
+            "counts": [
+              0,
+              6
+            ],
+            "exact": false,
+            "examples": "OBSERVED"
+          },
+          "STATE": {
+            "counts": [
+              211,
+              211
+            ],
+            "exact": false,
+            "examples": "OBSERVED"
+          }
+        },
+        "selected_core_price_field_differences": {
+          "ema50": {
+            "both_present": 6,
+            "differences": 211,
+            "first_difference": {
+              "at_ms": 1794355200000,
+              "left": null,
+              "right": "4078.88597291"
+            },
+            "maximum_observed_absolute_delta": "14.59617879",
+            "one_sided_missing": 205,
+            "required_bound_failed": 211
+          },
+          "ema50_prev": {
+            "both_present": 0,
+            "differences": 211,
+            "first_difference": {
+              "at_ms": 1794355200000,
+              "left": null,
+              "right": "4082.79820306"
+            },
+            "maximum_observed_absolute_delta": null,
+            "one_sided_missing": 211,
+            "required_bound_failed": 211
+          },
+          "htf_close": {
+            "both_present": 211,
+            "differences": 0,
+            "first_difference": null,
+            "maximum_observed_absolute_delta": null,
+            "one_sided_missing": 0,
+            "required_bound_failed": 0
+          }
+        },
+        "shallow": {
+          "audited_closes": 211,
+          "chart_first_open_ms": 1794225900000,
+          "chart_first_open_utc": "2026-11-09T12:05:00Z",
+          "chart_last_historical_close_ms": 1794607200000,
+          "chart_last_historical_close_utc": "2026-11-13T22:00:00Z",
+          "core_trends": {
+            "MISSING": 211
+          },
+          "ema200": "UNOBSERVED_NOT_A_GATE",
+          "file": "M5-1223-add.csv",
+          "first_observed_ready_ms": null,
+          "first_observed_warmed_ms": null,
+          "log_sha256": "deb9ad4d31f8e922c6d4fd0bec8c453a98306be89300795db3b0a5e283c5ce38",
+          "prefix_confirmed_bars": 1223,
+          "prefix_ohlc_sha256": "0191395befefe2dd3f0f513ca162a6bcfeba25de32a59d62741930cd6546561a",
+          "raw_core_observation_closes": 211,
+          "raw_event_types": {},
+          "ready_HTF_closes": 0,
+          "s5_stream_counts": {
+            "ALERT": 0,
+            "CORE": 0,
+            "LEDGER": 211,
+            "RAW": 0,
+            "READY": 0,
+            "STATE": 211
+          },
+          "source_sha256": "5bb0019e045b739f1454fd90185e6525c0954f4c1eb3255c963641cea1039caa",
+          "unavailable_by_field": {
+            "adx": 0,
+            "atr_mean": 0,
+            "ema50": 205,
+            "ema50_prev": 211,
+            "htf_close": 0,
+            "rsi": 0
+          },
+          "warmed_closes": 0
+        },
+        "status": "DEPTH_SENSITIVITY_MISMATCH"
+      },
+      "original_source_vs_instrumented_control": {
+        "confirmed_market_and_shadow_prefix_exact": true,
+        "excluded_probe_only_tags": [
+          "CORE_HTF",
+          "EDA_BAR",
+          "EDA_SIDE"
+        ],
+        "execution_coverage": "NO_SIMULATED_ENTRY_EXAMPLES",
+        "left": {
+          "audited_closes": 211,
+          "chart_first_open_ms": 1794225900000,
+          "chart_first_open_utc": "2026-11-09T12:05:00Z",
+          "chart_last_historical_close_ms": 1794607200000,
+          "chart_last_historical_close_utc": "2026-11-13T22:00:00Z",
+          "core_trends": {},
+          "ema200": "UNOBSERVED_NOT_A_GATE",
+          "file": "M5-1223-control.csv",
+          "first_observed_ready_ms": null,
+          "first_observed_warmed_ms": null,
+          "log_sha256": "6c47faafe3fad6ac5f1e94b0d797ae2a763436303f4823e59fb244eb274bb205",
+          "prefix_confirmed_bars": 1223,
+          "prefix_ohlc_sha256": "0191395befefe2dd3f0f513ca162a6bcfeba25de32a59d62741930cd6546561a",
+          "raw_core_observation_closes": 0,
+          "raw_event_types": {},
+          "ready_HTF_closes": null,
+          "s5_stream_counts": {
+            "ALERT": 0,
+            "CORE": 0,
+            "LEDGER": 211,
+            "RAW": 0,
+            "READY": 0,
+            "STATE": 211
+          },
+          "source_sha256": "77feedcbef84e77b9270ec43840be5b823d838300d0a09d5ddb4fec7acc089f4",
+          "unavailable_by_field": null,
+          "warmed_closes": null
+        },
+        "protected_message_counts": [
+          717,
+          717
+        ],
+        "raw_core_values_only_observed_in_right": true,
+        "right": {
+          "audited_closes": 211,
+          "chart_first_open_ms": 1794225900000,
+          "chart_first_open_utc": "2026-11-09T12:05:00Z",
+          "chart_last_historical_close_ms": 1794607200000,
+          "chart_last_historical_close_utc": "2026-11-13T22:00:00Z",
+          "core_trends": {
+            "MISSING": 211
+          },
+          "ema200": "UNOBSERVED_NOT_A_GATE",
+          "file": "M5-1223-add.csv",
+          "first_observed_ready_ms": null,
+          "first_observed_warmed_ms": null,
+          "log_sha256": "deb9ad4d31f8e922c6d4fd0bec8c453a98306be89300795db3b0a5e283c5ce38",
+          "prefix_confirmed_bars": 1223,
+          "prefix_ohlc_sha256": "0191395befefe2dd3f0f513ca162a6bcfeba25de32a59d62741930cd6546561a",
+          "raw_core_observation_closes": 211,
+          "raw_event_types": {},
+          "ready_HTF_closes": 0,
+          "s5_stream_counts": {
+            "ALERT": 0,
+            "CORE": 0,
+            "LEDGER": 211,
+            "RAW": 0,
+            "READY": 0,
+            "STATE": 211
+          },
+          "source_sha256": "5bb0019e045b739f1454fd90185e6525c0954f4c1eb3255c963641cea1039caa",
+          "unavailable_by_field": {
+            "adx": 0,
+            "atr_mean": 0,
+            "ema50": 205,
+            "ema50_prev": 211,
+            "htf_close": 0,
+            "rsi": 0
+          },
+          "warmed_closes": 0
+        },
+        "status": "ADDITIVE_PROBE_PROTECTED_PARITY"
+      },
+      "registered_local_development_chart_extension": {
+        "added_chart_bars": 1335,
+        "dataset_relative_path": "M5_dataset/bars.csv",
+        "exact_ohlc_union_count": 6900,
+        "extension_is_right_edge_only": true,
+        "legacy_chart_bars": 5565,
+        "legacy_htf_nonnull_by_field": {
+          "htfClose": 5565,
+          "htfEMA50": 5565,
+          "htfEMA50prev": 5565
+        },
+        "legacy_sha256": "44971f52b0008fefc4b61dda51c71043f08e4a2e3bc6d08121380e95232ace1d",
+        "native_chart_bars": 3200,
+        "new_last_close_utc": "2026-11-13T22:00:00Z",
+        "old_first_open_utc": "2026-10-11T22:00:00Z",
+        "old_last_close_utc": "2026-11-09T02:45:00Z",
+        "overlap_ohlc_or_clock_conflicts": [],
+        "overlapping_chart_bars": 1865,
+        "scope": "Development chart OHLC comparison; legacy observer HTF fields are from 48e5cdd and cannot replace the exact current selected core tuple."
+      },
+      "same_history_readd": {
+        "alert_scope": "Protected Pine alert payloads in logs. Server delivery was not exercised by this comparator.",
+        "all_existing_payloads_and_core_HTF_exact": true,
+        "common_confirmed_ohlc": {
+          "closes": 1223,
+          "first_close_ms": 1794226200000,
+          "first_conflict_ms": null,
+          "identical_loaded_history": true,
+          "last_close_ms": 1794607200000,
+          "ohlc_conflicts": 0,
+          "same_end_marker_close": true
+        },
+        "core_HTF_mismatch_closes": 0,
+        "left": {
+          "audited_closes": 211,
+          "chart_first_open_ms": 1794225900000,
+          "chart_first_open_utc": "2026-11-09T12:05:00Z",
+          "chart_last_historical_close_ms": 1794607200000,
+          "chart_last_historical_close_utc": "2026-11-13T22:00:00Z",
+          "core_trends": {
+            "MISSING": 211
+          },
+          "ema200": "UNOBSERVED_NOT_A_GATE",
+          "file": "M5-1223-add.csv",
+          "first_observed_ready_ms": null,
+          "first_observed_warmed_ms": null,
+          "log_sha256": "deb9ad4d31f8e922c6d4fd0bec8c453a98306be89300795db3b0a5e283c5ce38",
+          "prefix_confirmed_bars": 1223,
+          "prefix_ohlc_sha256": "0191395befefe2dd3f0f513ca162a6bcfeba25de32a59d62741930cd6546561a",
+          "raw_core_observation_closes": 211,
+          "raw_event_types": {},
+          "ready_HTF_closes": 0,
+          "s5_stream_counts": {
+            "ALERT": 0,
+            "CORE": 0,
+            "LEDGER": 211,
+            "RAW": 0,
+            "READY": 0,
+            "STATE": 211
+          },
+          "source_sha256": "5bb0019e045b739f1454fd90185e6525c0954f4c1eb3255c963641cea1039caa",
+          "unavailable_by_field": {
+            "adx": 0,
+            "atr_mean": 0,
+            "ema50": 205,
+            "ema50_prev": 211,
+            "htf_close": 0,
+            "rsi": 0
+          },
+          "warmed_closes": 0
+        },
+        "right": {
+          "audited_closes": 211,
+          "chart_first_open_ms": 1794225900000,
+          "chart_first_open_utc": "2026-11-09T12:05:00Z",
+          "chart_last_historical_close_ms": 1794607200000,
+          "chart_last_historical_close_utc": "2026-11-13T22:00:00Z",
+          "core_trends": {
+            "MISSING": 211
+          },
+          "ema200": "UNOBSERVED_NOT_A_GATE",
+          "file": "M5-1223-readd.csv",
+          "first_observed_ready_ms": null,
+          "first_observed_warmed_ms": null,
+          "log_sha256": "deb9ad4d31f8e922c6d4fd0bec8c453a98306be89300795db3b0a5e283c5ce38",
+          "prefix_confirmed_bars": 1223,
+          "prefix_ohlc_sha256": "0191395befefe2dd3f0f513ca162a6bcfeba25de32a59d62741930cd6546561a",
+          "raw_core_observation_closes": 211,
+          "raw_event_types": {},
+          "ready_HTF_closes": 0,
+          "s5_stream_counts": {
+            "ALERT": 0,
+            "CORE": 0,
+            "LEDGER": 211,
+            "RAW": 0,
+            "READY": 0,
+            "STATE": 211
+          },
+          "source_sha256": "5bb0019e045b739f1454fd90185e6525c0954f4c1eb3255c963641cea1039caa",
+          "unavailable_by_field": {
+            "adx": 0,
+            "atr_mean": 0,
+            "ema50": 205,
+            "ema50_prev": 211,
+            "htf_close": 0,
+            "rsi": 0
+          },
+          "warmed_closes": 0
+        },
+        "s5": {
+          "ALERT": {
+            "counts": [
+              0,
+              0
+            ],
+            "exact": true,
+            "examples": "NONE_OBSERVED"
+          },
+          "CORE": {
+            "changed_fields_across_shared_events": {},
+            "counts": [
+              0,
+              0
+            ],
+            "event_counts": [
+              {},
+              {}
+            ],
+            "exact": true,
+            "examples": "NONE_OBSERVED",
+            "shared_event_ids": 0,
+            "unmatched_event_ids": [
+              0,
+              0
+            ]
+          },
+          "FORMATION_STATE": {
+            "counts": [
+              422,
+              422
+            ],
+            "exact": true,
+            "scope": "Phase, absolute origin timestamp, raw trigger, actual reason, cooldown."
+          },
+          "LEDGER": {
+            "closed_event_totals_in_window": [
+              {
+                "campaigns": 0,
+                "cost_r": 0,
+                "gross_r": 0,
+                "net_r": 0
+              },
+              {
+                "campaigns": 0,
+                "cost_r": 0,
+                "gross_r": 0,
+                "net_r": 0
+              }
+            ],
+            "counts": [
+              211,
+              211
+            ],
+            "exact": true,
+            "examples": "OBSERVED",
+            "first_and_last_cumulative": [
+              [
+                {
+                  "capacity_skipped": 0,
+                  "closed": 0,
+                  "costs": 0,
+                  "drawdown": 0,
+                  "entered": 0,
+                  "gross": 0,
+                  "known_ms": 1794355200000,
+                  "net": 0
+                },
+                {
+                  "capacity_skipped": 0,
+                  "closed": 0,
+                  "costs": 0,
+                  "drawdown": 0,
+                  "entered": 0,
+                  "gross": 0,
+                  "known_ms": 1794418200000,
+                  "net": 0
+                }
+              ],
+              [
+                {
+                  "capacity_skipped": 0,
+                  "closed": 0,
+                  "costs": 0,
+                  "drawdown": 0,
+                  "entered": 0,
+                  "gross": 0,
+                  "known_ms": 1794355200000,
+                  "net": 0
+                },
+                {
+                  "capacity_skipped": 0,
+                  "closed": 0,
+                  "costs": 0,
+                  "drawdown": 0,
+                  "entered": 0,
+                  "gross": 0,
+                  "known_ms": 1794418200000,
+                  "net": 0
+                }
+              ]
+            ]
+          },
+          "RAW": {
+            "changed_fields_across_shared_events": {},
+            "counts": [
+              0,
+              0
+            ],
+            "event_counts": [
+              {},
+              {}
+            ],
+            "exact": true,
+            "examples": "NONE_OBSERVED",
+            "shared_event_ids": 0,
+            "unmatched_event_ids": [
+              0,
+              0
+            ]
+          },
+          "READY": {
+            "counts": [
+              0,
+              0
+            ],
+            "exact": true,
+            "examples": "NONE_OBSERVED"
+          },
+          "STATE": {
+            "counts": [
+              211,
+              211
+            ],
+            "exact": true,
+            "examples": "OBSERVED"
+          }
+        },
+        "source_provenance": "SAME_SOURCE",
+        "status": "SAME_HISTORY_NATIVE_MATCH",
+        "timestamp_scope": "CORE_HTF is witnessed at chart close. A dedicated source timestamp for the original HTF raw tuple is not logged."
+      },
+      "same_history_reload": {
+        "alert_scope": "Protected Pine alert payloads in logs. Server delivery was not exercised by this comparator.",
+        "all_existing_payloads_and_core_HTF_exact": true,
+        "common_confirmed_ohlc": {
+          "closes": 1223,
+          "first_close_ms": 1794226200000,
+          "first_conflict_ms": null,
+          "identical_loaded_history": true,
+          "last_close_ms": 1794607200000,
+          "ohlc_conflicts": 0,
+          "same_end_marker_close": true
+        },
+        "core_HTF_mismatch_closes": 0,
+        "left": {
+          "audited_closes": 211,
+          "chart_first_open_ms": 1794225900000,
+          "chart_first_open_utc": "2026-11-09T12:05:00Z",
+          "chart_last_historical_close_ms": 1794607200000,
+          "chart_last_historical_close_utc": "2026-11-13T22:00:00Z",
+          "core_trends": {
+            "MISSING": 211
+          },
+          "ema200": "UNOBSERVED_NOT_A_GATE",
+          "file": "M5-1223-add.csv",
+          "first_observed_ready_ms": null,
+          "first_observed_warmed_ms": null,
+          "log_sha256": "deb9ad4d31f8e922c6d4fd0bec8c453a98306be89300795db3b0a5e283c5ce38",
+          "prefix_confirmed_bars": 1223,
+          "prefix_ohlc_sha256": "0191395befefe2dd3f0f513ca162a6bcfeba25de32a59d62741930cd6546561a",
+          "raw_core_observation_closes": 211,
+          "raw_event_types": {},
+          "ready_HTF_closes": 0,
+          "s5_stream_counts": {
+            "ALERT": 0,
+            "CORE": 0,
+            "LEDGER": 211,
+            "RAW": 0,
+            "READY": 0,
+            "STATE": 211
+          },
+          "source_sha256": "5bb0019e045b739f1454fd90185e6525c0954f4c1eb3255c963641cea1039caa",
+          "unavailable_by_field": {
+            "adx": 0,
+            "atr_mean": 0,
+            "ema50": 205,
+            "ema50_prev": 211,
+            "htf_close": 0,
+            "rsi": 0
+          },
+          "warmed_closes": 0
+        },
+        "right": {
+          "audited_closes": 211,
+          "chart_first_open_ms": 1794225900000,
+          "chart_first_open_utc": "2026-11-09T12:05:00Z",
+          "chart_last_historical_close_ms": 1794607200000,
+          "chart_last_historical_close_utc": "2026-11-13T22:00:00Z",
+          "core_trends": {
+            "MISSING": 211
+          },
+          "ema200": "UNOBSERVED_NOT_A_GATE",
+          "file": "M5-1223-reload.csv",
+          "first_observed_ready_ms": null,
+          "first_observed_warmed_ms": null,
+          "log_sha256": "deb9ad4d31f8e922c6d4fd0bec8c453a98306be89300795db3b0a5e283c5ce38",
+          "prefix_confirmed_bars": 1223,
+          "prefix_ohlc_sha256": "0191395befefe2dd3f0f513ca162a6bcfeba25de32a59d62741930cd6546561a",
+          "raw_core_observation_closes": 211,
+          "raw_event_types": {},
+          "ready_HTF_closes": 0,
+          "s5_stream_counts": {
+            "ALERT": 0,
+            "CORE": 0,
+            "LEDGER": 211,
+            "RAW": 0,
+            "READY": 0,
+            "STATE": 211
+          },
+          "source_sha256": "5bb0019e045b739f1454fd90185e6525c0954f4c1eb3255c963641cea1039caa",
+          "unavailable_by_field": {
+            "adx": 0,
+            "atr_mean": 0,
+            "ema50": 205,
+            "ema50_prev": 211,
+            "htf_close": 0,
+            "rsi": 0
+          },
+          "warmed_closes": 0
+        },
+        "s5": {
+          "ALERT": {
+            "counts": [
+              0,
+              0
+            ],
+            "exact": true,
+            "examples": "NONE_OBSERVED"
+          },
+          "CORE": {
+            "changed_fields_across_shared_events": {},
+            "counts": [
+              0,
+              0
+            ],
+            "event_counts": [
+              {},
+              {}
+            ],
+            "exact": true,
+            "examples": "NONE_OBSERVED",
+            "shared_event_ids": 0,
+            "unmatched_event_ids": [
+              0,
+              0
+            ]
+          },
+          "FORMATION_STATE": {
+            "counts": [
+              422,
+              422
+            ],
+            "exact": true,
+            "scope": "Phase, absolute origin timestamp, raw trigger, actual reason, cooldown."
+          },
+          "LEDGER": {
+            "closed_event_totals_in_window": [
+              {
+                "campaigns": 0,
+                "cost_r": 0,
+                "gross_r": 0,
+                "net_r": 0
+              },
+              {
+                "campaigns": 0,
+                "cost_r": 0,
+                "gross_r": 0,
+                "net_r": 0
+              }
+            ],
+            "counts": [
+              211,
+              211
+            ],
+            "exact": true,
+            "examples": "OBSERVED",
+            "first_and_last_cumulative": [
+              [
+                {
+                  "capacity_skipped": 0,
+                  "closed": 0,
+                  "costs": 0,
+                  "drawdown": 0,
+                  "entered": 0,
+                  "gross": 0,
+                  "known_ms": 1794355200000,
+                  "net": 0
+                },
+                {
+                  "capacity_skipped": 0,
+                  "closed": 0,
+                  "costs": 0,
+                  "drawdown": 0,
+                  "entered": 0,
+                  "gross": 0,
+                  "known_ms": 1794418200000,
+                  "net": 0
+                }
+              ],
+              [
+                {
+                  "capacity_skipped": 0,
+                  "closed": 0,
+                  "costs": 0,
+                  "drawdown": 0,
+                  "entered": 0,
+                  "gross": 0,
+                  "known_ms": 1794355200000,
+                  "net": 0
+                },
+                {
+                  "capacity_skipped": 0,
+                  "closed": 0,
+                  "costs": 0,
+                  "drawdown": 0,
+                  "entered": 0,
+                  "gross": 0,
+                  "known_ms": 1794418200000,
+                  "net": 0
+                }
+              ]
+            ]
+          },
+          "RAW": {
+            "changed_fields_across_shared_events": {},
+            "counts": [
+              0,
+              0
+            ],
+            "event_counts": [
+              {},
+              {}
+            ],
+            "exact": true,
+            "examples": "NONE_OBSERVED",
+            "shared_event_ids": 0,
+            "unmatched_event_ids": [
+              0,
+              0
+            ]
+          },
+          "READY": {
+            "counts": [
+              0,
+              0
+            ],
+            "exact": true,
+            "examples": "NONE_OBSERVED"
+          },
+          "STATE": {
+            "counts": [
+              211,
+              211
+            ],
+            "exact": true,
+            "examples": "OBSERVED"
+          }
+        },
+        "source_provenance": "SAME_SOURCE",
+        "status": "SAME_HISTORY_NATIVE_MATCH",
+        "timestamp_scope": "CORE_HTF is witnessed at chart close. A dedicated source timestamp for the original HTF raw tuple is not logged."
+      }
+    }
+  },
+  "independent_untouched_bars_admitted": 0,
+  "missing_evidence": [
+    "A second sufficiently deep same-end native run has not established numeric and directional stability at the pinned tolerance.",
+    "Core tuple source timestamps and the TradingView EMA seed are absent. Exact chart OHLC and chart-close trace alone do not identify them.",
+    "The deep native protected ledger covers a Nov 11 case-study window; additional chart bars do not provide a complete current Visual V2 campaign tape.",
+    "All work here is archival replay and reproducibility. No new native execution or sealed data was used."
+  ],
+  "native_window": {
+    "first_audited_close_utc": "2026-11-11T00:00:00Z",
+    "fixed_historical_last_close_utc": "2026-11-13T22:00:00Z",
+    "last_audited_close_utc": "2026-11-11T17:30:00Z"
+  },
+  "provenance": {
+    "diagnostic_parent_commit": "4875918c17db967b706364c35c7cd074c5fbc14d",
+    "native_archive": {
+      "commit": "56c9dd25d506341042e8cc3c078fcfb92be650b8",
+      "path": "research/core_htf_readiness/evidence/native-exports.zip",
+      "sha256": "64383cf0a3ec0ff73e32f222f1d95213f8f9b163138c1f77b910ea8ce9c5c6ee"
+    },
+    "native_settings": {
+      "commit": "56c9dd25d506341042e8cc3c078fcfb92be650b8",
+      "path": "research/core_htf_readiness/evidence/native-settings.json",
+      "sha256": "d7598cb7210078880f18ca0e58d7d695720d7f5fef6fa14ae5cba5a83d71c1fe"
+    },
+    "reconstructed_probe_sha256": "5bb0019e045b739f1454fd90185e6525c0954f4c1eb3255c963641cea1039caa",
+    "visual_commit": "37b903f46a2d878d9d0757da134620c22f2d067d",
+    "visual_sha256": "77feedcbef84e77b9270ec43840be5b823d838300d0a09d5ddb4fec7acc089f4"
+  },
+  "schema": "qirvanta.net_campaign_evidence.htf_readiness.v1",
+  "status": "NATIVE_AVAILABILITY_REPRODUCED_NUMERICAL_STABILITY_NOT_ESTABLISHED"
+}
