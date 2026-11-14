@@ -1,0 +1,47 @@
+{
+  "schema": "qirvanta.h1-controlled-capture.v1",
+  "parent_protocol_commit": "7fc1f0b71edeb05da804385e0351e9228015dc0a",
+  "parent_protocol_sha256": "0853701432c588b1ff95b58c4cb1b8ff45225634d86ce7350c558cbc6755aaa8",
+  "registered_before_new_native_ab": true,
+  "purpose": "Bounded controlled native A/B from matched natural history. This supplements the original protocol for diagnostics. It does not replace the historical stability or independent evaluation requirements.",
+  "protected_visual_v2": "37b903f46a2d878d9d0757da134620c22f2d067d",
+  "primary": {
+    "symbol": "OANDA:XAUUSD",
+    "frame_minutes": 15,
+    "chart": "standard",
+    "timezone": "UTC",
+    "calculated_bars": 5000,
+    "first_open_utc": "2026-08-31T10:30:00Z",
+    "first_open_ms": 1788172200000,
+    "score_first_close_utc": "2026-11-11T00:00:00Z",
+    "score_first_close_ms": 1794355200000,
+    "last_close_utc": "2026-11-13T22:00:00Z",
+    "last_close_ms": 1794607200000
+  },
+  "history": {
+    "legacy_continuation": "Requires complete original previous state or exact original natural start and prefix. Old campaign books are not initialized from partial snapshots.",
+    "new_controlled_run": "Each lane executes independently from chart index zero. Export index bounds apply only to logging. Any mismatched first input candle, common OHLC or end blocks the registered primary comparison. Changing the chart range silently changes the natural start and requires a separate registration.",
+    "same_inputs": "The same script, settings, OHLC, confirmed core HTF inputs and exact repeat journals are required under the matched natural start. Initial full book/formation/gate state must match. A is also checked against the archived unmodified Visual V2 behavior at registered matched closes.",
+    "depth_sensitivity": {
+      "ema_absolute_tolerance": 0.001,
+      "compare_available_at_same_end_after_score_start": true,
+      "threshold": "HTF confirmed close, selected source clocks and applicable direction/readiness must match where comparable. Deeper history checks are independent of fixed-input repeatability. Matched start is no evidence for depth stability."
+    },
+    "not_a_holdout": "Previously examined dates through 2026-11-13. All sealed and future periods remain excluded."
+  },
+  "variants": {
+    "A": "Exact original Pine cooldown on last accepted same-side S5 formation.",
+    "B": "Only override a blocked cooldown when the last accepted same-side plan was queued and then cancelled by the RAW next-open check without any fill, the new formation was seeded strictly after the cancellation was known, and the last actual same-side RAW fill is absent in the natural run or more than eight chart bars earlier.",
+    "state": "All paths use separate portfolios and the exact original book, risk and evidence-shield mechanics. The code is diagnostic and cannot transmit orders or alerts."
+  },
+  "economics": {
+    "native": {"spread_price": 0.35, "slippage_ticks": 2, "fee_price": 0, "funding_long_per_day": 0, "funding_short_per_day": 0},
+    "normal": {"spread_price": 0.35, "slippage_ticks": 2, "commission_usd_per_side_per_unit": 0.175},
+    "stress": {"spread_price": 0.70, "slippage_ticks": 5, "commission_usd_per_side_per_unit": 0.2625},
+    "score_book": "RAW",
+    "cash_risk_per_campaign_usd": 250,
+    "cash_model": "Fixed-fill post-hoc economic repricing. Derive theoretical fractional quantity separately per scenario from $250 and full stop risk per unit. Preserve native admission/fill and ordinal exit events for each lane. No broker sizing, capital-availability or fill feasibility claim.",
+    "cost_gate_replay": "Comparing a quoted all-in cost to the original .18 threshold is sensitivity only. A separate cost-dependent full replay is unavailable unless the entire lane is rerun for each cost policy. Do not present fixed-fill repricing as that replay."
+  },
+  "budget": "One original cooldown and the one registered hypothesis. One planned diagnostic compiler submission on the authorized test profile after static QA. Repeat executions on the already compiled diagnostic source, with no second compilation after timeout."
+}

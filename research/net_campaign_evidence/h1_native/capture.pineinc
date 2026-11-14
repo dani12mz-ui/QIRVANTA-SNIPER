@@ -1,0 +1,195 @@
+// @h1 input
+const string H1_GROUP = "H1 · NATIVE DIAGNOSTICS"
+const int H1_CUTOFF = timestamp("13 Nov 2026 22:00 +0000")
+const int H1_BAR_CAP = 350
+const int H1_LOG_CAP = 9000
+string h1Lane = input.string("A", "Lane", options=["A", "B"], group=H1_GROUP)
+int h1Start = input.time(timestamp("11 Nov 2026 00:00 +0000"), "Start close UTC", group=H1_GROUP)
+int h1End = input.time(timestamp("11 Nov 2026 17:30 +0000"), "End close UTC", group=H1_GROUP)
+
+// @h1 memory
+// This memory is observational in A. It follows the last accepted S5 plan, not a similarly timed plan.
+type H1Memory
+    string acceptedId = ""
+    int queuedIndex = na
+    int queuedClose = na
+    string cancelId = ""
+    int cancelKnown = na
+    int fillIndex = na
+    int fillTime = na
+
+var array<H1Memory> h1Memory = array.new<H1Memory>()
+if barstate.isfirst
+    array.push(h1Memory, H1Memory.new())
+    array.push(h1Memory, H1Memory.new())
+
+f_h1Field(string value) =>
+    str.replace_all(value, "|", "~")
+
+f_h1Formation(TvCandidateState state, int acceptedIndex) =>
+    f_int(state.phase) + "|" + f_int(state.bornTime) + "|" + f_num(state.anchor) + "|" + f_num(state.level) + "|" + f_int(acceptedIndex)
+
+f_h1Accepted(H1Memory memory, string planId) =>
+    memory.acceptedId := planId
+    memory.queuedIndex := na
+    memory.queuedClose := na
+    memory.cancelId := ""
+    memory.cancelKnown := na
+    true
+
+f_h1Exception(H1Memory memory, string candidateId, int born) =>
+    bool cancellationKnownBeforeSeed = not na(memory.cancelKnown) and not na(born) and
+         memory.cancelKnown < born and born < time_close
+    bool sameUnfilledAccepted = memory.acceptedId != "" and memory.acceptedId == memory.cancelId and
+         memory.acceptedId != candidateId and cancellationKnownBeforeSeed
+    bool latestFillCooled = na(memory.fillIndex) or bar_index - memory.fillIndex > minCooldown
+    h1Lane == "B" and sameUnfilledAccepted and latestFillCooled
+
+f_h1ObserveRaw(Event e) =>
+    int idx = e.side == 1 ? 0 : 1
+    H1Memory memory = array.get(h1Memory, idx)
+    bool accepted = memory.acceptedId != "" and memory.acceptedId == e.planId
+    if e.kind == "SIM_ENTRY"
+        memory.fillIndex := bar_index
+        memory.fillTime := e.effectiveTime
+        if accepted
+            memory.cancelId := ""
+            memory.cancelKnown := na
+    else if accepted and e.kind == "QUEUED"
+        memory.queuedIndex := bar_index
+        memory.queuedClose := e.knownTime
+    else if accepted and e.kind == "CANCELLED"
+        // Core f_step() only emits RAW CANCELLED while queued, before SIM_ENTRY.
+        // The charter restricts this exception to the immediately following observed chart open.
+        bool nextOpen = not na(memory.queuedIndex) and bar_index == memory.queuedIndex + 1 and
+             e.effectiveTime == time and e.knownTime == time_close and e.knownTime > memory.queuedClose
+        if nextOpen
+            memory.cancelId := e.planId
+            memory.cancelKnown := e.knownTime
+    true
+
+bool h1LogBar = processBar and tvEntryFrame and syminfo.tickerid == "OANDA:XAUUSD" and
+     h1Start <= h1End and h1End <= H1_CUTOFF and time_close >= h1Start and time_close <= h1End
+var int h1FirstOpen = time
+var array<string> h1SidePrefix = array.new_string(2, "")
+var array<string> h1SideSuffix = array.new_string(2, "")
+var array<bool> h1Stock = array.new_bool(2, false)
+var array<bool> h1Used = array.new_bool(2, false)
+var array<int> h1Seed = array.new_int(2, na)
+
+// @h1 selection
+            bool h1Bypass = not cool and extraReason == "" and commonReason == "УСЛОВИЯТА СА ИЗПЪЛНЕНИ" and
+                 f_h1Exception(array.get(h1Memory, idx), p.id, born)
+            if h1LogBar
+                array.set(h1Stock, idx, cool)
+                array.set(h1Used, idx, h1Bypass)
+                array.set(h1Seed, idx, born)
+            reason := h1Bypass ? commonReason : extraReason != "" ? extraReason : not cool ? "Пауза след потвърден модел" : commonReason
+            if reason == "УСЛОВИЯТА СА ИЗПЪЛНЕНИ"
+                array.push(candidates, p)
+                array.set(tvCandidateLast, idx, bar_index)
+                f_h1Accepted(array.get(h1Memory, idx), p.id)
+
+// @h1 call
+        if h1LogBar
+            array.set(h1Stock, idx, false)
+            array.set(h1Used, idx, false)
+            array.set(h1Seed, idx, na)
+            TvCandidateState h1Before = array.get(tvCandidateStates, idx)
+            H1Memory h1Prior = array.get(h1Memory, idx)
+            array.set(h1SidePrefix, idx, f_h1Formation(h1Before, array.get(tvCandidateLast, idx)))
+            array.set(h1SideSuffix, idx, f_int(h1Prior.fillIndex) + "|" + f_int(h1Prior.fillTime) + "|" +
+                 f_h1Field(h1Prior.acceptedId) + "|" + f_h1Field(h1Prior.cancelId) + "|" + f_int(h1Prior.cancelKnown))
+        [why, attempted] = f_tvCandidate(d)
+        if h1LogBar
+            TvCandidateState h1After = array.get(tvCandidateStates, idx)
+            string cooler = attempted ? str.tostring(array.get(h1Stock, idx)) : "NA"
+            string transition = f_h1Formation(h1After, array.get(tvCandidateLast, idx)) + "|" + str.tostring(attempted) + "|" +
+                 cooler + "|" + str.tostring(array.get(h1Used, idx)) + "|" + f_h1Field(why)
+            array.set(h1SidePrefix, idx, array.get(h1SidePrefix, idx) + "|" + transition)
+            array.set(h1SideSuffix, idx, array.get(h1SideSuffix, idx) + "|" + f_int(array.get(h1Seed, idx)))
+
+// @h1 tail
+// No dashboard, alerts, broker calls or changes to paper books. Readiness and campaign capture only.
+f_h1Key(string tag) =>
+    tag + "|1|" + h1Lane + "|" + f_int(time_close)
+
+f_h1Manifest(string tag, int bars, int eventsEmitted) =>
+    tag + "|1|" + h1Lane + "|" + syminfo.tickerid + "|" + timeframe.period + "|" + f_int(h1Start) + "|" +
+         f_int(h1End) + "|" + f_int(h1FirstOpen) + "|" + f_int(bar_index) + "|" + f_int(time_close) +
+         "|" + f_int(bars) + "|" + f_int(eventsEmitted)
+
+f_h1BookName(int index) =>
+    index < 3 ? "M" + str.tostring(index + 1) : index == 3 ? "RAW" : "FILTERED"
+
+f_h1Book(int index, Paper book, Ledger ledger) =>
+    string planId = book.phase == 0 or na(book.p) ? "" : f_h1Field(book.p.id)
+    string position = f_int(book.phase) + "|" + planId + "|" + f_num(book.entry) + "|" + f_num(book.risk) + "|" +
+         f_num(book.stop) + "|" + f_num(book.remaining) + "|" + str.tostring(book.hit1) + "|" + str.tostring(book.hit2) +
+         "|" + str.tostring(book.hit3) + "|" + f_int(book.fillBar) + "|" + f_int(book.fillTime) + "|" +
+         f_int(book.lockBar) + "|" + str.tostring(book.exitNextOpen) + "|" + f_int(book.dayKey) + "|" +
+         f_num(book.dayNet) + "|" + f_int(book.dayStreak)
+    string counts = f_int(ledger.entered) + "|" + f_int(ledger.closed) + "|" + f_int(ledger.positive) + "|" +
+         f_int(ledger.negative) + "|" + f_int(ledger.zero) + "|" + f_int(ledger.cancelled) + "|" +
+         f_int(ledger.capacitySkipped) + "|" + f_int(ledger.ambiguousBars)
+    string values = f_num(ledger.gross) + "|" + f_num(ledger.costs) + "|" + f_num(ledger.net) + "|" +
+         f_num(ledger.gains) + "|" + f_num(ledger.losses) + "|" + f_num(ledger.peak) + "|" +
+         f_num(ledger.drawdown) + "|" + f_num(ledger.holdBars)
+    f_h1Key("H1_BOOK") + "|" + f_h1BookName(index) + "|" + position + "|" + counts + "|" + values
+
+var int h1Logged = 0
+var int h1Events = 0
+var int h1Messages = 0
+var bool h1Overflow = false
+if processBar
+    // Runs every confirmed bar, including before the requested log interval.
+    for e in events
+        if e.book == "RAW" and e.side != 0
+            f_h1ObserveRaw(e)
+    if h1LogBar
+        Plan selected = f_pick(candidates, 0, false)
+        string payload = ""
+        if not na(selected) and selected.strategyKey == "S5" and f_validPlan(selected) and f_tvQtyOnGrid(1.0)
+            for e in events
+                if f_rcCore(e) and e.kind == "CONFIRMED" and e.planId == selected.id
+                    payload := f_rcPayload(e, "READY", selected, RC_READY_REASON)
+        int nextMessages = 9 + array.size(events) + (payload != "" ? 1 : 0)
+        if h1Logged >= H1_BAR_CAP or h1Messages + nextMessages > H1_LOG_CAP
+            h1Overflow := true
+        if not h1Overflow
+            if h1Logged == 0
+                log.info(f_h1Manifest("H1_META", 0, 0))
+            string key = "H1_BAR|1|" + h1Lane + "|" + syminfo.tickerid + "|" + timeframe.period + "|" +
+                 f_int(bar_index) + "|" + f_int(time) + "|" + f_int(time_close)
+            log.info(key + "|" + f_num(open) + "|" + f_num(high) + "|" + f_num(low) + "|" + f_num(close) +
+                 "|" + f_num(close[1]) + "|" + str.tostring(tvTimeGap) + "|" + str.tostring(warmup) +
+                 "|" + str.tostring(readyHTF) + "|" + str.tostring(sessionPass) + "|" + str.tostring(datePass) +
+                 "|" + str.tostring(newsPaused) + "|" + str.tostring(validATR) + "|" + str.tostring(acceptableBar))
+            log.info(f_h1Key("H1_HTF") + "|" + htf + "|" + f_int(h1SourceClose1) + "|" + f_int(h1SourceClose3) +
+                 "|" + f_num(htfClose) + "|" + f_num(htfEMA50) + "|" + f_num(htfEMA50prev) + "|" +
+                 f_num(atrMean) + "|" + f_num(rsi) + "|" + f_num(adx))
+            EvidenceGate globalGate = array.get(gates, 0)
+            EvidenceGate familyGate = array.get(gates, 2)
+            string shields = str.tostring(globalGate.paused) + "|" + f_int(globalGate.pausedAtCount) + "|" +
+                 str.tostring(familyGate.paused) + "|" + f_int(familyGate.pausedAtCount)
+            for idx = 0 to 1
+                int side = idx == 0 ? 1 : -1
+                log.info(f_h1Key("H1_STATE") + "|" + f_int(side) + "|" + array.get(h1SidePrefix, idx) + "|" +
+                     array.get(h1SideSuffix, idx) + "|" + shields)
+            for index = 0 to 4
+                log.info(f_h1Book(index, array.get(books, index), array.get(ledgers, index)))
+            for e in events
+                log.info("H1_E|" + h1Lane + "|" + f_json(e))
+            if payload != ""
+                log.info("H1_READY|" + h1Lane + "|" + payload)
+            h1Logged += 1
+            h1Events += array.size(events)
+            h1Messages += nextMessages
+            if barstate.islastconfirmedhistory
+                log.info("H1_LAST|1|" + h1Lane + "|" + syminfo.tickerid + "|" + timeframe.period + "|" +
+                     f_int(h1FirstOpen) + "|" + f_int(bar_index) + "|" + f_int(time_close))
+            if time_close == h1End
+                log.info(f_h1Manifest("H1_END", h1Logged, h1Events))
+
+plot(na, title="H1 diagnostic journal", display=display.none)
+

@@ -1,0 +1,1078 @@
+//@version=6
+// QIRVANTA GOLD PRO UNIFIED — observation + S5/RC2 permission
+// Research/educational indicator. Directional opportunities are NOT approved trades.
+// The S5 engine and execution logic are unchanged; DT SHADOW is display-only.
+// No broker orders. No verified positive expectancy. Confirmation required.
+// Compile-rescue research derivative of verified UNIFIED 5528556.
+indicator("QIRVANTA S5 · H1 NATIVE DIAGNOSTIC", shorttitle="QIRV H1 QA", overlay=true, behind_chart=false, max_labels_count=60, max_lines_count=26, max_boxes_count=12, max_bars_back=1000, calc_bars_count=1200)
+const string H1_GROUP = "H1 · NATIVE DIAGNOSTICS"
+const int H1_CUTOFF = timestamp("13 Nov 2026 22:00 +0000")
+const int H1_BAR_CAP = 350
+const int H1_LOG_CAP = 9000
+string h1Lane = input.string("A", "Lane", options=["A", "B"], group=H1_GROUP)
+int h1Start = input.time(timestamp("11 Nov 2026 00:00 +0000"), "Start close UTC", group=H1_GROUP)
+int h1End = input.time(timestamp("11 Nov 2026 17:30 +0000"), "End close UTC", group=H1_GROUP)
+
+const string CORE_SHA256 = "0d12e94769569a5af6c70061ae1ea4ff5cf4b41b1d8e0867abf739c70710c1d6"
+bool tvEnglish = "Български" == "English"
+// @tv-inputs
+// The only executable signal family is the frozen S5.
+string tvStrategyMode = "S5"
+bool tvCandidateRequireHTF = false
+
+// BEGIN S5 SPECIALIZATION of canonical CORE 0d12e94769569a5af6c70061ae1ea4ff5cf4b41b1d8e0867abf739c70710c1d6
+// Canonical configuration; generated identically in indicator and validation strategy.
+string tradingMode = "АВТОМАТИЧЕН"
+bool automaticHTF = true
+string customHTF = "60"
+int structureBars = 6
+float fastMinBodyATR = 0.50
+float fastMaxBodyATR = 1.65
+int pivotLeft = 3
+int pivotRight = 3
+float minDisplaceATR = 0.30
+int pdWindow = 80
+bool requireFVG = false
+bool requirePD = false
+bool requireRoom = false
+float minimumRoomR = 1.0
+float fvgSizeATR = 0.04
+int minADX = 17
+float minATRratio = 0.55
+float maxATRratio = 2.8
+float maxEntryBarATR = 2.6
+bool filterSession = false
+string sessionScope = "Само скалпинг"
+string scalpSession = "1000-2000"
+string riskTimezone = "Europe/Sofia"
+bool manualNewsPause = false
+bool useNewsWindow = false
+int newsAt = timestamp("01 Jan 2020 00:00 +0000")
+int newsBefore = 15
+int newsAfter = 15
+float spreadAssumption = 0.35
+int slipTicks = 2
+float feePrice = 0.0
+float fundingLong = 0.0
+float fundingShort = 0.0
+float minStopATR = 0.8
+float maxStopATR = 3.5
+float slBufferATR = 0.12
+float maxCostRisk = 0.18
+float target1R = 1.0
+float target2R = 2.0
+float target3R = 3.0
+float profitLockR = 0.05
+int minCooldown = 8
+int scalpMaxHold = 48
+int swingMaxHold = 60
+float maxOpenDeviationATR = 0.20
+bool paperGapFilter = true
+int maxPaperLosingStreak = 3
+float maxPaperDailyLossR = 3.0
+bool enableEvidenceShield = true
+int globalMinClosed = 30
+float globalStopNetR = -5.0
+int modelMinClosed = 20
+float modelStopAvgR = -0.15
+int recoveryTrades = 5
+bool observeCountertrendOnly = true
+string contextPolicy = "БАЗОВ"
+int efficiencyLength = 20
+float minEfficiency = 0.25
+int testStart = timestamp("01 Jan 2020 00:00 +0000")
+int testEnd = timestamp("01 Jan 2035 00:00 +0000")
+
+int tfSeconds = timeframe.in_seconds()
+bool scalp = tradingMode == "СКАЛПИНГ" or (tradingMode == "АВТОМАТИЧЕН" and tfSeconds <= 900)
+string autoHTF = tfSeconds <= 300 ? "60" : tfSeconds <= 900 ? "240" : "D"
+string htf = automaticHTF ? autoHTF : customHTF
+int maxHoldBars = scalp ? scalpMaxHold : swingMaxHold
+float roundTripPriceCost = spreadAssumption + 2.0 * slipTicks * syminfo.mintick + feePrice
+bool datePass = time_close >= testStart and time_close < testEnd
+bool timedNews = useNewsWindow and time_close >= newsAt - newsBefore * 60000 and time_close <= newsAt + newsAfter * 60000
+bool newsPaused = manualNewsPause or timedNews
+bool processBar = barstate.isconfirmed
+if barstate.isfirst
+    if not chart.is_standard
+        runtime.error("Използвай стандартни OHLC свещи, не Heikin Ashi/Renko.")
+    if not (tfSeconds == 300 or tfSeconds == 900 or tfSeconds == 1800 or tfSeconds == 3600 or tfSeconds == 14400)
+        runtime.error("Поддържат се M5, M15, M30, H1 и H4.")
+    if timeframe.in_seconds(htf) <= tfSeconds
+        runtime.error("HTF трябва да е над текущата времева рамка.")
+    if not (target1R < target2R and target2R < target3R)
+        runtime.error("Целите трябва да изпълняват TP1 < TP2 < TP3 по R.")
+    if maxStopATR <= minStopATR or maxATRratio <= minATRratio or fastMaxBodyATR < fastMinBodyATR
+        runtime.error("Невалидни минимални/максимални граници.")
+    if testEnd <= testStart
+        runtime.error("Краят на теста трябва да е след началото.")
+
+// The [1] HTF offset + lookahead_on returns the last COMPLETED HTF candle.
+[htfClose, htfEMA50, htfEMA200, htfEMA50prev, h1SourceClose1, h1SourceClose3] = request.security(syminfo.tickerid, htf, [close[1], ta.ema(close, 50)[1], ta.ema(close, 200)[1], ta.ema(close, 50)[3], time_close[1], time_close[3]], lookahead=barmerge.lookahead_on)
+[priorDayHigh, priorDayLow] = request.security(syminfo.tickerid, "D", [high[1], low[1]], lookahead=barmerge.lookahead_on)
+bool readyHTF = not na(htfClose) and not na(htfEMA50) and not na(htfEMA50prev)
+bool bullHTF = readyHTF and htfClose > htfEMA50 and htfEMA50 > htfEMA50prev
+bool bearHTF = readyHTF and htfClose < htfEMA50 and htfEMA50 < htfEMA50prev
+float emaFast = ta.ema(close, 21)
+float emaSlow = ta.ema(close, 55)
+float atr = ta.atr(14)
+float atrMean = ta.sma(atr, 40)
+float rsi = ta.rsi(close, 14)
+// Causal efficiency ratio: all inputs belong to this bar or preceding bars.
+float traveled = math.sum(math.abs(ta.change(close)), efficiencyLength)
+float efficiency = not na(traveled) and not na(close[efficiencyLength]) ? (traveled > 0 ? math.min(1.0, math.abs(close - close[efficiencyLength]) / traveled) : 0.0) : na
+[diPlus, diMinus, adx] = ta.dmi(14, 14)
+float body = math.abs(close - open)
+float barRange = math.max(high - low, syminfo.mintick)
+bool bullishBar = close > open and (close - low) / barRange >= 0.65
+bool bearishBar = close < open and (high - close) / barRange >= 0.65
+bool displacementUp = bullishBar and body >= atr * minDisplaceATR
+bool displacementDn = bearishBar and body >= atr * minDisplaceATR
+bool bullLocal = close > emaFast and emaFast > emaSlow and emaFast >= emaFast[2]
+bool bearLocal = close < emaFast and emaFast < emaSlow and emaFast <= emaFast[2]
+bool bullMomentum = rsi > 50 and diPlus > diMinus
+bool bearMomentum = rsi < 50 and diMinus > diPlus
+bool validATR = not na(atrMean) and atr > 0 and atr >= atrMean * minATRratio and atr <= atrMean * maxATRratio
+bool acceptableBar = atr > 0 and barRange <= atr * maxEntryBarATR
+bool inSession = not na(time(timeframe.period, scalpSession, riskTimezone))
+bool sessionPass = not filterSession or (sessionScope == "Само скалпинг" and not scalp) or inSession
+bool warmup = bar_index > 250 and readyHTF and not na(atrMean) and not na(rsi) and not na(adx)
+float shortStruct = ta.lowest(low, structureBars)[1]
+float longStruct = ta.highest(high, structureBars)[1]
+float pdHi = ta.highest(high, pdWindow)[1]
+float pdLo = ta.lowest(low, pdWindow)[1]
+float pdMid = (pdHi + pdLo) / 2.0
+bool inDiscount = not na(pdMid) and close <= pdMid
+bool inPremium = not na(pdMid) and close >= pdMid
+bool bullFvgNow = not na(high[2]) and low > high[2] and low - high[2] >= fvgSizeATR * atr
+bool bearFvgNow = not na(low[2]) and high < low[2] and low[2] - high >= fvgSizeATR * atr
+float pivotHigh = ta.pivothigh(high, pivotLeft, pivotRight)
+float pivotLow = ta.pivotlow(low, pivotLeft, pivotRight)
+var float lastPivotHigh = na
+var float lastPivotLow = na
+// A developing pivot on an open realtime bar may disappear. Commit pivots on candle close only.
+if barstate.isconfirmed and not na(pivotHigh)
+    lastPivotHigh := pivotHigh
+if barstate.isconfirmed and not na(pivotLow)
+    lastPivotLow := pivotLow
+
+// Completed Asian session levels, not the developing high/low.
+bool asiaActive = timeframe.isintraday and not na(time(timeframe.period, "0200-1000", riskTimezone))
+var float asianH = na
+var float asianL = na
+var float lastAsianH = na
+var float lastAsianL = na
+// Freeze the session bounds using closed candles; release levels at the session's first closed non-Asia bar.
+if barstate.isconfirmed
+    if asiaActive
+        if not asiaActive[1] or na(asianH)
+            asianH := high
+            asianL := low
+        else
+            asianH := math.max(asianH, high)
+            asianL := math.min(asianL, low)
+    else if asiaActive[1]
+        lastAsianH := asianH
+        lastAsianL := asianL
+
+// Closest available *confirmed* opposing liquidity reference, never future pivots.
+float longObstacle = na
+float shortObstacle = na
+if not na(lastPivotHigh) and lastPivotHigh > close
+    longObstacle := lastPivotHigh
+if not na(priorDayHigh) and priorDayHigh > close
+    longObstacle := na(longObstacle) ? priorDayHigh : math.min(longObstacle, priorDayHigh)
+if not na(lastAsianH) and lastAsianH > close
+    longObstacle := na(longObstacle) ? lastAsianH : math.min(longObstacle, lastAsianH)
+if not na(lastPivotLow) and lastPivotLow < close
+    shortObstacle := lastPivotLow
+if not na(priorDayLow) and priorDayLow < close
+    shortObstacle := na(shortObstacle) ? priorDayLow : math.max(shortObstacle, priorDayLow)
+if not na(lastAsianL) and lastAsianL < close
+    shortObstacle := na(shortObstacle) ? lastAsianL : math.max(shortObstacle, lastAsianL)
+
+
+
+// Display and analysis refer to closed candles only. No unconfirmed marker is emitted.
+bool structureDownNow = barstate.isconfirmed and not na(shortStruct) and close < shortStruct and close[1] >= shortStruct and displacementDn
+bool structureUpNow = barstate.isconfirmed and not na(longStruct) and close > longStruct and close[1] <= longStruct and displacementUp
+
+float uiLocalEMA50 = ta.ema(close, 50)
+float uiH1Close = na
+float uiH1EMA = na
+float uiH1EarlierEMA = na
+int uiH1ClosedAt = na
+float uiH4Close = na
+float uiH4EMA = na
+float uiH4EarlierEMA = na
+int uiH4ClosedAt = na
+if tfSeconds < 3600
+    [uiC1, uiE1, uiP1, uiT1] = request.security(syminfo.tickerid, "60", [close[1], ta.ema(close, 50)[1], ta.ema(close, 50)[3], time_close[1]], lookahead=barmerge.lookahead_on)
+    uiH1Close := uiC1
+    uiH1EMA := uiE1
+    uiH1EarlierEMA := uiP1
+    uiH1ClosedAt := uiT1
+else if tfSeconds == 3600
+    uiH1Close := barstate.isconfirmed ? close : close[1]
+    uiH1EMA := barstate.isconfirmed ? uiLocalEMA50 : uiLocalEMA50[1]
+    uiH1EarlierEMA := barstate.isconfirmed ? uiLocalEMA50[2] : uiLocalEMA50[3]
+    uiH1ClosedAt := barstate.isconfirmed ? time_close : time_close[1]
+if tfSeconds < 14400
+    [uiC4, uiE4, uiP4, uiT4] = request.security(syminfo.tickerid, "240", [close[1], ta.ema(close, 50)[1], ta.ema(close, 50)[3], time_close[1]], lookahead=barmerge.lookahead_on)
+    uiH4Close := uiC4
+    uiH4EMA := uiE4
+    uiH4EarlierEMA := uiP4
+    uiH4ClosedAt := uiT4
+else if tfSeconds == 14400
+    uiH4Close := barstate.isconfirmed ? close : close[1]
+    uiH4EMA := barstate.isconfirmed ? uiLocalEMA50 : uiLocalEMA50[1]
+    uiH4EarlierEMA := barstate.isconfirmed ? uiLocalEMA50[2] : uiLocalEMA50[3]
+    uiH4ClosedAt := barstate.isconfirmed ? time_close : time_close[1]
+int uiH1Bias = na(uiH1EarlierEMA) ? 0 : uiH1Close > uiH1EMA and uiH1EMA > uiH1EarlierEMA ? 1 : uiH1Close < uiH1EMA and uiH1EMA < uiH1EarlierEMA ? -1 : 0
+int uiH4Bias = na(uiH4EarlierEMA) ? 0 : uiH4Close > uiH4EMA and uiH4EMA > uiH4EarlierEMA ? 1 : uiH4Close < uiH4EMA and uiH4EMA < uiH4EarlierEMA ? -1 : 0
+
+// Confirmed context shared by research candidates and the dashboard.
+bool tvEntryFrame = chart.is_standard and (tfSeconds == 300 or tfSeconds == 900 or tfSeconds == 1800)
+bool tvContextReady = not na(uiH1ClosedAt) and not na(uiH4ClosedAt) and not na(uiH1EarlierEMA) and not na(uiH4EarlierEMA)
+int tvH1Bias = uiH1Bias
+int tvH4Bias = uiH4Bias
+float tvAtrPercentile = ta.percentrank(atr, 100)
+float tvWickBody = (barRange - body) / math.max(body, syminfo.mintick)
+float tvEmaSlope = atr > 0 ? (emaFast - emaFast[5]) / atr : na
+float tvPullbackDepth = atr > 0 ? math.abs(close - emaFast) / atr : na
+bool tvShock = not na(atrMean) and (atr > 1.9 * atrMean or barRange > 3.0 * atr)
+bool tvCompression = not na(tvAtrPercentile) and tvAtrPercentile <= 20 and atr < 0.85 * atrMean
+bool tvExpansion = not na(tvAtrPercentile) and tvAtrPercentile >= 80 and atr > 1.25 * atrMean
+int tvObservedRegime = not warmup or not tvContextReady or na(efficiency) or na(tvAtrPercentile) ? 0 : tvExpansion ? 4 : tvCompression ? 3 : bullLocal and tvEmaSlope > 0.10 and efficiency >= 0.30 and adx >= minADX ? 1 : bearLocal and tvEmaSlope < -0.10 and efficiency >= 0.30 and adx >= minADX ? -1 : adx < minADX or efficiency < 0.20 ? 2 : 0
+var int tvRegime = 0
+var int tvRegimeStreak = 0
+var int tvRegimeCandidate = 0
+var int tvTrendAge = 0
+if processBar
+    if tvObservedRegime == tvRegimeCandidate
+        tvRegimeStreak := math.min(3, tvRegimeStreak + 1)
+    else
+        tvRegimeCandidate := tvObservedRegime
+        tvRegimeStreak := 1
+    if not warmup or not tvContextReady
+        tvRegime := 0
+    else if tvRegimeStreak >= 3
+        tvRegime := tvRegimeCandidate
+    tvTrendAge := math.abs(tvRegime) == 1 ? (tvRegime == tvRegime[1] ? math.min(500, tvTrendAge + 1) : 1) : 0
+bool tvExhaustion = tvTrendAge >= 12 and tvPullbackDepth > 1.2 and (tvWickBody > 1.0 or efficiency < efficiency[3])
+
+bool tvLondonActive = tvEntryFrame and not na(time(timeframe.period, "0800-1630:23456", "Europe/London"))
+bool tvNewYorkActive = tvEntryFrame and not na(time(timeframe.period, "0930-1600:23456", "America/New_York"))
+
+type Plan
+    string strategyKey = "S0"
+    string targetBasis = "R"
+    string quality = "UNVERIFIED"
+    string qualityNote = ""
+    string id = ""
+    string setupId = ""
+    int family = 0
+    int side = 0
+    int signalBar = na
+    int createdTime = na
+    int signalTime = na
+    float reference = na
+    float initialStop = na
+    float tp1 = na
+    float tp2 = na
+    float tp3 = na
+    float risk = na
+    float atrValue = na
+    float costPrice = na
+    float maxRiskATR = na
+    float obstacle = na
+    float requiredRoom = 0.0
+    bool countertrend = false
+    bool localAligned = false
+    float efficiencyValue = na
+    string evidence = "НЕВАЛИДИРАН"
+    bool filterEligible = false
+    int maxHoldBarsFrozen = na
+    float maxDeviationATRFrozen = na
+    int expiresAfterBar = na
+    string cancellationReason = ""
+
+type Event
+    string strategyKey = "S0"
+    string targetBasis = "R"
+    string quality = "UNVERIFIED"
+    string qualityNote = ""
+    string id = ""
+    string kind = ""
+    string book = "CORE"
+    string planId = ""
+    int family = 0
+    int side = 0
+    int effectiveTime = na
+    int knownTime = na
+    float price = na
+    float quantityFraction = na
+    float grossR = na
+    float costR = na
+    float netR = na
+    float cashPnl = na
+    string riskBasis = "ACTUAL_INITIAL_DISTANCE"
+    string reason = ""
+    string evidence = "НЕВАЛИДИРАН"
+    float reference = na
+    float stop = na
+    float tp1 = na
+    float tp2 = na
+    float tp3 = na
+    int createdTime = na
+    float atrValue = na
+    float costPrice = na
+    float maxRiskATR = na
+    float obstacle = na
+    float requiredRoom = 0.0
+    bool countertrend = false
+    bool localAligned = false
+    float efficiencyValue = na
+    bool filterEligible = false
+
+type Ledger
+    int entered = 0
+    int closed = 0
+    int positive = 0
+    int negative = 0
+    int zero = 0
+    int cancelled = 0
+    int capacitySkipped = 0
+    int ambiguousBars = 0
+    float gross = 0.0
+    float costs = 0.0
+    float net = 0.0
+    float gains = 0.0
+    float losses = 0.0
+    float peak = 0.0
+    float drawdown = 0.0
+    float holdBars = 0.0
+
+type Paper
+    int phase = 0
+    Plan p = na
+    float entry = na
+    float risk = na
+    float stop = na
+    float remaining = 1.0
+    bool hit1 = false
+    bool hit2 = false
+    bool hit3 = false
+    int fillBar = na
+    int fillTime = na
+    int lockBar = na
+    bool exitNextOpen = false
+    float gross = 0.0
+    float costs = 0.0
+    float lastExecutionPrice = na
+    int lastExecutionTime = na
+    string lastClosedId = ""
+    string lastClosedReason = ""
+    float lastClosedNet = na
+    string lastCancelledId = ""
+    string lastCancelledReason = ""
+    int dayKey = na
+    float dayNet = 0.0
+    int dayStreak = 0
+
+type EvidenceGate
+    bool paused = false
+    int pausedAtCount = 0
+
+f_num(float v) => na(v) ? "null" : str.tostring(v, "#.########")
+f_int(int v) => na(v) ? "null" : str.tostring(v)
+f_escape(string v) => str.replace_all(str.replace_all(str.replace_all(v, "\\", "\\\\"), '"', '\\"'), "\n", "\\n")
+f_q(string v) => '"' + f_escape(v) + '"'
+f_id(int m, int d, int born) => syminfo.tickerid + "|" + timeframe.period + "|" + str.tostring(m) + "|" + str.tostring(d) + "|" + str.tostring(born)
+f_day(int t) => year(t, riskTimezone) * 10000 + month(t, riskTimezone) * 100 + dayofmonth(t, riskTimezone)
+f_stopRound(float x, int d) => d == 1 ? math.floor(x / syminfo.mintick + 1e-8) * syminfo.mintick : math.ceil(x / syminfo.mintick - 1e-8) * syminfo.mintick
+f_targetRound(float x, int d) => d == 1 ? math.ceil(x / syminfo.mintick - 1e-8) * syminfo.mintick : math.floor(x / syminfo.mintick + 1e-8) * syminfo.mintick
+f_reason(array<bool> tests, array<string> names) =>
+    string result = ""
+    for i = 0 to array.size(tests) - 1
+        if not array.get(tests, i)
+            result += (str.length(result) > 0 ? " / " : "") + array.get(names, i)
+    result == "" ? "УСЛОВИЯТА СА ИЗПЪЛНЕНИ" : result
+f_emit(array<Event> out, string kind, string book, string pid, int m, int d, int effective, float px, string reason) =>
+    Event e = Event.new()
+    e.id := pid + "|" + book + "|" + kind + "|" + str.tostring(time_close)
+    e.kind := kind
+    e.book := book
+    e.strategyKey := tvStrategyMode
+    e.planId := pid
+    e.family := m
+    e.side := d
+    e.effectiveTime := effective
+    e.knownTime := time_close
+    e.price := px
+    e.reason := reason
+    // Each event is deduplicated by immutable identity within this evaluation.
+    bool seen = false
+    Event result = e
+    if array.size(out) > 0
+        for old in out
+            if old.id == e.id
+                seen := true
+                result := old
+    if not seen
+        array.push(out, e)
+    result
+f_planEvent(array<Event> out, Plan p, string kind, string book, int effective, float px, string reason) =>
+    Event e = f_emit(out, kind, book, p.id, p.family, p.side, effective, px, reason)
+    e.strategyKey := p.strategyKey
+    e.targetBasis := p.targetBasis
+    e.quality := p.quality
+    e.qualityNote := p.qualityNote
+    e.evidence := p.evidence
+    e.reference := p.reference
+    e.stop := p.initialStop
+    e.tp1 := p.tp1
+    e.tp2 := p.tp2
+    e.tp3 := p.tp3
+    e.createdTime := p.createdTime
+    e.atrValue := p.atrValue
+    e.costPrice := p.costPrice
+    e.maxRiskATR := p.maxRiskATR
+    e.obstacle := p.obstacle
+    e.requiredRoom := p.requiredRoom
+    e.countertrend := p.countertrend
+    e.localAligned := p.localAligned
+    e.efficiencyValue := p.efficiencyValue
+    e.filterEligible := p.filterEligible
+    e
+f_json(Event e) =>
+    "{\"schema\":\"qirvanta.event.v1\",\"core_sha256\":" + f_q(CORE_SHA256) + ",\"event_id\":" + f_q(e.id) + ",\"event\":" + f_q(e.kind) + ",\"book\":" + f_q(e.book) + ",\"plan_id\":" + f_q(e.planId) + ",\"strategy_key\":" + f_q(e.strategyKey) + ",\"target_basis\":" + f_q(e.targetBasis) + ",\"quality\":" + f_q(e.quality) + ",\"quality_note\":" + f_q(e.qualityNote) + ",\"symbol\":" + f_q(syminfo.tickerid) + ",\"timeframe\":" + f_q(timeframe.period) + ",\"family\":" + str.tostring(e.family) + ",\"side\":" + str.tostring(e.side) + ",\"bar_open_time\":" + str.tostring(time) + ",\"bar_close_time\":" + f_int(time_close) + ",\"effective_time\":" + f_int(e.effectiveTime) + ",\"known_time\":" + f_int(e.knownTime) + ",\"price\":" + f_num(e.price) + ",\"quantity_fraction\":" + f_num(e.quantityFraction) + ",\"gross_r\":" + f_num(e.grossR) + ",\"cost_r\":" + f_num(e.costR) + ",\"net_r\":" + f_num(e.netR) + ",\"cash_pnl\":" + f_num(e.cashPnl) + ",\"risk_basis\":" + f_q(e.riskBasis) + ",\"reference\":" + f_num(e.reference) + ",\"initial_sl\":" + f_num(e.stop) + ",\"tp1\":" + f_num(e.tp1) + ",\"tp2\":" + f_num(e.tp2) + ",\"tp3\":" + f_num(e.tp3) + ",\"evidence\":" + f_q(e.evidence) + ",\"reason\":" + f_q(e.reason) + ",\"created_time\":" + f_int(e.createdTime) + ",\"atr_at_signal\":" + f_num(e.atrValue) + ",\"roundtrip_cost_price\":" + f_num(e.costPrice) + ",\"max_risk_atr\":" + f_num(e.maxRiskATR) + ",\"obstacle\":" + f_num(e.obstacle) + ",\"required_room_r\":" + f_num(e.requiredRoom) + ",\"countertrend\":" + (e.countertrend ? "true" : "false") + ",\"local_aligned\":" + (e.localAligned ? "true" : "false") + ",\"efficiency_ratio\":" + f_num(e.efficiencyValue) + ",\"filter_eligible\":" + (e.filterEligible ? "true" : "false") + ",\"advisory_only\":true}"
+// Advisory rules. Quality neither selects a candidate nor changes an order.
+f_tvText(string bg, string en) => tvEnglish ? en : bg
+f_tvGrade(Plan p) =>
+    bool available = tvEntryFrame and tvContextReady and not na(efficiency) and not na(tvAtrPercentile) and not na(p.obstacle)
+    bool trend = tvH1Bias == p.side and tvH4Bias == p.side
+    bool momentum = (p.side == 1 ? bullMomentum : bearMomentum) and efficiency >= 0.30
+    bool volatility = validATR and not tvShock and not tvExhaustion
+    bool room = (p.obstacle - p.tp1) * p.side >= -syminfo.mintick * 0.000001
+    int checks = (trend ? 1 : 0) + (momentum ? 1 : 0) + (volatility ? 1 : 0) + (room ? 1 : 0)
+    p.quality := not available ? "UNVERIFIED" : checks == 4 ? "STRONG" : checks >= 2 ? "MODERATE" : "WEAK"
+    p.qualityNote := not available ? f_tvText("Липсва контекст или преграда", "Missing context or reference") : f_reason(array.from(trend, momentum, volatility, room), array.from("H1/H4", f_tvText("Импулс", "Momentum"), f_tvText("Волатилност", "Volatility"), f_tvText("Място до TP1", "Room to TP1")))
+    if available and checks == 4
+        p.qualityNote := f_tvText("Четири съгласувани условия", "Four aligned conditions")
+    p
+
+f_makePlan(int family, int d, float sl, int born, float maxRisk, float obstacle, float room) =>
+    Plan p = Plan.new()
+    p.setupId := f_id(family, d, born)
+    p.id := p.setupId + "|" + str.tostring(time_close)
+    p.family := family
+    p.side := d
+    p.signalBar := bar_index
+    p.createdTime := born
+    p.signalTime := time_close
+    p.reference := math.round_to_mintick(close)
+    p.initialStop := sl
+    p.risk := (p.reference - sl) * d
+    p.tp1 := f_targetRound(p.reference + d * p.risk * target1R, d)
+    p.tp2 := f_targetRound(p.reference + d * p.risk * target2R, d)
+    p.tp3 := f_targetRound(p.reference + d * p.risk * target3R, d)
+    p.atrValue := atr
+    p.costPrice := roundTripPriceCost
+    p.maxRiskATR := maxRisk
+    p.obstacle := obstacle
+    p.requiredRoom := room
+    p.countertrend := d == 1 ? not bullHTF : not bearHTF
+    p.localAligned := d == 1 ? bullLocal : bearLocal
+    p.efficiencyValue := efficiency
+    // Additive immutable metadata; candidate thresholds and all prior Plan values stay unchanged.
+    p.maxHoldBarsFrozen := maxHoldBars
+    p.maxDeviationATRFrozen := maxOpenDeviationATR
+    p.expiresAfterBar := bar_index + 1
+    p.cancellationReason := "Неизпълнена заявка до следващото затваряне"
+    f_tvGrade(p)
+f_targetRoom(Plan p, float entry, float risk) =>
+    // Respect the actual rounded/frozen TP1, not merely its pre-rounding R distance.
+    p.requiredRoom <= 0 or (not na(p.obstacle) and (p.obstacle - entry) * p.side + syminfo.mintick * 1e-6 >= math.max(risk * p.requiredRoom, (p.tp1 - entry) * p.side))
+f_policyReason(Plan p) =>
+    contextPolicy == "БАЗОВ" ? "" : p.countertrend ? "HTF не съвпада" : not p.localAligned ? "Локалният тренд не съвпада" : na(p.efficiencyValue) ? "Няма данни за насоченост" : p.efficiencyValue < minEfficiency ? "Ниска насоченост" : ""
+f_validPlan(Plan p) =>
+    f_targetRoom(p, p.reference, p.risk) and not na(p.risk) and p.risk >= syminfo.mintick and p.risk + syminfo.mintick * 1e-6 >= minStopATR * p.atrValue and p.risk <= p.maxRiskATR * p.atrValue and p.costPrice / p.risk <= maxCostRisk and (p.tp1 - p.reference) * p.side > 0 and (p.tp2 - p.tp1) * p.side > 0 and (p.tp3 - p.tp2) * p.side > 0
+var array<Plan> candidates = array.new<Plan>()
+var array<Event> events = array.new<Event>()
+
+// Conservative OHLC engine. Execution events are OBSERVED at bar close.
+// Entry effective_time can be the bar open; intrabar touch times remain unknown (null).
+// S5 RECLAIM state is evaluated on the same confirmed bars as UNIFIED.
+// The legacy family index 2 remains part of event IDs and paper evidence.
+
+type TvCandidateState
+    int phase = 0
+    int born = na
+    int bornTime = na
+    int accepted = na
+    float anchor = na
+    float level = na
+    float trigger = na
+
+// All history-dependent calculations execute on every bar in global scope.
+float tvRange20High = ta.highest(high, 20)[1]
+float tvRange20Low = ta.lowest(low, 20)[1]
+float tvRange3High = ta.highest(high, 3)[1]
+float tvRange3Low = ta.lowest(low, 3)[1]
+bool tvTimeGap = not na(time_close[1]) and time != time_close[1]
+var array<TvCandidateState> tvCandidateStates = array.new<TvCandidateState>()
+var array<int> tvCandidateLast = array.new<int>(2, na)
+if barstate.isfirst
+    array.push(tvCandidateStates, TvCandidateState.new())
+    array.push(tvCandidateStates, TvCandidateState.new())
+
+f_tvClear(TvCandidateState s) =>
+    s.phase := 0
+    s.born := na
+    s.bornTime := na
+    s.accepted := na
+    s.anchor := na
+    s.level := na
+    s.trigger := na
+    s
+f_tvStart(TvCandidateState s, float anchor, float level, float trigger) =>
+    s.phase := 1
+    s.born := bar_index
+    s.bornTime := time_close
+    s.anchor := anchor
+    s.level := level
+    s.trigger := trigger
+    s
+f_tvStamp(Plan p, string key) =>
+    p.strategyKey := key
+    p.setupId := key + "|" + p.setupId
+    p.id := key + "|" + p.id
+    p
+f_tvRawEvent(string kind, int d, int born, float level, string reason) =>
+    Event e = f_emit(events, kind, "CORE", tvStrategyMode + "|" + f_id(2, d, born), 2, d, time_close, level, reason)
+    e.strategyKey := tvStrategyMode
+    e
+f_tvCommonReason(Plan p, bool htfGate) =>
+    f_reason(array.from(warmup, datePass, not newsPaused, sessionPass, validATR, acceptableBar, not tvTimeGap, not htfGate or tvH1Bias == p.side, not requireFVG or (p.side == 1 ? bullFvgNow : bearFvgNow), not requirePD or (p.side == 1 ? inDiscount : inPremium), f_validPlan(p)), array.from("Данни", "Тестов период", "Новинарска пауза", "Сесия", "ATR", "Размер свещ", "Прекъсване на историята", "H1 не съвпада", "FVG", "Скъпа/евтина зона", "SL / разходи / цели / преграда"))
+
+// This memory is observational in A. It follows the last accepted S5 plan, not a similarly timed plan.
+type H1Memory
+    string acceptedId = ""
+    int queuedIndex = na
+    int queuedClose = na
+    string cancelId = ""
+    int cancelKnown = na
+    int fillIndex = na
+    int fillTime = na
+
+var array<H1Memory> h1Memory = array.new<H1Memory>()
+if barstate.isfirst
+    array.push(h1Memory, H1Memory.new())
+    array.push(h1Memory, H1Memory.new())
+
+f_h1Field(string value) =>
+    str.replace_all(value, "|", "~")
+
+f_h1Formation(TvCandidateState state, int acceptedIndex) =>
+    f_int(state.phase) + "|" + f_int(state.bornTime) + "|" + f_num(state.anchor) + "|" + f_num(state.level) + "|" + f_int(acceptedIndex)
+
+f_h1Accepted(H1Memory memory, string planId) =>
+    memory.acceptedId := planId
+    memory.queuedIndex := na
+    memory.queuedClose := na
+    memory.cancelId := ""
+    memory.cancelKnown := na
+    true
+
+f_h1Exception(H1Memory memory, string candidateId, int born) =>
+    bool cancellationKnownBeforeSeed = not na(memory.cancelKnown) and not na(born) and
+         memory.cancelKnown < born and born < time_close
+    bool sameUnfilledAccepted = memory.acceptedId != "" and memory.acceptedId == memory.cancelId and
+         memory.acceptedId != candidateId and cancellationKnownBeforeSeed
+    bool latestFillCooled = na(memory.fillIndex) or bar_index - memory.fillIndex > minCooldown
+    h1Lane == "B" and sameUnfilledAccepted and latestFillCooled
+
+f_h1ObserveRaw(Event e) =>
+    int idx = e.side == 1 ? 0 : 1
+    H1Memory memory = array.get(h1Memory, idx)
+    bool accepted = memory.acceptedId != "" and memory.acceptedId == e.planId
+    if e.kind == "SIM_ENTRY"
+        memory.fillIndex := bar_index
+        memory.fillTime := e.effectiveTime
+        if accepted
+            memory.cancelId := ""
+            memory.cancelKnown := na
+    else if accepted and e.kind == "QUEUED"
+        memory.queuedIndex := bar_index
+        memory.queuedClose := e.knownTime
+    else if accepted and e.kind == "CANCELLED"
+        // Core f_step() only emits RAW CANCELLED while queued, before SIM_ENTRY.
+        // The charter restricts this exception to the immediately following observed chart open.
+        bool nextOpen = not na(memory.queuedIndex) and bar_index == memory.queuedIndex + 1 and
+             e.effectiveTime == time and e.knownTime == time_close and e.knownTime > memory.queuedClose
+        if nextOpen
+            memory.cancelId := e.planId
+            memory.cancelKnown := e.knownTime
+    true
+
+bool h1LogBar = processBar and tvEntryFrame and syminfo.tickerid == "OANDA:XAUUSD" and
+     h1Start <= h1End and h1End <= H1_CUTOFF and time_close >= h1Start and time_close <= h1End
+var int h1FirstOpen = time
+var array<string> h1SidePrefix = array.new_string(2, "")
+var array<string> h1SideSuffix = array.new_string(2, "")
+var array<bool> h1Stock = array.new_bool(2, false)
+var array<bool> h1Used = array.new_bool(2, false)
+var array<int> h1Seed = array.new_int(2, na)
+
+f_tvCandidate(int d) =>
+    int idx = d == 1 ? 0 : 1
+    TvCandidateState s = array.get(tvCandidateStates, idx)
+    bool terminated = false
+    bool raw = false
+    int born = time_close
+    float anchor = d == 1 ? tvRange3Low : tvRange3High
+    float obstacle = d == 1 ? longObstacle : shortObstacle
+    float directionalBody = (close - open) * d
+    bool candle = directionalBody >= 0.25 * atr and (d == 1 ? bullishBar : bearishBar)
+    string extraReason = ""
+    string reason = "Няма суров trigger"
+    int ageLimit = 3
+    if s.phase != 0
+        bool expired = bar_index - s.born > ageLimit
+        bool invalid = (close - s.anchor) * d < 0
+        if tvTimeGap or expired or invalid
+            reason := tvTimeGap ? "Прекъсване на историята" : expired ? "Срокът изтече" : "Нарушена структура"
+            f_tvRawEvent(expired ? "EXPIRED" : "CANCELLED", d, s.bornTime, close, reason)
+            f_tvClear(s)
+            terminated := true
+    if not warmup or not tvEntryFrame
+        reason := "Недостатъчни данни или неподдържана рамка"
+    else if not terminated
+        if s.phase != 0
+            born := s.bornTime
+            anchor := s.anchor
+        if s.phase != 0
+            raw := bar_index > s.born and (close - s.level) * d > 0
+            extraReason := not candle ? "Няма потвърждаваща свещ" : ""
+        else
+            float level = d == 1 ? tvRange20Low : tvRange20High
+            if not tvTimeGap and (close - level) * d < 0 and (close[1] - level) * d >= 0
+                f_tvStart(s, d == 1 ? low : high, level, level)
+                f_tvRawEvent("WATCH", d, time_close, level, "Противоположен пробив; чака връщане отвъд нивото")
+        if raw
+            // A triggered state is consumed even when risk/context rejects it.
+            f_tvClear(s)
+            float structural = d == 1 ? math.min(anchor - slBufferATR * atr, close - minStopATR * atr) : math.max(anchor + slBufferATR * atr, close + minStopATR * atr)
+            Plan p = f_tvStamp(f_makePlan(2, d, f_stopRound(structural, d), born, maxStopATR, obstacle, requireRoom ? math.max(minimumRoomR, target1R) : 0.0), tvStrategyMode)
+            string commonReason = f_tvCommonReason(p, tvCandidateRequireHTF)
+            int last = array.get(tvCandidateLast, idx)
+            bool cool = na(last) or bar_index - last > minCooldown
+            bool h1Bypass = not cool and extraReason == "" and commonReason == "УСЛОВИЯТА СА ИЗПЪЛНЕНИ" and
+                 f_h1Exception(array.get(h1Memory, idx), p.id, born)
+            if h1LogBar
+                array.set(h1Stock, idx, cool)
+                array.set(h1Used, idx, h1Bypass)
+                array.set(h1Seed, idx, born)
+            reason := h1Bypass ? commonReason : extraReason != "" ? extraReason : not cool ? "Пауза след потвърден модел" : commonReason
+            if reason == "УСЛОВИЯТА СА ИЗПЪЛНЕНИ"
+                array.push(candidates, p)
+                array.set(tvCandidateLast, idx, bar_index)
+                f_h1Accepted(array.get(h1Memory, idx), p.id)
+            else
+                f_planEvent(events, p, "REJECTED", "CORE", time_close, close, reason)
+        else if not terminated and s.phase != 0
+            reason := s.phase == 2 ? "Чака ретест" : "Чака отделна потвърждаваща свещ"
+    [reason, raw]
+
+if processBar
+    array.clear(candidates)
+    array.clear(events)
+    for idx = 0 to 1
+        int d = idx == 0 ? 1 : -1
+        if h1LogBar
+            array.set(h1Stock, idx, false)
+            array.set(h1Used, idx, false)
+            array.set(h1Seed, idx, na)
+            TvCandidateState h1Before = array.get(tvCandidateStates, idx)
+            H1Memory h1Prior = array.get(h1Memory, idx)
+            array.set(h1SidePrefix, idx, f_h1Formation(h1Before, array.get(tvCandidateLast, idx)))
+            array.set(h1SideSuffix, idx, f_int(h1Prior.fillIndex) + "|" + f_int(h1Prior.fillTime) + "|" +
+                 f_h1Field(h1Prior.acceptedId) + "|" + f_h1Field(h1Prior.cancelId) + "|" + f_int(h1Prior.cancelKnown))
+        [why, attempted] = f_tvCandidate(d)
+        if h1LogBar
+            TvCandidateState h1After = array.get(tvCandidateStates, idx)
+            string cooler = attempted ? str.tostring(array.get(h1Stock, idx)) : "NA"
+            string transition = f_h1Formation(h1After, array.get(tvCandidateLast, idx)) + "|" + str.tostring(attempted) + "|" +
+                 cooler + "|" + str.tostring(array.get(h1Used, idx)) + "|" + f_h1Field(why)
+            array.set(h1SidePrefix, idx, array.get(h1SidePrefix, idx) + "|" + transition)
+            array.set(h1SideSuffix, idx, array.get(h1SideSuffix, idx) + "|" + f_int(array.get(h1Seed, idx)))
+
+f_addClosed(Ledger a, Paper s) =>
+    float net = s.gross - s.costs
+    a.closed += 1
+    a.gross += s.gross
+    a.costs += s.costs
+    a.net += net
+    if net > 1e-10
+        a.positive += 1
+        a.gains += net
+    else if net < -1e-10
+        a.negative += 1
+        a.losses += -net
+    else
+        a.zero += 1
+    a.peak := math.max(a.peak, a.net)
+    a.drawdown := math.max(a.drawdown, a.peak - a.net)
+    a.holdBars += bar_index - s.fillBar
+    a
+f_realize(Paper s, float fraction, float px, string kind, string book, int effective, array<Event> ev) =>
+    float part = math.min(fraction, s.remaining)
+    float gross = part * (px - s.entry) * s.p.side / s.risk
+    float rate = s.p.side == 1 ? fundingLong : fundingShort
+    int durationEnd = na(effective) ? time_close : effective
+    float days = math.max(0.0, (durationEnd - s.fillTime) / 86400000.0)
+    float costs = part * (s.p.costPrice + rate * days) / s.risk
+    s.remaining := math.max(0.0, s.remaining - part)
+    s.gross += gross
+    s.costs += costs
+    s.lastExecutionPrice := px
+    s.lastExecutionTime := effective
+    s.dayNet += gross - costs
+    Event e = f_planEvent(ev, s.p, kind, book, effective, px, "Виртуален изход; известен при затваряне")
+    e.quantityFraction := part
+    e.grossR := gross
+    e.costR := costs
+    e.netR := gross - costs
+    e
+f_finish(Paper s, Ledger a, string book, string reason, array<Event> ev) =>
+    f_addClosed(a, s)
+    float net = s.gross - s.costs
+    if net < -1e-10
+        s.dayStreak += 1
+    else if net > 1e-10
+        s.dayStreak := 0
+    s.lastClosedId := s.p.id
+    s.lastClosedReason := reason
+    s.lastClosedNet := net
+    Event e = f_planEvent(ev, s.p, "CLOSED", book, s.lastExecutionTime, s.lastExecutionPrice, reason)
+    e.quantityFraction := 1.0
+    e.grossR := s.gross
+    e.costR := s.costs
+    e.netR := net
+    s.phase := 0
+    s.exitNextOpen := false
+    s.lockBar := na
+    s
+f_openRejection(Plan p, float fill, int fillTime) =>
+    float risk = (fill - p.initialStop) * p.side
+    bool wrongSide = risk < syminfo.mintick or (p.tp1 - fill) * p.side <= 0
+    bool farOpen = math.abs(fill - p.reference) > p.atrValue * maxOpenDeviationATR
+    bool riskOpen = risk >= minStopATR * p.atrValue and risk <= p.maxRiskATR * p.atrValue and risk > 0 and p.costPrice / risk <= maxCostRisk
+    bool roomOpen = f_targetRoom(p, fill, risk)
+    bool newsAtOpen = manualNewsPause or (useNewsWindow and fillTime >= newsAt - newsBefore * 60000 and fillTime <= newsAt + newsAfter * 60000)
+    wrongSide ? "Отваряне извън SL/TP1" : newsAtOpen ? "Новинарска пауза при отваряне" : paperGapFilter and farOpen ? "Гап/отстояние" : paperGapFilter and not riskOpen ? "Риск/разходи при отваряне" : paperGapFilter and not roomOpen ? "Недостатъчно място при отваряне" : ""
+f_takeTargets(Paper s, Ledger a, string book, array<Event> ev, bool atOpen) =>
+    bool closed = false
+    int effective = atOpen ? time : na
+    float favorable = atOpen ? open : s.p.side == 1 ? high : low
+    if (favorable - s.p.tp1) * s.p.side >= 0 and not s.hit1
+        f_realize(s, 1.0 / 3.0, s.p.tp1, "SIM_TP1", book, effective, ev)
+        s.hit1 := true
+        s.lockBar := bar_index + 1
+    if (favorable - s.p.tp2) * s.p.side >= 0 and not s.hit2
+        f_realize(s, 1.0 / 3.0, s.p.tp2, "SIM_TP2", book, effective, ev)
+        s.hit2 := true
+    if (favorable - s.p.tp3) * s.p.side >= 0 and not s.hit3
+        f_realize(s, s.remaining, s.p.tp3, "SIM_TP3", book, effective, ev)
+        s.hit3 := true
+        f_finish(s, a, book, "TP3", ev)
+        closed := true
+    closed
+f_step(Paper s, Ledger a, string book, array<Event> ev) =>
+    int today = f_day(time)
+    if na(s.dayKey) or s.dayKey != today
+        s.dayKey := today
+        s.dayNet := 0.0
+        s.dayStreak := 0
+    bool closedNow = false
+    if s.phase == 1 and bar_index > s.p.signalBar
+        float openRisk = (open - s.p.initialStop) * s.p.side
+        string openReason = f_openRejection(s.p, open, time)
+        bool reject = openReason != ""
+        if reject
+            a.cancelled += 1
+            s.lastCancelledId := s.p.id
+            s.lastCancelledReason := openReason
+            f_planEvent(ev, s.p, "CANCELLED", book, time, open, s.lastCancelledReason)
+            s.phase := 0
+        else
+            s.phase := 2
+            s.entry := open
+            s.risk := openRisk
+            s.stop := s.p.initialStop
+            s.remaining := 1.0
+            s.hit1 := false
+            s.hit2 := false
+            s.hit3 := false
+            s.fillBar := bar_index
+            s.fillTime := time
+            s.lockBar := na
+            s.exitNextOpen := false
+            s.gross := 0.0
+            s.costs := 0.0
+            a.entered += 1
+            Event fillEvent = f_planEvent(ev, s.p, "SIM_ENTRY", book, time, s.entry, "Предполагаемо next-open; съобщено при close")
+            fillEvent.quantityFraction := 1.0
+    if s.phase == 2
+        // Lock is established at the preceding close, effective from this bar.
+        if not na(s.lockBar) and bar_index >= s.lockBar
+            float nextSL = f_stopRound(s.entry + s.p.side * s.risk * profitLockR, s.p.side)
+            float previous = s.stop
+            s.stop := s.p.side == 1 ? math.max(s.stop, nextSL) : math.min(s.stop, nextSL)
+            if s.stop != previous
+                f_planEvent(ev, s.p, "STOP_UPDATE", book, time, s.stop, "Брутен буфер; не гарантира нетна печалба")
+            s.lockBar := na
+        if s.exitNextOpen
+            bool gapStop = (open - s.stop) * s.p.side <= 0
+            f_realize(s, s.remaining, open, gapStop ? "SIM_SL" : "SIM_TIME", book, time, ev)
+            f_finish(s, a, book, gapStop ? "STOP_GAP" : "TIME_NEXT_OPEN", ev)
+            closedNow := true
+        else if (open - s.stop) * s.p.side <= 0
+            // A gap through SL is a known open event, not an ambiguous intrabar path.
+            f_realize(s, s.remaining, open, "SIM_SL", book, time, ev)
+            f_finish(s, a, book, "STOP_GAP", ev)
+            closedNow := true
+        else
+            // Already-marketable targets at open must execute before any later reversal.
+            // Price improvement is deliberately not assumed: use each frozen target price.
+            closedNow := f_takeTargets(s, a, book, ev, true)
+            if s.phase == 2
+                bool stopTouched = s.p.side == 1 ? low <= s.stop : high >= s.stop
+                bool tp1Touched = (s.p.side == 1 ? high >= s.p.tp1 : low <= s.p.tp1) and not s.hit1
+                bool tp2Touched = (s.p.side == 1 ? high >= s.p.tp2 : low <= s.p.tp2) and not s.hit2
+                bool tp3Touched = (s.p.side == 1 ? high >= s.p.tp3 : low <= s.p.tp3) and not s.hit3
+                if stopTouched
+                    if tp1Touched or tp2Touched or tp3Touched
+                        a.ambiguousBars += 1
+                        f_planEvent(ev, s.p, "AMBIGUOUS", book, na, s.stop, "Неизвестен ред след open: SL-first за остатъка")
+                    f_realize(s, s.remaining, s.stop, "SIM_SL", book, na, ev)
+                    f_finish(s, a, book, "STOP_FIRST", ev)
+                    closedNow := true
+                else
+                    closedNow := f_takeTargets(s, a, book, ev, false)
+                    if s.phase == 2 and bar_index - s.fillBar >= maxHoldBars
+                        s.exitNextOpen := true
+                        f_planEvent(ev, s.p, "TIME_PENDING", book, time_close, close, "Планиран виртуален изход на следващо отваряне")
+    closedNow
+f_queue(Paper s, Ledger a, Plan p, string book, array<Event> ev) =>
+    bool accepted = s.phase == 0
+    if accepted
+        s.p := p.copy()
+        s.phase := 1
+        f_planEvent(ev, p, "QUEUED", book, time_close, p.reference, "Чака следващо отваряне; няма брокерска поръчка")
+    else
+        a.capacitySkipped += 1
+        f_planEvent(ev, p, "CAPACITY", book, time_close, p.reference, "Портфейлът има виртуална позиция; кандидатът е запазен в журнала")
+    accepted
+f_gate(EvidenceGate g, Ledger a, bool globalGate, array<Event> ev, int model) =>
+    bool previous = g.paused
+    int minimum = globalGate ? globalMinClosed : modelMinClosed
+    float metric = globalGate ? a.net : a.closed > 0 ? a.net / a.closed : 0.0
+    float pauseAt = globalGate ? globalStopNetR : modelStopAvgR
+    float recoverAt = globalGate ? globalStopNetR * 0.5 : 0.0
+    if enableEvidenceShield and a.closed >= minimum
+        if not g.paused and metric <= pauseAt
+            g.paused := true
+            g.pausedAtCount := a.closed
+        else if g.paused and a.closed >= g.pausedAtCount + recoveryTrades and metric >= recoverAt
+            g.paused := false
+    else if not enableEvidenceShield
+        g.paused := false
+    if previous != g.paused
+        f_emit(ev, "EVIDENCE", "CORE", "EVIDENCE|" + str.tostring(model), model, 0, time_close, na, g.paused ? "Пауза: отрицателна виртуална извадка" : "Излязъл от пауза; остава невалидиран")
+    g
+f_pick(array<Plan> plans, int family, bool eligibleOnly) =>
+    Plan chosen = na
+    bool conflict = false
+    int seenSide = 0
+    if array.size(plans) > 0
+        for p in plans
+            if (family == 0 or p.family == family) and (not eligibleOnly or p.filterEligible)
+                if seenSide != 0 and seenSide != p.side
+                    conflict := true
+                seenSide := p.side
+                if na(chosen) or p.family < chosen.family
+                    chosen := p
+    conflict ? na : chosen
+
+// M1/M2/M3 are independent shadow books. RAW is a single-capacity combined portfolio.
+// FILTERED is a separate portfolio; neither can suppress independent candidate discovery.
+var array<Paper> books = array.new<Paper>()
+var array<Ledger> ledgers = array.new<Ledger>()
+var array<EvidenceGate> gates = array.new<EvidenceGate>()
+if barstate.isfirst
+    for n = 0 to 4
+        array.push(books, Paper.new())
+        array.push(ledgers, Ledger.new())
+    for n = 0 to 3
+        array.push(gates, EvidenceGate.new())
+
+if processBar
+    // Step existing portfolios BEFORE queuing any newly confirmed plan.
+    for i = 0 to 4
+        string name = i < 3 ? "M" + str.tostring(i + 1) : i == 3 ? "RAW" : "FILTERED"
+        f_step(array.get(books, i), array.get(ledgers, i), name, events)
+    for i = 0 to 3
+        f_gate(array.get(gates, i), array.get(ledgers, i == 0 ? 3 : i - 1), i == 0, events, i)
+    Paper filtered = array.get(books, 4)
+    bool dailyPass = filtered.dayNet > -maxPaperDailyLossR and filtered.dayStreak < maxPaperLosingStreak
+    if array.size(candidates) > 0
+        for p in candidates
+            EvidenceGate globalG = array.get(gates, 0)
+            EvidenceGate familyG = array.get(gates, p.family)
+            Ledger familyL = array.get(ledgers, p.family - 1)
+            bool shieldPaused = enableEvidenceShield and (globalG.paused or familyG.paused)
+            bool contraPause = observeCountertrendOnly and p.countertrend
+            string policyReason = f_policyReason(p)
+            p.filterEligible := not shieldPaused and not contraPause and dailyPass and policyReason == ""
+            p.evidence := policyReason != "" ? "ПРОБНА ПОЛИТИКА: " + policyReason : shieldPaused ? "ПАУЗА: ИЗВАДКА" : contraPause ? "ИЗСЛЕДВАНЕ: КОНТРАТРЕНД" : not dailyPass ? "ПАУЗА: ДНЕВЕН ЛИМИТ" : familyL.closed < modelMinClosed ? "НЕВАЛИДИРАН: МАЛКА ИЗВАДКА" : "НЕВАЛИДИРАН: НЯМА OOS"
+            f_planEvent(events, p, "CONFIRMED", "CORE", time_close, p.reference, "Техническите правила са изпълнени; НЕ е препоръка за поръчка")
+    for m = 1 to 3
+        Plan independent = f_pick(candidates, m, false)
+        if not na(independent)
+            f_queue(array.get(books, m - 1), array.get(ledgers, m - 1), independent, "M" + str.tostring(m), events)
+    Plan combined = f_pick(candidates, 0, false)
+    Plan permitted = f_pick(candidates, 0, true)
+    if not na(combined)
+        f_queue(array.get(books, 3), array.get(ledgers, 3), combined, "RAW", events)
+    else if array.size(candidates) > 0
+        f_emit(events, "CONFLICT", "RAW", "RAW|" + str.tostring(time_close), 0, 0, time_close, close, "Противоположни технически модели; няма портфейлен избор")
+    if not na(permitted)
+        f_queue(array.get(books, 4), array.get(ledgers, 4), permitted, "FILTERED", events)
+// END S5 SPECIALIZATION
+
+f_tvQtyOnGrid(float amount) =>
+    float stepSize = syminfo.mincontract
+    not na(stepSize) and stepSize > 0 and amount + stepSize * 1e-8 >= stepSize and math.abs(amount / stepSize - math.round(amount / stepSize)) <= 1e-7
+const int RC_NONE = 0
+const int RC_WATCH = 1
+const int RC_CONFIRMED = 2
+const int RC_READY = 3
+const int RC_REJECTED = 4
+const int RC_INVALIDATED = 5
+const int RC_EXPIRED = 6
+f_rcSide(int side) => side == 1 ? "BUY" : side == -1 ? "SELL" : ""
+f_rcStage(string kind) =>
+    switch kind
+        "WATCH" => RC_WATCH
+        "CONFIRMED" => RC_CONFIRMED
+        "REJECTED" => RC_REJECTED
+        "CANCELLED" => RC_INVALIDATED
+        "EXPIRED" => RC_EXPIRED
+        => RC_NONE
+f_rcStageText(int stage) =>
+    switch stage
+        RC_WATCH => "WATCH"
+        RC_CONFIRMED => "CONFIRMED"
+        RC_READY => "READY"
+        RC_REJECTED => "RISK REJECTED"
+        RC_INVALIDATED => "INVALIDATED"
+        RC_EXPIRED => "EXPIRED"
+        => "NO SETUP"
+f_rcCore(Event e) => e.strategyKey == "S5" and e.book == "CORE" and f_rcStage(e.kind) != RC_NONE
+f_rcPayload(Event e, string state, Plan p, string reason) =>
+    string utc = str.format_time(e.knownTime, "yyyy-MM-dd'T'HH:mm:ss'Z'", "UTC")
+    string ids = '"event_id":' + f_q(e.id + "|RC1|" + state) + ',"source_id":' + f_q(e.id)
+    string context = ',"model":"S5","symbol":' + f_q(syminfo.tickerid) + ',"timeframe":' + f_q(timeframe.period)
+    string decision = ',"direction":' + f_q(f_rcSide(e.side)) + ',"state":' + f_q(state) +
+         ',"confirmed_ms":' + f_int(e.knownTime) + ',"confirmation_utc":' + f_q(utc)
+    string levels = ',"entry":' + f_num(na(p) ? na : p.reference) + ',"sl":' + f_num(na(p) ? na : p.initialStop) +
+         ',"tp1":' + f_num(na(p) ? na : p.tp1) + ',"tp2":' + f_num(na(p) ? na : p.tp2) + ',"tp3":' + f_num(na(p) ? na : p.tp3)
+    "{" + ids + context + decision + levels + ',"reason":' + f_q(reason) +
+         ',"provisional":' + (state == "WATCH" ? "true" : "false") + "}"
+
+const string RC_READY_REASON = "Проверен S5 план при затварянето; Entry е референтна цена, следващото отваряне може да откаже входа."
+
+// No dashboard, alerts, broker calls or changes to paper books. Readiness and campaign capture only.
+f_h1Key(string tag) =>
+    tag + "|1|" + h1Lane + "|" + f_int(time_close)
+
+f_h1Manifest(string tag, int bars, int eventsEmitted) =>
+    tag + "|1|" + h1Lane + "|" + syminfo.tickerid + "|" + timeframe.period + "|" + f_int(h1Start) + "|" +
+         f_int(h1End) + "|" + f_int(h1FirstOpen) + "|" + f_int(bar_index) + "|" + f_int(time_close) +
+         "|" + f_int(bars) + "|" + f_int(eventsEmitted)
+
+f_h1BookName(int index) =>
+    index < 3 ? "M" + str.tostring(index + 1) : index == 3 ? "RAW" : "FILTERED"
+
+f_h1Book(int index, Paper book, Ledger ledger) =>
+    string planId = book.phase == 0 or na(book.p) ? "" : f_h1Field(book.p.id)
+    string position = f_int(book.phase) + "|" + planId + "|" + f_num(book.entry) + "|" + f_num(book.risk) + "|" +
+         f_num(book.stop) + "|" + f_num(book.remaining) + "|" + str.tostring(book.hit1) + "|" + str.tostring(book.hit2) +
+         "|" + str.tostring(book.hit3) + "|" + f_int(book.fillBar) + "|" + f_int(book.fillTime) + "|" +
+         f_int(book.lockBar) + "|" + str.tostring(book.exitNextOpen) + "|" + f_int(book.dayKey) + "|" +
+         f_num(book.dayNet) + "|" + f_int(book.dayStreak)
+    string counts = f_int(ledger.entered) + "|" + f_int(ledger.closed) + "|" + f_int(ledger.positive) + "|" +
+         f_int(ledger.negative) + "|" + f_int(ledger.zero) + "|" + f_int(ledger.cancelled) + "|" +
+         f_int(ledger.capacitySkipped) + "|" + f_int(ledger.ambiguousBars)
+    string values = f_num(ledger.gross) + "|" + f_num(ledger.costs) + "|" + f_num(ledger.net) + "|" +
+         f_num(ledger.gains) + "|" + f_num(ledger.losses) + "|" + f_num(ledger.peak) + "|" +
+         f_num(ledger.drawdown) + "|" + f_num(ledger.holdBars)
+    f_h1Key("H1_BOOK") + "|" + f_h1BookName(index) + "|" + position + "|" + counts + "|" + values
+
+var int h1Logged = 0
+var int h1Events = 0
+var int h1Messages = 0
+var bool h1Overflow = false
+if processBar
+    // Runs every confirmed bar, including before the requested log interval.
+    for e in events
+        if e.book == "RAW" and e.side != 0
+            f_h1ObserveRaw(e)
+    if h1LogBar
+        Plan selected = f_pick(candidates, 0, false)
+        string payload = ""
+        if not na(selected) and selected.strategyKey == "S5" and f_validPlan(selected) and f_tvQtyOnGrid(1.0)
+            for e in events
+                if f_rcCore(e) and e.kind == "CONFIRMED" and e.planId == selected.id
+                    payload := f_rcPayload(e, "READY", selected, RC_READY_REASON)
+        int nextMessages = 9 + array.size(events) + (payload != "" ? 1 : 0)
+        if h1Logged >= H1_BAR_CAP or h1Messages + nextMessages > H1_LOG_CAP
+            h1Overflow := true
+        if not h1Overflow
+            if h1Logged == 0
+                log.info(f_h1Manifest("H1_META", 0, 0))
+            string key = "H1_BAR|1|" + h1Lane + "|" + syminfo.tickerid + "|" + timeframe.period + "|" +
+                 f_int(bar_index) + "|" + f_int(time) + "|" + f_int(time_close)
+            log.info(key + "|" + f_num(open) + "|" + f_num(high) + "|" + f_num(low) + "|" + f_num(close) +
+                 "|" + f_num(close[1]) + "|" + str.tostring(tvTimeGap) + "|" + str.tostring(warmup) +
+                 "|" + str.tostring(readyHTF) + "|" + str.tostring(sessionPass) + "|" + str.tostring(datePass) +
+                 "|" + str.tostring(newsPaused) + "|" + str.tostring(validATR) + "|" + str.tostring(acceptableBar))
+            log.info(f_h1Key("H1_HTF") + "|" + htf + "|" + f_int(h1SourceClose1) + "|" + f_int(h1SourceClose3) +
+                 "|" + f_num(htfClose) + "|" + f_num(htfEMA50) + "|" + f_num(htfEMA50prev) + "|" +
+                 f_num(atrMean) + "|" + f_num(rsi) + "|" + f_num(adx))
+            EvidenceGate globalGate = array.get(gates, 0)
+            EvidenceGate familyGate = array.get(gates, 2)
+            string shields = str.tostring(globalGate.paused) + "|" + f_int(globalGate.pausedAtCount) + "|" +
+                 str.tostring(familyGate.paused) + "|" + f_int(familyGate.pausedAtCount)
+            for idx = 0 to 1
+                int side = idx == 0 ? 1 : -1
+                log.info(f_h1Key("H1_STATE") + "|" + f_int(side) + "|" + array.get(h1SidePrefix, idx) + "|" +
+                     array.get(h1SideSuffix, idx) + "|" + shields)
+            for index = 0 to 4
+                log.info(f_h1Book(index, array.get(books, index), array.get(ledgers, index)))
+            for e in events
+                log.info("H1_E|" + h1Lane + "|" + f_json(e))
+            if payload != ""
+                log.info("H1_READY|" + h1Lane + "|" + payload)
+            h1Logged += 1
+            h1Events += array.size(events)
+            h1Messages += nextMessages
+            if barstate.islastconfirmedhistory
+                log.info("H1_LAST|1|" + h1Lane + "|" + syminfo.tickerid + "|" + timeframe.period + "|" +
+                     f_int(h1FirstOpen) + "|" + f_int(bar_index) + "|" + f_int(time_close))
+            if time_close == h1End
+                log.info(f_h1Manifest("H1_END", h1Logged, h1Events))
+
+plot(na, title="H1 diagnostic journal", display=display.none)
