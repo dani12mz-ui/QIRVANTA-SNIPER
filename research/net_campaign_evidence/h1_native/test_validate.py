@@ -6,8 +6,10 @@ import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
+from unittest.mock import patch
 
 from research.net_campaign_evidence.h1_native import validate as h1
+from research.net_campaign_evidence.h1_native.manifest import capture_manifest
 
 
 STEP = 900_000
@@ -89,7 +91,19 @@ def read_fixture(directory, ranges):
 
 
 class ValidationTests(unittest.TestCase):
-    def capture(self, directory, windows):
+    def test_manifest_builder_writes_expected_settings_and_sorts_capture_files(self):
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            paths = [root / "one.csv", root / "two.csv"]
+            write_csv(paths[0], rows(0, 2))
+            write_csv(paths[1], rows(2, 4, terminal=True))
+            script = root / "diag.pine"
+            script.write_bytes(b"collector source fixture")
+            manifest = capture_manifest(paths[::-1], root / "capture.json", script, 5000, "test", "A", "add")
+            self.assertEqual(manifest["settings"], SETTINGS)
+            self.assertEqual([item["path"] for item in manifest["windows"]], ["one.csv", "two.csv"])
+
+    def capture(self, directory, windows, *, depth=5000):
         manifest = directory / "capture.json"
         manifest.write_text(json.dumps({
             "schema": h1.SCHEMA, "lane": "A", "symbol": "OANDA:XAUUSD", "frame_minutes": 15,
@@ -97,9 +111,19 @@ class ValidationTests(unittest.TestCase):
             "settings": SETTINGS, "modeled_costs": h1.FIXED_COSTS,
             "provenance": {"profile": "test", "mode": "add", "capture_id": "fixture"},
             "first_open_ms": ORIGIN, "fixed_end_close_ms": ORIGIN + 4 * STEP,
-            "scoring_start_ms": ORIGIN + 2 * STEP, "calculated_bars": 5000, "windows": windows,
+            "scoring_start_ms": ORIGIN + 2 * STEP, "calculated_bars": depth, "windows": windows,
         }), encoding="utf8")
         return manifest
+
+    def test_complete_small_fixture_stitches_equal_verified_prefix(self):
+        with TemporaryDirectory() as directory, patch.object(h1, "PRIMARY_DEPTH", 4):
+            root = Path(directory)
+            src = self.capture(root, read_fixture(root, ((0, 2), (2, 4))), depth=4)
+            run = h1.validate_export(src)
+            self.assertEqual(run["status"], "VALIDATED_COMPLETE_NATIVE_CAPTURE")
+            self.assertEqual(tuple(run["bars_by_index"]), (0, 1, 2, 3))
+            self.assertEqual({k: len(v) for k, v in run["books"].items()}, dict.fromkeys(h1.BOOK_NAMES, 4))
+            self.assertEqual(len(run["state"]), 8)
 
     def test_missing_window_and_hash_mutation_fail(self):
         with TemporaryDirectory() as directory:
@@ -150,6 +174,52 @@ class ValidationTests(unittest.TestCase):
             h1._books(book_rows, {stamp: candle}, {})
         with self.assertRaisesRegex(ValueError, "two native formation states"):
             h1._states([], {stamp: candle}, {}, {"settings": SETTINGS})
+
+    def test_b_only_exception_requires_new_formation_after_cancel_is_known(self):
+        clocks = [ORIGIN + n * STEP for n in range(1, 7)]
+        bars = {t: {"index": i, "open_ms": t - STEP} for i, t in enumerate(clocks)}
+        prefix = [(0, None, None), (0, None, None), (1, clocks[1], None),
+                  (0, None, 2), (0, None, 2), (1, clocks[4], 2)]
+        suffix = prefix[1:] + [(0, None, 5)]
+        events = {
+            clocks[2]: [{"event": kind, "book": book, "side": 1, "plan_id": "original"}
+                        for book, kind in (("CORE", "CONFIRMED"), ("RAW", "QUEUED"))],
+            clocks[3]: [{"book": "RAW", "side": 1, "plan_id": "original", "event": "CANCELLED",
+                         "effective_time": clocks[3] - STEP}],
+            clocks[5]: [{"book": "CORE", "side": 1, "plan_id": "new", "event": "CONFIRMED"}],
+        }
+
+        def formation(label, state):
+            phase, born, accepted = state
+            return {f"{label}_phase": phase, f"{label}_born_ms": born,
+                    f"{label}_anchor": Decimal(99) if phase else None,
+                    f"{label}_level": Decimal(101) if phase else None,
+                    f"{label}_accepted_index": accepted}
+
+        states = []
+        for i, t in enumerate(clocks):
+            for side in (1, -1):
+                raw = side == 1 and i in (2, 5)
+                changed = side == 1 and i == 5
+                states.append({
+                    "close_ms": t, "side": side, "raw": raw, "stock_cool": not changed if raw else None,
+                    "exception_used": changed, "candidate_seed_ms": prefix[i][1] if raw else None,
+                    "reason": h1.ACCEPTED_REASON if raw else "No candidate",
+                    "same_side_last_fill_index": None, "same_side_last_fill_ms": None,
+                    "previous_accepted_plan_id": "original" if side == 1 and i > 2 else "",
+                    "qualified_cancel_plan_id": "original" if side == 1 and i > 3 else "",
+                    "cancellation_known_ms": clocks[3] if side == 1 and i > 3 else None,
+                    "global_paused": False, "global_paused_at": 0, "family_paused": False, "family_paused_at": 0,
+                    **formation("before", prefix[i] if side == 1 else (0, None, None)),
+                    **formation("after", suffix[i] if side == 1 else (0, None, None)),
+                })
+        self.assertEqual(h1._states(states, bars, events, {"settings": SETTINGS, "lane": "B"}), states)
+        with self.assertRaisesRegex(ValueError, "exception exceeds"):
+            h1._states(states, bars, events, {"settings": SETTINGS, "lane": "A"})
+        same_seed = {**states[-2], "candidate_seed_ms": clocks[3]}
+        states[-2] = same_seed
+        with self.assertRaisesRegex(ValueError, "gate cooldown or candidate clock differs"):
+            h1._states(states, bars, events, {"settings": SETTINGS, "lane": "B"})
 
     def test_capacity_and_close_events_cannot_be_dropped_from_ledger(self):
         no_events = dict.fromkeys((*h1.COUNT_FIELDS, *h1.BOOK_AMOUNTS), 0)

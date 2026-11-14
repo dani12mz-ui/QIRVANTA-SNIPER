@@ -38,7 +38,7 @@ def capture_manifest(files, output, script, calculated_bars, profile, capture_id
         "source_sha256": sha256(script.read_bytes()).hexdigest(),
         "settings": {
             "core_source_commit": protocol["protected_visual_v2"], "price_feed": "standard",
-            "strategy_mode": "S5", "automatic_htf": True, "core_htf": "240",
+            "strategy_mode": "S5", "automatic_htf": True, "htf": "240",
             "manual_news_pause": False, "timed_news_window": False, "gap_filter": True,
             "evidence_shield": True,
         },

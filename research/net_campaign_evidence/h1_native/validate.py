@@ -117,6 +117,7 @@ def _read_window(path, raw=None):
     rc1.require(reader.fieldnames == ["Date", "Message"], f"{path.name}: unexpected Pine Logs header")
     tags = defaultdict(list)
     order = []
+    stamped_rows = []
     lane_rows = {"H1_E", "H1_READY"}
     for item in reader:
         rc1.require(set(item) == {"Date", "Message"} and item["Date"] and item["Message"] is not None,
@@ -135,6 +136,7 @@ def _read_window(path, raw=None):
                 row = _record(tag, body)
             tags[tag].append(row)
             order.append(tag)
+            stamped_rows.append((tag, row))
 
     rc1.require(len(tags["H1_META"]) == len(tags["H1_END"]) == 1 and len(tags["H1_LAST"]) <= 1,
                 f"{path.name}: missing or duplicate window metadata/footer")
@@ -162,6 +164,15 @@ def _read_window(path, raw=None):
                 f"{path.name}: capture footer does not confirm exact boundaries or counts")
     rc1.require(all(row["lane"] == meta["lane"] for rows in tags.values() for row in rows),
                 f"{path.name}: mixed capture lanes")
+    active_close = None
+    clock_key = {"H1_HTF": "close_ms", "H1_STATE": "close_ms", "H1_BOOK": "close_ms",
+                 "H1_E": "known_time", "H1_READY": "confirmed_ms"}
+    for tag, row in stamped_rows:
+        if tag == "H1_BAR":
+            active_close = row["close_ms"]
+        elif tag in clock_key:
+            rc1.require(active_close is not None and row.get(clock_key[tag]) == active_close,
+                        f"{path.name}: {tag} not recorded inside corresponding confirmed candle")
     if tags["H1_LAST"]:
         witness = tags["H1_LAST"][0]
         rc1.require((witness["symbol"], witness["frame"], witness["first_open_ms"], witness["last_index"],
@@ -204,7 +215,8 @@ def _manifest(path):
     expected_settings = {"core_source_commit": BASELINE_COMMIT, "price_feed": "standard", "strategy_mode": "S5",
                          "automatic_htf": True, "htf": FRAMES[meta["frame_minutes"]], "manual_news_pause": False,
                          "timed_news_window": False, "gap_filter": True, "evidence_shield": True}
-    rc1.require(isinstance(meta["settings"], dict) and all(meta["settings"].get(k) == v for k, v in expected_settings.items()),
+    rc1.require(isinstance(meta["settings"], dict) and all(meta["settings"].get(k) == v and
+                type(meta["settings"].get(k)) is type(v) for k, v in expected_settings.items()),
                 "Native script settings are incomplete or differ from the registered control")
     provenance = meta["provenance"]
     rc1.require(isinstance(provenance, dict) and all(isinstance(provenance.get(k), str) and provenance[k].strip()
